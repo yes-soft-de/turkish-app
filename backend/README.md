@@ -51,3 +51,35 @@ methods: PUT
 /userprofile
 methods: GET
 ```
+
+### Car
+#### Insert new car
+```
+/cars
+methods: POST
+```
+#### Get a car by ID
+```
+/car/id
+methods: GET
+```
+#### Get the cars of specific user
+```
+/cars/createdBy
+methods: GET
+```
+#### Get all cars
+```
+/cars
+methods: GET
+```
+#### Update a specific car by ID
+```
+/cars
+methods: PUT
+```
+#### Delete a specific car by ID
+```
+/cars/id
+methods: DELETE
+```

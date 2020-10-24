@@ -1,0 +1,55 @@
+App\Request\UploadImageRequest:
+  properties:
+    uploadedFile:
+      - Image:
+          #mimeTypesMessage: "this id not message"
+          maxSize: 2m
+          maxSizeMessage: "Image size over 2M"
+
+App\Request\CreateImageRequest:
+  properties:
+    image:
+      - NotBlank: ~
+    animeID:
+      - NotBlank: ~
+
+App\Request\UpdateImageRequest:
+  properties:
+    image:
+      - NotBlank: ~
+    animeID:
+      - NotBlank: ~
+
+App\Request\CreateCarRequest:
+  properties:
+    model:
+      - NotBlank: ~
+    company:
+      - NotBlank: ~
+    engine:
+      - NotBlank: ~
+    price:
+      - NotBlank: ~
+    status:
+      - NotBlank: ~
+    createdBy:
+      - NotBlank: ~
+    distance:
+      - NotBlank: ~
+
+App\Request\UpdateCarRequest:
+  properties:
+    model:
+      - NotBlank: ~
+    company:
+      - NotBlank: ~
+    engine:
+      - NotBlank: ~
+    price:
+      - NotBlank: ~
+    status:
+      - NotBlank: ~
+    createdBy:
+      - NotBlank: ~
+    distance:
+      - NotBlank: ~
