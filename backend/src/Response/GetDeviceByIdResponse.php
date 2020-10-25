@@ -8,6 +8,8 @@ class GetDeviceByIdResponse
 {
     public $model;
 
+    public $company;
+
     public $cpu;
 
     public $ram;
