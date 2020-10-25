@@ -8,6 +8,8 @@ class CreateDeviceResponse
 {
     public $id;
 
+    public $company;
+
     public $model;
 
     public $cpu;
