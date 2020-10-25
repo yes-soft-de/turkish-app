@@ -67,9 +67,9 @@ class CarService
 
     public function update($request)
     {
-        $animeResult = $this->carManager->update($request);
+        $carResult = $this->carManager->update($request);
 
-        return $this->autoMapping->map(CarEntity::class, UpdateCarResponse::class, $animeResult);
+        return $this->autoMapping->map(CarEntity::class, UpdateCarResponse::class, $carResult);
     }
 
     public function delete($result)
