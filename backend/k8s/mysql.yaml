@@ -32,7 +32,7 @@ spec:
           name: mysql8
         volumeMounts:
           - name: mysql-persistent-storage
-            mountPath: /var/
+            mountPath: /var/lib/mysql
       volumes:
       - name: mysql-persistent-storage
         persistentVolumeClaim:
