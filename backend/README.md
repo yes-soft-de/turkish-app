@@ -20,12 +20,17 @@ After that make migration
 php bin/console make:migration
 ```
 
-Finaly run migration versions to create tables
+Finally run migration versions to create tables
 ```
 php bin/console doctrine:migration:migrate
 ```
+***
+#### API guide
+* [Account](#account)
+* [Car](#car)
+* [Device](#device)
 
-### Account
+#### Account
 #### Create new user
 ```
 /user
@@ -81,5 +86,37 @@ methods: PUT
 #### Delete a specific car by ID
 ```
 /cars/id
+methods: DELETE
+```
+
+### Device
+#### Insert new device
+```
+/devices
+methods: POST
+```
+#### Get a device by ID
+```
+/device/id
+methods: GET
+```
+#### Get the devices of specific user
+```
+/devices/createdBy
+methods: GET
+```
+#### Get all devices
+```
+/devices
+methods: GET
+```
+#### Update a specific device by ID
+```
+/devices
+methods: PUT
+```
+#### Delete a specific device by ID
+```
+/devices/id
 methods: DELETE
 ```
