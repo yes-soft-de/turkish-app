@@ -4,12 +4,8 @@
 namespace App\Response;
 
 
-class CreateDeviceResponse
+class DeviceUpdateResponse
 {
-    public $id;
-
-    public $company;
-
     public $model;
 
     public $cpu;

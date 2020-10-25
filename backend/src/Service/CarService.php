@@ -7,12 +7,12 @@ namespace App\Service;
 use App\AutoMapping;
 use App\Entity\CarEntity;
 use App\Manager\CarManager;
-use App\Request\CreateCarRequest;
+use App\Request\CarCreateRequest;
 use App\Request\GetByIdRequest;
-use App\Response\CreateCarResponse;
-use App\Response\GetCarByIdResponse;
-use App\Response\GetCarResponse;
-use App\Response\UpdateCarResponse;
+use App\Response\CarCreateResponse;
+use App\Response\CarGetByIdResponse;
+use App\Response\CarGetResponse;
+use App\Response\CarUpdateResponse;
 
 class CarService
 {
@@ -25,18 +25,18 @@ class CarService
         $this->carManager = $carManager;
     }
 
-    public function create(CreateCarRequest $request)
+    public function create(CarCreateRequest $request)
     {
         $carResult = $this->carManager->create($request);
 
-        return $this->autoMapping->map(CarEntity::class, CreateCarResponse::class, $carResult);
+        return $this->autoMapping->map(CarEntity::class, CarCreateResponse::class, $carResult);
     }
 
     public function getCarById($request)
     {
         $result = $this->carManager->getCarById($request);
 
-        return $this->autoMapping->map(CarEntity::class, GetCarByIdResponse::class, $result);
+        return $this->autoMapping->map(CarEntity::class, CarGetByIdResponse::class, $result);
     }
 
     public function getCarsOfUser($request)
@@ -46,7 +46,7 @@ class CarService
         //dd($result);
         foreach ($result as $row)
         {
-            $response[] = $this->autoMapping->map(CarEntity::class, GetCarResponse::class, $row);
+            $response[] = $this->autoMapping->map(CarEntity::class, CarGetResponse::class, $row);
         }
         //dd($response);
         return $response;
@@ -59,7 +59,7 @@ class CarService
 
         foreach ($result as $row)
         {
-            $response[] = $this->autoMapping->map(CarEntity::class, GetCarResponse::class, $row);
+            $response[] = $this->autoMapping->map(CarEntity::class, CarGetResponse::class, $row);
         }
 
         return $response;
@@ -69,7 +69,7 @@ class CarService
     {
         $carResult = $this->carManager->update($request);
 
-        return $this->autoMapping->map(CarEntity::class, UpdateCarResponse::class, $carResult);
+        return $this->autoMapping->map(CarEntity::class, CarUpdateResponse::class, $carResult);
     }
 
     public function delete($result)
@@ -80,6 +80,6 @@ class CarService
         {
             return null;
         }
-        return  $this->autoMapping->map(CarEntity::class, GetCarByIdResponse::class, $carResult);
+        return  $this->autoMapping->map(CarEntity::class, CarGetByIdResponse::class, $carResult);
     }
 }

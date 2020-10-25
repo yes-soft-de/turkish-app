@@ -7,10 +7,10 @@ namespace App\Manager;
 use App\AutoMapping;
 use App\Entity\CarEntity;
 use App\Repository\CarEntityRepository;
-use App\Request\CreateCarRequest;
+use App\Request\CarCreateRequest;
 use App\Request\DeleteRequest;
 use App\Request\GetByIdRequest;
-use App\Request\UpdateCarRequest;
+use App\Request\CarUpdateRequest;
 use Doctrine\ORM\EntityManagerInterface;
 
 class CarManager
@@ -26,9 +26,9 @@ class CarManager
         $this->carEntityRepository = $carEntityRepository;
     }
 
-    public function create(CreateCarRequest $request)
+    public function create(CarCreateRequest $request)
     {
-        $carEntity = $this->autoMapping->map(CreateCarRequest::class, CarEntity::class, $request);
+        $carEntity = $this->autoMapping->map(CarCreateRequest::class, CarEntity::class, $request);
 
         $this->entityManager->persist($carEntity);
         $this->entityManager->flush();
@@ -52,7 +52,7 @@ class CarManager
         return $this->carEntityRepository->getAllCars();
     }
 
-    public function update(UpdateCarRequest $request)
+    public function update(CarUpdateRequest $request)
     {
         $carEntity = $this->carEntityRepository->find($request->getId());
 
@@ -62,7 +62,7 @@ class CarManager
         }
         else
         {
-            $carEntity = $this->autoMapping->mapToObject(UpdateCarRequest::class,
+            $carEntity = $this->autoMapping->mapToObject(CarUpdateRequest::class,
                 CarEntity::class, $request, $carEntity);
 
             $this->entityManager->flush();

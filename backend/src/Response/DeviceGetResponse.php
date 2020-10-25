@@ -4,17 +4,21 @@
 namespace App\Response;
 
 
-class UpdateCarResponse
+class DeviceGetResponse
 {
+    public $id;
+
     public $model;
 
-    public $company;
+    public $cpu;
 
-    public $productionYear;
+    public $ram;
 
-    public $engine;
+    public $battery;
 
     public $price;
+
+    public $productionYear;
 
     public $description;
 
@@ -23,6 +27,4 @@ class UpdateCarResponse
     public $createdBy;
 
     public $createdAt;
-
-    public $distance;
 }

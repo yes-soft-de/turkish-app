@@ -20,7 +20,7 @@ App\Request\UpdateImageRequest:
     animeID:
       - NotBlank: ~
 
-App\Request\CreateCarRequest:
+App\Request\CarCreateRequest:
   properties:
     model:
       - NotBlank: ~
@@ -37,7 +37,7 @@ App\Request\CreateCarRequest:
     distance:
       - NotBlank: ~
 
-App\Request\UpdateCarRequest:
+App\Request\CarUpdateRequest:
   properties:
     model:
       - NotBlank: ~
@@ -54,11 +54,9 @@ App\Request\UpdateCarRequest:
     distance:
       - NotBlank: ~
 
-App\Request\CreateDeviceRequest:
+App\Request\DeviceCreateRequest:
   properties:
     model:
-      - NotBlank: ~
-    company:
       - NotBlank: ~
     cpu:
       - NotBlank: ~
@@ -72,14 +70,10 @@ App\Request\CreateDeviceRequest:
       - NotBlank: ~
     createdBy:
       - NotBlank: ~
-    createdAt:
-      - NotBlank: ~
 
-App\Request\UpdateDeviceRequest:
+App\Request\DeviceUpdateRequest:
   properties:
     model:
-      - NotBlank: ~
-    company:
       - NotBlank: ~
     cpu:
       - NotBlank: ~

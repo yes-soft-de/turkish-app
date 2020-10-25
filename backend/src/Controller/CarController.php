@@ -5,10 +5,10 @@ namespace App\Controller;
 
 
 use App\AutoMapping;
-use App\Request\CreateCarRequest;
+use App\Request\CarCreateRequest;
 use App\Request\DeleteRequest;
 use App\Request\GetByIdRequest;
-use App\Request\UpdateCarRequest;
+use App\Request\CarUpdateRequest;
 use App\Service\CarService;
 use stdClass;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -42,7 +42,7 @@ class CarController extends BaseController
     {
         $data = json_decode($request->getContent(), true);
 
-        $request = $this->autoMapping->map(stdClass::class,CreateCarRequest::class, (object)$data);
+        $request = $this->autoMapping->map(stdClass::class,CarCreateRequest::class, (object)$data);
 
         $violations = $this->validator->validate($request);
 
@@ -103,7 +103,7 @@ class CarController extends BaseController
     {
         $data = json_decode($request->getContent(), true);
 
-        $request = $this->autoMapping->map(\stdClass::class, UpdateCarRequest::class, (object) $data);
+        $request = $this->autoMapping->map(\stdClass::class, CarUpdateRequest::class, (object) $data);
 
         $violations = $this->validator->validate($request);
 

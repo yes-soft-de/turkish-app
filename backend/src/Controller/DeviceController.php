@@ -5,10 +5,10 @@ namespace App\Controller;
 
 
 use App\AutoMapping;
-use App\Request\CreateDeviceRequest;
+use App\Request\DeviceCreateRequest;
 use App\Request\DeleteRequest;
 use App\Request\GetByIdRequest;
-use App\Request\UpdateDeviceRequest;
+use App\Request\DeviceUpdateRequest;
 use App\Service\DeviceService;
 use stdClass;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -42,7 +42,7 @@ class DeviceController extends BaseController
     {
         $data = json_decode($request->getContent(), true);
 
-        $request = $this->autoMapping->map(stdClass::class,CreateDeviceRequest::class, (object)$data);
+        $request = $this->autoMapping->map(stdClass::class,DeviceCreateRequest::class, (object)$data);
 
         $violations = $this->validator->validate($request);
 
@@ -103,7 +103,7 @@ class DeviceController extends BaseController
     {
         $data = json_decode($request->getContent(), true);
 
-        $request = $this->autoMapping->map(\stdClass::class, UpdateDeviceRequest::class, (object) $data);
+        $request = $this->autoMapping->map(\stdClass::class, DeviceUpdateRequest::class, (object) $data);
 
         $violations = $this->validator->validate($request);
 

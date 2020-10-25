@@ -4,10 +4,8 @@
 namespace App\Response;
 
 
-class GetCarResponse
+class CarGetByIdResponse
 {
-    public $id;
-
     public $model;
 
     public $company;

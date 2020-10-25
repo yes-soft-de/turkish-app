@@ -4,8 +4,10 @@
 namespace App\Request;
 
 
-class CreateCarRequest
+class CarUpdateRequest
 {
+    private $id;
+
     private $model;
 
     private $company;
@@ -25,6 +27,22 @@ class CreateCarRequest
     private $createdAt;
 
     private $distance;
+
+    /**
+     * @return mixed
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * @param mixed $id
+     */
+    public function setId($id): void
+    {
+        $this->id = $id;
+    }
 
     /**
      * @return mixed
@@ -185,6 +203,5 @@ class CreateCarRequest
     {
         $this->distance = $distance;
     }
-
 
 }

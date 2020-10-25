@@ -7,10 +7,10 @@ namespace App\Manager;
 use App\AutoMapping;
 use App\Entity\DeviceEntity;
 use App\Repository\DeviceEntityRepository;
-use App\Request\CreateDeviceRequest;
+use App\Request\DeviceCreateRequest;
 use App\Request\DeleteRequest;
 use App\Request\GetByIdRequest;
-use App\Request\UpdateDeviceRequest;
+use App\Request\DeviceUpdateRequest;
 use Doctrine\ORM\EntityManagerInterface;
 
 class DeviceManager
@@ -26,9 +26,9 @@ class DeviceManager
         $this->deviceEntityRepository = $deviceEntityRepository;
     }
 
-    public function create(CreateDeviceRequest $request)
+    public function create(DeviceCreateRequest $request)
     {
-        $deviceEntity = $this->autoMapping->map(CreateDeviceRequest::class, DeviceEntity::class, $request);
+        $deviceEntity = $this->autoMapping->map(DeviceCreateRequest::class, DeviceEntity::class, $request);
 
         $this->entityManager->persist($deviceEntity);
         $this->entityManager->flush();
@@ -52,7 +52,7 @@ class DeviceManager
         return $this->deviceEntityRepository->getAllDevices();
     }
 
-    public function update(UpdateDeviceRequest $request)
+    public function update(DeviceUpdateRequest $request)
     {
         $deviceEntity = $this->deviceEntityRepository->find($request->getId());
 
@@ -62,7 +62,7 @@ class DeviceManager
         }
         else
         {
-            $deviceEntity = $this->autoMapping->mapToObject(UpdateDeviceRequest::class,
+            $deviceEntity = $this->autoMapping->mapToObject(DeviceUpdateRequest::class,
                 DeviceEntity::class, $request, $deviceEntity);
 
             $this->entityManager->flush();

@@ -4,11 +4,11 @@
 namespace App\Request;
 
 
-class CreateDeviceRequest
+class DeviceUpdateRequest
 {
-    private $model;
+    private $id;
 
-    private $company;
+    private $model;
 
     private $cpu;
 
@@ -31,6 +31,22 @@ class CreateDeviceRequest
     /**
      * @return mixed
      */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * @param mixed $id
+     */
+    public function setId($id): void
+    {
+        $this->id = $id;
+    }
+
+    /**
+     * @return mixed
+     */
     public function getModel()
     {
         return $this->model;
@@ -42,22 +58,6 @@ class CreateDeviceRequest
     public function setModel($model): void
     {
         $this->model = $model;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getCompany()
-    {
-        return $this->company;
-    }
-
-    /**
-     * @param mixed $company
-     */
-    public function setCompany($company): void
-    {
-        $this->company = $company;
     }
 
     /**
@@ -203,5 +203,4 @@ class CreateDeviceRequest
     {
         $this->createdAt = $createdAt;
     }
-
 }

@@ -4,19 +4,19 @@
 namespace App\Request;
 
 
-class UpdateCarRequest
+class DeviceCreateRequest
 {
-    private $id;
-
     private $model;
 
-    private $company;
+    private $cpu;
 
-    private $productionYear;
+    private $ram;
 
-    private $engine;
+    private $battery;
 
     private $price;
+
+    private $productionYear;
 
     private $description;
 
@@ -25,24 +25,6 @@ class UpdateCarRequest
     private $createdBy;
 
     private $createdAt;
-
-    private $distance;
-
-    /**
-     * @return mixed
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
-
-    /**
-     * @param mixed $id
-     */
-    public function setId($id): void
-    {
-        $this->id = $id;
-    }
 
     /**
      * @return mixed
@@ -63,49 +45,49 @@ class UpdateCarRequest
     /**
      * @return mixed
      */
-    public function getCompany()
+    public function getCpu()
     {
-        return $this->company;
+        return $this->cpu;
     }
 
     /**
-     * @param mixed $company
+     * @param mixed $cpu
      */
-    public function setCompany($company): void
+    public function setCpu($cpu): void
     {
-        $this->company = $company;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getProductionYear()
-    {
-        return $this->productionYear;
-    }
-
-    /**
-     * @param mixed $productionYear
-     */
-    public function setProductionYear($productionYear): void
-    {
-        $this->productionYear = $productionYear;
+        $this->cpu = $cpu;
     }
 
     /**
      * @return mixed
      */
-    public function getEngine()
+    public function getRam()
     {
-        return $this->engine;
+        return $this->ram;
     }
 
     /**
-     * @param mixed $engine
+     * @param mixed $ram
      */
-    public function setEngine($engine): void
+    public function setRam($ram): void
     {
-        $this->engine = $engine;
+        $this->ram = $ram;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getBattery()
+    {
+        return $this->battery;
+    }
+
+    /**
+     * @param mixed $battery
+     */
+    public function setBattery($battery): void
+    {
+        $this->battery = $battery;
     }
 
     /**
@@ -122,6 +104,22 @@ class UpdateCarRequest
     public function setPrice($price): void
     {
         $this->price = $price;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getProductionYear()
+    {
+        return $this->productionYear;
+    }
+
+    /**
+     * @param mixed $productionYear
+     */
+    public function setProductionYear($productionYear): void
+    {
+        $this->productionYear = $productionYear;
     }
 
     /**
@@ -186,22 +184,6 @@ class UpdateCarRequest
     public function setCreatedAt($createdAt): void
     {
         $this->createdAt = $createdAt;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getDistance()
-    {
-        return $this->distance;
-    }
-
-    /**
-     * @param mixed $distance
-     */
-    public function setDistance($distance): void
-    {
-        $this->distance = $distance;
     }
 
 }
