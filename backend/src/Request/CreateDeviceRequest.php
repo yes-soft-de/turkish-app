@@ -8,6 +8,8 @@ class CreateDeviceRequest
 {
     private $model;
 
+    private $company;
+
     private $cpu;
 
     private $ram;
@@ -24,6 +26,8 @@ class CreateDeviceRequest
 
     private $createdBy;
 
+    private $createdAt;
+
     /**
      * @return mixed
      */
@@ -38,6 +42,22 @@ class CreateDeviceRequest
     public function setModel($model): void
     {
         $this->model = $model;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getCompany()
+    {
+        return $this->company;
+    }
+
+    /**
+     * @param mixed $company
+     */
+    public function setCompany($company): void
+    {
+        $this->company = $company;
     }
 
     /**
@@ -167,4 +187,21 @@ class CreateDeviceRequest
     {
         $this->createdBy = $createdBy;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getCreatedAt()
+    {
+        return $this->createdAt;
+    }
+
+    /**
+     * @param mixed $createdAt
+     */
+    public function setCreatedAt($createdAt): void
+    {
+        $this->createdAt = $createdAt;
+    }
+
 }
