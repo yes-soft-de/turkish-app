@@ -8,6 +8,8 @@ class UpdateDeviceResponse
 {
     public $model;
 
+    public $company;
+
     public $cpu;
 
     public $ram;
