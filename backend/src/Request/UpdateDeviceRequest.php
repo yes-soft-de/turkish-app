@@ -10,6 +10,8 @@ class UpdateDeviceRequest
 
     private $model;
 
+    private $company;
+
     private $cpu;
 
     private $ram;
@@ -58,6 +60,22 @@ class UpdateDeviceRequest
     public function setModel($model): void
     {
         $this->model = $model;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getCompany()
+    {
+        return $this->company;
+    }
+
+    /**
+     * @param mixed $company
+     */
+    public function setCompany($company): void
+    {
+        $this->company = $company;
     }
 
     /**
