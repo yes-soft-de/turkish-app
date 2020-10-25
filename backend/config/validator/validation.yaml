@@ -53,3 +53,43 @@ App\Request\UpdateCarRequest:
       - NotBlank: ~
     distance:
       - NotBlank: ~
+
+App\Request\CreateDeviceRequest:
+  properties:
+    model:
+      - NotBlank: ~
+    company:
+      - NotBlank: ~
+    cpu:
+      - NotBlank: ~
+    ram:
+      - NotBlank: ~
+    battery:
+      - NotBlank: ~
+    price:
+      - NotBlank: ~
+    status:
+      - NotBlank: ~
+    createdBy:
+      - NotBlank: ~
+    createdAt:
+      - NotBlank: ~
+
+App\Request\UpdateDeviceRequest:
+  properties:
+    model:
+      - NotBlank: ~
+    company:
+      - NotBlank: ~
+    cpu:
+      - NotBlank: ~
+    ram:
+      - NotBlank: ~
+    battery:
+      - NotBlank: ~
+    price:
+      - NotBlank: ~
+    status:
+      - NotBlank: ~
+    createdBy:
+      - NotBlank: ~
