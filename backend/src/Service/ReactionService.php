@@ -31,10 +31,9 @@ class ReactionService
 
     }
 
-    
-    public function getAll($itemID)
+    public function getAll($data, $itemID)
     {
-        $result = $this->reactionManager->getAll($itemID);
+        $result = $this->reactionManager->getAll($data, $itemID);
         $response = [];
         foreach ($result as $row) {
             $response[] = $this->autoMapping->map(ReactionEntity::class, GetReactionResponse::class, $row);
@@ -54,38 +53,4 @@ class ReactionService
         return $response;
     }
 
-    public function countInteractions($request)
-    {
-        return $this->interactionManager->countInteractions($request);
-    }
-
-    public function loved($request)
-    {
-       return $this->interactionManager->loved($request)[1];
-    }
-
-    public function like($request)
-    {
-        return $this->interactionManager->like($request)[1];
-    }
-
-    public function dislike($request)
-    {
-        return $this->interactionManager->dislike($request)[1];
-    }
-
-    public function lovedAll($ID)
-    {
-       return  $this->interactionManager->lovedAll($ID)[1];
-    }
-
-    public function likeAll($ID)
-    {
-       return  $this->interactionManager->likeAll($ID)[1];
-    }
-
-    public function dislikeAll($ID)
-    {
-       return  $this->interactionManager->dislikeAll($ID)[1];
-    }
 }

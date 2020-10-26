@@ -6,6 +6,7 @@ use App\Entity\StatusEntity;
 use App\Manager\StatusManager;
 use App\Request\StatusCreateRequest;
 use App\Request\StatusUpdateRequest;
+use App\Response\GetAgreementsResponse;
 use App\Response\StatusCreateResponse;
 use App\Response\StatusUpdateResponse;
 use App\Service\StatusService;
@@ -27,7 +28,7 @@ class StatusServiceUnitTest extends TestCase
     /**
      * @dataProvider create
      */
-    public function testCreateWithDataProvider($expected,$actual)
+    public function testCreateWithDataProvider($expected, $actual)
     {
         $response = new StatusCreateResponse();
         $response->userID = $expected;
@@ -41,20 +42,20 @@ class StatusServiceUnitTest extends TestCase
         $entity->setStatus($actual);
         $entity->setCreatedBy($actual);
 
-        $Request = new StatusCreateRequest();
+        $request = new StatusCreateRequest();
 
         $this->mockManager
-            ->method('create')
+            ->method('statusCreate')
             ->willReturn($entity);
 
-        $service = new StatusService($this->mockManager, $this->autoMapping);
-        $this->assertEquals($response, $service->statusCreate($createRatingRequest));
+        $service = new StatusService($this->autoMapping, $this->mockManager);
+        $this->assertEquals($response, $service->statusCreate($request));
 
     }
 
     public function create()
     {
-        $result = new RatingProvider();
+        $result = new StatusProvider();
         return $result->create();
     }
 
@@ -63,55 +64,67 @@ class StatusServiceUnitTest extends TestCase
      */
     public function testUpdateWithDataProvider($expected, $actual)
     {
-        $updateRatingResponse = new UpdateRatingResponse();
-        $updateRatingResponse->rateValue = $expected;
-        $updateRatingResponse->animeID = $expected;
-        $updateRatingResponse->userID = $expected;
+        $response = new StatusUpdateResponse();
+        $response->userID = $expected;
+        $response->LawyerID = $expected;
+        $response->status = $expected;
+        $response->createdBy = $expected;
+        $response->createdAt = $expected;
+        
+        $entity = new StatusEntity();
+        $entity->setUserID($actual);
+        $entity->setLawyerID($actual);
+        $entity->setStatus($actual);
+        $entity->setCreatedBy($actual);
+        $entity->setCreatedAt($actual);
 
-        $rating = new Rating();
-        $rating->setRateValue($actual);
-        $rating->setAnimeID($actual);
-        $rating->setUserID($actual);
+        $request = new StatusUpdateRequest();
 
-        $UpdateRatingRequest = new UpdateRatingRequest();
+        $this->mockManager
+            ->method('statusupdate')
+            ->willReturn($entity);
 
-        $this->mockRatingManager
-            ->method('update')
-            ->willReturn($rating);
-
-        $ratingService = new RatingService($this->mockRatingManager, $this->autoMapping, $this->gradeService, $this->updateGradeRequest);
-
-        $this->assertEquals($updateRatingResponse, $ratingService->update($UpdateRatingRequest));
+        $service = new StatusService($this->autoMapping, $this->mockManager);
+        $this->assertEquals($response, $service->statusupdate($request));
     }
 
     public function update()
     {
-        $result = new RatingProvider();
+        $result = new StatusProvider();
         return $result->update();
     }
 
-     /**
-     * @dataProvider getAllRatings
+    /**
+     * @dataProvider getAgreements
      */
-    public function testGetAllRatingsByAnimeIdWithDataProvider( $expected,  $actual)
-    {       
-        $Response = new CountRatingResponse();
-        $Response->setAvgRating($expected);
-        
-        $this->mockRatingManager
-            ->method('getAllRatings')
-            ->willReturn(["avgRating" => $actual]);
+    public function testGetAgreementsByUserIdWithDataProvider($expected, $actual)
+    {
+        $response = new GetAgreementsResponse();
+        $response->userID = $expected;
+        $response->LawyerID = $expected;
+        $response->status = $expected;
+        $response->createdBy = $expected;
 
-        $ratingService = new RatingService($this->mockRatingManager, $this->autoMapping, $this->gradeService, $this->updateGradeRequest);
-        
-        $this->assertEquals($Response, $ratingService->getAllRatings($actual));
-        
+        $entity = new StatusEntity();
+        $entity->setUserID($actual);
+        $entity->setLawyerID($actual);
+        $entity->setStatus($actual);
+        $entity->setCreatedBy($actual);
+
+        $this->mockManager
+            ->method('getAgreements')
+            ->willReturn($entity);
+
+        $service = new StatusService($this->autoMapping, $this->mockManager);
+
+        $this->assertEquals($response, $service->getAgreements($actual));
+
     }
 
-    public function getAllRatings()
+    public function getAgreements()
     {
-        $result = new RatingProvider();
-        return $result->getAllRatingsByAnimeID();
+        $result = new StatusProvider();
+        return $result->getAgreements();
     }
 
 }

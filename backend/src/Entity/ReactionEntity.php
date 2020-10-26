@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\ReactionEntityRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
  * @ORM\Entity(repositoryClass=ReactionEntityRepository::class)
@@ -28,6 +29,7 @@ class ReactionEntity
     private $type;
 
     /**
+     * @Gedmo\Timestampable(on="create")
      * @ORM\Column(type="datetime")
      */
     private $createdAt;
@@ -76,9 +78,9 @@ class ReactionEntity
         return $this->createdAt;
     }
 
-    public function setCreatedAt(): self
+    public function setCreatedAt($createdAt): self
     {
-        $this->createdAt = new \DateTime('Now');
+        $this->createdAt = $createdAt;
 
         return $this;
     }

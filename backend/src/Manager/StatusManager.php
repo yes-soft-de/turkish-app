@@ -28,8 +28,6 @@ class StatusManager
     {
         $Entity = $this->autoMapping->map(StatusCreateRequest::class, StatusEntity::class, $request);
 
-        $Entity->setCreatedAt();
-
         $this->entityManager->persist($Entity);
         $this->entityManager->flush();
         $this->entityManager->clear();

@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\RealEstateEntityRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
  * @ORM\Entity(repositoryClass=RealEstateEntityRepository::class)
@@ -48,6 +49,7 @@ class RealEstateEntity
     private $createdBy;
 
     /**
+     * @Gedmo\Timestampable(on="create")
      * @ORM\Column(type="datetime", nullable=true)
      */
     private $createdAt;
@@ -60,6 +62,12 @@ class RealEstateEntity
     public function getId(): ?int
     {
         return $this->id;
+    }
+
+    public function setId(int $id): self
+    {
+        $this->id = $id;
+        return $this;
     }
 
     public function getCity(): ?string
@@ -139,9 +147,9 @@ class RealEstateEntity
         return $this->createdAt;
     }
 
-    public function setCreatedAt(): self
+    public function setCreatedAt($createdAt): self
     {
-        $this->createdAt = new \DateTime('Now');
+        $this->createdAt = $createdAt;
 
         return $this;
     }

@@ -23,8 +23,7 @@ class ReactionManager
     public function reactionCreate(ReactionCreateRequest $request)
     {
         $entity = $this->autoMapping->map(ReactionCreateRequest::class, ReactionEntity::class, $request);
-        $entity->setCreatedAt();
-    
+       
         $this->entityManager->persist($entity);
         $this->entityManager->flush();
         $this->entityManager->clear();
@@ -32,9 +31,9 @@ class ReactionManager
         return $entity;
     }
 
-    public function getAll($itemID)
+    public function getAll($data, $itemID)
     {
-        return $this->repository->getAll($itemID);
+        return $this->repository->getAll($data, $itemID);
     }
 
     public function getReactionsForUser($userID)

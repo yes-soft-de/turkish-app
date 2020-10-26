@@ -5,6 +5,8 @@ namespace App\Entity;
 use App\Repository\StatusEntityRepository;
 use Doctrine\ORM\Mapping as ORM;
 
+use Gedmo\Mapping\Annotation as Gedmo;
+
 /**
  * @ORM\Entity(repositoryClass=StatusEntityRepository::class)
  */
@@ -33,6 +35,7 @@ class StatusEntity
     private $status;
 
     /**
+     * @Gedmo\Timestampable(on="create")
      * @ORM\Column(type="datetime")
      */
     private $createdAt;
@@ -88,9 +91,9 @@ class StatusEntity
         return $this->createdAt;
     }
 
-    public function setCreatedAt(): self
+    public function setCreatedAt($createdAt): self
     {
-        $this->createdAt = new \DateTime('Now');
+        $this->createdAt = $createdAt;
 
         return $this;
     }

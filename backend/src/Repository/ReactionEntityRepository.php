@@ -19,11 +19,13 @@ class ReactionEntityRepository extends ServiceEntityRepository
         parent::__construct($registry, ReactionEntity::class);
     }
 
-    public function getAll($itemID)
+    public function getAll($data ,$itemID)
     {
         return $this->createQueryBuilder('Reaction')
         ->andWhere('Reaction.itemID = :itemID')
+        ->andWhere('Reaction.entity in (:data)')
         ->setParameter('itemID', $itemID)
+        ->setParameter('data', $data)
         ->getQuery()
         ->getResult();
     }

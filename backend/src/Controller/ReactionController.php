@@ -51,12 +51,14 @@ class ReactionController extends BaseController
 
      /**
      * @Route("/reactions/{itemID}", name="GetAllReactionsForSpecificItem", methods={"GET"})
-     * @param $itemID
      * @return JsonResponse
      */
-    public function getAll($itemID)
+    public function getAll(request $request, $itemID)
     {
-        $result = $this->reactionService->getAll($itemID);
+        $data = json_decode($request->getContent(), true);
+
+        $result = $this->reactionService->getAll($data, $itemID);
+        
         return $this->response($result, self::FETCH);
     }
 

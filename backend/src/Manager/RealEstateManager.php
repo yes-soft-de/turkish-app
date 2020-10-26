@@ -28,8 +28,6 @@ class RealEstateManager
     {
         $entity = $this->autoMapping->map(RealEstateCreateRequest::class, RealEstateEntity::class, $request);
 
-        $entity->setCreatedAt();
-
         $this->entityManager->persist($entity);
         $this->entityManager->flush();
         $this->entityManager->clear();
