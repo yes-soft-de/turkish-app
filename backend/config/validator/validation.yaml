@@ -1,0 +1,63 @@
+App\Request\UploadImageRequest:
+  properties:
+    uploadedFile:
+      - Image:
+          #mimeTypesMessage: "this id not message"
+          maxSize: 2m
+          maxSizeMessage: "Image size over 2M"
+
+App\Request\RealEstateCreateRequest:
+  properties:
+    city:
+      - NotBlank: ~
+    space:
+      - NotBlank: ~
+    price:
+      - NotBlank: ~
+    description:
+      - NotBlank: ~
+    status:
+      - NotBlank: ~
+    createdBy:
+      - NotBlank: ~
+    state:
+      - NotBlank: ~
+
+App\Request\RealEstateUpdateRequest:
+  properties:
+    city:
+      - NotBlank: ~
+    space:
+      - NotBlank: ~
+    price:
+      - NotBlank: ~
+    description:
+      - NotBlank: ~
+    status:
+      - NotBlank: ~
+    createdBy:
+      - NotBlank: ~
+    state:
+      - NotBlank: ~
+
+App\Request\StatusCreateRequest:
+  properties:
+    userID:
+      - NotBlank: ~
+    LawyerID:
+      - NotBlank: ~
+    status:
+      - NotBlank: ~
+    createdBy:
+      - NotBlank: ~
+
+App\Request\StatusUpdateRequest:
+  properties:
+    userID:
+      - NotBlank: ~
+    LawyerID:
+      - NotBlank: ~
+    status:
+      - NotBlank: ~
+    createdBy:
+      - NotBlank: ~
