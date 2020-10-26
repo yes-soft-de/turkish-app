@@ -28,7 +28,7 @@ class ReactionController extends BaseController
     }
 
     /**
-     * @Route("/reactions", name="CreateNewReactions", methods={"POST"})
+     * @Route("/reactions", name="InsertNewReaction", methods={"POST"})
      * @param Request $request
      * @return JsonResponse
      */

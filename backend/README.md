@@ -51,3 +51,66 @@ methods: PUT
 /userprofile
 methods: GET
 ```
+### Status
+#### Create new status 
+```
+/status
+methods: POST
+```
+#### Update status
+```
+/status
+methods: PUT
+```
+#### Get agreements of a specific user
+```
+/status/{userID}
+methods: GET
+```
+### RealEstate
+#### Create new real estate
+```
+/real-estate
+methods: POST
+```
+#### Get an item by ID
+```
+/real-estate/{ID}
+methods: GET
+```
+#### Get all items
+```
+/real-estate
+methods: GET
+```
+#### Get all items of specific user
+```
+/real-estates/{userID}
+methods: GET
+```
+#### Update an existing item
+```
+/real-estate
+methods: PUT
+```
+#### Delete an item
+```
+/real-estate/{ID}
+methods: DELETE
+```
+### Reaction
+#### Insert new reaction
+```
+/reactions
+methods: POST
+```
+#### Get all reactions for specific item
+```
+/reactions/{itemID}
+methods: GET
+```
+#### Get all reactions for specific user. 
+```
+/reactionss/{userID}
+methods: GET
+```

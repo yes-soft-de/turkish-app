@@ -52,7 +52,7 @@ class RealEstateController extends BaseController
     } 
     
     /**
-     * @Route("/real-estate/{ID}", name="GetItemByID",methods={"GET"})
+     * @Route("/real-estate/{ID}", name="GetAnItemByID",methods={"GET"})
      * @param Request $request
      * @return JsonResponse
      */
@@ -78,7 +78,7 @@ class RealEstateController extends BaseController
     }
 
     /**
-     * @Route("/real-estate-by-user/{userID}", name="GetAllItemsOfSpecificUser",methods={"GET"})
+     * @Route("/real-estates/{userID}", name="GetAllItemsOfSpecificUser",methods={"GET"})
      * @param Request $request
      * @return JsonResponse
      */
@@ -90,7 +90,7 @@ class RealEstateController extends BaseController
     }
 
     /**
-     * @Route("/real-estate", name="updateRealEstate", methods={"PUT"})
+     * @Route("/real-estate", name="UpdateAnExistingItem", methods={"PUT"})
      * @param Request $request
      * @return JsonResponse|Response
      */
