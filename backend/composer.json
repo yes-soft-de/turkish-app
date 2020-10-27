@@ -34,11 +34,9 @@
         "twig/twig": "^2.12|^3.0"
     },
     "require-dev": {
-<<<<<<< HEAD
-        "symfony/phpunit-bridge": "^5.1"
-=======
+        "symfony/phpunit-bridge": "^5.1",
         "behat/behat": "^3.7"
->>>>>>> 9ee4a3e03d164ef6c33b2bae96f4e7ce0b445c80
+ 
     },
     "config": {
         "optimize-autoloader": true,
