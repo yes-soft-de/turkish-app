@@ -6,17 +6,6 @@ App\Request\UploadImageRequest:
           maxSize: 2m
           maxSizeMessage: "Image size over 2M"
 
-<<<<<<< HEAD
-App\Request\RealEstateCreateRequest:
-  properties:
-    city:
-      - NotBlank: ~
-    space:
-      - NotBlank: ~
-    price:
-      - NotBlank: ~
-    description:
-=======
 App\Request\CreateImageRequest:
   properties:
     image:
@@ -36,26 +25,11 @@ App\Request\CarCreateRequest:
     engine:
       - NotBlank: ~
     price:
->>>>>>> 9ee4a3e03d164ef6c33b2bae96f4e7ce0b445c80
       - NotBlank: ~
     status:
       - NotBlank: ~
     createdBy:
       - NotBlank: ~
-<<<<<<< HEAD
-    state:
-      - NotBlank: ~
-
-App\Request\RealEstateUpdateRequest:
-  properties:
-    city:
-      - NotBlank: ~
-    space:
-      - NotBlank: ~
-    price:
-      - NotBlank: ~
-    description:
-=======
     distance:
       - NotBlank: ~
     carType:
@@ -78,22 +52,11 @@ App\Request\CarUpdateRequest:
     engine:
       - NotBlank: ~
     price:
->>>>>>> 9ee4a3e03d164ef6c33b2bae96f4e7ce0b445c80
       - NotBlank: ~
     status:
       - NotBlank: ~
     createdBy:
       - NotBlank: ~
-<<<<<<< HEAD
-    state:
-      - NotBlank: ~
-
-App\Request\StatusCreateRequest:
-  properties:
-    userID:
-      - NotBlank: ~
-    LawyerID:
-=======
     distance:
       - NotBlank: ~
     carType:
@@ -118,20 +81,11 @@ App\Request\DeviceCreateRequest:
     battery:
       - NotBlank: ~
     price:
->>>>>>> 9ee4a3e03d164ef6c33b2bae96f4e7ce0b445c80
       - NotBlank: ~
     status:
       - NotBlank: ~
     createdBy:
       - NotBlank: ~
-<<<<<<< HEAD
-
-App\Request\StatusUpdateRequest:
-  properties:
-    userID:
-      - NotBlank: ~
-    LawyerID:
-=======
     gauge:
       - NotBlank: ~
     durationOfUse:
@@ -150,14 +104,10 @@ App\Request\DeviceUpdateRequest:
     battery:
       - NotBlank: ~
     price:
->>>>>>> 9ee4a3e03d164ef6c33b2bae96f4e7ce0b445c80
       - NotBlank: ~
     status:
       - NotBlank: ~
     createdBy:
-<<<<<<< HEAD
-      - NotBlank: ~
-=======
       - NotBlank: ~
     gauge:
       - NotBlank: ~
@@ -165,4 +115,3 @@ App\Request\DeviceUpdateRequest:
       - NotBlank: ~
     location:
       - NotBlank: ~
->>>>>>> 9ee4a3e03d164ef6c33b2bae96f4e7ce0b445c80
