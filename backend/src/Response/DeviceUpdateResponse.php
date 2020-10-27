@@ -6,7 +6,7 @@ namespace App\Response;
 
 class DeviceUpdateResponse
 {
-    public $model;
+    public $brand;
 
     public $cpu;
 
@@ -16,7 +16,7 @@ class DeviceUpdateResponse
 
     public $price;
 
-    public $productionYear;
+    public $yearOfRelease;
 
     public $description;
 
@@ -25,4 +25,10 @@ class DeviceUpdateResponse
     public $createdBy;
 
     public $createdAt;
+
+    public $gauge;
+
+    public $location;
+
+    public $durationOfUse;
 }

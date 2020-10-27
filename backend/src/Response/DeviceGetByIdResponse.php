@@ -6,7 +6,7 @@ namespace App\Response;
 
 class DeviceGetByIdResponse
 {
-    public $model;
+    public $brand;
 
     public $cpu;
 
@@ -16,7 +16,7 @@ class DeviceGetByIdResponse
 
     public $price;
 
-    public $productionYear;
+    public $yearOfRelease;
 
     public $description;
 
@@ -25,4 +25,10 @@ class DeviceGetByIdResponse
     public $createdBy;
 
     public $createdAt;
+
+    public $gauge;
+
+    public $location;
+
+    public $durationOfUse;
 }

@@ -6,11 +6,11 @@ namespace App\Response;
 
 class CarUpdateResponse
 {
-    public $model;
+    public $brand;
 
     public $company;
 
-    public $productionYear;
+    public $yearOfRelease;
 
     public $engine;
 
@@ -25,4 +25,14 @@ class CarUpdateResponse
     public $createdAt;
 
     public $distance;
+
+    public $carType;
+
+    public $gearType;
+
+    public $cc;
+
+    public $fuel;
+
+    public $location;
 }

@@ -21,7 +21,7 @@ class DeviceEntity
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $model;
+    private $brand;
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -46,7 +46,7 @@ class DeviceEntity
     /**
      * @ORM\Column(type="date", nullable=true)
      */
-    private $productionYear;
+    private $yearOfRelease;
 
     /**
      * @ORM\Column(type="text", nullable=true)
@@ -69,6 +69,21 @@ class DeviceEntity
      */
     private $createdAt;
 
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $gauge;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $location;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $durationOfUse;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -76,12 +91,12 @@ class DeviceEntity
 
     public function getModel(): ?string
     {
-        return $this->model;
+        return $this->brand;
     }
 
-    public function setModel(string $model): self
+    public function setModel(string $brand): self
     {
-        $this->model = $model;
+        $this->brand = $brand;
 
         return $this;
     }
@@ -136,12 +151,12 @@ class DeviceEntity
 
     public function getProductionYear(): ?\DateTimeInterface
     {
-        return $this->productionYear;
+        return $this->yearOfRelease;
     }
 
-    public function setProductionYear(?\DateTimeInterface $productionYear): self
+    public function setProductionYear(?\DateTimeInterface $yearOfRelease): self
     {
-        $this->productionYear = $productionYear;
+        $this->yearOfRelease = $yearOfRelease;
 
         return $this;
     }
@@ -190,6 +205,42 @@ class DeviceEntity
     public function setCreatedAt(\DateTimeInterface $createdAt): self
     {
         $this->createdAt = $createdAt;
+
+        return $this;
+    }
+
+    public function getGauge(): ?string
+    {
+        return $this->gauge;
+    }
+
+    public function setGauge(string $gauge): self
+    {
+        $this->gauge = $gauge;
+
+        return $this;
+    }
+
+    public function getLocation(): ?string
+    {
+        return $this->location;
+    }
+
+    public function setLocation(string $location): self
+    {
+        $this->location = $location;
+
+        return $this;
+    }
+
+    public function getDurationOfUse(): ?string
+    {
+        return $this->durationOfUse;
+    }
+
+    public function setDurationOfUse(string $durationOfUse): self
+    {
+        $this->durationOfUse = $durationOfUse;
 
         return $this;
     }
