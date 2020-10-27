@@ -23,7 +23,7 @@ class ReactionEntityRepository extends ServiceEntityRepository
     {
         return $this->createQueryBuilder('Reaction')
         ->andWhere('Reaction.itemID = :itemID')
-        ->andWhere('Reaction.entity in (:data)')
+        ->andWhere('Reaction.entity = :data')
         ->setParameter('itemID', $itemID)
         ->setParameter('data', $data)
         ->getQuery()

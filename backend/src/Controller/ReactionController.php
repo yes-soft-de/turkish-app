@@ -63,13 +63,14 @@ class ReactionController extends BaseController
     }
 
     /**
-     * @Route("/reactionss/{userID}", name="GetAllReactionsForSpecificUser", methods={"GET"})
+     * @Route("/reactionss/{user}", name="GetAllReactionsForSpecificUser", methods={"GET"})
      * @param $userID
      * @return JsonResponse
      */
-    public function getReactionsForUser($userID)
+    public function getReactionsForUser($user)
     {
-        $result = $this->reactionService->getReactionsForUser($userID);
+        $result = $this->reactionService->getReactionsForUser($user);
+        // $result = $this->reactionService->getReactionsForUser($this->getUserId());
         return $this->response($result, self::FETCH);
     }
 
