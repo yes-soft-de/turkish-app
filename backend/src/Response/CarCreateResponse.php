@@ -8,11 +8,11 @@ class CarCreateResponse
 {
     public $id;
 
-    public $model;
+    public $brand;
 
     public $company;
 
-    public $productionYear;
+    public $yearOfRelease;
 
     public $engine;
 
@@ -27,4 +27,14 @@ class CarCreateResponse
     public $createdAt;
 
     public $distance;
+
+    public $carType;
+
+    public $gearType;
+
+    public $cc;
+
+    public $fuel;
+
+    public $location;
 }

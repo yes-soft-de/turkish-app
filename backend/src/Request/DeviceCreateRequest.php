@@ -6,7 +6,7 @@ namespace App\Request;
 
 class DeviceCreateRequest
 {
-    private $model;
+    private $brand;
 
     private $cpu;
 
@@ -16,7 +16,7 @@ class DeviceCreateRequest
 
     private $price;
 
-    private $productionYear;
+    private $yearOfRelease;
 
     private $description;
 
@@ -26,21 +26,11 @@ class DeviceCreateRequest
 
     private $createdAt;
 
-    /**
-     * @return mixed
-     */
-    public function getModel()
-    {
-        return $this->model;
-    }
+    private $gauge;
 
-    /**
-     * @param mixed $model
-     */
-    public function setModel($model): void
-    {
-        $this->model = $model;
-    }
+    private $location;
+
+    private $durationOfUse;
 
     /**
      * @return mixed
@@ -109,22 +99,6 @@ class DeviceCreateRequest
     /**
      * @return mixed
      */
-    public function getProductionYear()
-    {
-        return $this->productionYear;
-    }
-
-    /**
-     * @param mixed $productionYear
-     */
-    public function setProductionYear($productionYear): void
-    {
-        $this->productionYear = $productionYear;
-    }
-
-    /**
-     * @return mixed
-     */
     public function getDescription()
     {
         return $this->description;
@@ -184,6 +158,86 @@ class DeviceCreateRequest
     public function setCreatedAt($createdAt): void
     {
         $this->createdAt = $createdAt;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getBrand()
+    {
+        return $this->brand;
+    }
+
+    /**
+     * @param mixed $brand
+     */
+    public function setBrand($brand): void
+    {
+        $this->brand = $brand;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getYearOfRelease()
+    {
+        return $this->yearOfRelease;
+    }
+
+    /**
+     * @param mixed $yearOfRelease
+     */
+    public function setYearOfRelease($yearOfRelease): void
+    {
+        $this->yearOfRelease = $yearOfRelease;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getGauge()
+    {
+        return $this->gauge;
+    }
+
+    /**
+     * @param mixed $gauge
+     */
+    public function setGauge($gauge): void
+    {
+        $this->gauge = $gauge;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getLocation()
+    {
+        return $this->location;
+    }
+
+    /**
+     * @param mixed $location
+     */
+    public function setLocation($location): void
+    {
+        $this->location = $location;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getDurationOfUse()
+    {
+        return $this->durationOfUse;
+    }
+
+    /**
+     * @param mixed $durationOfUse
+     */
+    public function setDurationOfUse($durationOfUse): void
+    {
+        $this->durationOfUse = $durationOfUse;
     }
 
 }

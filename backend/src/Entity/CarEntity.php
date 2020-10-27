@@ -21,7 +21,7 @@ class CarEntity
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $model;
+    private $brand;
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -31,7 +31,7 @@ class CarEntity
     /**
      * @ORM\Column(type="date", nullable=true)
      */
-    private $productionYear;
+    private $yearOfRelease;
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -69,6 +69,31 @@ class CarEntity
      */
     private $distance;
 
+    /**
+     * @ORM\Column(type="string", length=50)
+     */
+    private $carType;
+
+    /**
+     * @ORM\Column(type="string", length=50)
+     */
+    private $gearType;
+
+    /**
+     * @ORM\Column(type="string", length=50)
+     */
+    private $cc;
+
+    /**
+     * @ORM\Column(type="string", length=50)
+     */
+    private $fuel;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $location;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -76,12 +101,12 @@ class CarEntity
 
     public function getModel(): ?string
     {
-        return $this->model;
+        return $this->brand;
     }
 
-    public function setModel(string $model): self
+    public function setModel(string $brand): self
     {
-        $this->model = $model;
+        $this->brand = $brand;
 
         return $this;
     }
@@ -100,12 +125,12 @@ class CarEntity
 
     public function getProductionYear(): ?\DateTimeInterface
     {
-        return $this->productionYear;
+        return $this->yearOfRelease;
     }
 
-    public function setProductionYear(?\DateTimeInterface $productionYear): self
+    public function setProductionYear(?\DateTimeInterface $yearOfRelease): self
     {
-        $this->productionYear = $productionYear;
+        $this->yearOfRelease = $yearOfRelease;
 
         return $this;
     }
@@ -190,6 +215,66 @@ class CarEntity
     public function setDistance(string $distance): self
     {
         $this->distance = $distance;
+
+        return $this;
+    }
+
+    public function getCarType(): ?string
+    {
+        return $this->carType;
+    }
+
+    public function setCarType(string $carType): self
+    {
+        $this->carType = $carType;
+
+        return $this;
+    }
+
+    public function getGearType(): ?string
+    {
+        return $this->gearType;
+    }
+
+    public function setGearType(string $gearType): self
+    {
+        $this->gearType = $gearType;
+
+        return $this;
+    }
+
+    public function getCc(): ?string
+    {
+        return $this->cc;
+    }
+
+    public function setCc(string $cc): self
+    {
+        $this->cc = $cc;
+
+        return $this;
+    }
+
+    public function getFuel(): ?string
+    {
+        return $this->fuel;
+    }
+
+    public function setFuel(string $fuel): self
+    {
+        $this->fuel = $fuel;
+
+        return $this;
+    }
+
+    public function getLocation(): ?string
+    {
+        return $this->location;
+    }
+
+    public function setLocation(string $location): self
+    {
+        $this->location = $location;
 
         return $this;
     }

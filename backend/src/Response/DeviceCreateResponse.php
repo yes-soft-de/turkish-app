@@ -8,7 +8,7 @@ class DeviceCreateResponse
 {
     public $id;
 
-    public $model;
+    public $brand;
 
     public $cpu;
 
@@ -18,7 +18,7 @@ class DeviceCreateResponse
 
     public $price;
 
-    public $productionYear;
+    public $yearOfRelease;
 
     public $description;
 
@@ -27,4 +27,10 @@ class DeviceCreateResponse
     public $createdBy;
 
     public $createdAt;
+
+    public $gauge;
+
+    public $location;
+
+    public $durationOfUse;
 }
