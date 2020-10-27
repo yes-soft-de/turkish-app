@@ -20,12 +20,17 @@ After that make migration
 php bin/console make:migration
 ```
 
-Finaly run migration versions to create tables
+Finally run migration versions to create tables
 ```
 php bin/console doctrine:migration:migrate
 ```
+***
+#### API guide
+* [Account](#account)
+* [Car](#car)
+* [Device](#device)
 
-### Account
+#### Account
 #### Create new user
 ```
 /user
@@ -51,6 +56,7 @@ methods: PUT
 /userprofile
 methods: GET
 ```
+<<<<<<< HEAD
 ### Status
 #### Create new status 
 ```
@@ -113,4 +119,69 @@ methods: GET
 ```
 /reactionss/{userID}
 methods: GET
+=======
+
+### Car
+#### Insert new car
+```
+/cars
+methods: POST
+```
+#### Get a car by ID
+```
+/car/id
+methods: GET
+```
+#### Get the cars of specific user
+```
+/cars/createdBy
+methods: GET
+```
+#### Get all cars
+```
+/cars
+methods: GET
+```
+#### Update a specific car by ID
+```
+/cars
+methods: PUT
+```
+#### Delete a specific car by ID
+```
+/cars/id
+methods: DELETE
+```
+
+### Device
+#### Insert new device
+```
+/devices
+methods: POST
+```
+#### Get a device by ID
+```
+/device/id
+methods: GET
+```
+#### Get the devices of specific user
+```
+/devices/createdBy
+methods: GET
+```
+#### Get all devices
+```
+/devices
+methods: GET
+```
+#### Update a specific device by ID
+```
+/devices
+methods: PUT
+```
+#### Delete a specific device by ID
+```
+/devices/id
+methods: DELETE
+>>>>>>> 9ee4a3e03d164ef6c33b2bae96f4e7ce0b445c80
 ```

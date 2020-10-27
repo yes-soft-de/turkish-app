@@ -6,6 +6,7 @@ App\Request\UploadImageRequest:
           maxSize: 2m
           maxSizeMessage: "Image size over 2M"
 
+<<<<<<< HEAD
 App\Request\RealEstateCreateRequest:
   properties:
     city:
@@ -15,11 +16,33 @@ App\Request\RealEstateCreateRequest:
     price:
       - NotBlank: ~
     description:
+=======
+App\Request\CreateImageRequest:
+  properties:
+    image:
+      - NotBlank: ~
+
+App\Request\UpdateImageRequest:
+  properties:
+    image:
+      - NotBlank: ~
+
+App\Request\CarCreateRequest:
+  properties:
+    brand:
+      - NotBlank: ~
+    company:
+      - NotBlank: ~
+    engine:
+      - NotBlank: ~
+    price:
+>>>>>>> 9ee4a3e03d164ef6c33b2bae96f4e7ce0b445c80
       - NotBlank: ~
     status:
       - NotBlank: ~
     createdBy:
       - NotBlank: ~
+<<<<<<< HEAD
     state:
       - NotBlank: ~
 
@@ -32,11 +55,36 @@ App\Request\RealEstateUpdateRequest:
     price:
       - NotBlank: ~
     description:
+=======
+    distance:
+      - NotBlank: ~
+    carType:
+      - NotBlank: ~
+    fuel:
+      - NotBlank: ~
+    cc:
+      - NotBlank: ~
+    location:
+      - NotBlank: ~
+    gearType:
+      - NotBlank: ~
+
+App\Request\CarUpdateRequest:
+  properties:
+    brand:
+      - NotBlank: ~
+    company:
+      - NotBlank: ~
+    engine:
+      - NotBlank: ~
+    price:
+>>>>>>> 9ee4a3e03d164ef6c33b2bae96f4e7ce0b445c80
       - NotBlank: ~
     status:
       - NotBlank: ~
     createdBy:
       - NotBlank: ~
+<<<<<<< HEAD
     state:
       - NotBlank: ~
 
@@ -45,19 +93,76 @@ App\Request\StatusCreateRequest:
     userID:
       - NotBlank: ~
     LawyerID:
+=======
+    distance:
+      - NotBlank: ~
+    carType:
+      - NotBlank: ~
+    fuel:
+      - NotBlank: ~
+    cc:
+      - NotBlank: ~
+    location:
+      - NotBlank: ~
+    gearType:
+      - NotBlank: ~
+
+App\Request\DeviceCreateRequest:
+  properties:
+    brand:
+      - NotBlank: ~
+    cpu:
+      - NotBlank: ~
+    ram:
+      - NotBlank: ~
+    battery:
+      - NotBlank: ~
+    price:
+>>>>>>> 9ee4a3e03d164ef6c33b2bae96f4e7ce0b445c80
       - NotBlank: ~
     status:
       - NotBlank: ~
     createdBy:
       - NotBlank: ~
+<<<<<<< HEAD
 
 App\Request\StatusUpdateRequest:
   properties:
     userID:
       - NotBlank: ~
     LawyerID:
+=======
+    gauge:
+      - NotBlank: ~
+    durationOfUse:
+      - NotBlank: ~
+    location:
+      - NotBlank: ~
+
+App\Request\DeviceUpdateRequest:
+  properties:
+    brand:
+      - NotBlank: ~
+    cpu:
+      - NotBlank: ~
+    ram:
+      - NotBlank: ~
+    battery:
+      - NotBlank: ~
+    price:
+>>>>>>> 9ee4a3e03d164ef6c33b2bae96f4e7ce0b445c80
       - NotBlank: ~
     status:
       - NotBlank: ~
     createdBy:
+<<<<<<< HEAD
       - NotBlank: ~
+=======
+      - NotBlank: ~
+    gauge:
+      - NotBlank: ~
+    durationOfUse:
+      - NotBlank: ~
+    location:
+      - NotBlank: ~
+>>>>>>> 9ee4a3e03d164ef6c33b2bae96f4e7ce0b445c80
