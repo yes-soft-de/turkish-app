@@ -115,3 +115,82 @@ App\Request\DeviceUpdateRequest:
       - NotBlank: ~
     location:
       - NotBlank: ~
+
+App\Request\RealEstateCreateRequest:
+  properties:
+    city:
+      - NotBlank: ~
+    space:
+      - NotBlank: ~
+    price:
+      - NotBlank: ~
+    status:
+      - NotBlank: ~
+    createdBy:
+      - NotBlank: ~
+    state:
+      - NotBlank: ~
+
+App\Request\RealEstateUpdateRequest:
+  properties:
+    id:
+      - NotBlank: ~
+    city:
+      - NotBlank: ~
+    space:
+      - NotBlank: ~
+    price:
+      - NotBlank: ~
+    status:
+      - NotBlank: ~
+    createdBy:
+      - NotBlank: ~
+    state:
+      - NotBlank: ~
+
+App\Request\StatusCreateRequest:
+  properties:
+    userID:
+      - NotBlank: ~
+    LawyerID:
+      - NotBlank: ~
+    status:
+      - NotBlank: ~
+    createdBy:
+      - NotBlank: ~
+
+App\Request\StatusUpdateRequest:
+  properties:
+    id:
+      - NotBlank: ~
+    userID:
+      - NotBlank: ~
+    LawyerID:
+      - NotBlank: ~
+    status:
+      - NotBlank: ~
+    createdBy:
+      - NotBlank: ~
+
+App\Request\UserRegisterRequest:
+  properties:
+    userID:
+      - NotBlank: ~
+    password:
+      - NotBlank: ~
+
+App\Request\UserProfileCreateRequest:
+  properties:
+    userID:
+      - NotBlank: ~
+    userName:
+      - NotBlank: ~
+
+App\Request\UserProfileUpdateeRequest:
+  properties:
+    id:
+      - NotBlank: ~
+    userID:
+      - NotBlank: ~
+    userName:
+      - NotBlank: ~

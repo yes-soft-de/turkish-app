@@ -35,7 +35,7 @@ class StatusManager
         return $Entity;
     }
 
-    public function statusupdate(StatusUpdateRequest $request)
+    public function statusUpdate(StatusUpdateRequest $request)
     {
         $Entity = $this->statusRepository->find($request->getId());
         
@@ -50,8 +50,6 @@ class StatusManager
 
     public function getAgreements($userID)
     {
-        $result = $this->statusRepository->getAgreements($userID);
-
-        return $result;
+        return $this->statusRepository->getAgreements($userID);
     }
 }

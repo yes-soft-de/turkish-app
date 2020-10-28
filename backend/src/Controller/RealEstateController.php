@@ -38,6 +38,7 @@ class RealEstateController extends BaseController
 
         $request = $this->autoMapping->map(\stdClass::class, RealEstateCreateRequest::class, (object) $data);
 
+        $request->setCreatedBy($this->getUserId());
 
         $violations = $this->validator->validate($request);
         if (\count($violations) > 0) {
@@ -67,7 +68,6 @@ class RealEstateController extends BaseController
 
     /**
      * @Route("/real-estate", name="GetAllItems",methods={"GET"})
-     * @param Request $request
      * @return JsonResponse
      */
     public function getAllRealEstate()
@@ -78,13 +78,12 @@ class RealEstateController extends BaseController
     }
 
     /**
-     * @Route("/real-estates/{userID}", name="GetAllItemsOfSpecificUser",methods={"GET"})
-     * @param Request $request
+     * @Route("real-estates", name="GetAllItemsOfSpecificUser",methods={"GET"})
      * @return JsonResponse
      */
-    public function getRealEstateByUser($userID)
+    public function getRealEstateByUser()
     {       
-        $result = $this->realEstateService->getRealEstateByUser($userID);
+        $result = $this->realEstateService->getRealEstateByUser($this->getUserId());
 
         return $this->response($result, self::FETCH);
     }

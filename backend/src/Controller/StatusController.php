@@ -28,7 +28,7 @@ class StatusController extends BaseController
     }
 
     /**
-     * @Route("/status", name="CreateNewStatus", methods={"POST"})
+     * @Route("status", name="CreateNewStatus", methods={"POST"})
      * @param Request $request
      * @return JsonResponse
      */
@@ -38,9 +38,11 @@ class StatusController extends BaseController
 
         $request = $this->autoMapping->map(\stdClass::class, StatusCreateRequest::class, (object) $data);
 
+        $request->setCreatedBy($this->getUserId());
 
         $violations = $this->validator->validate($request);
-        if (\count($violations) > 0) {
+        if (\count($violations) > 0)
+        {
             $violationsString = (string) $violations;
 
             return new JsonResponse($violationsString, Response::HTTP_OK);
@@ -52,7 +54,7 @@ class StatusController extends BaseController
     }
 
     /**
-     * @Route("/status", name="updateStatus", methods={"PUT"})
+     * @Route("status", name="updateStatus", methods={"PUT"})
      * @param Request $request
      * @return JsonResponse|Response
      */
@@ -62,7 +64,8 @@ class StatusController extends BaseController
         $request = $this->autoMapping->map(\stdClass::class, StatusUpdateRequest::class, (object) $data);
 
         $violations = $this->validator->validate($request);
-        if (\count($violations) > 0) {
+        if (\count($violations) > 0)
+        {
             $violationsString = (string) $violations;
 
             return new JsonResponse($violationsString, Response::HTTP_OK);
@@ -73,13 +76,12 @@ class StatusController extends BaseController
     }
 
     /**
-     * @Route("status/{userID}", name="GetAgreementsOfASpecificUser", methods={"GET"})
-     * @param $userID
+     * @Route("status", name="GetAgreementsOfASpecificUser", methods={"GET"})
      * @return JsonResponse
      */
-    public function getAgreements($userID)
+    public function getAgreements()
     {
-        $result = $this->statusService->getAgreements($userID);
+        $result = $this->statusService->getAgreements($this->getUserId());
 
         return $this->response($result, self::FETCH);
     }

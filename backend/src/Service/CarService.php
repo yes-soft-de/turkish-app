@@ -39,16 +39,16 @@ class CarService
         return $this->autoMapping->map(CarEntity::class, CarGetByIdResponse::class, $result);
     }
 
-    public function getCarsOfUser($request)
+    public function getCarsOfUser($userID)
     {
         $response = [];
-        $result = $this->carManager->getCarsOfUser($request);
-        //dd($result);
+        $result = $this->carManager->getCarsOfUser($userID);
+
         foreach ($result as $row)
         {
             $response[] = $this->autoMapping->map(CarEntity::class, CarGetResponse::class, $row);
         }
-        //dd($response);
+
         return $response;
     }
 

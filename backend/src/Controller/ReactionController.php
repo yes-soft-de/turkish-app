@@ -28,7 +28,7 @@ class ReactionController extends BaseController
     }
 
     /**
-     * @Route("/reactions", name="InsertNewReaction", methods={"POST"})
+     * @Route("reactions", name="InsertNewReaction", methods={"POST"})
      * @param Request $request
      * @return JsonResponse
      */
@@ -37,8 +37,11 @@ class ReactionController extends BaseController
         $data = json_decode($request->getContent(), true);
         $request = $this->autoMapping->map(\stdClass::class, ReactionCreateRequest::class, (object) $data);
 
+        $request->setCreatedBy($this->getUserId());
+
         $violations = $this->validator->validate($request);
-        if (\count($violations) > 0) {
+        if (\count($violations) > 0)
+        {
             $violationsString = (string) $violations;
 
             return new JsonResponse($violationsString, Response::HTTP_OK);
@@ -63,16 +66,13 @@ class ReactionController extends BaseController
     }
 
     /**
-     * @Route("/reactionss/{user}", name="GetAllReactionsForSpecificUser", methods={"GET"})
-     * @param $userID
+     * @Route("reactions", name="GetAllReactionsForSpecificUser", methods={"GET"})
      * @return JsonResponse
      */
-    public function getReactionsForUser($user)
+    public function getReactionsForUser()
     {
-        $result = $this->reactionService->getReactionsForUser($user);
-        // $result = $this->reactionService->getReactionsForUser($this->getUserId());
+        $result = $this->reactionService->getReactionsForUser($this->getUserId());
+
         return $this->response($result, self::FETCH);
     }
-
-
 }
