@@ -1,6 +1,11 @@
 default:
   suites:
-    query:
+    create:
       paths:
         - "%paths.base%/features/"
       contexts: [CreateContext]
+
+    query:
+      paths:
+        - "%paths.base%/features/query"
+      contexts: [QueryContext]
