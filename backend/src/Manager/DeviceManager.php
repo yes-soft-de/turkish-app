@@ -42,9 +42,9 @@ class DeviceManager
         return $this->deviceEntityRepository->getDeviceById($request->getId());
     }
 
-    public function getDevicesOfUser($request)
+    public function getDevicesOfUser($userID)
     {
-        return $this->deviceEntityRepository->getDevicesOfUser($request->get('createdBy'));
+        return $this->deviceEntityRepository->getDevicesOfUser($userID);
     }
 
     public function getAllDevices()

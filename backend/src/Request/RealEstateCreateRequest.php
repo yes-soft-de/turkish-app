@@ -15,5 +15,11 @@ class RealEstateCreateRequest
     private $createdAt;
     private $state;
 
- 
+    /**
+     * @param mixed $createdBy
+     */
+    public function setCreatedBy($createdBy): void
+    {
+        $this->createdBy = $createdBy;
+    }
 }

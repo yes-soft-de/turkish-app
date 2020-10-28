@@ -44,6 +44,8 @@ class CarController extends BaseController
 
         $request = $this->autoMapping->map(stdClass::class,CarCreateRequest::class, (object)$data);
 
+        $request->setCreatedBy($this->getUserId());
+
         $violations = $this->validator->validate($request);
 
         if (\count($violations) > 0)
@@ -73,19 +75,18 @@ class CarController extends BaseController
     }
 
     /**
-     * @Route("cars/{createdBy}", name="getCarsOfUser", methods={"GET"})
-     * @param Request $request
+     * @Route("cars", name="getCarsOfUser", methods={"GET"})
      * @return JsonResponse
      */
-    public function getCarsOfUser(Request $request)
+    public function getCarsOfUser()
     {
-        $result = $this->carService->getCarsOfUser($request);
+        $result = $this->carService->getCarsOfUser($this->getUserId());
 
         return $this->response($result, self::FETCH);
     }
 
     /**
-     * @Route("cars", name="getAllCars", methods={"GET"})
+     * @Route("all-cars", name="getAllCars", methods={"GET"})
      */
     public function getAllCars()
     {

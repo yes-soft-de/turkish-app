@@ -12,4 +12,11 @@ class StatusCreateRequest
     private $createdBy;
     private $createdAt;
 
+    /**
+     * @param mixed $createdBy
+     */
+    public function setCreatedBy($createdBy): void
+    {
+        $this->createdBy = $createdBy;
+    }
 }

@@ -38,10 +38,10 @@ class DeviceService
         return $this->autoMapping->map(DeviceEntity::class, DeviceGetByIdResponse::class, $result);
     }
 
-    public function getDevicesOfUser($request)
+    public function getDevicesOfUser($userID)
     {
         $response = [];
-        $result = $this->deviceManager->getDevicesOfUser($request);
+        $result = $this->deviceManager->getDevicesOfUser($userID);
 
         foreach ($result as $row)
         {

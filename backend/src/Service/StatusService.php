@@ -29,14 +29,14 @@ class StatusService
         return $this->autoMapping->map(StatusEntity::class,StatusCreateResponse::class, $create);
     }
 
-    public function statusupdate($request)
+    public function statusUpdate($request)
     {
-        $result = $this->statusManager->statusupdate($request);
+        $result = $this->statusManager->statusUpdate($request);
      
         return $this->autoMapping->map(StatusEntity::class, StatusUpdateResponse::class, $result);   
     }
 
-public function getAgreements($userID)
+    public function getAgreements($userID)
     {
         $item = $this->statusManager->getAgreements($userID);
 

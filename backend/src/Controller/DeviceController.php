@@ -44,6 +44,8 @@ class DeviceController extends BaseController
 
         $request = $this->autoMapping->map(stdClass::class,DeviceCreateRequest::class, (object)$data);
 
+        $request->setCreatedBy($this->getUserId());
+
         $violations = $this->validator->validate($request);
 
         if (\count($violations) > 0)
@@ -73,19 +75,18 @@ class DeviceController extends BaseController
     }
 
     /**
-     * @Route("devices/{createdBy}", name="getDevicesOfUser", methods={"GET"})
-     * @param Request $request
+     * @Route("devices", name="getDevicesOfUser", methods={"GET"})
      * @return JsonResponse
      */
-    public function getDevicesOfUser(Request $request)
+    public function getDevicesOfUser()
     {
-        $result = $this->deviceService->getDevicesOfUser($request);
+        $result = $this->deviceService->getDevicesOfUser($this->getUserId());
 
         return $this->response($result, self::FETCH);
     }
 
     /**
-     * @Route("devices", name="getAllDevices", methods={"GET"})
+     * @Route("all-devices", name="getAllDevices", methods={"GET"})
      */
     public function getAllDevices()
     {

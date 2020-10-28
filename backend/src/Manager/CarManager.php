@@ -42,9 +42,9 @@ class CarManager
         return $this->carEntityRepository->getCarById($request->getId());
     }
 
-    public function getCarsOfUser($request)
+    public function getCarsOfUser($userID)
     {
-        return $this->carEntityRepository->getCarsOfUser($request->get('createdBy'));
+        return $this->carEntityRepository->getCarsOfUser($userID);
     }
 
     public function getAllCars()
