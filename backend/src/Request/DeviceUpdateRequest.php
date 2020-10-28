@@ -34,6 +34,8 @@ class DeviceUpdateRequest
 
     private $durationOfUse;
 
+    private $image;
+
     /**
      * @return mixed
      */

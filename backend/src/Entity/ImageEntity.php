@@ -37,11 +37,6 @@ class ImageEntity
      */
     private $specialLink;
 
-    /**
-     * @ORM\Column(type="boolean", nullable=true)
-     */
-    private $mainImage;
-
     public function getId(): ?int
     {
         return $this->id;
@@ -97,21 +92,5 @@ class ImageEntity
     public function setEntity($entity): void
     {
         $this->entity = $entity;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getMainImage()
-    {
-        return $this->mainImage;
-    }
-
-    /**
-     * @param mixed $mainImage
-     */
-    public function setMainImage($mainImage): void
-    {
-        $this->mainImage = $mainImage;
     }
 }

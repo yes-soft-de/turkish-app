@@ -84,6 +84,16 @@ class DeviceEntity
      */
     private $durationOfUse;
 
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $image;
+
+    /**
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $specialLink;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -241,6 +251,30 @@ class DeviceEntity
     public function setDurationOfUse(string $durationOfUse): self
     {
         $this->durationOfUse = $durationOfUse;
+
+        return $this;
+    }
+
+    public function getImage(): ?string
+    {
+        return $this->image;
+    }
+
+    public function setImage(string $image): self
+    {
+        $this->image = $image;
+
+        return $this;
+    }
+
+    public function getSpecialLink(): ?bool
+    {
+        return $this->specialLink;
+    }
+
+    public function setSpecialLink(?bool $specialLink): self
+    {
+        $this->specialLink = $specialLink;
 
         return $this;
     }

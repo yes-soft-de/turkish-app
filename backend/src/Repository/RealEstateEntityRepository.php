@@ -33,7 +33,7 @@ class RealEstateEntityRepository extends ServiceEntityRepository
     {
         return $this->createQueryBuilder('RealEstateEntity')
             ->getQuery()
-            ->getResult();
+            ->getArrayResult();
     }
 
     public function getRealEstateByUser($userID)
@@ -42,6 +42,6 @@ class RealEstateEntityRepository extends ServiceEntityRepository
             ->andWhere('RealEstateEntity.createdBy = :userID')
             ->setParameter('userID', $userID)
             ->getQuery()
-            ->getResult();
+            ->getArrayResult();
     }
 }

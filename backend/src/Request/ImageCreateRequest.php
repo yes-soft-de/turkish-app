@@ -14,8 +14,6 @@ class ImageCreateRequest
 
     private $specialLink;
 
-    private $mainImage;
-
     /**
      * @return mixed
      */
@@ -78,21 +76,5 @@ class ImageCreateRequest
     public function setEntity($entity): void
     {
         $this->entity = $entity;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getMainImage()
-    {
-        return $this->mainImage;
-    }
-
-    /**
-     * @param mixed $mainImage
-     */
-    public function setMainImage($mainImage): void
-    {
-        $this->mainImage = $mainImage;
     }
 }

@@ -38,6 +38,8 @@ class CarUpdateRequest
 
     private $location;
 
+    private $image;
+
     /**
      * @return mixed
      */

@@ -5,17 +5,35 @@ namespace App\Request;
 use DateTime;
 
 class RealEstateUpdateRequest
-{   private $id;
+{
+    private $id;
+
     private $city;
+
     private $space;
+
     private $price;
+
     private $description;
+
     private $status;
+
     private $createdBy;
+
     private $createdAt;
+
     private $state;
 
-    
+    private $image;
+
+    private $numberOfFloors;
+
+    private $cladding;
+
+    private $homeFurnishing;
+
+    private $realEstateType;
+
     public function __construct()
     {
         $this->createdAt = new DateTime('Now');

@@ -19,10 +19,6 @@ class DeviceEntityRepository extends ServiceEntityRepository
         parent::__construct($registry, DeviceEntity::class);
     }
 
-    // /**
-    //  * @return DeviceEntity[] Returns an array of DeviceEntity objects
-    //  */
-
     public function getDeviceById($id): ?DeviceEntity
     {
         return $this->createQueryBuilder('device')
@@ -38,13 +34,13 @@ class DeviceEntityRepository extends ServiceEntityRepository
             ->andWhere('device.createdBy = :createdBy')
             ->setParameter('createdBy', $createdBy)
             ->getQuery()
-            ->getResult();
+            ->getArrayResult();
     }
 
     public function getAllDevices()
     {
         return $this->createQueryBuilder('device')
             ->getQuery()
-            ->getResult();
+            ->getArrayResult();
     }
 }
