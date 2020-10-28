@@ -25,7 +25,7 @@ class MapperCar
     {
         $this->car = new ObjectCar();
 
-        $this->car->setModel($model);
+        $this->car->setBrand($model);
         $this->car->setCompany($company);
         //$this->car->setProductionYear();
         $this->car->setEngine($engine);
@@ -39,7 +39,7 @@ class MapperCar
     public function getCarAsArray(): array
     {
         return [
-            "model"=>$this->car->getModel(),
+            "model"=>$this->car->getBrand(),
             "company"=>$this->car->getCompany(),
             "engine"=>$this->car->getEngine(),
             "price"=>$this->car->getPrice(),

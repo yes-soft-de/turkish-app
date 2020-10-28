@@ -3,15 +3,21 @@
 
 class ObjectCar
 {
-    private $model;
+    private $brand;
     private $company;
-    private $productionYear;
+    private $yearOfRelease;
     private $engine;
     private $price;
     private $description;
     private $status;
     private $createdBy;
     private $distance;
+    private $carType;
+    private $gearType;
+    private $cc;
+    private $fuel;
+    private $location;
+    private $createdAt;
 
     public function __construct()
     {
@@ -20,17 +26,17 @@ class ObjectCar
     /**
      * @return mixed
      */
-    public function getModel()
+    public function getBrand()
     {
-        return $this->model;
+        return $this->brand;
     }
 
     /**
-     * @param mixed $model
+     * @param mixed $brand
      */
-    public function setModel($model): void
+    public function setBrand($brand): void
     {
-        $this->model = $model;
+        $this->brand = $brand;
     }
 
     /**
@@ -52,17 +58,17 @@ class ObjectCar
     /**
      * @return mixed
      */
-    public function getProductionYear()
+    public function getYearOfRelease()
     {
-        return $this->productionYear;
+        return $this->yearOfRelease;
     }
 
     /**
-     * @param mixed $productionYear
+     * @param mixed $yearOfRelease
      */
-    public function setProductionYear($productionYear): void
+    public function setYearOfRelease($yearOfRelease): void
     {
-        $this->productionYear = $productionYear;
+        $this->yearOfRelease = $yearOfRelease;
     }
 
     /**
@@ -177,5 +183,84 @@ class ObjectCar
         $this->distance = $distance;
     }
 
+    /**
+     * @return mixed
+     */
+    public function getCarType()
+    {
+        return $this->carType;
+    }
 
+    /**
+     * @param mixed $carType
+     */
+    public function setCarType($carType): void
+    {
+        $this->carType = $carType;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getGearType()
+    {
+        return $this->gearType;
+    }
+
+    /**
+     * @param mixed $gearType
+     */
+    public function setGearType($gearType): void
+    {
+        $this->gearType = $gearType;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getCc()
+    {
+        return $this->cc;
+    }
+
+    /**
+     * @param mixed $cc
+     */
+    public function setCc($cc): void
+    {
+        $this->cc = $cc;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getFuel()
+    {
+        return $this->fuel;
+    }
+
+    /**
+     * @param mixed $fuel
+     */
+    public function setFuel($fuel): void
+    {
+        $this->fuel = $fuel;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getLocation()
+    {
+        return $this->location;
+    }
+
+    /**
+     * @param mixed $location
+     */
+    public function setLocation($location): void
+    {
+        $this->location = $location;
+    }
+    
 }

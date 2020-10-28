@@ -5,6 +5,11 @@ use GuzzleHttp\Client;
 trait CreateCommon
 {
     /**
+     * @var Client $httpClient
+     */
+    private $httpClient;
+
+    /**
      * @Given I have access to backend
      */
     public function iHaveAccessToBackend()
@@ -23,8 +28,6 @@ trait CreateCommon
         $this->iHaveValidUserCredentials();
         $this->iRequestLoginCheck();
         $this->iExpectATokenWithinTheResponse();
-
-        echo $this->token;
     }
 
     /**

@@ -1,6 +1,7 @@
 <?php
 
 use Behat\Behat\Context\Context;
+use Behat\Behat\Hook\Scope\BeforeScenarioScope;
 use Behat\Gherkin\Node\PyStringNode;
 use Behat\Gherkin\Node\TableNode;
 use GuzzleHttp\Client;
@@ -11,11 +12,6 @@ use GuzzleHttp\Psr7\Response;
  */
 class CreateContext implements Context
 {
-    /**
-     * @var Client $httpClient
-     */
-    private $httpClient;
-
     /**
      * @var Response $response
      */
@@ -32,6 +28,11 @@ class CreateContext implements Context
     private $userCredentials;
 
     /**
+     * @var array $profile
+     */
+    private $profile;
+
+    /**
      * @var array $admin
      */
     private $admin;
@@ -46,7 +47,10 @@ class CreateContext implements Context
      */
     private $device;
 
-    static protected $token;
+    /**
+     * @var string $token
+     */
+    protected $token;
 
     public function __construct()
     {
@@ -262,9 +266,45 @@ class CreateContext implements Context
     {
         $data = json_decode($this->response->getBody(), true);
 
-        if($data['Data']['username'] != "Test model")
+        if($data['Data']['userName'] != "behat1")
         {
             throw new Exception('Wrong returned data !');
+        }
+    }
+
+    /**
+     * @Given /^I have valid new profile data$/
+     */
+    public function iHaveValidNewProfileData()
+    {
+        $factoryRequest = new RequestFactory();
+
+        $this->profile = $factoryRequest->prepareCreateProfileRequestPayload();
+    }
+
+    /**
+     * @When /^I request create a profile with the data I have$/
+     */
+    public function iRequestCreateAProfileWithTheDataIHave()
+    {
+        $this->response = $this->httpClient->post(
+            ConfigLinks::$BASE_API . ConfigLinks::$PROFILE_ENDPOINTS,
+            [
+                "json"=>$this->profile
+            ]
+        );
+    }
+
+    /**
+     * @Given /^A json response with the profile information$/
+     */
+    public function aJsonResponseWithTheProfileInformation()
+    {
+        $data = json_decode($this->response->getBody(), true);
+
+        if($data['Data']['userName'] != "behat1")
+        {
+            throw new Exception('Created data does not match the new one!');
         }
     }
 

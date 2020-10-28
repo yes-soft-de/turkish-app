@@ -120,6 +120,21 @@ class RequestFactory
         ];
     }
 
+    public function prepareCreateProfileRequestPayload()
+    {
+        $profileMapper = new MapperProfile();
+
+        $profileMapper->setProfile(
+            "behat1",
+            "behat1",
+            "istanbul, turkey",
+            "behat test",
+            "behatImage"
+        );
+
+        return $profileMapper->getProfileAsArray();
+    }
+
     public function prepareCreateAdminRequestPayload()
     {
         $adminMapper = new MapperAdmin();
