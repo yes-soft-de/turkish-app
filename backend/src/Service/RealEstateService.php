@@ -8,6 +8,7 @@ use App\Manager\RealEstateManager;
 use App\Request\RealEstateCreateRequest;
 use App\Response\GetAllRealEstateResponse;
 use App\Response\GetRealEstateByIdResponse;
+use App\Response\GetRealEstateFilterResponse;
 use App\Response\RealEstateCreateResponse;
 use App\Response\RealEstateUpdateResponse;
 use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
@@ -23,7 +24,7 @@ class RealEstateService
         $this->autoMapping = $autoMapping;
         $this->realEstateManager = $realEstateManager;
 
-        $this->params = $params->get('upload_base_url').'/';
+        $this->params = $params->get('upload_base_url') . '/';
     }
 
     public function realEstateCreate(RealEstateCreateRequest $request)
@@ -46,9 +47,8 @@ class RealEstateService
         $response = [];
         $result = $this->realEstateManager->getAllRealEstate();
 
-        foreach ($result as $row)
-        {
-            $row['image'] = $this->specialLinkCheck($row['specialLink']).$row['image'];
+        foreach ($result as $row) {
+            $row['image'] = $this->specialLinkCheck($row['specialLink']) . $row['image'];
 
             $response[] = $this->autoMapping->map('array', GetAllRealEstateResponse::class, $row);
         }
@@ -60,9 +60,8 @@ class RealEstateService
     {
         $response = [];
         $result = $this->realEstateManager->getRealEstateByUser($userID);
-        foreach ($result as $row)
-        {
-            $row['image'] = $this->specialLinkCheck($row['specialLink']).$row['image'];
+        foreach ($result as $row) {
+            $row['image'] = $this->specialLinkCheck($row['specialLink']) . $row['image'];
 
             $response[] = $this->autoMapping->map('array', GetAllRealEstateResponse::class, $row);
         }
@@ -86,9 +85,29 @@ class RealEstateService
 
     public function specialLinkCheck($bool)
     {
-        if (!$bool)
-        {
+        if (!$bool) {
             return $this->params;
         }
+    }
+
+    public function getFilter($key, $value)
+    {
+        $response = [];
+        if ($key == 'city') {
+            $item = $this->realEstateManager->getFilterCity($value);
+        }
+        if ($key == 'space') {
+            $item = $this->realEstateManager->getFilterSpace($value);
+        }
+        if ($key == 'price') {
+            $item = $this->realEstateManager->getFilterPrice($value);
+        }
+        if ($key == 'numberOfFloors') {
+            $item = $this->realEstateManager->getFilterNumberOfFloors($value);
+        }
+        foreach ($item as $row) {
+            $response[] = $this->autoMapping->map('array', GetRealEstateFilterResponse::class, $row);
+        }
+        return $response;
     }
 }
