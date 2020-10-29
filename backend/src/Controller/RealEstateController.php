@@ -67,7 +67,7 @@ class RealEstateController extends BaseController
     }
 
     /**
-     * @Route("/real-estate", name="GetAllItems",methods={"GET"})
+     * @Route("/all-real-estate", name="GetAllItems",methods={"GET"})
      * @return JsonResponse
      */
     public function getAllRealEstate()

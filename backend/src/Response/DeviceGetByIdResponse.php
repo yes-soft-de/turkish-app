@@ -31,4 +31,6 @@ class DeviceGetByIdResponse
     public $location;
 
     public $durationOfUse;
+
+    public $image;
 }

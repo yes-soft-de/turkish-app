@@ -32,6 +32,8 @@ class DeviceCreateRequest
 
     private $durationOfUse;
 
+    private $image;
+
     /**
      * @return mixed
      */

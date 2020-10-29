@@ -35,4 +35,6 @@ class CarUpdateResponse
     public $fuel;
 
     public $location;
+
+    public $image;
 }

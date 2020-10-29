@@ -12,16 +12,20 @@ use App\Response\DeviceCreateResponse;
 use App\Response\DeviceGetByIdResponse;
 use App\Response\DeviceGetResponse;
 use App\Response\DeviceUpdateResponse;
+use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
 
 class DeviceService
 {
     private $autoMapping;
     private $deviceManager;
+    private $params;
 
-    public function __construct(AutoMapping $autoMapping, DeviceManager $deviceManager)
+    public function __construct(AutoMapping $autoMapping, DeviceManager $deviceManager, ParameterBagInterface $params)
     {
         $this->autoMapping = $autoMapping;
         $this->deviceManager = $deviceManager;
+
+        $this->params = $params->get('upload_base_url').'/';
     }
 
     public function create(DeviceCreateRequest $request)
@@ -45,7 +49,9 @@ class DeviceService
 
         foreach ($result as $row)
         {
-            $response[] = $this->autoMapping->map(DeviceEntity::class, DeviceGetResponse::class, $row);
+            $row['image'] = $this->specialLinkCheck($row['specialLink']).$row['image'];
+
+            $response[] = $this->autoMapping->map('array', DeviceGetResponse::class, $row);
         }
 
         return $response;
@@ -58,7 +64,9 @@ class DeviceService
 
         foreach ($result as $row)
         {
-            $response[] = $this->autoMapping->map(DeviceEntity::class, DeviceGetResponse::class, $row);
+            $row['image'] = $this->specialLinkCheck($row['specialLink']).$row['image'];
+
+            $response[] = $this->autoMapping->map('array', DeviceGetResponse::class, $row);
         }
 
         return $response;
@@ -81,5 +89,13 @@ class DeviceService
         }
 
         return  $this->autoMapping->map(DeviceEntity::class, DeviceGetByIdResponse::class, $deviceResult);
+    }
+
+    public function specialLinkCheck($bool)
+    {
+        if (!$bool)
+        {
+            return $this->params;
+        }
     }
 }

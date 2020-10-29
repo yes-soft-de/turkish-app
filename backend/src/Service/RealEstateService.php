@@ -10,16 +10,20 @@ use App\Response\GetAllRealEstateResponse;
 use App\Response\GetRealEstateByIdResponse;
 use App\Response\RealEstateCreateResponse;
 use App\Response\RealEstateUpdateResponse;
+use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
 
 class RealEstateService
 {
     private $autoMapping;
     private $realEstateManager;
+    private $params;
 
-    public function __construct(AutoMapping $autoMapping, RealEstateManager $realEstateManager)
+    public function __construct(AutoMapping $autoMapping, RealEstateManager $realEstateManager, ParameterBagInterface $params)
     {
         $this->autoMapping = $autoMapping;
         $this->realEstateManager = $realEstateManager;
+
+        $this->params = $params->get('upload_base_url').'/';
     }
 
     public function realEstateCreate(RealEstateCreateRequest $request)
@@ -41,8 +45,12 @@ class RealEstateService
     {
         $response = [];
         $result = $this->realEstateManager->getAllRealEstate();
-        foreach ($result as $row) {
-            $response[] = $this->autoMapping->map(RealEstateEntity::class, GetAllRealEstateResponse::class, $row);
+
+        foreach ($result as $row)
+        {
+            $row['image'] = $this->specialLinkCheck($row['specialLink']).$row['image'];
+
+            $response[] = $this->autoMapping->map('array', GetAllRealEstateResponse::class, $row);
         }
 
         return $response;
@@ -52,8 +60,11 @@ class RealEstateService
     {
         $response = [];
         $result = $this->realEstateManager->getRealEstateByUser($userID);
-        foreach ($result as $row) {
-            $response[] = $this->autoMapping->map(RealEstateEntity::class, GetAllRealEstateResponse::class, $row);
+        foreach ($result as $row)
+        {
+            $row['image'] = $this->specialLinkCheck($row['specialLink']).$row['image'];
+
+            $response[] = $this->autoMapping->map('array', GetAllRealEstateResponse::class, $row);
         }
 
         return $response;
@@ -71,5 +82,13 @@ class RealEstateService
         $result = $this->realEstateManager->delete($request);
 
         return $this->autoMapping->map(RealEstateEntity::class, GetRealEstateByIdResponse::class, $result);
+    }
+
+    public function specialLinkCheck($bool)
+    {
+        if (!$bool)
+        {
+            return $this->params;
+        }
     }
 }

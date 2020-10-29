@@ -36,6 +36,8 @@ class CarCreateRequest
 
     private $location;
 
+    private $image;
+
     /**
      * @return mixed
      */

@@ -37,4 +37,6 @@ class CarGetResponse
     public $fuel;
 
     public $location;
+
+    public $image;
 }

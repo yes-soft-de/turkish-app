@@ -13,16 +13,20 @@ use App\Response\CarCreateResponse;
 use App\Response\CarGetByIdResponse;
 use App\Response\CarGetResponse;
 use App\Response\CarUpdateResponse;
+use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
 
 class CarService
 {
     private $autoMapping;
     private $carManager;
+    private $params;
 
-    public function __construct(AutoMapping $autoMapping, CarManager $carManager)
+    public function __construct(AutoMapping $autoMapping, CarManager $carManager, ParameterBagInterface $params)
     {
         $this->autoMapping = $autoMapping;
         $this->carManager = $carManager;
+
+        $this->params = $params->get('upload_base_url').'/';
     }
 
     public function create(CarCreateRequest $request)
@@ -46,7 +50,9 @@ class CarService
 
         foreach ($result as $row)
         {
-            $response[] = $this->autoMapping->map(CarEntity::class, CarGetResponse::class, $row);
+            $row['image'] = $this->specialLinkCheck($row['specialLink']).$row['image'];
+
+            $response[] = $this->autoMapping->map('array', CarGetResponse::class, $row);
         }
 
         return $response;
@@ -59,7 +65,9 @@ class CarService
 
         foreach ($result as $row)
         {
-            $response[] = $this->autoMapping->map(CarEntity::class, CarGetResponse::class, $row);
+            $row['image'] = $this->specialLinkCheck($row['specialLink']).$row['image'];
+
+            $response[] = $this->autoMapping->map('array', CarGetResponse::class, $row);
         }
 
         return $response;
@@ -81,5 +89,13 @@ class CarService
             return null;
         }
         return  $this->autoMapping->map(CarEntity::class, CarGetByIdResponse::class, $carResult);
+    }
+
+    public function specialLinkCheck($bool)
+    {
+        if (!$bool)
+        {
+            return $this->params;
+        }
     }
 }

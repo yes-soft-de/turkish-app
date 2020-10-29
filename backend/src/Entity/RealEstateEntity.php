@@ -59,6 +59,36 @@ class RealEstateEntity
      */
     private $state;
 
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $image;
+
+    /**
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $specialLink;
+
+    /**
+     * @ORM\Column(type="string", length=50)
+     */
+    private $numberOfFloors;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $cladding;
+
+    /**
+     * @ORM\Column(type="string", length=50)
+     */
+    private $homeFurnishing;
+
+    /**
+     * @ORM\Column(type="string", length=50)
+     */
+    private $realEstateType;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -162,6 +192,78 @@ class RealEstateEntity
     public function setState(?string $state): self
     {
         $this->state = $state;
+
+        return $this;
+    }
+
+    public function getImage(): ?string
+    {
+        return $this->image;
+    }
+
+    public function setImage(string $image): self
+    {
+        $this->image = $image;
+
+        return $this;
+    }
+
+    public function getSpecialLink(): ?bool
+    {
+        return $this->specialLink;
+    }
+
+    public function setSpecialLink(?bool $specialLink): self
+    {
+        $this->specialLink = $specialLink;
+
+        return $this;
+    }
+
+    public function getNumberOfFloors(): ?string
+    {
+        return $this->numberOfFloors;
+    }
+
+    public function setNumberOfFloors(string $numberOfFloors): self
+    {
+        $this->numberOfFloors = $numberOfFloors;
+
+        return $this;
+    }
+
+    public function getCladding(): ?string
+    {
+        return $this->cladding;
+    }
+
+    public function setCladding(string $cladding): self
+    {
+        $this->cladding = $cladding;
+
+        return $this;
+    }
+
+    public function getHomeFurnishing(): ?string
+    {
+        return $this->homeFurnishing;
+    }
+
+    public function setHomeFurnishing(string $homeFurnishing): self
+    {
+        $this->homeFurnishing = $homeFurnishing;
+
+        return $this;
+    }
+
+    public function getRealEstateType(): ?string
+    {
+        return $this->realEstateType;
+    }
+
+    public function setRealEstateType(string $realEstateType): self
+    {
+        $this->realEstateType = $realEstateType;
 
         return $this;
     }

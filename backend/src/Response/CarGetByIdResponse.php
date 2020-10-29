@@ -35,4 +35,6 @@ class CarGetByIdResponse
     public $fuel;
 
     public $location;
+
+    public $image;
 }

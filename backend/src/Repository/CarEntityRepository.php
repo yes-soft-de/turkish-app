@@ -19,10 +19,6 @@ class CarEntityRepository extends ServiceEntityRepository
         parent::__construct($registry, CarEntity::class);
     }
 
-    // /**
-    //  * @return CarEntity[] Returns an array of CarEntity objects
-    //  */
-
     public function getCarById($id): ?CarEntity
     {
         return $this->createQueryBuilder('car')
@@ -38,13 +34,13 @@ class CarEntityRepository extends ServiceEntityRepository
             ->andWhere('car.createdBy = :createdBy')
             ->setParameter('createdBy', $createdBy)
             ->getQuery()
-            ->getResult();
+            ->getArrayResult();
     }
 
     public function getAllCars()
     {
         return $this->createQueryBuilder('car')
             ->getQuery()
-            ->getResult();
+            ->getArrayResult();
     }
 }

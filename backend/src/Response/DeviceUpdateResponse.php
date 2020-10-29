@@ -31,4 +31,6 @@ class DeviceUpdateResponse
     public $location;
 
     public $durationOfUse;
+
+    public $image;
 }
