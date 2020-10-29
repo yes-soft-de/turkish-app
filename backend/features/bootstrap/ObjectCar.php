@@ -5,19 +5,17 @@ class ObjectCar
 {
     private $brand;
     private $company;
-    private $yearOfRelease;
     private $engine;
     private $price;
     private $description;
     private $status;
-    private $createdBy;
     private $distance;
     private $carType;
     private $gearType;
     private $cc;
     private $fuel;
     private $location;
-    private $createdAt;
+    private $image;
 
     public function __construct()
     {
@@ -53,22 +51,6 @@ class ObjectCar
     public function setCompany($company): void
     {
         $this->company = $company;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getYearOfRelease()
-    {
-        return $this->yearOfRelease;
-    }
-
-    /**
-     * @param mixed $yearOfRelease
-     */
-    public function setYearOfRelease($yearOfRelease): void
-    {
-        $this->yearOfRelease = $yearOfRelease;
     }
 
     /**
@@ -133,38 +115,6 @@ class ObjectCar
     public function setStatus($status): void
     {
         $this->status = $status;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getCreatedBy()
-    {
-        return $this->createdBy;
-    }
-
-    /**
-     * @param mixed $createdBy
-     */
-    public function setCreatedBy($createdBy): void
-    {
-        $this->createdBy = $createdBy;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getCreatedAt()
-    {
-        return $this->createdAt;
-    }
-
-    /**
-     * @param mixed $createdAt
-     */
-    public function setCreatedAt($createdAt): void
-    {
-        $this->createdAt = $createdAt;
     }
 
     /**
@@ -261,6 +211,22 @@ class ObjectCar
     public function setLocation($location): void
     {
         $this->location = $location;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getImage()
+    {
+        return $this->image;
+    }
+
+    /**
+     * @param mixed $image
+     */
+    public function setImage($image): void
+    {
+        $this->image = $image;
     }
     
 }

@@ -11,11 +11,16 @@ class RequestFactory
             "Test model",
             "Test company",
             "Test engine",
-            3000,
-            "Test description",
+            "3000",
+            "updated test description",
             "Test status",
             "ab12",
-            "22112 km"
+            "22112 km",
+            "test gear",
+            "test cc",
+            "test fuel",
+            "test location",
+            "image333"
         );
 
         return $carMapper->getCarAsArray();
@@ -23,12 +28,22 @@ class RequestFactory
 
     public function prepareCarUpdateRequestPayload($id)
     {
-//        return [
-//            "id" => $id,
-//            "articleTitle" => "Behat Update API Test",
-//            "article" => "Behat Update API Test",
-//            "idCategory" => "1"
-//        ];
+        return [
+            "id" => $id,
+            "brand" => "Test model",
+            "company" => "Test company",
+            "engine" => "Test engine",
+            "price" => "3000",
+            "description" => "Test description",
+            "status" => "Test status",
+            "distance" => "ab12",
+            "carType" => "22112 km",
+            "gearType" => "test gear",
+            "cc" => "test cc",
+            "fuel" => "test fuel",
+            "location" => "test location",
+            "image" => "image333"
+        ];
     }
 
     public function prepareRequestWithCarId($id)
@@ -50,7 +65,10 @@ class RequestFactory
             "Test description",
             "Test status",
             "cd34",
-            "22112 A"
+            "22112 A",
+            "istanbul, turkey",
+            "123 days",
+            "testImage"
         );
 
         return $deviceMapper->getDeviceAsArray();
@@ -71,6 +89,27 @@ class RequestFactory
         return [
             "device" => $id
         ];
+    }
+
+    public function prepareCreateRealEstateRequestPayload()
+    {
+        $realEstateMapper = new MapperRealEstate();
+
+        $realEstateMapper->setRealEstate(
+            "test city",
+            "60 sm",
+            "000",
+            "test des",
+            "test",
+            "test",
+            "test",
+            "3-floor appartement",
+            "super test",
+            "test",
+            "test"
+        );
+
+        return $realEstateMapper->getRealEstateAsArray();
     }
 
 //    public function prepareCreateImagePayload($arg1)

@@ -13,11 +13,6 @@ class QueryContext implements Context
 //    private $httpClient;
 
     /**
-     * @var Response $response
-     */
-    private $response;
-
-    /**
      * QueryContext constructor.
      */
     public function __construct()
@@ -25,19 +20,19 @@ class QueryContext implements Context
     }
 
     /**
-     * @When /^I request get car by valid created by$/
+     * @When /^I request a car by ID "([^"]*)"$/
      */
-    public function iRequestGetCarByValidCreatedBy()
+    public function iRequestACarByID($arg1)
     {
         $this->response = $this->httpClient->get(
-            ConfigLinks::$BASE_API . ConfigLinks::$CAR_ENDPOINTS . 'behat1'
+            ConfigLinks::$BASE_API . 'car/' . $arg1
         );
     }
 
     /**
-     * @Given /^A json response with the requested car information$/
+     * @Given /^A json response with the requested cars information$/
      */
-    public function aJsonResponseWithTheRequestedCarInformation()
+    public function aJsonResponseWithTheRequestedCarsInformation()
     {
         $data = json_decode($this->response->getBody(), true);
 
@@ -48,17 +43,32 @@ class QueryContext implements Context
     }
 
     /**
-     * @When /^I request a car by ID "([^"]*)"$/
-     */
-    public function iRequestACarByID($arg1)
-    {
-    }
-
-    /**
      * @Given /^A json response with the car information$/
      */
     public function aJsonResponseWithTheCarInformation()
     {
+        $data = json_decode($this->response->getBody(), true);
+
+        if($data['Data']['brand'] != 'Toyota')
+        {
+            throw new Exception('Returned data does not match the required!');
+        }
+    }
+
+    /**
+     * @When /^I request the cars of valid user$/
+     */
+    public function iRequestTheCarsOfValidUser()
+    {
+        $this->response = $this->httpClient->get(
+            ConfigLinks::$BASE_API . ConfigLinks::$CAR_ENDPOINTS,
+            [
+                'headers'=>[
+                    "Authorization" => "Bearer " . $this->token,
+                    "Accept"        => "application/json",
+                ]
+            ]
+        );
     }
 
     use CreateCommon;

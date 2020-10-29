@@ -3,15 +3,17 @@
 
 class ObjectDevice
 {
-    private $model;
+    private $brand;
     private $cpu;
     private $ram;
     private $battery;
     private $price;
-    private $productionYear;
     private $description;
     private $status;
-    private $createdBy;
+    private $gauge;
+    private $location;
+    private $durationOfUse;
+    private $image;
 
     public function __construct()
     {
@@ -20,17 +22,17 @@ class ObjectDevice
     /**
      * @return mixed
      */
-    public function getModel()
+    public function getBrand()
     {
-        return $this->model;
+        return $this->brand;
     }
 
     /**
-     * @param mixed $model
+     * @param mixed $brand
      */
-    public function setModel($model): void
+    public function setBrand($brand): void
     {
-        $this->model = $model;
+        $this->brand = $brand;
     }
 
     /**
@@ -100,22 +102,6 @@ class ObjectDevice
     /**
      * @return mixed
      */
-    public function getProductionYear()
-    {
-        return $this->productionYear;
-    }
-
-    /**
-     * @param mixed $productionYear
-     */
-    public function setProductionYear($productionYear): void
-    {
-        $this->productionYear = $productionYear;
-    }
-
-    /**
-     * @return mixed
-     */
     public function getDescription()
     {
         return $this->description;
@@ -148,18 +134,65 @@ class ObjectDevice
     /**
      * @return mixed
      */
-    public function getCreatedBy()
+    public function getGauge()
     {
-        return $this->createdBy;
+        return $this->gauge;
     }
 
     /**
-     * @param mixed $createdBy
+     * @param mixed $gauge
      */
-    public function setCreatedBy($createdBy): void
+    public function setGauge($gauge): void
     {
-        $this->createdBy = $createdBy;
+        $this->gauge = $gauge;
     }
 
+    /**
+     * @return mixed
+     */
+    public function getLocation()
+    {
+        return $this->location;
+    }
+
+    /**
+     * @param mixed $location
+     */
+    public function setLocation($location): void
+    {
+        $this->location = $location;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getDurationOfUse()
+    {
+        return $this->durationOfUse;
+    }
+
+    /**
+     * @param mixed $durationOfUse
+     */
+    public function setDurationOfUse($durationOfUse): void
+    {
+        $this->durationOfUse = $durationOfUse;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getImage()
+    {
+        return $this->image;
+    }
+
+    /**
+     * @param mixed $image
+     */
+    public function setImage($image): void
+    {
+        $this->image = $image;
+    }
 
 }

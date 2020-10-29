@@ -16,32 +16,38 @@ class MapperDevice
         return $this->device;
     }
 
-    public function setDevice($model, $cpu, $ram, $price, $description, $status,
-                              $createdBy, $battery): void
+    public function setDevice($brand, $cpu, $ram, $price, $description, $status,
+                              $battery, $gauge, $location, $durationOfUse, $image): void
     {
         $this->device = new ObjectDevice();
 
-        $this->device->setModel($model);
+        $this->device->setBrand($brand);
         $this->device->setCpu($cpu);
         $this->device->setRam($ram);
         $this->device->setPrice($price);
         $this->device->setDescription($description);
         $this->device->setStatus($status);
-        $this->device->setCreatedBy($createdBy);
         $this->device->setBattery($battery);
+        $this->device->setGauge($gauge);
+        $this->device->setLocation($location);
+        $this->device->setDurationOfUse($durationOfUse);
+        $this->device->setImage($image);
     }
 
     public function getDeviceAsArray(): array
     {
         return [
-            "model"=>$this->device->getModel(),
+            "brand"=>$this->device->getBrand(),
             "cpu"=>$this->device->getCpu(),
             "ram"=>$this->device->getRam(),
             "price"=>$this->device->getPrice(),
             "description"=>$this->device->getDescription(),
             "status"=>$this->device->getStatus(),
-            "createdBy"=>$this->device->getCreatedBy(),
             "battery"=>$this->device->getBattery(),
+            "gauge"=>$this->device->getGauge(),
+            "location"=>$this->device->getLocation(),
+            "durationOfUse"=>$this->device->getDurationOfUse(),
+            "image"=>$this->device->getImage(),
         ];
     }
 }

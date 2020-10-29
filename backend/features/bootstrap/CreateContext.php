@@ -13,19 +13,9 @@ use GuzzleHttp\Psr7\Response;
 class CreateContext implements Context
 {
     /**
-     * @var Response $response
-     */
-    private $response;
-
-    /**
      * @var array $user
      */
     private $user;
-
-    /**
-     * @var array $userCredentials
-     */
-    private $userCredentials;
 
     /**
      * @var array $profile
@@ -48,9 +38,9 @@ class CreateContext implements Context
     private $device;
 
     /**
-     * @var string $token
+     * @var string $realEstate
      */
-    protected $token;
+    private $realEstate;
 
     public function __construct()
     {
@@ -74,7 +64,11 @@ class CreateContext implements Context
         $this->response = $this->httpClient->post(
             ConfigLinks::$BASE_API . ConfigLinks::$CAR_ENDPOINTS,
             [
-                "json"=>$this->car
+                'body'=>json_encode($this->car),
+                'headers'=>[
+                    "Authorization" => "Bearer " . $this->token,
+                    "Accept"        => "application/json",
+                ]
             ]
         );
     }
@@ -86,7 +80,7 @@ class CreateContext implements Context
     {
         $data = json_decode($this->response->getBody(), true);
 
-        if($data['Data']['model'] != "Test model")
+        if($data['Data']['brand'] != "Test model")
         {
             throw new Exception('The returned data does not match the new one!');
         }
@@ -110,7 +104,11 @@ class CreateContext implements Context
         $this->response = $this->httpClient->post(
             ConfigLinks::$BASE_API . ConfigLinks::$DEVICE_ENDPOINTS,
             [
-                "json"=>$this->device
+                'body'=>json_encode($this->device),
+                'headers'=>[
+                    "Authorization" => "Bearer " . $this->token,
+                    "Accept"        => "application/json",
+                ]
             ]
         );
     }
@@ -165,47 +163,6 @@ class CreateContext implements Context
     }
 
     /**
-     * @Given I have valid user credentials
-     */
-    public function iHaveValidUserCredentials()
-    {
-        $factoryRequest = new RequestFactory();
-
-        $this->userCredentials = $factoryRequest->prepareUserLoginRequestPayload();
-    }
-
-    /**
-     * @When I request login check
-     */
-    public function iRequestLoginCheck()
-    {
-        $this->response = $this->httpClient->post(
-            ConfigLinks::$BASE_API . 'login_check',
-            [
-                "json"=>$this->userCredentials
-            ]
-        );
-    }
-
-    /**
-     * @Then I expect a token within the response
-     */
-    public function iExpectATokenWithinTheResponse()
-    {
-        $data = json_decode($this->response->getBody(), true);
-
-        if($data['token'] == null)
-        {
-            throw new Exception('Error in retrieving the token!');
-        }
-        else
-        {
-            $this->token = $data['token'];
-            echo $this->token;
-        }
-    }
-
-    /**
      * @Given I have valid new admin data
      */
     public function iHaveValidNewAdminData()
@@ -246,15 +203,13 @@ class CreateContext implements Context
      */
     public function iRequestMyProfile()
     {
-        $headers = [
-            "Authorization" => "Bearer " . $this->token,
-            "Accept"        => "application/json",
-        ];
-
         $this->response = $this->httpClient->get(
             ConfigLinks::$BASE_API . 'userprofile',
             [
-                'headers' => $headers
+                'headers' => [
+                    "Authorization" => "Bearer " . $this->token,
+                    "Accept"        => "application/json",
+                ]
             ]
         );
     }
@@ -290,7 +245,11 @@ class CreateContext implements Context
         $this->response = $this->httpClient->post(
             ConfigLinks::$BASE_API . ConfigLinks::$PROFILE_ENDPOINTS,
             [
-                "json"=>$this->profile
+                'body'=>json_encode($this->profile),
+                'headers'=>[
+                    "Authorization" => "Bearer " . $this->token,
+                    "Accept"        => "application/json",
+                ]
             ]
         );
     }
@@ -308,6 +267,45 @@ class CreateContext implements Context
         }
     }
 
+    /**
+     * @Given /^I have valid real\-estate data$/
+     */
+    public function iHaveValidRealEstateData()
+    {
+        $factoryRequest = new RequestFactory();
+
+        $this->realEstate = $factoryRequest->prepareCreateRealEstateRequestPayload();
+    }
+
+    /**
+     * @When /^I request create a new real\-estate with the data I have$/
+     */
+    public function iRequestCreateANewRealEstateWithTheDataIHave()
+    {
+        $this->response = $this->httpClient->post(
+            ConfigLinks::$BASE_API . ConfigLinks::$REAL_ESTATE_ENDPOINT,
+            [
+                'body'=>json_encode($this->realEstate),
+                'headers'=>[
+                    "Authorization" => "Bearer " . $this->token,
+                    "Accept"        => "application/json",
+                ]
+            ]
+        );
+    }
+
+    /**
+     * @Given /^A json response with the new real\-estate information$/
+     */
+    public function aJsonResponseWithTheNewRealEstateInformation()
+    {
+        $data = json_decode($this->response->getBody(), true);
+
+        if($data['Data']['id'] == null)
+        {
+            throw new Exception('Created data does not match the new one!');
+        }
+    }
 
     use CreateCommon;
 }
