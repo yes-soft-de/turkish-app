@@ -27,16 +27,21 @@ php bin/console doctrine:migration:migrate
 ***
 #### API guide
 * [Account](#account)
+* [Login](#login)
+* [Status](#status)
+* [RealEstate](#realestate)
+* [Reaction](#reaction)
 * [Car](#car)
 * [Device](#device)
 
-#### Account
+
+### Account
 #### Create new user
 ```
 /user
 methods: POST
 ```
-#### login
+### login
 ```
 /login_check
 methods: POST
@@ -56,7 +61,7 @@ methods: PUT
 /userprofile
 methods: GET
 ```
-<<<<<<< HEAD
+
 ### Status
 #### Create new status 
 ```
@@ -70,7 +75,7 @@ methods: PUT
 ```
 #### Get agreements of a specific user
 ```
-/status/{userID}
+/status
 methods: GET
 ```
 ### RealEstate
@@ -79,29 +84,29 @@ methods: GET
 /real-estate
 methods: POST
 ```
-#### Get an item by ID
+#### Get a real estate by ID
 ```
-/real-estate/{ID}
+/real-estate/ID
 methods: GET
 ```
-#### Get all items
+#### Get all real estates
 ```
-/real-estate
+/all-real-estate
 methods: GET
 ```
-#### Get all items of specific user
+#### Get all real estates of specific user
 ```
-/real-estates/{userID}
+/real-estates
 methods: GET
 ```
-#### Update an existing item
+#### Update an existing real estate
 ```
 /real-estate
 methods: PUT
 ```
-#### Delete an item
+#### Delete an existing real estate
 ```
-/real-estate/{ID}
+/real-estate/ID
 methods: DELETE
 ```
 ### Reaction
@@ -110,16 +115,17 @@ methods: DELETE
 /reactions
 methods: POST
 ```
-#### Get all reactions for specific item
+#### Get all reactions for specific property
+_itemID could be a car ID, a device ID, or a real estate ID_
 ```
-/reactions/{itemID}
+/reactions/itemID
 methods: GET
 ```
 #### Get all reactions for specific user. 
 ```
-/reactionss/{userID}
+/reactions
 methods: GET
-=======
+```
 
 ### Car
 #### Insert new car
@@ -134,12 +140,12 @@ methods: GET
 ```
 #### Get the cars of specific user
 ```
-/cars/createdBy
+/cars
 methods: GET
 ```
 #### Get all cars
 ```
-/cars
+/all-cars
 methods: GET
 ```
 #### Update a specific car by ID
@@ -166,12 +172,12 @@ methods: GET
 ```
 #### Get the devices of specific user
 ```
-/devices/createdBy
+/devices/
 methods: GET
 ```
 #### Get all devices
 ```
-/devices
+/all-devices
 methods: GET
 ```
 #### Update a specific device by ID
@@ -183,5 +189,4 @@ methods: PUT
 ```
 /devices/id
 methods: DELETE
->>>>>>> 9ee4a3e03d164ef6c33b2bae96f4e7ce0b445c80
 ```
