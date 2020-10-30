@@ -30,26 +30,19 @@ class RequestFactory
     {
         return [
             "id" => $id,
-            "brand" => "Test model",
-            "company" => "Test company",
-            "engine" => "Test engine",
+            "brand" => "updated Test model",
+            "company" => "updated Test company",
+            "engine" => "updated Test engine",
             "price" => "3000",
-            "description" => "Test description",
-            "status" => "Test status",
+            "description" => "updated Test description",
+            "status" => "updated Test status",
             "distance" => "ab12",
             "carType" => "22112 km",
-            "gearType" => "test gear",
+            "gearType" => "updated test gear",
             "cc" => "test cc",
             "fuel" => "test fuel",
             "location" => "test location",
             "image" => "image333"
-        ];
-    }
-
-    public function prepareRequestWithCarId($id)
-    {
-        return [
-            "car" => $id
         ];
     }
 
@@ -76,18 +69,20 @@ class RequestFactory
 
     public function prepareDeviceUpdateRequestPayload($id)
     {
-//        return [
-//            "id" => $id,
-//            "articleTitle" => "Behat Update API Test",
-//            "article" => "Behat Update API Test",
-//            "idCategory" => "1"
-//        ];
-    }
-
-    public function prepareRequestWithDeviceId($id)
-    {
         return [
-            "device" => $id
+            "id" => $id,
+            "brand" => "updated Test model",
+            "cpu" => "updated Test company",
+            "ram" => "updated Test engine",
+            "price" => "3000",
+            "description" => "updated Test description",
+            "status" => "updated Test status",
+            "carType" => "22112 km",
+            "battery" => "updated test gear",
+            "gauge" => "test cc",
+            "durationOfUse" => "test fuel",
+            "location" => "test location",
+            "image" => "image333"
         ];
     }
 
@@ -112,33 +107,14 @@ class RequestFactory
         return $realEstateMapper->getRealEstateAsArray();
     }
 
-//    public function prepareCreateImagePayload($arg1)
-//    {
-//        $imageMapper = new MapperImage();
-//
-//        $imageMapper->setImage(
-//            "BehatImageTest",$arg1
-//        );
-//
-//        return $imageMapper->getImageAsArray();
-//    }
-
-//    public function prepareImageUpdatePayload($id)
-//    {
-//        return [
-//            "image" => "BehatTestUpdateImage",
-//            "project" => $id
-//        ];
-//    }
-
     public function prepareCreateUserRequestPayload()
     {
         $userMapper = new MapperUser();
 
-        $userMapper->setUser("behat1@test.com",
+        $userMapper->setUser("behat7@test.com",
             ['user'],
             "000",
-            "behat1"
+            "behat7"
         );
 
         return $userMapper->getUserAsArray();
@@ -154,7 +130,7 @@ class RequestFactory
     public function prepareUserLoginRequestPayload()
     {
         return [
-            "username"=>"behat1",
+            "username"=>"behat3",
             "password"=>"000"
         ];
     }
@@ -164,8 +140,8 @@ class RequestFactory
         $profileMapper = new MapperProfile();
 
         $profileMapper->setProfile(
-            "behat1",
-            "behat1",
+            "behat7",
+            "behat7",
             "istanbul, turkey",
             "behat test",
             "behatImage"
@@ -178,10 +154,10 @@ class RequestFactory
     {
         $adminMapper = new MapperAdmin();
 
-        $adminMapper->setAdmin("behatAdmin1@test.com",
+        $adminMapper->setAdmin("behatAdmin5@test.com",
             ['user'],
             "000",
-            "behatAdmin1"
+            "behatAdmin5"
         );
 
         return $adminMapper->getAdminAsArray();

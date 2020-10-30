@@ -192,38 +192,9 @@ class CreateContext implements Context
     {
         $data = json_decode($this->response->getBody(), true);
 
-        if($data['Data']['email'] != "behatAdmin1@test.com")
+        if($data['Data']['email'] != "behatAdmin5@test.com")
         {
             throw new Exception('Retrieved information does not match the new one!');
-        }
-    }
-
-    /**
-     * @When /^I request my profile$/
-     */
-    public function iRequestMyProfile()
-    {
-        $this->response = $this->httpClient->get(
-            ConfigLinks::$BASE_API . 'userprofile',
-            [
-                'headers' => [
-                    "Authorization" => "Bearer " . $this->token,
-                    "Accept"        => "application/json",
-                ]
-            ]
-        );
-    }
-
-    /**
-     * @Given /^A json response with my information$/
-     */
-    public function aJsonResponseWithMyInformation()
-    {
-        $data = json_decode($this->response->getBody(), true);
-
-        if($data['Data']['userName'] != "behat1")
-        {
-            throw new Exception('Wrong returned data !');
         }
     }
 
@@ -261,7 +232,7 @@ class CreateContext implements Context
     {
         $data = json_decode($this->response->getBody(), true);
 
-        if($data['Data']['userName'] != "behat1")
+        if($data['Data']['userName'] != "behat7")
         {
             throw new Exception('Created data does not match the new one!');
         }

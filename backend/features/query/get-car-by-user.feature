@@ -1,5 +1,5 @@
-Feature: Get car by user
-  Scenario: Get car via created by
+Feature: Get a car by user
+  Scenario: Get a car via created by
     Given I am signed in user
     When I request the cars of valid user
     Then I expect response code "200"

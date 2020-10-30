@@ -14,3 +14,8 @@ default:
             paths:
               - "%paths.base%/features/update"
             contexts: [UpdateContext]
+
+          delete:
+            paths:
+              - "%paths.base%/features/delete"
+            contexts: [DeleteContext]
