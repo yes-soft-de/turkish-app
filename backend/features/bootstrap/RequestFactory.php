@@ -150,6 +150,16 @@ class RequestFactory
         return $profileMapper->getProfileAsArray();
     }
 
+    public function prepareUserProfileUpdateRequestPayload()
+    {
+        return [
+            "userName" => "behat3",
+            "location" => "updated location",
+            "story" => "updated story",
+            "image" => "updatedImage"
+        ];
+    }
+
     public function prepareCreateAdminRequestPayload()
     {
         $adminMapper = new MapperAdmin();

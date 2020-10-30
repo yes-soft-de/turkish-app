@@ -15,6 +15,11 @@ class UpdateContext implements Context
      */
     private $device;
 
+    /**
+     * @var array $userProfile
+     */
+    private $userProfile;
+
     public function __construct()
     {
     }
@@ -109,6 +114,46 @@ class UpdateContext implements Context
         $data = json_decode($this->response->getBody(), true);
 
         if($data['Data']['brand'] != 'updated Test model')
+        {
+            throw new Exception('Wrong data were being updated!');
+        }
+    }
+
+    /**
+     * @Given /^I have new profile information$/
+     */
+    public function iHaveNewProfileInformation()
+    {
+        $requestFactory = new RequestFactory();
+
+        $this->userProfile = $requestFactory->prepareUserProfileUpdateRequestPayload();
+    }
+
+    /**
+     * @When /^I request update my profile$/
+     */
+    public function iRequestUpdateMyProfile()
+    {
+        $this->response = $this->httpClient->put(
+            ConfigLinks::$BASE_API . ConfigLinks::$PROFILE_ENDPOINTS,
+            [
+                'body'=>json_encode($this->userProfile),
+                'headers'=>[
+                    "Authorization" => "Bearer " . $this->token,
+                    "Accept"        => "application/json",
+                ]
+            ]
+        );
+    }
+
+    /**
+     * @Given /^I expect the response match the new information$/
+     */
+    public function iExpectTheResponseMatchTheNewInformation()
+    {
+        $data = json_decode($this->response->getBody(), true);
+
+        if($data['Data']['userName'] != 'behat3')
         {
             throw new Exception('Wrong data were being updated!');
         }
