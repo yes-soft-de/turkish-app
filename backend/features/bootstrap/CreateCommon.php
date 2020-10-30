@@ -72,7 +72,6 @@ trait CreateCommon
         else
         {
             $this->token = $data['token'];
-            echo $this->token;
         }
     }
 
