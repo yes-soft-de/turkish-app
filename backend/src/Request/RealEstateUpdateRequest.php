@@ -70,4 +70,21 @@ class RealEstateUpdateRequest
 
         return $this;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getCreatedBy()
+    {
+        return $this->createdBy;
+    }
+
+    /**
+     * @param mixed $createdBy
+     */
+    public function setCreatedBy($createdBy): void
+    {
+        $this->createdBy = $createdBy;
+    }
+
 }

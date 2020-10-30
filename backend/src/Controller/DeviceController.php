@@ -106,6 +106,8 @@ class DeviceController extends BaseController
 
         $request = $this->autoMapping->map(\stdClass::class, DeviceUpdateRequest::class, (object) $data);
 
+        $request->setCreatedBy($this->getUserId());
+
         $violations = $this->validator->validate($request);
 
         if (\count($violations) > 0)
