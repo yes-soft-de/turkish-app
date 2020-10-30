@@ -43,4 +43,31 @@ class DeviceEntityRepository extends ServiceEntityRepository
             ->getQuery()
             ->getArrayResult();
     }
+
+    public function getFilterPrice($value)
+    {
+        return $this->createQueryBuilder('device')
+            ->andWhere('device.price = :value')
+            ->setParameter('value', $value)
+            ->getQuery()
+            ->getArrayResult();
+    }
+
+    public function getFilterCpu($value)
+    {
+        return $this->createQueryBuilder('device')
+            ->andWhere('device.cpu = :value')
+            ->setParameter('value', $value)
+            ->getQuery()
+            ->getArrayResult();
+    }
+
+    public function getFilterRam($value)
+    {
+        return $this->createQueryBuilder('device')
+            ->andWhere('device.ram = :value')
+            ->setParameter('value', $value)
+            ->getQuery()
+            ->getArrayResult();
+    }
 }

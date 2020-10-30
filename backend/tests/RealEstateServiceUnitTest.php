@@ -4,14 +4,16 @@ namespace App\Tests;
 use App\AutoMapping;
 use App\Entity\RealEstateEntity;
 use App\Manager\RealEstateManager;
+use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
 use App\Request\RealEstateCreateRequest;
 use App\Request\RealEstateUpdateRequest;
 use App\Request\DeleteRequest;
 use App\Request\GetByIdRequest;
-use App\Response\GetAllRealEstateResponse;
-use App\Response\GetRealEstateByIdResponse;
+use App\Response\RealEstateGetAllResponse;
+use App\Response\RealEstateGetByIdResponse;
 use App\Response\RealEstateCreateResponse;
 use App\Response\RealEstateUpdateResponse;
+use App\Response\RealEstateGetFilterResponse;
 use App\Service\RealEstateService;
 use App\Tests\fixtures\RealEstateProvider;
 use PHPUnit\Framework\TestCase;
@@ -26,6 +28,7 @@ class RealEstateServiceUnitTest extends TestCase
     {
         $this->mockManager = $this->createMock(RealEstateManager::class);
         $this->autoMapping = new AutoMapping();
+        $this->params = $this->createMock(ParameterBagInterface::class);
     }
 
     /**
@@ -60,7 +63,7 @@ class RealEstateServiceUnitTest extends TestCase
             ->method('realEstateCreate')
             ->willReturn($entity);
 
-        $service = new RealEstateService($this->autoMapping, $this->mockManager);
+        $service = new RealEstateService($this->autoMapping, $this->mockManager, $this->params);
         $this->assertEquals($response, $service->realEstateCreate($request));
 
     }
@@ -76,7 +79,7 @@ class RealEstateServiceUnitTest extends TestCase
      */
     public function testGetRealEstateByIdWithDataProvider($expected, $actual)
     {
-        $response = new GetRealEstateByIdResponse();
+        $response = new RealEstateGetByIdResponse();
         $response->city = $expected;
         $response->space = $expected;
         $response->price = $expected;
@@ -100,7 +103,7 @@ class RealEstateServiceUnitTest extends TestCase
             ->method('getRealEstateById')
             ->willReturn($entity);
 
-        $service = new RealEstateService($this->autoMapping, $this->mockManager);
+        $service = new RealEstateService($this->autoMapping, $this->mockManager, $this->params);
         $this->assertEquals($response, $service->getRealEstateById($getByIdRequest));
     }
 
@@ -115,7 +118,7 @@ class RealEstateServiceUnitTest extends TestCase
      */
     public function testGetAllRealEstateByIdWithDataProvider($expected, $actual)
     {
-        $response = new GetAllRealEstateResponse();
+        $response = new RealEstateGetAllResponse();
         $response->city = $expected;
         $response->space = $expected;
         $response->price = $expected;
@@ -137,7 +140,7 @@ class RealEstateServiceUnitTest extends TestCase
             ->method('getAllRealEstate')
             ->willReturn($entity);
 
-        $service = new RealEstateService($this->autoMapping, $this->mockManager);
+        $service = new RealEstateService($this->autoMapping, $this->mockManager, $this->params);
         $this->assertIsArray($service->getAllRealEstate());
         
     }
@@ -153,7 +156,7 @@ class RealEstateServiceUnitTest extends TestCase
      */
     public function testGetAllRealEstateByUserByIdWithDataProvider($expected, $actual)
     {
-        $response = new GetAllRealEstateResponse();
+        $response = new RealEstateGetAllResponse();
         $response->createdBy = $expected;
         
 
@@ -170,7 +173,7 @@ class RealEstateServiceUnitTest extends TestCase
             ->method('getRealEstateByUser')
             ->willReturn($entity);
 
-        $service = new RealEstateService($this->autoMapping, $this->mockManager);
+        $service = new RealEstateService($this->autoMapping, $this->mockManager, $this->params);
         $this->assertIsArray($service->getRealEstateByUser($response->createdBy));
         
     }
@@ -210,7 +213,7 @@ class RealEstateServiceUnitTest extends TestCase
             ->method('realEstateUpdate')
             ->willReturn($entity);
 
-        $service = new RealEstateService($this->autoMapping, $this->mockManager);
+        $service = new RealEstateService($this->autoMapping, $this->mockManager, $this->params);
         $this->assertEquals($response, $service->realEstateUpdate($request));
     }
 
@@ -225,7 +228,7 @@ class RealEstateServiceUnitTest extends TestCase
      */
     public function testDeleteWithDataProvider($expected, $actual)
     {
-        $response = new GetRealEstateByIdResponse();
+        $response = new RealEstateGetByIdResponse();
         $response->id = $expected;
         $response->city = $expected;
         $response->space = $expected;
@@ -251,7 +254,7 @@ class RealEstateServiceUnitTest extends TestCase
             ->method('delete')
             ->willReturn($entity);
 
-        $service = new RealEstateService($this->autoMapping, $this->mockManager);
+        $service = new RealEstateService($this->autoMapping, $this->mockManager, $this->params);
         $this->assertEquals($response, $service->delete($request));
     }
 
@@ -261,4 +264,47 @@ class RealEstateServiceUnitTest extends TestCase
         return $result->delete();
     }
 
+    /**
+     * @dataProvider getFilter
+     */
+    public function testGetFilterRealEstateByUserByIdWithDataProvider($expected, $actual)
+    {
+        $response = new RealEstateGetFilterResponse();
+        $response->city = $expected;
+
+        $entity = new RealEstateEntity();
+        $entity->setCity($actual);
+        $entity->setSpace($actual);
+        $entity->setPrice($actual);
+        $entity->setDescription($actual);
+        $entity->setStatus($actual);
+        $entity->setCreatedBy($actual);
+        $entity->setState($actual);
+
+        $this->mockManager
+            ->method('getFilterCity')
+            ->willReturn($entity);
+        $this->mockManager
+            ->method('getFilterSpace')
+            ->willReturn($entity);
+        $this->mockManager
+            ->method('getFilterPrice')
+            ->willReturn($entity);
+        $this->mockManager
+            ->method('getFilterNumberOfFloors')
+            ->willReturn($entity);
+
+        $service = new RealEstateService($this->autoMapping, $this->mockManager, $this->params);
+        $this->assertIsArray($service->getFilter('city', $actual));
+        $this->assertIsArray($service->getFilter('space', $actual));
+        $this->assertIsArray($service->getFilter('price', $actual));
+        $this->assertIsArray($service->getFilter('numberOfFloors', $actual));
+        
+    }
+
+    public function getFilter()
+    {
+        $result = new RealEstateProvider();
+        return $result->getFilter();
+    }
 }

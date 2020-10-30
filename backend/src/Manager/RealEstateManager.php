@@ -77,6 +77,7 @@ class RealEstateManager
          }
          return $item;
     }
+    
     public function getFilterCity($value)
     {
         return $result = $this->repository->getFilterCity($value);
@@ -91,7 +92,7 @@ class RealEstateManager
     {
         return $result = $this->repository->getFilterPrice($value);
     }
-    
+
     public function getFilterNumberOfFloors($value)
     {
         return $result = $this->repository->getFilterNumberOfFloors($value);

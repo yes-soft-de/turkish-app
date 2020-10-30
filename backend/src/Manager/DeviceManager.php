@@ -85,4 +85,19 @@ class DeviceManager
         }
         return $deviceEntity;
     }
+
+    public function getFilterPrice($value)
+    {
+        return $result = $this->deviceEntityRepository->getFilterPrice($value);
+    }
+
+    public function getFilterCpu($value)
+    {
+        return $result = $this->deviceEntityRepository->getFilterCpu($value);
+    }
+    
+    public function getFilterRam($value)
+    {
+        return $result = $this->deviceEntityRepository->getFilterRam($value);
+    }
 }

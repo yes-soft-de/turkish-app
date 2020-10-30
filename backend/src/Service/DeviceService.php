@@ -11,6 +11,7 @@ use App\Request\DeviceCreateRequest;
 use App\Response\DeviceCreateResponse;
 use App\Response\DeviceGetByIdResponse;
 use App\Response\DeviceGetResponse;
+use App\Response\DevicesGetFilterResponse;
 use App\Response\DeviceUpdateResponse;
 use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
 
@@ -97,5 +98,24 @@ class DeviceService
         {
             return $this->params;
         }
+    }
+
+    public function getFilter($key, $value)
+    {
+        $response = [];
+        if ($key == 'price') {
+            $item = $this->deviceManager->getFilterPrice($value);
+        }
+        if ($key == 'cpu') {
+            $item = $this->deviceManager->getFilterCpu($value);
+        }
+        if ($key == 'ram') {
+            $item = $this->deviceManager->getFilterRam($value);
+        }
+        
+        foreach ($item as $row) {
+            $response[] = $this->autoMapping->map('array', DevicesGetFilterResponse::class, $row);
+        }
+        return $response;
     }
 }

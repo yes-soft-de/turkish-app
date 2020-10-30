@@ -43,4 +43,22 @@ class CarEntityRepository extends ServiceEntityRepository
             ->getQuery()
             ->getArrayResult();
     }
+
+    public function getFilterCompany($value)
+    {
+        return $this->createQueryBuilder('car')
+            ->andWhere('car.company = :value')
+            ->setParameter('value', $value)
+            ->getQuery()
+            ->getArrayResult();
+    }
+
+    public function getFilterPrice($value)
+    {
+        return $this->createQueryBuilder('car')
+            ->andWhere('car.price = :value')
+            ->setParameter('value', $value)
+            ->getQuery()
+            ->getArrayResult();
+    }
 }

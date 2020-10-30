@@ -133,4 +133,15 @@ class CarController extends BaseController
 
         return $this->response($result, self::DELETE);
     }
+    
+    /**
+     * @Route("carsFilter/{key}/{value}", name="filterForcars ",methods={"GET"})
+     * @return JsonResponse
+     */
+    public function getFilter($key, $value)
+    {       
+        $result = $this->carService->getFilter($key, $value);
+
+        return $this->response($result, self::FETCH);
+    }
 }

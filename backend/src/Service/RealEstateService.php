@@ -6,9 +6,9 @@ use App\AutoMapping;
 use App\Entity\RealEstateEntity;
 use App\Manager\RealEstateManager;
 use App\Request\RealEstateCreateRequest;
-use App\Response\GetAllRealEstateResponse;
-use App\Response\GetRealEstateByIdResponse;
-use App\Response\GetRealEstateFilterResponse;
+use App\Response\RealEstateGetAllResponse;
+use App\Response\RealEstateGetByIdResponse;
+use App\Response\RealEstateGetFilterResponse;
 use App\Response\RealEstateCreateResponse;
 use App\Response\RealEstateUpdateResponse;
 use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
@@ -37,7 +37,7 @@ class RealEstateService
     {
         $result = $this->realEstateManager->getRealEstateById($request);
 
-        $response = $this->autoMapping->map(RealEstateEntity::class, GetRealEstateByIdResponse::class, $result);
+        $response = $this->autoMapping->map(RealEstateEntity::class, RealEstateGetByIdResponse::class, $result);
 
         return $response;
     }
@@ -50,7 +50,7 @@ class RealEstateService
         foreach ($result as $row) {
             $row['image'] = $this->specialLinkCheck($row['specialLink']) . $row['image'];
 
-            $response[] = $this->autoMapping->map('array', GetAllRealEstateResponse::class, $row);
+            $response[] = $this->autoMapping->map('array', RealEstateGetAllResponse::class, $row);
         }
 
         return $response;
@@ -63,7 +63,7 @@ class RealEstateService
         foreach ($result as $row) {
             $row['image'] = $this->specialLinkCheck($row['specialLink']) . $row['image'];
 
-            $response[] = $this->autoMapping->map('array', GetAllRealEstateResponse::class, $row);
+            $response[] = $this->autoMapping->map('array', RealEstateGetAllResponse::class, $row);
         }
 
         return $response;
@@ -80,7 +80,7 @@ class RealEstateService
     {
         $result = $this->realEstateManager->delete($request);
 
-        return $this->autoMapping->map(RealEstateEntity::class, GetRealEstateByIdResponse::class, $result);
+        return $this->autoMapping->map(RealEstateEntity::class, RealEstateGetByIdResponse::class, $result);
     }
 
     public function specialLinkCheck($bool)
@@ -106,7 +106,7 @@ class RealEstateService
             $item = $this->realEstateManager->getFilterNumberOfFloors($value);
         }
         foreach ($item as $row) {
-            $response[] = $this->autoMapping->map('array', GetRealEstateFilterResponse::class, $row);
+            $response[] = $this->autoMapping->map('array', RealEstateGetFilterResponse::class, $row);
         }
         return $response;
     }

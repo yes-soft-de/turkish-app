@@ -9,7 +9,7 @@ use App\Entity\ReactionEntity;
 use App\Manager\ReactionManager;
 use App\Request\ReactionCreateRequest;
 use App\Response\ReactionCreateResponse;
-use App\Response\GetReactionResponse;
+use App\Response\ReactionGetResponse;
 
 class ReactionService
 {
@@ -36,7 +36,7 @@ class ReactionService
         $result = $this->reactionManager->getAll($data, $itemID);
         $response = [];
         foreach ($result as $row) {
-            $response[] = $this->autoMapping->map(ReactionEntity::class, GetReactionResponse::class, $row);
+            $response[] = $this->autoMapping->map(ReactionEntity::class, ReactionGetResponse::class, $row);
         }
 
         return $response;
@@ -47,7 +47,7 @@ class ReactionService
         $result = $this->reactionManager->getReactionsForUser($userID);
         $response = [];
         foreach ($result as $row) {
-            $response[] = $this->autoMapping->map(ReactionEntity::class, GetReactionResponse::class, $row);
+            $response[] = $this->autoMapping->map(ReactionEntity::class, ReactionGetResponse::class, $row);
         }
 
         return $response;

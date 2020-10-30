@@ -133,4 +133,15 @@ class DeviceController extends BaseController
 
         return $this->response($result, self::DELETE);
     }
+    
+    /**
+     * @Route("devicesFilter/{key}/{value}", name="filterFordevices ",methods={"GET"})
+     * @return JsonResponse
+     */
+    public function getFilter($key, $value)
+    {       
+        $result = $this->deviceService->getFilter($key, $value);
+
+        return $this->response($result, self::FETCH);
+    }
 }

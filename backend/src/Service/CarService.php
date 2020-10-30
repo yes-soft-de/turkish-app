@@ -12,6 +12,7 @@ use App\Request\GetByIdRequest;
 use App\Response\CarCreateResponse;
 use App\Response\CarGetByIdResponse;
 use App\Response\CarGetResponse;
+use App\Response\CarGetFilterResponse;
 use App\Response\CarUpdateResponse;
 use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
 
@@ -97,5 +98,20 @@ class CarService
         {
             return $this->params;
         }
+    }
+
+    public function getFilter($key, $value)
+    {
+        $response = [];
+        if ($key == 'company') {
+            $item = $this->carManager->getFilterCompany($value);
+        }
+        if ($key == 'price') {
+            $item = $this->carManager->getFilterPrice($value);
+        }
+        foreach ($item as $row) {
+            $response[] = $this->autoMapping->map('array', CarGetFilterResponse::class, $row);
+        }
+        return $response;
     }
 }

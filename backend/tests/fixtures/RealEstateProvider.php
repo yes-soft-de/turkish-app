@@ -49,5 +49,11 @@ class RealEstateProvider extends TestCase
             'delete' => [112, 112],[10012, 10012]
                 ];
     }
+    public function getFilter()
+    {
+        return [
+            'getFilter' => [112, 112],[10012, 10012]
+                ];
+    }
 
 }

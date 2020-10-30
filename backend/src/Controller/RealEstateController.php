@@ -122,7 +122,7 @@ class RealEstateController extends BaseController
     }
 
     /**
-     * @Route("real-estates/{key}/{value}", name="filterForRealEstates ",methods={"GET"})
+     * @Route("real-estatesFilter/{key}/{value}", name="filterForRealEstates ",methods={"GET"})
      * @return JsonResponse
      */
     public function getFilter($key, $value)
