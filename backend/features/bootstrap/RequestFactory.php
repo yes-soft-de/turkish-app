@@ -107,6 +107,24 @@ class RequestFactory
         return $realEstateMapper->getRealEstateAsArray();
     }
 
+    public function prepareRealEstateUpdateRequestPayload($id)
+    {
+        return [
+            "id" => $id,
+            "city" => "updated city2",
+            "space" => "updated space2",
+            "price" => "3000 E",
+            "description" => "updated test description2",
+            "status" => "updated test status2",
+            "state" => "Istanbul2",
+            "numberOfFloors" => "3rd floor apartment2",
+            "cladding" => "super deluxe2",
+            "homeFurnishing" => "unfurnished",
+            "realEstateType" => "apartment",
+            "image" => "image333"
+        ];
+    }
+
     public function prepareCreateUserRequestPayload()
     {
         $userMapper = new MapperUser();

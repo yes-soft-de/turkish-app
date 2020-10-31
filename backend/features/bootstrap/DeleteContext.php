@@ -43,5 +43,15 @@ class DeleteContext implements Context
         }
     }
 
+    /**
+     * @When /^I request delete a realEstate of ID "([^"]*)"$/
+     */
+    public function iRequestDeleteARealEstateOfID($arg1)
+    {
+        $this->response = $this->httpClient->delete(
+            ConfigLinks::$BASE_API . ConfigLinks::$REAL_ESTATE_ENDPOINT . '/' . $arg1
+        );
+    }
+
     use CreateCommon;
 }

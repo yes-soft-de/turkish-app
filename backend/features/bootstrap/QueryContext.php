@@ -194,5 +194,78 @@ class QueryContext implements Context
         }
     }
 
+    /**
+     * @When /^I request all real estates$/
+     */
+    public function iRequestAllRealEstates()
+    {
+        $this->response = $this->httpClient->get(ConfigLinks::$BASE_API . 'all-real-estate');
+    }
+
+    /**
+     * @Given /^A list of all available real estates$/
+     */
+    public function aListOfAllAvailableRealEstates()
+    {
+        $data = json_decode($this->response->getBody(), true);
+
+        if($data['Data'][0] == null)
+        {
+            throw new Exception('Error: null were being returned!');
+        }
+    }
+
+    /**
+     * @When /^I request the real estates of valid user$/
+     */
+    public function iRequestTheRealEstatesOfValidUser()
+    {
+        $this->response = $this->httpClient->get(
+            ConfigLinks::$BASE_API . 'real-estates',
+            [
+                'headers'=>[
+                    "Authorization" => "Bearer " . $this->token,
+                    "Accept"        => "application/json",
+                ]
+            ]
+        );
+    }
+
+    /**
+     * @Given /^A json response with the requested real estates information$/
+     */
+    public function aJsonResponseWithTheRequestedRealEstatesInformation()
+    {
+        $data = json_decode($this->response->getBody(), true);
+
+        if($data['Data'][0] == null)
+        {
+            throw new Exception('No data for the provided identifier!');
+        }
+    }
+
+    /**
+     * @When /^I request a real estate by ID "([^"]*)"$/
+     */
+    public function iRequestARealEstateByID($arg1)
+    {
+        $this->response = $this->httpClient->get(
+            ConfigLinks::$BASE_API . ConfigLinks::$REAL_ESTATE_ENDPOINT . '/' . $arg1
+        );
+    }
+
+    /**
+     * @Given /^A json response with the real estate information$/
+     */
+    public function aJsonResponseWithTheRealEstateInformation()
+    {
+        $data = json_decode($this->response->getBody(), true);
+
+        if($data['Data']['realEstateType'] != 'apartment')
+        {
+            throw new Exception('Returned data does not match the required!');
+        }
+    }
+
     use CreateCommon;
 }

@@ -16,6 +16,11 @@ class UpdateContext implements Context
     private $device;
 
     /**
+     * @var array $realEstate
+     */
+    private $realEstate;
+
+    /**
      * @var array $userProfile
      */
     private $userProfile;
@@ -154,6 +159,46 @@ class UpdateContext implements Context
         $data = json_decode($this->response->getBody(), true);
 
         if($data['Data']['userName'] != 'behat3')
+        {
+            throw new Exception('Wrong data were being updated!');
+        }
+    }
+
+    /**
+     * @Given /^I have a valid realEstate update request of ID "([^"]*)"$/
+     */
+    public function iHaveAValidRealEstateUpdateRequestOfID($arg1)
+    {
+        $requestFactory = new RequestFactory();
+
+        $this->realEstate = $requestFactory->prepareRealEstateUpdateRequestPayload($arg1);
+    }
+
+    /**
+     * @When /^I request update a realEstate$/
+     */
+    public function iRequestUpdateARealEstate()
+    {
+        $this->response = $this->httpClient->put(
+            ConfigLinks::$BASE_API . ConfigLinks::$REAL_ESTATE_ENDPOINT,
+            [
+                'body'=>json_encode($this->realEstate),
+                'headers'=>[
+                    "Authorization" => "Bearer " . $this->token,
+                    "Accept"        => "application/json",
+                ]
+            ]
+        );
+    }
+
+    /**
+     * @Given /^I expect the updated realEstate match the data$/
+     */
+    public function iExpectTheUpdatedRealEstateMatchTheData()
+    {
+        $data = json_decode($this->response->getBody(), true);
+
+        if($data['Data']['realEstateType'] != 'apartment')
         {
             throw new Exception('Wrong data were being updated!');
         }
