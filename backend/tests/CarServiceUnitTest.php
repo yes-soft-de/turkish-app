@@ -423,17 +423,12 @@ class CarServiceUnitTest extends TestCase
         $entity->setImage($actual);
 
         $this->mockManager
-            ->method('getFilterLocation')
+            ->method('getFilter')
             ->willReturn($entity);
-        $this->mockManager
-            ->method('getFilterPrice')
-            ->willReturn($entity);
-
+            
          $service = new CarService($this->autoMapping, $this->mockManager, $this->params);
 
-        $this->assertIsArray($service->getFilter('price', $actual));
-        $this->assertIsArray($service->getFilter('location', $actual));
-        
+        $this->assertIsArray($service->getFilter('price', $actual)); 
     }
 
     public function getFilter()

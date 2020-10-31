@@ -103,13 +103,8 @@ class CarService
     public function getFilter($key, $value)
     {
         $response = [];
-        if ($key == 'location') {
-            $item = $this->carManager->getFilterLocation($value);
-        }
-        if ($key == 'price') {
-            $item = $this->carManager->getFilterPrice($value);
-        }
-        foreach ($item as $row) {
+        $result = $this->carManager->getFilter($value, $key);
+        foreach ($result as $row) {
             $response[] = $this->autoMapping->map('array', CarGetFilterResponse::class, $row);
         }
         return $response;

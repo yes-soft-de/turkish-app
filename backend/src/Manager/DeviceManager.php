@@ -86,14 +86,17 @@ class DeviceManager
         return $deviceEntity;
     }
 
-    public function getFilterPrice($value)
+    public function getFilter($value, $key)
     {
-        return $result = $this->deviceEntityRepository->getFilterPrice($value);
-    }
+        if ($key == 'price')
+        {
+            return $this->deviceEntityRepository->getFilterPrice($value);
+        }
 
-    public function getFilterLocation($value)
-    {
-        return $result = $this->deviceEntityRepository->getFilterLocation($value);
+        if ($key == 'location')
+        {
+            return $this->deviceEntityRepository->getFilterLocation($value);
+        }
     }
     
 }

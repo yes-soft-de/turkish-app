@@ -93,13 +93,9 @@ class RealEstateService
     public function getFilter($key, $value)
     {
         $response = [];
-        if ($key == 'location') {
-            $item = $this->realEstateManager->getFilterLocation($value);
-        }
-        if ($key == 'price') {
-            $item = $this->realEstateManager->getFilterPrice($value);
-        }
-        foreach ($item as $row) {
+        $result = $this->realEstateManager->getFilter($value, $key);
+      
+        foreach ($result as $row) {
             $response[] = $this->autoMapping->map('array', RealEstateGetFilterResponse::class, $row);
         }
         return $response;

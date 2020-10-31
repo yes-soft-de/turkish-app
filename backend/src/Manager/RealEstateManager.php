@@ -78,13 +78,17 @@ class RealEstateManager
          return $item;
     }
     
-    public function getFilterLocation($value)
+    public function getFilter($value, $key)
     {
-        return $result = $this->repository->getFilterLocation($value);
+        if ($key == 'location')
+        {
+            return $this->repository->getFilterLocation($value);
+        }
+        
+        if ($key == 'price')
+        {
+            return $this->repository->getFilterPrice($value);
+        }
     }
     
-    public function getFilterPrice($value)
-    {
-        return $result = $this->repository->getFilterPrice($value);
-    }
 }

@@ -103,14 +103,9 @@ class DeviceService
     public function getFilter($key, $value)
     {
         $response = [];
-        if ($key == 'price') {
-            $item = $this->deviceManager->getFilterPrice($value);
-        }
-        if ($key == 'location') {
-            $item = $this->deviceManager->getFilterLocation($value);
-        }
-        
-        foreach ($item as $row) {
+        $result = $this->deviceManager->getFilter($value, $key);
+      
+        foreach ($result as $row) {
             $response[] = $this->autoMapping->map('array', DevicesGetFilterResponse::class, $row);
         }
         return $response;
