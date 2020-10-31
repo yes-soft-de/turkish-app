@@ -21,5 +21,5 @@ class ConfigLinks
 
     static $IMAGE_ENDPOINT = 'image';
 
-
+    static $REACTION_ENDPOINT = 'reactions';
 }

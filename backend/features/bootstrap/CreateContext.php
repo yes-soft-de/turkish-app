@@ -38,14 +38,19 @@ class CreateContext implements Context
     private $device;
 
     /**
-     * @var string $realEstate
+     * @var array $realEstate
      */
     private $realEstate;
 
     /**
-     * @var string $image
+     * @var array $image
      */
     private $image;
+
+    /**
+     * @var array $reaction
+     */
+    private $reaction;
 
     public function __construct()
     {
@@ -290,7 +295,7 @@ class CreateContext implements Context
     {
         $factoryRequest = new RequestFactory();
 
-        $this->image = $factoryRequest->prepareCreateImagePayload();
+        $this->image = $factoryRequest->prepareCreateImageRequestPayload();
     }
 
     /**
@@ -318,6 +323,47 @@ class CreateContext implements Context
             throw new Exception('Created data does not match the new one!');
         }
     }
+
+    /**
+     * @Given I have valid reaction data
+     */
+    public function iHaveValidReactionData()
+    {
+        $factoryRequest = new RequestFactory();
+
+        $this->reaction = $factoryRequest->prepareCreateReactionRequestPayload();
+    }
+
+    /**
+     * @When I request create a new reaction with the data I have
+     */
+    public function iRequestCreateANewReactionWithTheDataIHave()
+    {
+        $this->response = $this->httpClient->post(
+            ConfigLinks::$BASE_API . ConfigLinks::$REACTION_ENDPOINT,
+            [
+                'body'=>json_encode($this->reaction),
+                'headers'=>[
+                    "Authorization" => "Bearer " . $this->token,
+                    "Accept"        => "application/json",
+                ]
+            ]
+        );
+    }
+
+    /**
+     * @Then A json response with the new reaction information
+     */
+    public function aJsonResponseWithTheNewReactionInformation()
+    {
+        $data = json_decode($this->response->getBody(), true);
+
+        if($data['Data']['itemID'] != "3")
+        {
+            throw new Exception('Created data does not match the new one!');
+        }
+    }
+
 
     use CreateCommon;
 }

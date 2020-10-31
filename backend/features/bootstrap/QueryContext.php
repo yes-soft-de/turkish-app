@@ -7,14 +7,11 @@ use GuzzleHttp\Psr7\Response;
 
 class QueryContext implements Context
 {
-//    /**
-//     * @var Client $httpClient
-//     */
-//    private $httpClient;
-
     /**
-     * QueryContext constructor.
+     * @var array $reaction
      */
+    private $reaction;
+
     public function __construct()
     {
     }
@@ -266,6 +263,64 @@ class QueryContext implements Context
             throw new Exception('Returned data does not match the required!');
         }
     }
+
+    /**
+     * @Given I have the entity value :arg1
+     */
+    public function iHaveTheEntityValue($arg1)
+    {
+        $requestFactory = new RequestFactory();
+
+        $this->reaction = $requestFactory->prepareRequestReactionsByEntityPayload($arg1);
+    }
+
+    /**
+     * @When I request the reactions of an item with Id :arg1
+     */
+    public function iRequestTheReactionsOfAnItemWithId($arg1)
+    {
+        $this->response = $this->httpClient->get(
+            ConfigLinks::$BASE_API . ConfigLinks::$REACTION_ENDPOINT . '/' . $arg1,
+            [
+                'body'=>json_encode($this->reaction),
+                'headers'=>[
+                    "Authorization" => "Bearer " . $this->token,
+                    "Accept"        => "application/json",
+                ]
+            ]
+        );
+    }
+
+
+    /**
+     * @Then I expect a response with list of all required reactions
+     */
+    public function iExpectAResponseWithListOfAllRequiredReactions()
+    {
+        $data = json_decode($this->response->getBody(), true);
+
+        if($data['Data'][0] == null)
+        {
+            throw new Exception('Returned data does not match the required!');
+        }
+    }
+
+    /**
+     * @When /^I request all my interactions$/
+     */
+    public function iRequestAllMyInteractions()
+    {
+        $this->response = $this->httpClient->get(
+            ConfigLinks::$BASE_API . ConfigLinks::$REACTION_ENDPOINT,
+            [
+                'headers'=>[
+                    "Authorization" => "Bearer " . $this->token,
+                    "Accept"        => "application/json",
+                ]
+            ]
+        );
+    }
+
 
     use CreateCommon;
 }

@@ -184,7 +184,7 @@ class RequestFactory
         return $adminMapper->getAdminAsArray();
     }
 
-    public function prepareCreateImagePayload()
+    public function prepareCreateImageRequestPayload()
     {
         $imageMapper = new MapperImage();
 
@@ -195,5 +195,10 @@ class RequestFactory
         );
 
         return $imageMapper->getImageAsArray();
+    }
+
+    public function prepareRequestReactionsByEntityPayload($entity)
+    {
+        return ["entity"=>$entity];
     }
 }
