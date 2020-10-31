@@ -93,17 +93,11 @@ class RealEstateService
     public function getFilter($key, $value)
     {
         $response = [];
-        if ($key == 'city') {
-            $item = $this->realEstateManager->getFilterCity($value);
-        }
-        if ($key == 'space') {
-            $item = $this->realEstateManager->getFilterSpace($value);
+        if ($key == 'location') {
+            $item = $this->realEstateManager->getFilterLocation($value);
         }
         if ($key == 'price') {
             $item = $this->realEstateManager->getFilterPrice($value);
-        }
-        if ($key == 'numberOfFloors') {
-            $item = $this->realEstateManager->getFilterNumberOfFloors($value);
         }
         foreach ($item as $row) {
             $response[] = $this->autoMapping->map('array', RealEstateGetFilterResponse::class, $row);

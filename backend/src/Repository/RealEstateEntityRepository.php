@@ -45,18 +45,10 @@ class RealEstateEntityRepository extends ServiceEntityRepository
             ->getResult();
     }
 
-    public function getFilterCity($value)
+    public function getFilterLocation($value)
     {
         return $this->createQueryBuilder('RealEstateEntity')
-            ->andWhere('RealEstateEntity.city = :value')
-            ->setParameter('value', $value)
-            ->getQuery()
-            ->getArrayResult();
-    }
-    public function getFilterSpace($value)
-    {
-        return $this->createQueryBuilder('RealEstateEntity')
-            ->andWhere('RealEstateEntity.space = :value')
+            ->andWhere('RealEstateEntity.location = :value')
             ->setParameter('value', $value)
             ->getQuery()
             ->getArrayResult();
@@ -64,17 +56,10 @@ class RealEstateEntityRepository extends ServiceEntityRepository
     public function getFilterPrice($value)
     {
         return $this->createQueryBuilder('RealEstateEntity')
-            ->andWhere('RealEstateEntity.price = :value')
+            ->andWhere('RealEstateEntity.price >= :value')
             ->setParameter('value', $value)
             ->getQuery()
             ->getArrayResult();
     }
-    public function getFilterNumberOfFloors($value)
-    {
-        return $this->createQueryBuilder('RealEstateEntity')
-            ->andWhere('RealEstateEntity.numberOfFloors = :value')
-            ->setParameter('value', $value)
-            ->getQuery()
-            ->getArrayResult();
-    }
+   
 }

@@ -106,11 +106,8 @@ class DeviceService
         if ($key == 'price') {
             $item = $this->deviceManager->getFilterPrice($value);
         }
-        if ($key == 'cpu') {
-            $item = $this->deviceManager->getFilterCpu($value);
-        }
-        if ($key == 'ram') {
-            $item = $this->deviceManager->getFilterRam($value);
+        if ($key == 'location') {
+            $item = $this->deviceManager->getFilterLocation($value);
         }
         
         foreach ($item as $row) {

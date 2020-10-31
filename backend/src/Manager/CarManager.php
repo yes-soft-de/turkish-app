@@ -86,9 +86,9 @@ class CarManager
         return $carEntity;
     }
 
-    public function getFilterCompany($value)
+    public function getFilterLocation($value)
     {
-        return $result = $this->carEntityRepository->getFilterCompany($value);
+        return $result = $this->carEntityRepository->getFilterLocation($value);
     }
     
     public function getFilterPrice($value)

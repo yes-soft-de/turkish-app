@@ -103,8 +103,8 @@ class CarService
     public function getFilter($key, $value)
     {
         $response = [];
-        if ($key == 'company') {
-            $item = $this->carManager->getFilterCompany($value);
+        if ($key == 'location') {
+            $item = $this->carManager->getFilterLocation($value);
         }
         if ($key == 'price') {
             $item = $this->carManager->getFilterPrice($value);

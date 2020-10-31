@@ -44,10 +44,10 @@ class CarEntityRepository extends ServiceEntityRepository
             ->getArrayResult();
     }
 
-    public function getFilterCompany($value)
+    public function getFilterLocation($value)
     {
         return $this->createQueryBuilder('car')
-            ->andWhere('car.company = :value')
+            ->andWhere('car.location = :value')
             ->setParameter('value', $value)
             ->getQuery()
             ->getArrayResult();
@@ -56,7 +56,7 @@ class CarEntityRepository extends ServiceEntityRepository
     public function getFilterPrice($value)
     {
         return $this->createQueryBuilder('car')
-            ->andWhere('car.price = :value')
+            ->andWhere('car.price >= :value')
             ->setParameter('value', $value)
             ->getQuery()
             ->getArrayResult();

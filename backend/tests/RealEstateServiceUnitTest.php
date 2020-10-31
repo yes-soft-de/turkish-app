@@ -282,23 +282,16 @@ class RealEstateServiceUnitTest extends TestCase
         $entity->setState($actual);
 
         $this->mockManager
-            ->method('getFilterCity')
-            ->willReturn($entity);
-        $this->mockManager
-            ->method('getFilterSpace')
+            ->method('getFilterLocation')
             ->willReturn($entity);
         $this->mockManager
             ->method('getFilterPrice')
             ->willReturn($entity);
-        $this->mockManager
-            ->method('getFilterNumberOfFloors')
-            ->willReturn($entity);
 
         $service = new RealEstateService($this->autoMapping, $this->mockManager, $this->params);
-        $this->assertIsArray($service->getFilter('city', $actual));
-        $this->assertIsArray($service->getFilter('space', $actual));
+
         $this->assertIsArray($service->getFilter('price', $actual));
-        $this->assertIsArray($service->getFilter('numberOfFloors', $actual));
+        $this->assertIsArray($service->getFilter('location', $actual));
         
     }
 

@@ -110,10 +110,10 @@ methods: PUT
 methods: DELETE
 ```
 #### Filter For real estate
-key = city OR space OR price OR numberOfFloors 
+key = price OR location  
 value = is the value you want to find
 for example:
-real-estatesFilter/space/185
+real-estatesFilter/price/500000
 
 ```
 real-estatesFilter/{key}/{value}
@@ -169,10 +169,10 @@ methods: PUT
 methods: DELETE
 ```
 #### Filter For cars
-key = company OR price 
+key = location OR price 
 value = is the value you want to find
 for example:
-carsFilter/company/bmw
+carsFilter/location/syria
 
 ```
 carsFilter/{key}/{value}
@@ -211,10 +211,10 @@ methods: PUT
 methods: DELETE
 ```
 #### Filter For devices
-key = price OR cpu OR ram 
+key = price OR location 
 value = is the value you want to find
 for example:
-devicesFilter/cpu/intel
+devicesFilter/price/450000
 
 ```
 devicesFilter/{key}/{value}

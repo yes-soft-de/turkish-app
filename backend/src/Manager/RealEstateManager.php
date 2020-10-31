@@ -78,23 +78,13 @@ class RealEstateManager
          return $item;
     }
     
-    public function getFilterCity($value)
+    public function getFilterLocation($value)
     {
-        return $result = $this->repository->getFilterCity($value);
-    }
-
-    public function getFilterSpace($value)
-    {
-        return $result = $this->repository->getFilterSpace($value);
+        return $result = $this->repository->getFilterLocation($value);
     }
     
     public function getFilterPrice($value)
     {
         return $result = $this->repository->getFilterPrice($value);
-    }
-
-    public function getFilterNumberOfFloors($value)
-    {
-        return $result = $this->repository->getFilterNumberOfFloors($value);
     }
 }

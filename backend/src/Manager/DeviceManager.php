@@ -91,13 +91,9 @@ class DeviceManager
         return $result = $this->deviceEntityRepository->getFilterPrice($value);
     }
 
-    public function getFilterCpu($value)
+    public function getFilterLocation($value)
     {
-        return $result = $this->deviceEntityRepository->getFilterCpu($value);
+        return $result = $this->deviceEntityRepository->getFilterLocation($value);
     }
     
-    public function getFilterRam($value)
-    {
-        return $result = $this->deviceEntityRepository->getFilterRam($value);
-    }
 }

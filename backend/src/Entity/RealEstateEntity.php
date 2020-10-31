@@ -89,6 +89,11 @@ class RealEstateEntity
      */
     private $realEstateType;
 
+    /**
+     * @ORM\Column(type="string", length=50, nullable=true)
+     */
+    private $rooms;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -264,6 +269,18 @@ class RealEstateEntity
     public function setRealEstateType(string $realEstateType): self
     {
         $this->realEstateType = $realEstateType;
+
+        return $this;
+    }
+
+    public function getRooms(): ?string
+    {
+        return $this->rooms;
+    }
+
+    public function setRooms(?string $rooms): self
+    {
+        $this->rooms = $rooms;
 
         return $this;
     }
