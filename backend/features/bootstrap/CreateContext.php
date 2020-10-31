@@ -42,6 +42,11 @@ class CreateContext implements Context
      */
     private $realEstate;
 
+    /**
+     * @var string $image
+     */
+    private $image;
+
     public function __construct()
     {
     }
@@ -273,6 +278,42 @@ class CreateContext implements Context
         $data = json_decode($this->response->getBody(), true);
 
         if($data['Data']['id'] == null)
+        {
+            throw new Exception('Created data does not match the new one!');
+        }
+    }
+
+    /**
+     * @Given I have valid new image data
+     */
+    public function iHaveValidNewImageData()
+    {
+        $factoryRequest = new RequestFactory();
+
+        $this->image = $factoryRequest->prepareCreateImagePayload();
+    }
+
+    /**
+     * @When I request save a new image with the data I have
+     */
+    public function iRequestSaveANewImageWithTheDataIHave()
+    {
+        $this->response = $this->httpClient->post(
+            ConfigLinks::$BASE_API . ConfigLinks::$IMAGE_ENDPOINT,
+            [
+                "json"=>$this->image
+            ]
+        );
+    }
+
+    /**
+     * @Then A json response with the new image information
+     */
+    public function aJsonResponseWithTheNewImageInformation()
+    {
+        $data = json_decode($this->response->getBody(), true);
+
+        if($data['Data']['image'] != "BehatImageTest")
         {
             throw new Exception('Created data does not match the new one!');
         }

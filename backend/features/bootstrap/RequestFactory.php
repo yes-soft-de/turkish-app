@@ -138,13 +138,6 @@ class RequestFactory
         return $userMapper->getUserAsArray();
     }
 
-    public function prepareRequestWithUserId($id)
-    {
-        return [
-            "user" => $id
-        ];
-    }
-
     public function prepareUserLoginRequestPayload()
     {
         return [
@@ -189,5 +182,18 @@ class RequestFactory
         );
 
         return $adminMapper->getAdminAsArray();
+    }
+
+    public function prepareCreateImagePayload()
+    {
+        $imageMapper = new MapperImage();
+
+        $imageMapper->setImage(
+            "BehatImageTest",
+            "car",
+            "3"
+        );
+
+        return $imageMapper->getImageAsArray();
     }
 }

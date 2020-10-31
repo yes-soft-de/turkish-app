@@ -21,7 +21,5 @@ class ConfigLinks
 
     static $IMAGE_ENDPOINT = 'image';
 
-    static $IMAGES_QUERY_ENDPOINT = 'images';
-
 
 }
