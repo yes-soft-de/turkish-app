@@ -270,7 +270,14 @@ class RealEstateServiceUnitTest extends TestCase
     public function testGetFilterRealEstateByUserByIdWithDataProvider($expected, $actual)
     {
         $response = new RealEstateGetFilterResponse();
+        $response->id = $expected;
         $response->city = $expected;
+        $response->space = $expected;
+        $response->price = $expected;
+        $response->description = $expected;
+        $response->status = $expected;
+        $response->createdBy = $expected;
+        $response->state = $expected;
 
         $entity = new RealEstateEntity();
         $entity->setCity($actual);

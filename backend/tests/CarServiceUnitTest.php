@@ -380,4 +380,65 @@ class CarServiceUnitTest extends TestCase
         $result = new CarProvider();
         return $result->delete();
     }
+
+    /**
+     * @dataProvider getFilter
+     */
+    public function testGetFiltercarByUserByIdWithDataProvider($expected, $actual)
+    {
+        $response = new CarGetFilterResponse();
+        $response->brand = $expected;
+        $response->company = $expected;
+        // $response->yearOfRelease = $expected;
+        $response->engine = $expected;
+        $response->price = $expected;
+        $response->description = $expected;
+        $response->status = $expected;
+        $response->createdBy = $expected;
+        // $response->createdAt = $expected;
+        $response->distance = $expected;
+        $response->carType = $expected;
+        $response->gearType = $expected;
+        $response->cc = $expected;
+        $response->fuel = $expected;
+        $response->location = $expected;
+        $response->image = $expected;
+
+        $entity = new CarEntity();
+        $entity->setModel($actual);
+        $entity->setCompany($actual);
+        // $entity->setProductionYear();
+        $entity->setEngine($actual);
+        $entity->setPrice($actual);
+        $entity->setDescription($actual);
+        $entity->setStatus($actual);
+        $entity->setCreatedBy($actual);
+        // $entity->setCreatedAt($actual);
+        $entity->setDistance($actual);
+        $entity->setCarType($actual);
+        $entity->setGearType($actual);
+        $entity->setCc($actual);
+        $entity->setFuel($actual);
+        $entity->setLocation($actual);
+        $entity->setImage($actual);
+
+        $this->mockManager
+            ->method('getFilterLocation')
+            ->willReturn($entity);
+        $this->mockManager
+            ->method('getFilterPrice')
+            ->willReturn($entity);
+
+         $service = new CarService($this->autoMapping, $this->mockManager, $this->params);
+
+        $this->assertIsArray($service->getFilter('price', $actual));
+        $this->assertIsArray($service->getFilter('location', $actual));
+        
+    }
+
+    public function getFilter()
+    {
+        $result = new CarProvider();
+        return $result->getFilter();
+    }
 }

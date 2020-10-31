@@ -349,4 +349,61 @@ class DeviceServiceUnitTest extends TestCase
         $result = new DeviceProvider();
         return $result->delete();
     }
+
+    /**
+     * @dataProvider getFilter
+     */
+    public function testGetFiltercarByUserByIdWithDataProvider($expected, $actual)
+    {
+        $response = new DevicesGetFilterResponse();
+        $response->brand = $expected;
+        $response->cpu = $expected;
+        $response->ram = $expected;
+        $response->battery = $expected;
+        $response->price = $expected;
+        // $response->yearOfRelease = $expected;
+        $response->description = $expected;
+        $response->status = $expected;
+        $response->createdBy = $expected;
+        // $response->createdAt = $expected;
+        $response->gauge = $expected;
+        $response->location = $expected;
+        $response->durationOfUse = $expected;
+        $response->image = $expected;
+
+        $entity = new DeviceEntity();
+        $entity->setModel($actual);
+        $entity->setCpu($actual);
+        $entity->setRam($actual);
+        $entity->setBattery($actual);
+        $entity->setPrice($actual);
+        // $entity->setProductionYear();
+        $entity->setDescription($actual);
+        $entity->setStatus($actual);
+        $entity->setCreatedBy($actual);
+        // $entity->setCreatedAt($actual);
+        $entity->setGauge($actual);
+        $entity->setLocation($actual);
+        $entity->setImage($actual);
+        $entity->setDurationOfUse($actual);
+
+        $this->mockManager
+            ->method('getFilterLocation')
+            ->willReturn($entity);
+        $this->mockManager
+            ->method('getFilterPrice')
+            ->willReturn($entity);
+
+        $service = new DeviceService($this->autoMapping, $this->mockManager, $this->params);
+       
+        $this->assertIsArray($service->getFilter('price', $actual));
+        $this->assertIsArray($service->getFilter('location', $actual));
+        
+    }
+
+    public function getFilter()
+    {
+        $result = new DeviceProvider();
+        return $result->getFilter();
+    }
 }

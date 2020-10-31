@@ -49,5 +49,12 @@ class DeviceProvider extends TestCase
                 ];
     }
 
+    public function getFilter()
+    {
+        return [
+            'getFilter' => [1, 1], [1, 1],[11, 11], [11, 11]
+                ];
+    }
+
 
 }
