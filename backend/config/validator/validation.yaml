@@ -10,6 +10,10 @@ App\Request\CreateImageRequest:
   properties:
     image:
       - NotBlank: ~
+    entity:
+      - NotBlank: ~
+    itemID:
+      - NotBlank: ~
 
 App\Request\UpdateImageRequest:
   properties:
@@ -45,6 +49,8 @@ App\Request\CarCreateRequest:
 
 App\Request\CarUpdateRequest:
   properties:
+    id:
+      - NotBlank: ~
     brand:
       - NotBlank: ~
     company:
@@ -95,6 +101,8 @@ App\Request\DeviceCreateRequest:
 
 App\Request\DeviceUpdateRequest:
   properties:
+    id:
+      - NotBlank: ~
     brand:
       - NotBlank: ~
     cpu:

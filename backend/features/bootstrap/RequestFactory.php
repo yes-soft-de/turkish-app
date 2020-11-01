@@ -11,11 +11,16 @@ class RequestFactory
             "Test model",
             "Test company",
             "Test engine",
-            3000,
-            "Test description",
+            "3000",
+            "updated test description",
             "Test status",
             "ab12",
-            "22112 km"
+            "22112 km",
+            "test gear",
+            "test cc",
+            "test fuel",
+            "test location",
+            "image333"
         );
 
         return $carMapper->getCarAsArray();
@@ -23,18 +28,21 @@ class RequestFactory
 
     public function prepareCarUpdateRequestPayload($id)
     {
-//        return [
-//            "id" => $id,
-//            "articleTitle" => "Behat Update API Test",
-//            "article" => "Behat Update API Test",
-//            "idCategory" => "1"
-//        ];
-    }
-
-    public function prepareRequestWithCarId($id)
-    {
         return [
-            "car" => $id
+            "id" => $id,
+            "brand" => "updated Test model",
+            "company" => "updated Test company",
+            "engine" => "updated Test engine",
+            "price" => "3000",
+            "description" => "updated Test description",
+            "status" => "updated Test status",
+            "distance" => "ab12",
+            "carType" => "22112 km",
+            "gearType" => "updated test gear",
+            "cc" => "test cc",
+            "fuel" => "test fuel",
+            "location" => "test location",
+            "image" => "image333"
         ];
     }
 
@@ -50,7 +58,10 @@ class RequestFactory
             "Test description",
             "Test status",
             "cd34",
-            "22112 A"
+            "22112 A",
+            "istanbul, turkey",
+            "123 days",
+            "testImage"
         );
 
         return $deviceMapper->getDeviceAsArray();
@@ -58,64 +69,79 @@ class RequestFactory
 
     public function prepareDeviceUpdateRequestPayload($id)
     {
-//        return [
-//            "id" => $id,
-//            "articleTitle" => "Behat Update API Test",
-//            "article" => "Behat Update API Test",
-//            "idCategory" => "1"
-//        ];
-    }
-
-    public function prepareRequestWithDeviceId($id)
-    {
         return [
-            "device" => $id
+            "id" => $id,
+            "brand" => "updated Test model",
+            "cpu" => "updated Test company",
+            "ram" => "updated Test engine",
+            "price" => "3000",
+            "description" => "updated Test description",
+            "status" => "updated Test status",
+            "carType" => "22112 km",
+            "battery" => "updated test gear",
+            "gauge" => "test cc",
+            "durationOfUse" => "test fuel",
+            "location" => "test location",
+            "image" => "image333"
         ];
     }
 
-//    public function prepareCreateImagePayload($arg1)
-//    {
-//        $imageMapper = new MapperImage();
-//
-//        $imageMapper->setImage(
-//            "BehatImageTest",$arg1
-//        );
-//
-//        return $imageMapper->getImageAsArray();
-//    }
+    public function prepareCreateRealEstateRequestPayload()
+    {
+        $realEstateMapper = new MapperRealEstate();
 
-//    public function prepareImageUpdatePayload($id)
-//    {
-//        return [
-//            "image" => "BehatTestUpdateImage",
-//            "project" => $id
-//        ];
-//    }
+        $realEstateMapper->setRealEstate(
+            "test city",
+            "60 sm",
+            "000",
+            "test des",
+            "test",
+            "test",
+            "test",
+            "3-floor appartement",
+            "super test",
+            "test",
+            "test"
+        );
+
+        return $realEstateMapper->getRealEstateAsArray();
+    }
+
+    public function prepareRealEstateUpdateRequestPayload($id)
+    {
+        return [
+            "id" => $id,
+            "city" => "updated city2",
+            "space" => "updated space2",
+            "price" => "3000 E",
+            "description" => "updated test description2",
+            "status" => "updated test status2",
+            "state" => "Istanbul2",
+            "numberOfFloors" => "3rd floor apartment2",
+            "cladding" => "super deluxe2",
+            "homeFurnishing" => "unfurnished",
+            "realEstateType" => "apartment",
+            "image" => "image333"
+        ];
+    }
 
     public function prepareCreateUserRequestPayload()
     {
         $userMapper = new MapperUser();
 
-        $userMapper->setUser("behat1@test.com",
+        $userMapper->setUser("behat7@test.com",
             ['user'],
             "000",
-            "behat1"
+            "behat7"
         );
 
         return $userMapper->getUserAsArray();
     }
 
-    public function prepareRequestWithUserId($id)
-    {
-        return [
-            "user" => $id
-        ];
-    }
-
     public function prepareUserLoginRequestPayload()
     {
         return [
-            "username"=>"behat1",
+            "username"=>"behat3",
             "password"=>"000"
         ];
     }
@@ -125,8 +151,8 @@ class RequestFactory
         $profileMapper = new MapperProfile();
 
         $profileMapper->setProfile(
-            "behat1",
-            "behat1",
+            "behat7",
+            "behat7",
             "istanbul, turkey",
             "behat test",
             "behatImage"
@@ -135,16 +161,57 @@ class RequestFactory
         return $profileMapper->getProfileAsArray();
     }
 
+    public function prepareUserProfileUpdateRequestPayload()
+    {
+        return [
+            "userName" => "behat3",
+            "location" => "updated location",
+            "story" => "updated story",
+            "image" => "updatedImage"
+        ];
+    }
+
     public function prepareCreateAdminRequestPayload()
     {
         $adminMapper = new MapperAdmin();
 
-        $adminMapper->setAdmin("behatAdmin1@test.com",
+        $adminMapper->setAdmin("behatAdmin5@test.com",
             ['user'],
             "000",
-            "behatAdmin1"
+            "behatAdmin5"
         );
 
         return $adminMapper->getAdminAsArray();
+    }
+
+    public function prepareCreateImageRequestPayload()
+    {
+        $imageMapper = new MapperImage();
+
+        $imageMapper->setImage(
+            "BehatImageTest",
+            "car",
+            "3"
+        );
+
+        return $imageMapper->getImageAsArray();
+    }
+
+    public function prepareRequestReactionsByEntityPayload($entity)
+    {
+        return ["entity"=>$entity];
+    }
+
+    public function prepareCreateStatusRequestPayload()
+    {
+        $statusMapper = new MapperStatus();
+
+        $statusMapper->setStatus(
+            "behat status test",
+            "ab12",
+            "la12"
+        );
+
+        return $statusMapper->getStatusAsArray();
     }
 }

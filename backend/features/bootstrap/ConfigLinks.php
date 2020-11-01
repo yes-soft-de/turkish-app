@@ -17,9 +17,11 @@ class ConfigLinks
 
     static $DEVICE_ENDPOINTS = 'devices';
 
+    static $REAL_ESTATE_ENDPOINT = 'real-estate';
+
     static $IMAGE_ENDPOINT = 'image';
 
-    static $IMAGES_QUERY_ENDPOINT = 'images';
+    static $REACTION_ENDPOINT = 'reactions';
 
-
+    static $STATUS_ENDPOINT = 'status';
 }

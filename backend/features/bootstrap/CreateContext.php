@@ -13,19 +13,9 @@ use GuzzleHttp\Psr7\Response;
 class CreateContext implements Context
 {
     /**
-     * @var Response $response
-     */
-    private $response;
-
-    /**
      * @var array $user
      */
     private $user;
-
-    /**
-     * @var array $userCredentials
-     */
-    private $userCredentials;
 
     /**
      * @var array $profile
@@ -48,9 +38,24 @@ class CreateContext implements Context
     private $device;
 
     /**
-     * @var string $token
+     * @var array $realEstate
      */
-    protected $token;
+    private $realEstate;
+
+    /**
+     * @var array $image
+     */
+    private $image;
+
+    /**
+     * @var array $reaction
+     */
+    private $reaction;
+
+    /**
+     * @var array $status
+     */
+    private $status;
 
     public function __construct()
     {
@@ -74,7 +79,11 @@ class CreateContext implements Context
         $this->response = $this->httpClient->post(
             ConfigLinks::$BASE_API . ConfigLinks::$CAR_ENDPOINTS,
             [
-                "json"=>$this->car
+                'body'=>json_encode($this->car),
+                'headers'=>[
+                    "Authorization" => "Bearer " . $this->token,
+                    "Accept"        => "application/json",
+                ]
             ]
         );
     }
@@ -86,7 +95,7 @@ class CreateContext implements Context
     {
         $data = json_decode($this->response->getBody(), true);
 
-        if($data['Data']['model'] != "Test model")
+        if($data['Data']['brand'] != "Test model")
         {
             throw new Exception('The returned data does not match the new one!');
         }
@@ -110,7 +119,11 @@ class CreateContext implements Context
         $this->response = $this->httpClient->post(
             ConfigLinks::$BASE_API . ConfigLinks::$DEVICE_ENDPOINTS,
             [
-                "json"=>$this->device
+                'body'=>json_encode($this->device),
+                'headers'=>[
+                    "Authorization" => "Bearer " . $this->token,
+                    "Accept"        => "application/json",
+                ]
             ]
         );
     }
@@ -165,47 +178,6 @@ class CreateContext implements Context
     }
 
     /**
-     * @Given I have valid user credentials
-     */
-    public function iHaveValidUserCredentials()
-    {
-        $factoryRequest = new RequestFactory();
-
-        $this->userCredentials = $factoryRequest->prepareUserLoginRequestPayload();
-    }
-
-    /**
-     * @When I request login check
-     */
-    public function iRequestLoginCheck()
-    {
-        $this->response = $this->httpClient->post(
-            ConfigLinks::$BASE_API . 'login_check',
-            [
-                "json"=>$this->userCredentials
-            ]
-        );
-    }
-
-    /**
-     * @Then I expect a token within the response
-     */
-    public function iExpectATokenWithinTheResponse()
-    {
-        $data = json_decode($this->response->getBody(), true);
-
-        if($data['token'] == null)
-        {
-            throw new Exception('Error in retrieving the token!');
-        }
-        else
-        {
-            $this->token = $data['token'];
-            echo $this->token;
-        }
-    }
-
-    /**
      * @Given I have valid new admin data
      */
     public function iHaveValidNewAdminData()
@@ -235,40 +207,9 @@ class CreateContext implements Context
     {
         $data = json_decode($this->response->getBody(), true);
 
-        if($data['Data']['email'] != "behatAdmin1@test.com")
+        if($data['Data']['email'] != "behatAdmin5@test.com")
         {
             throw new Exception('Retrieved information does not match the new one!');
-        }
-    }
-
-    /**
-     * @When /^I request my profile$/
-     */
-    public function iRequestMyProfile()
-    {
-        $headers = [
-            "Authorization" => "Bearer " . $this->token,
-            "Accept"        => "application/json",
-        ];
-
-        $this->response = $this->httpClient->get(
-            ConfigLinks::$BASE_API . 'userprofile',
-            [
-                'headers' => $headers
-            ]
-        );
-    }
-
-    /**
-     * @Given /^A json response with my information$/
-     */
-    public function aJsonResponseWithMyInformation()
-    {
-        $data = json_decode($this->response->getBody(), true);
-
-        if($data['Data']['userName'] != "behat1")
-        {
-            throw new Exception('Wrong returned data !');
         }
     }
 
@@ -290,7 +231,11 @@ class CreateContext implements Context
         $this->response = $this->httpClient->post(
             ConfigLinks::$BASE_API . ConfigLinks::$PROFILE_ENDPOINTS,
             [
-                "json"=>$this->profile
+                'body'=>json_encode($this->profile),
+                'headers'=>[
+                    "Authorization" => "Bearer " . $this->token,
+                    "Accept"        => "application/json",
+                ]
             ]
         );
     }
@@ -302,12 +247,167 @@ class CreateContext implements Context
     {
         $data = json_decode($this->response->getBody(), true);
 
-        if($data['Data']['userName'] != "behat1")
+        if($data['Data']['userName'] != "behat7")
         {
             throw new Exception('Created data does not match the new one!');
         }
     }
 
+    /**
+     * @Given /^I have valid real\-estate data$/
+     */
+    public function iHaveValidRealEstateData()
+    {
+        $factoryRequest = new RequestFactory();
+
+        $this->realEstate = $factoryRequest->prepareCreateRealEstateRequestPayload();
+    }
+
+    /**
+     * @When /^I request create a new real\-estate with the data I have$/
+     */
+    public function iRequestCreateANewRealEstateWithTheDataIHave()
+    {
+        $this->response = $this->httpClient->post(
+            ConfigLinks::$BASE_API . ConfigLinks::$REAL_ESTATE_ENDPOINT,
+            [
+                'body'=>json_encode($this->realEstate),
+                'headers'=>[
+                    "Authorization" => "Bearer " . $this->token,
+                    "Accept"        => "application/json",
+                ]
+            ]
+        );
+    }
+
+    /**
+     * @Given /^A json response with the new real\-estate information$/
+     */
+    public function aJsonResponseWithTheNewRealEstateInformation()
+    {
+        $data = json_decode($this->response->getBody(), true);
+
+        if($data['Data']['id'] == null)
+        {
+            throw new Exception('Created data does not match the new one!');
+        }
+    }
+
+    /**
+     * @Given I have valid new image data
+     */
+    public function iHaveValidNewImageData()
+    {
+        $factoryRequest = new RequestFactory();
+
+        $this->image = $factoryRequest->prepareCreateImageRequestPayload();
+    }
+
+    /**
+     * @When I request save a new image with the data I have
+     */
+    public function iRequestSaveANewImageWithTheDataIHave()
+    {
+        $this->response = $this->httpClient->post(
+            ConfigLinks::$BASE_API . ConfigLinks::$IMAGE_ENDPOINT,
+            [
+                "json"=>$this->image
+            ]
+        );
+    }
+
+    /**
+     * @Then A json response with the new image information
+     */
+    public function aJsonResponseWithTheNewImageInformation()
+    {
+        $data = json_decode($this->response->getBody(), true);
+
+        if($data['Data']['image'] != "BehatImageTest")
+        {
+            throw new Exception('Created data does not match the new one!');
+        }
+    }
+
+    /**
+     * @Given I have valid reaction data
+     */
+    public function iHaveValidReactionData()
+    {
+        $factoryRequest = new RequestFactory();
+
+        $this->reaction = $factoryRequest->prepareCreateReactionRequestPayload();
+    }
+
+    /**
+     * @When I request create a new reaction with the data I have
+     */
+    public function iRequestCreateANewReactionWithTheDataIHave()
+    {
+        $this->response = $this->httpClient->post(
+            ConfigLinks::$BASE_API . ConfigLinks::$REACTION_ENDPOINT,
+            [
+                'body'=>json_encode($this->reaction),
+                'headers'=>[
+                    "Authorization" => "Bearer " . $this->token,
+                    "Accept"        => "application/json",
+                ]
+            ]
+        );
+    }
+
+    /**
+     * @Then A json response with the new reaction information
+     */
+    public function aJsonResponseWithTheNewReactionInformation()
+    {
+        $data = json_decode($this->response->getBody(), true);
+
+        if($data['Data']['itemID'] != "3")
+        {
+            throw new Exception('Created data does not match the new one!');
+        }
+    }
+
+    /**
+     * @Given I have valid status data
+     */
+    public function iHaveValidStatusData()
+    {
+        $requestFactory = new RequestFactory();
+
+        $this->status = $requestFactory->prepareCreateStatusRequestPayload();
+    }
+
+    /**
+     * @When I request create a new status with the data I have
+     */
+    public function iRequestCreateANewStatusWithTheDataIHave()
+    {
+        $this->response = $this->httpClient->post(
+            ConfigLinks::$BASE_API . ConfigLinks::$STATUS_ENDPOINT,
+            [
+                'body'=>json_encode($this->status),
+                'headers'=>[
+                    "Authorization" => "Bearer " . $this->token,
+                    "Accept"        => "application/json",
+                ]
+            ]
+        );
+    }
+
+    /**
+     * @Then A json response with the new status information
+     */
+    public function aJsonResponseWithTheNewStatusInformation()
+    {
+        $data = json_decode($this->response->getBody(), true);
+
+        if($data['Data']['status'] != "behat status test")
+        {
+            throw new Exception('Created data does not match the new one!');
+        }
+    }
 
     use CreateCommon;
 }
