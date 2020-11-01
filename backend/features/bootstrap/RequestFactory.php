@@ -201,4 +201,17 @@ class RequestFactory
     {
         return ["entity"=>$entity];
     }
+
+    public function prepareCreateStatusRequestPayload()
+    {
+        $statusMapper = new MapperStatus();
+
+        $statusMapper->setStatus(
+            "behat status test",
+            "ab12",
+            "la12"
+        );
+
+        return $statusMapper->getStatusAsArray();
+    }
 }

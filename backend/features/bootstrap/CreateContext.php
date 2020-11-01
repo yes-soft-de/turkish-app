@@ -52,6 +52,11 @@ class CreateContext implements Context
      */
     private $reaction;
 
+    /**
+     * @var array $status
+     */
+    private $status;
+
     public function __construct()
     {
     }
@@ -364,6 +369,45 @@ class CreateContext implements Context
         }
     }
 
+    /**
+     * @Given I have valid status data
+     */
+    public function iHaveValidStatusData()
+    {
+        $requestFactory = new RequestFactory();
+
+        $this->status = $requestFactory->prepareCreateStatusRequestPayload();
+    }
+
+    /**
+     * @When I request create a new status with the data I have
+     */
+    public function iRequestCreateANewStatusWithTheDataIHave()
+    {
+        $this->response = $this->httpClient->post(
+            ConfigLinks::$BASE_API . ConfigLinks::$STATUS_ENDPOINT,
+            [
+                'body'=>json_encode($this->status),
+                'headers'=>[
+                    "Authorization" => "Bearer " . $this->token,
+                    "Accept"        => "application/json",
+                ]
+            ]
+        );
+    }
+
+    /**
+     * @Then A json response with the new status information
+     */
+    public function aJsonResponseWithTheNewStatusInformation()
+    {
+        $data = json_decode($this->response->getBody(), true);
+
+        if($data['Data']['status'] != "behat status test")
+        {
+            throw new Exception('Created data does not match the new one!');
+        }
+    }
 
     use CreateCommon;
 }
