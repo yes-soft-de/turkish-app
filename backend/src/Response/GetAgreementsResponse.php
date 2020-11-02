@@ -7,28 +7,27 @@ namespace App\Response;
 class GetAgreementsResponse
 { 
     public $id;
-    public $userID;
+    public $createdBy;
     public $LawyerID;
     public $status;
-    public $createdBy;
     public $createdAt;
 
     /**
-     * Get the value of userID
+     * Get the value of createdBy
      */ 
-    public function getUserID()
+    public function getCreatedBy()
     {
-        return $this->userID;
+        return $this->createdBy;
     }
 
     /**
-     * Set the value of userID
+     * Set the value of createdBy
      *
      * @return  self
      */ 
-    public function setUserID($userID)
+    public function setCreatedBy($createdBy)
     {
-        $this->userID = $userID;
+        $this->createdBy = $createdBy;
 
         return $this;
     }
