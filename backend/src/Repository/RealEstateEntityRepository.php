@@ -42,6 +42,24 @@ class RealEstateEntityRepository extends ServiceEntityRepository
             ->andWhere('RealEstateEntity.createdBy = :userID')
             ->setParameter('userID', $userID)
             ->getQuery()
+            ->getResult();
+    }
+
+    public function getFilterLocation($value)
+    {
+        return $this->createQueryBuilder('RealEstateEntity')
+            ->andWhere('RealEstateEntity.location = :value')
+            ->setParameter('value', $value)
+            ->getQuery()
             ->getArrayResult();
     }
+    public function getFilterPrice($value)
+    {
+        return $this->createQueryBuilder('RealEstateEntity')
+            ->andWhere('RealEstateEntity.price >= :value')
+            ->setParameter('value', $value)
+            ->getQuery()
+            ->getArrayResult();
+    }
+   
 }

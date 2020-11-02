@@ -12,6 +12,7 @@ use App\Request\GetByIdRequest;
 use App\Response\CarCreateResponse;
 use App\Response\CarGetByIdResponse;
 use App\Response\CarGetResponse;
+use App\Response\CarGetFilterResponse;
 use App\Response\CarUpdateResponse;
 use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
 
@@ -97,5 +98,15 @@ class CarService
         {
             return $this->params;
         }
+    }
+
+    public function getFilter($key, $value)
+    {
+        $response = [];
+        $result = $this->carManager->getFilter($value, $key);
+        foreach ($result as $row) {
+            $response[] = $this->autoMapping->map('array', CarGetFilterResponse::class, $row);
+        }
+        return $response;
     }
 }

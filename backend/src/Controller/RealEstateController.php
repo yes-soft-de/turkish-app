@@ -123,4 +123,15 @@ class RealEstateController extends BaseController
         $result = $this->realEstateService->delete($request);
         return $this->response("deleted ", self::DELETE);
     }
+
+    /**
+     * @Route("real-estatesFilter/{key}/{value}", name="filterForRealEstates ",methods={"GET"})
+     * @return JsonResponse
+     */
+    public function getFilter($key, $value)
+    {       
+        $result = $this->realEstateService->getFilter($key, $value);
+
+        return $this->response($result, self::FETCH);
+    }
 }

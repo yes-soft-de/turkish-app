@@ -6,8 +6,9 @@ use App\AutoMapping;
 use App\Entity\RealEstateEntity;
 use App\Manager\RealEstateManager;
 use App\Request\RealEstateCreateRequest;
-use App\Response\GetAllRealEstateResponse;
-use App\Response\GetRealEstateByIdResponse;
+use App\Response\RealEstateGetAllResponse;
+use App\Response\RealEstateGetByIdResponse;
+use App\Response\RealEstateGetFilterResponse;
 use App\Response\RealEstateCreateResponse;
 use App\Response\RealEstateUpdateResponse;
 use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
@@ -23,7 +24,7 @@ class RealEstateService
         $this->autoMapping = $autoMapping;
         $this->realEstateManager = $realEstateManager;
 
-        $this->params = $params->get('upload_base_url').'/';
+        $this->params = $params->get('upload_base_url') . '/';
     }
 
     public function realEstateCreate(RealEstateCreateRequest $request)
@@ -36,7 +37,7 @@ class RealEstateService
     {
         $result = $this->realEstateManager->getRealEstateById($request);
 
-        $response = $this->autoMapping->map(RealEstateEntity::class, GetRealEstateByIdResponse::class, $result);
+        $response = $this->autoMapping->map(RealEstateEntity::class, RealEstateGetByIdResponse::class, $result);
 
         return $response;
     }
@@ -46,11 +47,10 @@ class RealEstateService
         $response = [];
         $result = $this->realEstateManager->getAllRealEstate();
 
-        foreach ($result as $row)
-        {
-            $row['image'] = $this->specialLinkCheck($row['specialLink']).$row['image'];
+        foreach ($result as $row) {
+            $row['image'] = $this->specialLinkCheck($row['specialLink']) . $row['image'];
 
-            $response[] = $this->autoMapping->map('array', GetAllRealEstateResponse::class, $row);
+            $response[] = $this->autoMapping->map('array', RealEstateGetAllResponse::class, $row);
         }
 
         return $response;
@@ -60,11 +60,10 @@ class RealEstateService
     {
         $response = [];
         $result = $this->realEstateManager->getRealEstateByUser($userID);
-        foreach ($result as $row)
-        {
-            $row['image'] = $this->specialLinkCheck($row['specialLink']).$row['image'];
+        foreach ($result as $row) {
+            $row['image'] = $this->specialLinkCheck($row['specialLink']) . $row['image'];
 
-            $response[] = $this->autoMapping->map('array', GetAllRealEstateResponse::class, $row);
+            $response[] = $this->autoMapping->map('array', RealEstateGetAllResponse::class, $row);
         }
 
         return $response;
@@ -81,14 +80,24 @@ class RealEstateService
     {
         $result = $this->realEstateManager->delete($request);
 
-        return $this->autoMapping->map(RealEstateEntity::class, GetRealEstateByIdResponse::class, $result);
+        return $this->autoMapping->map(RealEstateEntity::class, RealEstateGetByIdResponse::class, $result);
     }
 
     public function specialLinkCheck($bool)
     {
-        if (!$bool)
-        {
+        if (!$bool) {
             return $this->params;
         }
+    }
+
+    public function getFilter($key, $value)
+    {
+        $response = [];
+        $result = $this->realEstateManager->getFilter($value, $key);
+      
+        foreach ($result as $row) {
+            $response[] = $this->autoMapping->map('array', RealEstateGetFilterResponse::class, $row);
+        }
+        return $response;
     }
 }

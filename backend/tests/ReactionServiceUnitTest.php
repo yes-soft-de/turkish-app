@@ -7,7 +7,7 @@ use App\Manager\ReactionManager;
 use App\Request\ReactionCreateRequest;
 use App\Request\RealEstateUpdateRequest;
 use App\Request\GetByIdRequest;
-use App\Response\GetReactionResponse;
+use App\Response\ReactionGetResponse;
 use App\Response\ReactionCreateResponse;
 use App\Service\ReactionService;
 use App\Tests\fixtures\ReactionProvider;
@@ -66,7 +66,7 @@ class ReactionServiceUnitTest extends TestCase
      */
     public function testGetAllWithDataProvider($expected, $actual)
     {
-        $response = new GetReactionResponse();
+        $response = new ReactionGetResponse();
         $response->createdBy = $expected;
         $response->type = $expected;
         $response->createdAt = $expected;
@@ -100,7 +100,7 @@ class ReactionServiceUnitTest extends TestCase
      */
     public function testGetReactionsForUserWithDataProvider($expected, $actual)
     {
-        $response = new GetReactionResponse();
+        $response = new ReactionGetResponse();
         $response->createdBy = $expected;
         $response->type = $expected;
         $response->createdAt = $expected;

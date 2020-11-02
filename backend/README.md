@@ -109,6 +109,16 @@ methods: PUT
 /real-estate/ID
 methods: DELETE
 ```
+#### Filter For real estate
+key = price OR location  
+value = is the value you want to find
+for example:
+real-estatesFilter/price/500000
+
+```
+real-estatesFilter/{key}/{value}
+methods: GET
+```
 ### Reaction
 #### Insert new reaction
 ```
@@ -158,6 +168,16 @@ methods: PUT
 /cars/id
 methods: DELETE
 ```
+#### Filter For cars
+key = location OR price 
+value = is the value you want to find
+for example:
+carsFilter/location/syria
+
+```
+carsFilter/{key}/{value}
+methods: GET
+```
 
 ### Device
 #### Insert new device
@@ -189,4 +209,14 @@ methods: PUT
 ```
 /devices/id
 methods: DELETE
+```
+#### Filter For devices
+key = price OR location 
+value = is the value you want to find
+for example:
+devicesFilter/price/450000
+
+```
+devicesFilter/{key}/{value}
+methods: GET
 ```

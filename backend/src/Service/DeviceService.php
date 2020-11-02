@@ -11,6 +11,7 @@ use App\Request\DeviceCreateRequest;
 use App\Response\DeviceCreateResponse;
 use App\Response\DeviceGetByIdResponse;
 use App\Response\DeviceGetResponse;
+use App\Response\DevicesGetFilterResponse;
 use App\Response\DeviceUpdateResponse;
 use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
 
@@ -97,5 +98,16 @@ class DeviceService
         {
             return $this->params;
         }
+    }
+
+    public function getFilter($key, $value)
+    {
+        $response = [];
+        $result = $this->deviceManager->getFilter($value, $key);
+      
+        foreach ($result as $row) {
+            $response[] = $this->autoMapping->map('array', DevicesGetFilterResponse::class, $row);
+        }
+        return $response;
     }
 }

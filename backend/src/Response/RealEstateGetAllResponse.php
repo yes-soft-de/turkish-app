@@ -3,7 +3,7 @@
 
 namespace App\Response;
 
-class GetAllRealEstateResponse
+class RealEstateGetAllResponse
 {
     public $id;
 

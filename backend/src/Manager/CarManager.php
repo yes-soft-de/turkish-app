@@ -85,4 +85,18 @@ class CarManager
         }
         return $carEntity;
     }
+
+    public function getFilter($value, $key)
+    {
+        if ($key == 'location')
+        {
+            return $this->carEntityRepository->getFilterLocation($value);
+        }
+
+        if ($key == 'price')
+        {
+            return $this->carEntityRepository->getFilterPrice($value);
+        }
+    }
+    
 }

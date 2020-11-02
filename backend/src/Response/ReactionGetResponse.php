@@ -3,7 +3,7 @@
 
 namespace App\Response;
 
-class GetReactionResponse
+class ReactionGetResponse
 {
     public $id;
     public $createdBy;
