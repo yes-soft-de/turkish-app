@@ -7,7 +7,7 @@ class StatusUpdateRequest
 {
     public $id;
     public $createdBy;
-    public $LawyerID;
+    public $lawyerID;
     public $status;
 
     /**
@@ -48,15 +48,15 @@ class StatusUpdateRequest
      */ 
     public function getLawyerID()
     {
-        return $this->LawyerID;
+        return $this->lawyerID;
     }
 
     /**
-     * @param mixed $LawyerID
+     * @param mixed $lawyerID
      */
-    public function setLawyerID($LawyerID): void
+    public function setLawyerID($lawyerID): void
     {
-        $this->LawyerID = $LawyerID;
+        $this->lawyerID = $lawyerID;
     }
 
      /**

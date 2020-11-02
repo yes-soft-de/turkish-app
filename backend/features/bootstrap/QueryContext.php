@@ -321,6 +321,34 @@ class QueryContext implements Context
         );
     }
 
+    /**
+     * @When I request the status of valid user
+     */
+    public function iRequestTheStatusOfValidUser()
+    {
+        $this->response = $this->httpClient->get(
+            ConfigLinks::$BASE_API . ConfigLinks::$STATUS_ENDPOINT,
+            [
+                'headers'=>[
+                    "Authorization" => "Bearer " . $this->token,
+                    "Accept"        => "application/json",
+                ]
+            ]
+        );
+    }
+
+    /**
+     * @Then A json response with the requested status information
+     */
+    public function aJsonResponseWithTheRequestedStatusInformation()
+    {
+        $data = json_decode($this->response->getBody(), true);
+
+        if($data['Data'][0] == null)
+        {
+            throw new Exception('Returned data does not match the required!');
+        }
+    }
 
     use CreateCommon;
 }

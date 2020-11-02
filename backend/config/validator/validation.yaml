@@ -160,7 +160,7 @@ App\Request\StatusCreateRequest:
   properties:
     createdBy:
       - NotBlank: ~
-    LawyerID:
+    lawyerID:
       - NotBlank: ~
     status:
       - NotBlank: ~
@@ -171,7 +171,7 @@ App\Request\StatusUpdateRequest:
       - NotBlank: ~
     createdBy:
       - NotBlank: ~
-    LawyerID:
+    lawyerID:
       - NotBlank: ~
     status:
       - NotBlank: ~

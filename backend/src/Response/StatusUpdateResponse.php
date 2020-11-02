@@ -8,7 +8,7 @@ class StatusUpdateResponse
 { 
     public $id;
     public $createdBy;
-    public $LawyerID;
+    public $lawyerID;
     public $status;
     public $createdAt;
 }

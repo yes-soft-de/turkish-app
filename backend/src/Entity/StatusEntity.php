@@ -27,7 +27,7 @@ class StatusEntity
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $LawyerID;
+    private $lawyerID;
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -60,12 +60,12 @@ class StatusEntity
 
     public function getLawyerID(): ?string
     {
-        return $this->LawyerID;
+        return $this->lawyerID;
     }
 
-    public function setLawyerID(string $LawyerID): self
+    public function setLawyerID(string $lawyerID): self
     {
-        $this->LawyerID = $LawyerID;
+        $this->lawyerID = $lawyerID;
 
         return $this;
     }

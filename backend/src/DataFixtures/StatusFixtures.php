@@ -18,7 +18,6 @@ class StatusFixtures extends Fixture
             $status = new StatusEntity();
 
             $status->setCreatedBy("u" . $i);
-            $status->setUserID("u" . ($i+2));
             $status->setStatus("agreement " . $i);
             $status->setLawyerID("l" . $i);
 

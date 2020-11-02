@@ -141,7 +141,7 @@ class RequestFactory
     public function prepareUserLoginRequestPayload()
     {
         return [
-            "username"=>"behat3",
+            "username"=>"bb22",
             "password"=>"000"
         ];
     }
@@ -208,10 +208,18 @@ class RequestFactory
 
         $statusMapper->setStatus(
             "behat status test",
-            "ab12",
             "la12"
         );
 
         return $statusMapper->getStatusAsArray();
+    }
+
+    public function prepareStatusUpdateRequestPayload($id)
+    {
+        return [
+            "id" => $id,
+            "status" => "agreement updated",
+            "lawyerID" => "la12"
+        ];
     }
 }

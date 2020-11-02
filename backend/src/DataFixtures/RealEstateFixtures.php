@@ -29,6 +29,7 @@ class RealEstateFixtures extends Fixture
             $realEstate->setCity("Adna");
             $realEstate->setState("Ankara");
             $realEstate->setCreatedBy("u" . $i);
+            $realEstate->setRooms("3");
 
             $manager->persist($realEstate);
         }

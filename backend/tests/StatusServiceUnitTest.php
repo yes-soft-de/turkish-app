@@ -32,7 +32,7 @@ class StatusServiceUnitTest extends TestCase
     {
         $response = new StatusCreateResponse();
         $response->createdBy = $expected;
-        $response->LawyerID = $expected;
+        $response->lawyerID = $expected;
         $response->status = $expected;
 
         $entity = new StatusEntity();
@@ -64,7 +64,7 @@ class StatusServiceUnitTest extends TestCase
     {
         $response = new StatusUpdateResponse();
         $response->createdBy = $expected;
-        $response->LawyerID = $expected;
+        $response->lawyerID = $expected;
         $response->status = $expected;
         $response->createdAt = $expected;
         
