@@ -31,12 +31,12 @@ class StatusServiceUnitTest extends TestCase
     public function testCreateWithDataProvider($expected, $actual)
     {
         $response = new StatusCreateResponse();
-        $response->userID = $expected;
+        $response->createdBy = $expected;
         $response->LawyerID = $expected;
         $response->status = $expected;
 
         $entity = new StatusEntity();
-        $entity->setUserID($actual);
+        $entity->setCreatedBy($actual);
         $entity->setLawyerID($actual);
         $entity->setStatus($actual);
 
@@ -63,13 +63,13 @@ class StatusServiceUnitTest extends TestCase
     public function testUpdateWithDataProvider($expected, $actual)
     {
         $response = new StatusUpdateResponse();
-        $response->userID = $expected;
+        $response->createdBy = $expected;
         $response->LawyerID = $expected;
         $response->status = $expected;
         $response->createdAt = $expected;
         
         $entity = new StatusEntity();
-        $entity->setUserID($actual);
+        $entity->setCreatedBy($actual);
         $entity->setLawyerID($actual);
         $entity->setStatus($actual);
         $entity->setCreatedAt($actual);
@@ -96,12 +96,12 @@ class StatusServiceUnitTest extends TestCase
     public function testGetAgreementsByUserIdWithDataProvider($expected, $actual)
     {
         $response = new GetAgreementsResponse();
-        $response->userID = $expected;
+        $response->createdBy = $expected;
         $response->LawyerID = $expected;
         $response->status = $expected;
 
         $entity = new StatusEntity();
-        $entity->setUserID($actual);
+        $entity->setCreatedBy($actual);
         $entity->setLawyerID($actual);
         $entity->setStatus($actual);
 
