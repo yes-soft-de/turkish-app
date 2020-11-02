@@ -129,10 +129,10 @@ class RequestFactory
     {
         $userMapper = new MapperUser();
 
-        $userMapper->setUser("behat7@test.com",
+        $userMapper->setUser("u50@test.com",
             ['user'],
             "000",
-            "behat7"
+            "u50"
         );
 
         return $userMapper->getUserAsArray();
@@ -141,7 +141,7 @@ class RequestFactory
     public function prepareUserLoginRequestPayload()
     {
         return [
-            "username"=>"bb22",
+            "username"=>"u0",
             "password"=>"000"
         ];
     }
@@ -151,8 +151,8 @@ class RequestFactory
         $profileMapper = new MapperProfile();
 
         $profileMapper->setProfile(
-            "behat7",
-            "behat7",
+            "u50",
+            "u50",
             "istanbul, turkey",
             "behat test",
             "behatImage"
@@ -164,7 +164,7 @@ class RequestFactory
     public function prepareUserProfileUpdateRequestPayload()
     {
         return [
-            "userName" => "behat3",
+            "userName" => "u0",
             "location" => "updated location",
             "story" => "updated story",
             "image" => "updatedImage"
