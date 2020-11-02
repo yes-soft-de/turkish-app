@@ -34,13 +34,11 @@ class StatusServiceUnitTest extends TestCase
         $response->userID = $expected;
         $response->LawyerID = $expected;
         $response->status = $expected;
-        $response->createdBy = $expected;
 
         $entity = new StatusEntity();
         $entity->setUserID($actual);
         $entity->setLawyerID($actual);
         $entity->setStatus($actual);
-        $entity->setCreatedBy($actual);
 
         $request = new StatusCreateRequest();
 
@@ -68,14 +66,12 @@ class StatusServiceUnitTest extends TestCase
         $response->userID = $expected;
         $response->LawyerID = $expected;
         $response->status = $expected;
-        $response->createdBy = $expected;
         $response->createdAt = $expected;
         
         $entity = new StatusEntity();
         $entity->setUserID($actual);
         $entity->setLawyerID($actual);
         $entity->setStatus($actual);
-        $entity->setCreatedBy($actual);
         $entity->setCreatedAt($actual);
 
         $request = new StatusUpdateRequest();
@@ -103,13 +99,11 @@ class StatusServiceUnitTest extends TestCase
         $response->userID = $expected;
         $response->LawyerID = $expected;
         $response->status = $expected;
-        $response->createdBy = $expected;
 
         $entity = new StatusEntity();
         $entity->setUserID($actual);
         $entity->setLawyerID($actual);
         $entity->setStatus($actual);
-        $entity->setCreatedBy($actual);
 
         $this->mockManager
             ->method('getAgreements')

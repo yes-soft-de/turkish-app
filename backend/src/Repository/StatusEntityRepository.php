@@ -22,7 +22,7 @@ class StatusEntityRepository extends ServiceEntityRepository
     public function getAgreements($userID)
     {
         return $this->createQueryBuilder('Status')
-              ->andWhere('Status.userID = :userID')
+              ->andWhere('Status.createdBy = :userID')
               ->setParameter('userID', $userID)
               ->getQuery()
               ->getOneOrNullResult();            

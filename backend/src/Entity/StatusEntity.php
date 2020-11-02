@@ -22,7 +22,7 @@ class StatusEntity
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $userID;
+    private $createdBy;
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -40,24 +40,20 @@ class StatusEntity
      */
     private $createdAt;
 
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $createdBy;
 
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getUserID(): ?string
+    public function getCreatedBy(): ?string
     {
-        return $this->userID;
+        return $this->createdBy;
     }
 
-    public function setUserID(string $userID): self
+    public function setCreatedBy(string $createdBy): self
     {
-        $this->userID = $userID;
+        $this->createdBy = $createdBy;
 
         return $this;
     }
@@ -98,15 +94,4 @@ class StatusEntity
         return $this;
     }
 
-    public function getCreatedBy(): ?string
-    {
-        return $this->createdBy;
-    }
-
-    public function setCreatedBy(string $createdBy): self
-    {
-        $this->createdBy = $createdBy;
-
-        return $this;
-    }
 }
