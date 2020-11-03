@@ -129,4 +129,25 @@ trait CreateCommon
             throw new Exception('Unexpected response message!');
         }
     }
+
+    /**
+     * @Given /^A json response with expired token$/
+     */
+    public function aJsonResponseWithExpiredToken()
+    {
+        $data = json_decode($this->exception, true);
+
+        if($data["message"] != "Expired JWT Token")
+        {
+            throw new Exception('Unexpected response message!');
+        }
+    }
+
+    /**
+     * @Given /^I am not signed in user$/
+     */
+    public function iAmNotSignedInUser()
+    {
+        $this->token = null;
+    }
 }

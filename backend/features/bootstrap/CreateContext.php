@@ -1,11 +1,6 @@
 <?php
 
 use Behat\Behat\Context\Context;
-use Behat\Behat\Hook\Scope\BeforeScenarioScope;
-use Behat\Gherkin\Node\PyStringNode;
-use Behat\Gherkin\Node\TableNode;
-use GuzzleHttp\Client;
-use GuzzleHttp\Psr7\Response;
 
 /**
  * Defines application features from the specific context.
@@ -76,16 +71,23 @@ class CreateContext implements Context
      */
     public function iRequestCreateANewCarWithTheDataIHave()
     {
-        $this->response = $this->httpClient->post(
-            ConfigLinks::$BASE_API . ConfigLinks::$CAR_ENDPOINTS,
-            [
-                'body'=>json_encode($this->car),
-                'headers'=>[
-                    "Authorization" => "Bearer " . $this->token,
-                    "Accept"        => "application/json",
+        try
+        {
+            $this->response = $this->httpClient->post(
+                ConfigLinks::$BASE_API . ConfigLinks::$CAR_ENDPOINTS,
+                [
+                    'body' => json_encode($this->car),
+                    'headers' => [
+                        "Authorization" => "Bearer " . $this->token,
+                        "Accept" => "application/json",
+                    ]
                 ]
-            ]
-        );
+            );
+        }
+        catch (GuzzleHttp\Exception\ClientException $ex)
+        {
+            $this->exception = $ex->getResponse()->getBody()->getContents();
+        }
     }
 
     /**

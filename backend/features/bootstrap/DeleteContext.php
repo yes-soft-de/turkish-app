@@ -2,7 +2,6 @@
 
 
 use Behat\Behat\Context\Context;
-use GuzzleHttp\Client;
 
 class DeleteContext implements Context
 {
