@@ -11,6 +11,11 @@ trait CreateCommon
     private $response;
 
     /**
+     * @var string $exception
+     */
+    protected $exception;
+
+    /**
      * @var string $token
      */
     protected $token;
@@ -99,6 +104,33 @@ trait CreateCommon
             return;
         else {
             return new Exception("Status Code Error", -1);
+        }
+    }
+
+    /**
+     * @Then I get the Not Found response
+     */
+    public function iGetTheNotFoundResponse()
+    {
+        $data = json_decode($this->exception, true);
+
+        if($data["status_code"] != "404")
+        {
+            throw new Exception('Wrong status code!');
+        }
+
+    }
+
+    /**
+     * @Then A response with message data not found
+     */
+    public function aResponseWithMessageDataNotFound()
+    {
+        $data = json_decode($this->exception, true);
+
+        if($data["msg"] != "Data not found!")
+        {
+            throw new Exception('Unexpected response message!');
         }
     }
 }

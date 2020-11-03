@@ -3,6 +3,7 @@
 
 use Behat\Behat\Context\Context;
 use GuzzleHttp\Client;
+use GuzzleHttp\Exception\GuzzleException;
 use GuzzleHttp\Psr7\Response;
 
 class QueryContext implements Context
@@ -11,6 +12,8 @@ class QueryContext implements Context
      * @var array $reaction
      */
     private $reaction;
+
+
 
     public function __construct()
     {
@@ -345,6 +348,41 @@ class QueryContext implements Context
         $data = json_decode($this->response->getBody(), true);
 
         if($data['Data'][0] == null)
+        {
+            throw new Exception('Returned data does not match the required!');
+        }
+    }
+
+    /**
+     * @When I request check if user reacted with an item of ID :arg1
+     */
+    public function iRequestCheckIfUserReactedWithAnItemOfId($arg1)
+    {
+        try
+        {
+            $this->response = $this->httpClient->get(
+                ConfigLinks::$BASE_API . 'reactionForUser/' . $arg1,
+                [
+                    'json' => $this->reaction
+                ]
+            );
+        }
+        catch (GuzzleHttp\Exception\ClientException $ex)
+        {
+            //echo $ex->getResponse()->getBody()->getContents() . ", " . $ex->getCode();
+
+            $this->exception = $ex->getResponse()->getBody()->getContents();
+        }
+    }
+
+    /**
+     * @Then I expect a response with reaction information
+     */
+    public function iExpectAResponseWithReactionInformation()
+    {
+        $data = json_decode($this->response->getBody(), true);
+
+        if($data['Data'][0]['type'] == null)
         {
             throw new Exception('Returned data does not match the required!');
         }
