@@ -193,7 +193,7 @@ class CreateContext implements Context
     public function iRequestCreateANewAdminWithTheDataIHave()
     {
         $this->response = $this->httpClient->post(
-            ConfigLinks::$BASE_API . 'createnimda',
+            ConfigLinks::$BASE_API . 'createAdmin',
             [
                 "json"=>$this->admin
             ]
@@ -207,7 +207,7 @@ class CreateContext implements Context
     {
         $data = json_decode($this->response->getBody(), true);
 
-        if($data['Data']['email'] != "behatAdmin5@test.com")
+        if($data['Data']['email'] != "behatAdmin10@test.com")
         {
             throw new Exception('Retrieved information does not match the new one!');
         }
@@ -363,7 +363,7 @@ class CreateContext implements Context
     {
         $data = json_decode($this->response->getBody(), true);
 
-        if($data['Data']['itemID'] != "3")
+        if($data['Data']['itemID'] != "10")
         {
             throw new Exception('Created data does not match the new one!');
         }

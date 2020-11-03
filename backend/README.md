@@ -122,7 +122,7 @@ for example:
 real-estatesFilter/price/500000
 
 ```
-real-estatesFilter/{key}/{value}
+real-estatesFilter/key/value
 methods: GET
 ```
 ### Reaction
@@ -144,7 +144,7 @@ methods: GET
 ```
 #### Get reaction for specific user And specific item. 
 ```
-/reactionForUser/{itemID}
+/reactionForUser/itemID
 methods: GET
 ```
 
@@ -180,13 +180,13 @@ methods: PUT
 methods: DELETE
 ```
 #### Filter For cars
-key = location OR price 
-value = is the value you want to find
-for example:
-carsFilter/location/syria
+_key = location OR price. 
+value = is the value you want to find.
+For example:
+carsFilter/location/syria_
 
 ```
-carsFilter/{key}/{value}
+carsFilter/key/value
 methods: GET
 ```
 
@@ -222,12 +222,12 @@ methods: PUT
 methods: DELETE
 ```
 #### Filter For devices
-key = price OR location 
-value = is the value you want to find
-for example:
-devicesFilter/price/450000
+_key = price OR location. 
+value = is the value you want to find.
+For example:
+devicesFilter/price/450000_
 
 ```
-devicesFilter/{key}/{value}
+devicesFilter/key/value
 methods: GET
 ```
