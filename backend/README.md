@@ -68,16 +68,22 @@ methods: GET
 /status
 methods: POST
 ```
-#### Update status
+#### Update status by ID
 ```
 /status
 methods: PUT
 ```
-#### Get agreements of a specific user
+#### Get all status of a specific user
 ```
 /status
 methods: GET
 ```
+#### Get a status of a specific user
+```
+/getAgreementID/{ID}
+methods: GET
+```
+
 ### RealEstate
 #### Create new real estate
 ```
