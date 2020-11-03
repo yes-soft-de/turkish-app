@@ -52,11 +52,13 @@ class ReactionController extends BaseController
         return $this->response($result, self::CREATE);
     }
 
-     /**
+    /**
      * @Route("/reactions/{itemID}", name="GetAllReactionsForSpecificItem", methods={"GET"})
+     * @param Request $request
+     * @param $itemID
      * @return JsonResponse
      */
-    public function getAll(request $request, $itemID)
+    public function getAll(Request $request, $itemID)
     {
         $data = json_decode($request->getContent(), true);
 
@@ -78,9 +80,11 @@ class ReactionController extends BaseController
 
     /**
      * @Route("/reactionForUser/{itemID}", name="GetAllReactionsForSpecificItem", methods={"GET"})
+     * @param Request $request
+     * @param $itemID
      * @return JsonResponse
      */
-    public function getreactionForUser(request $request, $itemID)
+    public function getReactionForUser(Request $request, $itemID)
     {
         $data = json_decode($request->getContent(), true);
 
