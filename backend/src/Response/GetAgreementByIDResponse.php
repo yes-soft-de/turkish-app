@@ -4,11 +4,11 @@
 namespace App\Response;
 
 
-class GetAgreementsResponse
+class GetAgreementByIDResponse
 { 
     public $createdBy;
     public $LawyerID;
     public $status;
     public $createdAt;
 
-}
+    }

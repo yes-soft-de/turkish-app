@@ -10,6 +10,7 @@ use App\Manager\StatusManager;
 use App\Request\StatusCreateRequest;
 use App\Response\StatusCreateResponse;
 use App\Response\StatusUpdateResponse;
+use App\Response\GetAgreementByIDResponse;
 use App\Response\GetAgreementsResponse;
 
 class StatusService
@@ -29,18 +30,30 @@ class StatusService
         return $this->autoMapping->map(StatusEntity::class,StatusCreateResponse::class, $create);
     }
 
-    public function statusUpdate($request)
+    public function statusUpdate( $userID ,$request)
     {
-        $result = $this->statusManager->statusUpdate($request);
+        $result = $this->statusManager->statusUpdate($userID, $request);
      
         return $this->autoMapping->map(StatusEntity::class, StatusUpdateResponse::class, $result);   
     }
 
     public function getAgreements($userID)
     {
+        $respons = [];
         $item = $this->statusManager->getAgreements($userID);
+        foreach($item as $row){
+           $respons[] = $this->autoMapping->map(StatusEntity::class, GetAgreementsResponse::class, $row);
+        }
+        return $respons;
+    }
 
-        return $this->autoMapping->map(StatusEntity::class, GetAgreementsResponse::class, $item);
-        
+    public function getAgreementID($ID)
+    {
+        $respons = [];
+        $item = $this->statusManager->getAgreementID($ID);
+        foreach($item as $row){
+           $respons[] = $this->autoMapping->map(StatusEntity::class, GetAgreementByIDResponse::class, $row);
+        }
+        return $respons;
     }
 }
