@@ -41,8 +41,8 @@ class ReactionManager
         return $this->repository->getReactionsForUser($userID);
     }
 
-    public function getreactionForUser($data, $itemID, $userID)
+    public function getReactionForUser($data, $itemID, $userID)
     {
-        return $this->repository->getreactionForUser($data, $itemID, $userID);
+        return $this->repository->getReactionForUser($data, $itemID, $userID);
     }
 }

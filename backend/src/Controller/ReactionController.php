@@ -88,7 +88,7 @@ class ReactionController extends BaseController
     {
         $data = json_decode($request->getContent(), true);
 
-        $result = $this->reactionService->getreactionForUser($data, $itemID, $this->getUserId());
+        $result = $this->reactionService->getReactionForUser($data, $itemID, $this->getUserId());
         
         return $this->response($result, self::FETCH);
     }

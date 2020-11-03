@@ -54,9 +54,9 @@ class ReactionService
         return $response;
     }
     
-    public function getreactionForUser($data, $itemID, $userID)
+    public function getReactionForUser($data, $itemID, $userID)
     {
-        $result = $this->reactionManager->getreactionForUser($data, $itemID, $userID);
+        $result = $this->reactionManager->getReactionForUser($data, $itemID, $userID);
         $response = [];
         foreach ($result as $row) {
             $response[] = $this->autoMapping->map(ReactionEntity::class, ReactionGetByUserResponse::class, $row);
