@@ -171,7 +171,7 @@ class CreateContext implements Context
     {
         $data = json_decode($this->response->getBody(), true);
 
-        if($data['Data']['roles'] == null)
+        if($data['Data']['userID'] != "u5000")
         {
             throw new Exception('Error in register a new user!');
         }
@@ -207,7 +207,7 @@ class CreateContext implements Context
     {
         $data = json_decode($this->response->getBody(), true);
 
-        if($data['Data']['email'] != "behatAdmin10@test.com")
+        if($data['Data']['email'] != "behatAdmin100@test.com")
         {
             throw new Exception('Retrieved information does not match the new one!');
         }
@@ -247,7 +247,7 @@ class CreateContext implements Context
     {
         $data = json_decode($this->response->getBody(), true);
 
-        if($data['Data']['userName'] != "behat7")
+        if($data['Data']['userName'] != "u5000")
         {
             throw new Exception('Created data does not match the new one!');
         }
