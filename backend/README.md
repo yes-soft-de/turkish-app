@@ -136,6 +136,11 @@ methods: GET
 /reactions
 methods: GET
 ```
+#### Get reaction for specific user And specific item. 
+```
+/reactionForUser/{itemID}
+methods: GET
+```
 
 ### Car
 #### Insert new car
