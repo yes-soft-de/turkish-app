@@ -19,3 +19,8 @@ default:
             paths:
               - "%paths.base%/features/delete"
             contexts: [DeleteContext]
+
+          login:
+            paths:
+              - "%paths.base%/features/login"
+            contexts: [LoginUserContext]

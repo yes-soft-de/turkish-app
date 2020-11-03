@@ -80,10 +80,14 @@ trait CreateCommon
      */
     public function iAmSignedInUser()
     {
-        $this->iHaveAccessToBackend();
-        $this->iHaveValidUserCredentials();
-        $this->iRequestLoginCheck();
-        $this->iExpectATokenWithinTheResponse();
+        if($this->token == null)
+        {
+            throw new Exception('You are not logged in!');
+        }
+//        $this->iHaveAccessToBackend();
+//        $this->iHaveValidUserCredentials();
+//        $this->iRequestLoginCheck();
+//        $this->iExpectATokenWithinTheResponse();
     }
 
     /**
