@@ -347,7 +347,7 @@ class QueryContext implements Context
     {
         $data = json_decode($this->response->getBody(), true);
 
-        if($data['Data'][0] == null)
+        if(!($data['Data']))
         {
             throw new Exception('Returned data does not match the required!');
         }
@@ -369,8 +369,6 @@ class QueryContext implements Context
         }
         catch (GuzzleHttp\Exception\ClientException $ex)
         {
-            //echo $ex->getResponse()->getBody()->getContents() . ", " . $ex->getCode();
-
             $this->exception = $ex->getResponse()->getBody()->getContents();
         }
     }
@@ -387,6 +385,36 @@ class QueryContext implements Context
             throw new Exception('Returned data does not match the required!');
         }
     }
+
+    /**
+     * @When I request a status by ID :arg1
+     */
+    public function iRequestAStatusById($arg1)
+    {
+        $this->response = $this->httpClient->get(
+            ConfigLinks::$BASE_API . 'getAgreementID/' . $arg1,
+            [
+                'headers'=>[
+                    "Authorization" => "Bearer " . $this->token,
+                    "Accept"        => "application/json",
+                ]
+            ]
+        );
+    }
+
+    /**
+     * @Then A json response with the status information
+     */
+    public function aJsonResponseWithTheStatusInformation()
+    {
+        $data = json_decode($this->response->getBody(), true);
+
+        if(!($data['Data']))
+        {
+            throw new Exception('Returned data does not match the required!');
+        }
+    }
+
 
     use CreateCommon;
 }
