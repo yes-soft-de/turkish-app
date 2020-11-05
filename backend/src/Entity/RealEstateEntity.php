@@ -60,11 +60,6 @@ class RealEstateEntity
     private $state;
 
     /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $image;
-
-    /**
      * @ORM\Column(type="boolean", nullable=true)
      */
     private $specialLink;
@@ -197,18 +192,6 @@ class RealEstateEntity
     public function setState(?string $state): self
     {
         $this->state = $state;
-
-        return $this;
-    }
-
-    public function getImage(): ?string
-    {
-        return $this->image;
-    }
-
-    public function setImage(string $image): self
-    {
-        $this->image = $image;
 
         return $this;
     }

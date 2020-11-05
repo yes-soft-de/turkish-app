@@ -31,13 +31,9 @@ class RealEstateEntityRepository extends ServiceEntityRepository
 
     public function getAllRealEstate()
     {
-        $r =  $this->createQueryBuilder('RealEstateEntity')
+        return $this->createQueryBuilder('RealEstateEntity')
             ->getQuery()
             ->getArrayResult();
-
-        dd($r);
-        return $r;
-
     }
 
     public function getRealEstateByUser($userID)
