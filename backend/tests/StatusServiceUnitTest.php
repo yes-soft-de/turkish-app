@@ -31,16 +31,14 @@ class StatusServiceUnitTest extends TestCase
     public function testCreateWithDataProvider($expected, $actual)
     {
         $response = new StatusCreateResponse();
-        $response->userID = $expected;
-        $response->LawyerID = $expected;
-        $response->status = $expected;
         $response->createdBy = $expected;
+        $response->lawyerID = $expected;
+        $response->status = $expected;
 
         $entity = new StatusEntity();
-        $entity->setUserID($actual);
+        $entity->setCreatedBy($actual);
         $entity->setLawyerID($actual);
         $entity->setStatus($actual);
-        $entity->setCreatedBy($actual);
 
         $request = new StatusCreateRequest();
 
@@ -65,17 +63,15 @@ class StatusServiceUnitTest extends TestCase
     public function testUpdateWithDataProvider($expected, $actual)
     {
         $response = new StatusUpdateResponse();
-        $response->userID = $expected;
-        $response->LawyerID = $expected;
-        $response->status = $expected;
         $response->createdBy = $expected;
+        $response->lawyerID = $expected;
+        $response->status = $expected;
         $response->createdAt = $expected;
         
         $entity = new StatusEntity();
-        $entity->setUserID($actual);
+        $entity->setCreatedBy($actual);
         $entity->setLawyerID($actual);
         $entity->setStatus($actual);
-        $entity->setCreatedBy($actual);
         $entity->setCreatedAt($actual);
 
         $request = new StatusUpdateRequest();
@@ -100,16 +96,14 @@ class StatusServiceUnitTest extends TestCase
     public function testGetAgreementsByUserIdWithDataProvider($expected, $actual)
     {
         $response = new GetAgreementsResponse();
-        $response->userID = $expected;
+        $response->createdBy = $expected;
         $response->LawyerID = $expected;
         $response->status = $expected;
-        $response->createdBy = $expected;
 
         $entity = new StatusEntity();
-        $entity->setUserID($actual);
+        $entity->setCreatedBy($actual);
         $entity->setLawyerID($actual);
         $entity->setStatus($actual);
-        $entity->setCreatedBy($actual);
 
         $this->mockManager
             ->method('getAgreements')

@@ -41,38 +41,8 @@ class ReactionManager
         return $this->repository->getReactionsForUser($userID);
     }
 
-    public function countInteractions($animeID)
+    public function getReactionForUser($data, $itemID, $userID)
     {
-        return $this->interactionRepository->countInteractions($animeID);
-    }
-
-    public function loved($request)
-    {
-        return $this->interactionRepository->getAllLove($request->getID());
-    }
-
-    public function like($request)
-    {
-        return $this->interactionRepository->getAllLikes($request->getID());
-    }
-
-    public function dislike($request)
-    {
-        return $this->interactionRepository->getAllDislike($request->getID());
-    }
-
-    public function lovedAll($ID)
-    {
-        return $this->interactionRepository->getLoveAll($ID);
-    }
-
-    public function likeAll($ID)
-    {
-        return $this->interactionRepository->getLikeAll($ID);
-    }
-
-    public function dislikeAll($ID)
-    {
-        return $this->interactionRepository->dislikeAll($ID);
+        return $this->repository->getReactionForUser($data, $itemID, $userID);
     }
 }

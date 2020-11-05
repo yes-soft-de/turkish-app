@@ -6,10 +6,9 @@ namespace App\Request;
 class StatusUpdateRequest
 {
     public $id;
-    public $userID;
-    public $LawyerID;
-    public $status;
     public $createdBy;
+    public $lawyerID;
+    public $status;
 
     /**
     * @return mixed
@@ -31,17 +30,17 @@ class StatusUpdateRequest
     /**
      * @return mixed
      */
-    public function getUserID()
+    public function getCreatedBy()
     {
-        return $this->userID;
+        return $this->createdBy;
     }
 
     /**
-     * @param mixed $userID
+     * @param mixed $createdBy
      */
-    public function setUserID($userID): void
+    public function setCreatedBy($createdBy): void
     {
-        $this->userID = $userID;
+        $this->createdBy = $createdBy;
     }
 
     /**
@@ -49,15 +48,15 @@ class StatusUpdateRequest
      */ 
     public function getLawyerID()
     {
-        return $this->LawyerID;
+        return $this->lawyerID;
     }
 
     /**
-     * @param mixed $LawyerID
+     * @param mixed $lawyerID
      */
-    public function setLawyerID($LawyerID): void
+    public function setLawyerID($lawyerID): void
     {
-        $this->LawyerID = $LawyerID;
+        $this->lawyerID = $lawyerID;
     }
 
      /**
@@ -75,14 +74,5 @@ class StatusUpdateRequest
     {
         $this->status = $status;
     }
-
-     /**
-     * @return mixed
-     */  
-    public function getCreatedBy()
-    {
-        return $this->createdBy;
-    }
-
 
 }

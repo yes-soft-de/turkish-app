@@ -1,5 +1,10 @@
 default:
       suites:
+          login:
+            paths:
+              - "%paths.base%/features/login"
+            contexts: [LoginUserContext]
+
           create:
             paths:
               - "%paths.base%/features/create"

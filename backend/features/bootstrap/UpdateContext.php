@@ -25,6 +25,11 @@ class UpdateContext implements Context
      */
     private $userProfile;
 
+    /**
+     * @var array $status
+     */
+    private $status;
+
     public function __construct()
     {
     }
@@ -203,4 +208,45 @@ class UpdateContext implements Context
             throw new Exception('Wrong data were being updated!');
         }
     }
+
+    /**
+     * @Given I have a valid status update request of ID :arg1
+     */
+    public function iHaveAValidStatusUpdateRequestOfId($arg1)
+    {
+        $requestFactory = new RequestFactory();
+
+        $this->status = $requestFactory->prepareStatusUpdateRequestPayload($arg1);
+    }
+
+    /**
+     * @When I request update a status
+     */
+    public function iRequestUpdateAStatus()
+    {
+        $this->response = $this->httpClient->put(
+            ConfigLinks::$BASE_API . ConfigLinks::$STATUS_ENDPOINT,
+            [
+                'body'=>json_encode($this->status),
+                'headers'=>[
+                    "Authorization" => "Bearer " . $this->token,
+                    "Accept"        => "application/json",
+                ]
+            ]
+        );
+    }
+
+    /**
+     * @Then I expect the updated status match the data
+     */
+    public function iExpectTheUpdatedStatusMatchTheData()
+    {
+        $data = json_decode($this->response->getBody(), true);
+
+        if($data['Data']['status'] != 'agreement updated')
+        {
+            throw new Exception('Wrong data were being updated!');
+        }
+    }
+
 }

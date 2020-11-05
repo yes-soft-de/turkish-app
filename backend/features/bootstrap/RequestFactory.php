@@ -129,10 +129,10 @@ class RequestFactory
     {
         $userMapper = new MapperUser();
 
-        $userMapper->setUser("behat7@test.com",
+        $userMapper->setUser("u5000@test.com",
             ['user'],
             "000",
-            "behat7"
+            "u5000"
         );
 
         return $userMapper->getUserAsArray();
@@ -141,7 +141,7 @@ class RequestFactory
     public function prepareUserLoginRequestPayload()
     {
         return [
-            "username"=>"behat3",
+            "username"=>"u0",
             "password"=>"000"
         ];
     }
@@ -151,8 +151,8 @@ class RequestFactory
         $profileMapper = new MapperProfile();
 
         $profileMapper->setProfile(
-            "behat7",
-            "behat7",
+            "u5000",
+            "u5000",
             "istanbul, turkey",
             "behat test",
             "behatImage"
@@ -164,7 +164,7 @@ class RequestFactory
     public function prepareUserProfileUpdateRequestPayload()
     {
         return [
-            "userName" => "behat3",
+            "userName" => "u5000",
             "location" => "updated location",
             "story" => "updated story",
             "image" => "updatedImage"
@@ -175,10 +175,10 @@ class RequestFactory
     {
         $adminMapper = new MapperAdmin();
 
-        $adminMapper->setAdmin("behatAdmin5@test.com",
+        $adminMapper->setAdmin("behatAdmin100@test.com",
             ['user'],
             "000",
-            "behatAdmin5"
+            "behatAdmin100"
         );
 
         return $adminMapper->getAdminAsArray();
@@ -208,10 +208,31 @@ class RequestFactory
 
         $statusMapper->setStatus(
             "behat status test",
-            "ab12",
             "la12"
         );
 
         return $statusMapper->getStatusAsArray();
+    }
+
+    public function prepareStatusUpdateRequestPayload($id)
+    {
+        return [
+            "id" => $id,
+            "status" => "agreement updated",
+            "lawyerID" => "la12"
+        ];
+    }
+
+    public function prepareCreateReactionRequestPayload()
+    {
+        $reactionMapper = new MapperReaction();
+
+        $reactionMapper->setReaction(
+            "1",
+            "Device",
+            "10"
+        );
+
+        return $reactionMapper->getReactionAsArray();
     }
 }

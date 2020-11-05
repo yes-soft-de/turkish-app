@@ -4,11 +4,11 @@
 namespace App\Response;
 
 
-class StatusUpdateResponse
+class GetAgreementByIDResponse
 { 
-    public $id;
     public $createdBy;
-    public $lawyerID;
+    public $LawyerID;
     public $status;
     public $createdAt;
-}
+
+    }

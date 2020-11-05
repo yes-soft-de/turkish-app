@@ -63,6 +63,8 @@ class StatusController extends BaseController
         $data = json_decode($request->getContent(), true);
         $request = $this->autoMapping->map(\stdClass::class, StatusUpdateRequest::class, (object) $data);
 
+        $request->setCreatedBy($this->getUserId());
+
         $violations = $this->validator->validate($request);
         if (\count($violations) > 0)
         {
@@ -71,7 +73,7 @@ class StatusController extends BaseController
             return new JsonResponse($violationsString, Response::HTTP_OK);
         }
         
-        $result = $this->statusService->statusUpdate($request);
+        $result = $this->statusService->statusUpdate( $this->getUserId(), $request);
         return $this->response($result, self::UPDATE);
     }
 
@@ -82,7 +84,18 @@ class StatusController extends BaseController
     public function getAgreements()
     {
         $result = $this->statusService->getAgreements($this->getUserId());
+        
+        return $this->response($result, self::FETCH);
+    }
 
+    /**
+     * @Route("/getAgreementID/{ID}", name="GetAgreementsByID", methods={"GET"})
+     * @return JsonResponse
+     */
+    public function getAgreementID($ID)
+    {
+        $result = $this->statusService->getAgreementID($ID);
+        
         return $this->response($result, self::FETCH);
     }
 }

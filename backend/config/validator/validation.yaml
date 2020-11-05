@@ -158,26 +158,22 @@ App\Request\RealEstateUpdateRequest:
 
 App\Request\StatusCreateRequest:
   properties:
-    userID:
+    createdBy:
       - NotBlank: ~
-    LawyerID:
+    lawyerID:
       - NotBlank: ~
     status:
-      - NotBlank: ~
-    createdBy:
       - NotBlank: ~
 
 App\Request\StatusUpdateRequest:
   properties:
     id:
       - NotBlank: ~
-    userID:
+    createdBy:
       - NotBlank: ~
-    LawyerID:
+    lawyerID:
       - NotBlank: ~
     status:
-      - NotBlank: ~
-    createdBy:
       - NotBlank: ~
 
 App\Request\UserRegisterRequest:

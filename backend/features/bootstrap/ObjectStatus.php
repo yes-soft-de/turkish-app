@@ -3,8 +3,7 @@
 
 class ObjectStatus
 {
-    private $userID;
-    private $LawyerID;
+    private $lawyerID;
     private $status;
 
     public function __construct()
@@ -14,33 +13,17 @@ class ObjectStatus
     /**
      * @return mixed
      */
-    public function getUserID()
-    {
-        return $this->userID;
-    }
-
-    /**
-     * @param mixed $userID
-     */
-    public function setUserID($userID): void
-    {
-        $this->userID = $userID;
-    }
-
-    /**
-     * @return mixed
-     */
     public function getLawyerID()
     {
-        return $this->LawyerID;
+        return $this->lawyerID;
     }
 
     /**
-     * @param mixed $LawyerID
+     * @param mixed $lawyerID
      */
-    public function setLawyerID($LawyerID): void
+    public function setLawyerID($lawyerID): void
     {
-        $this->LawyerID = $LawyerID;
+        $this->lawyerID = $lawyerID;
     }
 
     /**

@@ -68,16 +68,22 @@ methods: GET
 /status
 methods: POST
 ```
-#### Update status
+#### Update status by ID
 ```
 /status
 methods: PUT
 ```
-#### Get agreements of a specific user
+#### Get all status of a specific user
 ```
 /status
 methods: GET
 ```
+#### Get a status of a specific user
+```
+/getAgreementID/{ID}
+methods: GET
+```
+
 ### RealEstate
 #### Create new real estate
 ```
@@ -116,7 +122,7 @@ for example:
 real-estatesFilter/price/500000
 
 ```
-real-estatesFilter/{key}/{value}
+real-estatesFilter/key/value
 methods: GET
 ```
 ### Reaction
@@ -134,6 +140,11 @@ methods: GET
 #### Get all reactions for specific user. 
 ```
 /reactions
+methods: GET
+```
+#### Get reaction for specific user And specific item. 
+```
+/reactionForUser/itemID
 methods: GET
 ```
 
@@ -169,13 +180,13 @@ methods: PUT
 methods: DELETE
 ```
 #### Filter For cars
-key = location OR price 
-value = is the value you want to find
-for example:
-carsFilter/location/syria
+_key = location OR price. 
+value = is the value you want to find.
+For example:
+carsFilter/location/syria_
 
 ```
-carsFilter/{key}/{value}
+carsFilter/key/value
 methods: GET
 ```
 
@@ -211,12 +222,12 @@ methods: PUT
 methods: DELETE
 ```
 #### Filter For devices
-key = price OR location 
-value = is the value you want to find
-for example:
-devicesFilter/price/450000
+_key = price OR location. 
+value = is the value you want to find.
+For example:
+devicesFilter/price/450000_
 
 ```
-devicesFilter/{key}/{value}
+devicesFilter/key/value
 methods: GET
 ```
