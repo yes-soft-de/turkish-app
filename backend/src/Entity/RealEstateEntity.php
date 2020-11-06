@@ -199,6 +199,7 @@ class RealEstateEntity
     public function setNumberOfFloors(string $numberOfFloors): self
     {
         $this->numberOfFloors = $numberOfFloors;
+
         return $this;
     }
 
