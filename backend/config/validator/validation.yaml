@@ -1,0 +1,200 @@
+App\Request\UploadImageRequest:
+  properties:
+    uploadedFile:
+      - Image:
+          #mimeTypesMessage: "this id not message"
+          maxSize: 2m
+          maxSizeMessage: "Image size over 2M"
+
+App\Request\CreateImageRequest:
+  properties:
+    image:
+      - NotBlank: ~
+    entity:
+      - NotBlank: ~
+    itemID:
+      - NotBlank: ~
+
+App\Request\UpdateImageRequest:
+  properties:
+    image:
+      - NotBlank: ~
+
+App\Request\CarCreateRequest:
+  properties:
+    brand:
+      - NotBlank: ~
+    company:
+      - NotBlank: ~
+    engine:
+      - NotBlank: ~
+    price:
+      - NotBlank: ~
+    status:
+      - NotBlank: ~
+    createdBy:
+      - NotBlank: ~
+    distance:
+      - NotBlank: ~
+    carType:
+      - NotBlank: ~
+    fuel:
+      - NotBlank: ~
+    cc:
+      - NotBlank: ~
+    location:
+      - NotBlank: ~
+    gearType:
+      - NotBlank: ~
+
+App\Request\CarUpdateRequest:
+  properties:
+    id:
+      - NotBlank: ~
+    brand:
+      - NotBlank: ~
+    company:
+      - NotBlank: ~
+    engine:
+      - NotBlank: ~
+    price:
+      - NotBlank: ~
+    status:
+      - NotBlank: ~
+    createdBy:
+      - NotBlank: ~
+    distance:
+      - NotBlank: ~
+    carType:
+      - NotBlank: ~
+    fuel:
+      - NotBlank: ~
+    cc:
+      - NotBlank: ~
+    location:
+      - NotBlank: ~
+    gearType:
+      - NotBlank: ~
+
+App\Request\DeviceCreateRequest:
+  properties:
+    brand:
+      - NotBlank: ~
+    cpu:
+      - NotBlank: ~
+    ram:
+      - NotBlank: ~
+    battery:
+      - NotBlank: ~
+    price:
+      - NotBlank: ~
+    status:
+      - NotBlank: ~
+    createdBy:
+      - NotBlank: ~
+    gauge:
+      - NotBlank: ~
+    durationOfUse:
+      - NotBlank: ~
+    location:
+      - NotBlank: ~
+
+App\Request\DeviceUpdateRequest:
+  properties:
+    id:
+      - NotBlank: ~
+    brand:
+      - NotBlank: ~
+    cpu:
+      - NotBlank: ~
+    ram:
+      - NotBlank: ~
+    battery:
+      - NotBlank: ~
+    price:
+      - NotBlank: ~
+    status:
+      - NotBlank: ~
+    createdBy:
+      - NotBlank: ~
+    gauge:
+      - NotBlank: ~
+    durationOfUse:
+      - NotBlank: ~
+    location:
+      - NotBlank: ~
+
+App\Request\RealEstateCreateRequest:
+  properties:
+    city:
+      - NotBlank: ~
+    space:
+      - NotBlank: ~
+    price:
+      - NotBlank: ~
+    status:
+      - NotBlank: ~
+    createdBy:
+      - NotBlank: ~
+    state:
+      - NotBlank: ~
+
+App\Request\RealEstateUpdateRequest:
+  properties:
+    id:
+      - NotBlank: ~
+    city:
+      - NotBlank: ~
+    space:
+      - NotBlank: ~
+    price:
+      - NotBlank: ~
+    status:
+      - NotBlank: ~
+    createdBy:
+      - NotBlank: ~
+    state:
+      - NotBlank: ~
+
+App\Request\StatusCreateRequest:
+  properties:
+    createdBy:
+      - NotBlank: ~
+    lawyerID:
+      - NotBlank: ~
+    status:
+      - NotBlank: ~
+
+App\Request\StatusUpdateRequest:
+  properties:
+    id:
+      - NotBlank: ~
+    createdBy:
+      - NotBlank: ~
+    lawyerID:
+      - NotBlank: ~
+    status:
+      - NotBlank: ~
+
+App\Request\UserRegisterRequest:
+  properties:
+    userID:
+      - NotBlank: ~
+    password:
+      - NotBlank: ~
+
+App\Request\UserProfileCreateRequest:
+  properties:
+    userID:
+      - NotBlank: ~
+    userName:
+      - NotBlank: ~
+
+App\Request\UserProfileUpdateeRequest:
+  properties:
+    id:
+      - NotBlank: ~
+    userID:
+      - NotBlank: ~
+    userName:
+      - NotBlank: ~

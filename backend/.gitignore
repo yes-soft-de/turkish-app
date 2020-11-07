@@ -37,6 +37,7 @@
 
 
 .env
+.env.local
 .env.test
 /.env
 upload/
@@ -80,3 +81,12 @@ fabric.properties
 !.gitignore
 !.gitkeep
 config/jwt
+###> symfony/phpunit-bridge ###
+.phpunit
+.phpunit.result.cache
+/phpunit.xml
+###< symfony/phpunit-bridge ###
+
+###> liip/imagine-bundle ###
+/public/media/cache/
+###< liip/imagine-bundle ###
