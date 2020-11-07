@@ -89,7 +89,7 @@ class StatusController extends BaseController
     }
 
     /**
-     * @Route("/getAgreementID/{ID}", name="GetAgreementsByID", methods={"GET"})
+     * @Route("agreement/{ID}", name="GetAgreementsByID", methods={"GET"})
      * @return JsonResponse
      */
     public function getAgreementID($ID)

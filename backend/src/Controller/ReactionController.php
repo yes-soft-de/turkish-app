@@ -79,7 +79,7 @@ class ReactionController extends BaseController
     }
 
     /**
-     * @Route("/reactionForUser/{itemID}", name="GetAllReactionsForSpecificItem", methods={"GET"})
+     * @Route("/reactionForUser/{itemID}", name="CheckAllReactionsForSpecificItem", methods={"GET"})
      * @param Request $request
      * @param $itemID
      * @return JsonResponse

@@ -80,7 +80,7 @@ methods: GET
 ```
 #### Get a status of a specific user
 ```
-/getAgreementID/{ID}
+/agreement/{ID}
 methods: GET
 ```
 
