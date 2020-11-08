@@ -22,8 +22,6 @@ class CarCreateResponse
 
     public $status;
 
-    public $createdBy;
-
     public $createdAt;
 
     public $distance;

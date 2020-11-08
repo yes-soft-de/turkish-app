@@ -5,8 +5,7 @@ namespace App\Response;
 
 
 class GetAgreementByIDResponse
-{ 
-    public $createdBy;
+{
     public $lawyerID;
     public $status;
     public $createdAt;

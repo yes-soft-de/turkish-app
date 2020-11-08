@@ -24,8 +24,6 @@ class DevicesGetFilterResponse
 
     public $status;
 
-    public $createdBy;
-
     public $createdAt;
 
     public $gauge;

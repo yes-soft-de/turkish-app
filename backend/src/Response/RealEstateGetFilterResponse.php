@@ -17,8 +17,6 @@ class RealEstateGetFilterResponse
 
     public $status;
 
-    public $createdBy;
-
     public $createdAt;
 
     public $state;

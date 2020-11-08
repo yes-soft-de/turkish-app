@@ -17,8 +17,6 @@ class RealEstateGetByIdResponse
 
     public $status;
 
-    public $createdBy;
-
     public $createdAt;
 
     public $state;

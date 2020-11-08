@@ -17,8 +17,6 @@ class RealEstateUpdateResponse
 
     public $status;
 
-    public $createdBy;
-
     public $createdAt;
 
     public $state;

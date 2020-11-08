@@ -22,8 +22,6 @@ class DeviceUpdateResponse
 
     public $status;
 
-    public $createdBy;
-
     public $createdAt;
 
     public $gauge;

@@ -62,6 +62,8 @@ class DeviceManager
         }
         else
         {
+            $request->setCreatedAt(new \DateTime('Now'));
+
             $deviceEntity = $this->autoMapping->mapToObject(DeviceUpdateRequest::class,
                 DeviceEntity::class, $request, $deviceEntity);
 

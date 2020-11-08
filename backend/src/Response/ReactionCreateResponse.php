@@ -6,8 +6,6 @@ class ReactionCreateResponse
 {
     public $id;
 
-    public $createdBy;
-
     public $type;
 
     public $createdAt;

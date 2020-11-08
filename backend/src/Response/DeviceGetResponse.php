@@ -24,8 +24,6 @@ class DeviceGetResponse
 
     public $status;
 
-    public $createdBy;
-
     public $createdAt;
 
     public $gauge;

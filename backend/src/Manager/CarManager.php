@@ -62,6 +62,8 @@ class CarManager
         }
         else
         {
+            $request->setCreatedAt(new \DateTime('Now'));
+
             $carEntity = $this->autoMapping->mapToObject(CarUpdateRequest::class,
                 CarEntity::class, $request, $carEntity);
 

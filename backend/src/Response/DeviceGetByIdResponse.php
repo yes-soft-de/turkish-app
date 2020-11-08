@@ -22,8 +22,6 @@ class DeviceGetByIdResponse
 
     public $status;
 
-    public $createdBy;
-
     public $createdAt;
 
     public $gauge;
