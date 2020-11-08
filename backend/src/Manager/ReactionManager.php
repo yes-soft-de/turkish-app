@@ -33,7 +33,7 @@ class ReactionManager
 
     public function getAll($data, $itemID)
     {
-        return $this->repository->getAll($data, $itemID);
+        return $this->repository->getAll($data['entity'], $itemID);
     }
 
     public function getReactionsForUser($userID)
@@ -43,6 +43,6 @@ class ReactionManager
 
     public function getReactionForUser($data, $itemID, $userID)
     {
-        return $this->repository->getReactionForUser($data, $itemID, $userID);
+        return $this->repository->getReactionForUser($data['entity'], $itemID, $userID);
     }
 }

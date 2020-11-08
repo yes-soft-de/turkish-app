@@ -81,7 +81,7 @@ class StatusServiceUnitTest extends TestCase
             ->willReturn($entity);
 
         $service = new StatusService($this->autoMapping, $this->mockManager);
-        $this->assertEquals($response, $service->statusupdate($request));
+        $this->assertEquals($response, $service->statusupdate($response->createdBy ,$request));
     }
 
     public function update()
@@ -110,8 +110,7 @@ class StatusServiceUnitTest extends TestCase
             ->willReturn($entity);
 
         $service = new StatusService($this->autoMapping, $this->mockManager);
-
-        $this->assertEquals($response, $service->getAgreements($actual));
+        $this->assertIsArray($service->getAgreements($actual));
 
     }
 

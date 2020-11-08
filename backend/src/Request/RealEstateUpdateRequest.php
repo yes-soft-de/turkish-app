@@ -3,7 +3,6 @@
 
 namespace App\Request;
 use DateTime;
-
 class RealEstateUpdateRequest
 {
     private $id;
@@ -33,11 +32,8 @@ class RealEstateUpdateRequest
     private $homeFurnishing;
 
     private $realEstateType;
-
-    public function __construct()
-    {
-        $this->createdAt = new DateTime('Now');
-    }  
+    
+    private $rooms;
 
     /**
      * Get the value of id
@@ -59,18 +55,6 @@ class RealEstateUpdateRequest
     return $this;
     }
 
-    public function getCreatedAt(): ?\DateTimeInterface
-    {
-        return $this->createdAt;
-    }
-
-    public function setCreatedAt(): self
-    {
-        $this->createdAt = new \DateTime('Now');
-
-        return $this;
-    }
-
     /**
      * @return mixed
      */
@@ -87,4 +71,19 @@ class RealEstateUpdateRequest
         $this->createdBy = $createdBy;
     }
 
+    /**
+     * @return mixed
+     */
+    public function getCreatedAt()
+    {
+        return $this->createdAt;
+    }
+
+    /**
+     * @param mixed $createdAt
+     */
+    public function setCreatedAt($createdAt): void
+    {
+         $this->createdAt = new DateTime('Now')  ;
+    }
 }
