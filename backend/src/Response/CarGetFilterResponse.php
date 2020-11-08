@@ -24,6 +24,8 @@ class CarGetFilterResponse
 
     public $createdAt;
 
+    public $updatedAt;
+
     public $distance;
 
     public $carType;

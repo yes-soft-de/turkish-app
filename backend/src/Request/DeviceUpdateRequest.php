@@ -26,8 +26,6 @@ class DeviceUpdateRequest
 
     private $createdBy;
 
-    private $createdAt;
-
     private $gauge;
 
     private $location;
@@ -194,22 +192,6 @@ class DeviceUpdateRequest
     public function setCreatedBy($createdBy): void
     {
         $this->createdBy = $createdBy;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getCreatedAt()
-    {
-        return $this->createdAt;
-    }
-
-    /**
-     * @param mixed $createdAt
-     */
-    public function setCreatedAt($createdAt): void
-    {
-        $this->createdAt = $createdAt;
     }
 
     /**

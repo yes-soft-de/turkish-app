@@ -19,6 +19,8 @@ class RealEstateGetFilterResponse
 
     public $createdAt;
 
+    public $updatedAt;
+
     public $state;
 
     public $image;

@@ -2,7 +2,9 @@
 
 
 namespace App\Request;
+
 use DateTime;
+
 class RealEstateUpdateRequest
 {
     private $id;
@@ -18,8 +20,6 @@ class RealEstateUpdateRequest
     private $status;
 
     private $createdBy;
-
-    private $createdAt;
 
     private $state;
 
@@ -71,19 +71,19 @@ class RealEstateUpdateRequest
         $this->createdBy = $createdBy;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getCreatedAt()
-    {
-        return $this->createdAt;
-    }
-
-    /**
-     * @param mixed $createdAt
-     */
-    public function setCreatedAt($createdAt): void
-    {
-         $this->createdAt = new DateTime('Now')  ;
-    }
+//    /**
+//     * @return mixed
+//     */
+//    public function getCreatedAt()
+//    {
+//        return $this->createdAt;
+//    }
+//
+//    /**
+//     * @param mixed $createdAt
+//     */
+//    public function setCreatedAt($createdAt): void
+//    {
+//         $this->createdAt = new DateTime('Now')  ;
+//    }
 }

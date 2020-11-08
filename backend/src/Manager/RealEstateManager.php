@@ -53,7 +53,7 @@ class RealEstateManager
     public function realEstateUpdate(RealEstateUpdateRequest $request)
     {
         $Entity = $this->repository->find($request->getId());
-        $request->setCreatedAt($request->getCreatedAt());
+        //$request->setCreatedAt($request->getCreatedAt());
         if (!$Entity) {
 
         } else {

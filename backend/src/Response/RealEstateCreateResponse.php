@@ -19,6 +19,8 @@ class RealEstateCreateResponse
 
     public $createdAt;
 
+    public $updatedAt;
+
     public $state;
 
     public $image;

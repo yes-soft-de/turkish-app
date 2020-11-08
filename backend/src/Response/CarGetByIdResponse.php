@@ -22,6 +22,8 @@ class CarGetByIdResponse
 
     public $createdAt;
 
+    public $updatedAt;
+
     public $distance;
 
     public $carType;

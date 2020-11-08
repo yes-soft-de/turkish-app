@@ -94,6 +94,12 @@ class DeviceEntity
      */
     private $specialLink;
 
+    /**
+     * @Gedmo\Timestampable(on="update")
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    private $updatedAt;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -275,6 +281,18 @@ class DeviceEntity
     public function setSpecialLink(?bool $specialLink): self
     {
         $this->specialLink = $specialLink;
+
+        return $this;
+    }
+
+    public function getUpdatedAt(): ?\DateTimeInterface
+    {
+        return $this->updatedAt;
+    }
+
+    public function setUpdatedAt(?\DateTimeInterface $updatedAt): self
+    {
+        $this->updatedAt = $updatedAt;
 
         return $this;
     }

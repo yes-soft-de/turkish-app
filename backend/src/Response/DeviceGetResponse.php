@@ -26,6 +26,8 @@ class DeviceGetResponse
 
     public $createdAt;
 
+    public $updatedAt;
+
     public $gauge;
 
     public $location;
