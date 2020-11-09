@@ -65,4 +65,8 @@ class ReactionService
         return $response;
     }
 
+    public function reactionAll($ID, $entity)
+    {
+       return  $this->reactionManager->reactionAll($ID, $entity);
+    }
 }

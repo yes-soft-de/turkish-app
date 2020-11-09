@@ -32,4 +32,6 @@ class RealEstateGetAllResponse
     public $homeFurnishing;
 
     public $realEstateType;
+    
+    public $reaction;
 }

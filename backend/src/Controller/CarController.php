@@ -78,9 +78,10 @@ class CarController extends BaseController
      * @Route("cars", name="getCarsOfUser", methods={"GET"})
      * @return JsonResponse
      */
-    public function getCarsOfUser()
+    public function getCarsOfUser(Request $request)
     {
-        $result = $this->carService->getCarsOfUser($this->getUserId());
+        $data = json_decode($request->getContent(), true);
+        $result = $this->carService->getCarsOfUser($this->getUserId() , $data['entity']);
 
         return $this->response($result, self::FETCH);
     }
@@ -88,9 +89,10 @@ class CarController extends BaseController
     /**
      * @Route("all-cars", name="getAllCars", methods={"GET"})
      */
-    public function getAllCars()
+    public function getAllCars(Request $request)
     {
-        $result = $this->carService->getAllCars();
+        $data = json_decode($request->getContent(), true);
+        $result = $this->carService->getAllCars($data['entity'],$this->getUserId());
 
         return $this->response($result, self::FETCH);
     }

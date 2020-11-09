@@ -51,4 +51,17 @@ class ReactionEntityRepository extends ServiceEntityRepository
         ->getQuery()
         ->getResult();
     }
-}
+
+    public function reactionAll($ID, $entity)
+    {
+        return $this->createQueryBuilder('Reaction')
+        ->select('count(Reaction.type) as reactionCount','Reaction.createdBy')
+        ->andWhere('Reaction.itemID = :ID')
+        ->andWhere('Reaction.entity = :entity')
+        ->setParameter('ID', $ID)
+        ->setParameter('entity', $entity)
+        ->getQuery()
+        ->getResult();
+    }
+
+   }

@@ -13,19 +13,21 @@ use App\Response\DeviceGetByIdResponse;
 use App\Response\DeviceGetResponse;
 use App\Response\DevicesGetFilterResponse;
 use App\Response\DeviceUpdateResponse;
+use App\Service\ReactionService;
 use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
 
 class DeviceService
 {
     private $autoMapping;
     private $deviceManager;
+    private $reactionService;
     private $params;
 
-    public function __construct(AutoMapping $autoMapping, DeviceManager $deviceManager, ParameterBagInterface $params)
+    public function __construct(AutoMapping $autoMapping, DeviceManager $deviceManager, ReactionService $reactionService ,ParameterBagInterface $params)
     {
         $this->autoMapping = $autoMapping;
         $this->deviceManager = $deviceManager;
-
+        $this->reactionService = $reactionService;
         $this->params = $params->get('upload_base_url').'/';
     }
 
@@ -43,7 +45,7 @@ class DeviceService
         return $this->autoMapping->map(DeviceEntity::class, DeviceGetByIdResponse::class, $result);
     }
 
-    public function getDevicesOfUser($userID)
+    public function getDevicesOfUser($userID, $entity)
     {
         $response = [];
         $result = $this->deviceManager->getDevicesOfUser($userID);
@@ -52,13 +54,18 @@ class DeviceService
         {
             $row['image'] = $this->specialLinkCheck($row['specialLink']).$row['image'];
 
+           
+            $row['reaction']=$this->reactionService->reactionAll($row['id'], $entity);
+
+            ($row['reaction'][0]['createdBy'] == $userID) ?  $row['reaction'][0]['createdBy'] = true : $row['reaction'][0]['createdBy'] = false ;
+            
             $response[] = $this->autoMapping->map('array', DeviceGetResponse::class, $row);
         }
 
         return $response;
     }
 
-    public function getAllDevices()
+    public function getAllDevices($entity, $userID)
     {
         $response = [];
         $result = $this->deviceManager->getAllDevices();
@@ -66,6 +73,10 @@ class DeviceService
         foreach ($result as $row)
         {
             $row['image'] = $this->specialLinkCheck($row['specialLink']).$row['image'];
+
+            $row['reaction']=$this->reactionService->reactionAll($row['id'], $entity);
+
+            ($row['reaction'][0]['createdBy'] == $userID) ?  $row['reaction'][0]['createdBy'] = true : $row['reaction'][0]['createdBy'] = false ;
 
             $response[] = $this->autoMapping->map('array', DeviceGetResponse::class, $row);
         }

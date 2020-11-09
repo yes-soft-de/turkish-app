@@ -39,4 +39,6 @@ class CarGetResponse
     public $location;
 
     public $image;
+    
+    public $reaction;
 }

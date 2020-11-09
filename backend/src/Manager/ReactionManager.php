@@ -45,4 +45,10 @@ class ReactionManager
     {
         return $this->repository->getReactionForUser($data['entity'], $itemID, $userID);
     }
+
+    public function reactionAll($ID, $entity)
+    {
+        return $this->repository->reactionAll($ID, $entity);
+    }
+
 }

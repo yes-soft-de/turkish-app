@@ -78,9 +78,11 @@ class DeviceController extends BaseController
      * @Route("devices", name="getDevicesOfUser", methods={"GET"})
      * @return JsonResponse
      */
-    public function getDevicesOfUser()
+    public function getDevicesOfUser(Request $request)
     {
-        $result = $this->deviceService->getDevicesOfUser($this->getUserId());
+        $data = json_decode($request->getContent(), true);
+
+        $result = $this->deviceService->getDevicesOfUser($this->getUserId() , $data['entity']);
 
         return $this->response($result, self::FETCH);
     }
@@ -88,9 +90,10 @@ class DeviceController extends BaseController
     /**
      * @Route("all-devices", name="getAllDevices", methods={"GET"})
      */
-    public function getAllDevices()
+    public function getAllDevices(Request $request)
     {
-        $result = $this->deviceService->getAllDevices();
+        $data = json_decode($request->getContent(), true);
+        $result = $this->deviceService->getAllDevices($data['entity'],$this->getUserId());
 
         return $this->response($result, self::FETCH);
     }

@@ -70,9 +70,11 @@ class RealEstateController extends BaseController
      * @Route("/all-real-estate", name="GetAllItems",methods={"GET"})
      * @return JsonResponse
      */
-    public function getAllRealEstate()
+    public function getAllRealEstate(Request $request)
     {       
-        $result = $this->realEstateService->getAllRealEstate();
+        $data = json_decode($request->getContent(), true);
+
+        $result = $this->realEstateService->getAllRealEstate($data['entity'],$this->getUserId());
 
         return $this->response($result, self::FETCH);
     }
@@ -81,9 +83,11 @@ class RealEstateController extends BaseController
      * @Route("real-estates", name="GetAllItemsOfSpecificUser",methods={"GET"})
      * @return JsonResponse
      */
-    public function getRealEstateByUser()
+    public function getRealEstateByUser(Request $request)
     {       
-        $result = $this->realEstateService->getRealEstateByUser($this->getUserId());
+        $data = json_decode($request->getContent(), true);
+
+        $result = $this->realEstateService->getRealEstateByUser($this->getUserId() , $data['entity']);
 
         return $this->response($result, self::FETCH);
     }

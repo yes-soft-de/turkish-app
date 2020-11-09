@@ -35,4 +35,6 @@ class DeviceGetResponse
     public $durationOfUse;
 
     public $image;
+
+    public $reaction;
 }
