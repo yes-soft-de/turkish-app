@@ -6,6 +6,8 @@ namespace App\Response;
 class RealEstateGetFilterResponse
 {
     public $id;
+    
+    public $country;
 
     public $city;
 

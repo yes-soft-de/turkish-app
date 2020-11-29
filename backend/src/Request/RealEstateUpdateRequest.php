@@ -3,9 +3,12 @@
 
 namespace App\Request;
 use DateTime;
+
 class RealEstateUpdateRequest
 {
     private $id;
+    
+    private $country;
 
     private $city;
 
@@ -19,7 +22,7 @@ class RealEstateUpdateRequest
 
     private $createdBy;
 
-    private $createdAt;
+    private $updateAt;
 
     private $state;
 
@@ -74,16 +77,16 @@ class RealEstateUpdateRequest
     /**
      * @return mixed
      */
-    public function getCreatedAt()
+    public function getUpdateAt()
     {
-        return $this->createdAt;
+        return $this->updateAt;
     }
 
     /**
-     * @param mixed $createdAt
+     * @param mixed $updateAt
      */
-    public function setCreatedAt($createdAt): void
+    public function setUpdateAt($updateAt): void
     {
-         $this->createdAt = new DateTime('Now')  ;
+         $this->updateAt = new DateTime('Now')  ;
     }
 }

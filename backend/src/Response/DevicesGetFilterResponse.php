@@ -8,6 +8,8 @@ class DevicesGetFilterResponse
 {
     public $id;
 
+    public $type;
+
     public $brand;
 
     public $cpu;
@@ -30,7 +32,9 @@ class DevicesGetFilterResponse
 
     public $gauge;
 
-    public $location;
+    public $country;
+
+    public $city;
 
     public $durationOfUse;
 

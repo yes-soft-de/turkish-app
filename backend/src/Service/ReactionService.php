@@ -37,7 +37,7 @@ class ReactionService
         $result = $this->reactionManager->getAll($data, $itemID);
         $response = [];
         foreach ($result as $row) {
-            $response[] = $this->autoMapping->map(ReactionEntity::class, ReactionGetResponse::class, $row);
+            $response[] = $this->autoMapping->map('array', ReactionGetResponse::class, $row);
         }
 
         return $response;
@@ -48,7 +48,7 @@ class ReactionService
         $result = $this->reactionManager->getReactionsForUser($userID);
         $response = [];
         foreach ($result as $row) {
-            $response[] = $this->autoMapping->map(ReactionEntity::class, ReactionGetResponse::class, $row);
+            $response[] = $this->autoMapping->map('array', ReactionGetResponse::class, $row);
         }
 
         return $response;
@@ -68,5 +68,10 @@ class ReactionService
     public function reactionAll($ID, $entity)
     {
        return  $this->reactionManager->reactionAll($ID, $entity);
+    }
+
+    public function reactionforItem($ID, $entity)
+    {
+       return  $this->reactionManager->reactionforItem($ID, $entity);
     }
 }

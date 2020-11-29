@@ -2,7 +2,7 @@
 
 
 namespace App\Request;
-
+use DateTime;
 
 class CarUpdateRequest
 {
@@ -24,7 +24,7 @@ class CarUpdateRequest
 
     private $createdBy;
 
-    private $createdAt;
+    private $updateAt;
 
     private $distance;
 
@@ -36,7 +36,9 @@ class CarUpdateRequest
 
     private $fuel;
 
-    private $location;
+    private $country;
+
+    private $city;
 
     private $image;
 
@@ -155,17 +157,17 @@ class CarUpdateRequest
     /**
      * @return mixed
      */
-    public function getCreatedAt()
+    public function getUpdateAt()
     {
-        return $this->createdAt;
+        return $this->updateAt;
     }
 
     /**
-     * @param mixed $createdAt
+     * @param mixed $updateAt
      */
-    public function setCreatedAt($createdAt): void
+    public function setUpdateAt($updateAt): void
     {
-        $this->createdAt = $createdAt;
+         $this->updateAt = new DateTime('Now')  ;
     }
 
     /**
@@ -280,20 +282,36 @@ class CarUpdateRequest
         $this->fuel = $fuel;
     }
 
-    /**
+     /**
      * @return mixed
      */
-    public function getLocation()
+    public function getCountry()
     {
-        return $this->location;
+        return $this->country;
     }
 
     /**
-     * @param mixed $location
+     * @param mixed $country
      */
-    public function setLocation($location): void
+    public function setCountry($country): void
     {
-        $this->location = $location;
+        $this->country = $country;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getCity()
+    {
+        return $this->city;
+    }
+
+    /**
+     * @param mixed $city
+     */
+    public function setCity($city): void
+    {
+        $this->city = $city;
     }
 
 }

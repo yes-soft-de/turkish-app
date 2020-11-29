@@ -12,6 +12,9 @@ use App\Response\RealEstateGetFilterResponse;
 use App\Response\RealEstateCreateResponse;
 use App\Response\RealEstateUpdateResponse;
 use App\Service\ReactionService;
+use App\Service\ImageService;
+use App\Service\DocumentService;
+
 use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
 
 class RealEstateService
@@ -19,14 +22,18 @@ class RealEstateService
     private $autoMapping;
     private $realEstateManager;
     private $reactionService;
+    private $imageService;
+    private $documentService;
     private $params;
 
 
-    public function __construct(AutoMapping $autoMapping, RealEstateManager $realEstateManager, ReactionService $reactionService, ParameterBagInterface $params)
+    public function __construct(AutoMapping $autoMapping, RealEstateManager $realEstateManager, ImageService $imageService, DocumentService $documentService, ReactionService $reactionService, ParameterBagInterface $params)
     {
         $this->autoMapping = $autoMapping;
         $this->realEstateManager = $realEstateManager;
         $this->reactionService = $reactionService;
+        $this->imageService = $imageService;
+        $this->documentService = $documentService;
 
         $this->params = $params->get('upload_base_url') . '/';
     }
@@ -37,12 +44,42 @@ class RealEstateService
         return $this->autoMapping->map(RealEstateEntity::class, RealEstateCreateResponse::class, $create);
     }
 
-    public function getRealEstateById($request)
+    public function getRealEstateById($id,$userID, $entity)
     {
-        $result = $this->realEstateManager->getRealEstateById($request);
+        $response = [] ;
+        $result = $this->realEstateManager->getRealEstateById($id);
+     
+        foreach ($result as $row) {
 
-        $response = $this->autoMapping->map(RealEstateEntity::class, RealEstateGetByIdResponse::class, $result);
+            $row['image'] = $this->specialLinkCheck($row['specialLink']).$row['image'];
+          
+            $row['images'] = $this->imageService->getImages($id, $entity);
 
+            $row['reaction']=$this->reactionService->reactionforItem($id, $entity);
+        
+            ($row['reaction'][0]['createdBy'] == $userID) ?  $row['reaction'][0]['createdBy'] = true : $row['reaction'][0]['createdBy'] = false ;
+           
+            $response = $this->autoMapping->map('array', RealEstateGetByIdResponse::class, $row);
+           
+            }
+        return $response;
+    }
+
+    public function getRealEstateByIdUnaccepted($id,$userID, $entity)
+    {
+        $response = [] ;
+        $result = $this->realEstateManager->getRealEstateByIdUnaccepted($id);
+     
+        foreach ($result as $row) {
+
+            $row['image'] = $this->specialLinkCheck($row['specialLink']).$row['image'];
+          
+            $row['images'] = $this->imageService->getImages($id, $entity);
+            $row['documents'] = $this->documentService->getDocuments($id, $entity);
+           
+            $response = $this->autoMapping->map('array', RealEstateGetByIdResponse::class, $row);
+           
+            }
         return $response;
     }
 
@@ -50,15 +87,29 @@ class RealEstateService
     {
         $response = [];
         $result = $this->realEstateManager->getAllRealEstate();
-
+        
         foreach ($result as $row)
         {
             $row['image'] = $this->specialLinkCheck($row['specialLink']) . $row['image'];
            
-            $row['reaction']=$this->reactionService->reactionAll($row['id'], $entity);
-
+            $row['reaction']=$this->reactionService->reactionforItem($row['id'], $entity);
             ($row['reaction'][0]['createdBy'] == $userID) ?  $row['reaction'][0]['createdBy'] = true : $row['reaction'][0]['createdBy'] = false ;
+          
+            $response[] = $this->autoMapping->map('array', RealEstateGetAllResponse::class, $row);
+        }
 
+        return $response;
+    }
+
+    public function getAllRealEstateUnaccepted($entity, $userID)
+    {
+        $response = [];
+        $result = $this->realEstateManager->getAllRealEstateUnaccepted();
+        
+        foreach ($result as $row)
+        {
+            $row['image'] = $this->specialLinkCheck($row['specialLink']) . $row['image'];
+                      
             $response[] = $this->autoMapping->map('array', RealEstateGetAllResponse::class, $row);
         }
 
@@ -74,7 +125,7 @@ class RealEstateService
         {
             $row['image'] = $this->specialLinkCheck($row['specialLink']) . $row['image'];
 
-            $row['reaction']=$this->reactionService->reactionAll($row['id'], $entity);
+            $row['reaction']=$this->reactionService->reactionforItem($row['id'], $entity);
 
             ($row['reaction'][0]['createdBy'] == $userID) ?  $row['reaction'][0]['createdBy'] = true : $row['reaction'][0]['createdBy'] = false ;
 

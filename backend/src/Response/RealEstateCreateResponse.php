@@ -7,6 +7,8 @@ class RealEstateCreateResponse
 {
     public $id;
 
+    public $country;
+
     public $city;
 
     public $space;
@@ -32,4 +34,6 @@ class RealEstateCreateResponse
     public $homeFurnishing;
 
     public $realEstateType;
+    
+    public $rooms;
 }

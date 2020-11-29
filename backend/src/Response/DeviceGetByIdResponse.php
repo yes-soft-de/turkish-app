@@ -6,6 +6,8 @@ namespace App\Response;
 
 class DeviceGetByIdResponse
 {
+    public $type;
+    
     public $brand;
 
     public $cpu;
@@ -28,9 +30,19 @@ class DeviceGetByIdResponse
 
     public $gauge;
 
-    public $location;
+    public $country;
+
+    public $city;
 
     public $durationOfUse;
 
     public $image;
+
+    public $images;
+
+    public $reaction;
+    
+    public $specialLink;
+
+   
 }

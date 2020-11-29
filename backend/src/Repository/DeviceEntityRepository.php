@@ -5,6 +5,8 @@ namespace App\Repository;
 use App\Entity\DeviceEntity;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
+use Doctrine\ORM\Query\Expr\Join;
+use App\Entity\UserProfileEntity;
 
 /**
  * @method DeviceEntity|null find($id, $lockMode = null, $lockVersion = null)
@@ -18,14 +20,15 @@ class DeviceEntityRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, DeviceEntity::class);
     }
-
-    public function getDeviceById($id): ?DeviceEntity
+    public $country;
+    public function getDeviceById($id)
     {
         return $this->createQueryBuilder('device')
+            ->select('device.id', 'device.specialLink', 'device.image','device.brand', 'device.type', 'device.cpu', 'device.ram','device.battery', 'device.price', 'device.yearOfRelease','device.description', 'device.status', 'device.createdAt','device.updateAt', 'device.country', 'device.city', 'device.durationOfUse', 'device.gauge')
             ->andWhere('device.id = :id')
             ->setParameter('id', $id)
             ->getQuery()
-            ->getOneOrNullResult();
+            ->getResult();
     }
 
     public function getDevicesOfUser($createdBy)
@@ -40,23 +43,31 @@ class DeviceEntityRepository extends ServiceEntityRepository
     public function getAllDevices()
     {
         return $this->createQueryBuilder('device')
-            ->getQuery()
-            ->getArrayResult();
+             ->select('device.id', 'device.specialLink', 'device.image','device.brand', 'device.type', 'device.cpu', 'device.ram','device.battery', 'device.price', 'device.yearOfRelease','device.description', 'device.status', 'device.createdAt','device.updateAt','device.country', 'device.city','device.durationOfUse', 'device.gauge', 'UserProfileEntity.image as imageUser')
+
+             ->leftJoin(
+                UserProfileEntity::class,
+                'UserProfileEntity',
+                Join::WITH,
+                'UserProfileEntity.userID = device.createdBy'
+            )
+             ->getQuery()
+             ->getArrayResult();
     }
 
     public function getFilterPrice($value)
     {
         return $this->createQueryBuilder('device')
-            ->andWhere('device.price >= :value')
+            ->andWhere('device.price <= :value')
             ->setParameter('value', $value)
             ->getQuery()
             ->getArrayResult();
     }
 
-    public function getFilterLocation($value)
+    public function getFilterCity($value)
     {
         return $this->createQueryBuilder('device')
-            ->andWhere('device.location = :value')
+            ->andWhere('device.city = :value')
             ->setParameter('value', $value)
             ->getQuery()
             ->getArrayResult();

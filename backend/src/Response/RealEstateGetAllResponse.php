@@ -7,6 +7,8 @@ class RealEstateGetAllResponse
 {
     public $id;
 
+    public $country;
+    
     public $city;
 
     public $space;
@@ -16,8 +18,6 @@ class RealEstateGetAllResponse
     public $description;
 
     public $status;
-
-    public $createdBy;
 
     public $createdAt;
 
@@ -34,4 +34,12 @@ class RealEstateGetAllResponse
     public $realEstateType;
     
     public $reaction;
+
+    public $rooms;
+
+    public $userName;
+    
+    public $imageUser;
+
+    
 }

@@ -51,4 +51,9 @@ class ReactionManager
         return $this->repository->reactionAll($ID, $entity);
     }
 
+    public function reactionforItem($ID, $entity)
+    {
+        return $this->repository->reactionforItem($ID, $entity);
+    }
+
 }
