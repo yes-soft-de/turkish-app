@@ -143,8 +143,10 @@ methods: PUT
 methods: DELETE
 ```
 #### Filter For real estate
-key = price OR city  
+key = price OR city 
+
 value = the value you want to find
+
 for example:
 realEstatesFilter/price/500000
 
@@ -153,7 +155,8 @@ realEstatesFilter/key/value
 methods: GET
 ```
 ### Reaction
-note: type = 1
+note: type = 1 .
+
 note : in body postman  send entity value : CarEntity or DeviceEntity or RealEstateEntity .
 
 note : itemID could be a car ID, a device ID, or a real estate ID .
@@ -232,7 +235,9 @@ methods: DELETE
 ```
 #### Filter For cars
 key = city OR price. 
-value = is the value you want to find.
+
+value = the value you want to find.
+
 For example:
 carsFilter/city/syria
 
@@ -275,7 +280,8 @@ methods: DELETE
 ```
 #### Filter For devices
 key = price OR city. 
-value = is the value you want to find.
+
+value = the value you want to find.
 For example:
 devicesFilter/price/450000
 
