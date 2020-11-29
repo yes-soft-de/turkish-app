@@ -96,8 +96,9 @@ methods: GET
 note:in postman send "entity":"RealEstateEntity"
 
 #### Create new real estate
-note : status field have default value : not sold
-note : state field have default value : Unaccepted
+note : status field have default value : not sold.
+
+note : state field have default value : Unaccepted.
 ```
 /realEstate
 methods: POST
@@ -129,6 +130,7 @@ methods: GET
 ```
 #### Update an existing real estate
 note : if sold, submit status field value (sold).
+
 note : if the admin agrees to offer the product, submit state field value (Accepted).
 
 ```
@@ -153,6 +155,7 @@ methods: GET
 ### Reaction
 note: type = 1
 note : in body postman  send entity value : CarEntity or DeviceEntity or RealEstateEntity .
+
 note : itemID could be a car ID, a device ID, or a real estate ID .
 
 #### Insert new reaction
@@ -181,8 +184,9 @@ methods: GET
 note:in body postman send "entity":"CarEntity"
 
 #### Insert new car
-note : status field have default value : not sold
-note : state field have default value : Unaccepted
+note : status field have default value : not sold.
+
+note : state field have default value : Unaccepted.
 
 ```
 /cars
@@ -215,6 +219,7 @@ methods: GET
 ```
 #### Update a specific car by ID
 note : if sold, submit status field value (sold).
+
 note : if the admin agrees to offer the product, submit state field value (Accepted).
 ```
 /cars
@@ -280,7 +285,7 @@ methods: GET
 ```
 
 ### Document
-note:in postman body send entity: RealEstateEntity
+note:in postman body send entity: RealEstateEntity.
 
 #### Insert new document
 ```
