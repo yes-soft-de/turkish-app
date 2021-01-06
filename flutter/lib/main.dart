@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'module_chat/ui/screen/chats_list/chats_list_screen.dart';
 import 'module_history/ui/screen/history/history_screen.dart';
 import 'module_home/ui/sceen/home/home_screen.dart';
+import 'module_notification/ui/screen/notification_settings/notification_settings_screen.dart';
+import 'module_notification/ui/screen/notifications/notification_screen.dart';
 import 'module_profile/ui/screen/profile/profile_screen.dart';
 
 void main() {
@@ -31,7 +33,7 @@ class MyApp extends StatelessWidget {
         // closer together (more dense) than on mobile platforms.
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: ChatsListScreen(),
+      home: NotificationScreen(),
     );
   }
 }

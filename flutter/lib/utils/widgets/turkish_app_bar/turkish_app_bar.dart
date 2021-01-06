@@ -49,22 +49,25 @@ class TurkishAppBar {
 
   }
 
-  static AppBar getBackEnabledAppBar() {
+  static AppBar getTurkishOrdinaryAppBar(
+      BuildContext context,
+//      GlobalKey<ScaffoldState> drawerKey,
+      String title,
+      ) {
+
     return AppBar(
-//      title: Text(
-//        'Swaptime',
-//        style: TextStyle(fontWeight: FontWeight.w300),
-//      ),
+      backgroundColor:     ProjectColors.THEME_COLOR,
+      elevation: 1,
       centerTitle: true,
-      elevation: 0,
-      actions: [
-        // IconButton(
-        //   icon: Icon(Icons.search),
-        //   onPressed: () {
-        //     // TODO Move to Search Page
-        //   },
-        // )
-      ],
+      automaticallyImplyLeading: true,
+      title:Text(
+          '$title'
+      ),
+
+
     );
+
+
   }
+
 }
