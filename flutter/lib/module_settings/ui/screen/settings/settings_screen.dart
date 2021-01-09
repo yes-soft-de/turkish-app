@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:turkesh/module_navigation/ui/widget/navigation_drawer/anime_navigation_drawer.dart';
 import 'package:turkesh/module_settings/ui/screen/general_settings/general_settings_screen.dart';
 import 'package:turkesh/module_settings/ui/screen/notification_settings/notification_settings_screen.dart';
 import 'package:turkesh/module_settings/ui/screen/privacy_settings/privacy_settings_screen.dart';
@@ -12,6 +13,8 @@ class SettingsScreen extends StatefulWidget {
 }
 
 class _SettingsScreenState extends State<SettingsScreen> {
+  final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
+
   @override
   Widget build(BuildContext context) {
     return _screenUi();
@@ -19,7 +22,9 @@ class _SettingsScreenState extends State<SettingsScreen> {
 
   Widget _screenUi() {
     return Scaffold(
-      appBar: TurkishAppBar.getTurkishAppBar(context, 'Settings'),
+      key: _scaffoldKey,
+      drawer: TurkishNavigationDrawer(),
+      appBar: TurkishAppBar.getTurkishAppBar(context,_scaffoldKey, 'Settings'),
       body: Column(
         children: [
           Container(

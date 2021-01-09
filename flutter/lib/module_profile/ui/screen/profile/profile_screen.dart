@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:turkesh/module_navigation/ui/widget/navigation_drawer/anime_navigation_drawer.dart';
 import 'package:turkesh/module_profile/widget/circular_image.dart';
 import 'package:turkesh/utils/project_colors/project_colors.dart';
 import 'package:turkesh/utils/widgets/turkish_app_bar/turkish_app_bar.dart';
@@ -9,6 +10,8 @@ class ProfileScreen extends StatefulWidget {
 }
 
 class _ProfileScreenState extends State<ProfileScreen> {
+  final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
+
   @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
@@ -17,7 +20,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
   Widget _screenUi(double height){
     return Scaffold(
-      appBar: TurkishAppBar.getTurkishAppBar(context,'Profile'),
+      key: _scaffoldKey,
+      appBar: TurkishAppBar.getTurkishAppBar(context,_scaffoldKey,'Profile'),
+      drawer: TurkishNavigationDrawer(),
       body: SingleChildScrollView(
         child: Container(
           color: ProjectColors.BACKGROUND_COLOR,

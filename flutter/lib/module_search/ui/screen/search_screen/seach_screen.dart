@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:turkesh/module_navigation/ui/widget/navigation_drawer/anime_navigation_drawer.dart';
 import 'package:turkesh/utils/project_colors/project_colors.dart';
 import 'package:turkesh/utils/widgets/turkish_app_bar/turkish_app_bar.dart';
 
@@ -12,6 +13,8 @@ class SearchScreen extends StatefulWidget {
 }
 
 class _SearchScreenState extends State<SearchScreen> {
+  final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
+
   final TextEditingController _searchController = TextEditingController();
 
 //  SearchState currentSate = SearchStateInit();
@@ -45,7 +48,9 @@ class _SearchScreenState extends State<SearchScreen> {
 
   Widget _screenUi() {
     return Scaffold(
-      appBar: TurkishAppBar.getTurkishAppBar(context, 'Search'),
+      key: _scaffoldKey,
+      drawer: TurkishNavigationDrawer(),
+      appBar: TurkishAppBar.getTurkishAppBar(context,_scaffoldKey, 'Search'),
       body: SingleChildScrollView(
         child: Container(
           padding: EdgeInsets.symmetric(horizontal: 10,vertical: 10),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:turkesh/module_chat/ui/widget/chat_item_card/chat_item_card.dart';
+import 'package:turkesh/module_navigation/ui/widget/navigation_drawer/anime_navigation_drawer.dart';
 import 'package:turkesh/utils/widgets/turkish_app_bar/turkish_app_bar.dart';
 
 class ChatsListScreen extends StatefulWidget {
@@ -8,6 +9,8 @@ class ChatsListScreen extends StatefulWidget {
 }
 
 class _ChatsListScreenState extends State<ChatsListScreen> {
+  final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
+
   @override
   Widget build(BuildContext context) {
     return _screenUi();
@@ -15,7 +18,13 @@ class _ChatsListScreenState extends State<ChatsListScreen> {
 
   Widget _screenUi(){
     return Scaffold(
-      appBar: TurkishAppBar.getTurkishAppBar(context, 'Chats'),
+      key: _scaffoldKey,
+      appBar: TurkishAppBar.getTurkishAppBar(
+          context,
+          _scaffoldKey,
+          'Chats'
+      ),
+      drawer: TurkishNavigationDrawer(),
       body: ListView.builder(
           itemCount: 10,
           itemBuilder:(BuildContext context, int index){

@@ -7,7 +7,7 @@ import 'package:turkesh/utils/project_colors/project_colors.dart';
 class TurkishAppBar {
   static AppBar getTurkishAppBar(
       BuildContext context,
-//      GlobalKey<ScaffoldState> drawerKey,
+      GlobalKey<ScaffoldState> drawerKey,
       String title,
       ) {
 
@@ -19,7 +19,12 @@ class TurkishAppBar {
       title:Text(
         '$title'
       ),
-      leading: Icon(Icons.menu),
+      leading: IconButton(
+        onPressed: () {
+//          drawerKey.currentState.openDrawer();
+        },
+          icon: Icon(Icons.menu),
+      ),
       actions: <Widget>[
         // GestureDetector(
         //     onTap: () {

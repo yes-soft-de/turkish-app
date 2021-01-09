@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:turkesh/module_home/model/home/home_model.dart';
 import 'package:turkesh/module_home/ui/widget/home_fab/home_fab.dart';
+import 'package:turkesh/module_navigation/ui/widget/navigation_drawer/anime_navigation_drawer.dart';
 import 'package:turkesh/module_products/ui/screen/car_details/car_details_screen.dart';
 import 'package:turkesh/module_products/ui/screen/electronic_device_details/electronic_device_details_screen.dart';
 import 'package:turkesh/module_products/ui/screen/house_details/house_details_screen.dart';
@@ -15,6 +16,8 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
+
   List<HomeModel> products =[
     new HomeModel(
       image: 'https://www.wsupercars.com/wallpapers/Buick/1970-Buick-GSX-001-1080.jpg',
@@ -78,7 +81,9 @@ class _HomeScreenState extends State<HomeScreen> {
 
   Widget _screenUi(){
     return Scaffold(
-      appBar: TurkishAppBar.getTurkishAppBar(context, 'Home'),
+      key: _scaffoldKey,
+      drawer: TurkishNavigationDrawer(),
+      appBar: TurkishAppBar.getTurkishAppBar(context, _scaffoldKey,'Home'),
       body: ListView.builder(
           itemCount: products.length,
           itemBuilder:(BuildContext context, int index){
