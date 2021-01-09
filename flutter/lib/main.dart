@@ -1,14 +1,16 @@
 import 'package:flutter/material.dart';
 
+import 'main_screen/ui/main_screen.dart';
+import 'module_auth/ui/screen/auth_screen.dart';
 import 'module_chat/ui/screen/chats_list/chats_list_screen.dart';
 import 'module_history/ui/screen/history/history_screen.dart';
 import 'module_home/ui/sceen/home/home_screen.dart';
-import 'module_notification/ui/screen/notification_settings/notification_settings_screen.dart';
 import 'module_notification/ui/screen/notifications/notification_screen.dart';
 import 'module_products/ui/screen/car_details/car_details_screen.dart';
 import 'module_products/ui/screen/electronic_device_details/electronic_device_details_screen.dart';
 import 'module_products/ui/screen/house_details/house_details_screen.dart';
 import 'module_profile/ui/screen/profile/profile_screen.dart';
+import 'module_settings/ui/screen/settings/settings_screen.dart';
 
 void main() {
   runApp(MyApp());
@@ -36,7 +38,7 @@ class MyApp extends StatelessWidget {
         // closer together (more dense) than on mobile platforms.
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: ElectronicDeviceDetailsScreen(),
+      home: LoginScreen(),
     );
   }
 }
@@ -46,6 +48,7 @@ class MyApp extends StatelessWidget {
 class HomeFab extends StatefulWidget {
   final Function() onPressed;
   final String tooltip;
+
   final IconData icon;
 
   HomeFab({this.onPressed, this.tooltip, this.icon});

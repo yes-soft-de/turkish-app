@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:turkesh/utils/enums/products/products.dart';
+import 'package:turkesh/utils/widgets/icon_text/icon_text_widget.dart';
 
 class ProductCard extends StatelessWidget {
   final String product;
@@ -80,15 +81,16 @@ class ProductCard extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                _iconText(
+                IconTextWidget(
                   icon:Icons.person,
                   text: '$owner'
                 ),
-                _iconText(
+                IconTextWidget(
                     icon: null,
                     text: '$specification'
                 ),
-                _iconText(
+
+                IconTextWidget(
                     icon: Icons.favorite,
                     text: '$likes'
                 ),
@@ -125,18 +127,5 @@ class ProductCard extends StatelessWidget {
     return icon;
   }
 
-  Widget _iconText({String text, IconData icon}){
-    return Flex(
-      direction: Axis.horizontal,
-      children: [
-        Icon(
-          icon,
-          color: Colors.grey,
-        ),
-        SizedBox(width: 5,),
-        Text('$text'),
-      ],
-    );
-
-  }
+  
 }

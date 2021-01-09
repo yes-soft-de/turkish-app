@@ -44,7 +44,9 @@ class _HouseDetailsScreenState extends State<HouseDetailsScreen> {
                       width: 20,
                       child: CircleAvatar(
                         radius: 20,
-                        backgroundImage: NetworkImage('https://images.pexels.com/photos/127229/pexels-photo-127229.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500 1x, https://images.pexels.com/photos/127229/pexels-photo-127229.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500 2x'),
+                        backgroundImage: NetworkImage(
+                            'https://images.pexels.com/photos/127229/pexels-photo-127229.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500 1x, https://images.pexels.com/photos/127229/pexels-photo-127229.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500 2x'
+                        ),
                       ),
                     ),
                   ),

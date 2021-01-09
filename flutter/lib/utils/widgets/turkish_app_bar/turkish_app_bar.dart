@@ -1,5 +1,6 @@
 
 import 'package:flutter/material.dart';
+import 'package:turkesh/module_search/ui/screen/search_screen/seach_screen.dart';
 import 'package:turkesh/utils/project_colors/project_colors.dart';
 
 
@@ -34,6 +35,12 @@ class TurkishAppBar {
 //           Navigator.pushNamed(drawerKey.currentContext,
 //                          SearchRoutes.ROUTE_Search
 //           );
+             Navigator.push(
+                 context,
+                 MaterialPageRoute(
+                   builder: (context)=>SearchScreen()
+                 )
+             );
          },
              child: Icon(
                  Icons.search,

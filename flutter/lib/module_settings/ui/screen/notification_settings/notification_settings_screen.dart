@@ -68,6 +68,22 @@ class _NotificationSettingsScreenState extends State<NotificationSettingsScreen>
           ),
         ],
       ),
+      bottomNavigationBar: GestureDetector(
+        onTap: (){},
+        child: Container(
+          color: ProjectColors.THEME_COLOR,
+          height: 65,
+          child: Center(
+            child: Text(
+              'Save Changes',
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 16,
+              ),
+            ),
+          ),
+        ),
+      ),
     );
   }
 }
