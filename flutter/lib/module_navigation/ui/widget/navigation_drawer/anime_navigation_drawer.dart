@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:turkesh/module_notification/ui/screen/notifications/notification_screen.dart';
-import 'package:turkesh/module_search/ui/screen/search_screen/seach_screen.dart';
-import 'package:turkesh/utils/project_colors/project_colors.dart';
+import 'package:hersay/module_notification/ui/screen/notifications/notification_screen.dart';
+import 'package:hersay/module_search/ui/screen/search_screen/seach_screen.dart';
+import 'package:hersay/utils/project_colors/project_colors.dart';
 
 class TurkishNavigationDrawer extends StatelessWidget {
 //  final ProfileSharedPreferencesHelper _profileSharedPreferencesHelper;
@@ -15,12 +15,11 @@ class TurkishNavigationDrawer extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: 230,
-
       child: Drawer(
           child: Container(
-            color: ProjectColors.THEME_COLOR,
-            child: Column(
-        children: [
+        color: ProjectColors.THEME_COLOR,
+        child: Column(
+          children: [
             Container(
               padding: EdgeInsets.only(top: 30, bottom: 10),
               height: 175,
@@ -83,8 +82,8 @@ class TurkishNavigationDrawer extends StatelessWidget {
                 ),
                 GestureDetector(
                   onTap: () {
-                    Navigator.of(context).push(
-                        MaterialPageRoute(builder: (context) => SearchScreen()));
+                    Navigator.of(context).push(MaterialPageRoute(
+                        builder: (context) => SearchScreen()));
                   },
                   child: Container(
                     color: ProjectColors.SECONDARY_COLOR,
@@ -163,9 +162,9 @@ class TurkishNavigationDrawer extends StatelessWidget {
                 ),
               ],
             ),
-        ],
-      ),
-          )),
+          ],
+        ),
+      )),
     );
   }
 }

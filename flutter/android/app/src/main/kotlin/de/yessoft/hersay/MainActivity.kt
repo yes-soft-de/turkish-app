@@ -1,4 +1,4 @@
-package com.example.turkesh
+package de.yessoft.hersay
 
 import io.flutter.embedding.android.FlutterActivity
 

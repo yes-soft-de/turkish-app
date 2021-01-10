@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:turkesh/utils/project_colors/project_colors.dart';
+import 'package:hersay/utils/project_colors/project_colors.dart';
 
 class SettingSwitchWidget extends StatefulWidget {
-
   final String text;
 
   SettingSwitchWidget({this.text});
@@ -23,9 +22,7 @@ class _SettingSwitchWidgetState extends State<SettingSwitchWidget> {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text(
-                  '${widget.text}'
-              ),
+              Text('${widget.text}'),
               Switch(
                 value: isSwitched,
                 onChanged: (isOn) {
@@ -40,7 +37,7 @@ class _SettingSwitchWidgetState extends State<SettingSwitchWidget> {
           ),
         ),
         Container(
-          width: MediaQuery.of(context).size.width*0.8,
+          width: MediaQuery.of(context).size.width * 0.8,
           height: 1,
           color: Colors.grey,
         )

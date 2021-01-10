@@ -1,9 +1,8 @@
-
 import 'dart:math';
 
 import 'package:animate_icons/animate_icons.dart';
 import 'package:flutter/material.dart';
-import 'package:turkesh/utils/project_colors/project_colors.dart';
+import 'package:hersay/utils/project_colors/project_colors.dart';
 
 class HomeFab extends StatefulWidget {
   final Function() onPressed;
@@ -16,8 +15,7 @@ class HomeFab extends StatefulWidget {
   _HomeFabState createState() => _HomeFabState();
 }
 
-class _HomeFabState extends State<HomeFab>
-    with SingleTickerProviderStateMixin {
+class _HomeFabState extends State<HomeFab> with SingleTickerProviderStateMixin {
   bool isOpened = false;
   AnimationController _animationController;
   Animation<Color> _buttonColor;
@@ -32,12 +30,11 @@ class _HomeFabState extends State<HomeFab>
   initState() {
     controller = AnimateIconController();
 
-
     _animationController =
-    AnimationController(vsync: this, duration: Duration(milliseconds: 500))
-      ..addListener(() {
-        setState(() {});
-      });
+        AnimationController(vsync: this, duration: Duration(milliseconds: 500))
+          ..addListener(() {
+            setState(() {});
+          });
     _animateIcon =
         Tween<double>(begin: 0.0, end: 1.0).animate(_animationController);
     _buttonColor = ColorTween(
@@ -86,7 +83,7 @@ class _HomeFabState extends State<HomeFab>
       height: 37,
       child: FloatingActionButton(
         backgroundColor: ProjectColors.THEME_COLOR,
-        onPressed:null,
+        onPressed: null,
         tooltip: 'Add',
         child: Icon(Icons.mobile_screen_share),
       ),
@@ -110,13 +107,11 @@ class _HomeFabState extends State<HomeFab>
     return Container(
       width: 37,
       height: 37,
-
       child: FloatingActionButton(
         backgroundColor: ProjectColors.THEME_COLOR,
         onPressed: null,
         tooltip: 'Inbox',
         child: Icon(Icons.home),
-
       ),
     );
   }
@@ -156,84 +151,63 @@ class _HomeFabState extends State<HomeFab>
 
   @override
   Widget build(BuildContext context) {
-    return
-      Container(
-          height: 200,
-          width: 200,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: [
-              Column(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  Container(
-
-                    child: Stack(
-                      alignment: Alignment.center,
-                      children: [
-
-                        Transform(
-                          transform: Matrix4.translationValues(
-                            _translateButton.value * 4,
-                            0.0 ,
-                            0.0,
-                          ),
-                          child: GestureDetector(
-                              onTap: (){
-                                print('mobile');
-                              },
-                              child: mobile()
-                          ),
+    return Container(
+        height: 200,
+        width: 200,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: [
+            Column(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                Container(
+                  child: Stack(
+                    alignment: Alignment.center,
+                    children: [
+                      Transform(
+                        transform: Matrix4.translationValues(
+                          _translateButton.value * 4,
+                          0.0,
+                          0.0,
                         ),
-
-
-
-
-                        Transform(
-                          transform: Matrix4.translationValues(
-                            _translateButton.value * 3,
-                            _translateButton.value * 3,
-                            0.0,
-                          ),
-                          child: GestureDetector(
-                              onTap:(){
-                                print('car');
-                              },
-                              child: car()
-                          ),
-
+                        child: GestureDetector(
+                            onTap: () {
+                              print('mobile');
+                            },
+                            child: mobile()),
+                      ),
+                      Transform(
+                        transform: Matrix4.translationValues(
+                          _translateButton.value * 3,
+                          _translateButton.value * 3,
+                          0.0,
                         ),
-                        Transform(
-                          transform: Matrix4.translationValues(
-                            0.0,
-                            _translateButton.value * 3.5,
-                            0.0,
-                          ),
-                          child: GestureDetector(
-                              onTap: (){
-                                print('home');
-                              },
-                              child: home()
-                          ),
-
+                        child: GestureDetector(
+                            onTap: () {
+                              print('car');
+                            },
+                            child: car()),
+                      ),
+                      Transform(
+                        transform: Matrix4.translationValues(
+                          0.0,
+                          _translateButton.value * 3.5,
+                          0.0,
                         ),
-
-                         toggle()
-
-                      ],
-
-
-                    ),
-                  )
-                ],
-              )
-            ],
-          )
-
-      )
-         ;
-
-
+                        child: GestureDetector(
+                            onTap: () {
+                              print('home');
+                            },
+                            child: home()),
+                      ),
+                      toggle()
+                    ],
+                  ),
+                )
+              ],
+            )
+          ],
+        ));
 
 //      Column(
 //      mainAxisAlignment: MainAxisAlignment.end,
@@ -273,67 +247,55 @@ class _HomeFabState extends State<HomeFab>
   }
 }
 
-
-
 class RadialAnimation extends StatelessWidget {
-  RadialAnimation({ Key key, this.controller, this.scale })
+  RadialAnimation({Key key, this.controller, this.scale})
       :
 
-  // ...omitted
+        // ...omitted
 
         translation = Tween<double>(
           begin: 0.0,
           end: 100.0,
         ).animate(
-          CurvedAnimation(
-              parent: controller,
-              curve: Curves.linear
-          ),
+          CurvedAnimation(parent: controller, curve: Curves.linear),
         ),
-
         super(key: key);
 
   final AnimationController controller;
   final Animation<double> scale;
   final Animation<double> translation;
 
-
   build(context) {
     return AnimatedBuilder(
         animation: controller,
         builder: (context, builder) {
-          return Stack(
-              alignment: Alignment.center,
-              children: [
-                _buildButton(0, color: Colors.red, icon: Icons.favorite),
-                _buildButton(45, color: Colors.green, icon: Icons.favorite),
-                _buildButton(90, color: Colors.orange, icon: Icons.favorite),
-                _buildButton(135, color: Colors.blue, icon: Icons.favorite),
-                _buildButton(180, color: Colors.black, icon: Icons.favorite),
-                _buildButton(225, color: Colors.indigo, icon: Icons.favorite),
-                _buildButton(270, color: Colors.pink, icon: Icons.favorite),
-                _buildButton(315, color: Colors.yellow, icon: Icons.favorite),
-                // ...omitted
-              ]);
+          return Stack(alignment: Alignment.center, children: [
+            _buildButton(0, color: Colors.red, icon: Icons.favorite),
+            _buildButton(45, color: Colors.green, icon: Icons.favorite),
+            _buildButton(90, color: Colors.orange, icon: Icons.favorite),
+            _buildButton(135, color: Colors.blue, icon: Icons.favorite),
+            _buildButton(180, color: Colors.black, icon: Icons.favorite),
+            _buildButton(225, color: Colors.indigo, icon: Icons.favorite),
+            _buildButton(270, color: Colors.pink, icon: Icons.favorite),
+            _buildButton(315, color: Colors.yellow, icon: Icons.favorite),
+            // ...omitted
+          ]);
         });
   }
 
-  _buildButton(double angle, { Color color, IconData icon }) {
-    final double rad = angle * (pi / 180.0)  ;
+  _buildButton(double angle, {Color color, IconData icon}) {
+    final double rad = angle * (pi / 180.0);
     return Transform(
         transform: Matrix4.identity()
           ..translate(
-              (translation.value) * cos(rad),
-              (translation.value) * sin(rad)
-          ),
-
+              (translation.value) * cos(rad), (translation.value) * sin(rad)),
         child: FloatingActionButton(
             child: Icon(icon),
             backgroundColor: color,
             onPressed: _close,
-            elevation: 0)
-    );
+            elevation: 0));
   }
+
   _open() {
     controller.forward();
   }

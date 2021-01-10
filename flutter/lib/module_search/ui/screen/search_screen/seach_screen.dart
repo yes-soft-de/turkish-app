@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:turkesh/module_navigation/ui/widget/navigation_drawer/anime_navigation_drawer.dart';
-import 'package:turkesh/utils/project_colors/project_colors.dart';
-import 'package:turkesh/utils/widgets/turkish_app_bar/turkish_app_bar.dart';
+import 'package:hersay/module_navigation/ui/widget/navigation_drawer/anime_navigation_drawer.dart';
+import 'package:hersay/utils/project_colors/project_colors.dart';
+import 'package:hersay/utils/widgets/turkish_app_bar/turkish_app_bar.dart';
 
 class SearchScreen extends StatefulWidget {
 //  final SearchStateManager _stateManager;
@@ -50,10 +50,10 @@ class _SearchScreenState extends State<SearchScreen> {
     return Scaffold(
       key: _scaffoldKey,
       drawer: TurkishNavigationDrawer(),
-      appBar: TurkishAppBar.getTurkishAppBar(context,_scaffoldKey, 'Search'),
+      appBar: TurkishAppBar.getTurkishAppBar(context, _scaffoldKey, 'Search'),
       body: SingleChildScrollView(
         child: Container(
-          padding: EdgeInsets.symmetric(horizontal: 10,vertical: 10),
+          padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
           child: Column(
             children: [
               Center(

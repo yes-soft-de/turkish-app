@@ -1,29 +1,24 @@
-
 import 'package:flutter/material.dart';
-import 'package:turkesh/module_search/ui/screen/search_screen/seach_screen.dart';
-import 'package:turkesh/utils/project_colors/project_colors.dart';
-
+import 'package:hersay/module_search/ui/screen/search_screen/seach_screen.dart';
+import 'package:hersay/utils/project_colors/project_colors.dart';
 
 class TurkishAppBar {
   static AppBar getTurkishAppBar(
-      BuildContext context,
-      GlobalKey<ScaffoldState> drawerKey,
-      String title,
-      ) {
-
+    BuildContext context,
+    GlobalKey<ScaffoldState> drawerKey,
+    String title,
+  ) {
     return AppBar(
-      backgroundColor:     ProjectColors.THEME_COLOR,
+      backgroundColor: ProjectColors.THEME_COLOR,
       elevation: 1,
       centerTitle: true,
       automaticallyImplyLeading: true,
-      title:Text(
-        '$title'
-      ),
+      title: Text('$title'),
       leading: IconButton(
         onPressed: () {
 //          drawerKey.currentState.openDrawer();
         },
-          icon: Icon(Icons.menu),
+        icon: Icon(Icons.menu),
       ),
       actions: <Widget>[
         // GestureDetector(
@@ -35,51 +30,37 @@ class TurkishAppBar {
         // SizedBox(
         //   width: 5,
         // ),
-         GestureDetector(
-             onTap: () {
+        GestureDetector(
+            onTap: () {
 //           Navigator.pushNamed(drawerKey.currentContext,
 //                          SearchRoutes.ROUTE_Search
 //           );
-             Navigator.push(
-                 context,
-                 MaterialPageRoute(
-                   builder: (context)=>SearchScreen()
-                 )
-             );
-         },
-             child: Icon(
-                 Icons.search,
-               size: 35,
-             )),
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => SearchScreen()));
+            },
+            child: Icon(
+              Icons.search,
+              size: 35,
+            )),
         SizedBox(
-             width: 10,
-          ),
+          width: 10,
+        ),
         //Add more icon here
       ],
     );
-
-
   }
 
   static AppBar getTurkishOrdinaryAppBar(
-      BuildContext context,
+    BuildContext context,
 //      GlobalKey<ScaffoldState> drawerKey,
-      String title,
-      ) {
-
+    String title,
+  ) {
     return AppBar(
-      backgroundColor:     ProjectColors.THEME_COLOR,
+      backgroundColor: ProjectColors.THEME_COLOR,
       elevation: 1,
       centerTitle: true,
       automaticallyImplyLeading: true,
-      title:Text(
-          '$title'
-      ),
-
-
+      title: Text('$title'),
     );
-
-
   }
-
 }

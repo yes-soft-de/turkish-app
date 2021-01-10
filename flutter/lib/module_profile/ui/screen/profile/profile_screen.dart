@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:turkesh/module_navigation/ui/widget/navigation_drawer/anime_navigation_drawer.dart';
-import 'package:turkesh/module_profile/widget/circular_image.dart';
-import 'package:turkesh/utils/project_colors/project_colors.dart';
-import 'package:turkesh/utils/widgets/turkish_app_bar/turkish_app_bar.dart';
+import 'package:hersay/module_navigation/ui/widget/navigation_drawer/anime_navigation_drawer.dart';
+import 'package:hersay/module_profile/widget/circular_image.dart';
+import 'package:hersay/utils/project_colors/project_colors.dart';
+import 'package:hersay/utils/widgets/turkish_app_bar/turkish_app_bar.dart';
 
 class ProfileScreen extends StatefulWidget {
   @override
@@ -18,10 +18,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
     return _screenUi(height);
   }
 
-  Widget _screenUi(double height){
+  Widget _screenUi(double height) {
     return Scaffold(
       key: _scaffoldKey,
-      appBar: TurkishAppBar.getTurkishAppBar(context,_scaffoldKey,'Profile'),
+      appBar: TurkishAppBar.getTurkishAppBar(context, _scaffoldKey, 'Profile'),
       drawer: TurkishNavigationDrawer(),
       body: SingleChildScrollView(
         child: Container(
@@ -33,11 +33,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 decoration: BoxDecoration(
                     image: DecorationImage(
                         image: NetworkImage(
-                        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ3L3H3l0sputiPxI2VL4XSLHfBo1qgmJlabw&usqp=CAU'
-                        ),
-                        fit: BoxFit.cover
-                    )
-                ),
+                            'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ3L3H3l0sputiPxI2VL4XSLHfBo1qgmJlabw&usqp=CAU'),
+                        fit: BoxFit.cover)),
 //            child: Container(
 //              width: double.infinity,
 //              height: 175,
@@ -57,10 +54,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
 //              ),
 //            ),
               ),
-
-
-
-
               Container(
                 height: 50,
                 color: ProjectColors.SECONDARY_COLOR,
@@ -71,73 +64,74 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     Text(
                       'Zolfekar Seleten',
                       style: TextStyle(
-                        fontSize: 14,
-                        fontWeight:FontWeight.bold,
-                        color: Colors.white
-
-                      ),
+                          fontSize: 14,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white),
                     ),
                     Container(
                       height: 40,
                       child: FloatingActionButton(
-                        onPressed: (){},
+                        onPressed: () {},
                         backgroundColor: Colors.white,
-                        child: Icon(Icons.edit,color: ProjectColors.SECONDARY_COLOR,),
+                        child: Icon(
+                          Icons.edit,
+                          color: ProjectColors.SECONDARY_COLOR,
+                        ),
                       ),
                     ),
-
                   ],
                 ),
               ),
-
               Container(
                 height: 200,
                 padding: EdgeInsets.symmetric(horizontal: 30),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                      Row(
+                    Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
                           'Edit Account',
                           style: TextStyle(
-                              fontSize: 14,
-                              fontWeight:FontWeight.bold,
-
+                            fontSize: 14,
+                            fontWeight: FontWeight.bold,
                           ),
                         ),
                         Container(
                           height: 40,
                           child: FloatingActionButton(
-                            onPressed: (){},
+                            onPressed: () {},
                             backgroundColor: Colors.white,
-                            child: Icon(Icons.edit,color: ProjectColors.SECONDARY_COLOR,),
+                            child: Icon(
+                              Icons.edit,
+                              color: ProjectColors.SECONDARY_COLOR,
+                            ),
                           ),
                         ),
-
                       ],
                     ),
-                      Row(
+                    Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
                           'Delete Account',
                           style: TextStyle(
-                              fontSize: 14,
-                              fontWeight:FontWeight.bold,
-
+                            fontSize: 14,
+                            fontWeight: FontWeight.bold,
                           ),
                         ),
                         Container(
                           height: 40,
                           child: FloatingActionButton(
-                            onPressed: (){},
+                            onPressed: () {},
                             backgroundColor: Colors.white,
-                            child: Icon(Icons.delete,color: ProjectColors.SECONDARY_COLOR,),
+                            child: Icon(
+                              Icons.delete,
+                              color: ProjectColors.SECONDARY_COLOR,
+                            ),
                           ),
                         ),
-
                       ],
                     ),
                   ],
@@ -147,7 +141,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
           ),
         ),
       ),
-
     );
   }
 }
