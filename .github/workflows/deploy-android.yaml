@@ -68,7 +68,7 @@ jobs:
 
       - name: Install bundle
         run: |
-          cd ./android
+          cd ./flutter/android
           gem install bundler
           bundle update --bundler
           bundle config path vendor/bundle
