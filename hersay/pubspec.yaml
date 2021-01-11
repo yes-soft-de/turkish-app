@@ -84,7 +84,6 @@ dependencies:
 
   # Payment
   flutter_credit_card: ^0.1.1
-  stripe_payment : ^1.0.9
 
 dev_dependencies:
   flutter_test:
