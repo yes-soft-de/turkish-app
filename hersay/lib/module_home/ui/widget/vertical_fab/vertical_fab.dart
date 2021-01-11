@@ -33,7 +33,7 @@ class _VerticalFabState extends State<VerticalFab>
     controller = AnimateIconController();
 
     _animationController =
-        AnimationController(vsync: this, duration: Duration(milliseconds: 500))
+        AnimationController(duration: Duration(milliseconds: 500))
           ..addListener(() {
             setState(() {});
           });
