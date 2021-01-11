@@ -82,6 +82,7 @@ class _HomeFabState extends State<HomeFab> with SingleTickerProviderStateMixin {
       width: 37,
       height: 37,
       child: FloatingActionButton(
+        heroTag: 'device',
         backgroundColor: ProjectColors.THEME_COLOR,
         onPressed: null,
         tooltip: 'Add',
@@ -95,6 +96,7 @@ class _HomeFabState extends State<HomeFab> with SingleTickerProviderStateMixin {
       width: 37,
       height: 37,
       child: FloatingActionButton(
+        heroTag: 'car',
         backgroundColor: ProjectColors.THEME_COLOR,
         onPressed: null,
         tooltip: 'Image',
@@ -108,6 +110,7 @@ class _HomeFabState extends State<HomeFab> with SingleTickerProviderStateMixin {
       width: 37,
       height: 37,
       child: FloatingActionButton(
+        heroTag: 'house',
         backgroundColor: ProjectColors.THEME_COLOR,
         onPressed: null,
         tooltip: 'Inbox',
@@ -161,8 +164,7 @@ class _HomeFabState extends State<HomeFab> with SingleTickerProviderStateMixin {
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
                 Container(
-                  child: Stack(
-                    alignment: Alignment.center,
+                  child: Column(
                     children: [
                       Transform(
                         transform: Matrix4.translationValues(

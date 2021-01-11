@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hersay/module_home/model/home/home_model.dart';
-import 'package:hersay/module_home/ui/widget/home_fab/home_fab.dart';
+import 'package:hersay/module_home/ui/widget/vertical_fab/vertical_fab.dart';
 import 'package:hersay/module_navigation/ui/widget/navigation_drawer/anime_navigation_drawer.dart';
 import 'package:hersay/module_products/ui/screen/car_details/car_details_screen.dart';
 import 'package:hersay/module_products/ui/screen/electronic_device_details/electronic_device_details_screen.dart';
@@ -128,7 +128,7 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
             );
           }),
-//      floatingActionButton: HomeFab(),
+      floatingActionButton: VerticalFab(),
     );
   }
 }
