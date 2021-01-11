@@ -1,11 +1,12 @@
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:hersay/module_chat/ui/screen/chats_list/chats_list_screen.dart';
-import 'package:hersay/module_history/ui/screen/history/history_screen.dart';
-import 'package:hersay/module_home/ui/sceen/home/home_screen.dart';
-import 'package:hersay/module_profile/ui/screen/profile/profile_screen.dart';
-import 'package:hersay/module_settings/ui/screen/settings/settings_screen.dart';
-import 'package:hersay/utils/project_colors/project_colors.dart';
+import 'package:turkesh/module_chat/ui/screen/chats_list/chats_list_screen.dart';
+import 'package:turkesh/module_history/ui/screen/history/history_screen.dart';
+import 'package:turkesh/module_home/ui/sceen/home/home_screen.dart';
+import 'package:turkesh/module_profile/ui/screen/profile/profile_screen.dart';
+import 'package:turkesh/module_settings/ui/screen/settings/settings_screen.dart';
+import 'package:turkesh/utils/project_colors/project_colors.dart';
 
 class MainScreen extends StatefulWidget {
   final HomeScreen _homeScreen = new HomeScreen();
@@ -14,9 +15,11 @@ class MainScreen extends StatefulWidget {
   final ProfileScreen _profileScreen = new ProfileScreen();
   final HistoryScreen _historyScreen = new HistoryScreen();
 
+ 
   @override
   _MainScreenState createState() => _MainScreenState();
 }
+
 
 class _MainScreenState extends State<MainScreen> {
   final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
@@ -39,7 +42,10 @@ class _MainScreenState extends State<MainScreen> {
   @override
   void dispose() {
     super.dispose();
+
   }
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -48,6 +54,7 @@ class _MainScreenState extends State<MainScreen> {
         _pageIndex = ModalRoute.of(context).settings.arguments;
       }
     }
+
 
     var pages = [
       widget._homeScreen,

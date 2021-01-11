@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:hersay/module_navigation/ui/widget/navigation_drawer/anime_navigation_drawer.dart';
-import 'package:hersay/module_settings/ui/screen/general_settings/general_settings_screen.dart';
-import 'package:hersay/module_settings/ui/screen/notification_settings/notification_settings_screen.dart';
-import 'package:hersay/module_settings/ui/screen/privacy_settings/privacy_settings_screen.dart';
-import 'package:hersay/utils/project_colors/project_colors.dart';
-import 'package:hersay/utils/widgets/icon_text/icon_text_widget.dart';
-import 'package:hersay/utils/widgets/turkish_app_bar/turkish_app_bar.dart';
+import 'package:turkesh/module_navigation/ui/widget/navigation_drawer/anime_navigation_drawer.dart';
+import 'package:turkesh/module_settings/ui/screen/general_settings/general_settings_screen.dart';
+import 'package:turkesh/module_settings/ui/screen/notification_settings/notification_settings_screen.dart';
+import 'package:turkesh/module_settings/ui/screen/privacy_settings/privacy_settings_screen.dart';
+import 'package:turkesh/utils/project_colors/project_colors.dart';
+import 'package:turkesh/utils/widgets/icon_text/icon_text_widget.dart';
+import 'package:turkesh/utils/widgets/turkish_app_bar/turkish_app_bar.dart';
 
 class SettingsScreen extends StatefulWidget {
   @override
@@ -24,7 +24,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
     return Scaffold(
       key: _scaffoldKey,
       drawer: TurkishNavigationDrawer(),
-      appBar: TurkishAppBar.getTurkishAppBar(context, _scaffoldKey, 'Settings'),
+      appBar: TurkishAppBar.getTurkishAppBar(context,_scaffoldKey, 'Settings'),
       body: Column(
         children: [
           Container(

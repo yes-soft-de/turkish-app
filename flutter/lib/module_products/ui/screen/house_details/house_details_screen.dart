@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:hersay/utils/project_colors/project_colors.dart';
-import 'package:hersay/utils/widgets/turkish_app_bar/turkish_app_bar.dart';
+import 'package:turkesh/utils/project_colors/project_colors.dart';
+import 'package:turkesh/utils/widgets/turkish_app_bar/turkish_app_bar.dart';
 
 class HouseDetailsScreen extends StatefulWidget {
   @override
@@ -12,11 +12,11 @@ class _HouseDetailsScreenState extends State<HouseDetailsScreen> {
 
   @override
   Widget build(BuildContext context) {
-    width = MediaQuery.of(context).size.width;
+    width =  MediaQuery.of(context).size.width;
     return _screenUi();
   }
 
-  Widget _screenUi() {
+  Widget _screenUi(){
     return Scaffold(
       appBar: TurkishAppBar.getTurkishOrdinaryAppBar(context, ''),
       body: SingleChildScrollView(
@@ -45,13 +45,12 @@ class _HouseDetailsScreenState extends State<HouseDetailsScreen> {
                       child: CircleAvatar(
                         radius: 20,
                         backgroundImage: NetworkImage(
-                            'https://images.pexels.com/photos/127229/pexels-photo-127229.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500 1x, https://images.pexels.com/photos/127229/pexels-photo-127229.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500 2x'),
+                            'https://images.pexels.com/photos/127229/pexels-photo-127229.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500 1x, https://images.pexels.com/photos/127229/pexels-photo-127229.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500 2x'
+                        ),
                       ),
                     ),
                   ),
-                  SizedBox(
-                    width: 10,
-                  ),
+                  SizedBox(width: 10,),
                   Text(
                     'Steve Josh',
                     style: TextStyle(
@@ -59,6 +58,7 @@ class _HouseDetailsScreenState extends State<HouseDetailsScreen> {
                       fontWeight: FontWeight.bold,
                     ),
                   ),
+
                 ],
               ),
               // House image
@@ -69,26 +69,29 @@ class _HouseDetailsScreenState extends State<HouseDetailsScreen> {
                     image: DecorationImage(
                         fit: BoxFit.fill,
                         image: NetworkImage(
-                            'https://q4g9y5a8.rocketcdn.me/wp-content/uploads/2020/02/home-banner-2020-02-min.jpg'))),
+                        'https://q4g9y5a8.rocketcdn.me/wp-content/uploads/2020/02/home-banner-2020-02-min.jpg'
+                        )
+                    )
+                ),
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   FlatButton(
                     shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(5)),
+                        borderRadius: BorderRadius.circular(5)
+                    ),
                     color: ProjectColors.THEME_COLOR,
-                    onPressed: () {},
+                    onPressed: (){},
                     child: Flex(
                       direction: Axis.horizontal,
                       children: [
-                        Icon(
-                          Icons.picture_in_picture,
-                          color: Colors.white,
-                        ),
+                        Icon(Icons.picture_in_picture,color: Colors.white,),
                         Text(
                           'Show Pics',
-                          style: TextStyle(color: Colors.white),
+                          style: TextStyle(
+                              color: Colors.white
+                          ),
                         )
                       ],
                     ),
@@ -96,38 +99,63 @@ class _HouseDetailsScreenState extends State<HouseDetailsScreen> {
                 ],
               ),
 
+
               //House details
-              Text('Type : House'),
-              Text('Space : 250 SM'),
-              Text('Floors number : 3'),
-              Text('Cladding : Super Deluxe'),
-              Text('Furnished House'),
-              Text('Address :  Sisili, Istanbul, Turkey'),
-              Text('Rooms : 3 Bathrooms, 5 Bedrooms and Carage'),
+              Text(
+                  'Type : House'
+              ),
+              Text(
+                  'Space : 250 SM'
+              ),
+              Text(
+                  'Floors number : 3'
+              ),
+              Text(
+                  'Cladding : Super Deluxe'
+              ),
+              Text(
+                  'Furnished House'
+              ),
+              Text(
+                  'Address :  Sisili, Istanbul, Turkey'
+              ),
+              Text(
+                  'Rooms : 3 Bathrooms, 5 Bedrooms and Carage'
+              ),
               Center(
-                child: Text('Price : 300,253 \$'),
+                child:   Text(
+                    'Price : 300,253 \$'
+                ),
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   FlatButton(
                     shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(5)),
-                    color: ProjectColors.THEME_COLOR,
-                    onPressed: () {},
+                        borderRadius: BorderRadius.circular(5)
+                    ),
+                    color:ProjectColors.THEME_COLOR ,
+                    onPressed: (){},
                     child: Text(
                       'Request Lawer',
-                      style: TextStyle(fontSize: 10, color: Colors.white),
+                      style: TextStyle(
+                          fontSize: 10,
+                          color: Colors.white
+                      ),
                     ),
                   ),
                   FlatButton(
                     shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(5)),
-                    color: ProjectColors.THEME_COLOR,
-                    onPressed: () {},
+                        borderRadius: BorderRadius.circular(5)
+                    ),
+                    color:ProjectColors.THEME_COLOR ,
+                    onPressed: (){},
                     child: Text(
                       'Request Chat',
-                      style: TextStyle(fontSize: 10, color: Colors.white),
+                      style: TextStyle(
+                          fontSize: 10,
+                          color: Colors.white
+                      ),
                     ),
                   ),
                 ],
