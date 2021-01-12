@@ -112,9 +112,6 @@ flutter:
   uses-material-design: true
   assets:
     - assets/images/
-    - assets/images/300ppi/
-    - assets/images/1x/
-    - assets/images/SVG/
 
 flutter_intl:
   enabled: true
