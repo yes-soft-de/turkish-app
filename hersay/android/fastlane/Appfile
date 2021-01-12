@@ -1,2 +1,2 @@
 json_key_file("play_config.json")
-package_name("de.norista.app")
+package_name("de.yessoft.hersay")
