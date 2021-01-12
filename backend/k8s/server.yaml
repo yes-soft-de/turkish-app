@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: webserver
+  name: turkey-app-webserver
   namespace: turkey-app
   labels:
     app: apache
@@ -17,24 +17,24 @@ spec:
     spec:
       containers:
       - name: php-apache
-        image: gcr.io/yescloud/turkey-app
+        image: gcr.io/gcr.io/pc-api-6479467557629758909-343/turkey-app
         ports:
         - containerPort: 80
         volumeMounts:
-        - name: pvc-sym-m
+        - name: turkey-app-pvc-sym-m
           mountPath: /var/www/upload/image
       volumes:
-      - name: pvc-sym-m
+      - name: turkey-app-pvc-sym-m
         persistentVolumeClaim:
-          claimName: pvc-sym-uploud
+          claimName: turkey-app-pvc-sym-uploud
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: web-service
+  name: turkey-app-web-service
   namespace: turkey-app
   labels:
-    run: web-service
+    run: turkey-app-web-service
 spec:
   type: LoadBalancer
   ports:
@@ -46,7 +46,7 @@ spec:
 apiVersion: v1                  
 kind: PersistentVolumeClaim     
 metadata:                       
-   name: pvc-sym-uploud
+   name: turkey-app-pvc-sym-uploud
    namespace: turkey-app
 spec:                           
    accessModes:                  
