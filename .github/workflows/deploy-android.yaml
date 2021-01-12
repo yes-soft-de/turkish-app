@@ -76,7 +76,7 @@ jobs:
 
       - name: Distribute app to Alpha track 🚀
         run: |
-          cd android
+          cd ./hersay
           bundle exec fastlane alpha
 
       - name: Upload APK as artifacts
