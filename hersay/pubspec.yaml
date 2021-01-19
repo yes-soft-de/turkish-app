@@ -38,7 +38,7 @@ dependencies:
   shared_preferences: ^0.5.12+4
 
   # Open Url in Chrome
-  url_launcher: ^5.7.10
+  url_launcher: ^5.7.0
 
   # Network Agent
   dio: ^3.0.10
@@ -74,7 +74,7 @@ dependencies:
   # Internationalization
   intl: ^0.16.1
   intl_translation: ^0.17.10
-  intl_utils: ^1.9.0
+  intl_utils: ^1.6.5
 
   # Toasts
   fluttertoast: ^7.1.6
@@ -95,7 +95,7 @@ dev_dependencies:
 
   build_runner: ^1.10.1
 
-  test: ^1.15.4
+  test: ^1.15.2
 
   inject_generator:
     git:

@@ -1,0 +1,41 @@
+{
+  "asset": "asset:hersay/lib/module_auth/service/auth/auth.service.dart",
+  "summary": {
+    "injector": [],
+    "module": [],
+    "injectable": [
+      {
+        "name": "AuthService",
+        "constructor": {
+          "name": "",
+          "kind": "constructor",
+          "injectedType": {
+            "lookupKey": {
+              "root": "asset:hersay/lib/module_auth/service/auth/auth.service.dart#AuthService",
+              "qualifier": null
+            },
+            "isProvider": false
+          },
+          "singleton": false,
+          "asynchronous": false,
+          "dependencies": [
+            {
+              "lookupKey": {
+                "root": "asset:hersay/lib/module_auth/persistance/auth_prefs_helper.dart#AuthPrefsHelper",
+                "qualifier": null
+              },
+              "isProvider": false
+            },
+            {
+              "lookupKey": {
+                "root": "asset:hersay/lib/module_auth/manager/auth/auth.manager.dart#AuthManager",
+                "qualifier": null
+              },
+              "isProvider": false
+            }
+          ]
+        }
+      }
+    ]
+  }
+}
