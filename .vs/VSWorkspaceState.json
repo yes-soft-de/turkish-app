@@ -1,0 +1,13 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\backend",
+    "\\backend\\config",
+    "\\backend\\config\\routes",
+    "\\backend\\config\\routes\\dev",
+    "\\backend\\public",
+    "\\backend\\templates"
+  ],
+  "SelectedNode": "\\backend\\config\\routes.yaml",
+  "PreviewInSolutionExplorer": false
+}

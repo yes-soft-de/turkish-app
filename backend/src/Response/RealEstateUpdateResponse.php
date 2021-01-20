@@ -32,4 +32,6 @@ class RealEstateUpdateResponse
     public $homeFurnishing;
 
     public $realEstateType;
+
+    public $rooms;
 }

@@ -6,17 +6,21 @@ use DateTime;
 
 class StatusCreateRequest
 {
-    private $userID;
-    private $LawyerID;
-    private $status;
     private $createdBy;
+    private $lawyerID;
+    private $status;
     private $createdAt;
 
+
     /**
-     * @param mixed $createdBy
-     */
-    public function setCreatedBy($createdBy): void
+     * Set the value of createdBy
+     *
+     * @return  self
+     */ 
+    public function setCreatedBy($createdBy)
     {
         $this->createdBy = $createdBy;
+
+        return $this;
     }
 }

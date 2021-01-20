@@ -6,9 +6,8 @@ namespace App\Response;
 
 class StatusCreateResponse
 {
-    public $userID;
-    public $LawyerID;
-    public $status;
     public $createdBy;
+    public $lawyerID;
+    public $status;
     public $createdAt;
 }

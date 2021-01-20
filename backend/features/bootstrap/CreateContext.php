@@ -1,11 +1,6 @@
 <?php
 
 use Behat\Behat\Context\Context;
-use Behat\Behat\Hook\Scope\BeforeScenarioScope;
-use Behat\Gherkin\Node\PyStringNode;
-use Behat\Gherkin\Node\TableNode;
-use GuzzleHttp\Client;
-use GuzzleHttp\Psr7\Response;
 
 /**
  * Defines application features from the specific context.
@@ -76,16 +71,23 @@ class CreateContext implements Context
      */
     public function iRequestCreateANewCarWithTheDataIHave()
     {
-        $this->response = $this->httpClient->post(
-            ConfigLinks::$BASE_API . ConfigLinks::$CAR_ENDPOINTS,
-            [
-                'body'=>json_encode($this->car),
-                'headers'=>[
-                    "Authorization" => "Bearer " . $this->token,
-                    "Accept"        => "application/json",
+        try
+        {
+            $this->response = $this->httpClient->post(
+                ConfigLinks::$BASE_API . ConfigLinks::$CAR_ENDPOINTS,
+                [
+                    'body' => json_encode($this->car),
+                    'headers' => [
+                        "Authorization" => "Bearer " . $this->token,
+                        "Accept" => "application/json",
+                    ]
                 ]
-            ]
-        );
+            );
+        }
+        catch (GuzzleHttp\Exception\ClientException $ex)
+        {
+            $this->exception = $ex->getResponse()->getBody()->getContents();
+        }
     }
 
     /**
@@ -171,7 +173,7 @@ class CreateContext implements Context
     {
         $data = json_decode($this->response->getBody(), true);
 
-        if($data['Data']['roles'] == null)
+        if($data['Data']['userID'] != "u5000")
         {
             throw new Exception('Error in register a new user!');
         }
@@ -193,7 +195,7 @@ class CreateContext implements Context
     public function iRequestCreateANewAdminWithTheDataIHave()
     {
         $this->response = $this->httpClient->post(
-            ConfigLinks::$BASE_API . 'createnimda',
+            ConfigLinks::$BASE_API . 'createAdmin',
             [
                 "json"=>$this->admin
             ]
@@ -207,7 +209,7 @@ class CreateContext implements Context
     {
         $data = json_decode($this->response->getBody(), true);
 
-        if($data['Data']['email'] != "behatAdmin5@test.com")
+        if($data['Data']['email'] != "behatAdmin100@test.com")
         {
             throw new Exception('Retrieved information does not match the new one!');
         }
@@ -247,7 +249,7 @@ class CreateContext implements Context
     {
         $data = json_decode($this->response->getBody(), true);
 
-        if($data['Data']['userName'] != "behat7")
+        if($data['Data']['userName'] != "u5000")
         {
             throw new Exception('Created data does not match the new one!');
         }
@@ -363,7 +365,7 @@ class CreateContext implements Context
     {
         $data = json_decode($this->response->getBody(), true);
 
-        if($data['Data']['itemID'] != "3")
+        if($data['Data']['itemID'] != "10")
         {
             throw new Exception('Created data does not match the new one!');
         }

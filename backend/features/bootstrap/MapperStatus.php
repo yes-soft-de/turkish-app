@@ -16,20 +16,18 @@ class MapperStatus
         return $this->status;
     }
 
-    public function setStatus($status, $userID, $LawyerID): void
+    public function setStatus($status, $lawyerID): void
     {
         $this->status = new ObjectStatus();
 
-        $this->status->setUserID($userID);
-        $this->status->setLawyerID($LawyerID);
+        $this->status->setLawyerID($lawyerID);
         $this->status->setStatus($status);
     }
 
     public function getStatusAsArray(): array
     {
         return [
-            "userID"=>$this->status->getUserID(),
-            "LawyerID"=>$this->status->getLawyerID(),
+            "lawyerID"=>$this->status->getLawyerID(),
             "status"=>$this->status->getStatus()
         ];
     }

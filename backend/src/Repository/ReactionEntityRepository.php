@@ -38,4 +38,17 @@ class ReactionEntityRepository extends ServiceEntityRepository
         ->getQuery()
         ->getResult();
     }
+
+    public function getReactionForUser($data, $itemID, $userID)
+    {
+        return $this->createQueryBuilder('Reaction')
+        ->andWhere('Reaction.itemID = :itemID')
+        ->andWhere('Reaction.entity = :data')
+        ->andWhere('Reaction.createdBy = :createdBy')
+        ->setParameter('itemID', $itemID)
+        ->setParameter('data', $data)
+        ->setParameter('createdBy', $userID)
+        ->getQuery()
+        ->getResult();
+    }
 }

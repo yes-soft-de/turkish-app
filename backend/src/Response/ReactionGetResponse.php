@@ -5,7 +5,6 @@ namespace App\Response;
 
 class ReactionGetResponse
 {
-    public $id;
     public $createdBy;
     public $createdAt;
     public $type;

@@ -42,7 +42,7 @@ class RealEstateEntityRepository extends ServiceEntityRepository
             ->andWhere('RealEstateEntity.createdBy = :userID')
             ->setParameter('userID', $userID)
             ->getQuery()
-            ->getResult();
+            ->getArrayResult();
     }
 
     public function getFilterLocation($value)

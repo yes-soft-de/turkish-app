@@ -2,8 +2,6 @@
 
 
 use Behat\Behat\Context\Context;
-use GuzzleHttp\Client;
-use GuzzleHttp\Psr7\Response;
 
 class QueryContext implements Context
 {
@@ -21,15 +19,22 @@ class QueryContext implements Context
      */
     public function iRequestMyProfile()
     {
-        $this->response = $this->httpClient->get(
-            ConfigLinks::$BASE_API . 'userprofile',
-            [
-                'headers' => [
-                    "Authorization" => "Bearer " . $this->token,
-                    "Accept"        => "application/json",
+        try
+        {
+            $this->response = $this->httpClient->get(
+                ConfigLinks::$BASE_API . 'userprofile',
+                [
+                    'headers' => [
+                        "Authorization" => "Bearer " . $this->token,
+                        "Accept" => "application/json",
+                    ]
                 ]
-            ]
-        );
+            );
+        }
+        catch (GuzzleHttp\Exception\ClientException $ex)
+        {
+            throw new Exception('No data were found!');
+        }
     }
 
     /**
@@ -50,9 +55,16 @@ class QueryContext implements Context
      */
     public function iRequestACarByID($arg1)
     {
-        $this->response = $this->httpClient->get(
-            ConfigLinks::$BASE_API . 'car/' . $arg1
-        );
+        try
+        {
+            $this->response = $this->httpClient->get(
+                ConfigLinks::$BASE_API . 'car/' . $arg1
+            );
+        }
+        catch (GuzzleHttp\Exception\ClientException $ex)
+        {
+            throw new Exception('No data were found!');
+        }
     }
 
     /**
@@ -75,7 +87,7 @@ class QueryContext implements Context
     {
         $data = json_decode($this->response->getBody(), true);
 
-        if($data['Data']['brand'] != 'Toyota')
+        if($data['Data']['brand'] != 'b 10')
         {
             throw new Exception('Returned data does not match the required!');
         }
@@ -86,15 +98,22 @@ class QueryContext implements Context
      */
     public function iRequestTheCarsOfValidUser()
     {
-        $this->response = $this->httpClient->get(
-            ConfigLinks::$BASE_API . ConfigLinks::$CAR_ENDPOINTS,
-            [
-                'headers'=>[
-                    "Authorization" => "Bearer " . $this->token,
-                    "Accept"        => "application/json",
+        try
+        {
+            $this->response = $this->httpClient->get(
+                ConfigLinks::$BASE_API . ConfigLinks::$CAR_ENDPOINTS,
+                [
+                    'headers' => [
+                        "Authorization" => "Bearer " . $this->token,
+                        "Accept" => "application/json",
+                    ]
                 ]
-            ]
-        );
+            );
+        }
+        catch (GuzzleHttp\Exception\ClientException $ex)
+        {
+            throw new Exception('No data were found!');
+        }
     }
 
     /**
@@ -102,15 +121,22 @@ class QueryContext implements Context
      */
     public function iRequestTheDevicesOfValidUser()
     {
-        $this->response = $this->httpClient->get(
-            ConfigLinks::$BASE_API . ConfigLinks::$DEVICE_ENDPOINTS,
-            [
-                'headers'=>[
-                    "Authorization" => "Bearer " . $this->token,
-                    "Accept"        => "application/json",
+        try
+        {
+            $this->response = $this->httpClient->get(
+                ConfigLinks::$BASE_API . ConfigLinks::$DEVICE_ENDPOINTS,
+                [
+                    'headers' => [
+                        "Authorization" => "Bearer " . $this->token,
+                        "Accept" => "application/json",
+                    ]
                 ]
-            ]
-        );
+            );
+        }
+        catch (GuzzleHttp\Exception\ClientException $ex)
+        {
+            throw new Exception('No data were found!');
+        }
     }
 
     /**
@@ -131,9 +157,16 @@ class QueryContext implements Context
      */
     public function iRequestADeviceByID($arg1)
     {
-        $this->response = $this->httpClient->get(
-            ConfigLinks::$BASE_API . 'device/' . $arg1
-        );
+        try
+        {
+            $this->response = $this->httpClient->get(
+                ConfigLinks::$BASE_API . 'device/' . $arg1
+            );
+        }
+        catch (GuzzleHttp\Exception\ClientException $ex)
+        {
+            throw new Exception('No data were found!');
+        }
     }
 
     /**
@@ -154,7 +187,14 @@ class QueryContext implements Context
      */
     public function iRequestAllCars()
     {
-        $this->response = $this->httpClient->get(ConfigLinks::$BASE_API . 'all-cars');
+        try
+        {
+            $this->response = $this->httpClient->get(ConfigLinks::$BASE_API . 'all-cars');
+        }
+        catch (GuzzleHttp\Exception\ClientException $ex)
+        {
+            throw new Exception('No data were found!');
+        }
     }
 
     /**
@@ -175,7 +215,14 @@ class QueryContext implements Context
      */
     public function iRequestAllDevices()
     {
-        $this->response = $this->httpClient->get(ConfigLinks::$BASE_API . 'all-devices');
+        try
+        {
+            $this->response = $this->httpClient->get(ConfigLinks::$BASE_API . 'all-devices');
+        }
+        catch (GuzzleHttp\Exception\ClientException $ex)
+        {
+            throw new Exception('No data were found!');
+        }
     }
 
     /**
@@ -196,7 +243,14 @@ class QueryContext implements Context
      */
     public function iRequestAllRealEstates()
     {
-        $this->response = $this->httpClient->get(ConfigLinks::$BASE_API . 'all-real-estate');
+        try
+        {
+            $this->response = $this->httpClient->get(ConfigLinks::$BASE_API . 'all-real-estate');
+        }
+        catch (GuzzleHttp\Exception\ClientException $ex)
+        {
+            throw new Exception('No data were found!');
+        }
     }
 
     /**
@@ -217,15 +271,22 @@ class QueryContext implements Context
      */
     public function iRequestTheRealEstatesOfValidUser()
     {
-        $this->response = $this->httpClient->get(
-            ConfigLinks::$BASE_API . 'real-estates',
-            [
-                'headers'=>[
-                    "Authorization" => "Bearer " . $this->token,
-                    "Accept"        => "application/json",
+        try
+        {
+            $this->response = $this->httpClient->get(
+                ConfigLinks::$BASE_API . 'real-estates',
+                [
+                    'headers' => [
+                        "Authorization" => "Bearer " . $this->token,
+                        "Accept" => "application/json",
+                    ]
                 ]
-            ]
-        );
+            );
+        }
+        catch (GuzzleHttp\Exception\ClientException $ex)
+        {
+            throw new Exception('No data were found!');
+        }
     }
 
     /**
@@ -246,9 +307,16 @@ class QueryContext implements Context
      */
     public function iRequestARealEstateByID($arg1)
     {
-        $this->response = $this->httpClient->get(
-            ConfigLinks::$BASE_API . ConfigLinks::$REAL_ESTATE_ENDPOINT . '/' . $arg1
-        );
+        try
+        {
+            $this->response = $this->httpClient->get(
+                ConfigLinks::$BASE_API . ConfigLinks::$REAL_ESTATE_ENDPOINT . '/' . $arg1
+            );
+        }
+        catch (GuzzleHttp\Exception\ClientException $ex)
+        {
+            throw new Exception('No data were found!');
+        }
     }
 
     /**
@@ -279,16 +347,23 @@ class QueryContext implements Context
      */
     public function iRequestTheReactionsOfAnItemWithId($arg1)
     {
-        $this->response = $this->httpClient->get(
-            ConfigLinks::$BASE_API . ConfigLinks::$REACTION_ENDPOINT . '/' . $arg1,
-            [
-                'body'=>json_encode($this->reaction),
-                'headers'=>[
-                    "Authorization" => "Bearer " . $this->token,
-                    "Accept"        => "application/json",
+        try
+        {
+            $this->response = $this->httpClient->get(
+                ConfigLinks::$BASE_API . ConfigLinks::$REACTION_ENDPOINT . '/' . $arg1,
+                [
+                    'body' => json_encode($this->reaction),
+                    'headers' => [
+                        "Authorization" => "Bearer " . $this->token,
+                        "Accept" => "application/json",
+                    ]
                 ]
-            ]
-        );
+            );
+        }
+        catch (GuzzleHttp\Exception\ClientException $ex)
+        {
+            throw new Exception('No data were found!');
+        }
     }
 
 
@@ -310,15 +385,127 @@ class QueryContext implements Context
      */
     public function iRequestAllMyInteractions()
     {
-        $this->response = $this->httpClient->get(
-            ConfigLinks::$BASE_API . ConfigLinks::$REACTION_ENDPOINT,
-            [
-                'headers'=>[
-                    "Authorization" => "Bearer " . $this->token,
-                    "Accept"        => "application/json",
+        try
+        {
+            $this->response = $this->httpClient->get(
+                ConfigLinks::$BASE_API . ConfigLinks::$REACTION_ENDPOINT,
+                [
+                    'headers' => [
+                        "Authorization" => "Bearer " . $this->token,
+                        "Accept" => "application/json",
+                    ]
                 ]
-            ]
-        );
+            );
+        }
+        catch (GuzzleHttp\Exception\ClientException $ex)
+        {
+            throw new Exception('No data were found!');
+        }
+    }
+
+    /**
+     * @When I request the status of valid user
+     */
+    public function iRequestTheStatusOfValidUser()
+    {
+        try
+        {
+            $this->response = $this->httpClient->get(
+                ConfigLinks::$BASE_API . ConfigLinks::$STATUS_ENDPOINT,
+                [
+                    'headers' => [
+                        "Authorization" => "Bearer " . $this->token,
+                        "Accept" => "application/json",
+                    ]
+                ]
+            );
+        }
+        catch (GuzzleHttp\Exception\ClientException $ex)
+        {
+            throw new Exception('No data were found!');
+        }
+    }
+
+    /**
+     * @Then A json response with the requested status information
+     */
+    public function aJsonResponseWithTheRequestedStatusInformation()
+    {
+        $data = json_decode($this->response->getBody(), true);
+
+        if(!($data['Data']))
+        {
+            throw new Exception('Returned data does not match the required!');
+        }
+    }
+
+    /**
+     * @When I request check if user reacted with an item of ID :arg1
+     */
+    public function iRequestCheckIfUserReactedWithAnItemOfId($arg1)
+    {
+        try
+        {
+            $this->response = $this->httpClient->get(
+                ConfigLinks::$BASE_API . 'reactionForUser/' . $arg1,
+                [
+                    'json' => $this->reaction
+                ]
+            );
+        }
+        catch (GuzzleHttp\Exception\ClientException $ex)
+        {
+            $this->exception = $ex->getResponse()->getBody()->getContents();
+        }
+    }
+
+    /**
+     * @Then I expect a response with reaction information
+     */
+    public function iExpectAResponseWithReactionInformation()
+    {
+        $data = json_decode($this->response->getBody(), true);
+
+        if($data['Data'][0]['type'] == null)
+        {
+            throw new Exception('Returned data does not match the required!');
+        }
+    }
+
+    /**
+     * @When I request a status by ID :arg1
+     */
+    public function iRequestAStatusById($arg1)
+    {
+        try
+        {
+            $this->response = $this->httpClient->get(
+                ConfigLinks::$BASE_API . 'getAgreementID/' . $arg1,
+                [
+                    'headers' => [
+                        "Authorization" => "Bearer " . $this->token,
+                        "Accept" => "application/json",
+                    ]
+                ]
+            );
+        }
+        catch (GuzzleHttp\Exception\ClientException $ex)
+        {
+            throw new Exception('No data were found!');
+        }
+    }
+
+    /**
+     * @Then A json response with the status information
+     */
+    public function aJsonResponseWithTheStatusInformation()
+    {
+        $data = json_decode($this->response->getBody(), true);
+
+        if(!($data['Data']))
+        {
+            throw new Exception('Returned data does not match the required!');
+        }
     }
 
 
