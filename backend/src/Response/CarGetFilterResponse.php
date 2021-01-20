@@ -25,6 +25,8 @@ class CarGetFilterResponse
     public $createdBy;
 
     public $createdAt;
+    
+    public $updateAt;
 
     public $distance;
 
@@ -36,7 +38,11 @@ class CarGetFilterResponse
 
     public $fuel;
 
-    public $location;
+    public $country;
+
+    public $city;
 
     public $image;
+
+    public $state;
 }

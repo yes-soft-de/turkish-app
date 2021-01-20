@@ -29,7 +29,7 @@ class DeviceManager
     public function create(DeviceCreateRequest $request)
     {
         $deviceEntity = $this->autoMapping->map(DeviceCreateRequest::class, DeviceEntity::class, $request);
-
+        $deviceEntity->setProductionYear($deviceEntity->getProductionYear());
         $this->entityManager->persist($deviceEntity);
         $this->entityManager->flush();
         $this->entityManager->clear();
@@ -37,9 +37,9 @@ class DeviceManager
         return $deviceEntity;
     }
 
-    public function getDeviceById(GetByIdRequest $request)
+    public function getDeviceById($id)
     {
-        return $this->deviceEntityRepository->getDeviceById($request->getId());
+        return $this->deviceEntityRepository->getDeviceById($id);
     }
 
     public function getDevicesOfUser($userID)
@@ -55,16 +55,17 @@ class DeviceManager
     public function update(DeviceUpdateRequest $request)
     {
         $deviceEntity = $this->deviceEntityRepository->find($request->getId());
-
+        $request->setUpdateAt($request->getUpdateAt());
+        
         if(!$deviceEntity)
         {
             return null;
         }
         else
         {
+            
             $deviceEntity = $this->autoMapping->mapToObject(DeviceUpdateRequest::class,
-                DeviceEntity::class, $request, $deviceEntity);
-
+                DeviceEntity::class, $request, $deviceEntity); 
             $this->entityManager->flush();
 
             return $deviceEntity;
@@ -73,7 +74,7 @@ class DeviceManager
 
     public function delete(DeleteRequest $request)
     {
-        $deviceEntity = $this->deviceEntityRepository->getDeviceById($request->getId());
+        $deviceEntity = $this->deviceEntityRepository->find($request->getId());
         if(!$deviceEntity )
         {
 
@@ -93,9 +94,9 @@ class DeviceManager
             return $this->deviceEntityRepository->getFilterPrice($value);
         }
 
-        if ($key == 'location')
+        if ($key == 'city')
         {
-            return $this->deviceEntityRepository->getFilterLocation($value);
+            return $this->deviceEntityRepository->getFilterCity($value);
         }
     }
     

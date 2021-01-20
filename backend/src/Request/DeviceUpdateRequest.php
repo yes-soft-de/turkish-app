@@ -2,12 +2,14 @@
 
 
 namespace App\Request;
-
+use DateTime;
 
 class DeviceUpdateRequest
 {
     private $id;
 
+    private $type;
+    
     private $brand;
 
     private $cpu;
@@ -26,11 +28,13 @@ class DeviceUpdateRequest
 
     private $createdBy;
 
-    private $createdAt;
+    private $updateAt;
 
     private $gauge;
 
-    private $location;
+    private $country;
+
+    private $city;
 
     private $durationOfUse;
 
@@ -196,20 +200,20 @@ class DeviceUpdateRequest
         $this->createdBy = $createdBy;
     }
 
-    /**
+     /**
      * @return mixed
      */
-    public function getCreatedAt()
+    public function getUpdateAt()
     {
-        return $this->createdAt;
+        return $this->updateAt;
     }
 
     /**
-     * @param mixed $createdAt
+     * @param mixed $updateAt
      */
-    public function setCreatedAt($createdAt): void
+    public function setUpdateAt($updateAt): void
     {
-        $this->createdAt = $createdAt;
+         $this->updateAt = new DateTime('Now')  ;
     }
 
     /**
@@ -231,17 +235,32 @@ class DeviceUpdateRequest
     /**
      * @return mixed
      */
-    public function getLocation()
+    public function getCountry()
     {
-        return $this->location;
+        return $this->country;
     }
 
     /**
-     * @param mixed $location
+     * @param mixed $country
      */
-    public function setLocation($location): void
+    public function setCountry($country): void
     {
-        $this->location = $location;
+        $this->country = $country;
+    }
+    /**
+     * @return mixed
+     */
+    public function getCity()
+    {
+        return $this->city;
+    }
+
+    /**
+     * @param mixed $city
+     */
+    public function setCity($city): void
+    {
+        $this->city = $city;
     }
 
     /**

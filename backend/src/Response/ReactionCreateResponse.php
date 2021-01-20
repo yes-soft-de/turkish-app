@@ -6,8 +6,6 @@ class ReactionCreateResponse
 {
     public $id;
 
-    public $createdBy;
-
     public $type;
 
     public $createdAt;
@@ -15,15 +13,7 @@ class ReactionCreateResponse
     public $itemID;
     
     public $entity;
-
-    /**
-     * @return mixed
-     */
-    public function getCreatedBy()
-    {
-        return $this->createdBy;
-    }
-
+    
     /**
      * @return mixed
      */

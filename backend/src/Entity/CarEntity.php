@@ -65,6 +65,12 @@ class CarEntity
     private $createdAt;
 
     /**
+     * @Gedmo\Timestampable(on="update")
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    private $updateAt;
+
+    /**
      * @ORM\Column(type="string", length=255)
      */
     private $distance;
@@ -90,9 +96,14 @@ class CarEntity
     private $fuel;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=100)
      */
-    private $location;
+    private $country;
+
+    /**
+     * @ORM\Column(type="string", length=100)
+     */
+    private $city;
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -103,6 +114,12 @@ class CarEntity
      * @ORM\Column(type="boolean", nullable=true)
      */
     private $specialLink;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $state;
+
 
     public function getId(): ?int
     {
@@ -133,14 +150,14 @@ class CarEntity
         return $this;
     }
 
-    public function getProductionYear(): ?\DateTimeInterface
+    public function getProductionYear()
     {
         return $this->yearOfRelease;
     }
 
-    public function setProductionYear(?\DateTimeInterface $yearOfRelease): self
+    public function setProductionYear($yearOfRelease): self
     {
-        $this->yearOfRelease = $yearOfRelease;
+        $this->yearOfRelease = new \DateTime($yearOfRelease);
 
         return $this;
     }
@@ -213,6 +230,18 @@ class CarEntity
     public function setCreatedAt(\DateTimeInterface $createdAt): self
     {
         $this->createdAt = $createdAt;
+
+        return $this;
+    }
+
+    public function getUpdateAt(): ?\DateTimeInterface
+    {
+        return $this->updateAt;
+    }
+
+    public function setUpdateAt(\DateTimeInterface $updateAt): self
+    {
+        $this->updateAt = $updateAt;
 
         return $this;
     }
@@ -309,6 +338,18 @@ class CarEntity
     public function setSpecialLink(?bool $specialLink): self
     {
         $this->specialLink = $specialLink;
+
+        return $this;
+    }
+
+    public function getState(): ?string
+    {
+        return $this->state;
+    }
+
+    public function setState(?string $state): self
+    {
+        $this->state = $state;
 
         return $this;
     }

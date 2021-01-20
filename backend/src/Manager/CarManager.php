@@ -29,7 +29,7 @@ class CarManager
     public function create(CarCreateRequest $request)
     {
         $carEntity = $this->autoMapping->map(CarCreateRequest::class, CarEntity::class, $request);
-
+        $carEntity->setProductionYear($carEntity->getProductionYear());
         $this->entityManager->persist($carEntity);
         $this->entityManager->flush();
         $this->entityManager->clear();
@@ -37,9 +37,14 @@ class CarManager
         return $carEntity;
     }
 
-    public function getCarById(GetByIdRequest $request)
+    public function getCarById($id)
     {
-        return $this->carEntityRepository->getCarById($request->getId());
+        return $this->carEntityRepository->getCarById($id);
+    }
+
+    public function getCarByIdUnaccepted($id)
+    {
+        return $this->carEntityRepository->getCarByIdUnaccepted($id);
     }
 
     public function getCarsOfUser($userID)
@@ -52,10 +57,16 @@ class CarManager
         return $this->carEntityRepository->getAllCars();
     }
 
+    public function getAllCarsUnaccepted()
+    {
+        return $this->carEntityRepository->getAllCarsUnaccepted();
+    }
+
     public function update(CarUpdateRequest $request)
     {
         $carEntity = $this->carEntityRepository->find($request->getId());
-
+        $request->setUpdateAt($request->getUpdateAt());
+        
         if(!$carEntity)
         {
             return null;
@@ -73,7 +84,7 @@ class CarManager
 
     public function delete(DeleteRequest $request)
     {
-        $carEntity = $this->carEntityRepository->getCarById($request->getId());
+        $carEntity = $this->carEntityRepository->find($request->getId());
         if(!$carEntity )
         {
 
@@ -88,9 +99,9 @@ class CarManager
 
     public function getFilter($value, $key)
     {
-        if ($key == 'location')
+        if ($key == 'city')
         {
-            return $this->carEntityRepository->getFilterLocation($value);
+            return $this->carEntityRepository->getFilterCity($value);
         }
 
         if ($key == 'price')

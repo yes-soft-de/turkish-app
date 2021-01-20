@@ -26,6 +26,11 @@ class DeviceEntity
     /**
      * @ORM\Column(type="string", length=255)
      */
+    private $type;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
     private $cpu;
 
     /**
@@ -65,19 +70,30 @@ class DeviceEntity
 
     /**
      * @Gedmo\Timestampable(on="create")
-     * @ORM\Column(type="datetime")
+     * @ORM\Column(type="datetime", nullable=true)
      */
     private $createdAt;
-
+    
+    /**
+     * @Gedmo\Timestampable(on="update")
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    private $updateAt;
+    
     /**
      * @ORM\Column(type="string", length=255)
      */
     private $gauge;
 
-    /**
-     * @ORM\Column(type="string", length=255)
+     /**
+     * @ORM\Column(type="string", length=100)
      */
-    private $location;
+    private $country;
+
+    /**
+     * @ORM\Column(type="string", length=100)
+     */
+    private $city;
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -107,6 +123,18 @@ class DeviceEntity
     public function setModel(string $brand): self
     {
         $this->brand = $brand;
+
+        return $this;
+    }
+
+    public function getType(): ?string
+    {
+        return $this->type;
+    }
+
+    public function setType(string $type): self
+    {
+        $this->type = $type;
 
         return $this;
     }
@@ -159,14 +187,14 @@ class DeviceEntity
         return $this;
     }
 
-    public function getProductionYear(): ?\DateTimeInterface
+    public function getProductionYear()
     {
         return $this->yearOfRelease;
     }
 
-    public function setProductionYear(?\DateTimeInterface $yearOfRelease): self
+    public function setProductionYear($yearOfRelease): self
     {
-        $this->yearOfRelease = $yearOfRelease;
+        $this->yearOfRelease = new \DateTime($yearOfRelease);
 
         return $this;
     }
@@ -207,14 +235,26 @@ class DeviceEntity
         return $this;
     }
 
-    public function getCreatedAt(): ?\DateTimeInterface
+    public function getCreatedAt()
     {
         return $this->createdAt;
     }
 
-    public function setCreatedAt(\DateTimeInterface $createdAt): self
+    public function setCreatedAt( $createdAt): self
     {
         $this->createdAt = $createdAt;
+
+        return $this;
+    }
+
+    public function getUpdateAt()
+    {
+        return $this->updateAt;
+    }
+
+    public function setUpdateAt($updateAt): self
+    {
+        $this->updateAt =$updateAt;
 
         return $this;
     }
@@ -231,14 +271,26 @@ class DeviceEntity
         return $this;
     }
 
-    public function getLocation(): ?string
+    public function getCountry(): ?string
     {
-        return $this->location;
+        return $this->country;
     }
 
-    public function setLocation(string $location): self
+    public function setCountry(string $country): self
     {
-        $this->location = $location;
+        $this->country = $country;
+
+        return $this;
+    }
+
+    public function getCity(): ?string
+    {
+        return $this->city;
+    }
+
+    public function setCity(string $city): self
+    {
+        $this->city = $city;
 
         return $this;
     }

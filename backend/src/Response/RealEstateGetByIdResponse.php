@@ -7,6 +7,8 @@ class RealEstateGetByIdResponse
 {
     public $id;
 
+    public $country;
+    
     public $city;
 
     public $space;
@@ -17,13 +19,13 @@ class RealEstateGetByIdResponse
 
     public $status;
 
-    public $createdBy;
-
     public $createdAt;
 
     public $state;
 
     public $image;
+
+    public $images;
 
     public $numberOfFloors;
 
@@ -32,4 +34,8 @@ class RealEstateGetByIdResponse
     public $homeFurnishing;
 
     public $realEstateType;
+
+    public $reaction;
+
+    public $documents;
 }

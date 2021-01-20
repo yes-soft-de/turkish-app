@@ -7,6 +7,8 @@ namespace App\Response;
 class DeviceCreateResponse
 {
     public $id;
+    
+    public $type;
 
     public $brand;
 
@@ -30,7 +32,9 @@ class DeviceCreateResponse
 
     public $gauge;
 
-    public $location;
+    public $country;
+
+    public $city;
 
     public $durationOfUse;
 

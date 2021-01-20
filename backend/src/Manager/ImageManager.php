@@ -34,8 +34,8 @@ class ImageManager
         return $imageCreate;
     }
 
-    public function getImages($id)
+    public function getImages($id, $entity)
     {
-        return $this->imageEntityRepository->getSwapItemImages($id);
+        return $this->imageEntityRepository->getImages($id, $entity);
     }
 }

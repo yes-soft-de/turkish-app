@@ -19,13 +19,15 @@ class ImageEntityRepository extends ServiceEntityRepository
         parent::__construct($registry, ImageEntity::class);
     }
 
-    public function getSwapItemImages($id)
+    public function getImages($id, $entity)
     {
         return $this->createQueryBuilder('images')
             ->select('images.image', 'images.specialLink')
 
-            ->andWhere('images.swapItemID = :id')
+            ->andWhere('images.itemID = :id')
+            ->andWhere('images.entity = :entity')
             ->setParameter('id', $id)
+            ->setParameter('entity', $entity)
 
             ->getQuery()
             ->getResult();

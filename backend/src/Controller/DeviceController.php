@@ -46,10 +46,13 @@ class DeviceController extends BaseController
 
         $request->setCreatedBy($this->getUserId());
 
+        if (!$request->getStatus()) {
+            $request->setStatus('not sold');
+            }
+
         $violations = $this->validator->validate($request);
 
-        if (\count($violations) > 0)
-        {
+        if (\count($violations) > 0) {
             $violationsString = (string) $violations;
 
             return new JsonResponse($violationsString, Response::HTTP_OK);
@@ -65,11 +68,11 @@ class DeviceController extends BaseController
      * @param Request $request
      * @return JsonResponse
      */
-    public function getCarById(Request $request)
+    public function getDeviceById($id, Request $request)
     {
-        $request = new GetByIdRequest($request->get('id'));
+        $data = json_decode($request->getContent(), true);
 
-        $result = $this->deviceService->getDeviceById($request);
+        $result = $this->deviceService->getDeviceById($id, $this->getUserId(), $data['entity']);
 
         return $this->response($result, self::FETCH);
     }
@@ -78,19 +81,22 @@ class DeviceController extends BaseController
      * @Route("devices", name="getDevicesOfUser", methods={"GET"})
      * @return JsonResponse
      */
-    public function getDevicesOfUser()
+    public function getDevicesOfUser(Request $request)
     {
-        $result = $this->deviceService->getDevicesOfUser($this->getUserId());
+        $data = json_decode($request->getContent(), true);
+
+        $result = $this->deviceService->getDevicesOfUser($this->getUserId() , $data['entity']);
 
         return $this->response($result, self::FETCH);
     }
 
     /**
-     * @Route("all-devices", name="getAllDevices", methods={"GET"})
+     * @Route("allDevices", name="getAllDevices", methods={"GET"})
      */
-    public function getAllDevices()
+    public function getAllDevices(Request $request)
     {
-        $result = $this->deviceService->getAllDevices();
+        $data = json_decode($request->getContent(), true);
+        $result = $this->deviceService->getAllDevices($data['entity'],$this->getUserId());
 
         return $this->response($result, self::FETCH);
     }
@@ -133,7 +139,7 @@ class DeviceController extends BaseController
 
         $result = $this->deviceService->delete($request);
 
-        return $this->response($result, self::DELETE);
+        return $this->response("deleted ", self::DELETE);
     }
     
     /**

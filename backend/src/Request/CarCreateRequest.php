@@ -34,9 +34,13 @@ class CarCreateRequest
 
     private $fuel;
 
-    private $location;
+    private $country;
+
+    private $city;
 
     private $image;
+    
+    private $state;
 
     /**
      * @return mixed
@@ -265,18 +269,45 @@ class CarCreateRequest
     /**
      * @return mixed
      */
-    public function getLocation()
+    public function getCountry()
     {
-        return $this->location;
+        return $this->country;
     }
 
     /**
-     * @param mixed $location
+     * @param mixed $country
      */
-    public function setLocation($location): void
+    public function setCountry($country): void
     {
-        $this->location = $location;
+        $this->country = $country;
     }
 
+    /**
+     * @return mixed
+     */
+    public function getCity()
+    {
+        return $this->city;
+    }
+
+    /**
+     * @param mixed $city
+     */
+    public function setCity($city): void
+    {
+        $this->city = $city;
+    }
+
+    public function getState(): ?string
+    {
+        return $this->state;
+    }
+
+    public function setState(?string $state): self
+    {
+        $this->state = $state;
+
+        return $this;
+    }
 
 }

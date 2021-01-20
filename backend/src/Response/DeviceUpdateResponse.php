@@ -6,6 +6,8 @@ namespace App\Response;
 
 class DeviceUpdateResponse
 {
+    public $type;
+    
     public $brand;
 
     public $cpu;
@@ -28,7 +30,9 @@ class DeviceUpdateResponse
 
     public $gauge;
 
-    public $location;
+    public $country;
+
+    public $city;
 
     public $durationOfUse;
 

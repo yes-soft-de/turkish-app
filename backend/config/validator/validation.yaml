@@ -30,8 +30,6 @@ App\Request\CarCreateRequest:
       - NotBlank: ~
     price:
       - NotBlank: ~
-    status:
-      - NotBlank: ~
     createdBy:
       - NotBlank: ~
     distance:
@@ -42,7 +40,9 @@ App\Request\CarCreateRequest:
       - NotBlank: ~
     cc:
       - NotBlank: ~
-    location:
+    city:
+      - NotBlank: ~
+    country:
       - NotBlank: ~
     gearType:
       - NotBlank: ~
@@ -71,9 +71,13 @@ App\Request\CarUpdateRequest:
       - NotBlank: ~
     cc:
       - NotBlank: ~
-    location:
+    city:
+      - NotBlank: ~
+    country:
       - NotBlank: ~
     gearType:
+      - NotBlank: ~
+    state:
       - NotBlank: ~
 
 App\Request\DeviceCreateRequest:
@@ -88,15 +92,15 @@ App\Request\DeviceCreateRequest:
       - NotBlank: ~
     price:
       - NotBlank: ~
-    status:
-      - NotBlank: ~
     createdBy:
       - NotBlank: ~
     gauge:
       - NotBlank: ~
     durationOfUse:
       - NotBlank: ~
-    location:
+    city:
+      - NotBlank: ~
+    yearOfRelease:
       - NotBlank: ~
 
 App\Request\DeviceUpdateRequest:
@@ -121,7 +125,7 @@ App\Request\DeviceUpdateRequest:
       - NotBlank: ~
     durationOfUse:
       - NotBlank: ~
-    location:
+    city:
       - NotBlank: ~
 
 App\Request\RealEstateCreateRequest:
@@ -132,11 +136,9 @@ App\Request\RealEstateCreateRequest:
       - NotBlank: ~
     price:
       - NotBlank: ~
-    status:
-      - NotBlank: ~
     createdBy:
       - NotBlank: ~
-    state:
+    rooms:
       - NotBlank: ~
 
 App\Request\RealEstateUpdateRequest:
@@ -154,6 +156,8 @@ App\Request\RealEstateUpdateRequest:
     createdBy:
       - NotBlank: ~
     state:
+      - NotBlank: ~
+    rooms:
       - NotBlank: ~
 
 App\Request\StatusCreateRequest:
