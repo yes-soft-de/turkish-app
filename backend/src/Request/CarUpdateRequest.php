@@ -42,6 +42,8 @@ class CarUpdateRequest
 
     private $image;
 
+    private $state;
+
     /**
      * @return mixed
      */
