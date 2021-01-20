@@ -19,7 +19,12 @@ class RealEstateEntity
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=100)
+     */
+    private $country;
+
+    /**
+     * @ORM\Column(type="string", length=100)
      */
     private $city;
 
@@ -53,6 +58,12 @@ class RealEstateEntity
      * @ORM\Column(type="datetime", nullable=true)
      */
     private $createdAt;
+    
+    /**
+     * @Gedmo\Timestampable(on="update")
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    private $updateAt;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
@@ -189,6 +200,19 @@ class RealEstateEntity
         return $this;
     }
 
+    
+    public function getUpdateAt(): ?\DateTimeInterface
+    {
+        return $this->updateAt;
+    }
+
+    public function setUpdateAt(\DateTimeInterface $updateAt): self
+    {
+        $this->updateAt = $updateAt;
+
+        return $this;
+    }
+    
     public function getState(): ?string
     {
         return $this->state;

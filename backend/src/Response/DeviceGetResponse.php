@@ -7,6 +7,8 @@ namespace App\Response;
 class DeviceGetResponse
 {
     public $id;
+    
+    public $type;
 
     public $brand;
 
@@ -24,15 +26,21 @@ class DeviceGetResponse
 
     public $status;
 
-    public $createdBy;
-
     public $createdAt;
 
     public $gauge;
 
-    public $location;
+    public $country;
+
+    public $city;
 
     public $durationOfUse;
 
     public $image;
+
+    public $reaction;
+    
+    public $userName;
+    
+    public $imageUser;
 }

@@ -5,7 +5,8 @@ namespace App\Response;
 
 class ReactionGetResponse
 {
-    public $createdBy;
+    public $userName;
+    public $image;
     public $createdAt;
     public $type;
     public $itemID;

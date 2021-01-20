@@ -6,6 +6,8 @@ namespace App\Request;
 
 class DeviceCreateRequest
 {
+    private $type;
+    
     private $brand;
 
     private $cpu;
@@ -28,7 +30,9 @@ class DeviceCreateRequest
 
     private $gauge;
 
-    private $location;
+    private $country;
+
+    private $city;
 
     private $durationOfUse;
 
@@ -213,17 +217,33 @@ class DeviceCreateRequest
     /**
      * @return mixed
      */
-    public function getLocation()
+    public function getCountry()
     {
-        return $this->location;
+        return $this->country;
     }
 
     /**
-     * @param mixed $location
+     * @param mixed $country
      */
-    public function setLocation($location): void
+    public function setCountry($country): void
     {
-        $this->location = $location;
+        $this->country = $country;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getCity()
+    {
+        return $this->city;
+    }
+
+    /**
+     * @param mixed $city
+     */
+    public function setCity($city): void
+    {
+        $this->city = $city;
     }
 
     /**

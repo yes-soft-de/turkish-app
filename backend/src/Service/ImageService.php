@@ -31,11 +31,11 @@ class ImageService
         return $this->autoMapping->map(ImageEntity::class,ImageCreateResponse::class, $imageCreate);
     }
 
-    public function getImages($id)
+    public function getImages($id, $entity)
     {
         $imagesResponse = [];
 
-        $images = $this->imageManager->getImages($id);
+        $images = $this->imageManager->getImages($id, $entity);
 
         foreach ($images as $image)
         {

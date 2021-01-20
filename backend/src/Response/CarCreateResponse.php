@@ -25,6 +25,8 @@ class CarCreateResponse
     public $createdBy;
 
     public $createdAt;
+    
+    public $updateAt;
 
     public $distance;
 
@@ -36,7 +38,11 @@ class CarCreateResponse
 
     public $fuel;
 
-    public $location;
+    public $country;
 
+    public $city;
+    
     public $image;
+    
+    public $state;
 }

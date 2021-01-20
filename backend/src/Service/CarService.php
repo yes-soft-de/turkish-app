@@ -14,18 +14,28 @@ use App\Response\CarGetByIdResponse;
 use App\Response\CarGetResponse;
 use App\Response\CarGetFilterResponse;
 use App\Response\CarUpdateResponse;
+use App\Service\ReactionService;
+use App\Service\ImageService;
+use App\Service\DocumentService;
+
 use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
 
 class CarService
 {
     private $autoMapping;
     private $carManager;
+    private $reactionService;
+    private $imageService;
+    private $documentService;
     private $params;
 
-    public function __construct(AutoMapping $autoMapping, CarManager $carManager, ParameterBagInterface $params)
+    public function __construct(AutoMapping $autoMapping, CarManager $carManager, ReactionService $reactionService, ImageService $imageService, DocumentService $documentService, ParameterBagInterface $params)
     {
         $this->autoMapping = $autoMapping;
         $this->carManager = $carManager;
+        $this->reactionService = $reactionService;
+        $this->imageService = $imageService;
+        $this->documentService = $documentService;
 
         $this->params = $params->get('upload_base_url').'/';
     }
@@ -37,14 +47,44 @@ class CarService
         return $this->autoMapping->map(CarEntity::class, CarCreateResponse::class, $carResult);
     }
 
-    public function getCarById($request)
-    {
-        $result = $this->carManager->getCarById($request);
+    public function getCarById($id,$userID, $entity)
+    { 
+        $response = [] ;
+        $result = $this->carManager->getCarById($id);
+        
+        foreach ($result as $row) {
 
-        return $this->autoMapping->map(CarEntity::class, CarGetByIdResponse::class, $result);
+            $row['image'] = $this->specialLinkCheck($row['specialLink']).$row['image'];
+            $row['images'] = $this->imageService->getImages($id, $entity);
+
+            $row['reaction']=$this->reactionService->reactionforItem($id, $entity);
+    
+            ($row['reaction'][0]['createdBy'] == $userID) ?  $row['reaction'][0]['createdBy'] = true : $row['reaction'][0]['createdBy'] = false ;
+
+            $response = $this->autoMapping->map('array', CarGetByIdResponse::class, $row);
+            }
+            return $response;
     }
 
-    public function getCarsOfUser($userID)
+    public function getCarByIdUnaccepted($id, $userID, $entity)
+    { 
+        $response = [] ;
+        $result = $this->carManager->getCarByIdUnaccepted($id);
+        
+        foreach ($result as $row) {
+
+            $row['image'] = $this->specialLinkCheck($row['specialLink']).$row['image'];
+            $row['images'] = $this->imageService->getImages($id, $entity);
+
+            $row['documents'] = $this->documentService->getDocuments($id, $entity);
+
+            $response = $this->autoMapping->map('array', CarGetByIdResponse::class, $row);
+            }
+            return $response;
+      
+    }
+
+    public function getCarsOfUser($userID, $entity)
     {
         $response = [];
         $result = $this->carManager->getCarsOfUser($userID);
@@ -53,21 +93,41 @@ class CarService
         {
             $row['image'] = $this->specialLinkCheck($row['specialLink']).$row['image'];
 
+            $row['reaction']=$this->reactionService->reactionforItem($row['id'], $entity);
+
+            ($row['reaction'][0]['createdBy'] == $userID) ?  $row['reaction'][0]['createdBy'] = true : $row['reaction'][0]['createdBy'] = false ;
+
             $response[] = $this->autoMapping->map('array', CarGetResponse::class, $row);
         }
 
         return $response;
     }
 
-    public function getAllCars()
+    public function getAllCars($entity, $userID)
     {
         $response = [];
         $result = $this->carManager->getAllCars();
-
         foreach ($result as $row)
         {
-            $row['image'] = $this->specialLinkCheck($row['specialLink']).$row['image'];
+            $row['image'] = $this->specialLinkCheck($row['specialLink']) . $row['image'];
+            
+            $row['reaction']=$this->reactionService->reactionforItem($row['id'], $entity);
+            ($row['reaction'][0]['createdBy'] == $userID) ?  $row['reaction'][0]['createdBy'] = true : $row['reaction'][0]['createdBy'] = false ;
+          
+            $response[] = $this->autoMapping->map('array', CarGetResponse::class, $row);
+        }
 
+        return $response;
+    }
+
+    public function getAllCarsUnaccepted($entity, $userID)
+    {
+        $response = [];
+        $result = $this->carManager->getAllCarsUnaccepted();
+        foreach ($result as $row)
+        {
+            $row['image'] = $this->specialLinkCheck($row['specialLink']) . $row['image'];
+          
             $response[] = $this->autoMapping->map('array', CarGetResponse::class, $row);
         }
 

@@ -46,6 +46,13 @@ class CarController extends BaseController
 
         $request->setCreatedBy($this->getUserId());
 
+        if (!$request->getStatus()) {
+        $request->setStatus('not sold');
+        }
+        if (!$request->getState()) {
+            $request->setState('Unaccepted');
+            }
+
         $violations = $this->validator->validate($request);
 
         if (\count($violations) > 0)
@@ -65,32 +72,59 @@ class CarController extends BaseController
      * @param Request $request
      * @return JsonResponse
      */
-    public function getCarById(Request $request)
+    public function getCarById($id, Request $request)
     {
-        $request = new GetByIdRequest($request->get('id'));
+        $data = json_decode($request->getContent(), true);
 
-        $result = $this->carService->getCarById($request);
+        $result = $this->carService->getCarById($id, $this->getUserId(), $data['entity']);
 
         return $this->response($result, self::FETCH);
     }
 
     /**
-     * @Route("cars", name="getCarsOfUser", methods={"GET"})
+     * @Route("carUnaccepted/{id}", name="getCarByIdUnaccepted", methods={"GET"})
+     * @param Request $request
      * @return JsonResponse
      */
-    public function getCarsOfUser()
+    public function getCarByIdUnaccepted($id, Request $request)
     {
-        $result = $this->carService->getCarsOfUser($this->getUserId());
+        $data = json_decode($request->getContent(), true);
+
+        $result = $this->carService->getCarByIdUnaccepted($id, $this->getUserId(), $data['entity']);
 
         return $this->response($result, self::FETCH);
     }
 
     /**
-     * @Route("all-cars", name="getAllCars", methods={"GET"})
+     * @Route("cars", name="getCarsOfSpecificUser", methods={"GET"})
+     * @return JsonResponse
      */
-    public function getAllCars()
+    public function getCarsOfUser(Request $request)
     {
-        $result = $this->carService->getAllCars();
+        $data = json_decode($request->getContent(), true);
+        $result = $this->carService->getCarsOfUser($this->getUserId() , $data['entity']);
+
+        return $this->response($result, self::FETCH);
+    }
+
+    /**
+     * @Route("allCars", name="getAllCars", methods={"GET"})
+     */
+    public function getAllCars(Request $request)
+    {
+        $data = json_decode($request->getContent(), true);
+        $result = $this->carService->getAllCars($data['entity'],$this->getUserId());
+
+        return $this->response($result, self::FETCH);
+    }
+
+    /**
+     * @Route("allCarsUnaccepted", name="getAllCars", methods={"GET"})
+     */
+    public function getAllCarsUnaccepted(Request $request)
+    {
+        $data = json_decode($request->getContent(), true);
+        $result = $this->carService->getAllCarsUnaccepted($data['entity'],$this->getUserId());
 
         return $this->response($result, self::FETCH);
     }
@@ -133,7 +167,7 @@ class CarController extends BaseController
 
         $result = $this->carService->delete($request);
 
-        return $this->response($result, self::DELETE);
+        return $this->response("deleted ", self::DELETE);
     }
     
     /**

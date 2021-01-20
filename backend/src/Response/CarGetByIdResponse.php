@@ -6,6 +6,8 @@ namespace App\Response;
 
 class CarGetByIdResponse
 {
+    public $id;
+    
     public $brand;
 
     public $company;
@@ -23,6 +25,8 @@ class CarGetByIdResponse
     public $createdBy;
 
     public $createdAt;
+    
+    public $updateAt;
 
     public $distance;
 
@@ -34,7 +38,15 @@ class CarGetByIdResponse
 
     public $fuel;
 
-    public $location;
+    public $country;
+
+    public $city;
 
     public $image;
+    
+    public $images;
+
+    public $reaction;
+    
+    public $state;
 }

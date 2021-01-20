@@ -36,8 +36,15 @@ class UserService
     public function userProfileCreate(UserProfileCreateRequest $request)
     {
         $userProfile = $this->userManager->userProfileCreate($request);
+       
+        if ($userProfile instanceof UserProfile) {
 
-        return $this->autoMapping->map(UserProfileEntity::class,UserProfileCreateResponse::class, $userProfile);
+             return $this->autoMapping->map(UserProfileEntity::class,UserProfileCreateResponse::class, $userProfile);
+        }
+        else if ($userProfile == 1) {
+           
+            return $this->getUserProfileByUserID($request->getUserID());
+        }
     }
 
     public function userProfileUpdate(UserProfileUpdateRequest $request)

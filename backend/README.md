@@ -33,9 +33,17 @@ php bin/console doctrine:migration:migrate
 * [Reaction](#reaction)
 * [Car](#car)
 * [Device](#device)
+* [Document](#document)
+
+
 
 
 ### Account
+#### Create new lawyer
+```
+/lawyer
+methods: POST
+```
 #### Create new user
 ```
 /user
@@ -78,61 +86,88 @@ methods: PUT
 /status
 methods: GET
 ```
-#### Get a status of a specific user
+#### Get a status agreement By ID
 ```
 /agreement/{ID}
 methods: GET
 ```
 
 ### RealEstate
+note:in postman send "entity":"RealEstateEntity"
+
 #### Create new real estate
+note : status field have default value : not sold.
+
+note : state field have default value : Unaccepted.
 ```
-/real-estate
+/realEstate
 methods: POST
 ```
 #### Get a real estate by ID
 ```
-/real-estate/ID
+/realEstate/ID
 methods: GET
 ```
-#### Get all real estates
+#### Get a real estate by ID Unaccepted
 ```
-/all-real-estate
+/realEstateUnaccepted/ID
+methods: GET
+```
+#### Get all real estates Accepted
+```
+/allRealEstate
+methods: GET
+```
+#### Get all real estates Unaccepted
+```
+/allRealEstateUnaccepted
 methods: GET
 ```
 #### Get all real estates of specific user
 ```
-/real-estates
+/realEstates
 methods: GET
 ```
 #### Update an existing real estate
+note : if sold, submit status field value (sold).
+
+note : if the admin agrees to offer the product, submit state field value (Accepted).
+
 ```
-/real-estate
+/realEstate
 methods: PUT
 ```
 #### Delete an existing real estate
 ```
-/real-estate/ID
+/realEstate/ID
 methods: DELETE
 ```
 #### Filter For real estate
-key = price OR location  
-value = is the value you want to find
+key = price OR city 
+
+value = the value you want to find
+
 for example:
-real-estatesFilter/price/500000
+realEstatesFilter/price/500000
 
 ```
-real-estatesFilter/key/value
+realEstatesFilter/key/value
 methods: GET
 ```
 ### Reaction
+note: type = 1 .
+
+note : in body postman  send entity value : CarEntity or DeviceEntity or RealEstateEntity .
+
+note : itemID could be a car ID, a device ID, or a real estate ID .
+
 #### Insert new reaction
 ```
 /reactions
 methods: POST
 ```
 #### Get all reactions for specific property
-_itemID could be a car ID, a device ID, or a real estate ID_
+
 ```
 /reactions/itemID
 methods: GET
@@ -149,14 +184,25 @@ methods: GET
 ```
 
 ### Car
+note:in body postman send "entity":"CarEntity"
+
 #### Insert new car
+note : status field have default value : not sold.
+
+note : state field have default value : Unaccepted.
+
 ```
 /cars
 methods: POST
 ```
-#### Get a car by ID
+#### Get a car by ID Accepted
 ```
 /car/id
+methods: GET
+```
+#### Get a car by ID Unaccepted
+```
+/carUnaccepted/id
 methods: GET
 ```
 #### Get the cars of specific user
@@ -164,12 +210,20 @@ methods: GET
 /cars
 methods: GET
 ```
-#### Get all cars
+#### Get all cars Accepted
 ```
-/all-cars
+/allCars
+methods: GET
+```
+#### Get all cars Unaccepted
+```
+/allCarsUnaccepted
 methods: GET
 ```
 #### Update a specific car by ID
+note : if sold, submit status field value (sold).
+
+note : if the admin agrees to offer the product, submit state field value (Accepted).
 ```
 /cars
 methods: PUT
@@ -180,10 +234,12 @@ methods: PUT
 methods: DELETE
 ```
 #### Filter For cars
-_key = location OR price. 
-value = is the value you want to find.
+key = city OR price. 
+
+value = the value you want to find.
+
 For example:
-carsFilter/location/syria_
+carsFilter/city/syria
 
 ```
 carsFilter/key/value
@@ -191,6 +247,7 @@ methods: GET
 ```
 
 ### Device
+note:in postman send "entity":"DeviceEntity"
 #### Insert new device
 ```
 /devices
@@ -208,7 +265,7 @@ methods: GET
 ```
 #### Get all devices
 ```
-/all-devices
+/allDevices
 methods: GET
 ```
 #### Update a specific device by ID
@@ -222,12 +279,27 @@ methods: PUT
 methods: DELETE
 ```
 #### Filter For devices
-_key = price OR location. 
-value = is the value you want to find.
+key = price OR city. 
+
+value = the value you want to find.
 For example:
-devicesFilter/price/450000_
+devicesFilter/price/450000
 
 ```
 devicesFilter/key/value
+methods: GET
+```
+
+### Document
+note:in postman body send entity: RealEstateEntity.
+
+#### Insert new document
+```
+/document
+methods: POST
+```
+#### Get documents for item
+```
+documents/itemID/entity
 methods: GET
 ```

@@ -59,6 +59,8 @@ class UserManager
 
     public function userProfileCreate(UserProfileCreateRequest $request)
     {
+        $userProfile = $this->getProfileByUserID($request->getUserID());
+        if ($userProfile == null) {
         $userProfile = $this->autoMapping->map(UserProfileCreateRequest::class, UserProfileEntity::class, $request);
 
         $this->entityManager->persist($userProfile);
@@ -66,6 +68,10 @@ class UserManager
         $this->entityManager->clear();
 
         return $userProfile;
+        }
+        else {
+            return 1;
+        }
     }
 
     public function userProfileUpdate(UserProfileUpdateRequest $request)

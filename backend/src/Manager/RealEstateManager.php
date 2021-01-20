@@ -35,14 +35,24 @@ class RealEstateManager
         return $entity;
     }
 
-    public function getRealEstateById(GetByIdRequest $request)
+    public function getRealEstateById($id)
     {
-        return $result = $this->repository->getRealEstateById($request->getId());
+        return $result = $this->repository->getRealEstateById($id);
+    }
+
+    public function getRealEstateByIdUnaccepted($id)
+    {
+        return $result = $this->repository->getRealEstateByIdUnaccepted($id);
     }
 
     public function getAllRealEstate()
     {
         return $result = $this->repository->getAllRealEstate();
+    }
+
+    public function getAllRealEstateUnaccepted()
+    {
+        return $result = $this->repository->getAllRealEstateUnaccepted();
     }
 
     public function getRealEstateByUser($userID)
@@ -53,7 +63,7 @@ class RealEstateManager
     public function realEstateUpdate(RealEstateUpdateRequest $request)
     {
         $Entity = $this->repository->find($request->getId());
-        $request->setCreatedAt($request->getCreatedAt());
+        $request->setUpdateAt($request->getUpdateAt());
         if (!$Entity) {
 
         } else {
@@ -66,12 +76,9 @@ class RealEstateManager
     public function delete(DeleteRequest $request)
     {
         $item = $this->repository->getRealEstateById($request->getId());
-        if (!$item )
-        {
-          
-        } 
-         else
-         {
+        if (!$item ) {} 
+         
+         else {
             $this->entityManager->remove($item);
             $this->entityManager->flush();
          }
@@ -80,9 +87,9 @@ class RealEstateManager
     
     public function getFilter($value, $key)
     {
-        if ($key == 'location')
+        if ($key == 'city')
         {
-            return $this->repository->getFilterLocation($value);
+            return $this->repository->getFilterCity($value);
         }
         
         if ($key == 'price')
