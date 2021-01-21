@@ -37,7 +37,7 @@ class UserService
     {
         $userProfile = $this->userManager->userProfileCreate($request);
        
-        if ($userProfile instanceof UserProfile) {
+        if ($userProfile instanceof UserProfileEntity) {
 
              return $this->autoMapping->map(UserProfileEntity::class,UserProfileCreateResponse::class, $userProfile);
         }
