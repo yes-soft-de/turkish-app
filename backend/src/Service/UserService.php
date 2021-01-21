@@ -41,8 +41,8 @@ class UserService
 
              return $this->autoMapping->map(UserProfileEntity::class,UserProfileCreateResponse::class, $userProfile);
         }
-        else if ($userProfile == 1) {
-           
+        elseif ($userProfile == 1)
+        {
             return $this->getUserProfileByUserID($request->getUserID());
         }
     }
