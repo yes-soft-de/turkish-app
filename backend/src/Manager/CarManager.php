@@ -76,6 +76,8 @@ class CarManager
             $carEntity = $this->autoMapping->mapToObject(CarUpdateRequest::class,
                 CarEntity::class, $request, $carEntity);
 
+            $carEntity->setProductionYear($carEntity->getProductionYear());
+
             $this->entityManager->flush();
 
             return $carEntity;
