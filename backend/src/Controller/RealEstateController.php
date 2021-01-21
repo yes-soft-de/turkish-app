@@ -61,68 +61,66 @@ class RealEstateController extends BaseController
     } 
     
     /**
-     * @Route("/realEstate/{id}", name="GetAnItemByID",methods={"GET"})
-     * @param Request $request
+     * @Route("/realEstate/{id}", name="GetAnItemByID", methods={"GET"})
      * @return JsonResponse
      */
-    public function getRealEstateById($id,Request $request)
+    public function getRealEstateById($id)
     {
-        $data = json_decode($request->getContent(), true);
+//        $data = json_decode($request->getContent(), true);
        
-        $result = $this->realEstateService->getRealEstateById($id, $this->getUserId(), $data['entity']);
+        $result = $this->realEstateService->getRealEstateById($id, $this->getUserId());
 
         return $this->response($result, self::FETCH);
     }
 
     /**
-     * @Route("/realEstateUnaccepted/{id}", name="GetAnItemByIDUnaccepted",methods={"GET"})
-     * @param Request $request
+     * @Route("/realEstateUnaccepted/{id}", name="GetAnItemByIDUnaccepted", methods={"GET"})
      * @return JsonResponse
      */
-    public function getRealEstateByIdUnaccepted($id,Request $request)
+    public function getRealEstateByIdUnaccepted($id)
     {
-        $data = json_decode($request->getContent(), true);
+//        $data = json_decode($request->getContent(), true);
        
-        $result = $this->realEstateService->getRealEstateByIdUnaccepted($id, $this->getUserId(), $data['entity']);
+        $result = $this->realEstateService->getRealEstateByIdUnaccepted($id, $this->getUserId());
 
         return $this->response($result, self::FETCH);
     }
 
     /**
-     * @Route("/allRealEstate", name="GetAllItemsAccepted",methods={"GET"})
+     * @Route("/allRealEstate", name="GetAllItemsAccepted", methods={"GET"})
      * @return JsonResponse
      */
-    public function getAllRealEstate(Request $request)
+    public function getAllRealEstate()
     {       
-        $data = json_decode($request->getContent(), true);
+//        $data = json_decode($request->getContent(), true);
 
-        $result = $this->realEstateService->getAllRealEstate($data['entity'],$this->getUserId());
+        $result = $this->realEstateService->getAllRealEstate($this->getUserId());
 
         return $this->response($result, self::FETCH);
     }
 
     /**
-     * @Route("/allRealEstateUnaccepted", name="GetAllItemsUnaccepted",methods={"GET"})
+     * @Route("/allRealEstateUnaccepted", name="GetAllItemsUnaccepted", methods={"GET"})
      * @return JsonResponse
      */
-    public function getAllRealEstateUnaccepted(Request $request)
+    public function getAllRealEstateUnaccepted()
     {       
-        $data = json_decode($request->getContent(), true);
+//        $data = json_decode($request->getContent(), true);
 
-        $result = $this->realEstateService->getAllRealEstateUnaccepted($data['entity'],$this->getUserId());
+        $result = $this->realEstateService->getAllRealEstateUnaccepted($this->getUserId());
 
         return $this->response($result, self::FETCH);
     }
 
     /**
-     * @Route("realEstates", name="GetAllItemsOfSpecificUser",methods={"GET"})
+     * @Route("realEstates", name="GetAllItemsOfSpecificUser", methods={"GET"})
      * @return JsonResponse
      */
-    public function getRealEstateByUser(Request $request)
+    public function getRealEstateByUser()
     {       
-        $data = json_decode($request->getContent(), true);
+//        $data = json_decode($request->getContent(), true);
 
-        $result = $this->realEstateService->getRealEstateByUser($this->getUserId() , $data['entity']);
+        $result = $this->realEstateService->getRealEstateByUser($this->getUserId());
 
         return $this->response($result, self::FETCH);
     }

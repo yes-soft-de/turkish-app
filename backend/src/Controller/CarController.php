@@ -69,28 +69,26 @@ class CarController extends BaseController
 
     /**
      * @Route("car/{id}", name="getCarById", methods={"GET"})
-     * @param Request $request
      * @return JsonResponse
      */
-    public function getCarById($id, Request $request)
+    public function getCarById($id)
     {
-        $data = json_decode($request->getContent(), true);
+//        $data = json_decode($request->getContent(), true);
 
-        $result = $this->carService->getCarById($id, $this->getUserId(), $data['entity']);
+        $result = $this->carService->getCarById($id, $this->getUserId());
 
         return $this->response($result, self::FETCH);
     }
 
     /**
      * @Route("carUnaccepted/{id}", name="getCarByIdUnaccepted", methods={"GET"})
-     * @param Request $request
      * @return JsonResponse
      */
-    public function getCarByIdUnaccepted($id, Request $request)
+    public function getCarByIdUnaccepted($id)
     {
-        $data = json_decode($request->getContent(), true);
+//        $data = json_decode($request->getContent(), true);
 
-        $result = $this->carService->getCarByIdUnaccepted($id, $this->getUserId(), $data['entity']);
+        $result = $this->carService->getCarByIdUnaccepted($id, $this->getUserId());
 
         return $this->response($result, self::FETCH);
     }
@@ -101,8 +99,8 @@ class CarController extends BaseController
      */
     public function getCarsOfUser(Request $request)
     {
-        $data = json_decode($request->getContent(), true);
-        $result = $this->carService->getCarsOfUser($this->getUserId() , $data['entity']);
+//        $data = json_decode($request->getContent(), true);
+        $result = $this->carService->getCarsOfUser($this->getUserId());
 
         return $this->response($result, self::FETCH);
     }
@@ -110,21 +108,21 @@ class CarController extends BaseController
     /**
      * @Route("allCars", name="getAllCars", methods={"GET"})
      */
-    public function getAllCars(Request $request)
+    public function getAllCars()
     {
-        $data = json_decode($request->getContent(), true);
-        $result = $this->carService->getAllCars($data['entity'],$this->getUserId());
+//        $data = json_decode($request->getContent(), true);
+        $result = $this->carService->getAllCars($this->getUserId());
 
         return $this->response($result, self::FETCH);
     }
 
     /**
-     * @Route("allCarsUnaccepted", name="getAllCars", methods={"GET"})
+     * @Route("allCarsUnaccepted", name="getAllUnacceptedCars", methods={"GET"})
      */
-    public function getAllCarsUnaccepted(Request $request)
+    public function getAllCarsUnaccepted()
     {
-        $data = json_decode($request->getContent(), true);
-        $result = $this->carService->getAllCarsUnaccepted($data['entity'],$this->getUserId());
+//        $data = json_decode($request->getContent(), true);
+        $result = $this->carService->getAllCarsUnaccepted($this->getUserId());
 
         return $this->response($result, self::FETCH);
     }

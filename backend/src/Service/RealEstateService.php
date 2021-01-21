@@ -25,7 +25,7 @@ class RealEstateService
     private $imageService;
     private $documentService;
     private $params;
-
+    private $entity = "realEstate";
 
     public function __construct(AutoMapping $autoMapping, RealEstateManager $realEstateManager, ImageService $imageService, DocumentService $documentService, ReactionService $reactionService, ParameterBagInterface $params)
     {
@@ -44,7 +44,7 @@ class RealEstateService
         return $this->autoMapping->map(RealEstateEntity::class, RealEstateCreateResponse::class, $create);
     }
 
-    public function getRealEstateById($id,$userID, $entity)
+    public function getRealEstateById($id,$userID)
     {
         $response = [] ;
         $result = $this->realEstateManager->getRealEstateById($id);
@@ -53,9 +53,9 @@ class RealEstateService
 
             $row['image'] = $this->specialLinkCheck($row['specialLink']).$row['image'];
           
-            $row['images'] = $this->imageService->getImages($id, $entity);
+            $row['images'] = $this->imageService->getImages($id, $this->entity);
 
-            $row['reaction']=$this->reactionService->reactionforItem($id, $entity);
+            $row['reaction']=$this->reactionService->reactionforItem($id, $this->entity);
         
             ($row['reaction'][0]['createdBy'] == $userID) ?  $row['reaction'][0]['createdBy'] = true : $row['reaction'][0]['createdBy'] = false ;
            
@@ -65,7 +65,7 @@ class RealEstateService
         return $response;
     }
 
-    public function getRealEstateByIdUnaccepted($id,$userID, $entity)
+    public function getRealEstateByIdUnaccepted($id,$userID)
     {
         $response = [] ;
         $result = $this->realEstateManager->getRealEstateByIdUnaccepted($id);
@@ -74,8 +74,8 @@ class RealEstateService
 
             $row['image'] = $this->specialLinkCheck($row['specialLink']).$row['image'];
           
-            $row['images'] = $this->imageService->getImages($id, $entity);
-            $row['documents'] = $this->documentService->getDocuments($id, $entity);
+            $row['images'] = $this->imageService->getImages($id, $this->entity);
+            $row['documents'] = $this->documentService->getDocuments($id, $this->entity);
            
             $response = $this->autoMapping->map('array', RealEstateGetByIdResponse::class, $row);
            
@@ -83,7 +83,7 @@ class RealEstateService
         return $response;
     }
 
-    public function getAllRealEstate($entity, $userID)
+    public function getAllRealEstate($userID)
     {
         $response = [];
         $result = $this->realEstateManager->getAllRealEstate();
@@ -92,7 +92,7 @@ class RealEstateService
         {
             $row['image'] = $this->specialLinkCheck($row['specialLink']) . $row['image'];
            
-            $row['reaction']=$this->reactionService->reactionforItem($row['id'], $entity);
+            $row['reaction']=$this->reactionService->reactionforItem($row['id'], $this->entity);
             ($row['reaction'][0]['createdBy'] == $userID) ?  $row['reaction'][0]['createdBy'] = true : $row['reaction'][0]['createdBy'] = false ;
           
             $response[] = $this->autoMapping->map('array', RealEstateGetAllResponse::class, $row);
@@ -101,7 +101,7 @@ class RealEstateService
         return $response;
     }
 
-    public function getAllRealEstateUnaccepted($entity, $userID)
+    public function getAllRealEstateUnaccepted($userID)
     {
         $response = [];
         $result = $this->realEstateManager->getAllRealEstateUnaccepted();
@@ -116,7 +116,7 @@ class RealEstateService
         return $response;
     }
 
-    public function getRealEstateByUser($userID, $entity)
+    public function getRealEstateByUser($userID)
     {
         $response = [];
         $result = $this->realEstateManager->getRealEstateByUser($userID);
@@ -125,7 +125,7 @@ class RealEstateService
         {
             $row['image'] = $this->specialLinkCheck($row['specialLink']) . $row['image'];
 
-            $row['reaction']=$this->reactionService->reactionforItem($row['id'], $entity);
+            $row['reaction']=$this->reactionService->reactionforItem($row['id'], $this->entity);
 
             ($row['reaction'][0]['createdBy'] == $userID) ?  $row['reaction'][0]['createdBy'] = true : $row['reaction'][0]['createdBy'] = false ;
 

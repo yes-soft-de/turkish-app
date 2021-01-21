@@ -23,6 +23,7 @@ class DeviceService
     private $reactionService;
     private $imageService;
     private $params;
+    private $entity = "device";
 
     public function __construct(AutoMapping $autoMapping, DeviceManager $deviceManager, ReactionService $reactionService , ImageService $imageService ,ParameterBagInterface $params)
     {
@@ -41,7 +42,7 @@ class DeviceService
         return $this->autoMapping->map(DeviceEntity::class, DeviceCreateResponse::class, $deviceResult);
     }
 
-    public function getDeviceById($id,$userID, $entity )
+    public function getDeviceById($id,$userID)
     { 
         $response = [] ;
         $result = $this->deviceManager->getDeviceById($id);
@@ -50,9 +51,9 @@ class DeviceService
 
             $row['image'] = $this->specialLinkCheck($row['specialLink']).$row['image'];
            
-            $row['images'] = $this->imageService->getImages($id, $entity);
+            $row['images'] = $this->imageService->getImages($id, "device");
            
-            $row['reaction']=$this->reactionService->reactionforItem($id, $entity);
+            $row['reaction']=$this->reactionService->reactionforItem($id, $this->entity);
             
             ($row['reaction'][0]['createdBy'] == $userID) ?  $row['reaction'][0]['createdBy'] = true : $row['reaction'][0]['createdBy'] = false ;
               
@@ -63,7 +64,7 @@ class DeviceService
         return $response;
     }
 
-    public function getDevicesOfUser($userID, $entity)
+    public function getDevicesOfUser($userID)
     {
         $response = [];
         $result = $this->deviceManager->getDevicesOfUser($userID);
@@ -72,7 +73,7 @@ class DeviceService
         {
             $row['image'] = $this->specialLinkCheck($row['specialLink']).$row['image'];
 
-            $row['reaction']=$this->reactionService->reactionforItem($row['id'], $entity);
+            $row['reaction']=$this->reactionService->reactionforItem($row['id'], $this->entity);
 
             ($row['reaction'][0]['createdBy'] == $userID) ?  $row['reaction'][0]['createdBy'] = true : $row['reaction'][0]['createdBy'] = false ;
             
@@ -82,7 +83,7 @@ class DeviceService
         return $response;
     }
 
-    public function getAllDevices($entity, $userID)
+    public function getAllDevices($userID)
     {
         $response = [];
         $result = $this->deviceManager->getAllDevices();
@@ -91,7 +92,7 @@ class DeviceService
         {
             $row['image'] = $this->specialLinkCheck($row['specialLink']) . $row['image'];
            
-            $row['reaction']=$this->reactionService->reactionforItem($row['id'], $entity);
+            $row['reaction']=$this->reactionService->reactionforItem($row['id'], $this->entity);
             ($row['reaction'][0]['createdBy'] == $userID) ?  $row['reaction'][0]['createdBy'] = true : $row['reaction'][0]['createdBy'] = false ;
           
             $response[] = $this->autoMapping->map('array', DeviceGetResponse::class, $row);

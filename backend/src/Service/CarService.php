@@ -28,6 +28,7 @@ class CarService
     private $imageService;
     private $documentService;
     private $params;
+    private $entity = "car";
 
     public function __construct(AutoMapping $autoMapping, CarManager $carManager, ReactionService $reactionService, ImageService $imageService, DocumentService $documentService, ParameterBagInterface $params)
     {
@@ -47,7 +48,7 @@ class CarService
         return $this->autoMapping->map(CarEntity::class, CarCreateResponse::class, $carResult);
     }
 
-    public function getCarById($id,$userID, $entity)
+    public function getCarById($id,$userID)
     { 
         $response = [] ;
         $result = $this->carManager->getCarById($id);
@@ -55,9 +56,9 @@ class CarService
         foreach ($result as $row) {
 
             $row['image'] = $this->specialLinkCheck($row['specialLink']).$row['image'];
-            $row['images'] = $this->imageService->getImages($id, $entity);
+            $row['images'] = $this->imageService->getImages($id, $this->entity);
 
-            $row['reaction']=$this->reactionService->reactionforItem($id, $entity);
+            $row['reaction']=$this->reactionService->reactionforItem($id, $this->entity);
     
             ($row['reaction'][0]['createdBy'] == $userID) ?  $row['reaction'][0]['createdBy'] = true : $row['reaction'][0]['createdBy'] = false ;
 
@@ -66,7 +67,7 @@ class CarService
             return $response;
     }
 
-    public function getCarByIdUnaccepted($id, $userID, $entity)
+    public function getCarByIdUnaccepted($id, $userID)
     { 
         $response = [] ;
         $result = $this->carManager->getCarByIdUnaccepted($id);
@@ -74,9 +75,9 @@ class CarService
         foreach ($result as $row) {
 
             $row['image'] = $this->specialLinkCheck($row['specialLink']).$row['image'];
-            $row['images'] = $this->imageService->getImages($id, $entity);
+            $row['images'] = $this->imageService->getImages($id, $this->entity);
 
-            $row['documents'] = $this->documentService->getDocuments($id, $entity);
+            $row['documents'] = $this->documentService->getDocuments($id, $this->entity);
 
             $response = $this->autoMapping->map('array', CarGetByIdResponse::class, $row);
             }
@@ -84,7 +85,7 @@ class CarService
       
     }
 
-    public function getCarsOfUser($userID, $entity)
+    public function getCarsOfUser($userID)
     {
         $response = [];
         $result = $this->carManager->getCarsOfUser($userID);
@@ -93,7 +94,7 @@ class CarService
         {
             $row['image'] = $this->specialLinkCheck($row['specialLink']).$row['image'];
 
-            $row['reaction']=$this->reactionService->reactionforItem($row['id'], $entity);
+            $row['reaction']=$this->reactionService->reactionforItem($row['id'], $this->entity);
 
             ($row['reaction'][0]['createdBy'] == $userID) ?  $row['reaction'][0]['createdBy'] = true : $row['reaction'][0]['createdBy'] = false ;
 
@@ -103,15 +104,16 @@ class CarService
         return $response;
     }
 
-    public function getAllCars($entity, $userID)
+    public function getAllCars($userID)
     {
         $response = [];
         $result = $this->carManager->getAllCars();
+
         foreach ($result as $row)
         {
             $row['image'] = $this->specialLinkCheck($row['specialLink']) . $row['image'];
             
-            $row['reaction']=$this->reactionService->reactionforItem($row['id'], $entity);
+            $row['reaction']=$this->reactionService->reactionforItem($row['id'], $this->entity);
             ($row['reaction'][0]['createdBy'] == $userID) ?  $row['reaction'][0]['createdBy'] = true : $row['reaction'][0]['createdBy'] = false ;
           
             $response[] = $this->autoMapping->map('array', CarGetResponse::class, $row);
@@ -120,10 +122,11 @@ class CarService
         return $response;
     }
 
-    public function getAllCarsUnaccepted($entity, $userID)
+    public function getAllCarsUnaccepted($userID)
     {
         $response = [];
         $result = $this->carManager->getAllCarsUnaccepted();
+
         foreach ($result as $row)
         {
             $row['image'] = $this->specialLinkCheck($row['specialLink']) . $row['image'];
