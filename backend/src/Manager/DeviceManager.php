@@ -65,7 +65,10 @@ class DeviceManager
         {
             
             $deviceEntity = $this->autoMapping->mapToObject(DeviceUpdateRequest::class,
-                DeviceEntity::class, $request, $deviceEntity); 
+                DeviceEntity::class, $request, $deviceEntity);
+
+            $deviceEntity->setProductionYear($deviceEntity->getProductionYear());
+
             $this->entityManager->flush();
 
             return $deviceEntity;
