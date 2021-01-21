@@ -143,5 +143,7 @@
   "confirmCode": "confirm code",
   "resendCode": "resend code",
   "emailAddressIsRequired": "email address is required",
-  "sendMeCode": "send me code"
+  "sendMeCode": "send me code",
+  "thisFieldCannotBeEmpty": "this field cannot be empty",
+  "youCanUseOnlyNumbers": "you can use only numbers"
 }

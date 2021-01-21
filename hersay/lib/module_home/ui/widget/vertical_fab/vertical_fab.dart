@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:hersay/module_products/products_routes.dart';
 import 'package:hersay/module_products/ui/screen/add_car/add_car_sceen.dart';
 import 'package:hersay/module_products/ui/screen/add_electronic_device/add_electronic_device_screen.dart';
-import 'package:hersay/module_products/ui/screen/add_house/add_house_screen.dart';
+import 'package:hersay/module_products/ui/screen/add_real_estate/add_real_estate_screen.dart';
 import 'package:hersay/utils/project_colors/project_colors.dart';
 import 'package:animate_icons/animate_icons.dart';
 
@@ -123,8 +124,11 @@ class _VerticalFabState extends State<VerticalFab>
         heroTag: 'house',
         backgroundColor: ProjectColors.THEME_COLOR,
         onPressed: () {
-          Navigator.push(context,
-              MaterialPageRoute(builder: (context) => AddHouseScreen()));
+          Navigator.pushNamed(
+              context,
+              ProductsRoutes.ADD_REAL_ESTATE_SCREEN
+          );
+
         },
         tooltip: 'Inbox',
         child: Icon(Icons.home),

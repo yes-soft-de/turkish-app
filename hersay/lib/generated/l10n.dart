@@ -1482,6 +1482,26 @@ class S {
       args: [],
     );
   }
+
+  /// `this field cannot be empty`
+  String get thisFieldCannotBeEmpty {
+    return Intl.message(
+      'this field cannot be empty',
+      name: 'thisFieldCannotBeEmpty',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `you can use only numbers`
+  String get youCanUseOnlyNumbers {
+    return Intl.message(
+      'you can use only numbers',
+      name: 'youCanUseOnlyNumbers',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

@@ -155,6 +155,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "submitGame" : MessageLookupByLibrary.simpleMessage("Submit Game!"),
     "syria" : MessageLookupByLibrary.simpleMessage("Syria"),
     "test" : MessageLookupByLibrary.simpleMessage("ddd"),
+    "thisFieldCannotBeEmpty" : MessageLookupByLibrary.simpleMessage("this field cannot be empty"),
     "thisGameIsGreat" : MessageLookupByLibrary.simpleMessage("This Game is Great"),
     "toMyCollection" : MessageLookupByLibrary.simpleMessage("to my collection"),
     "tos" : MessageLookupByLibrary.simpleMessage("TOS"),
@@ -165,6 +166,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "username" : MessageLookupByLibrary.simpleMessage("Username:"),
     "watchedSeries" : MessageLookupByLibrary.simpleMessage("مسلسلات متابعة"),
     "worldWideSeries" : MessageLookupByLibrary.simpleMessage("المسلسلات الموصى بها عالميا"),
+    "youCanUseOnlyNumbers" : MessageLookupByLibrary.simpleMessage("you can use only numbers"),
     "yourName" : MessageLookupByLibrary.simpleMessage("Your Name")
   };
 }
