@@ -146,57 +146,7 @@ class AddRealEstateStateInit extends AddRealEstateState {
                   ),
                 ),
               ),
-              //build year
-              Container(
-                padding: EdgeInsets.all(5),
-                margin: EdgeInsets.only(top: 30),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(15),
-                ),
-                child: Container(
-                  padding: EdgeInsets.symmetric(horizontal: 10),
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(15),
-                      color: Colors.white,
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.black12,
-                          blurRadius:
-                          2.0, // has the effect of softening the shadow
-                          spreadRadius:
-                          2.0, // has the effect of extending the shadow
-                          offset: Offset(
-                            5.0, // horizontal, move right 10
-                            5.0, // vertical, move down 10
-                          ),
-                        )
-                      ]),
-                  child: DateTimePicker(
-                    type: DateTimePickerType.date,
-                    dateMask: 'yyyy',
-                    initialValue: DateTime.now().toString(),
-                    firstDate: DateTime.utc(1900, 1, 1),
-                    lastDate: DateTime(2100),
-//                         icon: Icon(Icons.event),
-                    dateLabelText: 'Year of release',
 
-                    selectableDayPredicate: (date) {
-                      // Disable weekend days to select from the calendar
-//                             if (date.weekday == 6 || date.weekday == 7) {
-//                               return false;
-//                             }
-
-                      return true;
-                    },
-                    onChanged: (val) => print(val),
-                    validator: (val) {
-                      print(val);
-                      return null;
-                    },
-                    onSaved: (val) => print(val),
-                  ),
-                ),
-              ),
 
               // floor number
               Container(
@@ -667,18 +617,20 @@ class AddRealEstateSuccessState extends AddRealEstateState {
   @override
   Widget getUI(BuildContext context) {
     return Column(
-      mainAxisAlignment: MainAxisAlignment.spaceAround,
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        Text(
-          'your request added and in hold for admin aproval'
+        Container(
+          padding: EdgeInsets.all(10),
+          child: Center(
+            child: Text(
+              'your request has been added and in hold for admin aproval'
+            ),
+          ),
         ),
 
 
-        Flexible(
-                fit: FlexFit.tight,
-                flex: 1,
-                child: RaisedButton(
+          RaisedButton(
                   color: Theme.of(context).primaryColor,
                   textColor: Colors.white,
                   padding: EdgeInsets.all(24),
@@ -696,7 +648,7 @@ class AddRealEstateSuccessState extends AddRealEstateState {
                     ),
                   ),
                 ),
-              ),
+
 
       ],
     );

@@ -13,6 +13,7 @@ import 'abstracts/module/yes_module.dart';
 import 'di/components/app.component.dart';
 import 'generated/l10n.dart';
 import 'module_localization/service/localization.service.dart';
+import 'module_products/products_module.dart';
 import 'module_theme/service/theme.service.dart';
 
 void main() async {
@@ -31,11 +32,13 @@ void main() async {
 class MyApp extends StatefulWidget {
   final AppThemeDataService _themeDataService;
   final LocalizationService _localizationService;
-    final AuthorizationModule _authorizationModule;
+  final AuthorizationModule _authorizationModule;
+  final ProductsModule _productsModule;
   MyApp(
       this._themeDataService,
       this._localizationService,
-       this._authorizationModule,
+      this._authorizationModule,
+      this._productsModule,
       );
 
   @override
@@ -50,6 +53,7 @@ class _MyAppState extends State<MyApp> {
   String lang;
   ThemeData activeTheme;
   bool authorized = false;
+
 
   @override
   void initState() {
@@ -66,6 +70,7 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
+
     return FutureBuilder(
       initialData: ThemeData.light(),
       future: widget._themeDataService.getActiveTheme(),

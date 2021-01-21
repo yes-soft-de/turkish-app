@@ -2,7 +2,9 @@ import 'package:date_time_picker/date_time_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:hersay/module_products/state_manager/real_estate/add_real_estate.manager.dart';
 import 'package:hersay/module_products/ui/state/add_real_estate/add_real_estate.state.dart';
+import 'package:inject/inject.dart';
 
+@provide
 class AddRealEstateScreen extends StatefulWidget {
   final AddRealEstateStateManager _stateManager;
 
@@ -20,6 +22,7 @@ class  AddRealEstateScreenState extends State<AddRealEstateScreen> {
   @override
   void initState() {
     super.initState();
+    currentState = AddRealEstateStateInit(this);
     widget._stateManager.stateStream.listen((event) {
       currentState = event;
       if (mounted) {
