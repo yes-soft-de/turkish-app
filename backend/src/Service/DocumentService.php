@@ -5,7 +5,7 @@ namespace App\Service;
 
 
 use App\AutoMapping;
-use App\Entity\DocumenEntity;
+use App\Entity\DocumentEntity;
 use App\Manager\DocumentManager;
 use App\Response\DocumentResponse;
 use App\Response\DocumentCreateResponse;
