@@ -75,14 +75,19 @@ class RealEstateManager
 
     public function delete(DeleteRequest $request)
     {
-        $item = $this->repository->getRealEstateById($request->getId());
-        if (!$item ) {} 
-         
-         else {
+        $item = $this->repository->find($request->getId());
+
+        if(!$item )
+        {
+
+        }
+        else
+        {
             $this->entityManager->remove($item);
             $this->entityManager->flush();
-         }
-         return $item;
+        }
+
+        return $item;
     }
     
     public function getFilter($value, $key)
