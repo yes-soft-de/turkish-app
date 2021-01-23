@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hersay/module_home/model/home/home_model.dart';
+import 'package:hersay/module_home/state_manager/home/home.state_manager.dart';
+import 'package:hersay/module_home/ui/state/home/home.state.dart';
 import 'package:hersay/module_home/ui/widget/vertical_fab/vertical_fab.dart';
 import 'package:hersay/module_navigation/ui/widget/navigation_drawer/anime_navigation_drawer.dart';
 import 'package:hersay/module_products/ui/screen/car_details/car_details_screen.dart';
@@ -8,17 +10,27 @@ import 'package:hersay/module_products/ui/screen/house_details/house_details_scr
 import 'package:hersay/utils/enums/products/products.dart';
 import 'package:hersay/utils/widgets/product_card/product_card.dart';
 import 'package:hersay/utils/widgets/turkish_app_bar/turkish_app_bar.dart';
+import 'package:inject/inject.dart';
 
+@provide
 class HomeScreen extends StatefulWidget {
+  final HomeStateManager _stateManager;
+
+  HomeScreen(
+      this._stateManager,
+      );
+
   @override
-  _HomeScreenState createState() => _HomeScreenState();
+  HomeScreenState createState() => HomeScreenState();
 }
 
-class _HomeScreenState extends State<HomeScreen> {
+class HomeScreenState extends State<HomeScreen> {
+  HomeState currentState;
+
   final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
 
-  List<HomeModel> products = [
-    new HomeModel(
+  List<HomeElement> products = [
+    new HomeElement(
       image:
           'https://www.wsupercars.com/wallpapers/Buick/1970-Buick-GSX-001-1080.jpg',
       category: 'sport car',
@@ -28,7 +40,7 @@ class _HomeScreenState extends State<HomeScreen> {
       specification: '1500 KM',
       type: PRODUCT_TYPE.CAR,
     ),
-    new HomeModel(
+    new HomeElement(
       image: 'https://cdn.mos.cms.futurecdn.net/FkMhmL6YzQmj7unhsupKMR.png',
       category: 'Laptop',
       likes: 100,
@@ -37,7 +49,7 @@ class _HomeScreenState extends State<HomeScreen> {
       specification: 'Core i7',
       type: PRODUCT_TYPE.ELECTRONIC_DEVICE,
     ),
-    new HomeModel(
+    new HomeElement(
       image:
           'https://q4g9y5a8.rocketcdn.me/wp-content/uploads/2020/02/home-banner-2020-02-min.jpg',
       category: 'House',
@@ -47,7 +59,7 @@ class _HomeScreenState extends State<HomeScreen> {
       specification: '250 SM',
       type: PRODUCT_TYPE.REAL_ESTATE,
     ),
-    new HomeModel(
+    new HomeElement(
       image:
           'https://www.wsupercars.com/wallpapers/Buick/1970-Buick-GSX-001-1080.jpg',
       category: 'sport car',
@@ -57,7 +69,7 @@ class _HomeScreenState extends State<HomeScreen> {
       specification: '1500 KM',
       type: PRODUCT_TYPE.CAR,
     ),
-    new HomeModel(
+    new HomeElement(
       image: 'https://cdn.mos.cms.futurecdn.net/FkMhmL6YzQmj7unhsupKMR.png',
       category: 'Laptop',
       likes: 100,
@@ -66,7 +78,7 @@ class _HomeScreenState extends State<HomeScreen> {
       specification: 'Core i7',
       type: PRODUCT_TYPE.ELECTRONIC_DEVICE,
     ),
-    new HomeModel(
+    new HomeElement(
       image:
           'https://q4g9y5a8.rocketcdn.me/wp-content/uploads/2020/02/home-banner-2020-02-min.jpg',
       category: 'House',
@@ -77,9 +89,41 @@ class _HomeScreenState extends State<HomeScreen> {
       type: PRODUCT_TYPE.REAL_ESTATE,
     ),
   ];
+
+  @override
+  void initState() {
+    super.initState();
+    currentState = HomeStateInit(this);
+    widget._stateManager.stateStream.listen((event) {
+      currentState = event;
+      if (mounted) {
+        setState(() {});
+      }
+    });
+
+    widget._stateManager.getHomeScreenData(this);
+
+  }
+
+  void refresh(){
+    setState(() {
+
+    });
+  }
+
+  void getHomeScreenData(){
+    widget._stateManager.getHomeScreenData(this);
+  }
+
   @override
   Widget build(BuildContext context) {
-    return _screenUi();
+    return Scaffold(
+      key: _scaffoldKey,
+      drawer: TurkishNavigationDrawer(),
+      appBar: TurkishAppBar.getTurkishAppBar(context, _scaffoldKey, 'Home'),
+      body: currentState.getUI(context),
+      floatingActionButton: VerticalFab(),
+    );
   }
 
   Widget _screenUi() {

@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:hersay/main_screen/main_routes.dart';
 import 'package:hersay/main_screen/ui/main_screen.dart';
 import 'package:hersay/module_auth/state_manager/login/login.state_manager.dart';
 import 'package:hersay/module_auth/ui/states/login/login_state.dart';
@@ -56,11 +57,9 @@ class LoginScreenState extends State<LoginScreen> {
   }
 
   void moveToNext() {
-    Navigator.push(
+    Navigator.pushNamed(
         context,
-        MaterialPageRoute(
-            builder: (context)=> MainScreen()
-        )
+       MainRoutes.MAIN_SCREEN_ROUTE
     );
 //    if (currentUserRole == UserRole.ROLE_OWNER) {
 //      Navigator.of(context).pushNamedAndRemoveUntil(OrdersRoutes.OWNER_ORDERS_SCREEN, (r) => false);

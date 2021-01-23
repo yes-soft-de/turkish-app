@@ -7,14 +7,22 @@ class Urls {
   static const CREATE_TOKEN_API = BASE_API + '/login_check';
   //REAL ESTATE APIS
   static const ADD_NEW_REAL_ESTATE = BASE_API + '/realEstate';
-  static const ALL_REAL_ESTATES = BASE_API + '/all-real-estate';
-  static const GET_REAL_ESTATE_DETAILS = BASE_API + '/real-estate/';
-  static const GET_USER_REAL_ESTATES = BASE_API + '/real-estates';
-  static const DELETE_REAL_ESTATE = BASE_API +'/real-estate/';
+  static const ALL_REAL_ESTATES = BASE_API + '/allRealEstate';
+  static const GET_REAL_ESTATE_DETAILS = BASE_API + '/realEstate/';
+  static const GET_USER_REAL_ESTATES = BASE_API + '/realEstates';
+  static const DELETE_REAL_ESTATE = BASE_API +'/realEstate/';
   //CAR APIS
   static const ADD_NEW_CAR = BASE_API + '/cars';
+  static const ALL_CARS = BASE_API + '/allCars';
+  static const GET_CAR_DETAILS = BASE_API + '/car/';
+  static const GET_USER_CARS = BASE_API + '/cars';
+  static const DELETE_CAR = BASE_API +'/cars/';
   //ELECTRONIC DEVICES APIS
   static const ADD_NEW_DEVICE = BASE_API + '/devices';
+  static const ALL_DEVICES = BASE_API + '/allDevices';
+  static const GET_DEVICE_DETAILS = BASE_API + '/device/';
+  static const GET_USER_DEVICES = BASE_API + '/devices';
+  static const DELETE_DEVICE = BASE_API +'/devices/';
 
 
 

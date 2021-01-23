@@ -3,6 +3,7 @@ import 'package:date_time_picker/date_time_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:hersay/generated/l10n.dart';
+import 'package:hersay/main_screen/main_routes.dart';
 import 'package:hersay/main_screen/ui/main_screen.dart';
 import 'package:hersay/module_products/ui/screen/add_car/add_car_sceen.dart';
 import 'package:hersay/utils/project_colors/project_colors.dart';
@@ -698,12 +699,11 @@ class AddCarSuccessState extends AddCarState {
                   textColor: Colors.white,
                   padding: EdgeInsets.all(24),
                   onPressed: () {
-                    //TODO : change it later to named route
-                    Navigator.push(context, MaterialPageRoute(builder: (context)=>MainScreen()));
-//                    Navigator.of(context).pushNamedAndRemoveUntil(
-//                      OrdersRoutes.OWNER_ORDERS_SCREEN,
-//                          (r) => false,
-//                    );
+
+                    Navigator.of(context).pushNamedAndRemoveUntil(
+                      MainRoutes.MAIN_SCREEN_ROUTE,
+                          (r) => false,
+                    );
                   },
                   child: Expanded(
                     child: Text(

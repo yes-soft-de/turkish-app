@@ -6,7 +6,9 @@ import 'package:hersay/module_settings/ui/screen/privacy_settings/privacy_settin
 import 'package:hersay/utils/project_colors/project_colors.dart';
 import 'package:hersay/utils/widgets/icon_text/icon_text_widget.dart';
 import 'package:hersay/utils/widgets/turkish_app_bar/turkish_app_bar.dart';
+import 'package:inject/inject.dart';
 
+@provide
 class SettingsScreen extends StatefulWidget {
   @override
   _SettingsScreenState createState() => _SettingsScreenState();

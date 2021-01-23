@@ -47,6 +47,18 @@ import '../../module_products/repository/electonic_device/electronic_device.repo
     as _i34;
 import '../../module_splash/splash_module.dart' as _i35;
 import '../../module_splash/ui/screen/splash_screen/splash_screen.dart' as _i36;
+import '../../main_screen/main_module.dart' as _i37;
+import '../../main_screen/ui/main_screen.dart' as _i38;
+import '../../module_home/ui/sceen/home/home_screen.dart' as _i39;
+import '../../module_home/state_manager/home/home.state_manager.dart' as _i40;
+import '../../module_home/service/home/home.service.dart' as _i41;
+import '../../module_home/manager/home/home.manager.dart' as _i42;
+import '../../module_home/repository/home/home.repository.dart' as _i43;
+import '../../module_chat/ui/screen/chats_list/chats_list_screen.dart' as _i44;
+import '../../module_history/ui/screen/history/history_screen.dart' as _i45;
+import '../../module_profile/ui/screen/profile/profile_screen.dart' as _i46;
+import '../../module_settings/ui/screen/settings/settings_screen.dart' as _i47;
+import '../../module_home/home_module.dart' as _i48;
 
 class AppComponent$Injector implements _i1.AppComponent {
   AppComponent$Injector._();
@@ -68,7 +80,9 @@ class AppComponent$Injector implements _i1.AppComponent {
       _createLocalizationService(),
       _createAuthorizationModule(),
       _createProductsModule(),
-      _createSplashModule());
+      _createSplashModule(),
+      _createMainModule(),
+      _createHomeModule());
   _i7.AppThemeDataService _createAppThemeDataService() =>
       _i7.AppThemeDataService(_createThemePreferencesHelper());
   _i8.ThemePreferencesHelper _createThemePreferencesHelper() =>
@@ -137,6 +151,28 @@ class AppComponent$Injector implements _i1.AppComponent {
       _i35.SplashModule(_createSplashScreen());
   _i36.SplashScreen _createSplashScreen() =>
       _i36.SplashScreen(_createAuthService());
+  _i37.MainModule _createMainModule() => _i37.MainModule(_createMainScreen());
+  _i38.MainScreen _createMainScreen() => _i38.MainScreen(
+      _createHomeScreen(),
+      _createChatsListScreen(),
+      _createHistoryScreen(),
+      _createProfileScreen(),
+      _createSettingsScreen());
+  _i39.HomeScreen _createHomeScreen() =>
+      _i39.HomeScreen(_createHomeStateManager());
+  _i40.HomeStateManager _createHomeStateManager() =>
+      _i40.HomeStateManager(_createHomeService(), _createAuthService());
+  _i41.HomeService _createHomeService() =>
+      _i41.HomeService(_createHomeManager());
+  _i42.HomeManager _createHomeManager() =>
+      _i42.HomeManager(_createHomeRepository());
+  _i43.HomeRepository _createHomeRepository() =>
+      _i43.HomeRepository(_createApiClient(), _createAuthService());
+  _i44.ChatsListScreen _createChatsListScreen() => _i44.ChatsListScreen();
+  _i45.HistoryScreen _createHistoryScreen() => _i45.HistoryScreen();
+  _i46.ProfileScreen _createProfileScreen() => _i46.ProfileScreen();
+  _i47.SettingsScreen _createSettingsScreen() => _i47.SettingsScreen();
+  _i48.HomeModule _createHomeModule() => _i48.HomeModule(_createHomeScreen());
   @override
   _i6.MyApp get app => _createMyApp();
 }

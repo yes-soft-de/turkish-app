@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:hersay/module_chat/ui/widget/chat_item_card/chat_item_card.dart';
 import 'package:hersay/module_navigation/ui/widget/navigation_drawer/anime_navigation_drawer.dart';
 import 'package:hersay/utils/widgets/turkish_app_bar/turkish_app_bar.dart';
+import 'package:inject/inject.dart';
 
+@provide
 class ChatsListScreen extends StatefulWidget {
   @override
   _ChatsListScreenState createState() => _ChatsListScreenState();

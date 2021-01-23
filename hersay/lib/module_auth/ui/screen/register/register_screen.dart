@@ -1,5 +1,6 @@
 
 import 'package:flutter/material.dart';
+import 'package:hersay/main_screen/main_routes.dart';
 import 'package:hersay/main_screen/ui/main_screen.dart';
 import 'package:hersay/module_auth/state_manager/register/register.state_manager.dart';
 import 'package:hersay/module_auth/ui/states/register/register_state.dart';
@@ -58,11 +59,9 @@ class RegisterScreenState extends State<RegisterScreen> {
   }
 
   void moveToNext() {
-    Navigator.push(
+    Navigator.pushNamed(
         context,
-        MaterialPageRoute(
-          builder: (context)=> MainScreen()
-        )
+        MainRoutes.MAIN_SCREEN_ROUTE
     );
 //    if (currentUserRole == UserRole.ROLE_OWNER) {
 //      Navigator.of(context).pushNamedAndRemoveUntil(InitAccountRoutes.INIT_ACCOUNT_SCREEN, (r) => false);

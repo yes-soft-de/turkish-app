@@ -4,8 +4,10 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:hersay/main_screen/main_module.dart';
 import 'package:hersay/module_auth/auth_module.dart';
 import 'package:hersay/module_auth/auth_routes.dart';
+import 'package:hersay/module_home/home_module.dart';
 import 'package:hersay/module_splash/splash_routes.dart';
 import 'package:inject/inject.dart';
 
@@ -36,6 +38,8 @@ class MyApp extends StatefulWidget {
   final AuthorizationModule _authorizationModule;
   final ProductsModule _productsModule;
   final SplashModule _splashModule;
+  final MainModule _mainModule;
+  final HomeModule _homeModule;
 
   MyApp(
       this._themeDataService,
@@ -43,6 +47,8 @@ class MyApp extends StatefulWidget {
       this._authorizationModule,
       this._productsModule,
       this._splashModule,
+      this._mainModule,
+      this._homeModule,
       );
 
   @override

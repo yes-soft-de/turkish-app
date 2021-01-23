@@ -3,7 +3,9 @@ import 'package:hersay/module_navigation/ui/widget/navigation_drawer/anime_navig
 import 'package:hersay/module_profile/widget/circular_image.dart';
 import 'package:hersay/utils/project_colors/project_colors.dart';
 import 'package:hersay/utils/widgets/turkish_app_bar/turkish_app_bar.dart';
+import 'package:inject/inject.dart';
 
+@provide
 class ProfileScreen extends StatefulWidget {
   @override
   _ProfileScreenState createState() => _ProfileScreenState();
