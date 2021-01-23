@@ -29,14 +29,19 @@ class CarService
     private $documentService;
     private $params;
     private $entity = "car";
+    private $deviceService;
+    private $realEstateService;
 
-    public function __construct(AutoMapping $autoMapping, CarManager $carManager, ReactionService $reactionService, ImageService $imageService, DocumentService $documentService, ParameterBagInterface $params)
+    public function __construct(AutoMapping $autoMapping, CarManager $carManager, ReactionService $reactionService, ImageService $imageService,
+                                DocumentService $documentService, ParameterBagInterface $params, DeviceService $deviceService, RealEstateService $realEstateService)
     {
         $this->autoMapping = $autoMapping;
         $this->carManager = $carManager;
         $this->reactionService = $reactionService;
         $this->imageService = $imageService;
         $this->documentService = $documentService;
+        $this->deviceService = $deviceService;
+        $this->realEstateService = $realEstateService;
 
         $this->params = $params->get('upload_base_url').'/';
     }
@@ -114,6 +119,7 @@ class CarService
             $row['image'] = $this->specialLinkCheck($row['specialLink']) . $row['image'];
             
             $row['reaction']=$this->reactionService->reactionforItem($row['id'], $this->entity);
+            //dd($row['reaction']);
             ($row['reaction'][0]['createdBy'] == $userID) ?  $row['reaction'][0]['createdBy'] = true : $row['reaction'][0]['createdBy'] = false ;
           
             $response[] = $this->autoMapping->map('array', CarGetResponse::class, $row);
@@ -170,6 +176,25 @@ class CarService
         foreach ($result as $row) {
             $response[] = $this->autoMapping->map('array', CarGetFilterResponse::class, $row);
         }
+        return $response;
+    }
+
+    public function getAllProperties($userID)
+    {
+        $response = [];
+
+        $cars = $this->getAllCars($userID);
+
+        $devices = $this->deviceService->getAllDevices($userID);
+
+        $realEstates = $this->realEstateService->getAllRealEstate($userID);
+
+        $response = array_merge_recursive($cars, $devices, $realEstates);
+
+        //dd($response);
+
+        shuffle($response);
+
         return $response;
     }
 }
