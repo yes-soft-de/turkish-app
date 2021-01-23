@@ -52,6 +52,7 @@ class  AddRealEstateScreenState extends State<AddRealEstateScreen> {
     widget._stateManager.addNewRealEstate(country,city,space,price,description,image,
         numberOfFloors,cladding,homeFurnishing,realEstateType,rooms,status,state, this);
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

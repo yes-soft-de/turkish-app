@@ -25,6 +25,20 @@
                 "qualifier": null
               },
               "isProvider": false
+            },
+            {
+              "lookupKey": {
+                "root": "asset:hersay/lib/module_products/ui/screen/add_car/add_car_sceen.dart#AddCarScreen",
+                "qualifier": null
+              },
+              "isProvider": false
+            },
+            {
+              "lookupKey": {
+                "root": "asset:hersay/lib/module_products/ui/screen/add_electronic_device/add_electronic_device_screen.dart#AddElectronicDeviceScreen",
+                "qualifier": null
+              },
+              "isProvider": false
             }
           ]
         }

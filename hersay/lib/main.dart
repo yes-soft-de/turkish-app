@@ -14,6 +14,7 @@ import 'di/components/app.component.dart';
 import 'generated/l10n.dart';
 import 'module_localization/service/localization.service.dart';
 import 'module_products/products_module.dart';
+import 'module_splash/splash_module.dart';
 import 'module_theme/service/theme.service.dart';
 
 void main() async {
@@ -34,11 +35,14 @@ class MyApp extends StatefulWidget {
   final LocalizationService _localizationService;
   final AuthorizationModule _authorizationModule;
   final ProductsModule _productsModule;
+  final SplashModule _splashModule;
+
   MyApp(
       this._themeDataService,
       this._localizationService,
       this._authorizationModule,
       this._productsModule,
+      this._splashModule,
       );
 
   @override
