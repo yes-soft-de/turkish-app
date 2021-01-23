@@ -178,4 +178,15 @@ class CarController extends BaseController
 
         return $this->response($result, self::FETCH);
     }
+
+    /**
+     * @Route("/allproperties", name="getAllProprties", methods={"GET"})
+     * @return JsonResponse
+     */
+    public function getAllProperties()
+    {
+        $result = $this->carService->getAllProperties($this->getUserId());
+
+        return $this->response($result, self::FETCH);
+    }
 }
