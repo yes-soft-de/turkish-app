@@ -45,20 +45,32 @@ import '../../module_products/manager/electronic_device/electronic_device.manage
     as _i33;
 import '../../module_products/repository/electonic_device/electronic_device.repository.dart'
     as _i34;
-import '../../module_splash/splash_module.dart' as _i35;
-import '../../module_splash/ui/screen/splash_screen/splash_screen.dart' as _i36;
-import '../../main_screen/main_module.dart' as _i37;
-import '../../main_screen/ui/main_screen.dart' as _i38;
-import '../../module_home/ui/sceen/home/home_screen.dart' as _i39;
-import '../../module_home/state_manager/home/home.state_manager.dart' as _i40;
-import '../../module_home/service/home/home.service.dart' as _i41;
-import '../../module_home/manager/home/home.manager.dart' as _i42;
-import '../../module_home/repository/home/home.repository.dart' as _i43;
-import '../../module_chat/ui/screen/chats_list/chats_list_screen.dart' as _i44;
-import '../../module_history/ui/screen/history/history_screen.dart' as _i45;
-import '../../module_profile/ui/screen/profile/profile_screen.dart' as _i46;
-import '../../module_settings/ui/screen/settings/settings_screen.dart' as _i47;
-import '../../module_home/home_module.dart' as _i48;
+import '../../module_products/ui/screen/electronic_device_details/electronic_device_details_screen.dart'
+    as _i35;
+import '../../module_products/state_manager/electroinic_device/electronic_device_details.state_manager.dart'
+    as _i36;
+import '../../module_products/ui/screen/real_estate_details/real_estate_details_screen.dart'
+    as _i37;
+import '../../module_products/state_manager/real_estate/real_estate_details.state_manager.dart'
+    as _i38;
+import '../../module_products/ui/screen/car_details/car_details_screen.dart'
+    as _i39;
+import '../../module_products/state_manager/car/car_details.state_manager.dart'
+    as _i40;
+import '../../module_splash/splash_module.dart' as _i41;
+import '../../module_splash/ui/screen/splash_screen/splash_screen.dart' as _i42;
+import '../../main_screen/main_module.dart' as _i43;
+import '../../main_screen/ui/main_screen.dart' as _i44;
+import '../../module_home/ui/sceen/home/home_screen.dart' as _i45;
+import '../../module_home/state_manager/home/home.state_manager.dart' as _i46;
+import '../../module_home/service/home/home.service.dart' as _i47;
+import '../../module_home/manager/home/home.manager.dart' as _i48;
+import '../../module_home/repository/home/home.repository.dart' as _i49;
+import '../../module_chat/ui/screen/chats_list/chats_list_screen.dart' as _i50;
+import '../../module_history/ui/screen/history/history_screen.dart' as _i51;
+import '../../module_profile/ui/screen/profile/profile_screen.dart' as _i52;
+import '../../module_settings/ui/screen/settings/settings_screen.dart' as _i53;
+import '../../module_home/home_module.dart' as _i54;
 
 class AppComponent$Injector implements _i1.AppComponent {
   AppComponent$Injector._();
@@ -115,7 +127,10 @@ class AppComponent$Injector implements _i1.AppComponent {
       _singletonProductsModule ??= _i4.ProductsModule(
           _createAddRealEstateScreen(),
           _createAddCarScreen(),
-          _createAddElectronicDeviceScreen());
+          _createAddElectronicDeviceScreen(),
+          _createElectronicDeviceDetailsScreen(),
+          _createRealEstateDetailsScreen(),
+          _createCarDetailsScreen());
   _i20.AddRealEstateScreen _createAddRealEstateScreen() =>
       _i20.AddRealEstateScreen(_createAddRealEstateStateManager());
   _i21.AddRealEstateStateManager _createAddRealEstateStateManager() =>
@@ -147,32 +162,47 @@ class AppComponent$Injector implements _i1.AppComponent {
       _i33.ElectronicDeviceManager(_createElectronicDeviceRepository());
   _i34.ElectronicDeviceRepository _createElectronicDeviceRepository() =>
       _i34.ElectronicDeviceRepository(_createApiClient(), _createAuthService());
-  _i35.SplashModule _createSplashModule() =>
-      _i35.SplashModule(_createSplashScreen());
-  _i36.SplashScreen _createSplashScreen() =>
-      _i36.SplashScreen(_createAuthService());
-  _i37.MainModule _createMainModule() => _i37.MainModule(_createMainScreen());
-  _i38.MainScreen _createMainScreen() => _i38.MainScreen(
+  _i35.ElectronicDeviceDetailsScreen _createElectronicDeviceDetailsScreen() =>
+      _i35.ElectronicDeviceDetailsScreen(
+          _createElectronicDeviceDetailsStateManager());
+  _i36.ElectronicDeviceDetailsStateManager
+      _createElectronicDeviceDetailsStateManager() =>
+          _i36.ElectronicDeviceDetailsStateManager(
+              _createElectronicDeviceService());
+  _i37.RealEstateDetailsScreen _createRealEstateDetailsScreen() =>
+      _i37.RealEstateDetailsScreen(_createRealEstateDetailsStateManager());
+  _i38.RealEstateDetailsStateManager _createRealEstateDetailsStateManager() =>
+      _i38.RealEstateDetailsStateManager(_createRealEstateService());
+  _i39.CarDetailsScreen _createCarDetailsScreen() =>
+      _i39.CarDetailsScreen(_createCarDetailsStateManager());
+  _i40.CarDetailsStateManager _createCarDetailsStateManager() =>
+      _i40.CarDetailsStateManager(_createCarService());
+  _i41.SplashModule _createSplashModule() =>
+      _i41.SplashModule(_createSplashScreen());
+  _i42.SplashScreen _createSplashScreen() =>
+      _i42.SplashScreen(_createAuthService());
+  _i43.MainModule _createMainModule() => _i43.MainModule(_createMainScreen());
+  _i44.MainScreen _createMainScreen() => _i44.MainScreen(
       _createHomeScreen(),
       _createChatsListScreen(),
       _createHistoryScreen(),
       _createProfileScreen(),
       _createSettingsScreen());
-  _i39.HomeScreen _createHomeScreen() =>
-      _i39.HomeScreen(_createHomeStateManager());
-  _i40.HomeStateManager _createHomeStateManager() =>
-      _i40.HomeStateManager(_createHomeService(), _createAuthService());
-  _i41.HomeService _createHomeService() =>
-      _i41.HomeService(_createHomeManager());
-  _i42.HomeManager _createHomeManager() =>
-      _i42.HomeManager(_createHomeRepository());
-  _i43.HomeRepository _createHomeRepository() =>
-      _i43.HomeRepository(_createApiClient(), _createAuthService());
-  _i44.ChatsListScreen _createChatsListScreen() => _i44.ChatsListScreen();
-  _i45.HistoryScreen _createHistoryScreen() => _i45.HistoryScreen();
-  _i46.ProfileScreen _createProfileScreen() => _i46.ProfileScreen();
-  _i47.SettingsScreen _createSettingsScreen() => _i47.SettingsScreen();
-  _i48.HomeModule _createHomeModule() => _i48.HomeModule(_createHomeScreen());
+  _i45.HomeScreen _createHomeScreen() =>
+      _i45.HomeScreen(_createHomeStateManager());
+  _i46.HomeStateManager _createHomeStateManager() =>
+      _i46.HomeStateManager(_createHomeService(), _createAuthService());
+  _i47.HomeService _createHomeService() =>
+      _i47.HomeService(_createHomeManager());
+  _i48.HomeManager _createHomeManager() =>
+      _i48.HomeManager(_createHomeRepository());
+  _i49.HomeRepository _createHomeRepository() =>
+      _i49.HomeRepository(_createApiClient(), _createAuthService());
+  _i50.ChatsListScreen _createChatsListScreen() => _i50.ChatsListScreen();
+  _i51.HistoryScreen _createHistoryScreen() => _i51.HistoryScreen();
+  _i52.ProfileScreen _createProfileScreen() => _i52.ProfileScreen();
+  _i53.SettingsScreen _createSettingsScreen() => _i53.SettingsScreen();
+  _i54.HomeModule _createHomeModule() => _i54.HomeModule(_createHomeScreen());
   @override
   _i6.MyApp get app => _createMyApp();
 }

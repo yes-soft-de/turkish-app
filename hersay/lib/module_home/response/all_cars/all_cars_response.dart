@@ -42,6 +42,9 @@ class Data {
   String city;
   String image;
   String state;
+  List<Reaction> reaction;
+  String userName;
+  String imageUser;
 
   Data(
       {this.id,
@@ -63,7 +66,10 @@ class Data {
         this.country,
         this.city,
         this.image,
-        this.state});
+        this.state,
+        this.reaction,
+        this.userName,
+        this.imageUser});
 
   Data.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -92,6 +98,14 @@ class Data {
     city = json['city'];
     image = json['image'];
     state = json['state'];
+    if (json['reaction'] != null) {
+      reaction = new List<Reaction>();
+      json['reaction'].forEach((v) {
+        reaction.add(new Reaction.fromJson(v));
+      });
+    }
+    userName = json['userName'];
+    imageUser = json['imageUser'];
   }
 
   Map<String, dynamic> toJson() {
@@ -122,6 +136,12 @@ class Data {
     data['city'] = this.city;
     data['image'] = this.image;
     data['state'] = this.state;
+    if (this.reaction != null) {
+      data['reaction'] = this.reaction.map((v) => v.toJson()).toList();
+    }
+    data['userName'] = this.userName;
+    data['imageUser'] = this.imageUser;
+
     return data;
   }
 }
@@ -234,6 +254,25 @@ class Location {
     data['latitude'] = this.latitude;
     data['longitude'] = this.longitude;
     data['comments'] = this.comments;
+    return data;
+  }
+}
+
+class Reaction {
+  int reactionCount;
+  bool createdBy;
+
+  Reaction({this.reactionCount, this.createdBy});
+
+  Reaction.fromJson(Map<String, dynamic> json) {
+    reactionCount = json['reactionCount'];
+    createdBy = json['createdBy'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['reactionCount'] = this.reactionCount;
+    data['createdBy'] = this.createdBy;
     return data;
   }
 }

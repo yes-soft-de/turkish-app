@@ -3,6 +3,7 @@ import 'package:hersay/consts/urls.dart';
 import 'package:hersay/module_auth/service/auth/auth.service.dart';
 import 'package:hersay/module_network/http_client/http_client.dart';
 import 'package:hersay/module_products/request/real_estate/real_estate_request.dart';
+import 'package:hersay/module_products/response/real_estate/real_estate_response.dart';
 import 'package:inject/inject.dart';
 
 @provide
@@ -28,4 +29,14 @@ class RealEstateRepository{
     return response['status_code'] == '201' ? true : false;
   }
 
+  Future<RealEstateResponse> getRealEstateDetails(int realEstateId)async{
+    var token = await _authService.getToken();
+    dynamic response = await _apiClient.get(
+      Urls.GET_REAL_ESTATE_DETAILS+'$realEstateId',
+      headers: {'Authorization': 'Bearer ' + token},
+    );
+
+    if (response == null) return null;
+    return RealEstateResponse.fromJson(response);
+  }
 }

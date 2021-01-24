@@ -4,9 +4,6 @@ import 'package:hersay/module_home/state_manager/home/home.state_manager.dart';
 import 'package:hersay/module_home/ui/state/home/home.state.dart';
 import 'package:hersay/module_home/ui/widget/vertical_fab/vertical_fab.dart';
 import 'package:hersay/module_navigation/ui/widget/navigation_drawer/anime_navigation_drawer.dart';
-import 'package:hersay/module_products/ui/screen/car_details/car_details_screen.dart';
-import 'package:hersay/module_products/ui/screen/electronic_device_details/electronic_device_details_screen.dart';
-import 'package:hersay/module_products/ui/screen/house_details/house_details_screen.dart';
 import 'package:hersay/utils/enums/products/products.dart';
 import 'package:hersay/utils/widgets/product_card/product_card.dart';
 import 'package:hersay/utils/widgets/turkish_app_bar/turkish_app_bar.dart';
@@ -126,53 +123,53 @@ class HomeScreenState extends State<HomeScreen> {
     );
   }
 
-  Widget _screenUi() {
-    return Scaffold(
-      key: _scaffoldKey,
-      drawer: TurkishNavigationDrawer(),
-      appBar: TurkishAppBar.getTurkishAppBar(context, _scaffoldKey, 'Home'),
-      body: ListView.builder(
-          itemCount: products.length,
-          itemBuilder: (BuildContext context, int index) {
-            return GestureDetector(
-              onTap: () {
-                switch (products[index].type) {
-                  case PRODUCT_TYPE.CAR:
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => CarDetailsScreen()));
-                    break;
-                  case PRODUCT_TYPE.ELECTRONIC_DEVICE:
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) =>
-                                ElectronicDeviceDetailsScreen()));
-                    break;
-                  case PRODUCT_TYPE.REAL_ESTATE:
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => HouseDetailsScreen()));
-                    break;
-                }
-              },
-              child: Container(
-                padding: EdgeInsets.symmetric(horizontal: 8, vertical: 10),
-                child: ProductCard(
-                  image: products[index].image,
-                  category: products[index].category,
-                  likes: products[index].likes,
-                  owner: products[index].owner,
-                  product: products[index].product,
-                  specification: products[index].specification,
-                  type: products[index].type,
-                ),
-              ),
-            );
-          }),
-      floatingActionButton: VerticalFab(),
-    );
-  }
+//  Widget _screenUi() {
+//    return Scaffold(
+//      key: _scaffoldKey,
+//      drawer: TurkishNavigationDrawer(),
+//      appBar: TurkishAppBar.getTurkishAppBar(context, _scaffoldKey, 'Home'),
+//      body: ListView.builder(
+//          itemCount: products.length,
+//          itemBuilder: (BuildContext context, int index) {
+//            return GestureDetector(
+//              onTap: () {
+//                switch (products[index].type) {
+//                  case PRODUCT_TYPE.CAR:
+//                    Navigator.push(
+//                        context,
+//                        MaterialPageRoute(
+//                            builder: (context) => CarDetailsScreen()));
+//                    break;
+//                  case PRODUCT_TYPE.ELECTRONIC_DEVICE:
+//                    Navigator.push(
+//                        context,
+//                        MaterialPageRoute(
+//                            builder: (context) =>
+//                                ElectronicDeviceDetailsScreen()));
+//                    break;
+//                  case PRODUCT_TYPE.REAL_ESTATE:
+//                    Navigator.push(
+//                        context,
+//                        MaterialPageRoute(
+//                            builder: (context) => HouseDetailsScreen()));
+//                    break;
+//                }
+//              },
+//              child: Container(
+//                padding: EdgeInsets.symmetric(horizontal: 8, vertical: 10),
+//                child: ProductCard(
+//                  image: products[index].image,
+//                  category: products[index].category,
+//                  likes: products[index].likes,
+//                  owner: products[index].owner,
+//                  product: products[index].product,
+//                  specification: products[index].specification,
+//                  type: products[index].type,
+//                ),
+//              ),
+//            );
+//          }),
+//      floatingActionButton: VerticalFab(),
+//    );
+//  }
 }

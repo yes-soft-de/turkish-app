@@ -18,13 +18,13 @@ class HomeModel{
     homeData.realEstates.data.forEach((element) {
       result.add(
           new HomeElement(
+            id: element.id,
             product: element.realEstateType,
             image: element.image,
             type: PRODUCT_TYPE.REAL_ESTATE,
-            //TODO : change likes number and owner name to real data when it fetched from the backend
-            likes: 0,
+            likes: (element.reaction!= null)? element.reaction[0].reactionCount : 0,
             category: element.numberOfFloors + ' floors',
-            owner: 'Steve Josh',
+            owner: element.userName??'',
             specification: element.space + ' SM',
           )
       );
@@ -37,13 +37,13 @@ class HomeModel{
     homeData.cars.data.forEach((element) {
       result.add(
           new HomeElement(
+            id: element.id,
             product: element.brand,
             image: element.image,
             type: PRODUCT_TYPE.REAL_ESTATE,
-            //TODO : change likes number and owner name to real data when it fetched from the backend
-            likes: 0,
+            likes:(element.reaction!= null)? element.reaction[0].reactionCount : 0,
             category: element.company  ,
-            owner: 'Steve Josh',
+            owner: element.userName??'',
             specification: element.distance +' KM',
           )
       );
@@ -56,13 +56,13 @@ class HomeModel{
     homeData.electronicDevices.data.forEach((element) {
       result.add(
           new HomeElement(
+            id: element.id,
             product: element.brand,
             image: element.image,
             type: PRODUCT_TYPE.REAL_ESTATE,
-            //TODO : change likes number and owner name to real data when it fetched from the backend
-            likes: 0,
+            likes: (element.reaction!= null)? element.reaction[0].reactionCount : 0,
             category: element.type  ,
-            owner: 'Steve Josh',
+            owner: element.userName??'',
             specification: element.cpu,
           )
       );
@@ -75,16 +75,19 @@ class HomeModel{
 
 
 class HomeElement {
-  final String product;
-  final String category;
-  final String image;
-  final String owner;
-  final PRODUCT_TYPE type;
-  final String specification;
-  final int likes;
+   int id;
+   String product;
+   String category;
+   String image;
+   String owner;
+   PRODUCT_TYPE type;
+   String specification;
+   int likes;
 
   HomeElement(
-      {this.image,
+      {
+      this.id,
+      this.image,
       this.likes,
       this.category,
       this.owner,

@@ -1,21 +1,41 @@
 import 'package:flutter/material.dart';
+import 'package:hersay/module_products/state_manager/electroinic_device/electronic_device_details.state_manager.dart';
+import 'package:hersay/module_products/ui/state/electronic_device_details/electronic_device_details.state.dart';
 import 'package:hersay/utils/project_colors/project_colors.dart';
 import 'package:hersay/utils/widgets/turkish_app_bar/turkish_app_bar.dart';
+import 'package:inject/inject.dart';
 
+@provide
 class ElectronicDeviceDetailsScreen extends StatefulWidget {
+  final ElectronicDeviceDetailsStateManager _stateManager;
+
+  ElectronicDeviceDetailsScreen(
+      this._stateManager
+      );
+
   @override
-  _ElectronicDeviceDetailsScreenState createState() =>
-      _ElectronicDeviceDetailsScreenState();
+   ElectronicDeviceDetailsScreenState createState() =>
+      ElectronicDeviceDetailsScreenState();
 }
 
-class _ElectronicDeviceDetailsScreenState
-    extends State<ElectronicDeviceDetailsScreen> {
+class  ElectronicDeviceDetailsScreenState extends State<ElectronicDeviceDetailsScreen> {
+  ElectronicDeviceDetailsState currentState;
+  int electronicDeviceId;
   double width;
 
+  void getElectronicDeviceDetails(){
+    widget._stateManager.getElectronicDeviceDetails(this, electronicDeviceId);
+  }
   @override
   Widget build(BuildContext context) {
+    electronicDeviceId = ModalRoute.of(context).settings.arguments;
+    getElectronicDeviceDetails();
+
     width = MediaQuery.of(context).size.width;
-    return _screenUi();
+    return Scaffold(
+      appBar: TurkishAppBar.getTurkishOrdinaryAppBar(context, ''),
+      body: currentState.getUI(context),
+    );
   }
 
   Widget _screenUi() {

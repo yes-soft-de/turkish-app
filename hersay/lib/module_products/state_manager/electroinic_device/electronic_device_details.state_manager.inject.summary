@@ -1,0 +1,34 @@
+{
+  "asset": "asset:hersay/lib/module_products/state_manager/electroinic_device/electronic_device_details.state_manager.dart",
+  "summary": {
+    "injector": [],
+    "module": [],
+    "injectable": [
+      {
+        "name": "ElectronicDeviceDetailsStateManager",
+        "constructor": {
+          "name": "",
+          "kind": "constructor",
+          "injectedType": {
+            "lookupKey": {
+              "root": "asset:hersay/lib/module_products/state_manager/electroinic_device/electronic_device_details.state_manager.dart#ElectronicDeviceDetailsStateManager",
+              "qualifier": null
+            },
+            "isProvider": false
+          },
+          "singleton": false,
+          "asynchronous": false,
+          "dependencies": [
+            {
+              "lookupKey": {
+                "root": "asset:hersay/lib/module_products/service/electronic_device/electronic_device.service.dart#ElectronicDeviceService",
+                "qualifier": null
+              },
+              "isProvider": false
+            }
+          ]
+        }
+      }
+    ]
+  }
+}

@@ -38,8 +38,8 @@ class Data {
   String realEstateType;
   List<Reaction> reaction;
   String rooms;
-  Null userName;
-  Null imageUser;
+  String userName;
+  String imageUser;
 
   Data(
       {this.id,

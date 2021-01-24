@@ -39,8 +39,8 @@ class Data {
   String durationOfUse;
   String image;
   List<Reaction> reaction;
-  Null userName;
-  Null imageUser;
+  String userName;
+  String imageUser;
 
   Data(
       {this.id,

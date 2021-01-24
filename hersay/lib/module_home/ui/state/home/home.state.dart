@@ -1,12 +1,12 @@
-import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:hersay/module_auth/auth_routes.dart';
 import 'package:hersay/module_home/model/home/home_model.dart';
 import 'package:hersay/module_home/ui/sceen/home/home_screen.dart';
+import 'package:hersay/module_products/products_routes.dart';
 import 'package:hersay/module_products/ui/screen/car_details/car_details_screen.dart';
 import 'package:hersay/module_products/ui/screen/electronic_device_details/electronic_device_details_screen.dart';
-import 'package:hersay/module_products/ui/screen/house_details/house_details_screen.dart';
+import 'package:hersay/module_products/ui/screen/real_estate_details/real_estate_details_screen.dart';
 import 'package:hersay/utils/enums/products/products.dart';
 import 'package:hersay/utils/widgets/product_card/product_card.dart';
 
@@ -83,23 +83,26 @@ class HomeStateDataLoaded extends HomeState {
                   onTap: () {
                     switch (displayedProducts[index].type) {
                       case PRODUCT_TYPE.CAR:
-                        Navigator.push(
+                        Navigator.pushNamed(
                             context,
-                            MaterialPageRoute(
-                                builder: (context) => CarDetailsScreen()));
+                            ProductsRoutes.CAR_DETAILS_SCREEN,
+                            arguments: displayedProducts[index].id
+                        );
                         break;
                       case PRODUCT_TYPE.ELECTRONIC_DEVICE:
-                        Navigator.push(
+                        Navigator.pushNamed(
                             context,
-                            MaterialPageRoute(
-                                builder: (context) =>
-                                    ElectronicDeviceDetailsScreen()));
+                            ProductsRoutes.ELECTRONIC_DEVICE_DETAILS_SCREEN,
+                            arguments: displayedProducts[index].id
+                        );
                         break;
                       case PRODUCT_TYPE.REAL_ESTATE:
-                        Navigator.push(
+
+                            Navigator.pushNamed(
                             context,
-                            MaterialPageRoute(
-                                builder: (context) => HouseDetailsScreen()));
+                            ProductsRoutes.REAL_ESTATE_DETAILS_SCREEN,
+                            arguments: displayedProducts[index].id
+                        );
                         break;
                     }
                   },
