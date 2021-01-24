@@ -94,4 +94,29 @@ class UserManager
     {
         return $this->userProfileEntityRepository->getProfileByUSerID($userID);
     }
+
+    public function deleteUser($userID)
+    {
+        // Remove the profile of the user first
+
+        $userProfile = $this->userProfileEntityRepository->findOneBy(["userID"=>$userID]);
+
+        if($userProfile)
+        {
+            $this->entityManager->remove($userProfile);
+            $this->entityManager->flush();
+        }
+
+        // Remove the user from the User table
+
+        $userData = $this->userRepository->getUserByUserID($userID);
+
+        if($userData)
+        {
+            $this->entityManager->remove($userData);
+            $this->entityManager->flush();
+        }
+
+        return $userData;
+    }
 }

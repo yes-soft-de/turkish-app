@@ -61,4 +61,11 @@ class UserService
         return $this->autoMapping->map('array', UserProfileResponse::class, $item);
 
     }
+
+    public function deleteUser($userID)
+    {
+        $userResult = $this->userManager->deleteUser($userID);
+
+        return $this->autoMapping->map(UserEntity::class, UserRegisterResponse::class, $userResult);
+    }
 }

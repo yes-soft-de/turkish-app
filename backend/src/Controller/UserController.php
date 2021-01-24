@@ -104,4 +104,15 @@ class UserController extends BaseController
 
         return $this->response($response,self::FETCH);
     }
+
+    /**
+     * @Route("deleteuser", name="deleteUser", methods={"DELETE"})
+     * @return JsonResponse
+     */
+    public function deleteUser()
+    {
+        $result = $this->userService->deleteUser($this->getUserId());
+
+        return $this->response($result, self::DELETE);
+    }
 }
