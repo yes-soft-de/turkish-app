@@ -6,6 +6,8 @@ namespace App\Response;
 
 class DeviceGetResponse
 {
+    public $entity = "device";
+
     public $id;
     
     public $type;

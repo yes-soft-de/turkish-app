@@ -5,6 +5,8 @@ namespace App\Response;
 
 class RealEstateGetAllResponse
 {
+    public $entity = "realEstate";
+
     public $id;
 
     public $country;

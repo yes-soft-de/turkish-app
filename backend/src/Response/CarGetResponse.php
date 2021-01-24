@@ -6,6 +6,8 @@ namespace App\Response;
 
 class CarGetResponse
 {
+    public $entity = "car";
+
     public $id;
 
     public $brand;
