@@ -87,4 +87,18 @@ class DeviceEntityRepository extends ServiceEntityRepository
             ;
     }
 
+    public function getFilterByPriceAndCity($price, $location)
+    {
+        return $this->createQueryBuilder('device')
+
+            ->andWhere('device.price <= :price')
+            ->andWhere('device.city = :value')
+
+            ->setParameter('price', $price)
+            ->setParameter('value', $location)
+
+            ->getQuery()
+            ->getArrayResult();
+    }
+
 }

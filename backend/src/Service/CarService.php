@@ -169,13 +169,17 @@ class CarService
         }
     }
 
-    public function getFilter($key, $value)
+    public function getFilter($price, $location)
     {
         $response = [];
-        $result = $this->carManager->getFilter($value, $key);
-        foreach ($result as $row) {
+
+        $result = $this->carManager->getFilter($price, $location);
+
+        foreach ($result as $row)
+        {
             $response[] = $this->autoMapping->map('array', CarGetFilterResponse::class, $row);
         }
+
         return $response;
     }
 

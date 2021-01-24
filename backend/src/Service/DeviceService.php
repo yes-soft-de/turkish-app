@@ -127,14 +127,17 @@ class DeviceService
         }
     }
 
-    public function getFilter($key, $value)
+    public function getFilter($price, $location)
     {
         $response = [];
-        $result = $this->deviceManager->getFilter($value, $key);
+
+        $result = $this->deviceManager->getFilter($price, $location);
       
-        foreach ($result as $row) {
+        foreach ($result as $row)
+        {
             $response[] = $this->autoMapping->map('array', DevicesGetFilterResponse::class, $row);
         }
+
         return $response;
     }
 

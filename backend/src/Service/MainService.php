@@ -5,6 +5,7 @@ namespace App\Service;
 
 
 use App\AutoMapping;
+use App\Request\FilterRequest;
 
 class MainService
 {
@@ -39,4 +40,21 @@ class MainService
         return $response;
     }
 
+    public function filter(FilterRequest $request)
+    {
+        $entity = $request->getEntity();
+
+        if($entity == "car")
+        {
+            return $this->carService->getFilter($request->getPrice(), $request->getCity());
+        }
+        elseif ($entity == "device")
+        {
+            return $this->deviceService->getFilter($request->getPrice(), $request->getCity());
+        }
+        elseif ($entity == "realEstate")
+        {
+            return $this->realEstateService->getFilter($request->getPrice(), $request->getCity());
+        }
+    }
 }

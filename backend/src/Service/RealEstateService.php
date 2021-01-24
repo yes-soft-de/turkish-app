@@ -157,15 +157,17 @@ class RealEstateService
         }
     }
 
-    public function getFilter($key, $value)
+    public function getFilter($price, $location)
     {
         $response = [];
-        $result = $this->realEstateManager->getFilter($value, $key);
+
+        $result = $this->realEstateManager->getFilter($price, $location);
       
         foreach ($result as $row)
         {
             $response[] = $this->autoMapping->map('array', RealEstateGetFilterResponse::class, $row);
         }
+
         return $response;
     }
 

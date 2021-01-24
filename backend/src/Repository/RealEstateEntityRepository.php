@@ -129,5 +129,20 @@ class RealEstateEntityRepository extends ServiceEntityRepository
             ->getResult()
             ;
     }
+
+    public function getFilterByPriceAndCity($price, $location)
+    {
+        return $this->createQueryBuilder('realEstate')
+
+            ->andWhere('realEstate.price <= :price')
+            ->andWhere('realEstate.city = :value')
+            ->andWhere("realEstate.state = 'Accepted'")
+
+            ->setParameter('price', $price)
+            ->setParameter('value', $location)
+
+            ->getQuery()
+            ->getArrayResult();
+    }
    
 }

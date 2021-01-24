@@ -99,16 +99,21 @@ class CarManager
         return $carEntity;
     }
 
-    public function getFilter($value, $key)
+    public function getFilter($price, $location)
     {
-        if ($key == 'city')
+        if ($location != null && $price == null)
         {
-            return $this->carEntityRepository->getFilterCity($value);
+            return $this->carEntityRepository->getFilterCity($location);
         }
 
-        if ($key == 'price')
+        elseif ($price != null && $location == null)
         {
-            return $this->carEntityRepository->getFilterPrice($value);
+            return $this->carEntityRepository->getFilterPrice($price);
+        }
+
+        elseif ($price != null && $location != null)
+        {
+            return $this->carEntityRepository->getFilterByPriceAndCity($price, $location);
         }
     }
 

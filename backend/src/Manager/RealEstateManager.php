@@ -89,17 +89,22 @@ class RealEstateManager
 
         return $item;
     }
-    
-    public function getFilter($value, $key)
+
+    public function getFilter($price, $location)
     {
-        if ($key == 'city')
+        if ($location != null && $price == null)
         {
-            return $this->repository->getFilterCity($value);
+            return $this->repository->getFilterCity($location);
         }
-        
-        if ($key == 'price')
+
+        elseif ($price != null && $location == null)
         {
-            return $this->repository->getFilterPrice($value);
+            return $this->repository->getFilterPrice($price);
+        }
+
+        elseif ($price != null && $location != null)
+        {
+            return $this->repository->getFilterByPriceAndCity($price, $location);
         }
     }
 

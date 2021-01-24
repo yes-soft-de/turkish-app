@@ -90,16 +90,21 @@ class DeviceManager
         return $deviceEntity;
     }
 
-    public function getFilter($value, $key)
+    public function getFilter($price, $location)
     {
-        if ($key == 'price')
+        if ($location != null && $price == null)
         {
-            return $this->deviceEntityRepository->getFilterPrice($value);
+            return $this->deviceEntityRepository->getFilterCity($location);
         }
 
-        if ($key == 'city')
+        elseif ($price != null && $location == null)
         {
-            return $this->deviceEntityRepository->getFilterCity($value);
+            return $this->deviceEntityRepository->getFilterPrice($price);
+        }
+
+        elseif ($price != null && $location != null)
+        {
+            return $this->deviceEntityRepository->getFilterByPriceAndCity($price, $location);
         }
     }
 
