@@ -38,6 +38,14 @@ php bin/console doctrine:migration:migrate
 
 
 
+### Main
+#### Search for a specific property by query
+_Note: search is done by brand for Cars and Devices,and by type for Real-Estates_
+```
+/search/{query}
+methods: GET
+```
+
 ### Account
 #### Create new lawyer
 ```
@@ -243,6 +251,12 @@ carsFilter/city/syria
 
 ```
 carsFilter/key/value
+methods: GET
+```
+#### Get all properties (Cars, Real Estates, and Devices)
+
+```
+/allproperties
 methods: GET
 ```
 
