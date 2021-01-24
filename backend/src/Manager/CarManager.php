@@ -111,5 +111,10 @@ class CarManager
             return $this->carEntityRepository->getFilterPrice($value);
         }
     }
+
+    public function getCarsByBrand($brand)
+    {
+        return $this->carEntityRepository->getCarsByBrand($brand);
+    }
     
 }

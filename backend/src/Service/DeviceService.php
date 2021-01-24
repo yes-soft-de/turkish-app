@@ -137,4 +137,18 @@ class DeviceService
         }
         return $response;
     }
+
+    public function getDevicesByBrand($brand)
+    {
+        $response = [];
+
+        $cars = $this->deviceManager->getDevicesByBrand($brand);
+
+        foreach ($cars as $car)
+        {
+            $response[] = $this->autoMapping->map('array', DeviceGetResponse::class, $car);
+        }
+
+        return $response;
+    }
 }

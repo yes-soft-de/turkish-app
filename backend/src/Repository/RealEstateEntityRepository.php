@@ -117,5 +117,17 @@ class RealEstateEntityRepository extends ServiceEntityRepository
             ->getQuery()
             ->getArrayResult();
     }
+
+    public function getRealEstatesByType($realEstateType)
+    {
+        return $this->createQueryBuilder('realEstate')
+            ->select('realEstate.id', 'realEstate.realEstateType')
+            ->andWhere('realEstate.realEstateType LIKE :realEstateType')
+            ->setParameter('realEstateType', '%'.$realEstateType.'%')
+            ->orderBy('realEstate.id')
+            ->getQuery()
+            ->getResult()
+            ;
+    }
    
 }

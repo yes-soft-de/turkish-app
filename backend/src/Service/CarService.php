@@ -197,4 +197,19 @@ class CarService
 
         return $response;
     }
+
+    public function getCarsByBrand($brand)
+    {
+        $response = [];
+
+        $cars = $this->carManager->getCarsByBrand($brand);
+
+        foreach ($cars as $car)
+        {
+            $response[] = $this->autoMapping->map('array', CarGetResponse::class, $car);
+        }
+
+        return $response;
+    }
+
 }

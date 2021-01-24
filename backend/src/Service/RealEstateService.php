@@ -168,4 +168,18 @@ class RealEstateService
         }
         return $response;
     }
+
+    public function getRealEstatesByType($type)
+    {
+        $response = [];
+
+        $cars = $this->realEstateManager->getRealEstatesByType($type);
+
+        foreach ($cars as $car)
+        {
+            $response[] = $this->autoMapping->map('array', RealEstateGetAllResponse::class, $car);
+        }
+
+        return $response;
+    }
 }

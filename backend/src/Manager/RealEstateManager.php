@@ -102,5 +102,10 @@ class RealEstateManager
             return $this->repository->getFilterPrice($value);
         }
     }
+
+    public function getRealEstatesByType($type)
+    {
+        return $this->repository->getRealEstatesByType($type);
+    }
     
 }

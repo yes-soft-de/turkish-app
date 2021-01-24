@@ -75,4 +75,16 @@ class DeviceEntityRepository extends ServiceEntityRepository
             ->getArrayResult();
     }
 
+    public function getDevicesByBrand($brand)
+    {
+        return $this->createQueryBuilder('device')
+            ->select('device.id', 'device.brand')
+            ->andWhere('device.brand LIKE :brand')
+            ->setParameter('brand', '%'.$brand.'%')
+            ->orderBy('device.id')
+            ->getQuery()
+            ->getResult()
+            ;
+    }
+
 }

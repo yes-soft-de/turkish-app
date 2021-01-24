@@ -120,4 +120,16 @@ class CarEntityRepository extends ServiceEntityRepository
             ->getQuery()
             ->getArrayResult();
     }
+
+    public function getCarsByBrand($brand)
+    {
+        return $this->createQueryBuilder('car')
+            ->select('car.id', 'car.brand')
+            ->andWhere('car.brand LIKE :brand')
+            ->setParameter('brand', '%'.$brand.'%')
+            ->orderBy('car.id')
+            ->getQuery()
+            ->getResult()
+            ;
+    }
 }

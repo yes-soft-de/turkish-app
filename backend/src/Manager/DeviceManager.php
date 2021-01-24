@@ -102,5 +102,10 @@ class DeviceManager
             return $this->deviceEntityRepository->getFilterCity($value);
         }
     }
+
+    public function getDevicesByBrand($brand)
+    {
+        return $this->deviceEntityRepository->getDevicesByBrand($brand);
+    }
     
 }
