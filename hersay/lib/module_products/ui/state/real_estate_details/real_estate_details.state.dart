@@ -69,6 +69,7 @@ class RealEstateDetailsStateDataLoaded extends RealEstateDetailsState {
         },
         child:SingleChildScrollView(
           child: Container(
+            color: Colors.white,
             padding: EdgeInsets.all(10),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hersay/module_search/search_routes.dart';
 import 'package:hersay/module_search/ui/screen/search_screen/seach_screen.dart';
 import 'package:hersay/utils/project_colors/project_colors.dart';
 
@@ -13,12 +14,20 @@ class TurkishAppBar {
       elevation: 1,
       centerTitle: true,
       automaticallyImplyLeading: true,
-      title: Text('$title'),
+      title: Text(
+          '$title',
+          style: TextStyle(
+            color: Colors.white,
+          ),
+      ),
       leading: IconButton(
         onPressed: () {
 //          drawerKey.currentState.openDrawer();
         },
-        icon: Icon(Icons.menu),
+        icon: Icon(
+            Icons.menu,
+          color: Colors.white,
+        ),
       ),
       actions: <Widget>[
         // GestureDetector(
@@ -35,12 +44,12 @@ class TurkishAppBar {
 //           Navigator.pushNamed(drawerKey.currentContext,
 //                          SearchRoutes.ROUTE_Search
 //           );
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => SearchScreen()));
+              Navigator.of(context).pushNamed(SearchRoutes.SEARCH_SCREEN_ROUTE);
             },
             child: Icon(
               Icons.search,
               size: 35,
+              color: Colors.white,
             )),
         SizedBox(
           width: 10,

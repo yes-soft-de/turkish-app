@@ -8,6 +8,7 @@ import 'package:hersay/main_screen/main_module.dart';
 import 'package:hersay/module_auth/auth_module.dart';
 import 'package:hersay/module_auth/auth_routes.dart';
 import 'package:hersay/module_home/home_module.dart';
+import 'package:hersay/module_search/search_module.dart';
 import 'package:hersay/module_splash/splash_routes.dart';
 import 'package:inject/inject.dart';
 
@@ -40,6 +41,7 @@ class MyApp extends StatefulWidget {
   final SplashModule _splashModule;
   final MainModule _mainModule;
   final HomeModule _homeModule;
+  final SearchModule _searchModule;
 
   MyApp(
       this._themeDataService,
@@ -49,6 +51,7 @@ class MyApp extends StatefulWidget {
       this._splashModule,
       this._mainModule,
       this._homeModule,
+      this._searchModule,
       );
 
   @override
@@ -121,7 +124,7 @@ class _MyAppState extends State<MyApp> {
       supportedLocales: S.delegate.supportedLocales,
       title: 'Hersay',
       routes: fullRoutesList,
-      initialRoute: AuthorizationRoutes.REGISTER_SCREEN,
+      initialRoute: SplashRoutes.SPLASH_SCREEN,
     );
   }
 }

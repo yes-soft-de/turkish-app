@@ -19,13 +19,14 @@ class RealEstateDetailsScreen extends StatefulWidget {
 
 class RealEstateDetailsScreenState extends State<RealEstateDetailsScreen> {
   RealEstateDetailsState currentState;
-  int realEstateId;
+  int realEstateId = 0;
   
   double width;
  
   @override
   void initState() { 
     super.initState();
+    currentState = RealEstateDetailsStateInit(this);
     widget._stateManager.stateStream.listen((event) { 
       currentState = event;
       if(this.mounted){
@@ -42,11 +43,18 @@ class RealEstateDetailsScreenState extends State<RealEstateDetailsScreen> {
   
   @override
   Widget build(BuildContext context) {
-    realEstateId = ModalRoute.of(context).settings.arguments;
-    getRealEstateDetails();
+    if (currentState is RealEstateDetailsStateInit) {
+      realEstateId = ModalRoute.of(context).settings.arguments;
+      getRealEstateDetails();
+    }
+
+
     
     width = MediaQuery.of(context).size.width;
-    return currentState.getUI(context);
+    return Scaffold(
+      appBar: TurkishAppBar.getTurkishOrdinaryAppBar(context, ''),
+      body: currentState.getUI(context),
+    );
   }
 
   Widget _screenUi() {

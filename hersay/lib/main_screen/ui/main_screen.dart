@@ -88,13 +88,13 @@ class _MainScreenState extends State<MainScreen> {
           items: <BottomNavigationBarItem>[
             BottomNavigationBarItem(
               icon: Icon(Icons.home),
-
+              title: Text(''),
               backgroundColor: ProjectColors.THEME_COLOR,
             ),
             BottomNavigationBarItem(
               // Title is Deprecated!, Not My Optional Call
               icon: Icon(Icons.history),
-
+              title: Text(''),
               backgroundColor: ProjectColors.THEME_COLOR,
             ),
 //          BottomNavigationBarItem(
@@ -106,19 +106,19 @@ class _MainScreenState extends State<MainScreen> {
             BottomNavigationBarItem(
               // Title is Deprecated!, Not My Optional Call
               icon: Icon(Icons.person_pin),
-
+              title: Text(''),
               backgroundColor: ProjectColors.THEME_COLOR,
             ),
             BottomNavigationBarItem(
               // Title is Deprecated!, Not My Optional Call
               icon: Icon(Icons.chat_bubble_outline),
-
+              title: Text(''),
               backgroundColor: ProjectColors.THEME_COLOR,
             ),
             BottomNavigationBarItem(
               backgroundColor: ProjectColors.THEME_COLOR,
               icon: Icon(Icons.settings),
-              
+              title: Text(''),
             ),
           ],
         ),

@@ -76,7 +76,7 @@ class ElectronicDeviceDetailsStateDataLoaded extends ElectronicDeviceDetailsStat
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                // car model
+                // device model
                 Text(
                   '${electronicDevice.brand}',
                   style: TextStyle(

@@ -8,6 +8,7 @@ import 'package:hersay/module_products/ui/screen/car_details/car_details_screen.
 import 'package:hersay/module_products/ui/screen/electronic_device_details/electronic_device_details_screen.dart';
 import 'package:hersay/module_products/ui/screen/real_estate_details/real_estate_details_screen.dart';
 import 'package:hersay/utils/enums/products/products.dart';
+import 'package:hersay/utils/project_colors/project_colors.dart';
 import 'package:hersay/utils/widgets/product_card/product_card.dart';
 
 
@@ -60,11 +61,12 @@ class HomeStateUnauthorized extends HomeState {
 
 class HomeStateDataLoaded extends HomeState {
   final HomeModel homeData;
+  int selectedMode = 1;
   List<HomeElement> displayedProducts = [];
 
   HomeStateDataLoaded(this.homeData, HomeScreenState screenState)
       : super(screenState){
-    displayedProducts = homeData.realEstates;
+    displayedProducts = homeData.realEstates + homeData.cars + homeData.electronicDevices;
   }
 
   @override
@@ -76,50 +78,53 @@ class HomeStateDataLoaded extends HomeState {
       },
       child:Stack(
         children: [
-          ListView.builder(
-              itemCount: displayedProducts.length,
-              itemBuilder: (BuildContext context, int index) {
-                return GestureDetector(
-                  onTap: () {
-                    switch (displayedProducts[index].type) {
-                      case PRODUCT_TYPE.CAR:
-                        Navigator.pushNamed(
-                            context,
-                            ProductsRoutes.CAR_DETAILS_SCREEN,
-                            arguments: displayedProducts[index].id
-                        );
-                        break;
-                      case PRODUCT_TYPE.ELECTRONIC_DEVICE:
-                        Navigator.pushNamed(
-                            context,
-                            ProductsRoutes.ELECTRONIC_DEVICE_DETAILS_SCREEN,
-                            arguments: displayedProducts[index].id
-                        );
-                        break;
-                      case PRODUCT_TYPE.REAL_ESTATE:
+          Container(
+            margin: EdgeInsets.only(top: 100),
+            child: ListView.builder(
+                itemCount: displayedProducts.length,
+                itemBuilder: (BuildContext context, int index) {
+                  return GestureDetector(
+                    onTap: () {
+                      switch (displayedProducts[index].type) {
+                        case PRODUCT_TYPE.CAR:
+                          Navigator.pushNamed(
+                              context,
+                              ProductsRoutes.CAR_DETAILS_SCREEN,
+                              arguments: displayedProducts[index].id
+                          );
+                          break;
+                        case PRODUCT_TYPE.ELECTRONIC_DEVICE:
+                          Navigator.pushNamed(
+                              context,
+                              ProductsRoutes.ELECTRONIC_DEVICE_DETAILS_SCREEN,
+                              arguments: displayedProducts[index].id
+                          );
+                          break;
+                        case PRODUCT_TYPE.REAL_ESTATE:
 
-                            Navigator.pushNamed(
-                            context,
-                            ProductsRoutes.REAL_ESTATE_DETAILS_SCREEN,
-                            arguments: displayedProducts[index].id
-                        );
-                        break;
-                    }
-                  },
-                  child: Container(
-                    padding: EdgeInsets.symmetric(horizontal: 8, vertical: 10),
-                    child: ProductCard(
-                      image: displayedProducts[index].image,
-                      category: displayedProducts[index].category,
-                      likes: displayedProducts[index].likes,
-                      owner: displayedProducts[index].owner,
-                      product: displayedProducts[index].product,
-                      specification: displayedProducts[index].specification,
-                      type: displayedProducts[index].type,
+                              Navigator.pushNamed(
+                              context,
+                              ProductsRoutes.REAL_ESTATE_DETAILS_SCREEN,
+                              arguments: displayedProducts[index].id
+                          );
+                          break;
+                      }
+                    },
+                    child: Container(
+                      padding: EdgeInsets.symmetric(horizontal: 8, vertical: 10),
+                      child: ProductCard(
+                        image: displayedProducts[index].image,
+                        category: displayedProducts[index].category,
+                        likes: displayedProducts[index].likes,
+                        owner: displayedProducts[index].owner,
+                        product: displayedProducts[index].product,
+                        specification: displayedProducts[index].specification,
+                        type: displayedProducts[index].type,
+                      ),
                     ),
-                  ),
-                );
-              }),
+                  );
+                }),
+          ),
 
           Positioned(
             left: 0.0,
@@ -127,32 +132,87 @@ class HomeStateDataLoaded extends HomeState {
             top: 0.0,
             child: Container(
               color: Colors.white,
-              margin: EdgeInsetsDirectional.fromSTEB(0, 10, 0, 10),
-              padding: EdgeInsetsDirectional.fromSTEB(10, 0, 12, 0),
+              margin: EdgeInsets.only(top: 10,bottom: 10),
+              padding: EdgeInsets.symmetric(horizontal: 5,vertical: 10),
               child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: <Widget>[
 
-                  IconButton(
-                      onPressed: () {
-                       displayedProducts = homeData.realEstates;
-                        screenState.refresh();
-                      },
-                      icon:  Icon(Icons.home)
+                  GestureDetector(
+                    onTap: (){
+                      displayedProducts = homeData.realEstates + homeData.cars + homeData.electronicDevices;
+                      screenState.refresh();
+                    },
+                    child: Container(
+                      width: 50,
+                      height: 75,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(5),
+                        color: ProjectColors.THEME_COLOR,
+                      ),
+                      child: Center(
+                        child: Text(
+                          'All',
+                          style: TextStyle(
+                            color: Colors.white,
+                          ),
+                        ),
+                      ),
+                    ),
                   ),
-                  IconButton(
-                      onPressed: () {
-                        displayedProducts = homeData.cars;
-                        screenState.refresh();
-                      },
-                      icon:  Icon(Icons.directions_car)
+                  GestureDetector(
+                    onTap: (){
+                      displayedProducts = homeData.realEstates;
+                      screenState.refresh();
+                    },
+                    child: Container(
+                      width: 50,
+                      height: 75,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(5),
+                        color: ProjectColors.THEME_COLOR,
+                      ),
+                      child: Icon(
+                          Icons.home,
+                        color: Colors.white,
+                      ),
+                    ),
                   ),
-                  IconButton(
-                      onPressed: () {
-                        displayedProducts = homeData.electronicDevices;
-                        screenState.refresh();
-                      },
-                      icon:  Icon(Icons.phone_iphone)
+                  GestureDetector(
+                    onTap: (){
+                      displayedProducts = homeData.cars;
+                      screenState.refresh();
+                    },
+                    child: Container(
+                      width: 50,
+                      height: 75,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(5),
+                        color: ProjectColors.THEME_COLOR,
+                      ),
+                      child: Icon(
+                          Icons.directions_car,
+                        color: Colors.white,
+                      ),
+                    ),
+                  ),
+                  GestureDetector(
+                    onTap: (){
+                      displayedProducts = homeData.electronicDevices;
+                      screenState.refresh();
+                    },
+                    child: Container(
+                      width: 50,
+                      height: 75,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(5),
+                        color: ProjectColors.THEME_COLOR,
+                      ),
+                      child: Icon(
+                          Icons.phone_iphone,
+                        color: Colors.white,
+                      ),
+                    ),
                   ),
 
                 ],

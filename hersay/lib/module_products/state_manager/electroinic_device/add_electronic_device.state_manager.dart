@@ -21,7 +21,7 @@ class AddElectronicDeviceStateManager {
       String cpu,
       String ram,
       String battery,
-      String price,
+      int price,
       String yearOfRelease,
       String description,
       String gauge,

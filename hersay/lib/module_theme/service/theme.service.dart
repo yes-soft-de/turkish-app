@@ -17,6 +17,19 @@ class AppThemeDataService {
     return Color(0xFF3ACCE1);
   }
 
+  static Color get themeColor {
+    return Color(0xff517197);
+  }
+
+  static Color get secondaryColor {
+    return Color(0xff36485D);
+  }
+
+  static Color get backgroundColor {
+    return Color(0xffEFEFEF);
+  }
+
+
   static Color get PrimaryDarker {
     return Color(0xFF665EFF);
   }

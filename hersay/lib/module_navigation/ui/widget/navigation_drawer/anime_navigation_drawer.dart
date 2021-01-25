@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hersay/module_notification/ui/screen/notifications/notification_screen.dart';
+import 'package:hersay/module_search/search_routes.dart';
 import 'package:hersay/module_search/ui/screen/search_screen/seach_screen.dart';
 import 'package:hersay/utils/project_colors/project_colors.dart';
 
@@ -82,8 +83,7 @@ class TurkishNavigationDrawer extends StatelessWidget {
                 ),
                 GestureDetector(
                   onTap: () {
-                    Navigator.of(context).push(MaterialPageRoute(
-                        builder: (context) => SearchScreen()));
+                    Navigator.of(context).pushNamed(SearchRoutes.SEARCH_SCREEN_ROUTE);
                   },
                   child: Container(
                     color: ProjectColors.SECONDARY_COLOR,

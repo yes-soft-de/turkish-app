@@ -20,13 +20,15 @@ abstract class AddElectronicDeviceState {
 class AddElectronicDeviceStateInit extends AddElectronicDeviceState {
   final GlobalKey<FormState> _addCarFormKey = GlobalKey<FormState>();
 
-  final TextEditingController _DeviceTypeController = TextEditingController();
   final TextEditingController _brandController = TextEditingController();
   final TextEditingController _useDurationController = TextEditingController();
   final TextEditingController _guageController = TextEditingController();
   final TextEditingController _locationController = TextEditingController();
   final TextEditingController _priceController = TextEditingController();
+  final TextEditingController _cpuController = TextEditingController();
   final TextEditingController _cityController = TextEditingController();
+  final TextEditingController _ramController = TextEditingController();
+  final TextEditingController _batteryController = TextEditingController();
   final TextEditingController _countryController = TextEditingController();
   final TextEditingController _descriptionController = TextEditingController();
 
@@ -141,6 +143,147 @@ class AddElectronicDeviceStateInit extends AddElectronicDeviceState {
                         borderRadius: BorderRadius.circular(20),
                       ),
                       labelText: 'Brand',
+                    ),
+                    textInputAction: TextInputAction.next,
+                    onEditingComplete: () =>
+                        node.nextFocus(),
+                    // Move focus to next
+                    validator: (result) {
+                      if (result.isEmpty) {
+                        return 'الرجاء ادخال اسمك';
+                      }
+                      return null;
+                    },
+                  ),
+                ),
+              ),
+              //cpu
+              Container(
+                height: 55,
+                margin: EdgeInsets.only(top: 15),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(15),
+                ),
+                child: Container(
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(15),
+                      color: Colors.white,
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.black12,
+                          blurRadius:
+                          2.0, // has the effect of softening the shadow
+                          spreadRadius:
+                          2.0, // has the effect of extending the shadow
+                          offset: Offset(
+                            5.0, // horizontal, move right 10
+                            5.0, // vertical, move down 10
+                          ),
+                        )
+                      ]),
+                  child: TextFormField(
+                    controller: _cpuController,
+                    decoration: InputDecoration(
+                      prefixIcon: Icon(Icons.branding_watermark),
+                      border: OutlineInputBorder(
+                        borderSide: BorderSide.none,
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                      labelText: 'Cpu',
+                    ),
+                    textInputAction: TextInputAction.next,
+                    onEditingComplete: () =>
+                        node.nextFocus(),
+                    // Move focus to next
+                    validator: (result) {
+                      if (result.isEmpty) {
+                        return 'الرجاء ادخال اسمك';
+                      }
+                      return null;
+                    },
+                  ),
+                ),
+              ),
+              //ram
+              Container(
+                height: 55,
+                margin: EdgeInsets.only(top: 15),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(15),
+                ),
+                child: Container(
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(15),
+                      color: Colors.white,
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.black12,
+                          blurRadius:
+                          2.0, // has the effect of softening the shadow
+                          spreadRadius:
+                          2.0, // has the effect of extending the shadow
+                          offset: Offset(
+                            5.0, // horizontal, move right 10
+                            5.0, // vertical, move down 10
+                          ),
+                        )
+                      ]),
+                  child: TextFormField(
+                    controller: _ramController,
+                    decoration: InputDecoration(
+                      prefixIcon: Icon(Icons.branding_watermark),
+                      border: OutlineInputBorder(
+                        borderSide: BorderSide.none,
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                      labelText: 'RAM',
+                    ),
+                    textInputAction: TextInputAction.next,
+                    onEditingComplete: () =>
+                        node.nextFocus(),
+                    // Move focus to next
+                    validator: (result) {
+                      if (result.isEmpty) {
+                        return 'الرجاء ادخال اسمك';
+                      }
+                      return null;
+                    },
+                  ),
+                ),
+              ),
+              //battery
+              Container(
+                height: 55,
+                margin: EdgeInsets.only(top: 15),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(15),
+                ),
+                child: Container(
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(15),
+                      color: Colors.white,
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.black12,
+                          blurRadius:
+                          2.0, // has the effect of softening the shadow
+                          spreadRadius:
+                          2.0, // has the effect of extending the shadow
+                          offset: Offset(
+                            5.0, // horizontal, move right 10
+                            5.0, // vertical, move down 10
+                          ),
+                        )
+                      ]),
+                  child: TextFormField(
+                    controller: _batteryController,
+                    decoration: InputDecoration(
+                      prefixIcon: Icon(Icons.branding_watermark),
+                      border: OutlineInputBorder(
+                        borderSide: BorderSide.none,
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                      labelText: 'Battery',
                     ),
                     textInputAction: TextInputAction.next,
                     onEditingComplete: () =>
@@ -561,7 +704,52 @@ class AddElectronicDeviceStateInit extends AddElectronicDeviceState {
                         ],
                       )),
                 ),
-              )
+              ),
+              Center(
+                child: Container(
+                  width: 200,
+                  height: 55,
+                  margin: EdgeInsets.only(top: 30),
+                  child: FlatButton(
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      onPressed: () {
+                        screenState.addNewElectronicDevice(
+                            _countryController.text.trim(),
+                            _brandController.text.trim(),
+                            _selectedDeviceType,
+                            _cpuController.text.trim(),
+                            _ramController.text.trim(),
+                            _batteryController.text.trim(),
+                            int.parse(_priceController.text.trim()),
+                            _dateController.text.trim(),
+                            _descriptionController.text.trim(),
+                            _guageController.text.trim(),
+                            _cityController.text.trim(),
+                            _useDurationController.text.trim(),
+                            'image', 
+                            'not sold',
+                            'Unaccepted'
+                        );
+                      },
+                      //TODO : change this using theme service
+                      color: ProjectColors.SECONDARY_COLOR,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Icon(
+                            Icons.save,
+                            color: Colors.white,
+                          ),
+                          Text(
+                            'Save',
+                            style: TextStyle(color: Colors.white),
+                          )
+                        ],
+                      )),
+                ),
+              ),
             ],
           ),
         ),

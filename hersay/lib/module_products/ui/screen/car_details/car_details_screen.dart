@@ -47,8 +47,13 @@ class CarDetailsScreenState extends State<CarDetailsScreen> {
 
   @override
   Widget build(BuildContext context) {
-    carId = ModalRoute.of(context).settings.arguments;
-    getCarDetails();
+    if (currentState is CarDetailsStateInit) {
+      carId = ModalRoute.of(context).settings.arguments;
+
+      getCarDetails();
+    }
+
+
 
     return Scaffold(
       appBar: TurkishAppBar.getTurkishOrdinaryAppBar(context, ''),

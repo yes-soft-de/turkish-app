@@ -23,7 +23,8 @@ class Urls {
   static const GET_DEVICE_DETAILS = BASE_API + '/device/';
   static const GET_USER_DEVICES = BASE_API + '/devices';
   static const DELETE_DEVICE = BASE_API +'/devices/';
-
+  //SEARCH AND FILTRATION
+  static const SEARCH = BASE_API + '/search/';
 
 
 

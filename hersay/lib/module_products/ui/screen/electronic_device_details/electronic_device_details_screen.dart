@@ -26,10 +26,29 @@ class  ElectronicDeviceDetailsScreenState extends State<ElectronicDeviceDetailsS
   void getElectronicDeviceDetails(){
     widget._stateManager.getElectronicDeviceDetails(this, electronicDeviceId);
   }
+
+  @override
+  void initState() {
+    super.initState();
+    currentState = ElectronicDeviceDetailsStateInit(this);
+    widget._stateManager.stateStream.listen((event) {
+      currentState = event;
+      if(this.mounted){
+        setState(() {
+
+        });
+      }
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
-    electronicDeviceId = ModalRoute.of(context).settings.arguments;
-    getElectronicDeviceDetails();
+    if (currentState is ElectronicDeviceDetailsStateInit) {
+      electronicDeviceId = ModalRoute.of(context).settings.arguments;
+      getElectronicDeviceDetails();
+    }
+
+
 
     width = MediaQuery.of(context).size.width;
     return Scaffold(

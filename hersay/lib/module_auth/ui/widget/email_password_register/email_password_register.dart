@@ -218,6 +218,9 @@ class _EmailPasswordRegisterFormState extends State<EmailPasswordRegisterForm> {
                 child: Text(
                   S.of(context).iHaveAnAccount,
                   textAlign: TextAlign.center,
+                  style: TextStyle(
+                    color: Colors.white
+                  ),
                 ),
               ),
             ),

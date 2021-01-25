@@ -36,9 +36,32 @@ class _SplashScreenState extends State<SplashScreen> {
       });
     });
     return Scaffold(
-      body: Center(
-        child: FlutterLogo(),
+      body:   Center(
+        child: Container(
+          height: 100,
+          width: 100,
+          decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(10),
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.black12,
+                  blurRadius:
+                  2.0, // has the effect of softening the shadow
+                  spreadRadius:
+                  2.0, // has the effect of extending the shadow
+                  offset: Offset(
+                    5.0, // horizontal, move right 10
+                    5.0, // vertical, move down 10
+                  ),
+                )
+              ]),
+          child: Image(
+            image: AssetImage('assets/images/logo.png'),
+          ),
+        ),
       ),
+
     );
   }
 }
