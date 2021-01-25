@@ -91,6 +91,8 @@ class DeviceService
         foreach ($result as $row)
         {
             $row['image'] = $this->specialLinkCheck($row['specialLink']) . $row['image'];
+
+            $row['imageUser'] = $this->params . $row['imageUser'];
            
             $row['reaction']=$this->reactionService->reactionforItem($row['id'], $this->entity);
             ($row['reaction'][0]['createdBy'] == $userID) ?  $row['reaction'][0]['createdBy'] = true : $row['reaction'][0]['createdBy'] = false ;

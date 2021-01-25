@@ -117,7 +117,8 @@ class CarService
         foreach ($result as $row)
         {
             $row['image'] = $this->specialLinkCheck($row['specialLink']) . $row['image'];
-            
+            $row['imageUser'] = $this->params . $row['imageUser'];
+
             $row['reaction']=$this->reactionService->reactionforItem($row['id'], $this->entity);
             //dd($row['reaction']);
             ($row['reaction'][0]['createdBy'] == $userID) ?  $row['reaction'][0]['createdBy'] = true : $row['reaction'][0]['createdBy'] = false ;
@@ -136,6 +137,8 @@ class CarService
         foreach ($result as $row)
         {
             $row['image'] = $this->specialLinkCheck($row['specialLink']) . $row['image'];
+
+            $row['imageUser'] = $this->params . $row['imageUser'];
           
             $response[] = $this->autoMapping->map('array', CarGetResponse::class, $row);
         }

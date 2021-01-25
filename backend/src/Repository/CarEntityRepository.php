@@ -63,7 +63,9 @@ class CarEntityRepository extends ServiceEntityRepository
     public function getAllCars()
     {
         return $this->createQueryBuilder('car')
-              ->select("car.id", "car.brand", "car.company", "car.yearOfRelease", "car.engine", "car.price", "car.description", "car.status", "car.createdBy", "car.createdAt", "car.updateAt", "car.distance", "car.carType", "car.gearType", "car.cc", "car.fuel", "car.country", "car.city", "car.image", "car.specialLink", "UserProfileEntity.image as imageUser", "car.state")
+              ->select("car.id", "car.brand", "car.company", "car.yearOfRelease", "car.engine", "car.price", "car.description",
+                  "car.status", "car.createdBy", "car.createdAt", "car.updateAt", "car.distance", "car.carType", "car.gearType", "car.cc",
+                  "car.fuel", "car.country", "car.city", "car.image", "car.specialLink", "UserProfileEntity.image as imageUser", "UserProfileEntity.userName", "car.state")
 
               ->leftJoin(
                 UserProfileEntity::class,
@@ -80,7 +82,9 @@ class CarEntityRepository extends ServiceEntityRepository
     public function getAllCarsUnaccepted()
     {
         return $this->createQueryBuilder('car')
-              ->select("car.id", "car.brand", "car.company", "car.yearOfRelease", "car.engine", "car.price", "car.description", "car.status", "car.createdBy", "car.createdAt", "car.updateAt", "car.distance", "car.carType", "car.gearType", "car.cc", "car.fuel", "car.country", "car.city", "car.image", "car.specialLink", "UserProfileEntity.image as imageUser", "car.state")
+              ->select("car.id", "car.brand", "car.company", "car.yearOfRelease", "car.engine", "car.price", "car.description", "car.status",
+                  "car.createdBy", "car.createdAt", "car.updateAt", "car.distance", "car.carType", "car.gearType", "car.cc", "car.fuel", "car.country",
+                  "car.city", "car.image", "car.specialLink", "UserProfileEntity.image as imageUser", "UserProfileEntity.userName", "car.state")
 
               ->leftJoin(
                 UserProfileEntity::class,
