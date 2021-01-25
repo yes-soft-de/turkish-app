@@ -41,6 +41,9 @@ class RealEstateService
     public function realEstateCreate(RealEstateCreateRequest $request)
     {
         $create = $this->realEstateManager->RealEstateCreate($request);
+
+        $create->setImage($this->specialLinkCheck($create->getSpecialLink()).$create->getImage());
+
         return $this->autoMapping->map(RealEstateEntity::class, RealEstateCreateResponse::class, $create);
     }
 
@@ -142,6 +145,8 @@ class RealEstateService
     public function realEstateUpdate($request)
     {
         $result = $this->realEstateManager->realEstateUpdate($request);
+
+        $result->setImage($this->specialLinkCheck($result->getSpecialLink()).$result->getImage());
 
         return $this->autoMapping->map(RealEstateEntity::class, RealEstateUpdateResponse::class, $result);
     }

@@ -39,6 +39,8 @@ class DeviceService
     {
         $deviceResult = $this->deviceManager->create($request);
 
+        $deviceResult->setImage($this->specialLinkCheck($deviceResult->getSpecialLink()).$deviceResult->getImage());
+
         return $this->autoMapping->map(DeviceEntity::class, DeviceCreateResponse::class, $deviceResult);
     }
 
@@ -105,6 +107,8 @@ class DeviceService
     public function update($request)
     {
         $deviceResult = $this->deviceManager->update($request);
+
+        $deviceResult->setImage($this->specialLinkCheck($deviceResult->getSpecialLink()).$deviceResult->getImage());
 
         return $this->autoMapping->map(DeviceEntity::class, DeviceUpdateResponse::class, $deviceResult);
     }

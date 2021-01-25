@@ -50,6 +50,8 @@ class CarService
     {
         $carResult = $this->carManager->create($request);
 
+        $carResult->setImage($this->specialLinkCheck($carResult->getSpecialLink()).$carResult->getImage());
+
         return $this->autoMapping->map(CarEntity::class, CarCreateResponse::class, $carResult);
     }
 
@@ -149,6 +151,8 @@ class CarService
     public function update($request)
     {
         $carResult = $this->carManager->update($request);
+
+        $carResult->setImage($this->specialLinkCheck($carResult->getSpecialLink()).$carResult->getImage());
 
         return $this->autoMapping->map(CarEntity::class, CarUpdateResponse::class, $carResult);
     }
