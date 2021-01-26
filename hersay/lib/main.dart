@@ -6,9 +6,9 @@ import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:hersay/main_screen/main_module.dart';
 import 'package:hersay/module_auth/auth_module.dart';
-import 'package:hersay/module_auth/auth_routes.dart';
 import 'package:hersay/module_home/home_module.dart';
 import 'package:hersay/module_search/search_module.dart';
+import 'package:hersay/module_settings/settings_module.dart';
 import 'package:hersay/module_splash/splash_routes.dart';
 import 'package:inject/inject.dart';
 
@@ -42,6 +42,7 @@ class MyApp extends StatefulWidget {
   final MainModule _mainModule;
   final HomeModule _homeModule;
   final SearchModule _searchModule;
+  final SettingModule _settingModule;
 
   MyApp(
       this._themeDataService,
@@ -52,6 +53,7 @@ class MyApp extends StatefulWidget {
       this._mainModule,
       this._homeModule,
       this._searchModule,
+      this._settingModule,
       );
 
   @override

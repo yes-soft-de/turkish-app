@@ -4,7 +4,9 @@ import 'package:hersay/module_search/state_manager/search/search.state_manager.d
 import 'package:hersay/module_search/ui/state/search/search.state.dart';
 import 'package:hersay/utils/project_colors/project_colors.dart';
 import 'package:hersay/utils/widgets/turkish_app_bar/turkish_app_bar.dart';
+import 'package:inject/inject.dart';
 
+@provide
 class SearchScreen extends StatefulWidget {
   final SearchStateManager _stateManager;
 

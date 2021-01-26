@@ -7,6 +7,7 @@ import 'package:hersay/main_screen/main_routes.dart';
 import 'package:hersay/main_screen/ui/main_screen.dart';
 import 'package:hersay/module_products/ui/screen/add_real_estate/add_real_estate_screen.dart';
 import 'package:hersay/utils/project_colors/project_colors.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:validators/validators.dart';
 
 abstract class AddRealEstateState {
@@ -36,6 +37,8 @@ class AddRealEstateStateInit extends AddRealEstateState {
     'unfurnished',
   ];
   String _selectedHouseType;
+
+  String mainImage;
 
   bool _autoValidate = false;
 
@@ -537,7 +540,19 @@ class AddRealEstateStateInit extends AddRealEstateState {
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(10),
                       ),
-                      onPressed: () {},
+                      onPressed: () {
+
+                          ImagePicker ip = ImagePicker();
+                          ip
+                              .getImage(source: ImageSource.gallery)
+                              .then((value) {
+                            if (value != null) {
+                              mainImage = value.path;
+                              print('main image picked');
+                            }
+                          });
+
+                      },
                       //TODO : change this using theme service
                       color: ProjectColors.SECONDARY_COLOR,
                       child: Row(
@@ -571,14 +586,14 @@ class AddRealEstateStateInit extends AddRealEstateState {
                             _spaceController.text.trim(),
                             int.parse(_priceController.text.trim()),
                             _descriptionController.text.trim(),
-                            'image',
                             _floorNumbersController.text.trim(),
                             _claddingController.text.trim(),
                             _selectedHouseType,
                             _realEstateTypeController.text.trim(),
                             _roomsNumberController.text.trim(),
                             'not sold',
-                            'Unaccepted'
+                            'Unaccepted',
+                            mainImage,
                         );
                       },
                       //TODO : change this using theme service

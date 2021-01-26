@@ -88,6 +88,7 @@ dependencies:
   # Others
   date_time_picker: ^1.1.1
   animate_icons: ^1.0.0
+  image_picker: ^0.6.7+14
 
 dev_dependencies:
   flutter_test:

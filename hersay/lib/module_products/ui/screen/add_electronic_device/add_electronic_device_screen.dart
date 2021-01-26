@@ -50,11 +50,11 @@ class AddElectronicDeviceScreenState extends State<AddElectronicDeviceScreen> {
       String gauge,
       String city,
       String durationOfUse,
-      String image,
+      String mainImage,
       String state,
       String status,){
     widget._stateManager.addNewElectronicDevice(country, brand, type, cpu, ram, battery, price,
-        yearOfRelease, description, gauge, city, durationOfUse, image, state, status, this);
+        yearOfRelease, description, gauge, city, durationOfUse, mainImage, state, status, this);
   }
 
   @override

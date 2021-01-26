@@ -7,6 +7,7 @@ import 'package:hersay/main_screen/main_routes.dart';
 import 'package:hersay/main_screen/ui/main_screen.dart';
 import 'package:hersay/module_products/ui/screen/add_car/add_car_sceen.dart';
 import 'package:hersay/utils/project_colors/project_colors.dart';
+import 'package:image_picker/image_picker.dart';
 
 abstract class AddCarState {
   AddCarScreenState screenState;
@@ -27,6 +28,8 @@ class AddCarStateInit extends AddCarState {
   final TextEditingController _locationController = TextEditingController();
   final TextEditingController _priceController = TextEditingController();
   final TextEditingController _cityController = TextEditingController();
+  final TextEditingController _engineController = TextEditingController();
+  final TextEditingController _companyController = TextEditingController();
   final TextEditingController _countryController = TextEditingController();
   final TextEditingController _descriptionController = TextEditingController();
 
@@ -35,6 +38,7 @@ class AddCarStateInit extends AddCarState {
   List<String> _fuelsTypes = ['Benzene', 'Diesel'];
   String _selectedFuelType;
 
+  String mainImage ;
   TextEditingController _dateController;
 
   bool _autoValidate = false;
@@ -140,6 +144,100 @@ class AddCarStateInit extends AddCarState {
                         borderRadius: BorderRadius.circular(20),
                       ),
                       labelText: 'Brand',
+                    ),
+                    textInputAction: TextInputAction.next,
+                    onEditingComplete: () =>
+                        node.nextFocus(),
+                    // Move focus to next
+                    validator: (result) {
+                      if (result.isEmpty) {
+                        return 'الرجاء ادخال اسمك';
+                      }
+                      return null;
+                    },
+                  ),
+                ),
+              ),
+              //company
+              Container(
+                height: 55,
+                margin: EdgeInsets.only(top: 15),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(15),
+                ),
+                child: Container(
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(15),
+                      color: Colors.white,
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.black12,
+                          blurRadius:
+                          2.0, // has the effect of softening the shadow
+                          spreadRadius:
+                          2.0, // has the effect of extending the shadow
+                          offset: Offset(
+                            5.0, // horizontal, move right 10
+                            5.0, // vertical, move down 10
+                          ),
+                        )
+                      ]),
+                  child: TextFormField(
+                    controller: _companyController,
+                    decoration: InputDecoration(
+                      prefixIcon: Icon(Icons.branding_watermark),
+                      border: OutlineInputBorder(
+                        borderSide: BorderSide.none,
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                      labelText: 'Company',
+                    ),
+                    textInputAction: TextInputAction.next,
+                    onEditingComplete: () =>
+                        node.nextFocus(),
+                    // Move focus to next
+                    validator: (result) {
+                      if (result.isEmpty) {
+                        return 'الرجاء ادخال اسمك';
+                      }
+                      return null;
+                    },
+                  ),
+                ),
+              ),
+              //engine
+              Container(
+                height: 55,
+                margin: EdgeInsets.only(top: 15),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(15),
+                ),
+                child: Container(
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(15),
+                      color: Colors.white,
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.black12,
+                          blurRadius:
+                          2.0, // has the effect of softening the shadow
+                          spreadRadius:
+                          2.0, // has the effect of extending the shadow
+                          offset: Offset(
+                            5.0, // horizontal, move right 10
+                            5.0, // vertical, move down 10
+                          ),
+                        )
+                      ]),
+                  child: TextFormField(
+                    controller: _engineController,
+                    decoration: InputDecoration(
+                      prefixIcon: Icon(Icons.branding_watermark),
+                      border: OutlineInputBorder(
+                        borderSide: BorderSide.none,
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                      labelText: 'Engine',
                     ),
                     textInputAction: TextInputAction.next,
                     onEditingComplete: () =>
@@ -644,7 +742,17 @@ class AddCarStateInit extends AddCarState {
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(10),
                       ),
-                      onPressed: () {},
+                      onPressed: () {
+                      ImagePicker ip = ImagePicker();
+                      ip
+                          .getImage(source: ImageSource.gallery)
+                          .then((value) {
+                        if (value != null) {
+                          mainImage = value.path;
+                          print('main image picked');
+                        }
+                      });
+                      },
                       color: ProjectColors.SECONDARY_COLOR,
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
@@ -654,9 +762,57 @@ class AddCarStateInit extends AddCarState {
                             color: Colors.white,
                           ),
                           Text(
-                            'upload Pics',
+                            'Select main image',
                             style: TextStyle(color: Colors.white),
-                          )
+                          ),
+
+                          Center(
+                            child: Container(
+                              width: 200,
+                              height: 55,
+                              margin: EdgeInsets.only(top: 30),
+                              child: FlatButton(
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(10),
+                                  ),
+                                  onPressed: () {
+                                    screenState.addNewCar(
+                                        _brandController.text.trim(),
+                                        _companyController.text.trim(),
+                                        _engineController.text.trim(),
+                                        int.parse(_priceController.text.trim()),
+                                        _descriptionController.text.trim(),
+                                        _mileagesController.text.trim(),
+                                        _carTypeController.text.trim(),
+                                        _selectedGearType,
+                                        _ccController.text.trim(),
+                                        _selectedFuelType,
+                                        _locationController.text.trim(),
+                                        _dateController.text.trim(),
+                                        mainImage,
+                                        _countryController.text.trim(),
+                                        _cityController.text.trim(),
+                                        'not sold',
+                                        'Unaccepted'
+                                    );
+                                  },
+                                  //TODO : change this using theme service
+                                  color: ProjectColors.SECONDARY_COLOR,
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Icon(
+                                        Icons.save,
+                                        color: Colors.white,
+                                      ),
+                                      Text(
+                                        'Save',
+                                        style: TextStyle(color: Colors.white),
+                                      )
+                                    ],
+                                  )),
+                            ),
+                          ),
                         ],
                       )),
                 ),

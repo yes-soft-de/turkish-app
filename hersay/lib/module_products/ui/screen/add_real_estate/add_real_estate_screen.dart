@@ -41,16 +41,16 @@ class  AddRealEstateScreenState extends State<AddRealEstateScreen> {
       String space,
       int price,
       String description,
-      String image,
       String numberOfFloors,
       String cladding,
       String homeFurnishing,
       String realEstateType,
       String rooms,
       String status,
-      String state,){
-    widget._stateManager.addNewRealEstate(country,city,space,price,description,image,
-        numberOfFloors,cladding,homeFurnishing,realEstateType,rooms,status,state, this);
+      String state,
+      String mainImage){
+    widget._stateManager.addNewRealEstate(country,city,space,price,description,
+        numberOfFloors,cladding,homeFurnishing,realEstateType,rooms,status,state,mainImage, this);
   }
 
   @override

@@ -8,6 +8,7 @@ import 'package:hersay/main_screen/ui/main_screen.dart';
 import 'package:hersay/module_products/ui/screen/add_car/add_car_sceen.dart';
 import 'package:hersay/module_products/ui/screen/add_electronic_device/add_electronic_device_screen.dart';
 import 'package:hersay/utils/project_colors/project_colors.dart';
+import 'package:image_picker/image_picker.dart';
 
 abstract class AddElectronicDeviceState {
   AddElectronicDeviceScreenState screenState;
@@ -39,6 +40,7 @@ class AddElectronicDeviceStateInit extends AddElectronicDeviceState {
 
   bool _autoValidate = false;
 
+  String mainImage;
 
   AddElectronicDeviceStateInit(  AddElectronicDeviceScreenState screenState): super(screenState){
 
@@ -688,7 +690,17 @@ class AddElectronicDeviceStateInit extends AddElectronicDeviceState {
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(10),
                       ),
-                      onPressed: () {},
+                      onPressed: () {
+                        ImagePicker ip = ImagePicker();
+                        ip
+                            .getImage(source: ImageSource.gallery)
+                            .then((value) {
+                          if (value != null) {
+                            mainImage = value.path;
+                            print('main image picked');
+                          }
+                        });
+                      },
                       color: ProjectColors.SECONDARY_COLOR,
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
@@ -698,7 +710,7 @@ class AddElectronicDeviceStateInit extends AddElectronicDeviceState {
                             color: Colors.white,
                           ),
                           Text(
-                            'upload Pics',
+                            'Select main image',
                             style: TextStyle(color: Colors.white),
                           )
                         ],
@@ -728,7 +740,7 @@ class AddElectronicDeviceStateInit extends AddElectronicDeviceState {
                             _guageController.text.trim(),
                             _cityController.text.trim(),
                             _useDurationController.text.trim(),
-                            'image', 
+                            mainImage,
                             'not sold',
                             'Unaccepted'
                         );

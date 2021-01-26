@@ -27,13 +27,13 @@ class AddElectronicDeviceStateManager {
       String gauge,
       String city,
       String durationOfUse,
-      String image,
+      String mainImage,
       String state,
       String status,
       AddElectronicDeviceScreenState screenState) {
     _service
         .addNewElectronicDevice(country, brand, type, cpu, ram, battery, price, yearOfRelease,
-        description, gauge, city, durationOfUse, image, state, status)
+        description, gauge, city, durationOfUse, mainImage, state, status)
         .then((newProduct) {
       if (newProduct) {
         _stateSubject.add(AddElectronicDeviceSuccessState(screenState));

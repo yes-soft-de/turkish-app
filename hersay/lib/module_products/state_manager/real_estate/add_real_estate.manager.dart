@@ -20,7 +20,6 @@ class AddRealEstateStateManager {
       String space,
       int price,
       String description,
-      String image,
       String numberOfFloors,
       String cladding,
       String homeFurnishing,
@@ -28,10 +27,11 @@ class AddRealEstateStateManager {
       String rooms,
       String status,
       String state,
+      String mainImage,
       AddRealEstateScreenState screenState) {
     _service
-        .addNewRealEstate(country,city,space,price,description,image,
-        numberOfFloors,cladding,homeFurnishing,realEstateType,rooms,status,state)
+        .addNewRealEstate(country,city,space,price,description,
+        numberOfFloors,cladding,homeFurnishing,realEstateType,rooms,status,state,mainImage)
         .then((newOrder) {
       if (newOrder) {
         _stateSubject.add(AddRealEstateSuccessState(screenState));

@@ -1,17 +1,17 @@
 {
-  "asset": "asset:hersay/lib/module_search/ui/screen/search_screen/seach_screen.dart",
+  "asset": "asset:hersay/lib/module_upload/service/image_upload/image_upload_service.dart",
   "summary": {
     "injector": [],
     "module": [],
     "injectable": [
       {
-        "name": "SearchScreen",
+        "name": "ImageUploadService",
         "constructor": {
           "name": "",
           "kind": "constructor",
           "injectedType": {
             "lookupKey": {
-              "root": "asset:hersay/lib/module_search/ui/screen/search_screen/seach_screen.dart#SearchScreen",
+              "root": "asset:hersay/lib/module_upload/service/image_upload/image_upload_service.dart#ImageUploadService",
               "qualifier": null
             },
             "isProvider": false
@@ -21,7 +21,7 @@
           "dependencies": [
             {
               "lookupKey": {
-                "root": "asset:hersay/lib/module_search/state_manager/search/search.state_manager.dart#SearchStateManager",
+                "root": "asset:hersay/lib/module_upload/manager/upload_manager/upload_manager.dart#UploadManager",
                 "qualifier": null
               },
               "isProvider": false
