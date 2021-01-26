@@ -119,4 +119,9 @@ class UserManager
 
         return $userData;
     }
+
+    public function getAllProfiles()
+    {
+        return $this->userProfileEntityRepository->getAllProfiles();
+    }
 }
