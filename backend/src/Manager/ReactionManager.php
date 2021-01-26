@@ -12,13 +12,19 @@ class ReactionManager
     private $entityManager;
     private $repository;
     private $autoMapping;
+    private $carManager;
+    private $deviceManager;
+    private $realEstateManager;
 
-    public function __construct(EntityManagerInterface $entityManagerInterface,
-    ReactionEntityRepository $repository, AutoMapping $autoMapping) {
+    public function __construct(EntityManagerInterface $entityManagerInterface, ReactionEntityRepository $repository, AutoMapping $autoMapping,
+                                CarManager $carManager, DeviceManager $deviceManager, RealEstateManager $realEstateManager) {
 
         $this->entityManager = $entityManagerInterface;
         $this->repository = $repository;
         $this->autoMapping = $autoMapping;
+        $this->carManager = $carManager;
+        $this->deviceManager = $deviceManager;
+        $this->realEstateManager = $realEstateManager;
     }
     public function reactionCreate(ReactionCreateRequest $request)
     {
@@ -56,4 +62,30 @@ class ReactionManager
         return $this->repository->reactionforItem($ID, $entity);
     }
 
+    public function getNotifications($userID)
+    {
+        $response = [];
+
+        $results = $this->repository->getNotifications($userID);
+
+        foreach ($results as $result)
+        {
+            if($result['entity'] == "car")
+            {
+                 $result['entityName'] = $this->carManager->getCarById($result['itemID'])[0]['brand'];
+            }
+            elseif ($result['entity'] == "device")
+            {
+                $result['entityName'] = $this->deviceManager->getDeviceById($result['itemID'])[0]['brand'];
+            }
+            elseif ($result['entity'] == "realEstate")
+            {
+                $result['entityName'] = $this->realEstateManager->getRealEstateById($result['itemID'])[0]['realEstateType'];
+            }
+
+            $response[] = $result;
+        }
+
+        return $response;
+    }
 }

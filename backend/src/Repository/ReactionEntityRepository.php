@@ -102,4 +102,24 @@ class ReactionEntityRepository extends ServiceEntityRepository
         ->getResult();
     }
 
+    public function getNotifications($userID)
+    {
+        return $this->createQueryBuilder('reaction')
+            ->select('reaction.id', 'reaction.createdAt', 'reaction.entity', 'reaction.itemID', 'reaction.type',
+             'reaction.createdBy', 'userProfileEntity.userName as username', 'userProfileEntity.image as userImage')
+            ->andWhere('reaction.type = 1')
+            ->andWhere('reaction.createdBy != :userID')
+            ->setParameter('userID', $userID)
+
+            ->leftJoin(
+                UserProfileEntity::class,
+                'userProfileEntity',
+                Join::WITH,
+                'userProfileEntity.userID = reaction.createdBy'
+            )
+
+            ->getQuery()
+            ->getResult();
+    }
+
    }

@@ -92,4 +92,14 @@ class ReactionController extends BaseController
         
         return $this->response($result, self::FETCH);
     }
+
+    /**
+     * @Route("/notification", name="getNotificationsForAUser", methods={"GET"})
+     */
+    public function notification()
+    {
+        $result = $this->reactionService->getNotifications($this->getUserId());
+
+        return $this->response($result, self::FETCH);
+    }
 }

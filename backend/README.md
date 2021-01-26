@@ -34,7 +34,7 @@ php bin/console doctrine:migration:migrate
 * [Car](#car)
 * [Device](#device)
 * [Document](#document)
-
+* [Image](#image)
 
 
 
@@ -190,6 +190,11 @@ methods: GET
 /reactionForUser/itemID
 methods: GET
 ```
+#### Get notifications for a specific user.
+```
+/notification
+methods: GET
+```
 
 ### Car
 note:in body postman send "entity":"CarEntity"
@@ -316,4 +321,11 @@ methods: POST
 ```
 documents/itemID/entity
 methods: GET
+```
+### Image
+
+#### Insert new image
+```
+/image
+methods: POST
 ```
