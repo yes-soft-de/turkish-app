@@ -28,6 +28,8 @@ class ImageService
     {
         $imageCreate = $this->imageManager->imageCreate($request);
 
+        $imageCreate->setImage($this->specialLinkCheck($imageCreate->getSpecialLink()).$imageCreate->getImage());
+
         return $this->autoMapping->map(ImageEntity::class,ImageCreateResponse::class, $imageCreate);
     }
 
