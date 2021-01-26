@@ -150,18 +150,7 @@ methods: PUT
 /realEstate/ID
 methods: DELETE
 ```
-#### Filter For real estate
-key = price OR city 
 
-value = the value you want to find
-
-for example:
-realEstatesFilter/price/500000
-
-```
-realEstatesFilter/key/value
-methods: GET
-```
 ### Reaction
 note: type = 1 .
 
@@ -246,20 +235,8 @@ methods: PUT
 /cars/id
 methods: DELETE
 ```
-#### Filter For cars
-key = city OR price. 
 
-value = the value you want to find.
-
-For example:
-carsFilter/city/syria
-
-```
-carsFilter/key/value
-methods: GET
-```
 #### Get all properties (Cars, Real Estates, and Devices)
-
 ```
 /allproperties
 methods: GET
@@ -296,17 +273,6 @@ methods: PUT
 ```
 /devices/id
 methods: DELETE
-```
-#### Filter For devices
-key = price OR city. 
-
-value = the value you want to find.
-For example:
-devicesFilter/price/450000
-
-```
-devicesFilter/key/value
-methods: GET
 ```
 
 ### Document

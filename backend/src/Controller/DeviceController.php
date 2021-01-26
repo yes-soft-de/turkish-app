@@ -69,8 +69,6 @@ class DeviceController extends BaseController
      */
     public function getDeviceById($id)
     {
-//        $data = json_decode($request->getContent(), true);
-
         $result = $this->deviceService->getDeviceById($id, $this->getUserId());
 
         return $this->response($result, self::FETCH);
@@ -82,8 +80,6 @@ class DeviceController extends BaseController
      */
     public function getDevicesOfUser()
     {
-//        $data = json_decode($request->getContent(), true);
-
         $result = $this->deviceService->getDevicesOfUser($this->getUserId());
 
         return $this->response($result, self::FETCH);
@@ -94,7 +90,6 @@ class DeviceController extends BaseController
      */
     public function getAllDevices()
     {
-//        $data = json_decode($request->getContent(), true);
         $result = $this->deviceService->getAllDevices($this->getUserId());
 
         return $this->response($result, self::FETCH);

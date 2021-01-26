@@ -66,8 +66,6 @@ class RealEstateController extends BaseController
      */
     public function getRealEstateById($id)
     {
-//        $data = json_decode($request->getContent(), true);
-       
         $result = $this->realEstateService->getRealEstateById($id, $this->getUserId());
 
         return $this->response($result, self::FETCH);
@@ -79,8 +77,6 @@ class RealEstateController extends BaseController
      */
     public function getRealEstateByIdUnaccepted($id)
     {
-//        $data = json_decode($request->getContent(), true);
-       
         $result = $this->realEstateService->getRealEstateByIdUnaccepted($id, $this->getUserId());
 
         return $this->response($result, self::FETCH);
@@ -91,9 +87,7 @@ class RealEstateController extends BaseController
      * @return JsonResponse
      */
     public function getAllRealEstate()
-    {       
-//        $data = json_decode($request->getContent(), true);
-
+    {
         $result = $this->realEstateService->getAllRealEstate($this->getUserId());
 
         return $this->response($result, self::FETCH);
@@ -104,9 +98,7 @@ class RealEstateController extends BaseController
      * @return JsonResponse
      */
     public function getAllRealEstateUnaccepted()
-    {       
-//        $data = json_decode($request->getContent(), true);
-
+    {
         $result = $this->realEstateService->getAllRealEstateUnaccepted($this->getUserId());
 
         return $this->response($result, self::FETCH);
@@ -117,9 +109,7 @@ class RealEstateController extends BaseController
      * @return JsonResponse
      */
     public function getRealEstateByUser()
-    {       
-//        $data = json_decode($request->getContent(), true);
-
+    {
         $result = $this->realEstateService->getRealEstateByUser($this->getUserId());
 
         return $this->response($result, self::FETCH);
@@ -161,14 +151,14 @@ class RealEstateController extends BaseController
         return $this->response("deleted ", self::DELETE);
     }
 
-    /**
-     * @Route("realEstatesFilter/{key}/{value}", name="filterForRealEstates ",methods={"GET"})
-     * @return JsonResponse
-     */
-    public function getFilter($key, $value)
-    {       
-        $result = $this->realEstateService->getFilter($key, $value);
-
-        return $this->response($result, self::FETCH);
-    }
+//    /**
+//     * @Route("realEstatesFilter/{key}/{value}", name="filterForRealEstates ",methods={"GET"})
+//     * @return JsonResponse
+//     */
+//    public function getFilter($key, $value)
+//    {
+//        $result = $this->realEstateService->getFilter($key, $value);
+//
+//        return $this->response($result, self::FETCH);
+//    }
 }

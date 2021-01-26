@@ -73,8 +73,6 @@ class CarController extends BaseController
      */
     public function getCarById($id)
     {
-//        $data = json_decode($request->getContent(), true);
-
         $result = $this->carService->getCarById($id, $this->getUserId());
 
         return $this->response($result, self::FETCH);
@@ -86,8 +84,6 @@ class CarController extends BaseController
      */
     public function getCarByIdUnaccepted($id)
     {
-//        $data = json_decode($request->getContent(), true);
-
         $result = $this->carService->getCarByIdUnaccepted($id, $this->getUserId());
 
         return $this->response($result, self::FETCH);
@@ -99,7 +95,6 @@ class CarController extends BaseController
      */
     public function getCarsOfUser(Request $request)
     {
-//        $data = json_decode($request->getContent(), true);
         $result = $this->carService->getCarsOfUser($this->getUserId());
 
         return $this->response($result, self::FETCH);
@@ -110,7 +105,6 @@ class CarController extends BaseController
      */
     public function getAllCars()
     {
-//        $data = json_decode($request->getContent(), true);
         $result = $this->carService->getAllCars($this->getUserId());
 
         return $this->response($result, self::FETCH);
@@ -121,7 +115,6 @@ class CarController extends BaseController
      */
     public function getAllCarsUnaccepted()
     {
-//        $data = json_decode($request->getContent(), true);
         $result = $this->carService->getAllCarsUnaccepted($this->getUserId());
 
         return $this->response($result, self::FETCH);
@@ -168,16 +161,16 @@ class CarController extends BaseController
         return $this->response("deleted ", self::DELETE);
     }
     
-    /**
-     * @Route("carsFilter/{key}/{value}", name="filterForcars ",methods={"GET"})
-     * @return JsonResponse
-     */
-    public function getFilter($key, $value)
-    {       
-        $result = $this->carService->getFilter($key, $value);
-
-        return $this->response($result, self::FETCH);
-    }
+//    /**
+//     * @Route("carsFilter/{key}/{value}", name="filterForcars ",methods={"GET"})
+//     * @return JsonResponse
+//     */
+//    public function getFilter($key, $value)
+//    {
+//        $result = $this->carService->getFilter($key, $value);
+//
+//        return $this->response($result, self::FETCH);
+//    }
 
     /**
      * @Route("/allproperties", name="getAllProprties", methods={"GET"})
