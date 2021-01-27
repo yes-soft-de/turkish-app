@@ -100,12 +100,15 @@ class CarDetailsStateDataLoaded extends CarDetailsState {
                     SizedBox(
                       width: 10,
                     ),
-                    Text(
-                      //TODO : change this when owner name fetched from backend
-                      'Atrium k',
-                      style: TextStyle(
-                        fontSize: 12,
-                        fontWeight: FontWeight.bold,
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Text(
+                        //TODO : change this when owner name fetched from backend
+                        'Atrium k',
+                        style: TextStyle(
+                          fontSize: 12,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
                     ),
                   ],
@@ -120,45 +123,81 @@ class CarDetailsStateDataLoaded extends CarDetailsState {
                           image: NetworkImage(
                               car.image?? 'https://www.wsupercars.com/wallpapers/Buick/1970-Buick-GSX-001-1080.jpg'))),
                 ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    FlatButton(
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(5)),
-                      //TODO : change this
-                      color: ProjectColors.THEME_COLOR,
-                      onPressed: () {},
-                      child: Flex(
-                        direction: Axis.horizontal,
-                        children: [
-                          Icon(
-                            Icons.picture_in_picture,
-                            color: Colors.white,
-                          ),
-                          Text(
-                            'Show Pics',
-                            style: TextStyle(color: Colors.white),
-                          )
-                        ],
-                      ),
-                    )
-                  ],
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      FlatButton(
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(5)),
+                        //TODO : change this
+                        color: ProjectColors.THEME_COLOR,
+                        onPressed: () {},
+                        child: Flex(
+                          direction: Axis.horizontal,
+                          children: [
+                            Icon(
+                              Icons.picture_in_picture,
+                              color: Colors.white,
+                            ),
+                            Text(
+                              'Show Pics',
+                              style: TextStyle(color: Colors.white),
+                            )
+                          ],
+                        ),
+                      )
+                    ],
+                  ),
                 ),
 
                 //car details
-                Text('Type : ${car.type}'),
-                Text('Brand : ${car.brand}'),
-                Text('Traveled Distance : ${car.distance} KM'),
-                Text('Dureation of use : ${car.useDuration}'),
-                Text('Gear Type : ${car.gearType}'),
-                Text('CC : ${car.cc} CC'),
-                Text('Cylynder : ${car.cylinder}'),
-                Text('Fuel : ${car.fuel}'),
-                Text('Location : ${car.location}'),
-                Text('Plated'),
-                Center(
-                  child: Text('Price : ${car.price} \$'),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Text('Type : ${car.type}'),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Text('Brand : ${car.brand}'),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Text('Traveled Distance : ${car.distance} KM'),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Text('Dureation of use : ${car.useDuration}'),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Text('Gear Type : ${car.gearType}'),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Text('CC : ${car.cc} CC'),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Text('Cylynder : ${car.cylinder}'),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Text('Fuel : ${car.fuel}'),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Text('Location : ${car.location}'),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Text('Plated'),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Center(
+                    child: Text('Price : ${car.price} \$'),
+                  ),
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,

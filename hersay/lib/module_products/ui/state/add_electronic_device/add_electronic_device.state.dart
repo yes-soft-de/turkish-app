@@ -64,30 +64,17 @@ class AddElectronicDeviceStateInit extends AddElectronicDeviceState {
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               //device type
-              Container(
+              Card(
+                elevation: 10,
+                margin: EdgeInsets.only(top:20),
+                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
+                child: Container(
                   width: 400,
-                  margin: EdgeInsets.only(top: 15),
+                  padding: EdgeInsets.all(10),
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(15),
-                      color: Colors.white),
-                  child: Container(
-                    padding: EdgeInsets.symmetric(horizontal: 10),
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(15),
-                        color: Colors.white,
-                        boxShadow: [
-                          BoxShadow(
-                            color: Colors.black12,
-                            blurRadius:
-                            2.0, // has the effect of softening the shadow
-                            spreadRadius:
-                            2.0, // has the effect of extending the shadow
-                            offset: Offset(
-                              5.0, // horizontal, move right 10
-                              5.0, // vertical, move down 10
-                            ),
-                          )
-                        ]),
+                      color: Colors.black12,
+                  ),
                     child: DropdownButtonHideUnderline(
                       child: DropdownButton(
                           hint: _selectedDeviceType == null
@@ -113,29 +100,15 @@ class AddElectronicDeviceStateInit extends AddElectronicDeviceState {
                     ),
                   )),
               // Brand
-              Container(
-                height: 55,
-                margin: EdgeInsets.only(top: 15),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(15),
-                ),
+              Card(
+                elevation: 10,
+                margin: EdgeInsets.only(top:20),
+                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
                 child: Container(
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(15),
-                      color: Colors.white,
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.black12,
-                          blurRadius:
-                          2.0, // has the effect of softening the shadow
-                          spreadRadius:
-                          2.0, // has the effect of extending the shadow
-                          offset: Offset(
-                            5.0, // horizontal, move right 10
-                            5.0, // vertical, move down 10
-                          ),
-                        )
-                      ]),
+                      color: Colors.black12,
+                  ),
                   child: TextFormField(
                     controller: _brandController,
                     decoration: InputDecoration(
@@ -152,7 +125,7 @@ class AddElectronicDeviceStateInit extends AddElectronicDeviceState {
                     // Move focus to next
                     validator: (result) {
                       if (result.isEmpty) {
-                        return 'الرجاء ادخال اسمك';
+                       return S.of(context).thisFieldCannotBeEmpty;
                       }
                       return null;
                     },
@@ -160,29 +133,15 @@ class AddElectronicDeviceStateInit extends AddElectronicDeviceState {
                 ),
               ),
               //cpu
-              Container(
-                height: 55,
-                margin: EdgeInsets.only(top: 15),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(15),
-                ),
+              Card(
+                elevation: 10,
+                margin: EdgeInsets.only(top:20),
+                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
                 child: Container(
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(15),
-                      color: Colors.white,
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.black12,
-                          blurRadius:
-                          2.0, // has the effect of softening the shadow
-                          spreadRadius:
-                          2.0, // has the effect of extending the shadow
-                          offset: Offset(
-                            5.0, // horizontal, move right 10
-                            5.0, // vertical, move down 10
-                          ),
-                        )
-                      ]),
+                      color: Colors.black12,
+                  ),
                   child: TextFormField(
                     controller: _cpuController,
                     decoration: InputDecoration(
@@ -199,7 +158,7 @@ class AddElectronicDeviceStateInit extends AddElectronicDeviceState {
                     // Move focus to next
                     validator: (result) {
                       if (result.isEmpty) {
-                        return 'الرجاء ادخال اسمك';
+                       return S.of(context).thisFieldCannotBeEmpty;
                       }
                       return null;
                     },
@@ -207,29 +166,15 @@ class AddElectronicDeviceStateInit extends AddElectronicDeviceState {
                 ),
               ),
               //ram
-              Container(
-                height: 55,
-                margin: EdgeInsets.only(top: 15),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(15),
-                ),
+              Card(
+                elevation: 10,
+                margin: EdgeInsets.only(top:20),
+                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
                 child: Container(
                   decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(15),
-                      color: Colors.white,
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.black12,
-                          blurRadius:
-                          2.0, // has the effect of softening the shadow
-                          spreadRadius:
-                          2.0, // has the effect of extending the shadow
-                          offset: Offset(
-                            5.0, // horizontal, move right 10
-                            5.0, // vertical, move down 10
-                          ),
-                        )
-                      ]),
+                    borderRadius: BorderRadius.circular(15),
+                    color: Colors.black12,
+                  ),
                   child: TextFormField(
                     controller: _ramController,
                     decoration: InputDecoration(
@@ -246,7 +191,7 @@ class AddElectronicDeviceStateInit extends AddElectronicDeviceState {
                     // Move focus to next
                     validator: (result) {
                       if (result.isEmpty) {
-                        return 'الرجاء ادخال اسمك';
+                       return S.of(context).thisFieldCannotBeEmpty;
                       }
                       return null;
                     },
@@ -254,29 +199,15 @@ class AddElectronicDeviceStateInit extends AddElectronicDeviceState {
                 ),
               ),
               //battery
-              Container(
-                height: 55,
-                margin: EdgeInsets.only(top: 15),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(15),
-                ),
+              Card(
+                elevation: 10,
+                margin: EdgeInsets.only(top:20),
+                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
                 child: Container(
                   decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(15),
-                      color: Colors.white,
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.black12,
-                          blurRadius:
-                          2.0, // has the effect of softening the shadow
-                          spreadRadius:
-                          2.0, // has the effect of extending the shadow
-                          offset: Offset(
-                            5.0, // horizontal, move right 10
-                            5.0, // vertical, move down 10
-                          ),
-                        )
-                      ]),
+                    borderRadius: BorderRadius.circular(15),
+                    color: Colors.black12,
+                  ),
                   child: TextFormField(
                     controller: _batteryController,
                     decoration: InputDecoration(
@@ -293,7 +224,7 @@ class AddElectronicDeviceStateInit extends AddElectronicDeviceState {
                     // Move focus to next
                     validator: (result) {
                       if (result.isEmpty) {
-                        return 'الرجاء ادخال اسمك';
+                       return S.of(context).thisFieldCannotBeEmpty;
                       }
                       return null;
                     },
@@ -301,30 +232,16 @@ class AddElectronicDeviceStateInit extends AddElectronicDeviceState {
                 ),
               ),
               //build year
-              Container(
-                padding: EdgeInsets.all(5),
-                margin: EdgeInsets.only(top: 30),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(15),
-                ),
+              Card(
+                elevation: 10,
+                margin: EdgeInsets.only(top:20),
+                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
                 child: Container(
-                  padding: EdgeInsets.symmetric(horizontal: 10),
+                  padding: EdgeInsets.all(10),
                   decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(15),
-                      color: Colors.white,
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.black12,
-                          blurRadius:
-                          2.0, // has the effect of softening the shadow
-                          spreadRadius:
-                          2.0, // has the effect of extending the shadow
-                          offset: Offset(
-                            5.0, // horizontal, move right 10
-                            5.0, // vertical, move down 10
-                          ),
-                        )
-                      ]),
+                    borderRadius: BorderRadius.circular(15),
+                    color: Colors.black12,
+                  ),
                   child: DateTimePicker(
                     type: DateTimePickerType.date,
                     dateMask: 'yyyy',
@@ -332,7 +249,7 @@ class AddElectronicDeviceStateInit extends AddElectronicDeviceState {
                     firstDate: DateTime.utc(1900, 1, 1),
                     lastDate: DateTime(2100),
 //                         icon: Icon(Icons.event),
-                    dateLabelText: 'Year of release',
+                    dateLabelText: 'Build Year',
 
                     selectableDayPredicate: (date) {
                       // Disable weekend days to select from the calendar
@@ -353,29 +270,15 @@ class AddElectronicDeviceStateInit extends AddElectronicDeviceState {
               ),
 
               // use duration
-              Container(
-                height: 55,
-                margin: EdgeInsets.only(top: 15),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(15),
-                ),
+              Card(
+                elevation: 10,
+                margin: EdgeInsets.only(top:20),
+                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
                 child: Container(
                   decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(15),
-                      color: Colors.white,
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.black12,
-                          blurRadius:
-                          2.0, // has the effect of softening the shadow
-                          spreadRadius:
-                          2.0, // has the effect of extending the shadow
-                          offset: Offset(
-                            5.0, // horizontal, move right 10
-                            5.0, // vertical, move down 10
-                          ),
-                        )
-                      ]),
+                    borderRadius: BorderRadius.circular(15),
+                    color: Colors.black12,
+                  ),
                   child: TextFormField(
                     controller: _useDurationController,
                     decoration: InputDecoration(
@@ -392,7 +295,7 @@ class AddElectronicDeviceStateInit extends AddElectronicDeviceState {
                     // Move focus to next
                     validator: (result) {
                       if (result.isEmpty) {
-                        return 'الرجاء ادخال اسمك';
+                       return S.of(context).thisFieldCannotBeEmpty;
                       }
                       return null;
                     },
@@ -400,29 +303,15 @@ class AddElectronicDeviceStateInit extends AddElectronicDeviceState {
                 ),
               ),
               // guage
-              Container(
-                height: 55,
-                margin: EdgeInsets.only(top: 15),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(15),
-                ),
+              Card(
+                elevation: 10,
+                margin: EdgeInsets.only(top:20),
+                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
                 child: Container(
                   decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(15),
-                      color: Colors.white,
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.black12,
-                          blurRadius:
-                          2.0, // has the effect of softening the shadow
-                          spreadRadius:
-                          2.0, // has the effect of extending the shadow
-                          offset: Offset(
-                            5.0, // horizontal, move right 10
-                            5.0, // vertical, move down 10
-                          ),
-                        )
-                      ]),
+                    borderRadius: BorderRadius.circular(15),
+                    color: Colors.black12,
+                  ),
                   child: TextFormField(
                     controller: _guageController,
                     decoration: InputDecoration(
@@ -439,7 +328,7 @@ class AddElectronicDeviceStateInit extends AddElectronicDeviceState {
                     // Move focus to next
                     validator: (result) {
                       if (result.isEmpty) {
-                        return 'الرجاء ادخال اسمك';
+                       return S.of(context).thisFieldCannotBeEmpty;
                       }
                       return null;
                     },
@@ -448,29 +337,15 @@ class AddElectronicDeviceStateInit extends AddElectronicDeviceState {
               ),
 
               // location
-              Container(
-                height: 55,
-                margin: EdgeInsets.only(top: 15),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(15),
-                ),
+              Card(
+                elevation: 10,
+                margin: EdgeInsets.only(top:20),
+                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
                 child: Container(
                   decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(15),
-                      color: Colors.white,
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.black12,
-                          blurRadius:
-                          2.0, // has the effect of softening the shadow
-                          spreadRadius:
-                          2.0, // has the effect of extending the shadow
-                          offset: Offset(
-                            5.0, // horizontal, move right 10
-                            5.0, // vertical, move down 10
-                          ),
-                        )
-                      ]),
+                    borderRadius: BorderRadius.circular(15),
+                    color: Colors.black12,
+                  ),
                   child: TextFormField(
                     controller: _locationController,
                     decoration: InputDecoration(
@@ -487,7 +362,7 @@ class AddElectronicDeviceStateInit extends AddElectronicDeviceState {
                     // Move focus to next
                     validator: (result) {
                       if (result.isEmpty) {
-                        return 'الرجاء ادخال اسمك';
+                       return S.of(context).thisFieldCannotBeEmpty;
                       }
                       return null;
                     },
@@ -495,29 +370,15 @@ class AddElectronicDeviceStateInit extends AddElectronicDeviceState {
                 ),
               ),
               // price
-              Container(
-                height: 55,
-                margin: EdgeInsets.only(top: 15),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(15),
-                ),
+              Card(
+                elevation: 10,
+                margin: EdgeInsets.only(top:20),
+                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
                 child: Container(
                   decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(15),
-                      color: Colors.white,
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.black12,
-                          blurRadius:
-                          2.0, // has the effect of softening the shadow
-                          spreadRadius:
-                          2.0, // has the effect of extending the shadow
-                          offset: Offset(
-                            5.0, // horizontal, move right 10
-                            5.0, // vertical, move down 10
-                          ),
-                        )
-                      ]),
+                    borderRadius: BorderRadius.circular(15),
+                    color: Colors.black12,
+                  ),
                   child: TextFormField(
                     controller: _priceController,
                     decoration: InputDecoration(
@@ -534,7 +395,7 @@ class AddElectronicDeviceStateInit extends AddElectronicDeviceState {
                     // Move focus to next
                     validator: (result) {
                       if (result.isEmpty) {
-                        return 'الرجاء ادخال اسمك';
+                       return S.of(context).thisFieldCannotBeEmpty;
                       }
                       return null;
                     },
@@ -542,29 +403,15 @@ class AddElectronicDeviceStateInit extends AddElectronicDeviceState {
                 ),
               ),
               // country
-              Container(
-                height: 55,
-                margin: EdgeInsets.only(top: 15),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(15),
-                ),
+              Card(
+                elevation: 10,
+                margin: EdgeInsets.only(top:20),
+                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
                 child: Container(
                   decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(15),
-                      color: Colors.white,
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.black12,
-                          blurRadius:
-                          2.0, // has the effect of softening the shadow
-                          spreadRadius:
-                          2.0, // has the effect of extending the shadow
-                          offset: Offset(
-                            5.0, // horizontal, move right 10
-                            5.0, // vertical, move down 10
-                          ),
-                        )
-                      ]),
+                    borderRadius: BorderRadius.circular(15),
+                    color: Colors.black12,
+                  ),
                   child: TextFormField(
                     controller: _countryController,
                     decoration: InputDecoration(
@@ -588,29 +435,15 @@ class AddElectronicDeviceStateInit extends AddElectronicDeviceState {
                 ),
               ),
               // city
-              Container(
-                height: 55,
-                margin: EdgeInsets.only(top: 15),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(15),
-                ),
+              Card(
+                elevation: 10,
+                margin: EdgeInsets.only(top:20),
+                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
                 child: Container(
                   decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(15),
-                      color: Colors.white,
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.black12,
-                          blurRadius:
-                          2.0, // has the effect of softening the shadow
-                          spreadRadius:
-                          2.0, // has the effect of extending the shadow
-                          offset: Offset(
-                            5.0, // horizontal, move right 10
-                            5.0, // vertical, move down 10
-                          ),
-                        )
-                      ]),
+                    borderRadius: BorderRadius.circular(15),
+                    color: Colors.black12,
+                  ),
                   child: TextFormField(
                     controller: _cityController,
                     decoration: InputDecoration(
@@ -634,29 +467,15 @@ class AddElectronicDeviceStateInit extends AddElectronicDeviceState {
                 ),
               ),
               // description
-              Container(
-                height: 55,
-                margin: EdgeInsets.only(top: 15),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(15),
-                ),
+              Card(
+                elevation: 10,
+                margin: EdgeInsets.only(top:20),
+                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
                 child: Container(
                   decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(15),
-                      color: Colors.white,
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.black12,
-                          blurRadius:
-                          2.0, // has the effect of softening the shadow
-                          spreadRadius:
-                          2.0, // has the effect of extending the shadow
-                          offset: Offset(
-                            5.0, // horizontal, move right 10
-                            5.0, // vertical, move down 10
-                          ),
-                        )
-                      ]),
+                    borderRadius: BorderRadius.circular(15),
+                    color: Colors.black12,
+                  ),
                   child: TextFormField(
                     controller: _descriptionController,
                     maxLines: 8,
@@ -683,7 +502,7 @@ class AddElectronicDeviceStateInit extends AddElectronicDeviceState {
 
               Center(
                 child: Container(
-                  width: 200,
+                  width: 250,
                   height: 55,
                   margin: EdgeInsets.only(top: 30),
                   child: FlatButton(

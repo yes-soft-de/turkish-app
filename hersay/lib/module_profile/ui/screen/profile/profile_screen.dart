@@ -27,7 +27,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
       drawer: TurkishNavigationDrawer(),
       body: SingleChildScrollView(
         child: Container(
-          color: ProjectColors.BACKGROUND_COLOR,
           child: Column(
             children: [
               Container(
@@ -86,6 +85,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
               ),
               Container(
                 height: 200,
+                color: Colors.black12,
                 padding: EdgeInsets.symmetric(horizontal: 30),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -115,6 +115,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
+
                       children: [
                         Text(
                           'Delete Account',

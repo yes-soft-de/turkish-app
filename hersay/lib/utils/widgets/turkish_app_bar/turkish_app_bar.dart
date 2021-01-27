@@ -22,7 +22,7 @@ class TurkishAppBar {
       ),
       leading: IconButton(
         onPressed: () {
-//          drawerKey.currentState.openDrawer();
+         drawerKey.currentState.openDrawer();
         },
         icon: Icon(
             Icons.menu,

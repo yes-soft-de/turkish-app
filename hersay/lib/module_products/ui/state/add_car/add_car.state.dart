@@ -65,29 +65,15 @@ class AddCarStateInit extends AddCarState {
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               //car type
-              Container(
-                height: 55,
-                margin: EdgeInsets.only(top: 15),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(15),
-                ),
+              Card(
+                elevation: 10,
+                margin: EdgeInsets.only(top:20),
+                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
                 child: Container(
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(15),
-                      color: Colors.white,
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.black12,
-                          blurRadius:
-                          2.0, // has the effect of softening the shadow
-                          spreadRadius:
-                          2.0, // has the effect of extending the shadow
-                          offset: Offset(
-                            5.0, // horizontal, move right 10
-                            5.0, // vertical, move down 10
-                          ),
-                        )
-                      ]),
+                      color: Colors.black12,
+                  ),
                   child: TextFormField(
                     controller: _carTypeController,
                     decoration: InputDecoration(
@@ -104,7 +90,7 @@ class AddCarStateInit extends AddCarState {
                     // Move focus to next
                     validator: (result) {
                       if (result.isEmpty) {
-                        return 'الرجاء ادخال اسمك';
+                       return S.of(context).thisFieldCannotBeEmpty;
                       }
                       return null;
                     },
@@ -112,29 +98,15 @@ class AddCarStateInit extends AddCarState {
                 ),
               ),
               // Brand
-              Container(
-                height: 55,
-                margin: EdgeInsets.only(top: 15),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(15),
-                ),
+               Card(
+                elevation: 10,
+                margin: EdgeInsets.only(top:20),
+                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
                 child: Container(
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(15),
-                      color: Colors.white,
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.black12,
-                          blurRadius:
-                          2.0, // has the effect of softening the shadow
-                          spreadRadius:
-                          2.0, // has the effect of extending the shadow
-                          offset: Offset(
-                            5.0, // horizontal, move right 10
-                            5.0, // vertical, move down 10
-                          ),
-                        )
-                      ]),
+                      color: Colors.black12,
+                  ),
                   child: TextFormField(
                     controller: _brandController,
                     decoration: InputDecoration(
@@ -151,7 +123,7 @@ class AddCarStateInit extends AddCarState {
                     // Move focus to next
                     validator: (result) {
                       if (result.isEmpty) {
-                        return 'الرجاء ادخال اسمك';
+                       return S.of(context).thisFieldCannotBeEmpty;
                       }
                       return null;
                     },
@@ -159,29 +131,15 @@ class AddCarStateInit extends AddCarState {
                 ),
               ),
               //company
-              Container(
-                height: 55,
-                margin: EdgeInsets.only(top: 15),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(15),
-                ),
+               Card(
+                elevation: 10,
+                margin: EdgeInsets.only(top:20),
+                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
                 child: Container(
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(15),
-                      color: Colors.white,
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.black12,
-                          blurRadius:
-                          2.0, // has the effect of softening the shadow
-                          spreadRadius:
-                          2.0, // has the effect of extending the shadow
-                          offset: Offset(
-                            5.0, // horizontal, move right 10
-                            5.0, // vertical, move down 10
-                          ),
-                        )
-                      ]),
+                      color: Colors.black12,
+                  ),
                   child: TextFormField(
                     controller: _companyController,
                     decoration: InputDecoration(
@@ -198,7 +156,7 @@ class AddCarStateInit extends AddCarState {
                     // Move focus to next
                     validator: (result) {
                       if (result.isEmpty) {
-                        return 'الرجاء ادخال اسمك';
+                       return S.of(context).thisFieldCannotBeEmpty;
                       }
                       return null;
                     },
@@ -206,29 +164,15 @@ class AddCarStateInit extends AddCarState {
                 ),
               ),
               //engine
-              Container(
-                height: 55,
-                margin: EdgeInsets.only(top: 15),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(15),
-                ),
+               Card(
+                elevation: 10,
+                margin: EdgeInsets.only(top:20),
+                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
                 child: Container(
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(15),
-                      color: Colors.white,
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.black12,
-                          blurRadius:
-                          2.0, // has the effect of softening the shadow
-                          spreadRadius:
-                          2.0, // has the effect of extending the shadow
-                          offset: Offset(
-                            5.0, // horizontal, move right 10
-                            5.0, // vertical, move down 10
-                          ),
-                        )
-                      ]),
+                      color: Colors.black12,
+                  ),
                   child: TextFormField(
                     controller: _engineController,
                     decoration: InputDecoration(
@@ -245,7 +189,7 @@ class AddCarStateInit extends AddCarState {
                     // Move focus to next
                     validator: (result) {
                       if (result.isEmpty) {
-                        return 'الرجاء ادخال اسمك';
+                       return S.of(context).thisFieldCannotBeEmpty;
                       }
                       return null;
                     },
@@ -253,30 +197,16 @@ class AddCarStateInit extends AddCarState {
                 ),
               ),
               //build year
-              Container(
-                padding: EdgeInsets.all(5),
-                margin: EdgeInsets.only(top: 30),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(15),
-                ),
+              Card(
+                elevation: 10,
+                margin: EdgeInsets.only(top:20),
+                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
                 child: Container(
-                  padding: EdgeInsets.symmetric(horizontal: 10),
+                  padding: EdgeInsets.all(10),
                   decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(15),
-                      color: Colors.white,
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.black12,
-                          blurRadius:
-                          2.0, // has the effect of softening the shadow
-                          spreadRadius:
-                          2.0, // has the effect of extending the shadow
-                          offset: Offset(
-                            5.0, // horizontal, move right 10
-                            5.0, // vertical, move down 10
-                          ),
-                        )
-                      ]),
+                    borderRadius: BorderRadius.circular(15),
+                    color: Colors.black12,
+                  ),
                   child: DateTimePicker(
                     type: DateTimePickerType.date,
                     dateMask: 'yyyy',
@@ -305,30 +235,17 @@ class AddCarStateInit extends AddCarState {
               ),
 
               //Gear Type
-              Container(
-                  width: 400,
-                  margin: EdgeInsets.only(top: 15),
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(15),
-                      color: Colors.white),
+               Card(
+                  elevation: 10,
+                  margin: EdgeInsets.only(top:20),
+                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
                   child: Container(
-                    padding: EdgeInsets.symmetric(horizontal: 10),
+                    width: 400,
+                    padding: EdgeInsets.all(10),
                     decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(15),
-                        color: Colors.white,
-                        boxShadow: [
-                          BoxShadow(
-                            color: Colors.black12,
-                            blurRadius:
-                            2.0, // has the effect of softening the shadow
-                            spreadRadius:
-                            2.0, // has the effect of extending the shadow
-                            offset: Offset(
-                              5.0, // horizontal, move right 10
-                              5.0, // vertical, move down 10
-                            ),
-                          )
-                        ]),
+                      borderRadius: BorderRadius.circular(15),
+                      color: Colors.black12,
+                    ),
                     child: DropdownButtonHideUnderline(
                       child: DropdownButton(
                           hint: _selectedGearType == null
@@ -355,29 +272,15 @@ class AddCarStateInit extends AddCarState {
                     ),
                   )),
               // mileages
-              Container(
-                height: 55,
-                margin: EdgeInsets.only(top: 15),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(15),
-                ),
+               Card(
+                elevation: 10,
+                margin: EdgeInsets.only(top:20),
+                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
                 child: Container(
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(15),
-                      color: Colors.white,
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.black12,
-                          blurRadius:
-                          2.0, // has the effect of softening the shadow
-                          spreadRadius:
-                          2.0, // has the effect of extending the shadow
-                          offset: Offset(
-                            5.0, // horizontal, move right 10
-                            5.0, // vertical, move down 10
-                          ),
-                        )
-                      ]),
+                      color: Colors.black12,
+                  ),
                   child: TextFormField(
                     controller: _mileagesController,
                     decoration: InputDecoration(
@@ -394,7 +297,7 @@ class AddCarStateInit extends AddCarState {
                     // Move focus to next
                     validator: (result) {
                       if (result.isEmpty) {
-                        return 'الرجاء ادخال اسمك';
+                       return S.of(context).thisFieldCannotBeEmpty;
                       }
                       return null;
                     },
@@ -402,29 +305,15 @@ class AddCarStateInit extends AddCarState {
                 ),
               ),
               // cc
-              Container(
-                height: 55,
-                margin: EdgeInsets.only(top: 15),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(15),
-                ),
+               Card(
+                elevation: 10,
+                margin: EdgeInsets.only(top:20),
+                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
                 child: Container(
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(15),
-                      color: Colors.white,
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.black12,
-                          blurRadius:
-                          2.0, // has the effect of softening the shadow
-                          spreadRadius:
-                          2.0, // has the effect of extending the shadow
-                          offset: Offset(
-                            5.0, // horizontal, move right 10
-                            5.0, // vertical, move down 10
-                          ),
-                        )
-                      ]),
+                      color: Colors.black12,
+                  ),
                   child: TextFormField(
                     controller: _ccController,
                     decoration: InputDecoration(
@@ -441,7 +330,7 @@ class AddCarStateInit extends AddCarState {
                     // Move focus to next
                     validator: (result) {
                       if (result.isEmpty) {
-                        return 'الرجاء ادخال اسمك';
+                       return S.of(context).thisFieldCannotBeEmpty;
                       }
                       return null;
                     },
@@ -449,30 +338,17 @@ class AddCarStateInit extends AddCarState {
                 ),
               ),
               // fuel
-              Container(
-                  width: 400,
-                  margin: EdgeInsets.only(top: 15),
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(15),
-                      color: Colors.white),
+              Card(
+                  elevation: 10,
+                  margin: EdgeInsets.only(top:20),
+                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
                   child: Container(
-                    padding: EdgeInsets.symmetric(horizontal: 10),
+                    width: 400,
+                    padding: EdgeInsets.all(10),
                     decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(15),
-                        color: Colors.white,
-                        boxShadow: [
-                          BoxShadow(
-                            color: Colors.black12,
-                            blurRadius:
-                            2.0, // has the effect of softening the shadow
-                            spreadRadius:
-                            2.0, // has the effect of extending the shadow
-                            offset: Offset(
-                              5.0, // horizontal, move right 10
-                              5.0, // vertical, move down 10
-                            ),
-                          )
-                        ]),
+                      borderRadius: BorderRadius.circular(15),
+                      color: Colors.black12,
+                    ),
                     child: DropdownButtonHideUnderline(
                       child: DropdownButton(
                           hint: _selectedGearType == null
@@ -498,29 +374,15 @@ class AddCarStateInit extends AddCarState {
                     ),
                   )),
               // location
-              Container(
-                height: 55,
-                margin: EdgeInsets.only(top: 15),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(15),
-                ),
+               Card(
+                elevation: 10,
+                margin: EdgeInsets.only(top:20),
+                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
                 child: Container(
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(15),
-                      color: Colors.white,
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.black12,
-                          blurRadius:
-                          2.0, // has the effect of softening the shadow
-                          spreadRadius:
-                          2.0, // has the effect of extending the shadow
-                          offset: Offset(
-                            5.0, // horizontal, move right 10
-                            5.0, // vertical, move down 10
-                          ),
-                        )
-                      ]),
+                      color: Colors.black12,
+                  ),
                   child: TextFormField(
                     controller: _locationController,
                     decoration: InputDecoration(
@@ -537,7 +399,7 @@ class AddCarStateInit extends AddCarState {
                     // Move focus to next
                     validator: (result) {
                       if (result.isEmpty) {
-                        return 'الرجاء ادخال اسمك';
+                       return S.of(context).thisFieldCannotBeEmpty;
                       }
                       return null;
                     },
@@ -545,29 +407,15 @@ class AddCarStateInit extends AddCarState {
                 ),
               ),
               // price
-              Container(
-                height: 55,
-                margin: EdgeInsets.only(top: 15),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(15),
-                ),
+               Card(
+                elevation: 10,
+                margin: EdgeInsets.only(top:20),
+                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
                 child: Container(
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(15),
-                      color: Colors.white,
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.black12,
-                          blurRadius:
-                          2.0, // has the effect of softening the shadow
-                          spreadRadius:
-                          2.0, // has the effect of extending the shadow
-                          offset: Offset(
-                            5.0, // horizontal, move right 10
-                            5.0, // vertical, move down 10
-                          ),
-                        )
-                      ]),
+                      color: Colors.black12,
+                  ),
                   child: TextFormField(
                     controller: _priceController,
                     decoration: InputDecoration(
@@ -584,7 +432,7 @@ class AddCarStateInit extends AddCarState {
                     // Move focus to next
                     validator: (result) {
                       if (result.isEmpty) {
-                        return 'الرجاء ادخال اسمك';
+                       return S.of(context).thisFieldCannotBeEmpty;
                       }
                       return null;
                     },
@@ -594,29 +442,15 @@ class AddCarStateInit extends AddCarState {
 
 
               // country
-              Container(
-                height: 55,
-                margin: EdgeInsets.only(top: 15),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(15),
-                ),
+               Card(
+                elevation: 10,
+                margin: EdgeInsets.only(top:20),
+                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
                 child: Container(
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(15),
-                      color: Colors.white,
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.black12,
-                          blurRadius:
-                          2.0, // has the effect of softening the shadow
-                          spreadRadius:
-                          2.0, // has the effect of extending the shadow
-                          offset: Offset(
-                            5.0, // horizontal, move right 10
-                            5.0, // vertical, move down 10
-                          ),
-                        )
-                      ]),
+                      color: Colors.black12,
+                  ),
                   child: TextFormField(
                     controller: _countryController,
                     decoration: InputDecoration(
@@ -640,29 +474,15 @@ class AddCarStateInit extends AddCarState {
                 ),
               ),
               // city
-              Container(
-                height: 55,
-                margin: EdgeInsets.only(top: 15),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(15),
-                ),
+               Card(
+                elevation: 10,
+                margin: EdgeInsets.only(top:20),
+                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
                 child: Container(
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(15),
-                      color: Colors.white,
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.black12,
-                          blurRadius:
-                          2.0, // has the effect of softening the shadow
-                          spreadRadius:
-                          2.0, // has the effect of extending the shadow
-                          offset: Offset(
-                            5.0, // horizontal, move right 10
-                            5.0, // vertical, move down 10
-                          ),
-                        )
-                      ]),
+                      color: Colors.black12,
+                  ),
                   child: TextFormField(
                     controller: _cityController,
                     decoration: InputDecoration(
@@ -686,29 +506,15 @@ class AddCarStateInit extends AddCarState {
                 ),
               ),
               // description
-              Container(
-                height: 55,
-                margin: EdgeInsets.only(top: 15),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(15),
-                ),
+               Card(
+                elevation: 10,
+                margin: EdgeInsets.only(top:20),
+                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
                 child: Container(
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(15),
-                      color: Colors.white,
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.black12,
-                          blurRadius:
-                          2.0, // has the effect of softening the shadow
-                          spreadRadius:
-                          2.0, // has the effect of extending the shadow
-                          offset: Offset(
-                            5.0, // horizontal, move right 10
-                            5.0, // vertical, move down 10
-                          ),
-                        )
-                      ]),
+                      color: Colors.black12,
+                  ),
                   child: TextFormField(
                     controller: _descriptionController,
                     maxLines: 8,
@@ -735,7 +541,7 @@ class AddCarStateInit extends AddCarState {
 
               Center(
                 child: Container(
-                  width: 200,
+                  width: 250,
                   height: 55,
                   margin: EdgeInsets.only(top: 30),
                   child: FlatButton(
@@ -766,57 +572,58 @@ class AddCarStateInit extends AddCarState {
                             style: TextStyle(color: Colors.white),
                           ),
 
-                          Center(
-                            child: Container(
-                              width: 200,
-                              height: 55,
-                              margin: EdgeInsets.only(top: 30),
-                              child: FlatButton(
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(10),
-                                  ),
-                                  onPressed: () {
-                                    screenState.addNewCar(
-                                        _brandController.text.trim(),
-                                        _companyController.text.trim(),
-                                        _engineController.text.trim(),
-                                        int.parse(_priceController.text.trim()),
-                                        _descriptionController.text.trim(),
-                                        _mileagesController.text.trim(),
-                                        _carTypeController.text.trim(),
-                                        _selectedGearType,
-                                        _ccController.text.trim(),
-                                        _selectedFuelType,
-                                        _locationController.text.trim(),
-                                        _dateController.text.trim(),
-                                        mainImage,
-                                        _countryController.text.trim(),
-                                        _cityController.text.trim(),
-                                        'not sold',
-                                        'Unaccepted'
-                                    );
-                                  },
-                                  //TODO : change this using theme service
-                                  color: ProjectColors.SECONDARY_COLOR,
-                                  child: Row(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      Icon(
-                                        Icons.save,
-                                        color: Colors.white,
-                                      ),
-                                      Text(
-                                        'Save',
-                                        style: TextStyle(color: Colors.white),
-                                      )
-                                    ],
-                                  )),
-                            ),
-                          ),
+
                         ],
                       )),
                 ),
-              )
+              ),
+              Center(
+                child: Container(
+                  width: 200,
+                  height: 55,
+                  margin: EdgeInsets.only(top: 30),
+                  child: FlatButton(
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      onPressed: () {
+                        screenState.addNewCar(
+                            _brandController.text.trim(),
+                            _companyController.text.trim(),
+                            _engineController.text.trim(),
+                            int.parse(_priceController.text.trim()),
+                            _descriptionController.text.trim(),
+                            _mileagesController.text.trim(),
+                            _carTypeController.text.trim(),
+                            _selectedGearType,
+                            _ccController.text.trim(),
+                            _selectedFuelType,
+                            _locationController.text.trim(),
+                            _dateController.text.trim(),
+                            mainImage,
+                            _countryController.text.trim(),
+                            _cityController.text.trim(),
+                            'not sold',
+                            'Unaccepted'
+                        );
+                      },
+                      //TODO : change this using theme service
+                      color: ProjectColors.SECONDARY_COLOR,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Icon(
+                            Icons.save,
+                            color: Colors.white,
+                          ),
+                          Text(
+                            'Save',
+                            style: TextStyle(color: Colors.white),
+                          )
+                        ],
+                      )),
+                ),
+              ),
             ],
           ),
         ),

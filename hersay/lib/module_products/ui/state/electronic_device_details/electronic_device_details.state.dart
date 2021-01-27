@@ -77,11 +77,14 @@ class ElectronicDeviceDetailsStateDataLoaded extends ElectronicDeviceDetailsStat
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 // device model
-                Text(
-                  '${electronicDevice.brand}',
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 14,
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Text(
+                    '${electronicDevice.brand}',
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 14,
+                    ),
                   ),
                 ),
                 // owner
@@ -102,12 +105,15 @@ class ElectronicDeviceDetailsStateDataLoaded extends ElectronicDeviceDetailsStat
                     SizedBox(
                       width: 10,
                     ),
-                    Text(
-                      //TODO : change this
-                      'Edward Josh',
-                      style: TextStyle(
-                        fontSize: 12,
-                        fontWeight: FontWeight.bold,
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Text(
+                        //TODO : change this
+                        'Edward Josh',
+                        style: TextStyle(
+                          fontSize: 12,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
                     ),
                   ],
@@ -122,44 +128,77 @@ class ElectronicDeviceDetailsStateDataLoaded extends ElectronicDeviceDetailsStat
                           image: NetworkImage(
                               electronicDevice.image?? 'https://cdn.mos.cms.futurecdn.net/FkMhmL6YzQmj7unhsupKMR.png'))),
                 ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    FlatButton(
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(5)),
-                      color: ProjectColors.THEME_COLOR,
-                      onPressed: () {},
-                      child: Flex(
-                        direction: Axis.horizontal,
-                        children: [
-                          Icon(
-                            Icons.picture_in_picture,
-                            color: Colors.white,
-                          ),
-                          Text(
-                            'Show Pics',
-                            style: TextStyle(color: Colors.white),
-                          )
-                        ],
-                      ),
-                    )
-                  ],
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      FlatButton(
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(5)),
+                        color: ProjectColors.THEME_COLOR,
+                        onPressed: () {},
+                        child: Flex(
+                          direction: Axis.horizontal,
+                          children: [
+                            Icon(
+                              Icons.picture_in_picture,
+                              color: Colors.white,
+                            ),
+                            Text(
+                              'Show Pics',
+                              style: TextStyle(color: Colors.white),
+                            )
+                          ],
+                        ),
+                      )
+                    ],
+                  ),
                 ),
 
                 //ElectronicDevice details
-                Text('Type : ${electronicDevice.type}'),
-                Text('Brand : ${electronicDevice.brand}'),
-                Text('Year of Release : ${electronicDevice.releaseYear}'),
-                Text('Duration of use : ${electronicDevice.useDuration}'),
-                Text('Display :${electronicDevice.description}'),
-                Text('Processor :  ${electronicDevice.processor}'),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Text('Type : ${electronicDevice.type}'),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Text('Brand : ${electronicDevice.brand}'),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Text('Year of Release : ${electronicDevice.releaseYear}'),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Text('Duration of use : ${electronicDevice.useDuration}'),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Text('Display :${electronicDevice.description}'),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Text('Processor :  ${electronicDevice.processor}'),
+                ),
                 //TODO : change  this
-                Text('Storage : 512GB PCIe 3*4 SSD'),
-                Text('Graphics : ${electronicDevice.graphics}'),
-                Text('Location : ${electronicDevice.location}'),
-                Center(
-                  child: Text('Price : ${electronicDevice.price} \$'),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Text('Storage : 512GB PCIe 3*4 SSD'),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Text('Graphics : ${electronicDevice.graphics}'),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Text('Location : ${electronicDevice.location}'),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Center(
+                    child: Text('Price : ${electronicDevice.price} \$'),
+                  ),
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,

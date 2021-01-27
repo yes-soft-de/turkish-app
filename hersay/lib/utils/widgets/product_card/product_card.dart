@@ -26,11 +26,11 @@ class ProductCard extends StatelessWidget {
       elevation: 10,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
       child: Container(
-        height: 250,
+        height: 300,
         width: MediaQuery.of(context).size.width * 0.8,
         padding: EdgeInsets.symmetric(vertical: 7, horizontal: 0),
         decoration: BoxDecoration(
-          color: Colors.grey[300],
+          color: Colors.black12,
           borderRadius: BorderRadius.circular(10),
         ),
         child: Column(
@@ -61,7 +61,7 @@ class ProductCard extends StatelessWidget {
               ],
             ),
             Container(
-              height: 145,
+              height: 165,
               decoration: BoxDecoration(
                 image: DecorationImage(
                   fit: BoxFit.fill,
@@ -75,7 +75,13 @@ class ProductCard extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 IconTextWidget(icon: Icons.person, text: '$owner'),
-                IconTextWidget(icon: null, text: '$specification'),
+                Container(
+                  width: MediaQuery.of(context).size.width*0.35,
+                  child: Text(
+                    '$specification'
+                  ),
+                ),
+//                IconTextWidget(icon: null, text: '$specification'),
                 IconTextWidget(icon: Icons.favorite, text: '$likes'),
                 Icon(
                   Icons.share,

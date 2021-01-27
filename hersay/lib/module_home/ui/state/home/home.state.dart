@@ -79,7 +79,7 @@ class HomeStateDataLoaded extends HomeState {
       child:Stack(
         children: [
           Container(
-            margin: EdgeInsets.only(top: 100),
+            margin: EdgeInsets.only(top: 80),
             child: ListView.builder(
                 itemCount: displayedProducts.length,
                 itemBuilder: (BuildContext context, int index) {
@@ -131,8 +131,8 @@ class HomeStateDataLoaded extends HomeState {
             right: 0.0,
             top: 0.0,
             child: Container(
-              color: Colors.white,
-              margin: EdgeInsets.only(top: 10,bottom: 10),
+              color: Colors.black12,
+              margin: EdgeInsets.only(top: 0,bottom: 10),
               padding: EdgeInsets.symmetric(horizontal: 5,vertical: 10),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -140,15 +140,18 @@ class HomeStateDataLoaded extends HomeState {
 
                   GestureDetector(
                     onTap: (){
-                      displayedProducts = homeData.realEstates + homeData.cars + homeData.electronicDevices;
+                      displayedProducts =  homeData.cars + homeData.realEstates + homeData.electronicDevices;
+                      selectedMode = 1;
                       screenState.refresh();
                     },
                     child: Container(
-                      width: 50,
-                      height: 75,
+                      width: 35,
+                      height: 50,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(5),
-                        color: ProjectColors.THEME_COLOR,
+                        color: (selectedMode == 1)
+                            ? ProjectColors.SECONDARY_COLOR
+                            :ProjectColors.THEME_COLOR,
                       ),
                       child: Center(
                         child: Text(
@@ -163,14 +166,17 @@ class HomeStateDataLoaded extends HomeState {
                   GestureDetector(
                     onTap: (){
                       displayedProducts = homeData.realEstates;
+                      selectedMode = 2;
                       screenState.refresh();
                     },
                     child: Container(
-                      width: 50,
-                      height: 75,
+                      width: 35,
+                      height: 50,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(5),
-                        color: ProjectColors.THEME_COLOR,
+                        color: (selectedMode == 2)
+                            ? ProjectColors.SECONDARY_COLOR
+                            :ProjectColors.THEME_COLOR,
                       ),
                       child: Icon(
                           Icons.home,
@@ -181,14 +187,17 @@ class HomeStateDataLoaded extends HomeState {
                   GestureDetector(
                     onTap: (){
                       displayedProducts = homeData.cars;
+                      selectedMode = 3;
                       screenState.refresh();
                     },
                     child: Container(
-                      width: 50,
-                      height: 75,
+                      width: 35,
+                      height: 50,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(5),
-                        color: ProjectColors.THEME_COLOR,
+                        color: (selectedMode == 3)
+                            ? ProjectColors.SECONDARY_COLOR
+                            :ProjectColors.THEME_COLOR,
                       ),
                       child: Icon(
                           Icons.directions_car,
@@ -199,14 +208,17 @@ class HomeStateDataLoaded extends HomeState {
                   GestureDetector(
                     onTap: (){
                       displayedProducts = homeData.electronicDevices;
+                      selectedMode = 4;
                       screenState.refresh();
                     },
                     child: Container(
-                      width: 50,
-                      height: 75,
+                      width: 35,
+                      height: 50,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(5),
-                        color: ProjectColors.THEME_COLOR,
+                        color: (selectedMode == 4)
+                            ? ProjectColors.SECONDARY_COLOR
+                            :ProjectColors.THEME_COLOR,
                       ),
                       child: Icon(
                           Icons.phone_iphone,

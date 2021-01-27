@@ -69,18 +69,20 @@ class RealEstateDetailsStateDataLoaded extends RealEstateDetailsState {
         },
         child:SingleChildScrollView(
           child: Container(
-            color: Colors.white,
             padding: EdgeInsets.all(10),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 // car model
-                Text(
-                  '${realEstate.type}',
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 14,
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Text(
+                    '${realEstate.type}',
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 14,
+                    ),
                   ),
                 ),
                 // owner
@@ -101,12 +103,15 @@ class RealEstateDetailsStateDataLoaded extends RealEstateDetailsState {
                     SizedBox(
                       width: 10,
                     ),
-                    Text(
-                      //TODO : change it
-                      'Steve Josh',
-                      style: TextStyle(
-                        fontSize: 12,
-                        fontWeight: FontWeight.bold,
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Text(
+                        //TODO : change it
+                        'Steve Josh',
+                        style: TextStyle(
+                          fontSize: 12,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
                     ),
                   ],
@@ -121,41 +126,74 @@ class RealEstateDetailsStateDataLoaded extends RealEstateDetailsState {
                           image: NetworkImage(
                               realEstate.image?? 'https://q4g9y5a8.rocketcdn.me/wp-content/uploads/2020/02/home-banner-2020-02-min.jpg'))),
                 ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    FlatButton(
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(5)),
-                      color: ProjectColors.THEME_COLOR,
-                      onPressed: () {},
-                      child: Flex(
-                        direction: Axis.horizontal,
-                        children: [
-                          Icon(
-                            Icons.picture_in_picture,
-                            color: Colors.white,
-                          ),
-                          Text(
-                            'Show Pics',
-                            style: TextStyle(color: Colors.white),
-                          )
-                        ],
-                      ),
-                    )
-                  ],
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      FlatButton(
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(5)),
+                        color: ProjectColors.THEME_COLOR,
+                        onPressed: () {},
+                        child: Flex(
+                          direction: Axis.horizontal,
+                          children: [
+                            Icon(
+                              Icons.picture_in_picture,
+                              color: Colors.white,
+                            ),
+                            Text(
+                              'Show Pics',
+                              style: TextStyle(color: Colors.white),
+                            )
+                          ],
+                        ),
+                      )
+                    ],
+                  ),
                 ),
 
                 //House details
-                Text('Type : ${realEstate.type}'),
-                Text('Space : ${realEstate.space} SM'),
-                Text('Floors number : ${realEstate.floorsNumber}'),
-                Text('Cladding : ${realEstate.cladding}'),
-                Text('${realEstate.isFurnished}'),
-                Text('Address :  ${realEstate.address}'),
-                Text('Rooms : ${realEstate.description}'),
-                Center(
-                  child: Text('Price : ${realEstate.price} \$'),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Text('Type : ${realEstate.type}'),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Text('Space : ${realEstate.space} SM'),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Text('Floors number : ${realEstate.floorsNumber}'),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Text('Cladding : ${realEstate.cladding}'),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Text('${realEstate.isFurnished}'),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Text('Address :  ${realEstate.address}'),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Text('Rooms : ${realEstate.description}'),
+                ),
+                Container(
+                  decoration: BoxDecoration(
+                    color: Colors.black38,
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  height: 50,
+                  padding: const EdgeInsets.all(8.0),
+                  margin: const EdgeInsets.all(8.0),
+                  child: Center(
+                    child: Text('Price : ${realEstate.price} \$'),
+                  ),
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,

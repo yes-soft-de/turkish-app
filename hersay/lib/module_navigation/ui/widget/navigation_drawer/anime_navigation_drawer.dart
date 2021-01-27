@@ -107,33 +107,33 @@ class TurkishNavigationDrawer extends StatelessWidget {
                     ),
                   ),
                 ),
-                GestureDetector(
-                  onTap: () {
-//                  Navigator.of(context).pushNamed(
-//                    NotificationRoutes.ROUTE_NOTIFICATION_SCREEN,
-//                    arguments: 1,
-//                  );
-                  },
-                  child: Container(
-                    color: ProjectColors.THEME_COLOR,
-                    padding: const EdgeInsets.fromLTRB(32, 8.0, 0, 8),
-                    child: Flex(
-                      direction: Axis.horizontal,
-                      children: [
-                        Icon(
-                          Icons.block,
-                          color: Colors.white,
-                        ),
-                        Container(
-                          width: 16,
-                        ),
-                        Text('Blocks',
-                            style: TextStyle(
-                                fontFamily: 'Roboto', color: Colors.white)),
-                      ],
-                    ),
-                  ),
-                ),
+//                GestureDetector(
+//                  onTap: () {
+////                  Navigator.of(context).pushNamed(
+////                    NotificationRoutes.ROUTE_NOTIFICATION_SCREEN,
+////                    arguments: 1,
+////                  );
+//                  },
+//                  child: Container(
+//                    color: ProjectColors.THEME_COLOR,
+//                    padding: const EdgeInsets.fromLTRB(32, 8.0, 0, 8),
+//                    child: Flex(
+//                      direction: Axis.horizontal,
+//                      children: [
+//                        Icon(
+//                          Icons.block,
+//                          color: Colors.white,
+//                        ),
+//                        Container(
+//                          width: 16,
+//                        ),
+//                        Text('Blocks',
+//                            style: TextStyle(
+//                                fontFamily: 'Roboto', color: Colors.white)),
+//                      ],
+//                    ),
+//                  ),
+//                ),
                 GestureDetector(
                   onTap: () {
 //                  Navigator.of(context).pushNamed(
@@ -142,7 +142,7 @@ class TurkishNavigationDrawer extends StatelessWidget {
                   },
                   child: Container(
                     padding: const EdgeInsets.fromLTRB(32, 8.0, 0, 8),
-                    color: ProjectColors.SECONDARY_COLOR,
+                    color: ProjectColors.THEME_COLOR,
                     child: Flex(
                       direction: Axis.horizontal,
                       children: [

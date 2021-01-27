@@ -59,29 +59,15 @@ class AddRealEstateStateInit extends AddRealEstateState {
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               //real estate type
-              Container(
-                height: 55,
-                margin: EdgeInsets.only(top: 15),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(15),
-                ),
+              Card(
+                elevation: 10,
+                margin: EdgeInsets.only(top:20),
+                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
                 child: Container(
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(15),
-                      color: Colors.white,
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.black12,
-                          blurRadius:
-                          2.0, // has the effect of softening the shadow
-                          spreadRadius:
-                          2.0, // has the effect of extending the shadow
-                          offset: Offset(
-                            5.0, // horizontal, move right 10
-                            5.0, // vertical, move down 10
-                          ),
-                        )
-                      ]),
+                      color: Colors.black12,
+                  ),
                   child: TextFormField(
                     controller: _realEstateTypeController,
                     decoration: InputDecoration(
@@ -105,29 +91,15 @@ class AddRealEstateStateInit extends AddRealEstateState {
                 ),
               ),
               // Space
-              Container(
-                height: 55,
-                margin: EdgeInsets.only(top: 15),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(15),
-                ),
+              Card(
+                elevation: 10,
+                margin: EdgeInsets.only(top:20),
+                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
                 child: Container(
                   decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(15),
-                      color: Colors.white,
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.black12,
-                          blurRadius:
-                          2.0, // has the effect of softening the shadow
-                          spreadRadius:
-                          2.0, // has the effect of extending the shadow
-                          offset: Offset(
-                            5.0, // horizontal, move right 10
-                            5.0, // vertical, move down 10
-                          ),
-                        )
-                      ]),
+                    borderRadius: BorderRadius.circular(15),
+                    color: Colors.black12,
+                  ),
                   child: TextFormField(
                     controller: _spaceController,
                     decoration: InputDecoration(
@@ -153,29 +125,15 @@ class AddRealEstateStateInit extends AddRealEstateState {
 
 
               // floor number
-              Container(
-                height: 55,
-                margin: EdgeInsets.only(top: 15),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(15),
-                ),
+              Card(
+                elevation: 10,
+                margin: EdgeInsets.only(top:20),
+                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
                 child: Container(
                   decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(15),
-                      color: Colors.white,
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.black12,
-                          blurRadius:
-                          2.0, // has the effect of softening the shadow
-                          spreadRadius:
-                          2.0, // has the effect of extending the shadow
-                          offset: Offset(
-                            5.0, // horizontal, move right 10
-                            5.0, // vertical, move down 10
-                          ),
-                        )
-                      ]),
+                    borderRadius: BorderRadius.circular(15),
+                    color: Colors.black12,
+                  ),
                   child: TextFormField(
                     controller: _floorNumbersController,
                     decoration: InputDecoration(
@@ -199,29 +157,15 @@ class AddRealEstateStateInit extends AddRealEstateState {
                 ),
               ),
               // cladding
-              Container(
-                height: 55,
-                margin: EdgeInsets.only(top: 15),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(15),
-                ),
+              Card(
+                elevation: 10,
+                margin: EdgeInsets.only(top:20),
+                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
                 child: Container(
                   decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(15),
-                      color: Colors.white,
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.black12,
-                          blurRadius:
-                          2.0, // has the effect of softening the shadow
-                          spreadRadius:
-                          2.0, // has the effect of extending the shadow
-                          offset: Offset(
-                            5.0, // horizontal, move right 10
-                            5.0, // vertical, move down 10
-                          ),
-                        )
-                      ]),
+                    borderRadius: BorderRadius.circular(15),
+                    color: Colors.black12,
+                  ),
                   child: TextFormField(
                     controller: _claddingController,
                     decoration: InputDecoration(
@@ -245,30 +189,17 @@ class AddRealEstateStateInit extends AddRealEstateState {
                 ),
               ),
               //home furnishing
-              Container(
-                  width: 400,
-                  margin: EdgeInsets.only(top: 15),
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(15),
-                      color: Colors.white),
+              Card(
+                  elevation: 10,
+                  margin: EdgeInsets.only(top:20),
+                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
                   child: Container(
-                    padding: EdgeInsets.symmetric(horizontal: 10),
+                    width: 400,
+                    padding: EdgeInsets.all(10),
                     decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(15),
-                        color: Colors.white,
-                        boxShadow: [
-                          BoxShadow(
-                            color: Colors.black12,
-                            blurRadius:
-                            2.0, // has the effect of softening the shadow
-                            spreadRadius:
-                            2.0, // has the effect of extending the shadow
-                            offset: Offset(
-                              5.0, // horizontal, move right 10
-                              5.0, // vertical, move down 10
-                            ),
-                          )
-                        ]),
+                      borderRadius: BorderRadius.circular(15),
+                      color: Colors.black12,
+                    ),
                     child: DropdownButtonHideUnderline(
                       child: DropdownButton(
                           hint: _selectedHouseType == null
@@ -295,29 +226,15 @@ class AddRealEstateStateInit extends AddRealEstateState {
                     ),
                   )),
               // country
-              Container(
-                height: 55,
-                margin: EdgeInsets.only(top: 15),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(15),
-                ),
+              Card(
+                elevation: 10,
+                margin: EdgeInsets.only(top:20),
+                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
                 child: Container(
                   decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(15),
-                      color: Colors.white,
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.black12,
-                          blurRadius:
-                          2.0, // has the effect of softening the shadow
-                          spreadRadius:
-                          2.0, // has the effect of extending the shadow
-                          offset: Offset(
-                            5.0, // horizontal, move right 10
-                            5.0, // vertical, move down 10
-                          ),
-                        )
-                      ]),
+                    borderRadius: BorderRadius.circular(15),
+                    color: Colors.black12,
+                  ),
                   child: TextFormField(
                     controller: _countryController,
                     decoration: InputDecoration(
@@ -341,29 +258,15 @@ class AddRealEstateStateInit extends AddRealEstateState {
                 ),
               ),
               // city
-              Container(
-                height: 55,
-                margin: EdgeInsets.only(top: 15),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(15),
-                ),
+              Card(
+                elevation: 10,
+                margin: EdgeInsets.only(top:20),
+                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
                 child: Container(
                   decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(15),
-                      color: Colors.white,
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.black12,
-                          blurRadius:
-                          2.0, // has the effect of softening the shadow
-                          spreadRadius:
-                          2.0, // has the effect of extending the shadow
-                          offset: Offset(
-                            5.0, // horizontal, move right 10
-                            5.0, // vertical, move down 10
-                          ),
-                        )
-                      ]),
+                    borderRadius: BorderRadius.circular(15),
+                    color: Colors.black12,
+                  ),
                   child: TextFormField(
                     controller: _cityController,
                     decoration: InputDecoration(
@@ -387,29 +290,15 @@ class AddRealEstateStateInit extends AddRealEstateState {
                 ),
               ),
               // price
-              Container(
-                height: 55,
-                margin: EdgeInsets.only(top: 15),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(15),
-                ),
+              Card(
+                elevation: 10,
+                margin: EdgeInsets.only(top:20),
+                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
                 child: Container(
                   decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(15),
-                      color: Colors.white,
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.black12,
-                          blurRadius:
-                          2.0, // has the effect of softening the shadow
-                          spreadRadius:
-                          2.0, // has the effect of extending the shadow
-                          offset: Offset(
-                            5.0, // horizontal, move right 10
-                            5.0, // vertical, move down 10
-                          ),
-                        )
-                      ]),
+                    borderRadius: BorderRadius.circular(15),
+                    color: Colors.black12,
+                  ),
                   child: TextFormField(
                     controller: _priceController,
                     decoration: InputDecoration(
@@ -436,29 +325,15 @@ class AddRealEstateStateInit extends AddRealEstateState {
                 ),
               ),
               // rooms number
-              Container(
-                height: 55,
-                margin: EdgeInsets.only(top: 15),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(15),
-                ),
+              Card(
+                elevation: 10,
+                margin: EdgeInsets.only(top:20),
+                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
                 child: Container(
                   decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(15),
-                      color: Colors.white,
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.black12,
-                          blurRadius:
-                          2.0, // has the effect of softening the shadow
-                          spreadRadius:
-                          2.0, // has the effect of extending the shadow
-                          offset: Offset(
-                            5.0, // horizontal, move right 10
-                            5.0, // vertical, move down 10
-                          ),
-                        )
-                      ]),
+                    borderRadius: BorderRadius.circular(15),
+                    color: Colors.black12,
+                  ),
                   child: TextFormField(
                     controller: _roomsNumberController,
                     decoration: InputDecoration(
@@ -485,29 +360,15 @@ class AddRealEstateStateInit extends AddRealEstateState {
                 ),
               ),
               // description
-              Container(
-                height: 55,
-                margin: EdgeInsets.only(top: 15),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(15),
-                ),
+              Card(
+                elevation: 10,
+                margin: EdgeInsets.only(top:20),
+                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
                 child: Container(
                   decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(15),
-                      color: Colors.white,
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.black12,
-                          blurRadius:
-                          2.0, // has the effect of softening the shadow
-                          spreadRadius:
-                          2.0, // has the effect of extending the shadow
-                          offset: Offset(
-                            5.0, // horizontal, move right 10
-                            5.0, // vertical, move down 10
-                          ),
-                        )
-                      ]),
+                    borderRadius: BorderRadius.circular(15),
+                    color: Colors.black12,
+                  ),
                   child: TextFormField(
                     controller: _descriptionController,
                     maxLines: 8,
@@ -533,7 +394,7 @@ class AddRealEstateStateInit extends AddRealEstateState {
               ),
               Center(
                 child: Container(
-                  width: 200,
+                  width: 250,
                   height: 55,
                   margin: EdgeInsets.only(top: 30),
                   child: FlatButton(
