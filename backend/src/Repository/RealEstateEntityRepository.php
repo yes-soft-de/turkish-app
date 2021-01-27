@@ -143,11 +143,17 @@ class RealEstateEntityRepository extends ServiceEntityRepository
 
     public function getRealEstatesByType($realEstateType)
     {
-        return $this->createQueryBuilder('realEstate')
-            ->select('realEstate.id', 'realEstate.realEstateType')
-            ->andWhere('realEstate.realEstateType LIKE :realEstateType')
+        return $this->createQueryBuilder('RealEstateEntity')
+            ->select('RealEstateEntity.country','RealEstateEntity.city', 'RealEstateEntity.space', 'RealEstateEntity.price', 'RealEstateEntity.description', 'RealEstateEntity.status',
+                'RealEstateEntity.createdBy', 'RealEstateEntity.createdAt', 'RealEstateEntity.updateAt', 'RealEstateEntity.state', 'RealEstateEntity.image', 'RealEstateEntity.specialLink',
+                'RealEstateEntity.numberOfFloors', 'RealEstateEntity.cladding', 'RealEstateEntity.homeFurnishing', 'RealEstateEntity.realEstateType', 'RealEstateEntity.rooms')
+
+            ->andWhere('RealEstateEntity.realEstateType LIKE :realEstateType')
+
             ->setParameter('realEstateType', '%'.$realEstateType.'%')
-            ->orderBy('realEstate.id')
+
+            ->orderBy('RealEstateEntity.id')
+
             ->getQuery()
             ->getResult()
             ;

@@ -153,11 +153,13 @@ class DeviceService
     {
         $response = [];
 
-        $cars = $this->deviceManager->getDevicesByBrand($brand);
+        $devices = $this->deviceManager->getDevicesByBrand($brand);
 
-        foreach ($cars as $car)
+        foreach ($devices as $device)
         {
-            $response[] = $this->autoMapping->map('array', DeviceGetResponse::class, $car);
+            $device['image'] = $this->specialLinkCheck($device['specialLink']) . $device['image'];
+
+            $response[] = $this->autoMapping->map('array', DeviceGetResponse::class, $device);
         }
 
         return $response;

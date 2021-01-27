@@ -188,11 +188,13 @@ class RealEstateService
     {
         $response = [];
 
-        $cars = $this->realEstateManager->getRealEstatesByType($type);
+        $realEstates = $this->realEstateManager->getRealEstatesByType($type);
 
-        foreach ($cars as $car)
+        foreach ($realEstates as $realEstate)
         {
-            $response[] = $this->autoMapping->map('array', RealEstateGetAllResponse::class, $car);
+            $realEstate['image'] = $this->specialLinkCheck($realEstate['specialLink']) . $realEstate['image'];
+
+            $response[] = $this->autoMapping->map('array', RealEstateGetAllResponse::class, $realEstate);
         }
 
         return $response;

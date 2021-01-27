@@ -146,10 +146,16 @@ class CarEntityRepository extends ServiceEntityRepository
     public function getCarsByBrand($brand)
     {
         return $this->createQueryBuilder('car')
-            ->select('car.id', 'car.brand')
+            ->select('car.id', 'car.brand', 'car.createdBy', 'car.carType', 'car.cc', 'car.company', 'car.createdAt', 'car.description', 'car.distance',
+            'car.engine', 'car.fuel', 'car.gearType', 'car.image', 'car.price', 'car.yearOfRelease', 'car.status', 'car.updateAt', 'car.state', 'car.description',
+             'car.city', 'car.country', 'car.specialLink')
+
             ->andWhere('car.brand LIKE :brand')
+
             ->setParameter('brand', '%'.$brand.'%')
+
             ->orderBy('car.id')
+
             ->getQuery()
             ->getResult()
             ;

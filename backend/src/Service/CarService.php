@@ -223,6 +223,8 @@ class CarService
 
         foreach ($cars as $car)
         {
+            $car['image'] = $this->specialLinkCheck($car['specialLink']) . $car['image'];
+
             $response[] = $this->autoMapping->map('array', CarGetResponse::class, $car);
         }
 
