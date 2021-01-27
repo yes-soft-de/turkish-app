@@ -2,18 +2,25 @@ import 'package:flutter/material.dart';
 import 'package:hersay/module_navigation/ui/widget/navigation_drawer/anime_navigation_drawer.dart';
 import 'package:hersay/module_notification/ui/widget/notification_card/notification_card.dart';
 import 'package:hersay/utils/widgets/turkish_app_bar/turkish_app_bar.dart';
+import 'package:inject/inject.dart';
 
+@provide
 class NotificationScreen extends StatefulWidget {
+
   @override
-  _NotificationScreenState createState() => _NotificationScreenState();
+   NotificationScreenState createState() =>  NotificationScreenState();
 }
 
-class _NotificationScreenState extends State<NotificationScreen> {
+class  NotificationScreenState extends State<NotificationScreen> {
   final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
 
   @override
   Widget build(BuildContext context) {
     return _screenUi();
+  }
+
+  void getNotifications(){
+
   }
 
   Widget _screenUi() {

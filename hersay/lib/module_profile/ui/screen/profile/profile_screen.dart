@@ -113,30 +113,30 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         ),
                       ],
                     ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-
-                      children: [
-                        Text(
-                          'Delete Account',
-                          style: TextStyle(
-                            fontSize: 14,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                        Container(
-                          height: 40,
-                          child: FloatingActionButton(
-                            onPressed: () {},
-                            backgroundColor: Colors.white,
-                            child: Icon(
-                              Icons.delete,
-                              color: ProjectColors.SECONDARY_COLOR,
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
+//                    Row(
+//                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+//
+//                      children: [
+//                        Text(
+//                          'Delete Account',
+//                          style: TextStyle(
+//                            fontSize: 14,
+//                            fontWeight: FontWeight.bold,
+//                          ),
+//                        ),
+//                        Container(
+//                          height: 40,
+//                          child: FloatingActionButton(
+//                            onPressed: () {},
+//                            backgroundColor: Colors.white,
+//                            child: Icon(
+//                              Icons.delete,
+//                              color: ProjectColors.SECONDARY_COLOR,
+//                            ),
+//                          ),
+//                        ),
+//                      ],
+//                    ),
                   ],
                 ),
               )

@@ -38,6 +38,9 @@ class AddRealEstateStateInit extends AddRealEstateState {
   ];
   String _selectedHouseType;
 
+  List<String> _stateTypes = ['Accepted', 'Un accepted'];
+  String _selectedstate;
+
   String mainImage;
 
   bool _autoValidate = false;
@@ -222,6 +225,43 @@ class AddRealEstateStateInit extends AddRealEstateState {
                               _selectedHouseType = _houseTypes.firstWhere(
                                       (element) => element.toString() == value);
                             screenState.refresh();
+                          }),
+                    ),
+                  )),
+              //state
+              Card(
+                  elevation: 10,
+                  margin: EdgeInsets.only(top:20),
+                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
+                  child: Container(
+                    width: 400,
+                    padding: EdgeInsets.all(10),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(15),
+                      color: Colors.black12,
+                    ),
+                    child: DropdownButtonHideUnderline(
+                      child: DropdownButton(
+                          hint: _selectedstate == null
+                              ? Text(
+                            'state',
+                            style: TextStyle(color: Colors.grey),
+                          )
+                              : Text(
+                            '$_selectedstate',
+                            style: TextStyle(color: Colors.grey),
+                          ),
+                          items: _stateTypes.map((String place) {
+                            return new DropdownMenuItem<String>(
+                              value: place.toString(),
+                              child: new Text(place),
+                            );
+                          }).toList(),
+                          onChanged: (value) {
+                            _selectedstate = _stateTypes.firstWhere(
+                                    (element) => element.toString() == value);
+                            screenState.refresh();
+
                           }),
                     ),
                   )),
@@ -453,7 +493,7 @@ class AddRealEstateStateInit extends AddRealEstateState {
                             _realEstateTypeController.text.trim(),
                             _roomsNumberController.text.trim(),
                             'not sold',
-                            'Unaccepted',
+                            _selectedstate,
                             mainImage,
                         );
                       },
