@@ -16,6 +16,7 @@ import 'abstracts/module/yes_module.dart';
 import 'di/components/app.component.dart';
 import 'generated/l10n.dart';
 import 'module_localization/service/localization.service.dart';
+import 'module_notification/notification_module.dart';
 import 'module_products/products_module.dart';
 import 'module_splash/splash_module.dart';
 import 'module_theme/service/theme.service.dart';
@@ -43,6 +44,7 @@ class MyApp extends StatefulWidget {
   final HomeModule _homeModule;
   final SearchModule _searchModule;
   final SettingModule _settingModule;
+  final NotificationModule _notificationModulel;
 
   MyApp(
       this._themeDataService,
@@ -54,6 +56,7 @@ class MyApp extends StatefulWidget {
       this._homeModule,
       this._searchModule,
       this._settingModule,
+      this._notificationModulel,
       );
 
   @override

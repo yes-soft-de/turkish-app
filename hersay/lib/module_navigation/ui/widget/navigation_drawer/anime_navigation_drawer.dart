@@ -1,5 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:hersay/generated/l10n.dart';
+import 'package:hersay/module_notification/notification_routes.dart';
 import 'package:hersay/module_notification/ui/screen/notifications/notification_screen.dart';
 import 'package:hersay/module_search/search_routes.dart';
 import 'package:hersay/module_search/ui/screen/search_screen/seach_screen.dart';
@@ -56,8 +58,9 @@ class TurkishNavigationDrawer extends StatelessWidget {
               children: [
                 GestureDetector(
                   onTap: () {
-                    Navigator.of(context).push(MaterialPageRoute(
-                        builder: (context) => NotificationScreen()));
+                    Navigator.of(context).pushNamed(
+                      NotificationRoutes.Home_SCREEN_ROUTE
+                    );
                   },
                   child: Container(
                     color: ProjectColors.THEME_COLOR,
@@ -73,7 +76,7 @@ class TurkishNavigationDrawer extends StatelessWidget {
                           width: 16,
                         ),
                         Text(
-                          'Notification',
+                          S.of(context).notifications,
                           style: TextStyle(
                               fontFamily: 'Roboto', color: Colors.white),
                         ),
@@ -99,7 +102,7 @@ class TurkishNavigationDrawer extends StatelessWidget {
                           width: 16,
                         ),
                         Text(
-                          'Search',
+                          S.of(context).search,
                           style: TextStyle(
                               fontFamily: 'Roboto', color: Colors.white),
                         ),
@@ -153,7 +156,8 @@ class TurkishNavigationDrawer extends StatelessWidget {
                         Container(
                           width: 16,
                         ),
-                        Text('About',
+                        Text(
+                            S.of(context).about,
                             style: TextStyle(
                                 fontFamily: 'Roboto', color: Colors.white)),
                       ],

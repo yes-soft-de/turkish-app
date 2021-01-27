@@ -1,12 +1,10 @@
 
 import 'package:flutter/material.dart';
+import 'package:hersay/generated/l10n.dart';
 import 'package:hersay/module_auth/auth_routes.dart';
 import 'package:hersay/module_home/model/home/home_model.dart';
 import 'package:hersay/module_home/ui/sceen/home/home_screen.dart';
-import 'package:hersay/module_products/products_routes.dart';
-import 'package:hersay/module_products/ui/screen/car_details/car_details_screen.dart';
-import 'package:hersay/module_products/ui/screen/electronic_device_details/electronic_device_details_screen.dart';
-import 'package:hersay/module_products/ui/screen/real_estate_details/real_estate_details_screen.dart';
+import 'package:hersay/module_products/products_routes.dart'; 
 import 'package:hersay/utils/enums/products/products.dart';
 import 'package:hersay/utils/project_colors/project_colors.dart';
 import 'package:hersay/utils/widgets/product_card/product_card.dart';
@@ -155,7 +153,7 @@ class HomeStateDataLoaded extends HomeState {
                       ),
                       child: Center(
                         child: Text(
-                          'All',
+                          S.of(context).all,
                           style: TextStyle(
                             color: Colors.white,
                           ),

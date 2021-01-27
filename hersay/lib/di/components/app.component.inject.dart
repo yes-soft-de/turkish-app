@@ -84,6 +84,17 @@ import '../../module_search/service/search/search.service.dart' as _i61;
 import '../../module_search/manager/search/search.manager.dart' as _i62;
 import '../../module_search/repository/search.repository.dart' as _i63;
 import '../../module_settings/settings_module.dart' as _i64;
+import '../../module_notification/notification_module.dart' as _i65;
+import '../../module_notification/ui/screen/notifications/notification_screen.dart'
+    as _i66;
+import '../../module_notification/state_manager/notification/notification.state_manger.dart'
+    as _i67;
+import '../../module_notification/service/notification/notification.service.dart'
+    as _i68;
+import '../../module_notification/manager/notification/notification.manager.dart'
+    as _i69;
+import '../../module_notification/repository/notification/notification.reppsitory.dart'
+    as _i70;
 
 class AppComponent$Injector implements _i1.AppComponent {
   AppComponent$Injector._();
@@ -109,7 +120,8 @@ class AppComponent$Injector implements _i1.AppComponent {
       _createMainModule(),
       _createHomeModule(),
       _createSearchModule(),
-      _createSettingModule());
+      _createSettingModule(),
+      _createNotificationModule());
   _i7.AppThemeDataService _createAppThemeDataService() =>
       _i7.AppThemeDataService(_createThemePreferencesHelper());
   _i8.ThemePreferencesHelper _createThemePreferencesHelper() =>
@@ -241,6 +253,18 @@ class AppComponent$Injector implements _i1.AppComponent {
       _i63.SearchRepository(_createApiClient(), _createAuthService());
   _i64.SettingModule _createSettingModule() =>
       _i64.SettingModule(_createSettingsScreen());
+  _i65.NotificationModule _createNotificationModule() =>
+      _i65.NotificationModule(_createNotificationScreen());
+  _i66.NotificationScreen _createNotificationScreen() =>
+      _i66.NotificationScreen(_createNotificationStateManager());
+  _i67.NotificationStateManager _createNotificationStateManager() =>
+      _i67.NotificationStateManager(_createNotificationService());
+  _i68.NotificationService _createNotificationService() =>
+      _i68.NotificationService(_createNotificationManager());
+  _i69.NotificationManager _createNotificationManager() =>
+      _i69.NotificationManager(_createNotificationRepository());
+  _i70.NotificationRepository _createNotificationRepository() =>
+      _i70.NotificationRepository(_createAuthService(), _createApiClient());
   @override
   _i6.MyApp get app => _createMyApp();
 }

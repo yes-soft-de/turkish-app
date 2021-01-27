@@ -33,12 +33,12 @@ class AddRealEstateStateInit extends AddRealEstateState {
   final TextEditingController _roomsNumberController = TextEditingController();
 
   List<String> _houseTypes = [
-    'furnished',
-    'unfurnished',
+    S.current.furnished,
+    S.current.unfurnished,
   ];
   String _selectedHouseType;
 
-  List<String> _stateTypes = ['Accepted', 'Un accepted'];
+  List<String> _stateTypes = [S.current.accepted, S.current.unAccepted];
   String _selectedstate;
 
   String mainImage;
@@ -79,7 +79,7 @@ class AddRealEstateStateInit extends AddRealEstateState {
                         borderSide: BorderSide.none,
                         borderRadius: BorderRadius.circular(20),
                       ),
-                      labelText: 'Real Estate Type',
+                      labelText: S.of(context).realEstateType,
                     ),
                     textInputAction: TextInputAction.next,
                     onEditingComplete: () =>
@@ -111,7 +111,7 @@ class AddRealEstateStateInit extends AddRealEstateState {
                         borderSide: BorderSide.none,
                         borderRadius: BorderRadius.circular(20),
                       ),
-                      labelText: 'Space',
+                      labelText: S.of(context).space,
                     ),
                     textInputAction: TextInputAction.next,
                     onEditingComplete: () =>
@@ -145,7 +145,7 @@ class AddRealEstateStateInit extends AddRealEstateState {
                         borderSide: BorderSide.none,
                         borderRadius: BorderRadius.circular(20),
                       ),
-                      labelText: 'Appartment Floor or Number of Floors',
+                      labelText: S.of(context).appartmentFloorOrNumberOfFloors,
                     ),
                     textInputAction: TextInputAction.next,
                     onEditingComplete: () =>
@@ -177,7 +177,7 @@ class AddRealEstateStateInit extends AddRealEstateState {
                         borderSide: BorderSide.none,
                         borderRadius: BorderRadius.circular(20),
                       ),
-                      labelText: 'Cladding',
+                      labelText: S.of(context).cladding,
                     ),
                     textInputAction: TextInputAction.next,
                     onEditingComplete: () =>
@@ -207,7 +207,7 @@ class AddRealEstateStateInit extends AddRealEstateState {
                       child: DropdownButton(
                           hint: _selectedHouseType == null
                               ? Text(
-                            'Home Furmishing',
+                            S.of(context).homeFurmishing,
                             style: TextStyle(color: Colors.grey),
                           )
                               : Text(
@@ -244,7 +244,7 @@ class AddRealEstateStateInit extends AddRealEstateState {
                       child: DropdownButton(
                           hint: _selectedstate == null
                               ? Text(
-                            'state',
+                            S.of(context).state,
                             style: TextStyle(color: Colors.grey),
                           )
                               : Text(
@@ -283,7 +283,7 @@ class AddRealEstateStateInit extends AddRealEstateState {
                         borderSide: BorderSide.none,
                         borderRadius: BorderRadius.circular(20),
                       ),
-                      labelText: 'Country',
+                      labelText: S.of(context).country,
                     ),
                     textInputAction: TextInputAction.next,
                     onEditingComplete: () =>
@@ -315,7 +315,7 @@ class AddRealEstateStateInit extends AddRealEstateState {
                         borderSide: BorderSide.none,
                         borderRadius: BorderRadius.circular(20),
                       ),
-                      labelText: 'City',
+                      labelText: S.of(context).city,
                     ),
                     textInputAction: TextInputAction.next,
                     onEditingComplete: () =>
@@ -347,7 +347,7 @@ class AddRealEstateStateInit extends AddRealEstateState {
                         borderSide: BorderSide.none,
                         borderRadius: BorderRadius.circular(20),
                       ),
-                      labelText: 'Price',
+                      labelText: S.of(context).price,
                     ),
                     textInputAction: TextInputAction.next,
                     onEditingComplete: () =>
@@ -382,7 +382,7 @@ class AddRealEstateStateInit extends AddRealEstateState {
                         borderSide: BorderSide.none,
                         borderRadius: BorderRadius.circular(20),
                       ),
-                      labelText: 'Rooms number',
+                      labelText: S.of(context).roomsNumber,
                     ),
                     textInputAction: TextInputAction.next,
                     onEditingComplete: () =>
@@ -418,7 +418,7 @@ class AddRealEstateStateInit extends AddRealEstateState {
                         borderSide: BorderSide.none,
                         borderRadius: BorderRadius.circular(20),
                       ),
-                      labelText: 'Rooms description',
+                      labelText: S.of(context).roomsDescription,
                     ),
                     textInputAction: TextInputAction.next,
                     onEditingComplete: () =>
@@ -464,7 +464,7 @@ class AddRealEstateStateInit extends AddRealEstateState {
                             color: Colors.white,
                           ),
                           Text(
-                            'upload Pics',
+                            S.of(context).selectMainImage,
                             style: TextStyle(color: Colors.white),
                           )
                         ],
@@ -507,7 +507,7 @@ class AddRealEstateStateInit extends AddRealEstateState {
                             color: Colors.white,
                           ),
                           Text(
-                            'Save',
+                            S.of(context).save,
                             style: TextStyle(color: Colors.white),
                           )
                         ],
@@ -541,7 +541,7 @@ class AddRealEstateSuccessState extends AddRealEstateState {
           padding: EdgeInsets.all(10),
           child: Center(
             child: Text(
-              'your request has been added and in hold for admin approval'
+              S.of(context).yourRequestHasBeenAddedAndInHoldForAdmin
             ),
           ),
         ),

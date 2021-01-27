@@ -1,5 +1,6 @@
 
 import 'package:flutter/material.dart';
+import 'package:hersay/generated/l10n.dart';
 import 'package:hersay/module_auth/auth_routes.dart';
 import 'package:hersay/module_products/model/car/car_model.dart';
 import 'package:hersay/module_products/ui/screen/car_details/car_details_screen.dart';
@@ -141,7 +142,7 @@ class CarDetailsStateDataLoaded extends CarDetailsState {
                               color: Colors.white,
                             ),
                             Text(
-                              'Show Pics',
+                              S.of(context).showPics,
                               style: TextStyle(color: Colors.white),
                             )
                           ],
@@ -154,23 +155,23 @@ class CarDetailsStateDataLoaded extends CarDetailsState {
                 //car details
                 Padding(
                   padding: const EdgeInsets.all(8.0),
-                  child: Text('Type : ${car.type}'),
+                  child: Text(S.of(context).type+' ${car.type}'),
                 ),
                 Padding(
                   padding: const EdgeInsets.all(8.0),
-                  child: Text('Brand : ${car.brand}'),
+                  child: Text(S.of(context).brand+' ${car.brand}'),
                 ),
                 Padding(
                   padding: const EdgeInsets.all(8.0),
-                  child: Text('Traveled Distance : ${car.distance} KM'),
+                  child: Text(S.of(context).traveledDistance+' ${car.distance} KM'),
                 ),
                 Padding(
                   padding: const EdgeInsets.all(8.0),
-                  child: Text('Dureation of use : ${car.useDuration}'),
+                  child: Text(S.of(context).dureationOfUse+' ${car.useDuration}'),
                 ),
                 Padding(
                   padding: const EdgeInsets.all(8.0),
-                  child: Text('Gear Type : ${car.gearType}'),
+                  child: Text(S.of(context).gearType+' ${car.gearType}'),
                 ),
                 Padding(
                   padding: const EdgeInsets.all(8.0),
@@ -178,24 +179,24 @@ class CarDetailsStateDataLoaded extends CarDetailsState {
                 ),
                 Padding(
                   padding: const EdgeInsets.all(8.0),
-                  child: Text('Cylynder : ${car.cylinder}'),
+                  child: Text(S.of(context).cylynder+' ${car.cylinder}'),
                 ),
                 Padding(
                   padding: const EdgeInsets.all(8.0),
-                  child: Text('Fuel : ${car.fuel}'),
+                  child: Text(S.of(context).fuel+' ${car.fuel}'),
                 ),
                 Padding(
                   padding: const EdgeInsets.all(8.0),
-                  child: Text('Location : ${car.location}'),
+                  child: Text(S.of(context).location+' ${car.location}'),
                 ),
                 Padding(
                   padding: const EdgeInsets.all(8.0),
-                  child: Text('Plated'),
+                  child: Text(S.of(context).plated),
                 ),
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Center(
-                    child: Text('Price : ${car.price} \$'),
+                    child: Text(S.of(context).price+' ${car.price} \$'),
                   ),
                 ),
                 Row(
@@ -207,7 +208,7 @@ class CarDetailsStateDataLoaded extends CarDetailsState {
                       color: ProjectColors.THEME_COLOR,
                       onPressed: () {},
                       child: Text(
-                        'Request Lawer',
+                        S.of(context).chatWithOwner,
                         style: TextStyle(fontSize: 10, color: Colors.white),
                       ),
                     ),
@@ -217,7 +218,7 @@ class CarDetailsStateDataLoaded extends CarDetailsState {
                       color: ProjectColors.THEME_COLOR,
                       onPressed: () {},
                       child: Text(
-                        'Request Chat',
+                        S.of(context).chatWithLawyer,
                         style: TextStyle(fontSize: 10, color: Colors.white),
                       ),
                     ),

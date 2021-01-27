@@ -1502,6 +1502,736 @@ class S {
       args: [],
     );
   }
+
+  /// `الرجاء ادخال الإيميل الخاص بك`
+  String get pleaseEnterYourEmail {
+    return Intl.message(
+      'الرجاء ادخال الإيميل الخاص بك',
+      name: 'pleaseEnterYourEmail',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `كلمة المرور يجب ان تكون من 5 محارف على الأقل`
+  String get passwordShouldBeAtLeastFiveChar {
+    return Intl.message(
+      'كلمة المرور يجب ان تكون من 5 محارف على الأقل',
+      name: 'passwordShouldBeAtLeastFiveChar',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Sign Up`
+  String get signUp {
+    return Intl.message(
+      'Sign Up',
+      name: 'signUp',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Chats`
+  String get chats {
+    return Intl.message(
+      'Chats',
+      name: 'chats',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `History`
+  String get history {
+    return Intl.message(
+      'History',
+      name: 'history',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `All`
+  String get all {
+    return Intl.message(
+      'All',
+      name: 'all',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Search`
+  String get search {
+    return Intl.message(
+      'Search',
+      name: 'search',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Manual`
+  String get manual {
+    return Intl.message(
+      'Manual',
+      name: 'manual',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Automatic`
+  String get automatic {
+    return Intl.message(
+      'Automatic',
+      name: 'automatic',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Benzene`
+  String get benzene {
+    return Intl.message(
+      'Benzene',
+      name: 'benzene',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Diesel`
+  String get diesel {
+    return Intl.message(
+      'Diesel',
+      name: 'diesel',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Accepted`
+  String get accepted {
+    return Intl.message(
+      'Accepted',
+      name: 'accepted',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Un accepted`
+  String get unAccepted {
+    return Intl.message(
+      'Un accepted',
+      name: 'unAccepted',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Car Type`
+  String get carType {
+    return Intl.message(
+      'Car Type',
+      name: 'carType',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Brand`
+  String get brand {
+    return Intl.message(
+      'Brand',
+      name: 'brand',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Company`
+  String get company {
+    return Intl.message(
+      'Company',
+      name: 'company',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Engine`
+  String get engine {
+    return Intl.message(
+      'Engine',
+      name: 'engine',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Year of release`
+  String get yearOfRelease {
+    return Intl.message(
+      'Year of release',
+      name: 'yearOfRelease',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Gear Type`
+  String get gearType {
+    return Intl.message(
+      'Gear Type',
+      name: 'gearType',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `state`
+  String get state {
+    return Intl.message(
+      'state',
+      name: 'state',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Mileages`
+  String get mileages {
+    return Intl.message(
+      'Mileages',
+      name: 'mileages',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `CC`
+  String get cc {
+    return Intl.message(
+      'CC',
+      name: 'cc',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Fuel`
+  String get fuel {
+    return Intl.message(
+      'Fuel',
+      name: 'fuel',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Price`
+  String get price {
+    return Intl.message(
+      'Price',
+      name: 'price',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Country`
+  String get country {
+    return Intl.message(
+      'Country',
+      name: 'country',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `City`
+  String get city {
+    return Intl.message(
+      'City',
+      name: 'city',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Rooms description`
+  String get roomsDescription {
+    return Intl.message(
+      'Rooms description',
+      name: 'roomsDescription',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Select main image`
+  String get selectMainImage {
+    return Intl.message(
+      'Select main image',
+      name: 'selectMainImage',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Save`
+  String get save {
+    return Intl.message(
+      'Save',
+      name: 'save',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `your request has been added and in hold for admin approval`
+  String get yourRequestHasBeenAddedAndInHoldForAdmin {
+    return Intl.message(
+      'your request has been added and in hold for admin approval',
+      name: 'yourRequestHasBeenAddedAndInHoldForAdmin',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Ok`
+  String get ok {
+    return Intl.message(
+      'Ok',
+      name: 'ok',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Sell Phone`
+  String get sellPhone {
+    return Intl.message(
+      'Sell Phone',
+      name: 'sellPhone',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Laptop`
+  String get laptop {
+    return Intl.message(
+      'Laptop',
+      name: 'laptop',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Desktop`
+  String get desktop {
+    return Intl.message(
+      'Desktop',
+      name: 'desktop',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Headphone`
+  String get headphone {
+    return Intl.message(
+      'Headphone',
+      name: 'headphone',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Device Type`
+  String get deviceType {
+    return Intl.message(
+      'Device Type',
+      name: 'deviceType',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Cpu`
+  String get cpu {
+    return Intl.message(
+      'Cpu',
+      name: 'cpu',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `RAM`
+  String get ram {
+    return Intl.message(
+      'RAM',
+      name: 'ram',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Battery`
+  String get battery {
+    return Intl.message(
+      'Battery',
+      name: 'battery',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Build Year`
+  String get buildYear {
+    return Intl.message(
+      'Build Year',
+      name: 'buildYear',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Use Duration`
+  String get useDuration {
+    return Intl.message(
+      'Use Duration',
+      name: 'useDuration',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Guage`
+  String get guage {
+    return Intl.message(
+      'Guage',
+      name: 'guage',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `furnished`
+  String get furnished {
+    return Intl.message(
+      'furnished',
+      name: 'furnished',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `unfurnished`
+  String get unfurnished {
+    return Intl.message(
+      'unfurnished',
+      name: 'unfurnished',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Real Estate Type`
+  String get realEstateType {
+    return Intl.message(
+      'Real Estate Type',
+      name: 'realEstateType',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Space`
+  String get space {
+    return Intl.message(
+      'Space',
+      name: 'space',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Appartment Floor or Number of Floors`
+  String get appartmentFloorOrNumberOfFloors {
+    return Intl.message(
+      'Appartment Floor or Number of Floors',
+      name: 'appartmentFloorOrNumberOfFloors',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Cladding`
+  String get cladding {
+    return Intl.message(
+      'Cladding',
+      name: 'cladding',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Home Furmishing`
+  String get homeFurmishing {
+    return Intl.message(
+      'Home Furmishing',
+      name: 'homeFurmishing',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Rooms number`
+  String get roomsNumber {
+    return Intl.message(
+      'Rooms number',
+      name: 'roomsNumber',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `upload Pics`
+  String get uploadPics {
+    return Intl.message(
+      'upload Pics',
+      name: 'uploadPics',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Show Pics`
+  String get showPics {
+    return Intl.message(
+      'Show Pics',
+      name: 'showPics',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Type :`
+  String get type {
+    return Intl.message(
+      'Type :',
+      name: 'type',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Traveled Distance :`
+  String get traveledDistance {
+    return Intl.message(
+      'Traveled Distance :',
+      name: 'traveledDistance',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Dureation of use :`
+  String get dureationOfUse {
+    return Intl.message(
+      'Dureation of use :',
+      name: 'dureationOfUse',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Cylynder :`
+  String get cylynder {
+    return Intl.message(
+      'Cylynder :',
+      name: 'cylynder',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Plated`
+  String get plated {
+    return Intl.message(
+      'Plated',
+      name: 'plated',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Request Lawer`
+  String get requestLawer {
+    return Intl.message(
+      'Request Lawer',
+      name: 'requestLawer',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Request Chat`
+  String get requestChat {
+    return Intl.message(
+      'Request Chat',
+      name: 'requestChat',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Duration of use :`
+  String get durationOfUse {
+    return Intl.message(
+      'Duration of use :',
+      name: 'durationOfUse',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Display :`
+  String get display {
+    return Intl.message(
+      'Display :',
+      name: 'display',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Processor :`
+  String get processor {
+    return Intl.message(
+      'Processor :',
+      name: 'processor',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Storage :`
+  String get storage {
+    return Intl.message(
+      'Storage :',
+      name: 'storage',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Graphics :`
+  String get graphics {
+    return Intl.message(
+      'Graphics :',
+      name: 'graphics',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Floors number :`
+  String get floorsNumber {
+    return Intl.message(
+      'Floors number :',
+      name: 'floorsNumber',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Address :`
+  String get address {
+    return Intl.message(
+      'Address :',
+      name: 'address',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Rooms :`
+  String get rooms {
+    return Intl.message(
+      'Rooms :',
+      name: 'rooms',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Edit Account`
+  String get editAccount {
+    return Intl.message(
+      'Edit Account',
+      name: 'editAccount',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `what you want to seach about`
+  String get whatYouWantToSeachAbout {
+    return Intl.message(
+      'what you want to seach about',
+      name: 'whatYouWantToSeachAbout',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `General`
+  String get general {
+    return Intl.message(
+      'General',
+      name: 'general',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Notification`
+  String get notification {
+    return Intl.message(
+      'Notification',
+      name: 'notification',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Chat with Owner`
+  String get chatWithOwner {
+    return Intl.message(
+      'Chat with Owner',
+      name: 'chatWithOwner',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Chat with Lawyer`
+  String get chatWithLawyer {
+    return Intl.message(
+      'Chat with Lawyer',
+      name: 'chatWithLawyer',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

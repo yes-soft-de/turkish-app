@@ -1,17 +1,17 @@
 {
-  "asset": "asset:hersay/lib/module_notification/ui/screen/notifications/notification_screen.dart",
+  "asset": "asset:hersay/lib/module_profile/repository/profile/profile.repository.dart",
   "summary": {
     "injector": [],
     "module": [],
     "injectable": [
       {
-        "name": "NotificationScreen",
+        "name": "ProfileRepository",
         "constructor": {
           "name": "",
           "kind": "constructor",
           "injectedType": {
             "lookupKey": {
-              "root": "asset:hersay/lib/module_notification/ui/screen/notifications/notification_screen.dart#NotificationScreen",
+              "root": "asset:hersay/lib/module_profile/repository/profile/profile.repository.dart#ProfileRepository",
               "qualifier": null
             },
             "isProvider": false
@@ -21,7 +21,14 @@
           "dependencies": [
             {
               "lookupKey": {
-                "root": "asset:hersay/lib/module_notification/state_manager/notification/notification.state_manger.dart#NotificationStateManager",
+                "root": "asset:hersay/lib/module_network/http_client/http_client.dart#ApiClient",
+                "qualifier": null
+              },
+              "isProvider": false
+            },
+            {
+              "lookupKey": {
+                "root": "asset:hersay/lib/module_auth/service/auth/auth.service.dart#AuthService",
                 "qualifier": null
               },
               "isProvider": false

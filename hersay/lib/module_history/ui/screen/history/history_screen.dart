@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hersay/generated/l10n.dart';
 import 'package:hersay/module_history/ui/widget/history_card/history_card.dart';
 import 'package:hersay/module_navigation/ui/widget/navigation_drawer/anime_navigation_drawer.dart';
 import 'package:hersay/utils/enums/products/products.dart';
@@ -22,7 +23,7 @@ class _HistoryScreenState extends State<HistoryScreen> {
   Widget _screenUi() {
     return Scaffold(
       key: _scaffoldKey,
-      appBar: TurkishAppBar.getTurkishAppBar(context, _scaffoldKey, 'History'),
+      appBar: TurkishAppBar.getTurkishAppBar(context, _scaffoldKey, S.of(context).history),
       drawer: TurkishNavigationDrawer(),
       body: ListView.builder(
           itemCount: 10,

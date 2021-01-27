@@ -33,7 +33,7 @@ class AddElectronicDeviceStateInit extends AddElectronicDeviceState {
   final TextEditingController _countryController = TextEditingController();
   final TextEditingController _descriptionController = TextEditingController();
 
-  List<String> _deviceTypes = ['Sell Phone', 'Laptop', 'Desktop', 'Headphone'];
+  List<String> _deviceTypes = [S.current.sellPhone, S.current.laptop, S.current.desktop, S.current.headphone];
   String _selectedDeviceType;
 
   TextEditingController _dateController;
@@ -79,7 +79,7 @@ class AddElectronicDeviceStateInit extends AddElectronicDeviceState {
                       child: DropdownButton(
                           hint: _selectedDeviceType == null
                               ? Text(
-                            'Device Type',
+                            S.of(context).deviceType,
                             style: TextStyle(color: Colors.grey),
                           )
                               : Text(
@@ -117,7 +117,7 @@ class AddElectronicDeviceStateInit extends AddElectronicDeviceState {
                         borderSide: BorderSide.none,
                         borderRadius: BorderRadius.circular(20),
                       ),
-                      labelText: 'Brand',
+                      labelText: S.of(context).brand,
                     ),
                     textInputAction: TextInputAction.next,
                     onEditingComplete: () =>
@@ -150,7 +150,7 @@ class AddElectronicDeviceStateInit extends AddElectronicDeviceState {
                         borderSide: BorderSide.none,
                         borderRadius: BorderRadius.circular(20),
                       ),
-                      labelText: 'Cpu',
+                      labelText: S.of(context).cpu,
                     ),
                     textInputAction: TextInputAction.next,
                     onEditingComplete: () =>
@@ -183,7 +183,7 @@ class AddElectronicDeviceStateInit extends AddElectronicDeviceState {
                         borderSide: BorderSide.none,
                         borderRadius: BorderRadius.circular(20),
                       ),
-                      labelText: 'RAM',
+                      labelText: S.of(context).ram,
                     ),
                     textInputAction: TextInputAction.next,
                     onEditingComplete: () =>
@@ -216,7 +216,7 @@ class AddElectronicDeviceStateInit extends AddElectronicDeviceState {
                         borderSide: BorderSide.none,
                         borderRadius: BorderRadius.circular(20),
                       ),
-                      labelText: 'Battery',
+                      labelText: S.of(context).battery,
                     ),
                     textInputAction: TextInputAction.next,
                     onEditingComplete: () =>
@@ -249,7 +249,7 @@ class AddElectronicDeviceStateInit extends AddElectronicDeviceState {
                     firstDate: DateTime.utc(1900, 1, 1),
                     lastDate: DateTime(2100),
 //                         icon: Icon(Icons.event),
-                    dateLabelText: 'Build Year',
+                    dateLabelText: S.of(context).buildYear,
 
                     selectableDayPredicate: (date) {
                       // Disable weekend days to select from the calendar
@@ -287,7 +287,7 @@ class AddElectronicDeviceStateInit extends AddElectronicDeviceState {
                         borderSide: BorderSide.none,
                         borderRadius: BorderRadius.circular(20),
                       ),
-                      labelText: 'Use Duration',
+                      labelText: S.of(context).useDuration,
                     ),
                     textInputAction: TextInputAction.next,
                     onEditingComplete: () =>
@@ -320,7 +320,7 @@ class AddElectronicDeviceStateInit extends AddElectronicDeviceState {
                         borderSide: BorderSide.none,
                         borderRadius: BorderRadius.circular(20),
                       ),
-                      labelText: 'Guage',
+                      labelText: S.of(context).guage,
                     ),
                     textInputAction: TextInputAction.next,
                     onEditingComplete: () =>
@@ -354,7 +354,7 @@ class AddElectronicDeviceStateInit extends AddElectronicDeviceState {
                         borderSide: BorderSide.none,
                         borderRadius: BorderRadius.circular(20),
                       ),
-                      labelText: 'Location',
+                      labelText: S.of(context).location,
                     ),
                     textInputAction: TextInputAction.next,
                     onEditingComplete: () =>
@@ -387,7 +387,7 @@ class AddElectronicDeviceStateInit extends AddElectronicDeviceState {
                         borderSide: BorderSide.none,
                         borderRadius: BorderRadius.circular(20),
                       ),
-                      labelText: 'Price',
+                      labelText: S.of(context).price,
                     ),
                     textInputAction: TextInputAction.next,
                     onEditingComplete: () =>
@@ -420,7 +420,7 @@ class AddElectronicDeviceStateInit extends AddElectronicDeviceState {
                         borderSide: BorderSide.none,
                         borderRadius: BorderRadius.circular(20),
                       ),
-                      labelText: 'Country',
+                      labelText: S.of(context).country,
                     ),
                     textInputAction: TextInputAction.next,
                     onEditingComplete: () =>
@@ -452,7 +452,7 @@ class AddElectronicDeviceStateInit extends AddElectronicDeviceState {
                         borderSide: BorderSide.none,
                         borderRadius: BorderRadius.circular(20),
                       ),
-                      labelText: 'City',
+                      labelText: S.of(context).city,
                     ),
                     textInputAction: TextInputAction.next,
                     onEditingComplete: () =>
@@ -485,7 +485,7 @@ class AddElectronicDeviceStateInit extends AddElectronicDeviceState {
                         borderSide: BorderSide.none,
                         borderRadius: BorderRadius.circular(20),
                       ),
-                      labelText: 'Rooms description',
+                      labelText: S.of(context).roomsDescription,
                     ),
                     textInputAction: TextInputAction.next,
                     onEditingComplete: () =>
@@ -529,7 +529,7 @@ class AddElectronicDeviceStateInit extends AddElectronicDeviceState {
                             color: Colors.white,
                           ),
                           Text(
-                            'Select main image',
+                            S.of(context).selectMainImage,
                             style: TextStyle(color: Colors.white),
                           )
                         ],
@@ -574,7 +574,7 @@ class AddElectronicDeviceStateInit extends AddElectronicDeviceState {
                             color: Colors.white,
                           ),
                           Text(
-                            'Save',
+                            S.of(context).save,
                             style: TextStyle(color: Colors.white),
                           )
                         ],
@@ -608,7 +608,7 @@ class AddElectronicDeviceSuccessState extends AddElectronicDeviceState {
           padding: EdgeInsets.all(10),
           child: Center(
             child: Text(
-              'your request has been added and in hold for admin approval'
+              S.of(context).yourRequestHasBeenAddedAndInHoldForAdmin
             ),
           ),
         ),

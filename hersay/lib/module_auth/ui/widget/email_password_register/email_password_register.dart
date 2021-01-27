@@ -102,14 +102,14 @@ class _EmailPasswordRegisterFormState extends State<EmailPasswordRegisterForm> {
                       borderSide: BorderSide.none,
                       borderRadius: BorderRadius.circular(20),
                     ),
-                    labelText: 'Name',
+                    labelText: S.of(context).name,
                   ),
                   textInputAction: TextInputAction.next,
                   onEditingComplete: () =>
                       node.nextFocus(), // Move focus to next
                   validator: (result) {
                     if (result.isEmpty) {
-                      return 'الرجاء ادخال اسمك';
+                      return S.of(context).pleaseProvideYourName;
                     }
                     return null;
                   },
@@ -148,14 +148,14 @@ class _EmailPasswordRegisterFormState extends State<EmailPasswordRegisterForm> {
                       borderSide: BorderSide.none,
                       borderRadius: BorderRadius.circular(20),
                     ),
-                    labelText: 'Email',
+                    labelText: S.of(context).email,
                   ),
                   textInputAction: TextInputAction.next,
                   onEditingComplete: () =>
                       node.nextFocus(), // Move focus to next
                   validator: (result) {
                     if (result.isEmpty) {
-                      return 'الرجاء ادخال الإيميل الخاص بك';
+                      return S.of(context).pleaseEnterYourEmail;
                     }
                     return null;
                   },
@@ -194,11 +194,11 @@ class _EmailPasswordRegisterFormState extends State<EmailPasswordRegisterForm> {
                       borderSide: BorderSide.none,
                       borderRadius: BorderRadius.circular(20),
                     ),
-                    labelText: 'Password',
+                    labelText: S.of(context).password,
                   ),
                   validator: (result) {
                     if (result.length < 5) {
-                      return 'كلمة المرور يجب ان تكون من 5 محارف على الأقل';
+                      return S.of(context).passwordShouldBeAtLeastFiveChar;
                     }
                     return null;
                   },
@@ -247,7 +247,7 @@ class _EmailPasswordRegisterFormState extends State<EmailPasswordRegisterForm> {
                   }
                 },
                 child: Text(
-                  'Sign Up',
+                  S.of(context).signUp,
                   style: TextStyle(
                     color: Colors.white,
                   ),

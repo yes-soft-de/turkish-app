@@ -1,5 +1,6 @@
 
 import 'package:flutter/material.dart';
+import 'package:hersay/generated/l10n.dart';
 import 'package:hersay/module_auth/auth_routes.dart';
 import 'package:hersay/utils/project_colors/project_colors.dart';
 
@@ -112,7 +113,7 @@ class _EmailPasswordLoginFormState extends State<EmailPasswordLoginForm> {
                       node.nextFocus(), // Move focus to next
                   validator: (result) {
                     if (result.isEmpty) {
-                      return 'الرجاء ادخال الإيميل الخاص بك';
+                      return S.of(context).pleaseEnterYourEmail;
                     }
                     return null;
                   },
@@ -155,7 +156,7 @@ class _EmailPasswordLoginFormState extends State<EmailPasswordLoginForm> {
                   ),
                   validator: (result) {
                     if (result.length < 5) {
-                      return 'كلمة المرور يجب ان تكون من 5 محارف على الأقل';
+                      return S.of(context).passwordShouldBeAtLeastFiveChar;
                     }
                     return null;
                   },
@@ -176,8 +177,8 @@ class _EmailPasswordLoginFormState extends State<EmailPasswordLoginForm> {
                 },
                 child: Text(
                   widget.loading
-                      ? /* S.of(context).loading*/ 'loading'
-                      : 'انشاء حساب جديد',
+                      ? /* S.of(context).loading*/ S.of(context).loading
+                      : S.of(context).createNewAccount,
                   style: TextStyle(
                     color: Colors.white,
                   ),
@@ -205,7 +206,7 @@ class _EmailPasswordLoginFormState extends State<EmailPasswordLoginForm> {
 //
                 },
                 child: Text(
-                  'Login',
+                  S.of(context).login,
                   style: TextStyle(
                     color: Colors.white,
                   ),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hersay/generated/l10n.dart';
 import 'package:hersay/module_chat/ui/widget/chat_item_card/chat_item_card.dart';
 import 'package:hersay/module_navigation/ui/widget/navigation_drawer/anime_navigation_drawer.dart';
 import 'package:hersay/utils/widgets/turkish_app_bar/turkish_app_bar.dart';
@@ -21,7 +22,7 @@ class _ChatsListScreenState extends State<ChatsListScreen> {
   Widget _screenUi() {
     return Scaffold(
       key: _scaffoldKey,
-      appBar: TurkishAppBar.getTurkishAppBar(context, _scaffoldKey, 'Chats'),
+      appBar: TurkishAppBar.getTurkishAppBar(context, _scaffoldKey, S.of(context).chats),
       drawer: TurkishNavigationDrawer(),
       body: ListView.builder(
           itemCount: 10,

@@ -1,4 +1,4 @@
-import 'package:date_time_picker/date_time_picker.dart';
+
 import 'package:flutter/material.dart';
 import 'package:hersay/module_products/state_manager/real_estate/add_real_estate.manager.dart';
 import 'package:hersay/module_products/ui/state/add_real_estate/add_real_estate.state.dart';

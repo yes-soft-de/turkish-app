@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hersay/generated/l10n.dart';
 import 'package:hersay/module_navigation/ui/widget/navigation_drawer/anime_navigation_drawer.dart';
 import 'package:hersay/module_profile/widget/circular_image.dart';
 import 'package:hersay/utils/project_colors/project_colors.dart';
@@ -23,7 +24,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
   Widget _screenUi(double height) {
     return Scaffold(
       key: _scaffoldKey,
-      appBar: TurkishAppBar.getTurkishAppBar(context, _scaffoldKey, 'Profile'),
+      appBar: TurkishAppBar.getTurkishAppBar(context, _scaffoldKey, S.of(context).profile),
       drawer: TurkishNavigationDrawer(),
       body: SingleChildScrollView(
         child: Container(
@@ -94,7 +95,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                          'Edit Account',
+                          S.of(context).editAccount,
                           style: TextStyle(
                             fontSize: 14,
                             fontWeight: FontWeight.bold,

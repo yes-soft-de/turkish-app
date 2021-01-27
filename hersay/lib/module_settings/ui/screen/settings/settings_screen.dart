@@ -41,7 +41,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
     return Scaffold(
       key: _scaffoldKey,
       drawer: TurkishNavigationDrawer(),
-      appBar: TurkishAppBar.getTurkishAppBar(context, _scaffoldKey, 'Settings'),
+      appBar: TurkishAppBar.getTurkishAppBar(context, _scaffoldKey, S.of(context).settings),
       body: SingleChildScrollView(
         child: Column(
           children: [
@@ -63,7 +63,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
               ),
             ),
             //general setting
-            GestureDetector(
+            /*GestureDetector(
               onTap: () {
                 Navigator.push(
                     context,
@@ -74,7 +74,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 padding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 10),
                 child: IconTextWidget(
                   icon: Icons.settings,
-                  text: 'General',
+                  text: S.of(context).general,
                 ),
               ),
             ),
@@ -91,7 +91,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 padding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 10),
                 child: IconTextWidget(
                   icon: Icons.security,
-                  text: 'Privacy',
+                  text: S.of(context).privacy,
                 ),
               ),
             ),
@@ -107,7 +107,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 padding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 10),
                 child: IconTextWidget(
                   icon: Icons.notifications,
-                  text: 'Notification',
+                  text: S.of(context).notification,
                 ),
               ),
             ),
@@ -115,9 +115,9 @@ class _SettingsScreenState extends State<SettingsScreen> {
               padding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 10),
               child: IconTextWidget(
                 icon: Icons.help,
-                text: 'Help',
+                text: S.of(context).help,
               ),
-            ),
+            ),*/
             //dark mode
             Padding(
               padding: const EdgeInsets.all(8.0),

@@ -33,13 +33,13 @@ class AddCarStateInit extends AddCarState {
   final TextEditingController _countryController = TextEditingController();
   final TextEditingController _descriptionController = TextEditingController();
 
-  List<String> _gearTypes = ['Manual', 'Automatic'];
+  List<String> _gearTypes = [S.current.manual, S.current.automatic];
   String _selectedGearType;
 
-  List<String> _fuelsTypes = ['Benzene', 'Diesel'];
+  List<String> _fuelsTypes = [S.current.benzene, S.current.diesel];
   String _selectedFuelType;
 
-  List<String> _stateTypes = ['Accepted', 'Un accepted'];
+  List<String> _stateTypes = [S.current.accepted, S.current.unAccepted];
   String _selectedstate;
 
   String mainImage ;
@@ -86,7 +86,7 @@ class AddCarStateInit extends AddCarState {
                         borderSide: BorderSide.none,
                         borderRadius: BorderRadius.circular(20),
                       ),
-                      labelText: 'Car Type',
+                      labelText: S.current.carType,
                     ),
                     textInputAction: TextInputAction.next,
                     onEditingComplete: () =>
@@ -119,7 +119,7 @@ class AddCarStateInit extends AddCarState {
                         borderSide: BorderSide.none,
                         borderRadius: BorderRadius.circular(20),
                       ),
-                      labelText: 'Brand',
+                      labelText: S.current.brand,
                     ),
                     textInputAction: TextInputAction.next,
                     onEditingComplete: () =>
@@ -152,7 +152,7 @@ class AddCarStateInit extends AddCarState {
                         borderSide: BorderSide.none,
                         borderRadius: BorderRadius.circular(20),
                       ),
-                      labelText: 'Company',
+                      labelText: S.current.company,
                     ),
                     textInputAction: TextInputAction.next,
                     onEditingComplete: () =>
@@ -185,7 +185,7 @@ class AddCarStateInit extends AddCarState {
                         borderSide: BorderSide.none,
                         borderRadius: BorderRadius.circular(20),
                       ),
-                      labelText: 'Engine',
+                      labelText: S.current.engine,
                     ),
                     textInputAction: TextInputAction.next,
                     onEditingComplete: () =>
@@ -218,7 +218,7 @@ class AddCarStateInit extends AddCarState {
                     firstDate: DateTime.utc(1900, 1, 1),
                     lastDate: DateTime(2100),
 //                         icon: Icon(Icons.event),
-                    dateLabelText: 'Year of release',
+                    dateLabelText: S.current.yearOfRelease,
 
                     selectableDayPredicate: (date) {
                       // Disable weekend days to select from the calendar
@@ -254,7 +254,7 @@ class AddCarStateInit extends AddCarState {
                       child: DropdownButton(
                           hint: _selectedGearType == null
                               ? Text(
-                            'Gear Type',
+                            S.of(context).gearType,
                             style: TextStyle(color: Colors.grey),
                           )
                               : Text(
@@ -291,7 +291,7 @@ class AddCarStateInit extends AddCarState {
                       child: DropdownButton(
                           hint: _selectedstate == null
                               ? Text(
-                            'state',
+                            S.of(context).state,
                             style: TextStyle(color: Colors.grey),
                           )
                               : Text(
@@ -330,7 +330,7 @@ class AddCarStateInit extends AddCarState {
                         borderSide: BorderSide.none,
                         borderRadius: BorderRadius.circular(20),
                       ),
-                      labelText: 'Mileages',
+                      labelText: S.of(context).mileages,
                     ),
                     textInputAction: TextInputAction.next,
                     onEditingComplete: () =>
@@ -363,7 +363,7 @@ class AddCarStateInit extends AddCarState {
                         borderSide: BorderSide.none,
                         borderRadius: BorderRadius.circular(20),
                       ),
-                      labelText: 'CC',
+                      labelText: S.of(context).cc,
                     ),
                     textInputAction: TextInputAction.next,
                     onEditingComplete: () =>
@@ -394,7 +394,7 @@ class AddCarStateInit extends AddCarState {
                       child: DropdownButton(
                           hint: _selectedGearType == null
                               ? Text(
-                            'Fuel',
+                            S.of(context).fuel,
                             style: TextStyle(color: Colors.grey),
                           )
                               : Text(
@@ -432,7 +432,7 @@ class AddCarStateInit extends AddCarState {
                         borderSide: BorderSide.none,
                         borderRadius: BorderRadius.circular(20),
                       ),
-                      labelText: 'Location',
+                      labelText: S.of(context).location,
                     ),
                     textInputAction: TextInputAction.next,
                     onEditingComplete: () =>
@@ -465,7 +465,7 @@ class AddCarStateInit extends AddCarState {
                         borderSide: BorderSide.none,
                         borderRadius: BorderRadius.circular(20),
                       ),
-                      labelText: 'Price',
+                      labelText: S.of(context).price,
                     ),
                     textInputAction: TextInputAction.next,
                     onEditingComplete: () =>
@@ -500,7 +500,7 @@ class AddCarStateInit extends AddCarState {
                         borderSide: BorderSide.none,
                         borderRadius: BorderRadius.circular(20),
                       ),
-                      labelText: 'Country',
+                      labelText: S.of(context).country,
                     ),
                     textInputAction: TextInputAction.next,
                     onEditingComplete: () =>
@@ -532,7 +532,7 @@ class AddCarStateInit extends AddCarState {
                         borderSide: BorderSide.none,
                         borderRadius: BorderRadius.circular(20),
                       ),
-                      labelText: 'City',
+                      labelText: S.of(context).city,
                     ),
                     textInputAction: TextInputAction.next,
                     onEditingComplete: () =>
@@ -565,7 +565,7 @@ class AddCarStateInit extends AddCarState {
                         borderSide: BorderSide.none,
                         borderRadius: BorderRadius.circular(20),
                       ),
-                      labelText: 'Rooms description',
+                      labelText: S.of(context).roomsDescription,
                     ),
                     textInputAction: TextInputAction.next,
                     onEditingComplete: () =>
@@ -609,7 +609,7 @@ class AddCarStateInit extends AddCarState {
                             color: Colors.white,
                           ),
                           Text(
-                            'Select main image',
+                            S.of(context).selectMainImage,
                             style: TextStyle(color: Colors.white),
                           ),
 
@@ -658,7 +658,7 @@ class AddCarStateInit extends AddCarState {
                             color: Colors.white,
                           ),
                           Text(
-                            'Save',
+                            S.of(context).save,
                             style: TextStyle(color: Colors.white),
                           )
                         ],
@@ -692,7 +692,7 @@ class AddCarSuccessState extends AddCarState {
           padding: EdgeInsets.all(10),
           child: Center(
             child: Text(
-              'your request has been added and in hold for admin approval'
+              S.of(context).yourRequestHasBeenAddedAndInHoldForAdmin
             ),
           ),
         ),
@@ -711,7 +711,7 @@ class AddCarSuccessState extends AddCarState {
                   },
                   child: Expanded(
                     child: Text(
-                      'Ok',
+                      S.of(context).ok,
                     ),
                   ),
                 ),

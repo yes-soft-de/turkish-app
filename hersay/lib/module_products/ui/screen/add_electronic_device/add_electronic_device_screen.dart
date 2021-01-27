@@ -1,9 +1,7 @@
-import 'package:date_time_picker/date_time_picker.dart';
+
 import 'package:flutter/material.dart';
 import 'package:hersay/module_products/state_manager/electroinic_device/add_electronic_device.state_manager.dart';
 import 'package:hersay/module_products/ui/state/add_electronic_device/add_electronic_device.state.dart';
-import 'package:hersay/utils/project_colors/project_colors.dart';
-import 'package:hersay/utils/widgets/turkish_app_bar/turkish_app_bar.dart';
 import 'package:inject/inject.dart';
 
 @provide

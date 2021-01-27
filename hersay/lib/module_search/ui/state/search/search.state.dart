@@ -1,5 +1,6 @@
 
 import 'package:flutter/material.dart';
+import 'package:hersay/generated/l10n.dart';
 import 'package:hersay/module_auth/auth_routes.dart';
 import 'package:hersay/module_products/products_routes.dart';
 import 'package:hersay/module_search/model/search/search_model.dart';
@@ -39,7 +40,7 @@ class SearchStateInit extends SearchState {
                 },
                 decoration: InputDecoration(
                   hintText:
-                  'what you want to seach about'  ,
+                  S.of(context).whatYouWantToSeachAbout  ,
                   suffixIcon: IconButton(
                       icon: Icon(
                         Icons.search,
@@ -52,7 +53,7 @@ class SearchStateInit extends SearchState {
                 ),
                 validator: (result) {
                   if (result.isEmpty) {
-                    return 'عن ماذا تريد البحث';
+                    return  S.of(context).whatYouWantToSeachAbout ;
                   }
                   return null;
                 },
@@ -118,7 +119,7 @@ class SearchStateDataLoaded extends SearchState {
                 },
                 decoration: InputDecoration(
                   hintText:
-                  'what you want to seach about'  ,
+                  S.of(context).whatYouWantToSeachAbout   ,
                   suffixIcon: IconButton(
                       icon: Icon(
                         Icons.search,
@@ -130,7 +131,7 @@ class SearchStateDataLoaded extends SearchState {
                 ),
                 validator: (result) {
                   if (result.isEmpty) {
-                    return 'عن ماذا تريد البحث';
+                    return  S.of(context).whatYouWantToSeachAbout ;
                   }
                   return null;
                 },

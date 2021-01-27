@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hersay/generated/l10n.dart';
 import 'package:hersay/module_home/model/home/home_model.dart';
 import 'package:hersay/module_home/state_manager/home/home.state_manager.dart';
 import 'package:hersay/module_home/ui/state/home/home.state.dart';
@@ -117,7 +118,7 @@ class HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       key: _scaffoldKey,
       drawer: TurkishNavigationDrawer(),
-      appBar: TurkishAppBar.getTurkishAppBar(context, _scaffoldKey, 'Home'),
+      appBar: TurkishAppBar.getTurkishAppBar(context, _scaffoldKey, S.of(context).home),
       body: currentState.getUI(context),
       floatingActionButton: VerticalFab(),
     );

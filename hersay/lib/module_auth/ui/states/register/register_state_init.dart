@@ -21,7 +21,7 @@ class RegisterStateInit extends RegisterState {
           onRegisterRequest: (email, password, name) {
             screen.registerByEmail(
               email,
-              email,
+              name,
               password,
             );
           },

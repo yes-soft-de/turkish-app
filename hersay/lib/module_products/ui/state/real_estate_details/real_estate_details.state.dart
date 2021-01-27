@@ -1,5 +1,6 @@
 
 import 'package:flutter/material.dart';
+import 'package:hersay/generated/l10n.dart';
 import 'package:hersay/module_auth/auth_routes.dart';
 import 'package:hersay/module_products/model/real_estate/real_estate_model.dart';
 import 'package:hersay/module_products/ui/screen/real_estate_details/real_estate_details_screen.dart';
@@ -143,7 +144,7 @@ class RealEstateDetailsStateDataLoaded extends RealEstateDetailsState {
                               color: Colors.white,
                             ),
                             Text(
-                              'Show Pics',
+                              S.of(context).showPics,
                               style: TextStyle(color: Colors.white),
                             )
                           ],
@@ -156,19 +157,19 @@ class RealEstateDetailsStateDataLoaded extends RealEstateDetailsState {
                 //House details
                 Padding(
                   padding: const EdgeInsets.all(8.0),
-                  child: Text('Type : ${realEstate.type}'),
+                  child: Text(S.of(context).type+' ${realEstate.type}'),
                 ),
                 Padding(
                   padding: const EdgeInsets.all(8.0),
-                  child: Text('Space : ${realEstate.space} SM'),
+                  child: Text(S.of(context).space+' ${realEstate.space} SM'),
                 ),
                 Padding(
                   padding: const EdgeInsets.all(8.0),
-                  child: Text('Floors number : ${realEstate.floorsNumber}'),
+                  child: Text(S.of(context).floorsNumber+' ${realEstate.floorsNumber}'),
                 ),
                 Padding(
                   padding: const EdgeInsets.all(8.0),
-                  child: Text('Cladding : ${realEstate.cladding}'),
+                  child: Text(S.of(context).cladding+' ${realEstate.cladding}'),
                 ),
                 Padding(
                   padding: const EdgeInsets.all(8.0),
@@ -176,11 +177,11 @@ class RealEstateDetailsStateDataLoaded extends RealEstateDetailsState {
                 ),
                 Padding(
                   padding: const EdgeInsets.all(8.0),
-                  child: Text('Address :  ${realEstate.address}'),
+                  child: Text(S.of(context).address+' ${realEstate.address}'),
                 ),
                 Padding(
                   padding: const EdgeInsets.all(8.0),
-                  child: Text('Rooms : ${realEstate.description}'),
+                  child: Text(S.of(context).rooms+' ${realEstate.description}'),
                 ),
                 Container(
                   decoration: BoxDecoration(
@@ -191,7 +192,7 @@ class RealEstateDetailsStateDataLoaded extends RealEstateDetailsState {
                   padding: const EdgeInsets.all(8.0),
                   margin: const EdgeInsets.all(8.0),
                   child: Center(
-                    child: Text('Price : ${realEstate.price} \$'),
+                    child: Text(S.of(context).price+'${realEstate.price} \$'),
                   ),
                 ),
                 Row(
@@ -203,7 +204,7 @@ class RealEstateDetailsStateDataLoaded extends RealEstateDetailsState {
                       color: ProjectColors.THEME_COLOR,
                       onPressed: () {},
                       child: Text(
-                        'Request Lawer',
+                        S.of(context).chatWithOwner,
                         style: TextStyle(fontSize: 10, color: Colors.white),
                       ),
                     ),
@@ -213,7 +214,7 @@ class RealEstateDetailsStateDataLoaded extends RealEstateDetailsState {
                       color: ProjectColors.THEME_COLOR,
                       onPressed: () {},
                       child: Text(
-                        'Request Chat',
+                        S.of(context).chatWithLawyer,
                         style: TextStyle(fontSize: 10, color: Colors.white),
                       ),
                     ),

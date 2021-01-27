@@ -1,5 +1,6 @@
 
 import 'package:flutter/material.dart';
+import 'package:hersay/generated/l10n.dart';
 import 'package:hersay/module_auth/auth_routes.dart';
 import 'package:hersay/module_products/model/car/car_model.dart';
 import 'package:hersay/module_products/model/electronic_device/electronic_device_model.dart';
@@ -145,7 +146,7 @@ class ElectronicDeviceDetailsStateDataLoaded extends ElectronicDeviceDetailsStat
                               color: Colors.white,
                             ),
                             Text(
-                              'Show Pics',
+                              S.of(context).showPics,
                               style: TextStyle(color: Colors.white),
                             )
                           ],
@@ -158,45 +159,45 @@ class ElectronicDeviceDetailsStateDataLoaded extends ElectronicDeviceDetailsStat
                 //ElectronicDevice details
                 Padding(
                   padding: const EdgeInsets.all(8.0),
-                  child: Text('Type : ${electronicDevice.type}'),
+                  child: Text(S.of(context).type+' ${electronicDevice.type}'),
                 ),
                 Padding(
                   padding: const EdgeInsets.all(8.0),
-                  child: Text('Brand : ${electronicDevice.brand}'),
+                  child: Text(S.of(context).brand+' ${electronicDevice.brand}'),
                 ),
                 Padding(
                   padding: const EdgeInsets.all(8.0),
-                  child: Text('Year of Release : ${electronicDevice.releaseYear}'),
+                  child: Text(S.of(context).yearOfRelease+'${electronicDevice.releaseYear}'),
                 ),
                 Padding(
                   padding: const EdgeInsets.all(8.0),
-                  child: Text('Duration of use : ${electronicDevice.useDuration}'),
+                  child: Text(S.of(context).durationOfUse+'${electronicDevice.useDuration}'),
                 ),
                 Padding(
                   padding: const EdgeInsets.all(8.0),
-                  child: Text('Display :${electronicDevice.description}'),
+                  child: Text(S.of(context).display+'${electronicDevice.description}'),
                 ),
                 Padding(
                   padding: const EdgeInsets.all(8.0),
-                  child: Text('Processor :  ${electronicDevice.processor}'),
+                  child: Text(S.of(context).processor+' ${electronicDevice.processor}'),
                 ),
                 //TODO : change  this
                 Padding(
                   padding: const EdgeInsets.all(8.0),
-                  child: Text('Storage : 512GB PCIe 3*4 SSD'),
+                  child: Text(S.of(context).storage+' 512GB PCIe 3*4 SSD'),
                 ),
                 Padding(
                   padding: const EdgeInsets.all(8.0),
-                  child: Text('Graphics : ${electronicDevice.graphics}'),
+                  child: Text(S.of(context).graphics+' ${electronicDevice.graphics}'),
                 ),
                 Padding(
                   padding: const EdgeInsets.all(8.0),
-                  child: Text('Location : ${electronicDevice.location}'),
+                  child: Text(S.of(context).location+' ${electronicDevice.location}'),
                 ),
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Center(
-                    child: Text('Price : ${electronicDevice.price} \$'),
+                    child: Text(S.of(context).price+'${electronicDevice.price} \$'),
                   ),
                 ),
                 Row(
@@ -208,7 +209,7 @@ class ElectronicDeviceDetailsStateDataLoaded extends ElectronicDeviceDetailsStat
                       color: ProjectColors.THEME_COLOR,
                       onPressed: () {},
                       child: Text(
-                        'Request Lawer',
+                        S.of(context).chatWithOwner,
                         style: TextStyle(fontSize: 10, color: Colors.white),
                       ),
                     ),
@@ -218,7 +219,7 @@ class ElectronicDeviceDetailsStateDataLoaded extends ElectronicDeviceDetailsStat
                       color: ProjectColors.THEME_COLOR,
                       onPressed: () {},
                       child: Text(
-                        'Request Chat',
+                        S.of(context).chatWithLawyer,
                         style: TextStyle(fontSize: 10, color: Colors.white),
                       ),
                     ),

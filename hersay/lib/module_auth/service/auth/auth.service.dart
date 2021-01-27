@@ -156,6 +156,7 @@ class AuthService {
         .createUserWithEmailAndPassword(email: email, password: password)
         .then((value) {
       signInWithEmailAndPassword(email, password );
+
     }).catchError((err) {
       if (err is FirebaseAuthException) {
         FirebaseAuthException x = err;
