@@ -6,9 +6,16 @@ namespace App\Request;
 class StatusUpdateRequest
 {
     public $id;
+
     public $createdBy;
+
     public $lawyerID;
+
     public $status;
+
+    private $entity;
+
+    private $itemID;
 
     /**
     * @return mixed

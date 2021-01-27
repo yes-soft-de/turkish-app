@@ -40,6 +40,16 @@ class StatusEntity
      */
     private $createdAt;
 
+    /**
+     * @ORM\Column(type="string", length=50)
+     */
+    private $entity;
+
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $itemID;
+
 
     public function getId(): ?int
     {
@@ -90,6 +100,30 @@ class StatusEntity
     public function setCreatedAt($createdAt): self
     {
         $this->createdAt = $createdAt;
+
+        return $this;
+    }
+
+    public function getEntity(): ?string
+    {
+        return $this->entity;
+    }
+
+    public function setEntity(string $entity): self
+    {
+        $this->entity = $entity;
+
+        return $this;
+    }
+
+    public function getItemID(): ?int
+    {
+        return $this->itemID;
+    }
+
+    public function setItemID(int $itemID): self
+    {
+        $this->itemID = $itemID;
 
         return $this;
     }

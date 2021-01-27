@@ -7,9 +7,16 @@ use DateTime;
 class StatusCreateRequest
 {
     private $createdBy;
+
     private $lawyerID;
+
     private $status;
+
     private $createdAt;
+
+    private $entity;
+
+    private $itemID;
 
 
     /**
