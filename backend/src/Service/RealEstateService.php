@@ -199,4 +199,20 @@ class RealEstateService
 
         return $response;
     }
+
+    public function getSoldRealEstatesOfUser($userID)
+    {
+        $response = [];
+
+        $soldRealEstates = $this->realEstateManager->getSoldRealEstatesOfUser($userID);
+        //dd($soldRealEstates);
+        foreach ($soldRealEstates as $realEstate)
+        {
+            $realEstate['image'] = $this->specialLinkCheck($realEstate['specialLink']) . $realEstate['image'];
+
+            $response[] = $this->autoMapping->map('array', RealEstateGetAllResponse::class, $realEstate);
+        }
+
+        return $response;
+    }
 }

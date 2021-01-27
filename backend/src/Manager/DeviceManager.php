@@ -112,5 +112,18 @@ class DeviceManager
     {
         return $this->deviceEntityRepository->getDevicesByBrand($brand);
     }
+
+    public function getSoldDevicesOfUser($userID)
+    {
+        $devices = $this->deviceEntityRepository->getSoldDevicesOfUser($userID);
+
+        if($devices != null)
+        {
+            $devices[0]['state'] = "Sell";
+            $devices[0]['entity'] = $devices[0]['brand'];
+        }
+
+        return $devices;
+    }
     
 }

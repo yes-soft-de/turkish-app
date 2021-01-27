@@ -164,4 +164,20 @@ class DeviceService
 
         return $response;
     }
+
+    public function getSoldDevicesOfUser($userID)
+    {
+        $response = [];
+
+        $soldDevices = $this->deviceManager->getSoldDevicesOfUser($userID);
+        //dd($soldDevices);
+        foreach ($soldDevices as $device)
+        {
+            $device['image'] = $this->specialLinkCheck($device['specialLink']) . $device['image'];
+
+            $response[] = $this->autoMapping->map('array', DeviceGetResponse::class, $device);
+        }
+
+        return $response;
+    }
 }

@@ -56,4 +56,18 @@ class StatusService
         }
         return $respons;
     }
+
+    public function getFinishedAgreementsOfUser($userID)
+    {
+        $response = [];
+
+        $finishedStatus = $this->statusManager->getFinishedAgreementsOfUser($userID);
+
+        foreach($finishedStatus as $row)
+        {
+            $response[] = $this->autoMapping->map('array', GetAgreementsResponse::class, $row);
+        }
+
+        return $response;
+    }
 }

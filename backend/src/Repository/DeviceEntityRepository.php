@@ -118,4 +118,18 @@ class DeviceEntityRepository extends ServiceEntityRepository
             ->getArrayResult();
     }
 
+    public function getSoldDevicesOfUser($userID)
+    {
+        return $this->createQueryBuilder('device')
+            ->select('device.id', 'device.brand')
+
+            ->andWhere("device.status = 'sold'")
+
+            ->andWhere('device.createdBy =:userID')
+            ->setParameter('userID', $userID)
+
+            ->getQuery()
+            ->getResult();
+    }
+
 }

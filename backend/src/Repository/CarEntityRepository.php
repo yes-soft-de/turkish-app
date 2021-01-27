@@ -175,4 +175,18 @@ class CarEntityRepository extends ServiceEntityRepository
             ->getQuery()
             ->getArrayResult();
     }
+
+    public function getSoldCarsOfUser($userID)
+    {
+        return $this->createQueryBuilder('car')
+            ->select('car.id', 'car.brand')
+
+            ->andWhere("car.status = 'sold'")
+
+            ->andWhere('car.createdBy =:userID')
+            ->setParameter('userID', $userID)
+
+            ->getQuery()
+            ->getResult();
+    }
 }

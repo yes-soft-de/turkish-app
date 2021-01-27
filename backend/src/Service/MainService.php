@@ -5,22 +5,28 @@ namespace App\Service;
 
 
 use App\AutoMapping;
+use App\Manager\MainManager;
 use App\Request\FilterRequest;
+use App\Response\GetHistoryResponse;
 
 class MainService
 {
     private $autoMapping;
+    private $mainManager;
     private $carService;
     private $deviceService;
     private $realEstateService;
+    private $statusService;
 
     public function __construct(AutoMapping $autoMapping, DeviceService $deviceService, RealEstateService $realEstateService,
-     CarService $carService)
+     CarService $carService, StatusService $statusService, MainManager $mainManager)
     {
         $this->autoMapping = $autoMapping;
+        $this->mainManager = $mainManager;
         $this->carService = $carService;
         $this->deviceService = $deviceService;
         $this->realEstateService = $realEstateService;
+        $this->statusService = $statusService;
     }
 
     public function search($query)
@@ -56,5 +62,19 @@ class MainService
         {
             return $this->realEstateService->getFilter($request->getPrice(), $request->getCity());
         }
+    }
+
+    public function getHistory($userID)
+    {
+        $response = [];
+
+        $userProperties = $this->mainManager->getHistory($userID);
+
+        foreach ($userProperties as $boughtProperty)
+        {
+                $response[] = $this->autoMapping->map('array', GetHistoryResponse::class, $boughtProperty);
+        }
+
+        return $response;
     }
 }

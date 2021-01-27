@@ -231,4 +231,20 @@ class CarService
         return $response;
     }
 
+    public function getSoldCarsOfUser($userID)
+    {
+        $response = [];
+
+        $soldCars = $this->carManager->getSoldCarsOfUser($userID);
+        //dd($soldCars);
+        foreach ($soldCars as $car)
+        {
+            $car['image'] = $this->specialLinkCheck($car['specialLink']) . $car['image'];
+
+            $response[] = $this->autoMapping->map('array', CarGetResponse::class, $car);
+        }
+
+        return $response;
+    }
+
 }

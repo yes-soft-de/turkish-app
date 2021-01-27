@@ -52,8 +52,14 @@ class StatusManager
     {
         return $this->statusRepository->getAgreements($userID);
     }
+
     public function getAgreementID($ID)
     {
         return $this->statusRepository->getAgreementID($ID);
+    }
+
+    public function getFinishedAgreementsOfUser($userID)
+    {
+        return $this->statusRepository->getFinishedAgreementsOfUser($userID);
     }
 }

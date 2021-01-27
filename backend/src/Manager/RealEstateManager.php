@@ -112,5 +112,19 @@ class RealEstateManager
     {
         return $this->repository->getRealEstatesByType($type);
     }
+
+    public function getSoldRealEstatesOfUser($userID)
+    {
+        $realEstates = $this->repository->getSoldRealEstatesOfUser($userID);
+
+        if($realEstates != null)
+        {
+            $realEstates[0]['state'] = "Sell";
+
+            $realEstates[0]['entity'] = $realEstates[0]['realEstateType'];
+        }
+
+        return $realEstates;
+    }
     
 }
