@@ -92,7 +92,7 @@ class CarEntityRepository extends ServiceEntityRepository
                 'UserProfileEntity.userID = car.createdBy'
             )
 
-              ->andWhere("car.state = 'Accepted'")
+//              ->andWhere("car.state = 'Accepted'")
 
               ->getQuery()
               ->getResult();

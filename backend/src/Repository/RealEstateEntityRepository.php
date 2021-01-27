@@ -79,7 +79,7 @@ class RealEstateEntityRepository extends ServiceEntityRepository
                 'UserProfileEntity.userID = RealEstateEntity.createdBy'
             )
             
-            ->andWhere("RealEstateEntity.state = 'Accepted'")
+//            ->andWhere("RealEstateEntity.state = 'Accepted'")
 
             ->getQuery()
             ->getResult();
