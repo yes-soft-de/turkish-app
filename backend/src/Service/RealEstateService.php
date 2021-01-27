@@ -55,6 +55,8 @@ class RealEstateService
         foreach ($result as $row) {
 
             $row['image'] = $this->specialLinkCheck($row['specialLink']).$row['image'];
+
+            $row['userImage'] = $this->params . $row['userImage'];
           
             $row['images'] = $this->imageService->getImages($id, $this->entity);
 
@@ -76,6 +78,8 @@ class RealEstateService
         foreach ($result as $row) {
 
             $row['image'] = $this->specialLinkCheck($row['specialLink']).$row['image'];
+
+            $row['userImage'] = $this->params . $row['userImage'];
           
             $row['images'] = $this->imageService->getImages($id, $this->entity);
             $row['documents'] = $this->documentService->getDocuments($id, $this->entity);

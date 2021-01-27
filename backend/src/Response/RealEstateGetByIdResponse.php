@@ -38,4 +38,8 @@ class RealEstateGetByIdResponse
     public $reaction;
 
     public $documents;
+
+    public $username;
+
+    public $userImage;
 }

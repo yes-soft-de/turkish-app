@@ -49,4 +49,8 @@ class CarGetByIdResponse
     public $reaction;
     
     public $state;
+
+    public $username;
+
+    public $userImage;
 }

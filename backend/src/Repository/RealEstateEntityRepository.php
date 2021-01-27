@@ -24,9 +24,22 @@ class RealEstateEntityRepository extends ServiceEntityRepository
     public function getRealEstateById($id)
     {
         return $this->createQueryBuilder('RealEstateEntity')
-            ->select('RealEstateEntity.country','RealEstateEntity.city', 'RealEstateEntity.space', 'RealEstateEntity.price', 'RealEstateEntity.description', 'RealEstateEntity.status', 'RealEstateEntity.createdBy', 'RealEstateEntity.createdAt', 'RealEstateEntity.updateAt', 'RealEstateEntity.state', 'RealEstateEntity.image', 'RealEstateEntity.specialLink', 'RealEstateEntity.numberOfFloors', 'RealEstateEntity.cladding', 'RealEstateEntity.homeFurnishing', 'RealEstateEntity.realEstateType', 'RealEstateEntity.rooms')
+            ->select('RealEstateEntity.country','RealEstateEntity.city', 'RealEstateEntity.space', 'RealEstateEntity.price', 'RealEstateEntity.description', 'RealEstateEntity.status',
+                'RealEstateEntity.createdBy', 'RealEstateEntity.createdAt', 'RealEstateEntity.updateAt', 'RealEstateEntity.state', 'RealEstateEntity.image', 'RealEstateEntity.specialLink',
+                'RealEstateEntity.numberOfFloors', 'RealEstateEntity.cladding', 'RealEstateEntity.homeFurnishing', 'RealEstateEntity.realEstateType',
+                'RealEstateEntity.rooms', 'userProfileEntity.userName as username', 'userProfileEntity.image as userImage')
+
             ->andWhere('RealEstateEntity.id = :id')
+
             ->setParameter('id', $id)
+
+            ->leftJoin(
+                UserProfileEntity::class,
+                'userProfileEntity',
+                Join::WITH,
+                'userProfileEntity.userID = RealEstateEntity.createdBy'
+            )
+
             ->getQuery()
             ->getResult();
     }
@@ -34,12 +47,22 @@ class RealEstateEntityRepository extends ServiceEntityRepository
     public function getRealEstateByIdUnaccepted($id)
     {
         return $this->createQueryBuilder('RealEstateEntity')
-            ->select('RealEstateEntity.country','RealEstateEntity.city', 'RealEstateEntity.space', 'RealEstateEntity.price', 'RealEstateEntity.description', 'RealEstateEntity.status', 'RealEstateEntity.createdBy', 'RealEstateEntity.createdAt', 'RealEstateEntity.updateAt', 'RealEstateEntity.state', 'RealEstateEntity.image', 'RealEstateEntity.specialLink', 'RealEstateEntity.numberOfFloors', 'RealEstateEntity.cladding', 'RealEstateEntity.homeFurnishing', 'RealEstateEntity.realEstateType', 'RealEstateEntity.rooms')
+            ->select('RealEstateEntity.country','RealEstateEntity.city', 'RealEstateEntity.space', 'RealEstateEntity.price', 'RealEstateEntity.description', 'RealEstateEntity.status',
+                'RealEstateEntity.createdBy', 'RealEstateEntity.createdAt', 'RealEstateEntity.updateAt', 'RealEstateEntity.state', 'RealEstateEntity.image', 'RealEstateEntity.specialLink',
+                'RealEstateEntity.numberOfFloors', 'RealEstateEntity.cladding', 'RealEstateEntity.homeFurnishing', 'RealEstateEntity.realEstateType', 'RealEstateEntity.rooms',
+                'userProfileEntity.userName as username', 'userProfileEntity.image as userImage')
          
             ->andWhere('RealEstateEntity.id = :id')
           
             ->setParameter('id', $id)
-           
+
+            ->leftJoin(
+                UserProfileEntity::class,
+                'userProfileEntity',
+                Join::WITH,
+                'userProfileEntity.userID = RealEstateEntity.createdBy'
+            )
+
             ->getQuery()
             ->getResult();
     }

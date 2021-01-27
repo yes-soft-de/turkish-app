@@ -52,6 +52,8 @@ class DeviceService
         foreach ($result as $row) {
 
             $row['image'] = $this->specialLinkCheck($row['specialLink']).$row['image'];
+
+            $row['userImage'] = $this->params . $row['userImage'];
            
             $row['images'] = $this->imageService->getImages($id, "device");
            

@@ -44,5 +44,8 @@ class DeviceGetByIdResponse
     
     public $specialLink;
 
+    public $username;
+
+    public $userImage;
    
 }
