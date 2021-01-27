@@ -107,7 +107,9 @@ class ReactionEntityRepository extends ServiceEntityRepository
         return $this->createQueryBuilder('reaction')
             ->select('reaction.id', 'reaction.createdAt', 'reaction.entity', 'reaction.itemID', 'reaction.type',
              'reaction.createdBy', 'userProfileEntity.userName as username', 'userProfileEntity.image as userImage')
+
             ->andWhere('reaction.type = 1')
+
             ->andWhere('reaction.createdBy != :userID')
             ->setParameter('userID', $userID)
 
@@ -117,6 +119,9 @@ class ReactionEntityRepository extends ServiceEntityRepository
                 Join::WITH,
                 'userProfileEntity.userID = reaction.createdBy'
             )
+
+            ->orderBy('reaction.createdAt', 'DESC')
+            ->setMaxResults(20)
 
             ->getQuery()
             ->getResult();
