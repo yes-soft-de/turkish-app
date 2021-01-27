@@ -6,6 +6,7 @@ import 'package:hersay/module_search/model/search/search_model.dart';
 import 'package:hersay/module_search/ui/screen/search_screen/seach_screen.dart';
 import 'package:hersay/module_search/ui/widget/search_card/search_card.dart';
 import 'package:hersay/utils/enums/products/products.dart';
+import 'package:hersay/utils/widgets/product_card/product_card.dart';
 
 
 
@@ -172,10 +173,20 @@ class SearchStateDataLoaded extends SearchState {
                               break;
                           }
                         },
-                        child: SearchCard(
-                            product: (searchResults[index].brand !='' )?searchResults[index].brand :searchResults[index].type,
-                            productType: searchResults[index].productType,
-                        ),
+                        child: Container(
+                      padding: EdgeInsets.symmetric(horizontal: 8, vertical: 10),
+                      child: ProductCard(
+                        image: searchResults[index].image,
+                        category: searchResults[index].category,
+                        likes: 0,
+                        owner: searchResults[index].userName,
+                        product: (searchResults[index].type!='')?searchResults[index].type:searchResults[index].brand,
+                        specification: searchResults[index].specification,
+                        type: searchResults[index].productType,
+                      ),
+                    ),
+
+
                       ),
                     );
                   }

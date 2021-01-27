@@ -1,6 +1,4 @@
-
-class ElectronicDeviceModel{
-
+class ElectronicDeviceModel {
   String type;
   String brand;
   String releaseYear;
@@ -12,18 +10,22 @@ class ElectronicDeviceModel{
   String location;
   String price;
   String image;
+  String userName;
+  String userImage;
 
   ElectronicDeviceModel({
-   this.price,
-   this.brand,
-   this.useDuration,
-   this.location,
-   this.type,
-   this.description,
-   this.graphics,
-   this.processor,
-   this.releaseYear,
-   this.storage,
-   this.image,
-});
+    this.price,
+    this.brand,
+    this.useDuration,
+    this.location,
+    this.type,
+    this.description,
+    this.graphics,
+    this.processor,
+    this.releaseYear,
+    this.storage,
+    this.image,
+    this.userName,
+    this.userImage,
+  });
 }

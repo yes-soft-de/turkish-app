@@ -1,4 +1,4 @@
-class CarModel{
+class CarModel {
   String type;
   String brand;
   String distance;
@@ -10,9 +10,10 @@ class CarModel{
   String useDuration;
   String cylinder;
   String image;
+  String userName;
+  String userImage;
 
-  CarModel(
-  {
+  CarModel({
     this.type,
     this.brand,
     this.distance,
@@ -24,6 +25,7 @@ class CarModel{
     this.useDuration,
     this.cylinder,
     this.image,
-}
-      );
+    this.userImage,
+    this.userName,
+  });
 }

@@ -34,6 +34,8 @@ class Data {
   String realEstateType;
   List<Reaction> reaction;
   Null documents;
+  String userName;
+  String userImage;
 
   Data(
       {this.id,
@@ -52,7 +54,10 @@ class Data {
         this.homeFurnishing,
         this.realEstateType,
         this.reaction,
-        this.documents});
+        this.documents,
+        this.userName,
+        this.userImage
+      });
 
   Data.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -79,6 +84,8 @@ class Data {
       });
     }
     documents = json['documents'];
+    userName = json['userName'];
+    userImage = json['userImage'];
   }
 
   Map<String, dynamic> toJson() {
@@ -104,6 +111,8 @@ class Data {
       data['reaction'] = this.reaction.map((v) => v.toJson()).toList();
     }
     data['documents'] = this.documents;
+    data['userName'] = this.userName;
+    data['userImage'] = this.userImage;
     return data;
   }
 }

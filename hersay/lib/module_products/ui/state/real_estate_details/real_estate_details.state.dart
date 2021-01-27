@@ -96,7 +96,7 @@ class RealEstateDetailsStateDataLoaded extends RealEstateDetailsState {
                         child: CircleAvatar(
                           radius: 20,
                           backgroundImage: NetworkImage(
-                              'https://images.pexels.com/photos/127229/pexels-photo-127229.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500 1x, https://images.pexels.com/photos/127229/pexels-photo-127229.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500 2x'),
+                              '${realEstate.userImage}'?? 'https://images.pexels.com/photos/127229/pexels-photo-127229.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500 1x, https://images.pexels.com/photos/127229/pexels-photo-127229.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500 2x'),
                         ),
                       ),
                     ),
@@ -106,8 +106,7 @@ class RealEstateDetailsStateDataLoaded extends RealEstateDetailsState {
                     Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: Text(
-                        //TODO : change it
-                        'Steve Josh',
+                        '${realEstate.userName}',
                         style: TextStyle(
                           fontSize: 12,
                           fontWeight: FontWeight.bold,

@@ -3,12 +3,10 @@ import 'package:flutter/material.dart';
 
 
 class NotificationCard extends StatelessWidget {
-  final String userImage;
   final String userName;
   final String notification;
 
   NotificationCard({
-    this.userImage,
     this.userName,
     this.notification,
   });
@@ -27,17 +25,18 @@ class NotificationCard extends StatelessWidget {
 
                   child: Row(
                     children: [
-                      Padding(
-                        padding: const EdgeInsets.all(5.0),
-                        child: Container(
-                          height: 45,
-                          width: 45,
-                          child: CircleAvatar(
-                            radius: 45,
-                            backgroundImage: NetworkImage(userImage),
-                          ),
-                        ),
-                      ),
+                      Icon(Icons.notifications_active),
+//                      Padding(
+//                        padding: const EdgeInsets.all(5.0),
+//                        child: Container(
+//                          height: 45,
+//                          width: 45,
+//                          child: CircleAvatar(
+//                            radius: 45,
+//                            backgroundImage: NetworkImage(userImage),
+//                          ),
+//                        ),
+//                      ),
                       SizedBox(width: 10,),
                       Container(
                         width: MediaQuery.of(context).size.width*0.6,

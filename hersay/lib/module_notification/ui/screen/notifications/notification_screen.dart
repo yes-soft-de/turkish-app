@@ -35,8 +35,6 @@ class  NotificationScreenState extends State<NotificationScreen> {
             return Container(
               child: NotificationCard(
                 userName: 'zolfekar seleten',
-                userImage:
-                    'https://miro.medium.com/max/785/0*Ggt-XwliwAO6QURi.jpg',
                 notification: 'likes your Maclarn',
               ),
             );

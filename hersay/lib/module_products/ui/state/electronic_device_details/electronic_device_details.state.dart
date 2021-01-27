@@ -98,7 +98,7 @@ class ElectronicDeviceDetailsStateDataLoaded extends ElectronicDeviceDetailsStat
                         child: CircleAvatar(
                           radius: 20,
                           backgroundImage: NetworkImage(
-                              'https://images.pexels.com/photos/127229/pexels-photo-127229.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500 1x, https://images.pexels.com/photos/127229/pexels-photo-127229.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500 2x'),
+                              '${electronicDevice.userImage}'??  'https://images.pexels.com/photos/127229/pexels-photo-127229.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500 1x, https://images.pexels.com/photos/127229/pexels-photo-127229.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500 2x'),
                         ),
                       ),
                     ),
@@ -108,8 +108,7 @@ class ElectronicDeviceDetailsStateDataLoaded extends ElectronicDeviceDetailsStat
                     Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: Text(
-                        //TODO : change this
-                        'Edward Josh',
+                        '${electronicDevice.userName}',
                         style: TextStyle(
                           fontSize: 12,
                           fontWeight: FontWeight.bold,

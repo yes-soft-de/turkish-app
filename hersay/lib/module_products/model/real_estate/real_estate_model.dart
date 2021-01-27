@@ -1,7 +1,4 @@
-
-
-class RealEstateModel{
-
+class RealEstateModel {
   String type;
   String space;
   String floorsNumber;
@@ -11,16 +8,20 @@ class RealEstateModel{
   String description;
   String price;
   String image;
+  String userName;
+  String userImage;
 
   RealEstateModel({
-   this.price,
-   this.description,
-   this.type,
-   this.space,
-   this.cladding,
-   this.address,
-   this.floorsNumber,
-   this.isFurnished,
+    this.price,
+    this.description,
+    this.type,
+    this.space,
+    this.cladding,
+    this.address,
+    this.floorsNumber,
+    this.isFurnished,
     this.image,
-});
+    this.userImage,
+    this.userName,
+  });
 }

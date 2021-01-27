@@ -71,8 +71,6 @@ class NotificationStateDataLoaded extends NotificationState {
             return Container(
               child: NotificationCard(
                 userName: notifications[index].userName,
-                userImage:
-                'https://miro.medium.com/max/785/0*Ggt-XwliwAO6QURi.jpg',
                 notification: 'likes your ${notifications[index].entityName}',
               ),
             );

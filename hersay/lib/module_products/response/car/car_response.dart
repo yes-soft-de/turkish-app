@@ -39,6 +39,8 @@ class Data {
   List<String> images;
   List<Reaction> reaction;
   Null state;
+  String userName;
+  String userImage;
 
   Data(
       {this.id,
@@ -62,7 +64,10 @@ class Data {
         this.image,
         this.images,
         this.reaction,
-        this.state});
+        this.state,
+        this.userName,
+        this.userImage
+      });
 
   Data.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -98,6 +103,8 @@ class Data {
       });
     }
     state = json['state'];
+    userName = json['userName'];
+    userImage = json['userImage'];
   }
 
   Map<String, dynamic> toJson() {
@@ -132,6 +139,8 @@ class Data {
       data['reaction'] = this.reaction.map((v) => v.toJson()).toList();
     }
     data['state'] = this.state;
+    data['userName'] = this.userName;
+    data['userImage'] = this.userImage;
     return data;
   }
 }
