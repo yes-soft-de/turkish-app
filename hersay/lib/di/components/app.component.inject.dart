@@ -191,7 +191,8 @@ class AppComponent$Injector implements _i1.AppComponent {
       _i28.AddCarScreen(_createAddCarStateManager());
   _i29.AddCarStateManager _createAddCarStateManager() =>
       _i29.AddCarStateManager(_createCarService());
-  _i30.CarService _createCarService() => _i30.CarService(_createCarManager());
+  _i30.CarService _createCarService() =>
+      _i30.CarService(_createCarManager(), _createImageUploadService());
   _i31.CarManager _createCarManager() =>
       _i31.CarManager(_createCarRepository());
   _i32.CarRepository _createCarRepository() =>

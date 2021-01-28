@@ -3,14 +3,17 @@ import 'package:hersay/module_products/manager/car/car.manager.dart';
 import 'package:hersay/module_products/model/car/car_model.dart';
 import 'package:hersay/module_products/request/car/car_request.dart';
 import 'package:hersay/module_products/response/car/car_response.dart';
+import 'package:hersay/module_upload/service/image_upload/image_upload_service.dart';
 import 'package:inject/inject.dart';
 
 @provide
 class CarService{
   final CarManager _manager;
+  final ImageUploadService _imageUploadService;
 
   CarService(
       this._manager,
+      this._imageUploadService,
       );
 
 
@@ -28,17 +31,21 @@ class CarService{
   String fuel,
   String location,
   String yearOfRelease,
-  String image,
+  String mainImagePath,
   String country,
   String city,
   String state,
   String status,
       ) async {
 
+    String uploadedImageUrl = (mainImagePath != null)
+        ? await _imageUploadService.uploadImage(mainImagePath)
+        :'';
+
     var carRequest = CarRequest(
       yearOfRelease: yearOfRelease,
       brand: brand,
-      image: image,
+      image: uploadedImageUrl,
       city: city,
       status: status,
       price: price,
