@@ -222,5 +222,10 @@
   "chatWithOwner": "Chat with Owner",
   "chatWithLawyer": "Chat with Lawyer",
   "likesYour": "likes your",
-  "goBack": "Go Back"
+  "goBack": "Go Back",
+  "descriptio": "description",
+  "car": "car",
+  "realestate": "realEstate",
+  "device": "device",
+  "advancedSearch": "Advanced search"
 }

@@ -220,5 +220,10 @@
   "chatWithOwner": "محادثة مع المالك",
   "chatWithLawyer": "محادثة مع محامي",
   "likesYour": "أعجبه",
-  "goBack": "رجوع"
+  "goBack": "رجوع",
+  "descriptio": "الوصف",
+  "car": "car",
+  "realestate": "realEstate",
+  "device": "device",
+  "advancedSearch": "بحث متقدم"
 }

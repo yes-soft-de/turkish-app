@@ -166,6 +166,35 @@ class TurkishNavigationDrawer extends StatelessWidget {
                     ),
                   ),
                 ),
+
+                GestureDetector(
+                  onTap: () {
+                    Navigator.of(context).pushNamed(
+                        SearchRoutes.SEARCH_SCREEN_ROUTE
+                    );
+                  },
+                  child: Container(
+                    color: ProjectColors.THEME_COLOR,
+                    padding: const EdgeInsets.fromLTRB(32, 8.0, 0, 8),
+                    child: Flex(
+                      direction: Axis.horizontal,
+                      children: [
+                        Icon(
+                          Icons.search,
+                          color: Colors.white,
+                        ),
+                        Container(
+                          width: 16,
+                        ),
+                        Text(
+                          S.of(context).advancedSearch,
+                          style: TextStyle(
+                              fontFamily: 'Roboto', color: Colors.white),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
 //                GestureDetector(
 //                  onTap: () {
 ////                  Navigator.of(context).pushNamed(

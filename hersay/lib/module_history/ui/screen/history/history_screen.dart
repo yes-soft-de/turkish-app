@@ -1,10 +1,10 @@
+
+
 import 'package:flutter/material.dart';
 import 'package:hersay/generated/l10n.dart';
 import 'package:hersay/module_history/state_manager/history/history.state_manger.dart';
 import 'package:hersay/module_history/ui/state/history/history.state.dart';
-import 'package:hersay/module_history/ui/widget/history_card/history_card.dart';
 import 'package:hersay/module_navigation/ui/widget/navigation_drawer/anime_navigation_drawer.dart';
-import 'package:hersay/utils/enums/products/products.dart';
 import 'package:hersay/utils/widgets/turkish_app_bar/turkish_app_bar.dart';
 import 'package:inject/inject.dart';
 

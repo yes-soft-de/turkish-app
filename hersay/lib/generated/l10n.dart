@@ -2252,6 +2252,56 @@ class S {
       args: [],
     );
   }
+
+  /// `description`
+  String get descriptio {
+    return Intl.message(
+      'description',
+      name: 'descriptio',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `car`
+  String get car {
+    return Intl.message(
+      'car',
+      name: 'car',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `realEstate`
+  String get realestate {
+    return Intl.message(
+      'realEstate',
+      name: 'realestate',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `device`
+  String get device {
+    return Intl.message(
+      'device',
+      name: 'device',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Advanced search`
+  String get advancedSearch {
+    return Intl.message(
+      'Advanced search',
+      name: 'advancedSearch',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

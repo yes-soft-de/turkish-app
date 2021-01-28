@@ -566,7 +566,7 @@ class AddCarStateInit extends AddCarState {
                         borderSide: BorderSide.none,
                         borderRadius: BorderRadius.circular(20),
                       ),
-                      labelText: S.of(context).roomsDescription,
+                      labelText: S.of(context).descriptio,
                     ),
                     textInputAction: TextInputAction.next,
                     onEditingComplete: () => node.nextFocus(),

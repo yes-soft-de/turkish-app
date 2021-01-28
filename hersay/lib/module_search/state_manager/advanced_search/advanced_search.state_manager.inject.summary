@@ -1,17 +1,17 @@
 {
-  "asset": "asset:hersay/lib/module_history/state_manager/history/history.state_manger.dart",
+  "asset": "asset:hersay/lib/module_search/state_manager/advanced_search/advanced_search.state_manager.dart",
   "summary": {
     "injector": [],
     "module": [],
     "injectable": [
       {
-        "name": "HistoryStateManager",
+        "name": "AdvancedSearchStateManager",
         "constructor": {
           "name": "",
           "kind": "constructor",
           "injectedType": {
             "lookupKey": {
-              "root": "asset:hersay/lib/module_history/state_manager/history/history.state_manger.dart#HistoryStateManager",
+              "root": "asset:hersay/lib/module_search/state_manager/advanced_search/advanced_search.state_manager.dart#AdvancedSearchStateManager",
               "qualifier": null
             },
             "isProvider": false
@@ -21,7 +21,7 @@
           "dependencies": [
             {
               "lookupKey": {
-                "root": "asset:hersay/lib/module_history/service/history/history.service.dart#HistoryService",
+                "root": "asset:hersay/lib/module_search/service/search/search.service.dart#SearchService",
                 "qualifier": null
               },
               "isProvider": false

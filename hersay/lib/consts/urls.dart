@@ -25,6 +25,7 @@ class Urls {
   static const DELETE_DEVICE = BASE_API +'/devices/';
   //SEARCH AND FILTRATION
   static const SEARCH = BASE_API + '/search/';
+  static const FILTERED_SEARCH = BASE_API + '/filter';
   //IMAGES
   static const UPLOAD_FILE = BASE_API + '/uploadfile';
   static const ADD_PRODUCT_IMAGE = BASE_API + '/image';

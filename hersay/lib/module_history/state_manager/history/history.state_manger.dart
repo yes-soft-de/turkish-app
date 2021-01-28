@@ -1,5 +1,6 @@
 
-import 'package:hersay/module_History/service/History/History.service.dart';
+
+import 'package:hersay/module_history/service/history/history.service.dart';
 import 'package:hersay/module_history/ui/screen/history/history_screen.dart';
 import 'package:hersay/module_history/ui/state/history/history.state.dart';
 import 'package:inject/inject.dart';

@@ -25,6 +25,13 @@
                 "qualifier": null
               },
               "isProvider": false
+            },
+            {
+              "lookupKey": {
+                "root": "asset:hersay/lib/module_search/ui/screen/advanced_search_screen/advanced_search_screen.dart#AdvancedSearchScreen",
+                "qualifier": null
+              },
+              "isProvider": false
             }
           ]
         }
