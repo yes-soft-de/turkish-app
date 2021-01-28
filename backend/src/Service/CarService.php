@@ -59,8 +59,11 @@ class CarService
     { 
         $response = [] ;
         $result = $this->carManager->getCarById($id);
+
+        $isLoved = $this->reactionService->checkUserLoved($id, $userID, $this->entity);
         
-        foreach ($result as $row) {
+        foreach ($result as $row)
+        {
 
             $row['image'] = $this->specialLinkCheck($row['specialLink']).$row['image'];
 
@@ -73,7 +76,11 @@ class CarService
             ($row['reaction'][0]['createdBy'] == $userID) ?  $row['reaction'][0]['createdBy'] = true : $row['reaction'][0]['createdBy'] = false ;
 
             $response = $this->autoMapping->map('array', CarGetByIdResponse::class, $row);
-            }
+        }
+        if($result)
+        {
+            $response->reaction['isLoved'] = $isLoved;
+        }
             return $response;
     }
 

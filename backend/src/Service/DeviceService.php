@@ -49,7 +49,10 @@ class DeviceService
         $response = [] ;
         $result = $this->deviceManager->getDeviceById($id);
 
-        foreach ($result as $row) {
+        $isLoved = $this->reactionService->checkUserLoved($id, $userID, $this->entity);
+
+        foreach ($result as $row) 
+        {
 
             $row['image'] = $this->specialLinkCheck($row['specialLink']).$row['image'];
 
@@ -63,7 +66,12 @@ class DeviceService
               
             $response = $this->autoMapping->map('array', DeviceGetByIdResponse::class, $row);
            
-            }
+        }
+
+        if($result)
+        {
+            $response->reaction['isLoved'] = $isLoved;
+        }
         
         return $response;
     }

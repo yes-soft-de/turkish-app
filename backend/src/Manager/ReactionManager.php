@@ -88,4 +88,18 @@ class ReactionManager
 
         return $response;
     }
+
+    public function checkUserLoved($itemID, $userID, $entity)
+    {
+        $loved = $this->repository->checkUserLoved($itemID, $userID, $entity);
+
+        if ($loved[1] > 0)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
 }

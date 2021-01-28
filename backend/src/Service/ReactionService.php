@@ -90,4 +90,9 @@ class ReactionService
         //dd($reactions);
         return $response;
     }
+
+    public function checkUserLoved($id, $userID, $entity)
+    {
+        return $this->reactionManager->checkUserLoved($id, $userID, $entity);
+    }
 }

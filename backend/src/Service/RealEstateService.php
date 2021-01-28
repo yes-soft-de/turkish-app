@@ -51,8 +51,11 @@ class RealEstateService
     {
         $response = [] ;
         $result = $this->realEstateManager->getRealEstateById($id);
+
+        $isLoved = $this->reactionService->checkUserLoved($id, $userID, $this->entity);
      
-        foreach ($result as $row) {
+        foreach ($result as $row) 
+        {
 
             $row['image'] = $this->specialLinkCheck($row['specialLink']).$row['image'];
 
@@ -66,7 +69,13 @@ class RealEstateService
            
             $response = $this->autoMapping->map('array', RealEstateGetByIdResponse::class, $row);
            
-            }
+        }
+
+        if($result)
+        {
+            $response->reaction['isLoved'] = $isLoved;
+        }
+
         return $response;
     }
 

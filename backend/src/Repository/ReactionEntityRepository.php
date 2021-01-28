@@ -127,4 +127,22 @@ class ReactionEntityRepository extends ServiceEntityRepository
             ->getResult();
     }
 
+    public function checkUserLoved($itemID, $userID, $entity)
+    {
+        return $this->createQueryBuilder('reaction')
+            ->select('count(reaction.type)')
+
+            ->andWhere('reaction.itemID = :itemID')
+            ->andWhere('reaction.createdBy = :userID')
+            ->andWhere('reaction.entity = :entity')
+            ->andWhere('reaction.type = 3')
+
+            ->setParameter('itemID', $itemID)
+            ->setParameter('userID', $userID)
+            ->setParameter('entity', $entity)
+
+            ->getQuery()
+            ->getOneOrNullResult();
+    }
+
    }
