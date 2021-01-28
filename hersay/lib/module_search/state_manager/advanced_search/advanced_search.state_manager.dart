@@ -1,4 +1,3 @@
-import 'dart:html';
 
 import 'package:hersay/module_search/service/search/search.service.dart';
 import 'package:hersay/module_search/ui/screen/advanced_search_screen/advanced_search_screen.dart';
