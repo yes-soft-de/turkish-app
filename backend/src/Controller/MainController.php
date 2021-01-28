@@ -147,6 +147,8 @@ class MainController extends BaseController
         {
             return $this->json($ex);
         }
+
+        return new Response("All Database information were being deleted");
     }
 
 }
