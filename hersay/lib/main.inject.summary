@@ -88,6 +88,13 @@
                 "qualifier": null
               },
               "isProvider": false
+            },
+            {
+              "lookupKey": {
+                "root": "asset:hersay/lib/module_profile/Profile_module.dart#ProfileModule",
+                "qualifier": null
+              },
+              "isProvider": false
             }
           ]
         }

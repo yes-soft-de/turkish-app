@@ -42,14 +42,7 @@
             },
             {
               "lookupKey": {
-                "root": "asset:hersay/lib/module_profile/ui/screen/profile/profile_screen.dart#ProfileScreen",
-                "qualifier": null
-              },
-              "isProvider": false
-            },
-            {
-              "lookupKey": {
-                "root": "asset:hersay/lib/module_settings/ui/screen/settings/settings_screen.dart#SettingsScreen",
+                "root": "asset:hersay/lib/module_notification/ui/screen/notifications/notification_screen.dart#NotificationScreen",
                 "qualifier": null
               },
               "isProvider": false

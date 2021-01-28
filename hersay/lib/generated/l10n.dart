@@ -2232,6 +2232,26 @@ class S {
       args: [],
     );
   }
+
+  /// `likes your`
+  String get likesYour {
+    return Intl.message(
+      'likes your',
+      name: 'likesYour',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Go Back`
+  String get goBack {
+    return Intl.message(
+      'Go Back',
+      name: 'goBack',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

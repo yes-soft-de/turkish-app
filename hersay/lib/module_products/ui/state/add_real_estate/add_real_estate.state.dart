@@ -1,4 +1,3 @@
-
 import 'package:date_time_picker/date_time_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -19,10 +18,10 @@ abstract class AddRealEstateState {
 }
 
 class AddRealEstateStateInit extends AddRealEstateState {
-
   final GlobalKey<FormState> _addRealEstateFormKey = GlobalKey<FormState>();
 
-  final TextEditingController _realEstateTypeController = TextEditingController();
+  final TextEditingController _realEstateTypeController =
+      TextEditingController();
   final TextEditingController _spaceController = TextEditingController();
   final TextEditingController _floorNumbersController = TextEditingController();
   final TextEditingController _claddingController = TextEditingController();
@@ -45,7 +44,7 @@ class AddRealEstateStateInit extends AddRealEstateState {
 
   bool _autoValidate = false;
 
-  AddRealEstateStateInit(  AddRealEstateScreenState screenState)
+  AddRealEstateStateInit(AddRealEstateScreenState screenState)
       : super(screenState);
 
   @override
@@ -64,12 +63,13 @@ class AddRealEstateStateInit extends AddRealEstateState {
               //real estate type
               Card(
                 elevation: 10,
-                margin: EdgeInsets.only(top:20),
-                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
+                margin: EdgeInsets.only(top: 20),
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(15)),
                 child: Container(
                   decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(15),
-                      color: Colors.black12,
+                    borderRadius: BorderRadius.circular(15),
+                    color: Colors.black12,
                   ),
                   child: TextFormField(
                     controller: _realEstateTypeController,
@@ -82,8 +82,8 @@ class AddRealEstateStateInit extends AddRealEstateState {
                       labelText: S.of(context).realEstateType,
                     ),
                     textInputAction: TextInputAction.next,
-                    onEditingComplete: () =>
-                        node.nextFocus(), // Move focus to next
+                    onEditingComplete: () => node.nextFocus(),
+                    // Move focus to next
                     validator: (result) {
                       if (result.isEmpty) {
                         return S.of(context).thisFieldCannotBeEmpty;
@@ -96,8 +96,9 @@ class AddRealEstateStateInit extends AddRealEstateState {
               // Space
               Card(
                 elevation: 10,
-                margin: EdgeInsets.only(top:20),
-                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
+                margin: EdgeInsets.only(top: 20),
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(15)),
                 child: Container(
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(15),
@@ -114,8 +115,8 @@ class AddRealEstateStateInit extends AddRealEstateState {
                       labelText: S.of(context).space,
                     ),
                     textInputAction: TextInputAction.next,
-                    onEditingComplete: () =>
-                        node.nextFocus(), // Move focus to next
+                    onEditingComplete: () => node.nextFocus(),
+                    // Move focus to next
                     validator: (result) {
                       if (result.isEmpty) {
                         return S.of(context).thisFieldCannotBeEmpty;
@@ -126,12 +127,12 @@ class AddRealEstateStateInit extends AddRealEstateState {
                 ),
               ),
 
-
               // floor number
               Card(
                 elevation: 10,
-                margin: EdgeInsets.only(top:20),
-                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
+                margin: EdgeInsets.only(top: 20),
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(15)),
                 child: Container(
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(15),
@@ -148,8 +149,8 @@ class AddRealEstateStateInit extends AddRealEstateState {
                       labelText: S.of(context).appartmentFloorOrNumberOfFloors,
                     ),
                     textInputAction: TextInputAction.next,
-                    onEditingComplete: () =>
-                        node.nextFocus(), // Move focus to next
+                    onEditingComplete: () => node.nextFocus(),
+                    // Move focus to next
                     validator: (result) {
                       if (result.isEmpty) {
                         return S.of(context).thisFieldCannotBeEmpty;
@@ -162,8 +163,9 @@ class AddRealEstateStateInit extends AddRealEstateState {
               // cladding
               Card(
                 elevation: 10,
-                margin: EdgeInsets.only(top:20),
-                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
+                margin: EdgeInsets.only(top: 20),
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(15)),
                 child: Container(
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(15),
@@ -180,8 +182,8 @@ class AddRealEstateStateInit extends AddRealEstateState {
                       labelText: S.of(context).cladding,
                     ),
                     textInputAction: TextInputAction.next,
-                    onEditingComplete: () =>
-                        node.nextFocus(), // Move focus to next
+                    onEditingComplete: () => node.nextFocus(),
+                    // Move focus to next
                     validator: (result) {
                       if (result.isEmpty) {
                         return S.of(context).thisFieldCannotBeEmpty;
@@ -194,8 +196,9 @@ class AddRealEstateStateInit extends AddRealEstateState {
               //home furnishing
               Card(
                   elevation: 10,
-                  margin: EdgeInsets.only(top:20),
-                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
+                  margin: EdgeInsets.only(top: 20),
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(15)),
                   child: Container(
                     width: 400,
                     padding: EdgeInsets.all(10),
@@ -207,13 +210,13 @@ class AddRealEstateStateInit extends AddRealEstateState {
                       child: DropdownButton(
                           hint: _selectedHouseType == null
                               ? Text(
-                            S.of(context).homeFurmishing,
-                            style: TextStyle(color: Colors.grey),
-                          )
+                                  S.of(context).homeFurmishing,
+                                  style: TextStyle(color: Colors.grey),
+                                )
                               : Text(
-                            '$_selectedHouseType',
-                            style: TextStyle(color: Colors.grey),
-                          ),
+                                  '$_selectedHouseType',
+                                  style: TextStyle(color: Colors.grey),
+                                ),
                           items: _houseTypes.map((String place) {
                             return new DropdownMenuItem<String>(
                               value: place.toString(),
@@ -221,9 +224,8 @@ class AddRealEstateStateInit extends AddRealEstateState {
                             );
                           }).toList(),
                           onChanged: (value) {
-
-                              _selectedHouseType = _houseTypes.firstWhere(
-                                      (element) => element.toString() == value);
+                            _selectedHouseType = _houseTypes.firstWhere(
+                                (element) => element.toString() == value);
                             screenState.refresh();
                           }),
                     ),
@@ -231,8 +233,9 @@ class AddRealEstateStateInit extends AddRealEstateState {
               //state
               Card(
                   elevation: 10,
-                  margin: EdgeInsets.only(top:20),
-                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
+                  margin: EdgeInsets.only(top: 20),
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(15)),
                   child: Container(
                     width: 400,
                     padding: EdgeInsets.all(10),
@@ -244,13 +247,13 @@ class AddRealEstateStateInit extends AddRealEstateState {
                       child: DropdownButton(
                           hint: _selectedstate == null
                               ? Text(
-                            S.of(context).state,
-                            style: TextStyle(color: Colors.grey),
-                          )
+                                  S.of(context).state,
+                                  style: TextStyle(color: Colors.grey),
+                                )
                               : Text(
-                            '$_selectedstate',
-                            style: TextStyle(color: Colors.grey),
-                          ),
+                                  '$_selectedstate',
+                                  style: TextStyle(color: Colors.grey),
+                                ),
                           items: _stateTypes.map((String place) {
                             return new DropdownMenuItem<String>(
                               value: place.toString(),
@@ -259,17 +262,17 @@ class AddRealEstateStateInit extends AddRealEstateState {
                           }).toList(),
                           onChanged: (value) {
                             _selectedstate = _stateTypes.firstWhere(
-                                    (element) => element.toString() == value);
+                                (element) => element.toString() == value);
                             screenState.refresh();
-
                           }),
                     ),
                   )),
               // country
               Card(
                 elevation: 10,
-                margin: EdgeInsets.only(top:20),
-                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
+                margin: EdgeInsets.only(top: 20),
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(15)),
                 child: Container(
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(15),
@@ -286,8 +289,8 @@ class AddRealEstateStateInit extends AddRealEstateState {
                       labelText: S.of(context).country,
                     ),
                     textInputAction: TextInputAction.next,
-                    onEditingComplete: () =>
-                        node.nextFocus(), // Move focus to next
+                    onEditingComplete: () => node.nextFocus(),
+                    // Move focus to next
                     validator: (result) {
                       if (result.isEmpty) {
                         return S.of(context).thisFieldCannotBeEmpty;
@@ -300,8 +303,9 @@ class AddRealEstateStateInit extends AddRealEstateState {
               // city
               Card(
                 elevation: 10,
-                margin: EdgeInsets.only(top:20),
-                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
+                margin: EdgeInsets.only(top: 20),
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(15)),
                 child: Container(
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(15),
@@ -318,8 +322,8 @@ class AddRealEstateStateInit extends AddRealEstateState {
                       labelText: S.of(context).city,
                     ),
                     textInputAction: TextInputAction.next,
-                    onEditingComplete: () =>
-                        node.nextFocus(), // Move focus to next
+                    onEditingComplete: () => node.nextFocus(),
+                    // Move focus to next
                     validator: (result) {
                       if (result.isEmpty) {
                         return S.of(context).thisFieldCannotBeEmpty;
@@ -332,8 +336,9 @@ class AddRealEstateStateInit extends AddRealEstateState {
               // price
               Card(
                 elevation: 10,
-                margin: EdgeInsets.only(top:20),
-                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
+                margin: EdgeInsets.only(top: 20),
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(15)),
                 child: Container(
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(15),
@@ -350,13 +355,13 @@ class AddRealEstateStateInit extends AddRealEstateState {
                       labelText: S.of(context).price,
                     ),
                     textInputAction: TextInputAction.next,
-                    onEditingComplete: () =>
-                        node.nextFocus(), // Move focus to next
+                    onEditingComplete: () => node.nextFocus(),
+                    // Move focus to next
                     validator: (result) {
                       if (result.isEmpty) {
                         return S.of(context).thisFieldCannotBeEmpty;
                       }
-                      if(!isNumeric(result)){
+                      if (!isNumeric(result)) {
                         return S.of(context).youCanUseOnlyNumbers;
                       }
                       return null;
@@ -367,8 +372,9 @@ class AddRealEstateStateInit extends AddRealEstateState {
               // rooms number
               Card(
                 elevation: 10,
-                margin: EdgeInsets.only(top:20),
-                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
+                margin: EdgeInsets.only(top: 20),
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(15)),
                 child: Container(
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(15),
@@ -385,13 +391,13 @@ class AddRealEstateStateInit extends AddRealEstateState {
                       labelText: S.of(context).roomsNumber,
                     ),
                     textInputAction: TextInputAction.next,
-                    onEditingComplete: () =>
-                        node.nextFocus(), // Move focus to next
+                    onEditingComplete: () => node.nextFocus(),
+                    // Move focus to next
                     validator: (result) {
                       if (result.isEmpty) {
                         return S.of(context).thisFieldCannotBeEmpty;
                       }
-                      if(!isNumeric(result)){
+                      if (!isNumeric(result)) {
                         return S.of(context).youCanUseOnlyNumbers;
                       }
                       return null;
@@ -402,8 +408,9 @@ class AddRealEstateStateInit extends AddRealEstateState {
               // description
               Card(
                 elevation: 10,
-                margin: EdgeInsets.only(top:20),
-                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
+                margin: EdgeInsets.only(top: 20),
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(15)),
                 child: Container(
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(15),
@@ -421,8 +428,8 @@ class AddRealEstateStateInit extends AddRealEstateState {
                       labelText: S.of(context).roomsDescription,
                     ),
                     textInputAction: TextInputAction.next,
-                    onEditingComplete: () =>
-                        node.nextFocus(), // Move focus to next
+                    onEditingComplete: () => node.nextFocus(),
+                    // Move focus to next
                     validator: (result) {
                       if (result.isEmpty) {
                         return S.of(context).thisFieldCannotBeEmpty;
@@ -442,17 +449,13 @@ class AddRealEstateStateInit extends AddRealEstateState {
                         borderRadius: BorderRadius.circular(10),
                       ),
                       onPressed: () {
-
-                          ImagePicker ip = ImagePicker();
-                          ip
-                              .getImage(source: ImageSource.gallery)
-                              .then((value) {
-                            if (value != null) {
-                              mainImage = value.path;
-                              print('main image picked');
-                            }
-                          });
-
+                        ImagePicker ip = ImagePicker();
+                        ip.getImage(source: ImageSource.gallery).then((value) {
+                          if (value != null) {
+                            mainImage = value.path;
+                            print('main image picked');
+                          }
+                        });
                       },
                       //TODO : change this using theme service
                       color: ProjectColors.SECONDARY_COLOR,
@@ -481,7 +484,8 @@ class AddRealEstateStateInit extends AddRealEstateState {
                         borderRadius: BorderRadius.circular(10),
                       ),
                       onPressed: () {
-                        screenState.addNewRealEstate(
+                        if (_addRealEstateFormKey.currentState.validate()) {
+                          screenState.addNewRealEstate(
                             _countryController.text.trim(),
                             _cityController.text.trim(),
                             _spaceController.text.trim(),
@@ -495,7 +499,8 @@ class AddRealEstateStateInit extends AddRealEstateState {
                             'not sold',
                             _selectedstate,
                             mainImage,
-                        );
+                          );
+                        }
                       },
                       //TODO : change this using theme service
                       color: ProjectColors.SECONDARY_COLOR,
@@ -540,32 +545,25 @@ class AddRealEstateSuccessState extends AddRealEstateState {
         Container(
           padding: EdgeInsets.all(10),
           child: Center(
+            child: Text(S.of(context).yourRequestHasBeenAddedAndInHoldForAdmin),
+          ),
+        ),
+        RaisedButton(
+          color: Theme.of(context).primaryColor,
+          textColor: Colors.white,
+          padding: EdgeInsets.all(24),
+          onPressed: () {
+            Navigator.of(context).pushNamedAndRemoveUntil(
+              MainRoutes.MAIN_SCREEN_ROUTE,
+              (r) => false,
+            );
+          },
+          child: Expanded(
             child: Text(
-              S.of(context).yourRequestHasBeenAddedAndInHoldForAdmin
+              'Ok',
             ),
           ),
         ),
-
-
-          RaisedButton(
-                  color: Theme.of(context).primaryColor,
-                  textColor: Colors.white,
-                  padding: EdgeInsets.all(24),
-                  onPressed: () {
-
-                    Navigator.of(context).pushNamedAndRemoveUntil(
-                      MainRoutes.MAIN_SCREEN_ROUTE,
-                          (r) => false,
-                    );
-                  },
-                  child: Expanded(
-                    child: Text(
-                      'Ok',
-                    ),
-                  ),
-                ),
-
-
       ],
     );
   }

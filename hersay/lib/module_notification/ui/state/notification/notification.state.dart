@@ -1,5 +1,6 @@
 
 import 'package:flutter/material.dart';
+import 'package:hersay/generated/l10n.dart';
 import 'package:hersay/module_auth/auth_routes.dart';
 import 'package:hersay/module_notification/model/notification/notification_model.dart';
 import 'package:hersay/module_notification/ui/screen/notifications/notification_screen.dart';
@@ -71,7 +72,7 @@ class NotificationStateDataLoaded extends NotificationState {
             return Container(
               child: NotificationCard(
                 userName: notifications[index].userName,
-                notification: 'likes your ${notifications[index].entityName}',
+                notification: S.of(context).likesYour + ' ${notifications[index].entityName}',
               ),
             );
           }),

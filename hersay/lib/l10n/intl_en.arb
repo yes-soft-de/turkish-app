@@ -220,5 +220,7 @@
   "general": "General",
   "notification": "Notification",
   "chatWithOwner": "Chat with Owner",
-  "chatWithLawyer": "Chat with Lawyer"
+  "chatWithLawyer": "Chat with Lawyer",
+  "likesYour": "likes your",
+  "goBack": "Go Back"
 }

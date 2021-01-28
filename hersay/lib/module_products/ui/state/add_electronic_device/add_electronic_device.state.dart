@@ -1,4 +1,3 @@
-
 import 'package:date_time_picker/date_time_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -19,7 +18,7 @@ abstract class AddElectronicDeviceState {
 }
 
 class AddElectronicDeviceStateInit extends AddElectronicDeviceState {
-  final GlobalKey<FormState> _addCarFormKey = GlobalKey<FormState>();
+  final GlobalKey<FormState> _addDeviceFormKey = GlobalKey<FormState>();
 
   final TextEditingController _brandController = TextEditingController();
   final TextEditingController _useDurationController = TextEditingController();
@@ -33,7 +32,12 @@ class AddElectronicDeviceStateInit extends AddElectronicDeviceState {
   final TextEditingController _countryController = TextEditingController();
   final TextEditingController _descriptionController = TextEditingController();
 
-  List<String> _deviceTypes = [S.current.sellPhone, S.current.laptop, S.current.desktop, S.current.headphone];
+  List<String> _deviceTypes = [
+    S.current.sellPhone,
+    S.current.laptop,
+    S.current.desktop,
+    S.current.headphone
+  ];
   String _selectedDeviceType;
 
   TextEditingController _dateController;
@@ -42,13 +46,12 @@ class AddElectronicDeviceStateInit extends AddElectronicDeviceState {
 
   String mainImage;
 
-  AddElectronicDeviceStateInit(  AddElectronicDeviceScreenState screenState): super(screenState){
-
+  AddElectronicDeviceStateInit(AddElectronicDeviceScreenState screenState)
+      : super(screenState) {
     var startDate = new DateTime.utc(1900, 1, 1);
     _dateController = TextEditingController(text: startDate.toString());
     _dateController.text = startDate.toString();
   }
-
 
   @override
   Widget getUI(context) {
@@ -56,7 +59,7 @@ class AddElectronicDeviceStateInit extends AddElectronicDeviceState {
 
     return SingleChildScrollView(
       child: Form(
-        key: _addCarFormKey,
+        key: _addDeviceFormKey,
         autovalidate: _autoValidate,
         child: Container(
           padding: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
@@ -65,27 +68,28 @@ class AddElectronicDeviceStateInit extends AddElectronicDeviceState {
             children: [
               //device type
               Card(
-                elevation: 10,
-                margin: EdgeInsets.only(top:20),
-                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
-                child: Container(
-                  width: 400,
-                  padding: EdgeInsets.all(10),
-                  decoration: BoxDecoration(
+                  elevation: 10,
+                  margin: EdgeInsets.only(top: 20),
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(15)),
+                  child: Container(
+                    width: 400,
+                    padding: EdgeInsets.all(10),
+                    decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(15),
                       color: Colors.black12,
-                  ),
+                    ),
                     child: DropdownButtonHideUnderline(
                       child: DropdownButton(
                           hint: _selectedDeviceType == null
                               ? Text(
-                            S.of(context).deviceType,
-                            style: TextStyle(color: Colors.grey),
-                          )
+                                  S.of(context).deviceType,
+                                  style: TextStyle(color: Colors.grey),
+                                )
                               : Text(
-                            '$_selectedDeviceType',
-                            style: TextStyle(color: Colors.grey),
-                          ),
+                                  '$_selectedDeviceType',
+                                  style: TextStyle(color: Colors.grey),
+                                ),
                           items: _deviceTypes.map((String place) {
                             return new DropdownMenuItem<String>(
                               value: place.toString(),
@@ -94,20 +98,21 @@ class AddElectronicDeviceStateInit extends AddElectronicDeviceState {
                           }).toList(),
                           onChanged: (value) {
                             _selectedDeviceType = _deviceTypes.firstWhere(
-                                    (element) => element.toString() == value);
-                           screenState.refresh();
+                                (element) => element.toString() == value);
+                            screenState.refresh();
                           }),
                     ),
                   )),
               // Brand
               Card(
                 elevation: 10,
-                margin: EdgeInsets.only(top:20),
-                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
+                margin: EdgeInsets.only(top: 20),
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(15)),
                 child: Container(
                   decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(15),
-                      color: Colors.black12,
+                    borderRadius: BorderRadius.circular(15),
+                    color: Colors.black12,
                   ),
                   child: TextFormField(
                     controller: _brandController,
@@ -120,12 +125,11 @@ class AddElectronicDeviceStateInit extends AddElectronicDeviceState {
                       labelText: S.of(context).brand,
                     ),
                     textInputAction: TextInputAction.next,
-                    onEditingComplete: () =>
-                        node.nextFocus(),
+                    onEditingComplete: () => node.nextFocus(),
                     // Move focus to next
                     validator: (result) {
                       if (result.isEmpty) {
-                       return S.of(context).thisFieldCannotBeEmpty;
+                        return S.of(context).thisFieldCannotBeEmpty;
                       }
                       return null;
                     },
@@ -135,12 +139,13 @@ class AddElectronicDeviceStateInit extends AddElectronicDeviceState {
               //cpu
               Card(
                 elevation: 10,
-                margin: EdgeInsets.only(top:20),
-                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
+                margin: EdgeInsets.only(top: 20),
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(15)),
                 child: Container(
                   decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(15),
-                      color: Colors.black12,
+                    borderRadius: BorderRadius.circular(15),
+                    color: Colors.black12,
                   ),
                   child: TextFormField(
                     controller: _cpuController,
@@ -153,12 +158,11 @@ class AddElectronicDeviceStateInit extends AddElectronicDeviceState {
                       labelText: S.of(context).cpu,
                     ),
                     textInputAction: TextInputAction.next,
-                    onEditingComplete: () =>
-                        node.nextFocus(),
+                    onEditingComplete: () => node.nextFocus(),
                     // Move focus to next
                     validator: (result) {
                       if (result.isEmpty) {
-                       return S.of(context).thisFieldCannotBeEmpty;
+                        return S.of(context).thisFieldCannotBeEmpty;
                       }
                       return null;
                     },
@@ -168,8 +172,9 @@ class AddElectronicDeviceStateInit extends AddElectronicDeviceState {
               //ram
               Card(
                 elevation: 10,
-                margin: EdgeInsets.only(top:20),
-                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
+                margin: EdgeInsets.only(top: 20),
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(15)),
                 child: Container(
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(15),
@@ -186,12 +191,11 @@ class AddElectronicDeviceStateInit extends AddElectronicDeviceState {
                       labelText: S.of(context).ram,
                     ),
                     textInputAction: TextInputAction.next,
-                    onEditingComplete: () =>
-                        node.nextFocus(),
+                    onEditingComplete: () => node.nextFocus(),
                     // Move focus to next
                     validator: (result) {
                       if (result.isEmpty) {
-                       return S.of(context).thisFieldCannotBeEmpty;
+                        return S.of(context).thisFieldCannotBeEmpty;
                       }
                       return null;
                     },
@@ -201,8 +205,9 @@ class AddElectronicDeviceStateInit extends AddElectronicDeviceState {
               //battery
               Card(
                 elevation: 10,
-                margin: EdgeInsets.only(top:20),
-                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
+                margin: EdgeInsets.only(top: 20),
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(15)),
                 child: Container(
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(15),
@@ -219,12 +224,11 @@ class AddElectronicDeviceStateInit extends AddElectronicDeviceState {
                       labelText: S.of(context).battery,
                     ),
                     textInputAction: TextInputAction.next,
-                    onEditingComplete: () =>
-                        node.nextFocus(),
+                    onEditingComplete: () => node.nextFocus(),
                     // Move focus to next
                     validator: (result) {
                       if (result.isEmpty) {
-                       return S.of(context).thisFieldCannotBeEmpty;
+                        return S.of(context).thisFieldCannotBeEmpty;
                       }
                       return null;
                     },
@@ -234,8 +238,9 @@ class AddElectronicDeviceStateInit extends AddElectronicDeviceState {
               //build year
               Card(
                 elevation: 10,
-                margin: EdgeInsets.only(top:20),
-                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
+                margin: EdgeInsets.only(top: 20),
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(15)),
                 child: Container(
                   padding: EdgeInsets.all(10),
                   decoration: BoxDecoration(
@@ -272,8 +277,9 @@ class AddElectronicDeviceStateInit extends AddElectronicDeviceState {
               // use duration
               Card(
                 elevation: 10,
-                margin: EdgeInsets.only(top:20),
-                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
+                margin: EdgeInsets.only(top: 20),
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(15)),
                 child: Container(
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(15),
@@ -290,12 +296,11 @@ class AddElectronicDeviceStateInit extends AddElectronicDeviceState {
                       labelText: S.of(context).useDuration,
                     ),
                     textInputAction: TextInputAction.next,
-                    onEditingComplete: () =>
-                        node.nextFocus(),
+                    onEditingComplete: () => node.nextFocus(),
                     // Move focus to next
                     validator: (result) {
                       if (result.isEmpty) {
-                       return S.of(context).thisFieldCannotBeEmpty;
+                        return S.of(context).thisFieldCannotBeEmpty;
                       }
                       return null;
                     },
@@ -305,8 +310,9 @@ class AddElectronicDeviceStateInit extends AddElectronicDeviceState {
               // guage
               Card(
                 elevation: 10,
-                margin: EdgeInsets.only(top:20),
-                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
+                margin: EdgeInsets.only(top: 20),
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(15)),
                 child: Container(
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(15),
@@ -323,12 +329,11 @@ class AddElectronicDeviceStateInit extends AddElectronicDeviceState {
                       labelText: S.of(context).guage,
                     ),
                     textInputAction: TextInputAction.next,
-                    onEditingComplete: () =>
-                        node.nextFocus(),
+                    onEditingComplete: () => node.nextFocus(),
                     // Move focus to next
                     validator: (result) {
                       if (result.isEmpty) {
-                       return S.of(context).thisFieldCannotBeEmpty;
+                        return S.of(context).thisFieldCannotBeEmpty;
                       }
                       return null;
                     },
@@ -339,8 +344,9 @@ class AddElectronicDeviceStateInit extends AddElectronicDeviceState {
               // location
               Card(
                 elevation: 10,
-                margin: EdgeInsets.only(top:20),
-                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
+                margin: EdgeInsets.only(top: 20),
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(15)),
                 child: Container(
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(15),
@@ -357,12 +363,11 @@ class AddElectronicDeviceStateInit extends AddElectronicDeviceState {
                       labelText: S.of(context).location,
                     ),
                     textInputAction: TextInputAction.next,
-                    onEditingComplete: () =>
-                        node.nextFocus(),
+                    onEditingComplete: () => node.nextFocus(),
                     // Move focus to next
                     validator: (result) {
                       if (result.isEmpty) {
-                       return S.of(context).thisFieldCannotBeEmpty;
+                        return S.of(context).thisFieldCannotBeEmpty;
                       }
                       return null;
                     },
@@ -372,8 +377,9 @@ class AddElectronicDeviceStateInit extends AddElectronicDeviceState {
               // price
               Card(
                 elevation: 10,
-                margin: EdgeInsets.only(top:20),
-                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
+                margin: EdgeInsets.only(top: 20),
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(15)),
                 child: Container(
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(15),
@@ -390,12 +396,11 @@ class AddElectronicDeviceStateInit extends AddElectronicDeviceState {
                       labelText: S.of(context).price,
                     ),
                     textInputAction: TextInputAction.next,
-                    onEditingComplete: () =>
-                        node.nextFocus(),
+                    onEditingComplete: () => node.nextFocus(),
                     // Move focus to next
                     validator: (result) {
                       if (result.isEmpty) {
-                       return S.of(context).thisFieldCannotBeEmpty;
+                        return S.of(context).thisFieldCannotBeEmpty;
                       }
                       return null;
                     },
@@ -405,8 +410,9 @@ class AddElectronicDeviceStateInit extends AddElectronicDeviceState {
               // country
               Card(
                 elevation: 10,
-                margin: EdgeInsets.only(top:20),
-                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
+                margin: EdgeInsets.only(top: 20),
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(15)),
                 child: Container(
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(15),
@@ -423,8 +429,8 @@ class AddElectronicDeviceStateInit extends AddElectronicDeviceState {
                       labelText: S.of(context).country,
                     ),
                     textInputAction: TextInputAction.next,
-                    onEditingComplete: () =>
-                        node.nextFocus(), // Move focus to next
+                    onEditingComplete: () => node.nextFocus(),
+                    // Move focus to next
                     validator: (result) {
                       if (result.isEmpty) {
                         return S.of(context).thisFieldCannotBeEmpty;
@@ -437,8 +443,9 @@ class AddElectronicDeviceStateInit extends AddElectronicDeviceState {
               // city
               Card(
                 elevation: 10,
-                margin: EdgeInsets.only(top:20),
-                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
+                margin: EdgeInsets.only(top: 20),
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(15)),
                 child: Container(
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(15),
@@ -455,8 +462,8 @@ class AddElectronicDeviceStateInit extends AddElectronicDeviceState {
                       labelText: S.of(context).city,
                     ),
                     textInputAction: TextInputAction.next,
-                    onEditingComplete: () =>
-                        node.nextFocus(), // Move focus to next
+                    onEditingComplete: () => node.nextFocus(),
+                    // Move focus to next
                     validator: (result) {
                       if (result.isEmpty) {
                         return S.of(context).thisFieldCannotBeEmpty;
@@ -469,8 +476,9 @@ class AddElectronicDeviceStateInit extends AddElectronicDeviceState {
               // description
               Card(
                 elevation: 10,
-                margin: EdgeInsets.only(top:20),
-                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
+                margin: EdgeInsets.only(top: 20),
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(15)),
                 child: Container(
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(15),
@@ -488,8 +496,8 @@ class AddElectronicDeviceStateInit extends AddElectronicDeviceState {
                       labelText: S.of(context).roomsDescription,
                     ),
                     textInputAction: TextInputAction.next,
-                    onEditingComplete: () =>
-                        node.nextFocus(), // Move focus to next
+                    onEditingComplete: () => node.nextFocus(),
+                    // Move focus to next
                     validator: (result) {
                       if (result.isEmpty) {
                         return S.of(context).thisFieldCannotBeEmpty;
@@ -511,9 +519,7 @@ class AddElectronicDeviceStateInit extends AddElectronicDeviceState {
                       ),
                       onPressed: () {
                         ImagePicker ip = ImagePicker();
-                        ip
-                            .getImage(source: ImageSource.gallery)
-                            .then((value) {
+                        ip.getImage(source: ImageSource.gallery).then((value) {
                           if (value != null) {
                             mainImage = value.path;
                             print('main image picked');
@@ -546,23 +552,24 @@ class AddElectronicDeviceStateInit extends AddElectronicDeviceState {
                         borderRadius: BorderRadius.circular(10),
                       ),
                       onPressed: () {
-                        screenState.addNewElectronicDevice(
-                            _countryController.text.trim(),
-                            _brandController.text.trim(),
-                            _selectedDeviceType,
-                            _cpuController.text.trim(),
-                            _ramController.text.trim(),
-                            _batteryController.text.trim(),
-                            int.parse(_priceController.text.trim()),
-                            _dateController.text.trim(),
-                            _descriptionController.text.trim(),
-                            _guageController.text.trim(),
-                            _cityController.text.trim(),
-                            _useDurationController.text.trim(),
-                            mainImage,
-                            'not sold',
-                            'Unaccepted'
-                        );
+                        if (_addDeviceFormKey.currentState.validate()) {
+                          screenState.addNewElectronicDevice(
+                              _countryController.text.trim(),
+                              _brandController.text.trim(),
+                              _selectedDeviceType,
+                              _cpuController.text.trim(),
+                              _ramController.text.trim(),
+                              _batteryController.text.trim(),
+                              int.parse(_priceController.text.trim()),
+                              _dateController.text.trim(),
+                              _descriptionController.text.trim(),
+                              _guageController.text.trim(),
+                              _cityController.text.trim(),
+                              _useDurationController.text.trim(),
+                              mainImage,
+                              'not sold',
+                              'Unaccepted');
+                        }
                       },
                       //TODO : change this using theme service
                       color: ProjectColors.SECONDARY_COLOR,
@@ -607,31 +614,25 @@ class AddElectronicDeviceSuccessState extends AddElectronicDeviceState {
         Container(
           padding: EdgeInsets.all(10),
           child: Center(
+            child: Text(S.of(context).yourRequestHasBeenAddedAndInHoldForAdmin),
+          ),
+        ),
+        RaisedButton(
+          color: Theme.of(context).primaryColor,
+          textColor: Colors.white,
+          padding: EdgeInsets.all(24),
+          onPressed: () {
+            Navigator.of(context).pushNamedAndRemoveUntil(
+              MainRoutes.MAIN_SCREEN_ROUTE,
+              (r) => false,
+            );
+          },
+          child: Expanded(
             child: Text(
-              S.of(context).yourRequestHasBeenAddedAndInHoldForAdmin
+              'Ok',
             ),
           ),
         ),
-
-
-          RaisedButton(
-                  color: Theme.of(context).primaryColor,
-                  textColor: Colors.white,
-                  padding: EdgeInsets.all(24),
-                  onPressed: () {
-                    Navigator.of(context).pushNamedAndRemoveUntil(
-                      MainRoutes.MAIN_SCREEN_ROUTE,
-                          (r) => false,
-                    );
-                  },
-                  child: Expanded(
-                    child: Text(
-                      'Ok',
-                    ),
-                  ),
-                ),
-
-
       ],
     );
   }
@@ -640,7 +641,8 @@ class AddElectronicDeviceSuccessState extends AddElectronicDeviceState {
 class AddElectronicDeviceErrorState extends AddElectronicDeviceState {
   String errMsg;
 
-  AddElectronicDeviceErrorState(this.errMsg, AddElectronicDeviceScreenState screenState)
+  AddElectronicDeviceErrorState(
+      this.errMsg, AddElectronicDeviceScreenState screenState)
       : super(screenState);
 
   @override

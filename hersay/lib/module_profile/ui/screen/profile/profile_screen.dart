@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hersay/generated/l10n.dart';
 import 'package:hersay/module_navigation/ui/widget/navigation_drawer/anime_navigation_drawer.dart';
-import 'package:hersay/module_profile/widget/circular_image.dart';
 import 'package:hersay/utils/project_colors/project_colors.dart';
 import 'package:hersay/utils/widgets/turkish_app_bar/turkish_app_bar.dart';
 import 'package:inject/inject.dart';

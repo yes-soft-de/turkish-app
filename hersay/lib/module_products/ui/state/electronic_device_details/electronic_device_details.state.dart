@@ -194,12 +194,19 @@ class ElectronicDeviceDetailsStateDataLoaded extends ElectronicDeviceDetailsStat
                   padding: const EdgeInsets.all(8.0),
                   child: Text(S.of(context).location+' ${electronicDevice.location}'),
                 ),
-                Padding(
+                Container(
+                  decoration: BoxDecoration(
+                    color: Colors.black38,
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  height: 50,
                   padding: const EdgeInsets.all(8.0),
+                  margin: const EdgeInsets.all(8.0),
                   child: Center(
                     child: Text(S.of(context).price+'${electronicDevice.price} \$'),
                   ),
                 ),
+
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [

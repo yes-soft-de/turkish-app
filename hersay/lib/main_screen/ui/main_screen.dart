@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:hersay/module_chat/ui/screen/chats_list/chats_list_screen.dart';
 import 'package:hersay/module_history/ui/screen/history/history_screen.dart';
 import 'package:hersay/module_home/ui/sceen/home/home_screen.dart';
+import 'package:hersay/module_notification/ui/screen/notifications/notification_screen.dart';
 import 'package:hersay/module_profile/ui/screen/profile/profile_screen.dart';
 import 'package:hersay/module_settings/ui/screen/settings/settings_screen.dart';
 import 'package:hersay/utils/project_colors/project_colors.dart';
@@ -11,17 +12,19 @@ import 'package:inject/inject.dart';
 @provide
 class MainScreen extends StatefulWidget {
   final HomeScreen _homeScreen;
-  final SettingsScreen _settingsScreen ;
+//  final SettingsScreen _settingsScreen ;
   final ChatsListScreen _chatsListScreen ;
-  final ProfileScreen _profileScreen ;
+//  final ProfileScreen _profileScreen ;
   final HistoryScreen _historyScreen ;
+  final NotificationScreen _notificationScreen;
 
   MainScreen(
       this._homeScreen,
       this._chatsListScreen,
       this._historyScreen,
-      this._profileScreen,
-      this._settingsScreen,
+      this._notificationScreen,
+//      this._profileScreen,
+//      this._settingsScreen,
       );
 
   @override
@@ -61,10 +64,11 @@ class _MainScreenState extends State<MainScreen> {
 
     var pages = [
       widget._homeScreen,
-      widget._historyScreen,
-      widget._profileScreen,
+      widget._notificationScreen,
+//      widget._profileScreen,
       widget._chatsListScreen,
-      widget._settingsScreen,
+      widget._historyScreen,
+//      widget._settingsScreen,
     ];
 
     // Title is Deprecated!, Not My Optional Call
@@ -93,22 +97,11 @@ class _MainScreenState extends State<MainScreen> {
             ),
             BottomNavigationBarItem(
               // Title is Deprecated!, Not My Optional Call
-              icon: Icon(Icons.history),
+              icon: Icon(Icons.notifications),
               title: Text(''),
               backgroundColor: ProjectColors.THEME_COLOR,
             ),
-//          BottomNavigationBarItem(
-//            // Title is Deprecated!, Not My Optional Call
-//            icon: Icon(Icons.search),
-//            title: Text(''),
-//            backgroundColor: ProjectColors.ThemeColor,
-//          ),
-            BottomNavigationBarItem(
-              // Title is Deprecated!, Not My Optional Call
-              icon: Icon(Icons.person_pin),
-              title: Text(''),
-              backgroundColor: ProjectColors.THEME_COLOR,
-            ),
+
             BottomNavigationBarItem(
               // Title is Deprecated!, Not My Optional Call
               icon: Icon(Icons.chat_bubble_outline),
@@ -116,10 +109,16 @@ class _MainScreenState extends State<MainScreen> {
               backgroundColor: ProjectColors.THEME_COLOR,
             ),
             BottomNavigationBarItem(
-              backgroundColor: ProjectColors.THEME_COLOR,
-              icon: Icon(Icons.settings),
+              // Title is Deprecated!, Not My Optional Call
+              icon: Icon(Icons.history),
               title: Text(''),
+              backgroundColor: ProjectColors.THEME_COLOR,
             ),
+//            BottomNavigationBarItem(
+//              backgroundColor: ProjectColors.THEME_COLOR,
+//              icon: Icon(Icons.settings),
+//              title: Text(''),
+//            ),
           ],
         ),
         body: pages[_pageIndex ?? 0],

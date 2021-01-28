@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:hersay/generated/l10n.dart';
 import 'package:hersay/module_notification/notification_routes.dart';
 import 'package:hersay/module_notification/ui/screen/notifications/notification_screen.dart';
+import 'package:hersay/module_profile/profile_routes.dart';
 import 'package:hersay/module_search/search_routes.dart';
 import 'package:hersay/module_search/ui/screen/search_screen/seach_screen.dart';
 import 'package:hersay/utils/project_colors/project_colors.dart';
@@ -87,6 +88,61 @@ class TurkishNavigationDrawer extends StatelessWidget {
                 GestureDetector(
                   onTap: () {
                     Navigator.of(context).pushNamed(SearchRoutes.SEARCH_SCREEN_ROUTE);
+                  },
+                  child: Container(
+                    color: ProjectColors.SECONDARY_COLOR,
+                    padding: const EdgeInsets.fromLTRB(32, 8.0, 0, 8),
+                    child: Flex(
+                      direction: Axis.horizontal,
+                      children: [
+                        Icon(
+                          Icons.search,
+                          color: Colors.white,
+                        ),
+                        Container(
+                          width: 16,
+                        ),
+                        Text(
+                          S.of(context).search,
+                          style: TextStyle(
+                              fontFamily: 'Roboto', color: Colors.white),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+
+                GestureDetector(
+                  onTap: () {
+                    Navigator.of(context).pushNamed(
+                        SearchRoutes.SEARCH_SCREEN_ROUTE
+                    );
+                  },
+                  child: Container(
+                    color: ProjectColors.THEME_COLOR,
+                    padding: const EdgeInsets.fromLTRB(32, 8.0, 0, 8),
+                    child: Flex(
+                      direction: Axis.horizontal,
+                      children: [
+                        Icon(
+                          Icons.settings,
+                          color: Colors.white,
+                        ),
+                        Container(
+                          width: 16,
+                        ),
+                        Text(
+                          S.of(context).notifications,
+                          style: TextStyle(
+                              fontFamily: 'Roboto', color: Colors.white),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                GestureDetector(
+                  onTap: () {
+                    Navigator.of(context).pushNamed(ProfileRoutes.PROFILE_SCREEN);
                   },
                   child: Container(
                     color: ProjectColors.SECONDARY_COLOR,

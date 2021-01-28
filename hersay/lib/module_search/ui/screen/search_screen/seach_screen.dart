@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hersay/generated/l10n.dart';
 import 'package:hersay/module_navigation/ui/widget/navigation_drawer/anime_navigation_drawer.dart';
 import 'package:hersay/module_search/state_manager/search/search.state_manager.dart';
 import 'package:hersay/module_search/ui/state/search/search.state.dart';
@@ -66,7 +67,7 @@ class  SearchScreenState extends State<SearchScreen> {
           height: 65,
           child: Center(
             child: Text(
-              'Go Back',
+              S.of(context).goBack,
               style: TextStyle(
                 color: Colors.white,
                 fontSize: 16,

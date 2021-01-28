@@ -83,10 +83,10 @@ class ProductCard extends StatelessWidget {
                 ),
 //                IconTextWidget(icon: null, text: '$specification'),
                 IconTextWidget(icon: Icons.favorite, text: '$likes'),
-                Icon(
-                  Icons.share,
-                  color: Colors.grey,
-                )
+//                Icon(
+//                  Icons.share,
+//                  color: Colors.grey,
+//                )
               ],
             ),
           ],

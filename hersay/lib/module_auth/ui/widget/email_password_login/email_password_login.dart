@@ -74,29 +74,16 @@ class _EmailPasswordLoginFormState extends State<EmailPasswordLoginForm> {
                 ),
               ),
             ),
-            Container(
-              height: 55,
-              width: MediaQuery.of(context).size.width * 0.9,
-              margin: EdgeInsets.only(top: 55),
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(15),
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.black12,
-                      blurRadius:
-                      2.0, // has the effect of softening the shadow
-                      spreadRadius:
-                      2.0, // has the effect of extending the shadow
-                      offset: Offset(
-                        5.0, // horizontal, move right 10
-                        5.0, // vertical, move down 10
-                      ),
-                    )
-                  ]),
+
+
+            Card(
+              elevation: 10,
+              margin: EdgeInsets.only(top:20),
+              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
               child: Container(
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(15),
-                  color: Colors.white,
+                  color: Colors.black12,
                 ),
                 child: TextFormField(
                   controller: _loginEmailController,
@@ -120,29 +107,14 @@ class _EmailPasswordLoginFormState extends State<EmailPasswordLoginForm> {
                 ),
               ),
             ),
-            Container(
-              height: 55,
-              width: MediaQuery.of(context).size.width * 0.9,
-              margin: EdgeInsets.only(top: 30),
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(15),
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.black12,
-                      blurRadius:
-                      2.0, // has the effect of softening the shadow
-                      spreadRadius:
-                      2.0, // has the effect of extending the shadow
-                      offset: Offset(
-                        5.0, // horizontal, move right 10
-                        5.0, // vertical, move down 10
-                      ),
-                    )
-                  ]),
+            Card(
+              elevation: 10,
+              margin: EdgeInsets.only(top:20),
+              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
               child: Container(
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(15),
-                  color: Colors.white,
+                  color: Colors.black12,
                 ),
                 child: TextFormField(
                   controller: _loginPasswordController,

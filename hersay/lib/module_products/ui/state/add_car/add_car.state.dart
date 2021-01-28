@@ -1,4 +1,3 @@
-
 import 'package:date_time_picker/date_time_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -18,7 +17,6 @@ abstract class AddCarState {
 }
 
 class AddCarStateInit extends AddCarState {
-
   final GlobalKey<FormState> _addCarFormKey = GlobalKey<FormState>();
 
   final TextEditingController _carTypeController = TextEditingController();
@@ -42,18 +40,17 @@ class AddCarStateInit extends AddCarState {
   List<String> _stateTypes = [S.current.accepted, S.current.unAccepted];
   String _selectedstate;
 
-  String mainImage ;
+  String mainImage;
+
   TextEditingController _dateController;
 
   bool _autoValidate = false;
 
-  AddCarStateInit(  AddCarScreenState screenState): super(screenState){
-
+  AddCarStateInit(AddCarScreenState screenState) : super(screenState) {
     var startDate = new DateTime.utc(1900, 1, 1);
     _dateController = TextEditingController(text: startDate.toString());
     _dateController.text = startDate.toString();
   }
-
 
   @override
   Widget getUI(context) {
@@ -71,12 +68,13 @@ class AddCarStateInit extends AddCarState {
               //car type
               Card(
                 elevation: 10,
-                margin: EdgeInsets.only(top:20),
-                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
+                margin: EdgeInsets.only(top: 20),
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(15)),
                 child: Container(
                   decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(15),
-                      color: Colors.black12,
+                    borderRadius: BorderRadius.circular(15),
+                    color: Colors.black12,
                   ),
                   child: TextFormField(
                     controller: _carTypeController,
@@ -89,12 +87,11 @@ class AddCarStateInit extends AddCarState {
                       labelText: S.current.carType,
                     ),
                     textInputAction: TextInputAction.next,
-                    onEditingComplete: () =>
-                        node.nextFocus(),
+                    onEditingComplete: () => node.nextFocus(),
                     // Move focus to next
                     validator: (result) {
                       if (result.isEmpty) {
-                       return S.of(context).thisFieldCannotBeEmpty;
+                        return S.of(context).thisFieldCannotBeEmpty;
                       }
                       return null;
                     },
@@ -102,14 +99,15 @@ class AddCarStateInit extends AddCarState {
                 ),
               ),
               // Brand
-               Card(
+              Card(
                 elevation: 10,
-                margin: EdgeInsets.only(top:20),
-                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
+                margin: EdgeInsets.only(top: 20),
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(15)),
                 child: Container(
                   decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(15),
-                      color: Colors.black12,
+                    borderRadius: BorderRadius.circular(15),
+                    color: Colors.black12,
                   ),
                   child: TextFormField(
                     controller: _brandController,
@@ -122,12 +120,11 @@ class AddCarStateInit extends AddCarState {
                       labelText: S.current.brand,
                     ),
                     textInputAction: TextInputAction.next,
-                    onEditingComplete: () =>
-                        node.nextFocus(),
+                    onEditingComplete: () => node.nextFocus(),
                     // Move focus to next
                     validator: (result) {
                       if (result.isEmpty) {
-                       return S.of(context).thisFieldCannotBeEmpty;
+                        return S.of(context).thisFieldCannotBeEmpty;
                       }
                       return null;
                     },
@@ -135,14 +132,15 @@ class AddCarStateInit extends AddCarState {
                 ),
               ),
               //company
-               Card(
+              Card(
                 elevation: 10,
-                margin: EdgeInsets.only(top:20),
-                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
+                margin: EdgeInsets.only(top: 20),
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(15)),
                 child: Container(
                   decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(15),
-                      color: Colors.black12,
+                    borderRadius: BorderRadius.circular(15),
+                    color: Colors.black12,
                   ),
                   child: TextFormField(
                     controller: _companyController,
@@ -155,12 +153,11 @@ class AddCarStateInit extends AddCarState {
                       labelText: S.current.company,
                     ),
                     textInputAction: TextInputAction.next,
-                    onEditingComplete: () =>
-                        node.nextFocus(),
+                    onEditingComplete: () => node.nextFocus(),
                     // Move focus to next
                     validator: (result) {
                       if (result.isEmpty) {
-                       return S.of(context).thisFieldCannotBeEmpty;
+                        return S.of(context).thisFieldCannotBeEmpty;
                       }
                       return null;
                     },
@@ -168,14 +165,15 @@ class AddCarStateInit extends AddCarState {
                 ),
               ),
               //engine
-               Card(
+              Card(
                 elevation: 10,
-                margin: EdgeInsets.only(top:20),
-                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
+                margin: EdgeInsets.only(top: 20),
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(15)),
                 child: Container(
                   decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(15),
-                      color: Colors.black12,
+                    borderRadius: BorderRadius.circular(15),
+                    color: Colors.black12,
                   ),
                   child: TextFormField(
                     controller: _engineController,
@@ -188,12 +186,11 @@ class AddCarStateInit extends AddCarState {
                       labelText: S.current.engine,
                     ),
                     textInputAction: TextInputAction.next,
-                    onEditingComplete: () =>
-                        node.nextFocus(),
+                    onEditingComplete: () => node.nextFocus(),
                     // Move focus to next
                     validator: (result) {
                       if (result.isEmpty) {
-                       return S.of(context).thisFieldCannotBeEmpty;
+                        return S.of(context).thisFieldCannotBeEmpty;
                       }
                       return null;
                     },
@@ -203,8 +200,9 @@ class AddCarStateInit extends AddCarState {
               //build year
               Card(
                 elevation: 10,
-                margin: EdgeInsets.only(top:20),
-                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
+                margin: EdgeInsets.only(top: 20),
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(15)),
                 child: Container(
                   padding: EdgeInsets.all(10),
                   decoration: BoxDecoration(
@@ -239,10 +237,11 @@ class AddCarStateInit extends AddCarState {
               ),
 
               //Gear Type
-               Card(
+              Card(
                   elevation: 10,
-                  margin: EdgeInsets.only(top:20),
-                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
+                  margin: EdgeInsets.only(top: 20),
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(15)),
                   child: Container(
                     width: 400,
                     padding: EdgeInsets.all(10),
@@ -254,13 +253,13 @@ class AddCarStateInit extends AddCarState {
                       child: DropdownButton(
                           hint: _selectedGearType == null
                               ? Text(
-                            S.of(context).gearType,
-                            style: TextStyle(color: Colors.grey),
-                          )
+                                  S.of(context).gearType,
+                                  style: TextStyle(color: Colors.grey),
+                                )
                               : Text(
-                            '$_selectedGearType',
-                            style: TextStyle(color: Colors.grey),
-                          ),
+                                  '$_selectedGearType',
+                                  style: TextStyle(color: Colors.grey),
+                                ),
                           items: _gearTypes.map((String place) {
                             return new DropdownMenuItem<String>(
                               value: place.toString(),
@@ -269,17 +268,17 @@ class AddCarStateInit extends AddCarState {
                           }).toList(),
                           onChanged: (value) {
                             _selectedGearType = _gearTypes.firstWhere(
-                                    (element) => element.toString() == value);
+                                (element) => element.toString() == value);
                             screenState.refresh();
-
                           }),
                     ),
                   )),
               //state
               Card(
                   elevation: 10,
-                  margin: EdgeInsets.only(top:20),
-                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
+                  margin: EdgeInsets.only(top: 20),
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(15)),
                   child: Container(
                     width: 400,
                     padding: EdgeInsets.all(10),
@@ -291,13 +290,13 @@ class AddCarStateInit extends AddCarState {
                       child: DropdownButton(
                           hint: _selectedstate == null
                               ? Text(
-                            S.of(context).state,
-                            style: TextStyle(color: Colors.grey),
-                          )
+                                  S.of(context).state,
+                                  style: TextStyle(color: Colors.grey),
+                                )
                               : Text(
-                            '$_selectedstate',
-                            style: TextStyle(color: Colors.grey),
-                          ),
+                                  '$_selectedstate',
+                                  style: TextStyle(color: Colors.grey),
+                                ),
                           items: _stateTypes.map((String place) {
                             return new DropdownMenuItem<String>(
                               value: place.toString(),
@@ -306,21 +305,21 @@ class AddCarStateInit extends AddCarState {
                           }).toList(),
                           onChanged: (value) {
                             _selectedstate = _stateTypes.firstWhere(
-                                    (element) => element.toString() == value);
+                                (element) => element.toString() == value);
                             screenState.refresh();
-
                           }),
                     ),
                   )),
               // mileages
-               Card(
+              Card(
                 elevation: 10,
-                margin: EdgeInsets.only(top:20),
-                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
+                margin: EdgeInsets.only(top: 20),
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(15)),
                 child: Container(
                   decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(15),
-                      color: Colors.black12,
+                    borderRadius: BorderRadius.circular(15),
+                    color: Colors.black12,
                   ),
                   child: TextFormField(
                     controller: _mileagesController,
@@ -333,12 +332,11 @@ class AddCarStateInit extends AddCarState {
                       labelText: S.of(context).mileages,
                     ),
                     textInputAction: TextInputAction.next,
-                    onEditingComplete: () =>
-                        node.nextFocus(),
+                    onEditingComplete: () => node.nextFocus(),
                     // Move focus to next
                     validator: (result) {
                       if (result.isEmpty) {
-                       return S.of(context).thisFieldCannotBeEmpty;
+                        return S.of(context).thisFieldCannotBeEmpty;
                       }
                       return null;
                     },
@@ -346,14 +344,15 @@ class AddCarStateInit extends AddCarState {
                 ),
               ),
               // cc
-               Card(
+              Card(
                 elevation: 10,
-                margin: EdgeInsets.only(top:20),
-                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
+                margin: EdgeInsets.only(top: 20),
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(15)),
                 child: Container(
                   decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(15),
-                      color: Colors.black12,
+                    borderRadius: BorderRadius.circular(15),
+                    color: Colors.black12,
                   ),
                   child: TextFormField(
                     controller: _ccController,
@@ -366,12 +365,11 @@ class AddCarStateInit extends AddCarState {
                       labelText: S.of(context).cc,
                     ),
                     textInputAction: TextInputAction.next,
-                    onEditingComplete: () =>
-                        node.nextFocus(),
+                    onEditingComplete: () => node.nextFocus(),
                     // Move focus to next
                     validator: (result) {
                       if (result.isEmpty) {
-                       return S.of(context).thisFieldCannotBeEmpty;
+                        return S.of(context).thisFieldCannotBeEmpty;
                       }
                       return null;
                     },
@@ -381,8 +379,9 @@ class AddCarStateInit extends AddCarState {
               // fuel
               Card(
                   elevation: 10,
-                  margin: EdgeInsets.only(top:20),
-                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
+                  margin: EdgeInsets.only(top: 20),
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(15)),
                   child: Container(
                     width: 400,
                     padding: EdgeInsets.all(10),
@@ -392,15 +391,15 @@ class AddCarStateInit extends AddCarState {
                     ),
                     child: DropdownButtonHideUnderline(
                       child: DropdownButton(
-                          hint: _selectedGearType == null
+                          hint: _selectedFuelType == null
                               ? Text(
-                            S.of(context).fuel,
-                            style: TextStyle(color: Colors.grey),
-                          )
+                                  S.of(context).fuel,
+                                  style: TextStyle(color: Colors.grey),
+                                )
                               : Text(
-                            '$_selectedFuelType',
-                            style: TextStyle(color: Colors.grey),
-                          ),
+                                  '$_selectedFuelType',
+                                  style: TextStyle(color: Colors.grey),
+                                ),
                           items: _fuelsTypes.map((String place) {
                             return new DropdownMenuItem<String>(
                               value: place.toString(),
@@ -409,20 +408,21 @@ class AddCarStateInit extends AddCarState {
                           }).toList(),
                           onChanged: (value) {
                             _selectedFuelType = _fuelsTypes.firstWhere(
-                                    (element) => element.toString() == value);
+                                (element) => element.toString() == value);
                             screenState.refresh();
                           }),
                     ),
                   )),
               // location
-               Card(
+              Card(
                 elevation: 10,
-                margin: EdgeInsets.only(top:20),
-                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
+                margin: EdgeInsets.only(top: 20),
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(15)),
                 child: Container(
                   decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(15),
-                      color: Colors.black12,
+                    borderRadius: BorderRadius.circular(15),
+                    color: Colors.black12,
                   ),
                   child: TextFormField(
                     controller: _locationController,
@@ -435,12 +435,11 @@ class AddCarStateInit extends AddCarState {
                       labelText: S.of(context).location,
                     ),
                     textInputAction: TextInputAction.next,
-                    onEditingComplete: () =>
-                        node.nextFocus(),
+                    onEditingComplete: () => node.nextFocus(),
                     // Move focus to next
                     validator: (result) {
                       if (result.isEmpty) {
-                       return S.of(context).thisFieldCannotBeEmpty;
+                        return S.of(context).thisFieldCannotBeEmpty;
                       }
                       return null;
                     },
@@ -448,14 +447,15 @@ class AddCarStateInit extends AddCarState {
                 ),
               ),
               // price
-               Card(
+              Card(
                 elevation: 10,
-                margin: EdgeInsets.only(top:20),
-                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
+                margin: EdgeInsets.only(top: 20),
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(15)),
                 child: Container(
                   decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(15),
-                      color: Colors.black12,
+                    borderRadius: BorderRadius.circular(15),
+                    color: Colors.black12,
                   ),
                   child: TextFormField(
                     controller: _priceController,
@@ -468,12 +468,11 @@ class AddCarStateInit extends AddCarState {
                       labelText: S.of(context).price,
                     ),
                     textInputAction: TextInputAction.next,
-                    onEditingComplete: () =>
-                        node.nextFocus(),
+                    onEditingComplete: () => node.nextFocus(),
                     // Move focus to next
                     validator: (result) {
                       if (result.isEmpty) {
-                       return S.of(context).thisFieldCannotBeEmpty;
+                        return S.of(context).thisFieldCannotBeEmpty;
                       }
                       return null;
                     },
@@ -481,16 +480,16 @@ class AddCarStateInit extends AddCarState {
                 ),
               ),
 
-
               // country
-               Card(
+              Card(
                 elevation: 10,
-                margin: EdgeInsets.only(top:20),
-                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
+                margin: EdgeInsets.only(top: 20),
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(15)),
                 child: Container(
                   decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(15),
-                      color: Colors.black12,
+                    borderRadius: BorderRadius.circular(15),
+                    color: Colors.black12,
                   ),
                   child: TextFormField(
                     controller: _countryController,
@@ -503,8 +502,8 @@ class AddCarStateInit extends AddCarState {
                       labelText: S.of(context).country,
                     ),
                     textInputAction: TextInputAction.next,
-                    onEditingComplete: () =>
-                        node.nextFocus(), // Move focus to next
+                    onEditingComplete: () => node.nextFocus(),
+                    // Move focus to next
                     validator: (result) {
                       if (result.isEmpty) {
                         return S.of(context).thisFieldCannotBeEmpty;
@@ -515,14 +514,15 @@ class AddCarStateInit extends AddCarState {
                 ),
               ),
               // city
-               Card(
+              Card(
                 elevation: 10,
-                margin: EdgeInsets.only(top:20),
-                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
+                margin: EdgeInsets.only(top: 20),
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(15)),
                 child: Container(
                   decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(15),
-                      color: Colors.black12,
+                    borderRadius: BorderRadius.circular(15),
+                    color: Colors.black12,
                   ),
                   child: TextFormField(
                     controller: _cityController,
@@ -535,8 +535,8 @@ class AddCarStateInit extends AddCarState {
                       labelText: S.of(context).city,
                     ),
                     textInputAction: TextInputAction.next,
-                    onEditingComplete: () =>
-                        node.nextFocus(), // Move focus to next
+                    onEditingComplete: () => node.nextFocus(),
+                    // Move focus to next
                     validator: (result) {
                       if (result.isEmpty) {
                         return S.of(context).thisFieldCannotBeEmpty;
@@ -547,14 +547,15 @@ class AddCarStateInit extends AddCarState {
                 ),
               ),
               // description
-               Card(
+              Card(
                 elevation: 10,
-                margin: EdgeInsets.only(top:20),
-                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
+                margin: EdgeInsets.only(top: 20),
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(15)),
                 child: Container(
                   decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(15),
-                      color: Colors.black12,
+                    borderRadius: BorderRadius.circular(15),
+                    color: Colors.black12,
                   ),
                   child: TextFormField(
                     controller: _descriptionController,
@@ -568,8 +569,8 @@ class AddCarStateInit extends AddCarState {
                       labelText: S.of(context).roomsDescription,
                     ),
                     textInputAction: TextInputAction.next,
-                    onEditingComplete: () =>
-                        node.nextFocus(), // Move focus to next
+                    onEditingComplete: () => node.nextFocus(),
+                    // Move focus to next
                     validator: (result) {
                       if (result.isEmpty) {
                         return S.of(context).thisFieldCannotBeEmpty;
@@ -590,15 +591,13 @@ class AddCarStateInit extends AddCarState {
                         borderRadius: BorderRadius.circular(10),
                       ),
                       onPressed: () {
-                      ImagePicker ip = ImagePicker();
-                      ip
-                          .getImage(source: ImageSource.gallery)
-                          .then((value) {
-                        if (value != null) {
-                          mainImage = value.path;
-                          print('main image picked');
-                        }
-                      });
+                        ImagePicker ip = ImagePicker();
+                        ip.getImage(source: ImageSource.gallery).then((value) {
+                          if (value != null) {
+                            mainImage = value.path;
+                            print('main image picked');
+                          }
+                        });
                       },
                       color: ProjectColors.SECONDARY_COLOR,
                       child: Row(
@@ -612,8 +611,6 @@ class AddCarStateInit extends AddCarState {
                             S.of(context).selectMainImage,
                             style: TextStyle(color: Colors.white),
                           ),
-
-
                         ],
                       )),
                 ),
@@ -628,7 +625,8 @@ class AddCarStateInit extends AddCarState {
                         borderRadius: BorderRadius.circular(10),
                       ),
                       onPressed: () {
-                        screenState.addNewCar(
+                        if (_addCarFormKey.currentState.validate()) {
+                          screenState.addNewCar(
                             _brandController.text.trim(),
                             _companyController.text.trim(),
                             _engineController.text.trim(),
@@ -646,7 +644,8 @@ class AddCarStateInit extends AddCarState {
                             _cityController.text.trim(),
                             'not sold',
                             _selectedstate,
-                        );
+                          );
+                        }
                       },
                       //TODO : change this using theme service
                       color: ProjectColors.SECONDARY_COLOR,
@@ -679,8 +678,7 @@ class AddCarStateInit extends AddCarState {
 }
 
 class AddCarSuccessState extends AddCarState {
-  AddCarSuccessState(AddCarScreenState screenState)
-      : super(screenState);
+  AddCarSuccessState(AddCarScreenState screenState) : super(screenState);
 
   @override
   Widget getUI(BuildContext context) {
@@ -691,32 +689,25 @@ class AddCarSuccessState extends AddCarState {
         Container(
           padding: EdgeInsets.all(10),
           child: Center(
+            child: Text(S.of(context).yourRequestHasBeenAddedAndInHoldForAdmin),
+          ),
+        ),
+        RaisedButton(
+          color: Theme.of(context).primaryColor,
+          textColor: Colors.white,
+          padding: EdgeInsets.all(24),
+          onPressed: () {
+            Navigator.of(context).pushNamedAndRemoveUntil(
+              MainRoutes.MAIN_SCREEN_ROUTE,
+              (r) => false,
+            );
+          },
+          child: Expanded(
             child: Text(
-              S.of(context).yourRequestHasBeenAddedAndInHoldForAdmin
+              S.of(context).ok,
             ),
           ),
         ),
-
-
-          RaisedButton(
-                  color: Theme.of(context).primaryColor,
-                  textColor: Colors.white,
-                  padding: EdgeInsets.all(24),
-                  onPressed: () {
-
-                    Navigator.of(context).pushNamedAndRemoveUntil(
-                      MainRoutes.MAIN_SCREEN_ROUTE,
-                          (r) => false,
-                    );
-                  },
-                  child: Expanded(
-                    child: Text(
-                      S.of(context).ok,
-                    ),
-                  ),
-                ),
-
-
       ],
     );
   }

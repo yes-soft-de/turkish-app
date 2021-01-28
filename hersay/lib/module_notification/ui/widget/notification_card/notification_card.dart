@@ -46,7 +46,7 @@ class NotificationCard extends StatelessWidget {
                             Text(
                               '$userName $notification' ,
                               style: TextStyle(
-                                fontSize: 12,
+                                fontSize: 14,
                               ),
                             ),
 

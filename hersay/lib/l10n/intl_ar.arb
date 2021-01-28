@@ -218,5 +218,7 @@
   "general": "عام",
   "notification": "الإشعارات",
   "chatWithOwner": "محادثة مع المالك",
-  "chatWithLawyer": "محادثة مع محامي"
+  "chatWithLawyer": "محادثة مع محامي",
+  "likesYour": "أعجبه",
+  "goBack": "رجوع"
 }
