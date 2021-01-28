@@ -120,6 +120,11 @@ class CarEntity
      */
     private $state;
 
+    /**
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    private $completeDate;
+
 
     public function getId(): ?int
     {
@@ -350,6 +355,18 @@ class CarEntity
     public function setState(?string $state): self
     {
         $this->state = $state;
+
+        return $this;
+    }
+
+    public function getCompleteDate(): ?\DateTimeInterface
+    {
+        return $this->completeDate;
+    }
+
+    public function setCompleteDate(\DateTimeInterface $completeDate): self
+    {
+        $this->completeDate = $completeDate;
 
         return $this;
     }

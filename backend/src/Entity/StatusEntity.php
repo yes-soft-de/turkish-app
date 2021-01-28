@@ -50,6 +50,11 @@ class StatusEntity
      */
     private $itemID;
 
+    /**
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    private $completeDate;
+
 
     public function getId(): ?int
     {
@@ -124,6 +129,18 @@ class StatusEntity
     public function setItemID(int $itemID): self
     {
         $this->itemID = $itemID;
+
+        return $this;
+    }
+
+    public function getCompleteDate(): ?\DateTimeInterface
+    {
+        return $this->completeDate;
+    }
+
+    public function setCompleteDate(?\DateTimeInterface $completeDate): self
+    {
+        $this->completeDate = $completeDate;
 
         return $this;
     }

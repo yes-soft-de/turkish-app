@@ -76,6 +76,11 @@ class CarManager
             $carEntity = $this->autoMapping->mapToObject(CarUpdateRequest::class,
                 CarEntity::class, $request, $carEntity);
 
+            if($request->getStatus() == "sold")
+            {
+                $carEntity->setCompleteDate(new \DateTime('Now'));
+            }
+
             $carEntity->setProductionYear($carEntity->getProductionYear());
 
             $this->entityManager->flush();

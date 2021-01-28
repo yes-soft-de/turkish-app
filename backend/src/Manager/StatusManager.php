@@ -43,6 +43,12 @@ class StatusManager
 
         } else {
             $Entity = $this->autoMapping->mapToObject(StatusUpdateRequest::class, StatusEntity::class, $request, $Entity);
+
+            if($request->getStatus() == "finished")
+            {
+                $Entity->setCompleteDate(new \DateTime('Now'));
+            }
+
             $this->entityManager->flush();
         }
         return $Entity;

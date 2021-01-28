@@ -105,6 +105,11 @@ class RealEstateEntity
      */
     private $rooms;
 
+    /**
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    private $completeDate;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -305,6 +310,18 @@ class RealEstateEntity
     public function setRooms(?string $rooms): self
     {
         $this->rooms = $rooms;
+
+        return $this;
+    }
+
+    public function getCompleteDate(): ?\DateTimeInterface
+    {
+        return $this->completeDate;
+    }
+
+    public function setCompleteDate(?\DateTimeInterface $completeDate): self
+    {
+        $this->completeDate = $completeDate;
 
         return $this;
     }

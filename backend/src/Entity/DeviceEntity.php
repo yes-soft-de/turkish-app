@@ -110,6 +110,11 @@ class DeviceEntity
      */
     private $specialLink;
 
+    /**
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    private $completeDate;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -327,6 +332,18 @@ class DeviceEntity
     public function setSpecialLink(?bool $specialLink): self
     {
         $this->specialLink = $specialLink;
+
+        return $this;
+    }
+
+    public function getCompleteDate(): ?\DateTimeInterface
+    {
+        return $this->completeDate;
+    }
+
+    public function setCompleteDate(?\DateTimeInterface $completeDate): self
+    {
+        $this->completeDate = $completeDate;
 
         return $this;
     }

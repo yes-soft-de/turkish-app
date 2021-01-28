@@ -89,4 +89,13 @@ class RealEstateUpdateRequest
     {
          $this->updateAt = new DateTime('Now')  ;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getStatus()
+    {
+        return $this->status;
+    }
+
 }

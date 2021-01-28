@@ -66,8 +66,15 @@ class RealEstateManager
         $request->setUpdateAt($request->getUpdateAt());
         if (!$Entity) {
 
-        } else {
+        }
+        else {
             $Entity = $this->autoMapping->mapToObject(RealEstateUpdateRequest::class, RealEstateEntity::class, $request, $Entity);
+
+            if($request->getStatus() == "sold")
+            {
+                $Entity->setCompleteDate(new \DateTime('Now'));
+            }
+
             $this->entityManager->flush();
         }
         return $Entity;

@@ -67,6 +67,11 @@ class DeviceManager
             $deviceEntity = $this->autoMapping->mapToObject(DeviceUpdateRequest::class,
                 DeviceEntity::class, $request, $deviceEntity);
 
+            if($request->getStatus() == "sold")
+            {
+                $deviceEntity->setCompleteDate(new \DateTime('Now'));
+            }
+
             $deviceEntity->setProductionYear($deviceEntity->getProductionYear());
 
             $this->entityManager->flush();
