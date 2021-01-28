@@ -121,7 +121,7 @@ class DeviceEntityRepository extends ServiceEntityRepository
     public function getSoldDevicesOfUser($userID)
     {
         return $this->createQueryBuilder('device')
-            ->select('device.id', 'device.brand')
+            ->select('device.id', 'device.brand as itemName', 'device.completeDate as date')
 
             ->andWhere("device.status = 'sold'")
 

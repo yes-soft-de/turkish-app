@@ -179,7 +179,7 @@ class CarEntityRepository extends ServiceEntityRepository
     public function getSoldCarsOfUser($userID)
     {
         return $this->createQueryBuilder('car')
-            ->select('car.id', 'car.brand')
+            ->select('car.id', 'car.brand as itemName', 'car.completeDate as date')
 
             ->andWhere("car.status = 'sold'")
 

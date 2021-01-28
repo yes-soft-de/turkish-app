@@ -127,8 +127,6 @@ class RealEstateManager
         if($realEstates != null)
         {
             $realEstates[0]['state'] = "Sell";
-
-            $realEstates[0]['entity'] = $realEstates[0]['realEstateType'];
         }
 
         return $realEstates;

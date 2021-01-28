@@ -176,12 +176,12 @@ class RealEstateEntityRepository extends ServiceEntityRepository
 
     public function getSoldRealEstatesOfUser($userID)
     {
-        return $this->createQueryBuilder('RealEstateEntity')
-            ->select('RealEstateEntity.realEstateType')
+        return $this->createQueryBuilder('realEstateEntity')
+            ->select('realEstateEntity.realEstateType as itemName', 'realEstateEntity.completeDate as date')
 
-            ->andWhere("RealEstateEntity.status = 'sold'")
+            ->andWhere("realEstateEntity.status = 'sold'")
 
-            ->andWhere('RealEstateEntity.createdBy =:userID')
+            ->andWhere('realEstateEntity.createdBy =:userID')
             ->setParameter('userID', $userID)
 
             ->getQuery()

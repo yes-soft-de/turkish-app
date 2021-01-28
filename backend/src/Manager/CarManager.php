@@ -134,8 +134,6 @@ class CarManager
         if($cars != null)
         {
             $cars[0]['state'] = "Sell";
-
-            $cars[0]['entity'] = $cars[0]['brand'];
         }
 
         return $cars;

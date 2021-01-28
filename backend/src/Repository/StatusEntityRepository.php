@@ -51,9 +51,9 @@ class StatusEntityRepository extends ServiceEntityRepository
     public function getFinishedAgreementsOfUser($userID)
     {
         return $this->createQueryBuilder('status')
-            ->select('status.createdAt', 'status.createdBy', 'status.status', 'status.entity', 'status.itemID')
+            ->select('status.completeDate as date', 'status.createdBy', 'status.status', 'status.entity', 'status.itemID')
 
-            ->andWhere("status.status = 'Finished'")
+            ->andWhere("status.status = 'finished'")
 
             ->andWhere('status.createdBy =:userID')
             ->setParameter('userID', $userID)

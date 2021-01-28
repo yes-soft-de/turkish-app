@@ -6,7 +6,9 @@ namespace App\Response;
 
 class GetHistoryResponse
 {
-    public $entity;
+    public $itemName;
 
     public $state;
+
+    public $date;
 }

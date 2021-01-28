@@ -42,23 +42,23 @@ class MainManager
 
             if ($entity == "car")
             {
-                $response[$i]['entity'] = $this->carManager->getCarById($status['itemID'])[0]['brand'];
+                $response[$i]['itemName'] = $this->carManager->getCarById($status['itemID'])[0]['brand'];
             }
             elseif ($entity == "device")
             {
-                $response[$i]['entity'] = $this->deviceManager->getDeviceById($status['itemID'])[0]['brand'];
+                $response[$i]['itemName'] = $this->deviceManager->getDeviceById($status['itemID'])[0]['brand'];
             }
             elseif ($entity == "realEstate")
             {
-                $response[$i]['entity'] = $this->realEstateManager->getRealEstateById($status['itemID'])[0]['realEstateType'];
+                $response[$i]['itemName'] = $this->realEstateManager->getRealEstateById($status['itemID'])[0]['realEstateType'];
             }
 
-            $response[$i]['state'] = "Bought";
+            $response[$i]['state'] = "Buy";
 
             $i++;
-
+            //dd($response);
         }
-
+        //dd($response);
         $cars = $this->carManager->getSoldCarsOfUser($userID);
 
         $devices = $this->deviceManager->getSoldDevicesOfUser($userID);
@@ -66,7 +66,7 @@ class MainManager
         $realEstates = $this->realEstateManager->getSoldRealEstatesOfUser($userID);
 
         $response2 = array_merge_recursive($cars, $devices, $realEstates, $response);
-
+        //dd($response2);
         return $response2;
     }
 
