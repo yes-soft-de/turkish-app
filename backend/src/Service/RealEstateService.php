@@ -203,6 +203,8 @@ class RealEstateService
         {
             $realEstate['image'] = $this->specialLinkCheck($realEstate['specialLink']) . $realEstate['image'];
 
+            $realEstate['imageUser'] = $this->specialLinkCheck($realEstate['specialLink']) . $realEstate['imageUser'];
+
             $response[] = $this->autoMapping->map('array', RealEstateGetAllResponse::class, $realEstate);
         }
 

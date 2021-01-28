@@ -92,11 +92,18 @@ class DeviceEntityRepository extends ServiceEntityRepository
         return $this->createQueryBuilder('device')
             ->select('device.id', 'device.specialLink', 'device.image','device.brand', 'device.type', 'device.cpu', 'device.ram',
                 'device.battery', 'device.price', 'device.yearOfRelease', 'device.description', 'device.status', 'device.createdAt',
-                'device.updateAt', 'device.country', 'device.city', 'device.durationOfUse', 'device.gauge', 'device.createdBy')
+                'device.updateAt', 'device.country', 'device.city', 'device.durationOfUse', 'device.gauge', 'device.createdBy', 'userProfileEntity.image as imageUser', 'userProfileEntity.userName')
 
             ->andWhere('device.brand LIKE :brand')
 
             ->setParameter('brand', '%'.$brand.'%')
+
+            ->leftJoin(
+                UserProfileEntity::class,
+                'userProfileEntity',
+                Join::WITH,
+                'userProfileEntity.userID = device.createdBy'
+            )
 
             ->orderBy('device.id')
             ->getQuery()

@@ -167,6 +167,8 @@ class DeviceService
         {
             $device['image'] = $this->specialLinkCheck($device['specialLink']) . $device['image'];
 
+            $device['imageUser'] = $this->specialLinkCheck($device['specialLink']) . $device['imageUser'];
+
             $response[] = $this->autoMapping->map('array', DeviceGetResponse::class, $device);
         }
 

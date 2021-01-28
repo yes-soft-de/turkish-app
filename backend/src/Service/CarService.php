@@ -232,6 +232,8 @@ class CarService
         {
             $car['image'] = $this->specialLinkCheck($car['specialLink']) . $car['image'];
 
+            $car['imageUser'] = $this->specialLinkCheck($car['specialLink']) . $car['imageUser'];
+
             $response[] = $this->autoMapping->map('array', CarGetResponse::class, $car);
         }
 

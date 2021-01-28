@@ -128,6 +128,7 @@ class RealEstateEntityRepository extends ServiceEntityRepository
             ->getQuery()
             ->getArrayResult();
     }
+
     public function getFilterPrice($value)
     {
         return $this->createQueryBuilder('RealEstateEntity')
@@ -146,11 +147,19 @@ class RealEstateEntityRepository extends ServiceEntityRepository
         return $this->createQueryBuilder('RealEstateEntity')
             ->select('RealEstateEntity.country','RealEstateEntity.city', 'RealEstateEntity.space', 'RealEstateEntity.price', 'RealEstateEntity.description', 'RealEstateEntity.status',
                 'RealEstateEntity.createdBy', 'RealEstateEntity.createdAt', 'RealEstateEntity.updateAt', 'RealEstateEntity.state', 'RealEstateEntity.image', 'RealEstateEntity.specialLink',
-                'RealEstateEntity.numberOfFloors', 'RealEstateEntity.cladding', 'RealEstateEntity.homeFurnishing', 'RealEstateEntity.realEstateType', 'RealEstateEntity.rooms')
+                'RealEstateEntity.numberOfFloors', 'RealEstateEntity.cladding', 'RealEstateEntity.homeFurnishing', 'RealEstateEntity.realEstateType', 
+                'RealEstateEntity.rooms', 'userProfileEntity.userName as userName', 'userProfileEntity.image as imageUser')
 
             ->andWhere('RealEstateEntity.realEstateType LIKE :realEstateType')
 
             ->setParameter('realEstateType', '%'.$realEstateType.'%')
+
+            ->leftJoin(
+                UserProfileEntity::class,
+                'userProfileEntity',
+                Join::WITH,
+                'userProfileEntity.userID = RealEstateEntity.createdBy'
+            )
 
             ->orderBy('RealEstateEntity.id')
 
