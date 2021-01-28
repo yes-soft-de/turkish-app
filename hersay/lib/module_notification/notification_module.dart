@@ -16,7 +16,7 @@ class NotificationModule extends YesModule{
 
   Map<String, WidgetBuilder> getRoutes() {
     return {
-      NotificationRoutes.Home_SCREEN_ROUTE: (context) => _notificationScreen,
+      NotificationRoutes.NOTIFICATION_ROUTE: (context) => _notificationScreen,
     };
   }
 }

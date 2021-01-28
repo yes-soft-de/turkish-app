@@ -60,7 +60,7 @@ class TurkishNavigationDrawer extends StatelessWidget {
                 GestureDetector(
                   onTap: () {
                     Navigator.of(context).pushNamed(
-                      NotificationRoutes.Home_SCREEN_ROUTE
+                      NotificationRoutes.NOTIFICATION_ROUTE
                     );
                   },
                   child: Container(

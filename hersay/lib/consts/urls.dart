@@ -30,6 +30,8 @@ class Urls {
   static const ADD_PRODUCT_IMAGE = BASE_API + '/image';
   //NOTIFICATION
   static const NOTIFICATION = BASE_API +'/notification';
+  //HISTORY
+  static const HISTORY = BASE_API +'/history';
 
 
 
