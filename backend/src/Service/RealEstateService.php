@@ -63,9 +63,9 @@ class RealEstateService
           
             $row['images'] = $this->imageService->getImages($id, $this->entity);
 
-            $row['reaction']=$this->reactionService->reactionforItem($id, $this->entity);
+            $row['reaction'] = $this->reactionService->reactionforItem($id, $this->entity)[0];
         
-            ($row['reaction'][0]['createdBy'] == $userID) ?  $row['reaction'][0]['createdBy'] = true : $row['reaction'][0]['createdBy'] = false ;
+            ($row['reaction']['createdBy'] == $userID) ?  $row['reaction']['createdBy'] = true : $row['reaction']['createdBy'] = false ;
            
             $response = $this->autoMapping->map('array', RealEstateGetByIdResponse::class, $row);
            
