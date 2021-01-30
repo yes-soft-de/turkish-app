@@ -48,6 +48,17 @@ class ImageService
         return $imagesResponse;
     }
 
+    public function delete($request)
+    {
+        $imageResult = $this->imageManager->delete($request);
+
+        if($imageResult == null)
+        {
+            return null;
+        }
+        return  $this->autoMapping->map(ImageEntity::class, ImageResponse::class, $imageResult);
+    }
+
     public function specialLinkCheck($bool)
     {
         if ($bool == false)

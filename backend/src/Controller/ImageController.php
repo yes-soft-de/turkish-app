@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\AutoMapping;
+use App\Request\DeleteRequest;
 use App\Request\ImageCreateRequest;
 use App\Service\ImageService;
 use stdClass;
@@ -50,5 +51,29 @@ class ImageController extends BaseController
         $response = $this->imageService->imageCreate($request);
 
         return $this->response($response, self::CREATE);
+    }
+
+    /**
+     * @Route("/itemimages/{entity}/{id}", name="getImagesOfItem", methods={"GET"})
+     */
+    public function getItemImages($entity, $id)
+    {
+        $result = $this->imageService->getImages($id, $entity);
+
+        return $this->respond($result, self::FETCH);
+    }
+
+    /**
+     * @Route("/deleteimage/{id}", name="deleteAnImage", methods={"DELETE"})
+     * @param Request $request
+     * @return JsonResponse
+     */
+    public function deleteImage(Request $request)
+    {
+        $request = new DeleteRequest($request->get('id'));
+
+        $result = $this->imageService->delete($request);
+
+        return $this->response($result, self::DELETE);
     }
 }

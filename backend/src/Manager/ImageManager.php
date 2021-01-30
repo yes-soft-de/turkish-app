@@ -7,6 +7,7 @@ namespace App\Manager;
 use App\AutoMapping;
 use App\Entity\ImageEntity;
 use App\Repository\ImageEntityRepository;
+use App\Request\DeleteRequest;
 use App\Request\ImageCreateRequest;
 use Doctrine\ORM\EntityManagerInterface;
 
@@ -37,5 +38,22 @@ class ImageManager
     public function getImages($id, $entity)
     {
         return $this->imageEntityRepository->getImages($id, $entity);
+    }
+
+    public function delete(DeleteRequest $request)
+    {
+        $imageEntity = $this->imageEntityRepository->find($request->getId());
+
+        if(!$imageEntity )
+        {
+            return null;
+        }
+        else
+        {
+            $this->entityManager->remove($imageEntity);
+            $this->entityManager->flush();
+        }
+
+        return $imageEntity;
     }
 }
