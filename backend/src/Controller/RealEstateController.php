@@ -125,7 +125,7 @@ class RealEstateController extends BaseController
         $data = json_decode($request->getContent(), true);
         $request = $this->autoMapping->map(\stdClass::class, RealEstateUpdateRequest::class, (object) $data);
 
-        $request->setCreatedBy($this->getUserId());
+        // $request->setCreatedBy($this->getUserId());
 
         $violations = $this->validator->validate($request);
         if (\count($violations) > 0)

@@ -61,8 +61,6 @@ App\Request\CarUpdateRequest:
       - NotBlank: ~
     status:
       - NotBlank: ~
-    createdBy:
-      - NotBlank: ~
     distance:
       - NotBlank: ~
     carType:
@@ -119,8 +117,6 @@ App\Request\DeviceUpdateRequest:
       - NotBlank: ~
     status:
       - NotBlank: ~
-    createdBy:
-      - NotBlank: ~
     gauge:
       - NotBlank: ~
     durationOfUse:
@@ -152,8 +148,6 @@ App\Request\RealEstateUpdateRequest:
     price:
       - NotBlank: ~
     status:
-      - NotBlank: ~
-    createdBy:
       - NotBlank: ~
     state:
       - NotBlank: ~

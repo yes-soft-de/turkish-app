@@ -26,7 +26,7 @@ class DeviceUpdateRequest
 
     private $status;
 
-    private $createdBy;
+    // private $createdBy;
 
     private $updateAt;
 
@@ -184,21 +184,21 @@ class DeviceUpdateRequest
         $this->status = $status;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getCreatedBy()
-    {
-        return $this->createdBy;
-    }
+    // /**
+    //  * @return mixed
+    //  */
+    // public function getCreatedBy()
+    // {
+    //     return $this->createdBy;
+    // }
 
-    /**
-     * @param mixed $createdBy
-     */
-    public function setCreatedBy($createdBy): void
-    {
-        $this->createdBy = $createdBy;
-    }
+    // /**
+    //  * @param mixed $createdBy
+    //  */
+    // public function setCreatedBy($createdBy): void
+    // {
+    //     $this->createdBy = $createdBy;
+    // }
 
      /**
      * @return mixed
