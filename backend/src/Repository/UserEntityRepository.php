@@ -45,4 +45,11 @@ class UserEntityRepository extends ServiceEntityRepository implements PasswordUp
             ->getOneOrNullResult()
             ;
     }
+
+    public function getAllUsers()
+    {
+        return $this->createQueryBuilder('user')
+        ->getQuery()
+        ->getResult();
+    }
 }

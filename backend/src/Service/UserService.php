@@ -14,6 +14,7 @@ use App\Request\UserRegisterRequest;
 use App\Response\UserProfileCreateResponse;
 use App\Response\UserProfileResponse;
 use App\Response\UserRegisterResponse;
+use App\Response\GetAllUsersResponse;
 use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
 
 class UserService
@@ -88,6 +89,20 @@ class UserService
         {
             $response[] = $this->autoMapping->map(UserProfileEntity::class, UserProfileResponse::class, $row);
         }
+        return $response;
+    }
+
+    public function getAllUsers()
+    {
+        $response = [];
+
+        $users = $this->userManager->getAllUsers();
+
+        foreach ($users as $row)
+        {
+            $response[] = $this->autoMapping->map(UserEntity::class, GetAllUsersResponse::class, $row);
+        }
+
         return $response;
     }
 }

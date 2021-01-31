@@ -124,4 +124,9 @@ class UserManager
     {
         return $this->userProfileEntityRepository->getAllProfiles();
     }
+
+    public function getAllusers()
+    {
+        return $this->userRepository->getAllUsers();
+    }
 }
