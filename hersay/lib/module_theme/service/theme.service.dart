@@ -43,6 +43,7 @@ class AppThemeDataService {
     if (dark == true) {
       return ThemeData(
         brightness: Brightness.dark,
+        fontFamily: 'Roboto',
         primaryColor: PrimaryColor,
         primaryColorDark: PrimaryDarker,
         accentColor: AccentColor,
@@ -54,6 +55,7 @@ class AppThemeDataService {
     }
     return ThemeData(
       brightness: Brightness.light,
+      fontFamily: 'Roboto',
       primaryColor: PrimaryColor,
       primaryColorDark: PrimaryDarker,
       accentColor: AccentColor,

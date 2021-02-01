@@ -5,10 +5,14 @@ import 'package:flutter/material.dart';
 class NotificationCard extends StatelessWidget {
   final String userName;
   final String notification;
+  final String userImage;
+  final String time;
 
   NotificationCard({
     this.userName,
     this.notification,
+    this.userImage,
+    this.time,
   });
 
   @override
@@ -25,18 +29,18 @@ class NotificationCard extends StatelessWidget {
 
                   child: Row(
                     children: [
-                      Icon(Icons.notifications_active),
-//                      Padding(
-//                        padding: const EdgeInsets.all(5.0),
-//                        child: Container(
-//                          height: 45,
-//                          width: 45,
-//                          child: CircleAvatar(
-//                            radius: 45,
-//                            backgroundImage: NetworkImage(userImage),
-//                          ),
-//                        ),
-//                      ),
+
+                      Padding(
+                        padding: const EdgeInsets.all(5.0),
+                        child: Container(
+                          height: 45,
+                          width: 45,
+                          child: CircleAvatar(
+                            radius: 45,
+                            backgroundImage: NetworkImage('$userImage'),
+                          ),
+                        ),
+                      ),
                       SizedBox(width: 10,),
                       Container(
                         width: MediaQuery.of(context).size.width*0.6,
@@ -53,6 +57,13 @@ class NotificationCard extends StatelessWidget {
                           ],
                         )
                       ),
+                      Text(
+                        'at $time' ,
+                        style: TextStyle(
+                          fontSize: 11,
+                        ),
+                      ),
+                      Icon(Icons.notifications_active),
 
 
                     ],
@@ -62,6 +73,7 @@ class NotificationCard extends StatelessWidget {
               ],
             ),
             Container(
+              margin: EdgeInsets.only(top: 10),
               height: 1,
               color: Colors.grey,
               width: MediaQuery.of(context).size.width  ,

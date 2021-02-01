@@ -32,31 +32,34 @@ class SearchStateInit extends SearchState {
         padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
         child: Column(
           children: [
-            Center(
-              child: TextFormField(
-                controller: _searchController,
-                onFieldSubmitted: (value) {
-                  screenState.search(_searchController.text.trim());
-                },
-                decoration: InputDecoration(
-                  hintText:
-                  S.of(context).whatYouWantToSeachAbout  ,
-                  suffixIcon: IconButton(
-                      icon: Icon(
-                        Icons.search,
-                      ),
-                      onPressed: () {
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Center(
+                child: TextFormField(
+                  controller: _searchController,
+                  onFieldSubmitted: (value) {
+                    screenState.search(_searchController.text.trim());
+                  },
+                  decoration: InputDecoration(
+                    hintText:
+                    S.of(context).whatYouWantToSeachAbout  ,
+                    suffixIcon: IconButton(
+                        icon: Icon(
+                          Icons.search,
+                        ),
+                        onPressed: () {
 
-                      screenState.search(_searchController.text.trim());
+                        screenState.search(_searchController.text.trim());
 
-                      }),
+                        }),
+                  ),
+                  validator: (result) {
+                    if (result.isEmpty) {
+                      return  S.of(context).whatYouWantToSeachAbout ;
+                    }
+                    return null;
+                  },
                 ),
-                validator: (result) {
-                  if (result.isEmpty) {
-                    return  S.of(context).whatYouWantToSeachAbout ;
-                  }
-                  return null;
-                },
               ),
             ),
 
@@ -104,44 +107,45 @@ class SearchStateDataLoaded extends SearchState {
   }
   @override
   Widget getUI(BuildContext context) {
-    double width = MediaQuery.of(context).size.width;
 
     return SingleChildScrollView(
       child: Container(
-        padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
         child: Column(
           children: [
-            Center(
-              child: TextFormField(
-                controller: _searchController,
-                onFieldSubmitted: (value) {
-                  screenState.search(_searchController.text.trim());
-                },
-                decoration: InputDecoration(
-                  hintText:
-                  S.of(context).whatYouWantToSeachAbout   ,
-                  suffixIcon: IconButton(
-                      icon: Icon(
-                        Icons.search,
-                      ),
-                      onPressed: () {
-                        screenState.search(_searchController.text.trim());
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Center(
+                child: TextFormField(
+                  controller: _searchController,
+                  onFieldSubmitted: (value) {
+                    screenState.search(_searchController.text.trim());
+                  },
+                  decoration: InputDecoration(
+                    hintText:
+                    S.of(context).whatYouWantToSeachAbout   ,
+                    suffixIcon: IconButton(
+                        icon: Icon(
+                          Icons.search,
+                        ),
+                        onPressed: () {
+                          screenState.search(_searchController.text.trim());
 
-                      }),
+                        }),
+                  ),
+                  validator: (result) {
+                    if (result.isEmpty) {
+                      return  S.of(context).whatYouWantToSeachAbout ;
+                    }
+                    return null;
+                  },
                 ),
-                validator: (result) {
-                  if (result.isEmpty) {
-                    return  S.of(context).whatYouWantToSeachAbout ;
-                  }
-                  return null;
-                },
               ),
             ),
 
             if(searchResults.isNotEmpty)
               ListView.builder(
                   shrinkWrap: true,
-                  padding: EdgeInsetsDirectional.fromSTEB(10, 20, 10, 10),
+                  padding: EdgeInsetsDirectional.fromSTEB(0, 20, 0, 10),
                   physics: NeverScrollableScrollPhysics(),
                   itemCount: searchResults.length,
                   itemBuilder: (BuildContext context, int index){
@@ -175,12 +179,13 @@ class SearchStateDataLoaded extends SearchState {
                           }
                         },
                         child: Container(
-                      padding: EdgeInsets.symmetric(horizontal: 8, vertical: 10),
+                      padding: EdgeInsets.symmetric(horizontal: 0, vertical: 10),
                       child: ProductCard(
                         image: searchResults[index].image,
                         category: searchResults[index].category,
                         likes: 0,
                         owner: searchResults[index].userName,
+                        ownerImage: searchResults[index].userImage,
                         product: (searchResults[index].type!='')?searchResults[index].type:searchResults[index].brand,
                         specification: searchResults[index].specification,
                         type: searchResults[index].productType,

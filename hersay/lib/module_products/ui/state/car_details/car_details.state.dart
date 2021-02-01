@@ -75,14 +75,36 @@ class CarDetailsStateDataLoaded extends CarDetailsState {
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                // car model
-                Text(
-                  '${car.brand}',
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 14,
-                  ),
-                ),
+               Container(
+                 width: MediaQuery.of(context).size.width,
+                 child: Row(
+                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                   children: [
+                     // car model
+                     Text(
+                       '${car.brand}',
+                       style: TextStyle(
+                         fontWeight: FontWeight.bold,
+                         fontSize: 14,
+                       ),
+                     ),
+                     car.isLoved
+                         ? Icon(
+                             Icons.favorite,
+                             color: ProjectColors.THEME_COLOR,
+                           )
+                         : IconButton(
+                              onPressed: (){
+
+                              },
+                              icon: Icon(
+                                Icons.favorite_border,
+                                color: ProjectColors.THEME_COLOR,
+                              ),
+                     ),
+                   ],
+                 ),
+               ),
                 // owner
                 Row(
                   children: [
@@ -94,7 +116,7 @@ class CarDetailsStateDataLoaded extends CarDetailsState {
                         child: CircleAvatar(
                           radius: 20,
                           backgroundImage: NetworkImage(
-                            '${car.userImage}'?? 'https://images.pexels.com/photos/127229/pexels-photo-127229.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500 1x, https://images.pexels.com/photos/127229/pexels-photo-127229.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500 2x'),
+                              '${car.userImage}'),
                         ),
                       ),
                     ),

@@ -25,8 +25,9 @@ class AdvancedSearchStateInit extends AdvancedSearchState {
   @override
   Widget getUI(BuildContext context) {
 
-    List<String> _entityTypes = [S.of(context).car, S.of(context).realestate,S.of(context).device];
-    String _selectedEntityType = S.of(context).car;
+    List<String> _entityTypes = ['car', 'realEstate','device'];
+    String _selectedEntityType = 'car';
+
     final GlobalKey<FormState> _searchFormKey = GlobalKey<FormState>();
 
     bool _autoValidate = false;
@@ -57,15 +58,16 @@ class AdvancedSearchStateInit extends AdvancedSearchState {
                     ),
                     child: DropdownButtonHideUnderline(
                       child: DropdownButton(
-                          hint: _selectedEntityType == null
-                              ? Text(
-                            S.of(context).fuel,
+                          hint:/* _selectedEntityType == null
+                              ?*/ Text(
+                            S.of(context).chooseEntity,
                             style: TextStyle(color: Colors.grey),
                           )
-                              : Text(
+                              /*: Text(
                             '$_selectedEntityType',
                             style: TextStyle(color: Colors.grey),
-                          ),
+                          )*/
+                              ,
                           items: _entityTypes.map((String place) {
                             return new DropdownMenuItem<String>(
                               value: place.toString(),
@@ -75,7 +77,8 @@ class AdvancedSearchStateInit extends AdvancedSearchState {
                           onChanged: (value) {
                             _selectedEntityType = _entityTypes.firstWhere(
                                     (element) => element.toString() == value);
-                            screenState.refresh();
+
+                            print(_selectedEntityType);
                           }),
                     ),
                   )),
@@ -155,13 +158,14 @@ class AdvancedSearchStateInit extends AdvancedSearchState {
                         borderRadius: BorderRadius.circular(10),
                       ),
                       onPressed: () {
-                        if (_searchFormKey.currentState.validate()) {
+//                        if (_searchFormKey.currentState.validate()) {
+
                           screenState.advancedSearch(
                               _selectedEntityType,
                               _cityController.text.trim(),
                               int.parse(_priceController.text.trim())
                           );
-                        }
+//                        }
                       },
                       //TODO : change this using theme service
                       color: ProjectColors.SECONDARY_COLOR,
@@ -169,11 +173,11 @@ class AdvancedSearchStateInit extends AdvancedSearchState {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Icon(
-                            Icons.save,
+                            Icons.search,
                             color: Colors.white,
                           ),
                           Text(
-                            S.of(context).save,
+                            S.of(context).search,
                             style: TextStyle(color: Colors.white),
                           )
                         ],
@@ -192,8 +196,9 @@ class AdvancedSearchStateInit extends AdvancedSearchState {
 
 class AdvancedSearchStateDataLoaded extends AdvancedSearchState {
   final List<SearchModel> searchResults;
-  List<String> _entityTypes = [S.current.car, S.current.realestate,S.current.device];
-  String _selectedEntityType = S.current.car;
+
+  List<String> _entityTypes = ['car', 'realEstate','device'];
+  String _selectedEntityType = 'car';
   final GlobalKey<FormState> _searchFormKey = GlobalKey<FormState>();
 
   bool _autoValidate = false;
@@ -213,13 +218,13 @@ class AdvancedSearchStateDataLoaded extends AdvancedSearchState {
       autovalidate: _autoValidate,
       child: SingleChildScrollView(
         child: Container(
-          padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+
           child: Column(
             children: [
               // entity
               Card(
                   elevation: 10,
-                  margin: EdgeInsets.only(top: 20),
+                  margin: EdgeInsets.symmetric(horizontal: 20,vertical: 10),
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(15)),
                   child: Container(
@@ -231,15 +236,15 @@ class AdvancedSearchStateDataLoaded extends AdvancedSearchState {
                     ),
                     child: DropdownButtonHideUnderline(
                       child: DropdownButton(
-                          hint: _selectedEntityType == null
-                              ? Text(
-                            S.of(context).fuel,
+                          hint: /*_selectedEntityType == null
+                              ?*/ Text(
+                            S.of(context).chooseEntity,
                             style: TextStyle(color: Colors.grey),
                           )
-                              : Text(
+                             /* : Text(
                             '$_selectedEntityType',
                             style: TextStyle(color: Colors.grey),
-                          ),
+                          )*/,
                           items: _entityTypes.map((String place) {
                             return new DropdownMenuItem<String>(
                               value: place.toString(),
@@ -250,72 +255,79 @@ class AdvancedSearchStateDataLoaded extends AdvancedSearchState {
                             _selectedEntityType = _entityTypes.firstWhere(
                                     (element) => element.toString() == value);
                             screenState.refresh();
+                            print(_selectedEntityType);
                           }),
                     ),
                   )),
               // price
-              Card(
-                elevation: 10,
-                margin: EdgeInsets.only(top: 20),
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(15)),
-                child: Container(
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(15),
-                    color: Colors.black12,
-                  ),
-                  child: TextFormField(
-                    controller: _priceController,
-                    decoration: InputDecoration(
-                      prefixIcon: Icon(Icons.attach_money),
-                      border: OutlineInputBorder(
-                        borderSide: BorderSide.none,
-                        borderRadius: BorderRadius.circular(20),
-                      ),
-                      labelText: S.of(context).price,
+              Container(
+                margin: EdgeInsets.symmetric(horizontal: 20,vertical: 10),
+                child: Card(
+                  elevation: 10,
+                  margin: EdgeInsets.only(top: 20),
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(15)),
+                  child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(15),
+                      color: Colors.black12,
                     ),
-                    textInputAction: TextInputAction.next,
+                    child: TextFormField(
+                      controller: _priceController,
+                      decoration: InputDecoration(
+                        prefixIcon: Icon(Icons.attach_money),
+                        border: OutlineInputBorder(
+                          borderSide: BorderSide.none,
+                          borderRadius: BorderRadius.circular(20),
+                        ),
+                        labelText: S.of(context).price,
+                      ),
+                      textInputAction: TextInputAction.next,
 //                  onEditingComplete: () => node.nextFocus(),
-                    // Move focus to next
-                    validator: (result) {
-                      if (result.isEmpty) {
-                        return S.of(context).thisFieldCannotBeEmpty;
-                      }
-                      return null;
-                    },
+                      // Move focus to next
+                      validator: (result) {
+                        if (result.isEmpty) {
+                          return S.of(context).thisFieldCannotBeEmpty;
+                        }
+                        return null;
+                      },
+                    ),
                   ),
                 ),
               ),
               // city
-              Card(
-                elevation: 10,
-                margin: EdgeInsets.only(top: 20),
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(15)),
-                child: Container(
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(15),
-                    color: Colors.black12,
-                  ),
-                  child: TextFormField(
-                    controller: _cityController,
-                    decoration: InputDecoration(
-                      prefixIcon: Icon(Icons.location_on),
-                      border: OutlineInputBorder(
-                        borderSide: BorderSide.none,
-                        borderRadius: BorderRadius.circular(20),
-                      ),
-                      labelText: S.of(context).city,
+              Container(
+                margin: EdgeInsets.symmetric(horizontal: 20,vertical: 10),
+                child: Card(
+                  elevation: 10,
+                  margin: EdgeInsets.only(top: 20),
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(15)),
+                  child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(15),
+                      color: Colors.black12,
                     ),
-                    textInputAction: TextInputAction.next,
+                    child: TextFormField(
+                      controller: _cityController,
+                      decoration: InputDecoration(
+                        prefixIcon: Icon(Icons.location_on),
+                        border: OutlineInputBorder(
+                          borderSide: BorderSide.none,
+                          borderRadius: BorderRadius.circular(20),
+                        ),
+                        labelText: S.of(context).city,
+                      ),
+                      textInputAction: TextInputAction.next,
 //                  onEditingComplete: () => node.nextFocus(),
-                    // Move focus to next
-                    validator: (result) {
-                      if (result.isEmpty) {
-                        return S.of(context).thisFieldCannotBeEmpty;
-                      }
-                      return null;
-                    },
+                      // Move focus to next
+                      validator: (result) {
+                        if (result.isEmpty) {
+                          return S.of(context).thisFieldCannotBeEmpty;
+                        }
+                        return null;
+                      },
+                    ),
                   ),
                 ),
               ),
@@ -329,13 +341,13 @@ class AdvancedSearchStateDataLoaded extends AdvancedSearchState {
                         borderRadius: BorderRadius.circular(10),
                       ),
                       onPressed: () {
-                        if (_searchFormKey.currentState.validate()) {
+//                        if (_searchFormKey.currentState.validate()) {
                           screenState.advancedSearch(
                               _selectedEntityType,
                               _cityController.text.trim(),
                               int.parse(_priceController.text.trim())
                           );
-                        }
+//                        }
                       },
                       //TODO : change this using theme service
                       color: ProjectColors.SECONDARY_COLOR,
@@ -343,11 +355,11 @@ class AdvancedSearchStateDataLoaded extends AdvancedSearchState {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Icon(
-                            Icons.save,
+                            Icons.search,
                             color: Colors.white,
                           ),
                           Text(
-                            S.of(context).save,
+                            S.of(context).search,
                             style: TextStyle(color: Colors.white),
                           )
                         ],
@@ -355,10 +367,10 @@ class AdvancedSearchStateDataLoaded extends AdvancedSearchState {
                 ),
               ),
 
-              if(searchResults.isNotEmpty)
+
                 ListView.builder(
                     shrinkWrap: true,
-                    padding: EdgeInsetsDirectional.fromSTEB(10, 20, 10, 10),
+                    padding: EdgeInsetsDirectional.fromSTEB(0, 20, 0, 10),
                     physics: NeverScrollableScrollPhysics(),
                     itemCount: searchResults.length,
                     itemBuilder: (BuildContext context, int index){
@@ -398,6 +410,7 @@ class AdvancedSearchStateDataLoaded extends AdvancedSearchState {
                               category: searchResults[index].category,
                               likes: 0,
                               owner: searchResults[index].userName,
+                              ownerImage: searchResults[index].userImage,
                               product: (searchResults[index].type!='')?searchResults[index].type:searchResults[index].brand,
                               specification: searchResults[index].specification,
                               type: searchResults[index].productType,

@@ -13,4 +13,6 @@ class AuthManager {
   Future<bool> register(RegisterRequest registerRequest) => _authRepository.createUser(registerRequest);
 
   Future<LoginResponse> login(LoginRequest loginRequest) => _authRepository.getToken(loginRequest);
+
+  Future<bool> createProfile(String userName,String token) async => _authRepository.createProfile(userName,token);
 }

@@ -22,7 +22,7 @@ class NotificationResponse {
 }
 
 class Data {
-  Null userImage;
+  String userImage;
   CreatedAt createdAt;
   String username;
   String entityName;

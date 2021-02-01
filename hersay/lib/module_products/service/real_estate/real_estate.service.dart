@@ -72,6 +72,9 @@ class RealEstateService{
       floorsNumber: response.data.numberOfFloors,
       isFurnished: response.data.homeFurnishing,
       image: response.data.image,
+      userName: response.data.username,
+      userImage: response.data.userImage,
+      isLoved: response.data.reaction.isLoved,
     );
 
   }

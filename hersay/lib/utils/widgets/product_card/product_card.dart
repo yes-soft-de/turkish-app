@@ -7,6 +7,7 @@ class ProductCard extends StatelessWidget {
   final String category;
   final String image;
   final String owner;
+  final String ownerImage;
   final PRODUCT_TYPE type;
   final String specification;
   final int likes;
@@ -16,6 +17,7 @@ class ProductCard extends StatelessWidget {
       this.likes,
       this.category,
       this.owner,
+      this.ownerImage,
       this.product,
       this.specification,
       this.type});
@@ -74,7 +76,26 @@ class ProductCard extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                IconTextWidget(icon: Icons.person, text: '$owner'),
+
+                Flex(
+                  direction: Axis.horizontal,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.all(5.0),
+                      child: Container(
+                        height: 30,
+                        width: 30,
+                        child: CircleAvatar(
+                          radius: 20,
+                          backgroundImage: NetworkImage(
+                              '${ownerImage}'),
+                        ),
+                      ),
+                    ),
+                    SizedBox(width: 5,),
+                    Text('$owner'),
+                  ],
+                ),
                 Container(
                   width: MediaQuery.of(context).size.width*0.35,
                   child: Text(

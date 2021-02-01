@@ -21,6 +21,7 @@ class HomeModel{
             id: element.id,
             product: element.realEstateType,
             image: element.image,
+            ownerImage: element.imageUser??'',
             type: PRODUCT_TYPE.REAL_ESTATE,
             likes: (element.reaction!= null)? element.reaction[0].reactionCount : 0,
             category: element.numberOfFloors + ' floors',
@@ -44,6 +45,7 @@ class HomeModel{
             likes:(element.reaction!= null)? element.reaction[0].reactionCount : 0,
             category: element.company  ,
             owner: element.userName??'',
+            ownerImage: element.imageUser??'',
             specification: element.distance +' KM',
           )
       );
@@ -62,6 +64,7 @@ class HomeModel{
             type: PRODUCT_TYPE.ELECTRONIC_DEVICE,
             likes: (element.reaction!= null)? element.reaction[0].reactionCount : 0,
             category: element.type  ,
+            ownerImage: element.imageUser??'',
             owner: element.userName??'',
             specification: element.cpu,
           )
@@ -80,6 +83,7 @@ class HomeElement {
    String category;
    String image;
    String owner;
+   String ownerImage;
    PRODUCT_TYPE type;
    String specification;
    int likes;
@@ -91,6 +95,7 @@ class HomeElement {
       this.likes,
       this.category,
       this.owner,
+      this.ownerImage,
       this.product,
       this.specification,
       this.type});

@@ -64,7 +64,7 @@ class HomeStateDataLoaded extends HomeState {
 
   HomeStateDataLoaded(this.homeData, HomeScreenState screenState)
       : super(screenState){
-    displayedProducts = homeData.realEstates + homeData.cars + homeData.electronicDevices;
+    displayedProducts = homeData.cars+ homeData.realEstates + homeData.electronicDevices;
   }
 
   @override
@@ -115,6 +115,7 @@ class HomeStateDataLoaded extends HomeState {
                         category: displayedProducts[index].category,
                         likes: displayedProducts[index].likes,
                         owner: displayedProducts[index].owner,
+                        ownerImage:displayedProducts[index].ownerImage ,
                         product: displayedProducts[index].product,
                         specification: displayedProducts[index].specification,
                         type: displayedProducts[index].type,
@@ -143,10 +144,10 @@ class HomeStateDataLoaded extends HomeState {
                       screenState.refresh();
                     },
                     child: Container(
-                      width: 35,
+                      width: 50,
                       height: 50,
                       decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(5),
+                        borderRadius: BorderRadius.circular(50),
                         color: (selectedMode == 1)
                             ? ProjectColors.SECONDARY_COLOR
                             :ProjectColors.THEME_COLOR,
@@ -168,10 +169,10 @@ class HomeStateDataLoaded extends HomeState {
                       screenState.refresh();
                     },
                     child: Container(
-                      width: 35,
+                      width: 50,
                       height: 50,
                       decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(5),
+                        borderRadius: BorderRadius.circular(50),
                         color: (selectedMode == 2)
                             ? ProjectColors.SECONDARY_COLOR
                             :ProjectColors.THEME_COLOR,
@@ -189,10 +190,10 @@ class HomeStateDataLoaded extends HomeState {
                       screenState.refresh();
                     },
                     child: Container(
-                      width: 35,
+                      width: 50,
                       height: 50,
                       decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(5),
+                        borderRadius: BorderRadius.circular(55),
                         color: (selectedMode == 3)
                             ? ProjectColors.SECONDARY_COLOR
                             :ProjectColors.THEME_COLOR,
@@ -210,10 +211,10 @@ class HomeStateDataLoaded extends HomeState {
                       screenState.refresh();
                     },
                     child: Container(
-                      width: 35,
+                      width: 50,
                       height: 50,
                       decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(5),
+                        borderRadius: BorderRadius.circular(50),
                         color: (selectedMode == 4)
                             ? ProjectColors.SECONDARY_COLOR
                             :ProjectColors.THEME_COLOR,

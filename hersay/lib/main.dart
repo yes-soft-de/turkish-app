@@ -7,7 +7,6 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:hersay/main_screen/main_module.dart';
 import 'package:hersay/module_auth/auth_module.dart';
 import 'package:hersay/module_history/history_module.dart';
-import 'package:hersay/module_history/ui/screen/history/history_screen.dart';
 import 'package:hersay/module_home/home_module.dart';
 import 'package:hersay/module_profile/Profile_module.dart';
 import 'package:hersay/module_search/search_module.dart';

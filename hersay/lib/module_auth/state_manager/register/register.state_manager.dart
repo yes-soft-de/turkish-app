@@ -49,6 +49,7 @@ class RegisterStateManager {
 
   void registerByEmail(String email, String name, String password,
       RegisterScreenState _registerScreenState) {
+
     _authService.authListener.listen((event) {
       switch (event) {
         case AuthStatus.AUTHORIZED:

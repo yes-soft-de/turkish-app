@@ -60,12 +60,16 @@ class AuthService {
     _authSubject.add(AuthStatus.AUTHORIZED);
   }
 
-  Future<void> _registerApiUser(AppUser user) async {
+  Future<void> _registerApiUser(AppUser user,String name) async {
     try {
       await _authManager.register(RegisterRequest(
         userID: user.credential.user.email ?? user.credential.user.uid,
         password: user.credential.user.uid,
       ));
+
+      await _loginApiUser(user);
+      String token = await getToken();
+      await createProfile(name, token);
     } catch (e) {
       // Failed Register Attempt means the process has stopped at some point
       Logger().info('AuthService', 'User Already Exists');
@@ -78,7 +82,7 @@ class AuthService {
         phoneNumber: phone,
         verificationCompleted: (authCredentials) {
           _auth.signInWithCredential(authCredentials).then((credential) {
-            _registerApiUser(AppUser(credential, AuthSource.PHONE ));
+            _registerApiUser(AppUser(credential, AuthSource.PHONE ),'');
           });
         },
         verificationFailed: (err) {
@@ -116,7 +120,7 @@ class AuthService {
       // Once signed in, return the UserCredential
       var userCredential =
       await FirebaseAuth.instance.signInWithCredential(credential);
-      await _registerApiUser(AppUser(userCredential, AuthSource.PHONE ));
+      await _registerApiUser(AppUser(userCredential, AuthSource.PHONE ),'');
     } catch (e) {
       Logger().error('AuthStateManager', e.toString());
     }
@@ -126,7 +130,7 @@ class AuthService {
     var oauthCred = await _createAppleOAuthCred();
     UserCredential userCredential =
     await FirebaseAuth.instance.signInWithCredential(oauthCred);
-    await _registerApiUser(AppUser(userCredential, AuthSource.APPLE ));
+    await _registerApiUser(AppUser(userCredential, AuthSource.APPLE ),'');
   }
 
   Future<void> signInWithEmailAndPassword(
@@ -134,7 +138,7 @@ class AuthService {
     try {
       var userCredential = await _auth.signInWithEmailAndPassword(
           email: email, password: password);
-      await _registerApiUser(AppUser(userCredential, AuthSource.EMAIL ));
+      await _loginApiUser(AppUser(userCredential, AuthSource.EMAIL ));
     } catch (e) {
       if (e is FirebaseAuthException) {
         FirebaseAuthException x = e;
@@ -154,8 +158,11 @@ class AuthService {
       String email, String password, String name ) {
     _auth
         .createUserWithEmailAndPassword(email: email, password: password)
-        .then((value) {
-      signInWithEmailAndPassword(email, password );
+        .then((value)async {
+      var userCredential = await _auth.signInWithEmailAndPassword(
+          email: email, password: password);
+
+      _registerApiUser(AppUser(userCredential,AuthSource.EMAIL),name );
 
     }).catchError((err) {
       if (err is FirebaseAuthException) {
@@ -177,7 +184,7 @@ class AuthService {
     );
 
     _auth.signInWithCredential(authCredential).then((credential) {
-      _registerApiUser(AppUser(credential, AuthSource.PHONE ));
+      _registerApiUser(AppUser(credential, AuthSource.PHONE ),'');
     }).catchError((err) {
       if (err is FirebaseAuthException) {
         FirebaseAuthException x = err;
@@ -188,10 +195,29 @@ class AuthService {
     });
   }
 
+
+  Future<String> getToken() async {
+    try {
+      bool isLoggedIn = await this.isLoggedIn;
+      var tokenDate = await this._prefsHelper.getTokenDate();
+      var diff = DateTime.now().difference(tokenDate).inMinutes;
+      if (isLoggedIn) {
+
+        if (diff.abs() < 55) {
+          return _prefsHelper.getToken();
+        }
+        await refreshToken();
+        return _prefsHelper.getToken();
+      }
+    } catch (e) {
+      return null;
+    }
+    return null;
+  }
   /// @return cached token
   /// @throw UnauthorizedException
   /// @throw TokenExpiredException
-  Future<String> getToken() async {
+  Future<String> getToken2() async {
     try {
       var tokenDate = await this._prefsHelper.getTokenDate();
       var diff = DateTime.now().difference(tokenDate).inMinutes;
@@ -284,5 +310,9 @@ class AuthService {
   Future<void> logout() async {
     await _auth.signOut();
     await _prefsHelper.deleteToken();
+  }
+
+  Future<bool> createProfile(String userName,String token) async{
+    return  await _authManager.createProfile(userName, token);
   }
 }

@@ -75,15 +75,35 @@ class RealEstateDetailsStateDataLoaded extends RealEstateDetailsState {
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                // car model
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Text(
-                    '${realEstate.type}',
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 14,
-                    ),
+
+                Container(
+                  width: MediaQuery.of(context).size.width,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      // real estate type
+                      Text(
+                        '${realEstate.type}',
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 14,
+                        ),
+                      ),
+                      realEstate.isLoved
+                          ? Icon(
+                        Icons.favorite,
+                        color: ProjectColors.THEME_COLOR,
+                      )
+                          : IconButton(
+                        onPressed: (){
+
+                        },
+                        icon: Icon(
+                          Icons.favorite_border,
+                          color: ProjectColors.THEME_COLOR,
+                        ),
+                      ),
+                    ],
                   ),
                 ),
                 // owner
@@ -97,7 +117,7 @@ class RealEstateDetailsStateDataLoaded extends RealEstateDetailsState {
                         child: CircleAvatar(
                           radius: 20,
                           backgroundImage: NetworkImage(
-                              '${realEstate.userImage}'?? 'https://images.pexels.com/photos/127229/pexels-photo-127229.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500 1x, https://images.pexels.com/photos/127229/pexels-photo-127229.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500 2x'),
+                              '${realEstate.userImage}' ),
                         ),
                       ),
                     ),

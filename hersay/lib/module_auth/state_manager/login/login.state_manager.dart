@@ -48,7 +48,7 @@ class LoginStateManager {
     _authService.verifyWithPhone(phoneNumber );
   }
 
-  void loginOwner(String email, String password, LoginScreenState _loginScreenState) {
+  void login(String email, String password, LoginScreenState _loginScreenState) {
     _email = email;
     _password = password;
     _authService.authListener.listen((event) {

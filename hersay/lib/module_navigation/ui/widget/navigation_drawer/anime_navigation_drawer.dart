@@ -2,10 +2,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hersay/generated/l10n.dart';
 import 'package:hersay/module_notification/notification_routes.dart';
-import 'package:hersay/module_notification/ui/screen/notifications/notification_screen.dart';
 import 'package:hersay/module_profile/profile_routes.dart';
 import 'package:hersay/module_search/search_routes.dart';
-import 'package:hersay/module_search/ui/screen/search_screen/seach_screen.dart';
+import 'package:hersay/module_settings/setting_routes.dart';
 import 'package:hersay/utils/project_colors/project_colors.dart';
 
 class TurkishNavigationDrawer extends StatelessWidget {
@@ -57,41 +56,41 @@ class TurkishNavigationDrawer extends StatelessWidget {
             Flex(
               direction: Axis.vertical,
               children: [
-                GestureDetector(
-                  onTap: () {
-                    Navigator.of(context).pushNamed(
-                      NotificationRoutes.NOTIFICATION_ROUTE
-                    );
-                  },
-                  child: Container(
-                    color: ProjectColors.THEME_COLOR,
-                    padding: const EdgeInsets.fromLTRB(32, 8.0, 0, 8),
-                    child: Flex(
-                      direction: Axis.horizontal,
-                      children: [
-                        Icon(
-                          Icons.notifications,
-                          color: Colors.white,
-                        ),
-                        Container(
-                          width: 16,
-                        ),
-                        Text(
-                          S.of(context).notifications,
-                          style: TextStyle(
-                              fontFamily: 'Roboto', color: Colors.white),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
+//                GestureDetector(
+//                  onTap: () {
+//                    Navigator.of(context).pushNamed(
+//                      NotificationRoutes.NOTIFICATION_ROUTE
+//                    );
+//                  },
+//                  child: Container(
+//                    color: ProjectColors.THEME_COLOR,
+//                    padding: const EdgeInsets.fromLTRB(32, 8.0, 0, 8),
+//                    child: Flex(
+//                      direction: Axis.horizontal,
+//                      children: [
+//                        Icon(
+//                          Icons.notifications,
+//                          color: Colors.white,
+//                        ),
+//                        Container(
+//                          width: 16,
+//                        ),
+//                        Text(
+//                          S.of(context).notifications,
+//                          style: TextStyle(
+//                              fontFamily: 'Roboto', color: Colors.white),
+//                        ),
+//                      ],
+//                    ),
+//                  ),
+//                ),
                 GestureDetector(
                   onTap: () {
                     Navigator.of(context).pushNamed(SearchRoutes.SEARCH_SCREEN_ROUTE);
                   },
                   child: Container(
-                    color: ProjectColors.SECONDARY_COLOR,
-                    padding: const EdgeInsets.fromLTRB(32, 8.0, 0, 8),
+                    color: ProjectColors.THEME_COLOR,
+                    padding: const EdgeInsets.fromLTRB(32, 15, 0, 20),
                     child: Flex(
                       direction: Axis.horizontal,
                       children: [
@@ -115,12 +114,12 @@ class TurkishNavigationDrawer extends StatelessWidget {
                 GestureDetector(
                   onTap: () {
                     Navigator.of(context).pushNamed(
-                        SearchRoutes.SEARCH_SCREEN_ROUTE
+                        SettingsRoutes.SETTINGS_SCREEN
                     );
                   },
                   child: Container(
-                    color: ProjectColors.THEME_COLOR,
-                    padding: const EdgeInsets.fromLTRB(32, 8.0, 0, 8),
+                    color: ProjectColors.SECONDARY_COLOR,
+                      padding: const EdgeInsets.fromLTRB(32, 15, 0, 15),
                     child: Flex(
                       direction: Axis.horizontal,
                       children: [
@@ -132,7 +131,7 @@ class TurkishNavigationDrawer extends StatelessWidget {
                           width: 16,
                         ),
                         Text(
-                          S.of(context).notifications,
+                          S.of(context).settings,
                           style: TextStyle(
                               fontFamily: 'Roboto', color: Colors.white),
                         ),
@@ -145,20 +144,20 @@ class TurkishNavigationDrawer extends StatelessWidget {
                     Navigator.of(context).pushNamed(ProfileRoutes.PROFILE_SCREEN);
                   },
                   child: Container(
-                    color: ProjectColors.SECONDARY_COLOR,
-                    padding: const EdgeInsets.fromLTRB(32, 8.0, 0, 8),
+                    color: ProjectColors.THEME_COLOR,
+                      padding: const EdgeInsets.fromLTRB(32, 15, 0, 15),
                     child: Flex(
                       direction: Axis.horizontal,
                       children: [
                         Icon(
-                          Icons.search,
+                          Icons.person_pin,
                           color: Colors.white,
                         ),
                         Container(
                           width: 16,
                         ),
                         Text(
-                          S.of(context).search,
+                          S.of(context).profile,
                           style: TextStyle(
                               fontFamily: 'Roboto', color: Colors.white),
                         ),
@@ -170,12 +169,12 @@ class TurkishNavigationDrawer extends StatelessWidget {
                 GestureDetector(
                   onTap: () {
                     Navigator.of(context).pushNamed(
-                        SearchRoutes.SEARCH_SCREEN_ROUTE
+                        SearchRoutes.ADVANCED_SEARCH_SCREEN_ROUTE
                     );
                   },
                   child: Container(
-                    color: ProjectColors.THEME_COLOR,
-                    padding: const EdgeInsets.fromLTRB(32, 8.0, 0, 8),
+                    color: ProjectColors.SECONDARY_COLOR,
+                      padding: const EdgeInsets.fromLTRB(32, 15, 0, 15),
                     child: Flex(
                       direction: Axis.horizontal,
                       children: [
@@ -204,7 +203,7 @@ class TurkishNavigationDrawer extends StatelessWidget {
 //                  },
 //                  child: Container(
 //                    color: ProjectColors.THEME_COLOR,
-//                    padding: const EdgeInsets.fromLTRB(32, 8.0, 0, 8),
+//                      padding: const EdgeInsets.fromLTRB(32, 15, 0, 15),
 //                    child: Flex(
 //                      direction: Axis.horizontal,
 //                      children: [
@@ -229,7 +228,7 @@ class TurkishNavigationDrawer extends StatelessWidget {
 //                      arguments: 1);
                   },
                   child: Container(
-                    padding: const EdgeInsets.fromLTRB(32, 8.0, 0, 8),
+                      padding: const EdgeInsets.fromLTRB(32, 15, 0, 15),
                     color: ProjectColors.THEME_COLOR,
                     child: Flex(
                       direction: Axis.horizontal,

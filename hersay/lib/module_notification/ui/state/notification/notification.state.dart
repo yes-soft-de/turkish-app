@@ -70,6 +70,7 @@ class NotificationStateDataLoaded extends NotificationState {
           itemCount: notifications.length,
           itemBuilder: (BuildContext context, int index) {
             return Container(
+
               child: NotificationCard(
                 userName: notifications[index].userName,
                 notification: S.of(context).likesYour + ' ${notifications[index].entityName}',

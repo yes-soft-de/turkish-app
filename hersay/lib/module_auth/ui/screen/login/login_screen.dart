@@ -68,12 +68,9 @@ class LoginScreenState extends State<LoginScreen> {
 //    }
   }
 
-  void loginCaptain(String phoneNumber) {
-    widget._stateManager.loginCaptain(phoneNumber, this);
-  }
 
-  void loginOwner(String email, String password) {
-    widget._stateManager.loginOwner(email, password, this);
+  void login(String email, String password) {
+    widget._stateManager.login(email, password, this);
   }
 
   void confirmCaptainSMS(String smsCode) {

@@ -56,7 +56,7 @@ class  SearchScreenState extends State<SearchScreen> {
     return   Scaffold(
       key: _scaffoldKey,
       drawer: TurkishNavigationDrawer(),
-      appBar: TurkishAppBar.getTurkishAppBar(context, _scaffoldKey, 'Search'),
+      appBar: TurkishAppBar.getTurkishAppBar(context, _scaffoldKey, S.of(context).search),
       body: currentSate.getUI(context),
       bottomNavigationBar: GestureDetector(
         onTap: () {

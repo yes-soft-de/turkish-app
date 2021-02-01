@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:hersay/generated/l10n.dart';
 import 'package:hersay/module_auth/auth_routes.dart';
@@ -27,7 +26,7 @@ class _EmailPasswordLoginFormState extends State<EmailPasswordLoginForm> {
   final TextEditingController _loginEmailController = TextEditingController();
 
   final TextEditingController _loginPasswordController =
-  TextEditingController();
+      TextEditingController();
 
   bool _autoValidate = false;
 
@@ -60,9 +59,9 @@ class _EmailPasswordLoginFormState extends State<EmailPasswordLoginForm> {
                       BoxShadow(
                         color: Colors.black12,
                         blurRadius:
-                        2.0, // has the effect of softening the shadow
+                            2.0, // has the effect of softening the shadow
                         spreadRadius:
-                        2.0, // has the effect of extending the shadow
+                            2.0, // has the effect of extending the shadow
                         offset: Offset(
                           5.0, // horizontal, move right 10
                           5.0, // vertical, move down 10
@@ -74,75 +73,80 @@ class _EmailPasswordLoginFormState extends State<EmailPasswordLoginForm> {
                 ),
               ),
             ),
-
-
-            Card(
-              elevation: 10,
-              margin: EdgeInsets.only(top:20),
-              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
-              child: Container(
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(15),
-                  color: Colors.black12,
-                ),
-                child: TextFormField(
-                  controller: _loginEmailController,
-                  decoration: InputDecoration(
-                    prefixIcon: Icon(Icons.person),
-                    border: OutlineInputBorder(
-                      borderSide: BorderSide.none,
-                      borderRadius: BorderRadius.circular(20),
-                    ),
-                    labelText: 'Email',
+            Container(
+              width: MediaQuery.of(context).size.width * 0.9,
+              child: Card(
+                elevation: 10,
+                margin: EdgeInsets.only(top: 100),
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(15)),
+                child: Container(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(15),
+                    color: Colors.black12,
                   ),
-                  textInputAction: TextInputAction.next,
-                  onEditingComplete: () =>
-                      node.nextFocus(), // Move focus to next
-                  validator: (result) {
-                    if (result.isEmpty) {
-                      return S.of(context).pleaseEnterYourEmail;
-                    }
-                    return null;
-                  },
+                  child: TextFormField(
+                    controller: _loginEmailController,
+                    decoration: InputDecoration(
+                      prefixIcon: Icon(Icons.person),
+                      border: OutlineInputBorder(
+                        borderSide: BorderSide.none,
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                      labelText: 'Email',
+                    ),
+                    textInputAction: TextInputAction.next,
+                    onEditingComplete: () => node.nextFocus(),
+                    // Move focus to next
+                    validator: (result) {
+                      if (result.isEmpty) {
+                        return S.of(context).pleaseEnterYourEmail;
+                      }
+                      return null;
+                    },
+                  ),
                 ),
               ),
             ),
-            Card(
-              elevation: 10,
-              margin: EdgeInsets.only(top:20),
-              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
-              child: Container(
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(15),
-                  color: Colors.black12,
-                ),
-                child: TextFormField(
-                  controller: _loginPasswordController,
-                  decoration: InputDecoration(
-                    prefixIcon: Icon(Icons.lock),
-                    border: OutlineInputBorder(
-                      borderSide: BorderSide.none,
-                      borderRadius: BorderRadius.circular(20),
-                    ),
-                    labelText: 'Password',
+            Container(
+              width: MediaQuery.of(context).size.width * 0.9,
+              child: Card(
+                elevation: 10,
+                margin: EdgeInsets.only(top: 20),
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(15)),
+                child: Container(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(15),
+                    color: Colors.black12,
                   ),
-                  validator: (result) {
-                    if (result.length < 5) {
-                      return S.of(context).passwordShouldBeAtLeastFiveChar;
-                    }
-                    return null;
-                  },
-                  obscureText: true,
-                  textInputAction: TextInputAction.done,
-                  onFieldSubmitted: (_) =>
-                      node.unfocus(), // Submit and hide keyboard
+                  child: TextFormField(
+                    controller: _loginPasswordController,
+                    decoration: InputDecoration(
+                      prefixIcon: Icon(Icons.lock),
+                      border: OutlineInputBorder(
+                        borderSide: BorderSide.none,
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                      labelText: 'Password',
+                    ),
+                    validator: (result) {
+                      if (result.length < 5) {
+                        return S.of(context).passwordShouldBeAtLeastFiveChar;
+                      }
+                      return null;
+                    },
+                    obscureText: true,
+                    textInputAction: TextInputAction.done,
+                    onFieldSubmitted: (_) =>
+                        node.unfocus(), // Submit and hide keyboard
+                  ),
                 ),
               ),
             ),
             Padding(
-              padding: const EdgeInsets.only(top: 20.0),
+              padding: const EdgeInsets.only(top: 100.0),
               child: GestureDetector(
-
                 onTap: () {
                   Navigator.of(context)
                       .pushNamed(AuthorizationRoutes.REGISTER_SCREEN);
@@ -169,14 +173,14 @@ class _EmailPasswordLoginFormState extends State<EmailPasswordLoginForm> {
                 onPressed: widget.loading == true
                     ? null
                     : () {
-                  if (_loginFormKey.currentState.validate()) {
-                    widget.onLoginRequest(
-                      _loginEmailController.text,
-                      _loginPasswordController.text,
-                    );
-                  }
+                        if (_loginFormKey.currentState.validate()) {
+                          widget.onLoginRequest(
+                            _loginEmailController.text,
+                            _loginPasswordController.text,
+                          );
+                        }
 //
-                },
+                      },
                 child: Text(
                   S.of(context).login,
                   style: TextStyle(
@@ -190,6 +194,4 @@ class _EmailPasswordLoginFormState extends State<EmailPasswordLoginForm> {
       ),
     );
   }
-
-
 }

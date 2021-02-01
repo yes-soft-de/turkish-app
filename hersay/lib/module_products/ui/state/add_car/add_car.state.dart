@@ -682,33 +682,36 @@ class AddCarSuccessState extends AddCarState {
 
   @override
   Widget getUI(BuildContext context) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-      crossAxisAlignment: CrossAxisAlignment.center,
-      children: [
-        Container(
-          padding: EdgeInsets.all(10),
-          child: Center(
-            child: Text(S.of(context).yourRequestHasBeenAddedAndInHoldForAdmin),
-          ),
-        ),
-        RaisedButton(
-          color: Theme.of(context).primaryColor,
-          textColor: Colors.white,
-          padding: EdgeInsets.all(24),
-          onPressed: () {
-            Navigator.of(context).pushNamedAndRemoveUntil(
-              MainRoutes.MAIN_SCREEN_ROUTE,
-              (r) => false,
-            );
-          },
-          child: Expanded(
-            child: Text(
-              S.of(context).ok,
+    return Container(
+      color: ProjectColors.THEME_COLOR,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Container(
+            padding: EdgeInsets.all(10),
+            child: Center(
+              child: Text(S.of(context).yourRequestHasBeenAddedAndInHoldForAdmin),
             ),
           ),
-        ),
-      ],
+          RaisedButton(
+            color: Theme.of(context).primaryColor,
+            textColor: Colors.white,
+            padding: EdgeInsets.all(24),
+            onPressed: () {
+              Navigator.of(context).pushNamedAndRemoveUntil(
+                MainRoutes.MAIN_SCREEN_ROUTE,
+                (r) => false,
+              );
+            },
+            child: Expanded(
+              child: Text(
+                S.of(context).ok,
+              ),
+            ),
+          ),
+        ],
+      ),
     );
   }
 }

@@ -12,6 +12,7 @@ class ElectronicDeviceModel {
   String image;
   String userName;
   String userImage;
+  bool isLoved;
 
   ElectronicDeviceModel({
     this.price,
@@ -27,5 +28,6 @@ class ElectronicDeviceModel {
     this.image,
     this.userName,
     this.userImage,
+    this.isLoved,
   });
 }

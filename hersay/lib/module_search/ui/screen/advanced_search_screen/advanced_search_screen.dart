@@ -43,7 +43,7 @@ class  AdvancedSearchScreenState extends State<AdvancedSearchScreen> {
   }
 
   void advancedSearch(String entity, String city , int price){
-    widget._stateManager.advancedSearch(city,entity,price, this)  ;
+    widget._stateManager.advancedSearch(entity,city,price, this)  ;
   }
 
   void refresh(){
@@ -56,7 +56,7 @@ class  AdvancedSearchScreenState extends State<AdvancedSearchScreen> {
     return   Scaffold(
       key: _scaffoldKey,
       drawer: TurkishNavigationDrawer(),
-      appBar: TurkishAppBar.getTurkishAppBar(context, _scaffoldKey, 'AdvancedSearch'),
+      appBar: TurkishAppBar.getTurkishAppBar(context, _scaffoldKey, S.of(context).advancedSearch),
       body: currentSate.getUI(context),
       bottomNavigationBar: GestureDetector(
         onTap: () {

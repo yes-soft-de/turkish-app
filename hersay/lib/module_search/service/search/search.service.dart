@@ -30,6 +30,8 @@ class SearchService{
     SearchResponse response = await _searchManager.filteredSearch(searchRequest);
     if(response == null) return null;
 
-    return SearchModel.getSearchModelResult(response);
+    return SearchModel.getSearchModelResult(response,entity:entity);
+
+
   }
 }

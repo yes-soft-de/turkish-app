@@ -106,7 +106,17 @@ import '../../module_settings/ui/screen/settings/settings_screen.dart' as _i74;
 import '../../module_notification/notification_module.dart' as _i75;
 import '../../module_profile/Profile_module.dart' as _i76;
 import '../../module_profile/ui/screen/profile/profile_screen.dart' as _i77;
-import '../../module_history/history_module.dart' as _i78;
+import '../../module_profile/state_manager/profile/profile.state_manager.dart'
+    as _i78;
+import '../../module_profile/service/profile/profile.service.dart' as _i79;
+import '../../module_profile/manager/profile/profile.manager.dart' as _i80;
+import '../../module_profile/repository/profile/profile.repository.dart'
+    as _i81;
+import '../../module_profile/ui/screen/edit_profile/edit_profile_screen.dart'
+    as _i82;
+import '../../module_profile/state_manager/edit_profile/edit_profile.state_manager.dart'
+    as _i83;
+import '../../module_history/history_module.dart' as _i84;
 
 class AppComponent$Injector implements _i1.AppComponent {
   AppComponent$Injector._();
@@ -292,10 +302,24 @@ class AppComponent$Injector implements _i1.AppComponent {
   _i75.NotificationModule _createNotificationModule() =>
       _i75.NotificationModule(_createNotificationScreen());
   _i76.ProfileModule _createProfileModule() =>
-      _i76.ProfileModule(_createProfileScreen());
-  _i77.ProfileScreen _createProfileScreen() => _i77.ProfileScreen();
-  _i78.HistoryModule _createHistoryModule() =>
-      _i78.HistoryModule(_createHistoryScreen());
+      _i76.ProfileModule(_createProfileScreen(), _createEditProfileScreen());
+  _i77.ProfileScreen _createProfileScreen() =>
+      _i77.ProfileScreen(_createProfileStateManager());
+  _i78.ProfileStateManager _createProfileStateManager() =>
+      _i78.ProfileStateManager(_createProfileService(), _createAuthService());
+  _i79.ProfileService _createProfileService() =>
+      _i79.ProfileService(_createProfileManager(), _createImageUploadService());
+  _i80.ProfileManager _createProfileManager() =>
+      _i80.ProfileManager(_createProfileRepository());
+  _i81.ProfileRepository _createProfileRepository() =>
+      _i81.ProfileRepository(_createApiClient(), _createAuthService());
+  _i82.EditProfileScreen _createEditProfileScreen() =>
+      _i82.EditProfileScreen(_createEditProfileStateManager());
+  _i83.EditProfileStateManager _createEditProfileStateManager() =>
+      _i83.EditProfileStateManager(
+          _createProfileService(), _createAuthService());
+  _i84.HistoryModule _createHistoryModule() =>
+      _i84.HistoryModule(_createHistoryScreen());
   @override
   _i6.MyApp get app => _createMyApp();
 }

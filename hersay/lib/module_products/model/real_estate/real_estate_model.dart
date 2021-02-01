@@ -10,6 +10,7 @@ class RealEstateModel {
   String image;
   String userName;
   String userImage;
+  bool isLoved;
 
   RealEstateModel({
     this.price,
@@ -23,5 +24,6 @@ class RealEstateModel {
     this.image,
     this.userImage,
     this.userName,
+    this.isLoved,
   });
 }

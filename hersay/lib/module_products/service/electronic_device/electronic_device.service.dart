@@ -84,6 +84,9 @@ class ElectronicDeviceService{
       storage: '',
       useDuration: response.data.durationOfUse,
       image: response.data.image,
+      userName: response.data.username,
+      userImage: response.data.userImage,
+      isLoved: response.data.reaction.isLoved,
     );
 
   }

@@ -18,7 +18,7 @@ class LoginStateInit extends LoginState {
       child: EmailPasswordLoginForm(
         loading: loading,
         onLoginRequest: (email, password) {
-          screen.loginOwner(
+          screen.login(
             email,
             password,
           );

@@ -225,5 +225,8 @@
   "car": "car",
   "realestate": "realEstate",
   "device": "device",
-  "advancedSearch": "بحث متقدم"
+  "advancedSearch": "بحث متقدم",
+  "chooseEntity": "choose entity",
+  "pleaseGiveUsYourName": "please give us your name",
+  "profileUpdatedSuccessfully": "Profile updated successfully"
 }

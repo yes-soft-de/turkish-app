@@ -80,8 +80,11 @@ class CarService{
        cc:response.data.cc,
      //TODO : change this after been added to the response
        useDuration:'',
-      cylinder: response.data.engine,
-      image: response.data.image,
+       cylinder: response.data.engine,
+       image: response.data.image,
+       userName: response.data.username,
+       userImage: response.data.userImage,
+       isLoved: response.data.reaction.isLoved,
    );
 
   }

@@ -1,14 +1,20 @@
 class RealEstateResponse {
+  String statusCode;
+  String msg;
   Data data;
 
-  RealEstateResponse({this.data});
+  RealEstateResponse({this.statusCode, this.msg, this.data});
 
   RealEstateResponse.fromJson(Map<String, dynamic> json) {
+    statusCode = json['status_code'];
+    msg = json['msg'];
     data = json['Data'] != null ? new Data.fromJson(json['Data']) : null;
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['status_code'] = this.statusCode;
+    data['msg'] = this.msg;
     if (this.data != null) {
       data['Data'] = this.data.toJson();
     }
@@ -17,7 +23,7 @@ class RealEstateResponse {
 }
 
 class Data {
-  Null id;
+  int id;
   String country;
   String city;
   String space;
@@ -32,9 +38,9 @@ class Data {
   String cladding;
   String homeFurnishing;
   String realEstateType;
-  List<Reaction> reaction;
+  Reaction reaction;
   Null documents;
-  String userName;
+  String username;
   String userImage;
 
   Data(
@@ -55,9 +61,8 @@ class Data {
         this.realEstateType,
         this.reaction,
         this.documents,
-        this.userName,
-        this.userImage
-      });
+        this.username,
+        this.userImage});
 
   Data.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -77,14 +82,11 @@ class Data {
     cladding = json['cladding'];
     homeFurnishing = json['homeFurnishing'];
     realEstateType = json['realEstateType'];
-    if (json['reaction'] != null) {
-      reaction = new List<Reaction>();
-      json['reaction'].forEach((v) {
-        reaction.add(new Reaction.fromJson(v));
-      });
-    }
+    reaction = json['reaction'] != null
+        ? new Reaction.fromJson(json['reaction'])
+        : null;
     documents = json['documents'];
-    userName = json['userName'];
+    username = json['username'];
     userImage = json['userImage'];
   }
 
@@ -108,10 +110,10 @@ class Data {
     data['homeFurnishing'] = this.homeFurnishing;
     data['realEstateType'] = this.realEstateType;
     if (this.reaction != null) {
-      data['reaction'] = this.reaction.map((v) => v.toJson()).toList();
+      data['reaction'] = this.reaction.toJson();
     }
     data['documents'] = this.documents;
-    data['userName'] = this.userName;
+    data['username'] = this.username;
     data['userImage'] = this.userImage;
     return data;
   }
@@ -232,18 +234,21 @@ class Location {
 class Reaction {
   int reactionCount;
   bool createdBy;
+  bool isLoved;
 
-  Reaction({this.reactionCount, this.createdBy});
+  Reaction({this.reactionCount, this.createdBy, this.isLoved});
 
   Reaction.fromJson(Map<String, dynamic> json) {
     reactionCount = json['reactionCount'];
     createdBy = json['createdBy'];
+    isLoved = json['isLoved'];
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     data['reactionCount'] = this.reactionCount;
     data['createdBy'] = this.createdBy;
+    data['isLoved'] = this.isLoved;
     return data;
   }
 }

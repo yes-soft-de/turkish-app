@@ -91,7 +91,7 @@ class _VerticalFabState extends State<VerticalFab>
           );
         },
         tooltip: 'Add',
-        child: Icon(Icons.mobile_screen_share),
+        child: Icon(Icons.phone_iphone),
       ),
     );
   }

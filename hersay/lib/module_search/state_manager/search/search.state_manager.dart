@@ -15,6 +15,9 @@ class SearchStateManager{
       );
 
   void search(String searchQuery,SearchScreenState screenState){
+    _stateSubject
+        .add(SearchStateLoading( screenState));
+
     _service.search(searchQuery).then((value) {
       if (value == null) {
         _stateSubject

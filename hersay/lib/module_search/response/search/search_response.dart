@@ -43,8 +43,8 @@ class Data {
   String city;
   String image;
   Null reaction;
-  Null userName;
-  Null imageUser;
+  String userName;
+  String imageUser;
   String state;
   String type;
   String cpu;

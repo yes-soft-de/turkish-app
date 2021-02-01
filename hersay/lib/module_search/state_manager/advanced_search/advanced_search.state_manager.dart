@@ -20,6 +20,9 @@ class AdvancedSearchStateManager{
       String city,
       int price,
       AdvancedSearchScreenState screenState){
+    _stateSubject
+        .add(AdvancedSearchStateLoading(  screenState));
+
     _service.filteredSearch(entity,city,price).then((value) {
       if (value == null) {
         _stateSubject

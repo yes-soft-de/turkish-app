@@ -4,6 +4,7 @@ import 'package:intl/intl.dart';
 
 class NotificationModel {
   String userName;
+  String userImage;
   String entityName;
   String date;
 
@@ -11,6 +12,7 @@ class NotificationModel {
     this.userName,
     this.date,
     this.entityName,
+    this.userImage,
   });
 
   static List<NotificationModel> getNotificationModelList(NotificationResponse response){
@@ -24,6 +26,7 @@ class NotificationModel {
           date: df.format(date),
           userName: element.username,
           entityName: element.entityName,
+          userImage: element.userImage,
         )
       );
     });

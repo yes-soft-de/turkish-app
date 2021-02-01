@@ -653,10 +653,10 @@ class S {
     );
   }
 
-  /// `حول`
+  /// `About`
   String get about {
     return Intl.message(
-      'حول',
+      'About',
       name: 'about',
       desc: '',
       args: [],
@@ -943,30 +943,30 @@ class S {
     );
   }
 
-  /// `الاسم`
+  /// `Name`
   String get name {
     return Intl.message(
-      'الاسم',
+      'Name',
       name: 'name',
       desc: '',
       args: [],
     );
   }
 
-  /// `البريد الالكتروني`
+  /// `Email`
   String get email {
     return Intl.message(
-      'البريد الالكتروني',
+      'Email',
       name: 'email',
       desc: '',
       args: [],
     );
   }
 
-  /// `كلمة المرور`
+  /// `Password`
   String get password {
     return Intl.message(
-      'كلمة المرور',
+      'Password',
       name: 'password',
       desc: '',
       args: [],
@@ -1303,10 +1303,10 @@ class S {
     );
   }
 
-  /// `لدي حساب`
+  /// `I have account`
   String get iHaveAnAccount {
     return Intl.message(
-      'لدي حساب',
+      'I have account',
       name: 'iHaveAnAccount',
       desc: '',
       args: [],
@@ -2298,6 +2298,36 @@ class S {
     return Intl.message(
       'Advanced search',
       name: 'advancedSearch',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `choose entity`
+  String get chooseEntity {
+    return Intl.message(
+      'choose entity',
+      name: 'chooseEntity',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `please give us your name`
+  String get pleaseGiveUsYourName {
+    return Intl.message(
+      'please give us your name',
+      name: 'pleaseGiveUsYourName',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Profile updated successfully`
+  String get profileUpdatedSuccessfully {
+    return Intl.message(
+      'Profile updated successfully',
+      name: 'profileUpdatedSuccessfully',
       desc: '',
       args: [],
     );

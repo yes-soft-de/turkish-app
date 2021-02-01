@@ -27,7 +27,7 @@ class LoginStateError extends LoginState {
           onLoginRequest: (email, password) {
             loading = true;
             screen.refresh();
-            screen.loginOwner(
+            screen.login(
               email,
               password,
             );

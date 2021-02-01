@@ -1,8 +1,13 @@
 class RegisterRequest {
+  String userName;
   String userID;
   String password;
 
-  RegisterRequest({this.userID, this.password, });
+  RegisterRequest({
+    this.userID,
+    this.password,
+    this.userName,
+  });
 
   RegisterRequest.fromJson(Map<String, dynamic> json) {
     userID = json['userID'];
