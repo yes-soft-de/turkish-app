@@ -67,23 +67,40 @@ class ReactionManager
         $response = [];
 
         $results = $this->repository->getNotifications($userID);
-
+        //dd($results);
         foreach ($results as $result)
         {
             if($result['entity'] == "car")
             {
-                 $result['entityName'] = ($this->carManager->getCarById($result['itemID']))[0]['brand'];
+                $car = $this->carManager->getCarOfUserById($userID, $result['itemID']);
+
+                if($car)
+                {
+                    $result['entityName'] = $car[0]['brand'];
+                    $response[] = $result;
+                }
             }
             elseif ($result['entity'] == "device")
             {
-                $result['entityName'] = ($this->deviceManager->getDeviceById($result['itemID']))[0]['brand'];
+                $device = $this->deviceManager->getDeviceOfUserById($userID, $result['itemID']);
+                
+                if($device)
+                {
+                    $result['entityName'] = $device[0]['brand'];
+                    $response[] = $result;
+                }
             }
             elseif ($result['entity'] == "realEstate")
             {
-                $result['entityName'] = ($this->realEstateManager->getRealEstateById($result['itemID']))[0]['realEstateType'];
-            }
+                $realEstate = $this->realEstateManager->getRealEstateOfUserById($userID, $result['itemID']);
 
-            $response[] = $result;
+                if($realEstate)
+                {
+                    $result['entityName'] = $realEstate[0]['realEstateType'];
+                    $response[] = $result;
+                }
+            }
+            //$response[] = $result;
         }
 
         return $response;

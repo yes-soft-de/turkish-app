@@ -197,4 +197,28 @@ class RealEstateEntityRepository extends ServiceEntityRepository
             ->getResult();
     }
    
+    public function getRealEstateOfUserById($userID, $id)
+    {
+        return $this->createQueryBuilder('RealEstateEntity')
+            ->select('RealEstateEntity.country','RealEstateEntity.city', 'RealEstateEntity.space', 'RealEstateEntity.price', 'RealEstateEntity.description', 'RealEstateEntity.status',
+                'RealEstateEntity.createdBy', 'RealEstateEntity.createdAt', 'RealEstateEntity.updateAt', 'RealEstateEntity.state', 'RealEstateEntity.image', 'RealEstateEntity.specialLink',
+                'RealEstateEntity.numberOfFloors', 'RealEstateEntity.cladding', 'RealEstateEntity.homeFurnishing', 'RealEstateEntity.realEstateType',
+                'RealEstateEntity.rooms', 'userProfileEntity.userName as username', 'userProfileEntity.image as userImage')
+
+            ->andWhere('RealEstateEntity.id = :id')
+            ->andWhere('RealEstateEntity.createdBy = :userID')
+
+            ->setParameter('id', $id)
+            ->setParameter('userID', $userID)
+
+            ->leftJoin(
+                UserProfileEntity::class,
+                'userProfileEntity',
+                Join::WITH,
+                'userProfileEntity.userID = RealEstateEntity.createdBy'
+            )
+
+            ->getQuery()
+            ->getResult();
+    }
 }

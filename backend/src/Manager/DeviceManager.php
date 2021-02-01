@@ -129,5 +129,10 @@ class DeviceManager
 
         return $devices;
     }
+
+    public function getDeviceOfUserById($userID, $id)
+    {
+        return $this->deviceEntityRepository->getDeviceOfUserById($userID, $id);
+    }
     
 }

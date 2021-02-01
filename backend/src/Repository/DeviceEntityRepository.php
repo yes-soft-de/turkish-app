@@ -139,4 +139,28 @@ class DeviceEntityRepository extends ServiceEntityRepository
             ->getResult();
     }
 
+    public function getDeviceOfUserById($userID, $id)
+    {
+        return $this->createQueryBuilder('device')
+            ->select('device.id', 'device.specialLink', 'device.image','device.brand', 'device.type', 'device.cpu', 'device.ram',
+                'device.battery', 'device.price', 'device.yearOfRelease', 'device.description', 'device.status', 'device.createdAt', 'device.createdBy',
+                'device.updateAt', 'device.country', 'device.city', 'device.durationOfUse', 'device.gauge', 'userProfileEntity.userName as username', 'userProfileEntity.image as userImage')
+
+            ->andWhere('device.id = :id')
+            ->andWhere('device.createdBy = :userID')
+
+            ->setParameter('id', $id)
+            ->setParameter('userID', $userID)
+
+            ->leftJoin(
+                UserProfileEntity::class,
+                'userProfileEntity',
+                Join::WITH,
+                'userProfileEntity.userID = device.createdBy'
+            )
+
+            ->getQuery()
+            ->getResult();
+    }
+
 }

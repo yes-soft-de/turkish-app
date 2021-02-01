@@ -132,4 +132,9 @@ class RealEstateManager
         return $realEstates;
     }
     
+    public function getRealEstateOfUserById($userID, $id)
+    {
+        return $this->repository->getRealEstateOfUserById($userID, $id);
+    }
+    
 }

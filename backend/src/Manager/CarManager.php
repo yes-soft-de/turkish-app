@@ -138,5 +138,10 @@ class CarManager
 
         return $cars;
     }
+
+    public function getCarOfUserById($userID, $id)
+    {
+        return $this->carEntityRepository->getCarOfUserById($userID, $id);
+    }
     
 }

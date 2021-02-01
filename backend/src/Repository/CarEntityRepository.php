@@ -196,4 +196,28 @@ class CarEntityRepository extends ServiceEntityRepository
             ->getQuery()
             ->getResult();
     }
+
+    public function getCarOfUserById($userID, $id)
+    {
+        return $this->createQueryBuilder('car')
+            ->select("car.id", "car.brand", "car.company", "car.yearOfRelease", "car.engine", "car.price", "car.description",
+                "car.status", "car.createdBy", "car.createdAt", "car.updateAt", "car.distance", "car.carType", "car.gearType", "car.cc", "car.fuel",
+                "car.country", "car.city", "car.image", "car.specialLink", 'userProfileEntity.userName as username', 'userProfileEntity.image as userImage')
+
+            ->andWhere('car.id = :id')
+            ->andWhere('car.createdBy = :userID')
+
+            ->setParameter('id', $id)
+            ->setParameter('userID', $userID)
+
+            ->leftJoin(
+                UserProfileEntity::class,
+                'userProfileEntity',
+                Join::WITH,
+                'userProfileEntity.userID = car.createdBy'
+            )
+
+            ->getQuery()
+            ->getResult();
+    }
 }
