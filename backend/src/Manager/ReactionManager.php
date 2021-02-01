@@ -72,15 +72,15 @@ class ReactionManager
         {
             if($result['entity'] == "car")
             {
-                 $result['entityName'] = $this->carManager->getCarById($result['itemID'])[0]['brand'];
+                 $result['entityName'] = ($this->carManager->getCarById($result['itemID']))[0]['brand'];
             }
             elseif ($result['entity'] == "device")
             {
-                $result['entityName'] = $this->deviceManager->getDeviceById($result['itemID'])[0]['brand'];
+                $result['entityName'] = ($this->deviceManager->getDeviceById($result['itemID']))[0]['brand'];
             }
             elseif ($result['entity'] == "realEstate")
             {
-                $result['entityName'] = $this->realEstateManager->getRealEstateById($result['itemID'])[0]['realEstateType'];
+                $result['entityName'] = ($this->realEstateManager->getRealEstateById($result['itemID']))[0]['realEstateType'];
             }
 
             $response[] = $result;
