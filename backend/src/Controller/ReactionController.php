@@ -104,6 +104,16 @@ class ReactionController extends BaseController
     }
 
     /**
+     * @Route("/reaction/{entity}/{itemID}", name="removeReactionForItem", methods={"DELETE"})
+     */
+    public function removeReaction($entity, $itemID)
+    {
+        $result = $this->reactionService->removeReaction($this->getUserId(), $entity, $itemID);
+
+        return $this->response($result, self::DELETE);
+    }
+
+    /**
      * @Route("/reaction/{id}", name="removeReaction", methods={"DELETE"})
      */
     public function delete($id)

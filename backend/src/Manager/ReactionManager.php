@@ -67,7 +67,7 @@ class ReactionManager
         $response = [];
 
         $results = $this->repository->getNotifications($userID);
-        //dd($results);
+        
         foreach ($results as $result)
         {
             if($result['entity'] == "car")
@@ -100,7 +100,7 @@ class ReactionManager
                     $response[] = $result;
                 }
             }
-            //$response[] = $result;
+            
         }
 
         return $response;
@@ -118,6 +118,21 @@ class ReactionManager
         {
             return false;
         }
+    }
+
+    public function removeReaction($userID, $entity, $itemID)
+    {
+        $data['entity'] = $entity;
+
+        $reaction = $this->getReactionForUser($data, $itemID, $userID);
+
+        if($reaction)
+        {
+            $this->entityManager->remove($reaction[0]);
+            $this->entityManager->flush();
+        }
+
+        return $reaction[0];
     }
 
     public function delete($id)
