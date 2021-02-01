@@ -102,4 +102,21 @@ class ReactionManager
             return false;
         }
     }
+
+    public function delete($id)
+    {
+        $reaction = $this->repository->find($id);
+
+        if($reaction)
+        {
+            $this->entityManager->remove($reaction);
+            $this->entityManager->flush();
+        }
+        else
+        {
+            return null;
+        }
+
+        return $reaction;
+    }
 }

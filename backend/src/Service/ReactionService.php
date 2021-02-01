@@ -95,4 +95,17 @@ class ReactionService
     {
         return $this->reactionManager->checkUserLoved($id, $userID, $entity);
     }
+
+    public function delete($id)
+    {
+        $reactionResult = $this->reactionManager->delete($id);
+
+        if($reactionResult == null)
+        {
+            return null;
+        }
+
+        return  $this->autoMapping->map(ReactionEntity::class, ReactionGetByUserResponse::class, $reactionResult);
+    }
+
 }

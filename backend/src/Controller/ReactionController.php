@@ -102,4 +102,14 @@ class ReactionController extends BaseController
 
         return $this->response($result, self::FETCH);
     }
+
+    /**
+     * @Route("/reaction/{id}", name="removeReaction", methods={"DELETE"})
+     */
+    public function delete($id)
+    {
+        $result = $this->reactionService->delete($id);
+
+        return $this->response($result, self::DELETE);
+    }
 }
