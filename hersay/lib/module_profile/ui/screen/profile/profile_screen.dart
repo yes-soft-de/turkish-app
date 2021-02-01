@@ -1,23 +1,65 @@
 import 'package:flutter/material.dart';
 import 'package:hersay/generated/l10n.dart';
 import 'package:hersay/module_navigation/ui/widget/navigation_drawer/anime_navigation_drawer.dart';
+import 'package:hersay/module_profile/state_manager/profile/profile.state_manager.dart';
+import 'package:hersay/module_profile/ui/state/profile/profile.state.dart';
 import 'package:hersay/utils/project_colors/project_colors.dart';
 import 'package:hersay/utils/widgets/turkish_app_bar/turkish_app_bar.dart';
 import 'package:inject/inject.dart';
 
 @provide
 class ProfileScreen extends StatefulWidget {
+  final ProfileStateManager _stateManager;
+
+  ProfileScreen(
+      this._stateManager,
+      );
+
   @override
-  _ProfileScreenState createState() => _ProfileScreenState();
+  ProfileScreenState createState() => ProfileScreenState();
 }
 
-class _ProfileScreenState extends State<ProfileScreen> {
+class ProfileScreenState extends State<ProfileScreen> {
   final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
+  ProfileState currentState;
 
   @override
+  void initState() {
+    super.initState();
+    currentState = ProfileStateInit(this);
+    widget._stateManager.stateStream.listen((event) {
+      currentState = event;
+      if(this.mounted){
+        setState(() {
+
+        });
+      }
+    });
+  }
+
+  void getProfile(){
+    widget._stateManager.getProfileScreenData(this);
+  }
+
+  void refresh(){
+    setState(() {
+
+    });
+  }
+  @override
   Widget build(BuildContext context) {
-    double height = MediaQuery.of(context).size.height;
-    return _screenUi(height);
+    if (currentState is ProfileStateInit) {
+
+      getProfile();
+    }
+
+
+    return  Scaffold(
+      key: _scaffoldKey,
+      appBar: TurkishAppBar.getTurkishAppBar(context, _scaffoldKey, S.of(context).profile),
+      drawer: TurkishNavigationDrawer(),
+      body: currentState.getUI(context),
+    );
   }
 
   Widget _screenUi(double height) {

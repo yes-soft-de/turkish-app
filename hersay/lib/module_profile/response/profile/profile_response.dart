@@ -1,9 +1,23 @@
+import 'package:hersay/module_profile/response/all_cars/all_cars_response.dart';
+import 'package:hersay/module_profile/response/all_devices/all_devices_response.dart';
+import 'package:hersay/module_profile/response/all_real_estates/all_real_estates_response.dart';
+
 class ProfileResponse {
   String statusCode;
   String msg;
   Data data;
+  AllDevicesResponse  electronicDevices;
+  AllCarsResponse cars;
+  AllRealEstatesResponse realEstates;
 
-  ProfileResponse({this.statusCode, this.msg, this.data});
+  ProfileResponse({
+    this.statusCode,
+    this.msg,
+    this.data,
+    this.electronicDevices,
+    this.cars,
+    this.realEstates,
+  });
 
   ProfileResponse.fromJson(Map<String, dynamic> json) {
     statusCode = json['status_code'];
