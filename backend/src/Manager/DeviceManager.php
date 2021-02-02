@@ -95,21 +95,31 @@ class DeviceManager
         return $deviceEntity;
     }
 
-    public function getFilter($price, $location)
+    public function getFilter($price, $price_2, $location)
     {
-        if ($location != null && $price == null)
+        if ($location != null && $price == null && $price_2 == null)
         {
             return $this->deviceEntityRepository->getFilterCity($location);
         }
 
-        elseif ($price != null && $location == null)
+        elseif ($price != null && $location == null && $price_2 == null)
         {
             return $this->deviceEntityRepository->getFilterPrice($price);
         }
 
-        elseif ($price != null && $location != null)
+        elseif ($price != null && $location != null && $price_2 == null)
         {
             return $this->deviceEntityRepository->getFilterByPriceAndCity($price, $location);
+        }
+
+        elseif ($price != null && $price_2 != null && $location == null)
+        {
+            return $this->deviceEntityRepository->getFilterByTwoPrices($price, $price_2);
+        }
+
+        elseif ($price != null && $price_2 != null && $location != null)
+        {
+            return $this->deviceEntityRepository->getFilterByTwoPricesAndCity($price, $price_2, $location);
         }
     }
 

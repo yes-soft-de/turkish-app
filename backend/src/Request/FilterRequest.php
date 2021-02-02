@@ -12,6 +12,8 @@ class FilterRequest
 
     private $city;
 
+    private $price_2;
+
     /**
      * @return mixed
      */
@@ -34,6 +36,14 @@ class FilterRequest
     public function getCity()
     {
         return $this->city;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getPrice2()
+    {
+        return $this->price_2;
     }
 
 }

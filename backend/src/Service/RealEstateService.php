@@ -179,11 +179,11 @@ class RealEstateService
         }
     }
 
-    public function getFilter($price, $location)
+    public function getFilter($price, $price_2, $location)
     {
         $response = [];
 
-        $result = $this->realEstateManager->getFilter($price, $location);
+        $result = $this->realEstateManager->getFilter($price, $price_2, $location);
       
         foreach ($result as $row)
         {

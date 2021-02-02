@@ -143,11 +143,11 @@ class DeviceService
         }
     }
 
-    public function getFilter($price, $location)
+    public function getFilter($price, $price_2, $location)
     {
         $response = [];
 
-        $result = $this->deviceManager->getFilter($price, $location);
+        $result = $this->deviceManager->getFilter($price, $price_2, $location);
       
         foreach ($result as $row)
         {

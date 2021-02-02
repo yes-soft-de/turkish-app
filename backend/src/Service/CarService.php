@@ -189,11 +189,11 @@ class CarService
         }
     }
 
-    public function getFilter($price, $location)
+    public function getFilter($price, $price_2, $location)
     {
         $response = [];
 
-        $result = $this->carManager->getFilter($price, $location);
+        $result = $this->carManager->getFilter($price, $price_2, $location);
 
         foreach ($result as $row)
         {

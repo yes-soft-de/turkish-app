@@ -183,6 +183,38 @@ class CarEntityRepository extends ServiceEntityRepository
             ->getArrayResult();
     }
 
+    public function getFilterByTwoPrices($price, $price_2)
+    {
+        return $this->createQueryBuilder('car')
+
+            ->andWhere('car.price >= :price')
+            ->andWhere('car.price <= :price2')
+            ->andWhere("car.state = 'Accepted'")
+
+            ->setParameter('price', $price)
+            ->setParameter('price2', $price_2)
+
+            ->getQuery()
+            ->getArrayResult();
+    }
+
+    public function getFilterByTwoPricesAndCity($price, $price_2, $location)
+    {
+        return $this->createQueryBuilder('car')
+
+            ->andWhere('car.price >= :price')
+            ->andWhere('car.price <= :price2')
+            ->andWhere('car.city = :value')
+            ->andWhere("car.state = 'Accepted'")
+
+            ->setParameter('price', $price)
+            ->setParameter('price2', $price_2)
+            ->setParameter('value', $location)
+
+            ->getQuery()
+            ->getArrayResult();
+    }
+
     public function getSoldCarsOfUser($userID)
     {
         return $this->createQueryBuilder('car')

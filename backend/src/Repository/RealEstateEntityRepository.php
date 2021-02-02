@@ -183,6 +183,36 @@ class RealEstateEntityRepository extends ServiceEntityRepository
             ->getArrayResult();
     }
 
+    public function getFilterByTwoPrices($price, $price_2)
+    {
+        return $this->createQueryBuilder('realEstate')
+
+            ->andWhere('realEstate.price >= :price')
+            ->andWhere('realEstate.price <= :price2')
+
+            ->setParameter('price', $price)
+            ->setParameter('price2', $price_2)
+
+            ->getQuery()
+            ->getArrayResult();
+    }
+
+    public function getFilterByTwoPricesAndCity($price, $price_2, $location)
+    {
+        return $this->createQueryBuilder('realEstate')
+
+            ->andWhere('realEstate.price >= :price')
+            ->andWhere('realEstate.price <= :price2')
+            ->andWhere('realEstate.city = :value')
+
+            ->setParameter('price', $price)
+            ->setParameter('price2', $price_2)
+            ->setParameter('value', $location)
+
+            ->getQuery()
+            ->getArrayResult();
+    }
+
     public function getSoldRealEstatesOfUser($userID)
     {
         return $this->createQueryBuilder('realEstateEntity')

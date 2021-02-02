@@ -125,6 +125,36 @@ class DeviceEntityRepository extends ServiceEntityRepository
             ->getArrayResult();
     }
 
+    public function getFilterByTwoPrices($price, $price_2)
+    {
+        return $this->createQueryBuilder('device')
+
+            ->andWhere('device.price >= :price')
+            ->andWhere('device.price <= :price2')
+
+            ->setParameter('price', $price)
+            ->setParameter('price2', $price_2)
+
+            ->getQuery()
+            ->getArrayResult();
+    }
+
+    public function getFilterByTwoPricesAndCity($price, $price_2, $location)
+    {
+        return $this->createQueryBuilder('device')
+
+            ->andWhere('device.price >= :price')
+            ->andWhere('device.price <= :price2')
+            ->andWhere('device.city = :value')
+
+            ->setParameter('price', $price)
+            ->setParameter('price2', $price_2)
+            ->setParameter('value', $location)
+
+            ->getQuery()
+            ->getArrayResult();
+    }
+
     public function getSoldDevicesOfUser($userID)
     {
         return $this->createQueryBuilder('device')

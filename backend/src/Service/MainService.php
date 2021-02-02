@@ -52,15 +52,15 @@ class MainService
 
         if($entity == "car")
         {
-            return $this->carService->getFilter($request->getPrice(), $request->getCity());
+            return $this->carService->getFilter($request->getPrice(), $request->getPrice2(), $request->getCity());
         }
         elseif ($entity == "device")
         {
-            return $this->deviceService->getFilter($request->getPrice(), $request->getCity());
+            return $this->deviceService->getFilter($request->getPrice(), $request->getPrice2(), $request->getCity());
         }
         elseif ($entity == "realEstate")
         {
-            return $this->realEstateService->getFilter($request->getPrice(), $request->getCity());
+            return $this->realEstateService->getFilter($request->getPrice(), $request->getPrice2(), $request->getCity());
         }
     }
 
