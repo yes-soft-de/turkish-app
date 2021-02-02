@@ -538,33 +538,57 @@ class AddRealEstateSuccessState extends AddRealEstateState {
 
   @override
   Widget getUI(BuildContext context) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-      crossAxisAlignment: CrossAxisAlignment.center,
-      children: [
-        Container(
-          padding: EdgeInsets.all(10),
-          child: Center(
-            child: Text(S.of(context).yourRequestHasBeenAddedAndInHoldForAdmin),
-          ),
-        ),
-        RaisedButton(
-          color: Theme.of(context).primaryColor,
-          textColor: Colors.white,
-          padding: EdgeInsets.all(24),
-          onPressed: () {
-            Navigator.of(context).pushNamedAndRemoveUntil(
-              MainRoutes.MAIN_SCREEN_ROUTE,
-              (r) => false,
-            );
-          },
-          child: Expanded(
-            child: Text(
-              'Ok',
+    return Container(
+      color: ProjectColors.THEME_COLOR,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Container(
+
+            padding: EdgeInsets.all(10),
+            child: Center(
+              child: Container(
+                width: 250,
+                child: Text(
+                  S.of(context).yourRequestHasBeenAddedAndInHoldForAdmin,
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                      color: Colors.white
+                  ),
+                ),
+              ),
             ),
           ),
-        ),
-      ],
+
+          GestureDetector(
+            onTap: (){
+              Navigator.of(context).pushNamedAndRemoveUntil(
+                MainRoutes.MAIN_SCREEN_ROUTE,
+                    (r) => false,
+              );
+            },
+            child: Container(
+              width: 175,
+              height: 50,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(50),
+                color: Colors.black45,
+              ),
+              child: Center(
+                child: Text(
+                  S.of(context).backToHome,
+                  style: TextStyle(
+                    color: Colors.white,
+                  ),
+                ),
+              ),
+            ),
+          ),
+
+
+        ],
+      ),
     );
   }
 }

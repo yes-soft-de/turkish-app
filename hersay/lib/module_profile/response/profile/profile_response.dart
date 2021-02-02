@@ -41,14 +41,18 @@ class Data {
   String location;
   String story;
   String image;
+  String country;
+  String city;
 
-  Data({this.userName, this.location, this.story, this.image});
+  Data({this.userName, this.location, this.story, this.image,this.city, this.country,});
 
   Data.fromJson(Map<String, dynamic> json) {
     userName = json['userName'];
     location = json['location'];
     story = json['story'];
     image = json['image'];
+    country = json['country'];
+    city = json['city'];
   }
 
   Map<String, dynamic> toJson() {
@@ -57,6 +61,8 @@ class Data {
     data['location'] = this.location;
     data['story'] = this.story;
     data['image'] = this.image;
+    data['country'] = this.country;
+    data['city'] = this.city;
     return data;
   }
 }

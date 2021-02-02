@@ -37,7 +37,7 @@ class RegisterScreenState extends State<RegisterScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: _currentState.getUI(context),
+      body: SingleChildScrollView(child: _currentState.getUI(context)),
     );
   }
 

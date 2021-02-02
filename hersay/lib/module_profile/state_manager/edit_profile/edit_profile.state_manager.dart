@@ -22,12 +22,12 @@ class EditProfileStateManager {
       );
 
 
-  void updateProfile(String userName,String imagePath, EditProfileScreenState screenState) {
+  void updateProfile(String userName,String country,String city ,String imagePath, EditProfileScreenState screenState) {
     _authService.isLoggedIn.then((value) {
       if (value) {
 
         _stateSubject.add(EditProfileStateLoading(screenState));
-        _profileService.updateMyProfile(userName, imagePath).then((value) {
+        _profileService.updateMyProfile(userName, country, city, imagePath).then((value) {
           if (value == null) {
             _stateSubject
                 .add(EditProfileStateError('Error Finding Data', screenState));

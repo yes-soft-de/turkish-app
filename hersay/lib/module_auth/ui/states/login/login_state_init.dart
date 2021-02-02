@@ -14,53 +14,14 @@ class LoginStateInit extends LoginState {
 
   @override
   Widget getUI(BuildContext context) {
-    return SafeArea(
-      child: EmailPasswordLoginForm(
-        loading: loading,
-        onLoginRequest: (email, password) {
-          screen.login(
-            email,
-            password,
-          );
-        },
-      ),
-      /* Column(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
-        children: [
-
-//          Expanded(
-//              child: PageView(
-//                controller: loginTypeController,
-//                onPageChanged: (pos) {
-//
-//                  screen.refresh();
-//                },
-//                children: [
-//                  PhoneLoginWidget(
-//                    codeSent: false,
-//                    loading: loading,
-//                    onLoginRequested: (phone) {
-//                      loading = true;
-//                      screen.loginCaptain(phone);
-//                    },
-//                    onRetry: () {},
-//                    onConfirm: (confirmCode) {
-//                      screen.confirmCaptainSMS(confirmCode);
-//                    },
-//                  ),
-//                  EmailPasswordLoginForm(
-//                    loading: loading,
-//                    onLoginRequest: (email, password) {
-//                      screen.loginOwner(
-//                        email,
-//                        password,
-//                      );
-//                    },
-//                  ),
-//                ],
-//              )),
-        ],
-      ),*/
+    return EmailPasswordLoginForm(
+      loading: loading,
+      onLoginRequest: (email, password) {
+        screen.login(
+          email,
+          password,
+        );
+      },
     );
   }
 }

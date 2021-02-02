@@ -28,6 +28,8 @@ class EditProfileStateInit extends EditProfileState {
   }
 
   TextEditingController _nameController = TextEditingController() ;
+  TextEditingController _cityController = TextEditingController() ;
+  TextEditingController _countryController = TextEditingController() ;
 
   String _errorMsg;
   bool loading = false;
@@ -95,23 +97,109 @@ class EditProfileStateInit extends EditProfileState {
           ),
 
 
+          Container(
+            width: MediaQuery.of(context).size.width * 0.9,
+            child: Card(
+              elevation: 10,
 
-          Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: TextFormField(
-                controller: _nameController,
-                decoration: InputDecoration(
-                  labelText: S.of(context).name,
-                  hintText: S.of(context).name,
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(15)),
+              child: Container(
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(15),
+                  color: Colors.black12,
                 ),
-                keyboardType: TextInputType.text,
-                onFieldSubmitted: (value)=> _nameController.text = value,
-                validator: (v) {
-                  if (v.isEmpty) {
-                    return S.of(context).pleaseProvideYourName;
-                  }
-                  return null;
-                }),
+                child: TextFormField(
+                  controller: _nameController,
+                  decoration: InputDecoration(
+                    prefixIcon: Icon(Icons.person),
+                    border: OutlineInputBorder(
+                      borderSide: BorderSide.none,
+                      borderRadius: BorderRadius.circular(20),
+                    ),
+                    labelText: S.of(context).name,
+                  ),
+                  textInputAction: TextInputAction.next,
+
+                  // Move focus to next
+                  validator: (result) {
+                    if (result.isEmpty) {
+                      return S.of(context).pleaseEnterYourEmail;
+                    }
+                    return null;
+                  },
+                ),
+              ),
+            ),
+          ),
+          Container(
+            width: MediaQuery.of(context).size.width * 0.9,
+            child: Card(
+              elevation: 10,
+
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(15)),
+              child: Container(
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(15),
+                  color: Colors.black12,
+                ),
+                child: TextFormField(
+                  controller: _countryController,
+                  decoration: InputDecoration(
+                    prefixIcon: Icon(Icons.person),
+                    border: OutlineInputBorder(
+                      borderSide: BorderSide.none,
+                      borderRadius: BorderRadius.circular(20),
+                    ),
+                    labelText: S.of(context).country,
+                  ),
+                  textInputAction: TextInputAction.next,
+
+                  // Move focus to next
+                  validator: (result) {
+                    if (result.isEmpty) {
+                      return S.of(context).pleaseEnterYourEmail;
+                    }
+                    return null;
+                  },
+                ),
+              ),
+            ),
+          ),
+          Container(
+            width: MediaQuery.of(context).size.width * 0.9,
+            child: Card(
+              elevation: 10,
+
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(15)),
+              child: Container(
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(15),
+                  color: Colors.black12,
+                ),
+                child: TextFormField(
+                  controller: _cityController,
+                  decoration: InputDecoration(
+                    prefixIcon: Icon(Icons.person),
+                    border: OutlineInputBorder(
+                      borderSide: BorderSide.none,
+                      borderRadius: BorderRadius.circular(20),
+                    ),
+                    labelText: S.of(context).city,
+                  ),
+                  textInputAction: TextInputAction.next,
+                  // Move focus to next
+                  validator: (result) {
+                    if (result.isEmpty) {
+                      return S.of(context).pleaseEnterYourEmail;
+                    }
+                    return null;
+                  },
+                ),
+              ),
+            ),
           ),
 
           _errorMsg != null ? Text(_errorMsg) : Container(),
@@ -132,6 +220,8 @@ class EditProfileStateInit extends EditProfileState {
                
                 screenState.updateProfile(
                   _nameController.text.trim(),
+                  _countryController.text.trim(),
+                  _cityController.text.trim(),
                   userImage,
                 );
               },

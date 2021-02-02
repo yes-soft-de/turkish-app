@@ -75,11 +75,41 @@ class CarDetailsStateDataLoaded extends CarDetailsState {
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
+                Row(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.all(5.0),
+                      child: Container(
+                        height: 65,
+                        width: 65,
+                        child: CircleAvatar(
+                          radius: 65,
+                          backgroundImage: NetworkImage(
+                              '${car.userImage}'),
+                        ),
+                      ),
+                    ),
+                    SizedBox(
+                      width: 10,
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Text(
+                        '${car.userName}',
+                        style: TextStyle(
+                          fontSize: 14,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
                Container(
                  width: MediaQuery.of(context).size.width,
                  child: Row(
                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                    children: [
+
                      // car model
                      Text(
                        '${car.brand}',
@@ -106,35 +136,7 @@ class CarDetailsStateDataLoaded extends CarDetailsState {
                  ),
                ),
                 // owner
-                Row(
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.all(5.0),
-                      child: Container(
-                        height: 20,
-                        width: 20,
-                        child: CircleAvatar(
-                          radius: 20,
-                          backgroundImage: NetworkImage(
-                              '${car.userImage}'),
-                        ),
-                      ),
-                    ),
-                    SizedBox(
-                      width: 10,
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Text(
-                        '${car.userName}',
-                        style: TextStyle(
-                          fontSize: 12,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
+
                 // car image
                 Container(
                   width: width,

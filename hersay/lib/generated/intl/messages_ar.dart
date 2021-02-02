@@ -53,6 +53,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "anime" : MessageLookupByLibrary.simpleMessage("Anime"),
     "appartmentFloorOrNumberOfFloors" : MessageLookupByLibrary.simpleMessage("عدد الطوابق"),
     "automatic" : MessageLookupByLibrary.simpleMessage("تلقائي"),
+    "backToHome" : MessageLookupByLibrary.simpleMessage("Back to home"),
     "battery" : MessageLookupByLibrary.simpleMessage("البطارية"),
     "beTheFirstToComment" : MessageLookupByLibrary.simpleMessage("كن أول المعلقين"),
     "benzene" : MessageLookupByLibrary.simpleMessage("بنزين"),

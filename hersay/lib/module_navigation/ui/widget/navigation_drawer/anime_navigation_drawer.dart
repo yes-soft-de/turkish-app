@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hersay/generated/l10n.dart';
-import 'package:hersay/module_notification/notification_routes.dart';
 import 'package:hersay/module_profile/profile_routes.dart';
 import 'package:hersay/module_search/search_routes.dart';
 import 'package:hersay/module_settings/setting_routes.dart';

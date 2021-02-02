@@ -25,6 +25,8 @@ class ProfileService{
                ?null
                :response.data.image,
         userName: response.data.userName,
+        city: response.data.city??'Lattakia',
+        country: response.data.country??'Syria',
         realEstates: ProfileModel.toRealEstatesList(response),
         cars : ProfileModel.toCarsList(response),
         electronicDevices:ProfileModel.toElectronicDevicesList(response)
@@ -43,7 +45,7 @@ class ProfileService{
      return await _manager.createProfile(request);
   }
 
-  Future<bool> updateMyProfile(String userName,String imagePath) async{
+  Future<bool> updateMyProfile(String userName,String country , String city ,String imagePath) async{
     String uploadedImageUrl = (imagePath != null)
         ? await _imageUploadService.uploadImage(imagePath)
         :'';
@@ -51,6 +53,8 @@ class ProfileService{
     ProfileRequest request = new ProfileRequest(
       image: uploadedImageUrl,
       userName: userName,
+      country:country,
+      city:city,
       location: '',
       story: '',
     );

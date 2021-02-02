@@ -3,8 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:hersay/generated/l10n.dart';
 import 'package:hersay/main_screen/main_routes.dart';
-import 'package:hersay/main_screen/ui/main_screen.dart';
-import 'package:hersay/module_products/ui/screen/add_car/add_car_sceen.dart';
 import 'package:hersay/module_products/ui/screen/add_electronic_device/add_electronic_device_screen.dart';
 import 'package:hersay/utils/project_colors/project_colors.dart';
 import 'package:image_picker/image_picker.dart';
@@ -607,33 +605,57 @@ class AddElectronicDeviceSuccessState extends AddElectronicDeviceState {
 
   @override
   Widget getUI(BuildContext context) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-      crossAxisAlignment: CrossAxisAlignment.center,
-      children: [
-        Container(
-          padding: EdgeInsets.all(10),
-          child: Center(
-            child: Text(S.of(context).yourRequestHasBeenAddedAndInHoldForAdmin),
-          ),
-        ),
-        RaisedButton(
-          color: Theme.of(context).primaryColor,
-          textColor: Colors.white,
-          padding: EdgeInsets.all(24),
-          onPressed: () {
-            Navigator.of(context).pushNamedAndRemoveUntil(
-              MainRoutes.MAIN_SCREEN_ROUTE,
-              (r) => false,
-            );
-          },
-          child: Expanded(
-            child: Text(
-              'Ok',
+    return Container(
+      color: ProjectColors.THEME_COLOR,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Container(
+
+            padding: EdgeInsets.all(10),
+            child: Center(
+              child: Container(
+                width: 250,
+                child: Text(
+                  S.of(context).yourRequestHasBeenAddedAndInHoldForAdmin,
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                      color: Colors.white
+                  ),
+                ),
+              ),
             ),
           ),
-        ),
-      ],
+
+          GestureDetector(
+            onTap: (){
+              Navigator.of(context).pushNamedAndRemoveUntil(
+                MainRoutes.MAIN_SCREEN_ROUTE,
+                    (r) => false,
+              );
+            },
+            child: Container(
+              width: 175,
+              height: 50,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(50),
+                color: Colors.black45,
+              ),
+              child: Center(
+                child: Text(
+                  S.of(context).backToHome,
+                  style: TextStyle(
+                    color: Colors.white,
+                  ),
+                ),
+              ),
+            ),
+          ),
+
+
+        ],
+      ),
     );
   }
 }

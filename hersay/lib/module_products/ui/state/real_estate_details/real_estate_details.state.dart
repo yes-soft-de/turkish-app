@@ -75,7 +75,35 @@ class RealEstateDetailsStateDataLoaded extends RealEstateDetailsState {
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-
+                Row(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.all(5.0),
+                      child: Container(
+                        height: 65,
+                        width: 65,
+                        child: CircleAvatar(
+                          radius: 65,
+                          backgroundImage: NetworkImage(
+                              '${realEstate.userImage}'),
+                        ),
+                      ),
+                    ),
+                    SizedBox(
+                      width: 10,
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Text(
+                        '${realEstate.userName}',
+                        style: TextStyle(
+                          fontSize: 14,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
                 Container(
                   width: MediaQuery.of(context).size.width,
                   child: Row(
@@ -106,36 +134,7 @@ class RealEstateDetailsStateDataLoaded extends RealEstateDetailsState {
                     ],
                   ),
                 ),
-                // owner
-                Row(
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.all(5.0),
-                      child: Container(
-                        height: 20,
-                        width: 20,
-                        child: CircleAvatar(
-                          radius: 20,
-                          backgroundImage: NetworkImage(
-                              '${realEstate.userImage}' ),
-                        ),
-                      ),
-                    ),
-                    SizedBox(
-                      width: 10,
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Text(
-                        '${realEstate.userName}',
-                        style: TextStyle(
-                          fontSize: 12,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
+
                 // House image
                 Container(
                   width: width,

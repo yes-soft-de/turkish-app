@@ -6,9 +6,9 @@ import 'package:hersay/module_products/products_routes.dart';
 import 'package:hersay/module_profile/model/profile/profile_model.dart';
 import 'package:hersay/module_profile/profile_routes.dart';
 import 'package:hersay/module_profile/ui/screen/profile/profile_screen.dart';
+import 'package:hersay/module_profile/ui/widget/product_card/product_card.dart';
 import 'package:hersay/utils/enums/products/products.dart';
 import 'package:hersay/utils/project_colors/project_colors.dart';
-import 'package:hersay/utils/widgets/product_card/product_card.dart';
 
 
 
@@ -47,7 +47,7 @@ class ProfileStateInit extends ProfileState {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    'Zolfekar Seleten',
+                    'Unknown',
                     style: TextStyle(
                         fontSize: 14,
                         fontWeight: FontWeight.bold,
@@ -154,48 +154,181 @@ class ProfileStateDataLoaded extends ProfileState {
         child: Column(
           children: [
             Container(
-              height: 150,
-              decoration: BoxDecoration(
-                  image: DecorationImage(
-                      image:(profileData.userImage!= null)?
-                          NetworkImage(profileData.userImage )
-                          :AssetImage('assets/images/profilePic.jpg'),
-                      fit: BoxFit.fill)),
+              
+              height: 170,
+              padding: EdgeInsets.all(10),
+              width: MediaQuery.of(context).size.width,
+              color: ProjectColors.SECONDARY_COLOR,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Container(
+                    height: 140,
+                    width: 140,
+                    child: CircleAvatar(
+                      radius: 120,
+                      backgroundImage: (profileData.userImage!= null)
+                          ? NetworkImage(profileData.userImage, )
+                          : AssetImage('assets/images/profilePic.jpg',),
 
+                    ),
+                  ),
+                ],
+              )
             ),
             Container(
-              height: 75,
+              height: 80,
               color: ProjectColors.SECONDARY_COLOR,
               padding: EdgeInsets.symmetric(horizontal: 30),
               margin: EdgeInsets.only(bottom: 5,top: 5),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  Text(
-                   '${ profileData.userName}',
-                    style: TextStyle(
-                        fontSize: 14,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.white),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        '${ profileData.userName}',
+                        style: TextStyle(
+                            fontSize: 14,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white),
+                      ),
+                      GestureDetector(
+                        onTap: (){
+                          Navigator.pushNamed(
+                              context,
+                              ProfileRoutes.EDIT_PROFILE_SCREEN,
+                              arguments: '${profileData.userName}'
+                          );
+                        },
+                        child: Container(
+                          width: 40,
+                          height: 40,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(50),
+                            color: Colors.white,
+                          ),
+                          child: Icon(
+                            Icons.edit,
+                            color:ProjectColors.THEME_COLOR,
+                          ),
+                        ),
+                      ),
+
+                    ],
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Icon(Icons.location_on,color: Colors.white,),
+                      Text(
+                        '${ profileData.country} - ${profileData.city}',
+                        style: TextStyle(
+                            fontSize: 14,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white),
+                      ),
+
+
+                    ],
+                  ),
+                ],
+              )
+            ),
+            Container(
+              color: Colors.black12,
+              margin: EdgeInsets.only(top: 0,bottom: 10),
+              padding: EdgeInsets.symmetric(horizontal: 5,vertical: 10),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: <Widget>[
+
+                  GestureDetector(
+                    onTap: (){
+                      displayedProducts =  profileData.cars + profileData.realEstates + profileData.electronicDevices;
+                      selectedMode = 1;
+                      screenState.refresh();
+                    },
+                    child: Container(
+                      width: 50,
+                      height: 50,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(50),
+                        color: (selectedMode == 1)
+                            ? ProjectColors.SECONDARY_COLOR
+                            :ProjectColors.THEME_COLOR,
+                      ),
+                      child: Center(
+                        child: Text(
+                          S.of(context).all,
+                          style: TextStyle(
+                            color: Colors.white,
+                          ),
+                        ),
+                      ),
+                    ),
                   ),
                   GestureDetector(
                     onTap: (){
-                      Navigator.pushNamed(
-                          context,
-                          ProfileRoutes.EDIT_PROFILE_SCREEN,
-                          arguments: '${profileData.userName}'
-                      );
+                      displayedProducts = profileData.realEstates;
+                      selectedMode = 2;
+                      screenState.refresh();
                     },
                     child: Container(
-                      width: 40,
-                      height: 40,
+                      width: 50,
+                      height: 50,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(50),
-                        color: Colors.white,
+                        color: (selectedMode == 2)
+                            ? ProjectColors.SECONDARY_COLOR
+                            :ProjectColors.THEME_COLOR,
                       ),
                       child: Icon(
-                        Icons.edit,
-                        color:ProjectColors.THEME_COLOR,
+                        Icons.home,
+                        color: Colors.white,
+                      ),
+                    ),
+                  ),
+                  GestureDetector(
+                    onTap: (){
+                      displayedProducts = profileData.cars;
+                      selectedMode = 3;
+                      screenState.refresh();
+                    },
+                    child: Container(
+                      width: 50,
+                      height: 50,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(55),
+                        color: (selectedMode == 3)
+                            ? ProjectColors.SECONDARY_COLOR
+                            :ProjectColors.THEME_COLOR,
+                      ),
+                      child: Icon(
+                        Icons.directions_car,
+                        color: Colors.white,
+                      ),
+                    ),
+                  ),
+                  GestureDetector(
+                    onTap: (){
+                      displayedProducts = profileData.electronicDevices;
+                      selectedMode = 4;
+                      screenState.refresh();
+                    },
+                    child: Container(
+                      width: 50,
+                      height: 50,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(50),
+                        color: (selectedMode == 4)
+                            ? ProjectColors.SECONDARY_COLOR
+                            :ProjectColors.THEME_COLOR,
+                      ),
+                      child: Icon(
+                        Icons.phone_iphone,
+                        color: Colors.white,
                       ),
                     ),
                   ),
@@ -203,176 +336,71 @@ class ProfileStateDataLoaded extends ProfileState {
                 ],
               ),
             ),
+            displayedProducts.isNotEmpty
+                ?
+            GridView.builder(itemBuilder: (BuildContext context, int index){
 
+             return GestureDetector(
+                onTap: () {
+                  switch (displayedProducts[index].type) {
+                    case PRODUCT_TYPE.CAR:
+                      Navigator.pushNamed(
+                          context,
+                          ProductsRoutes.CAR_DETAILS_SCREEN,
+                          arguments: displayedProducts[index].id
+                      );
+                      break;
+                    case PRODUCT_TYPE.ELECTRONIC_DEVICE:
+                      Navigator.pushNamed(
+                          context,
+                          ProductsRoutes.ELECTRONIC_DEVICE_DETAILS_SCREEN,
+                          arguments: displayedProducts[index].id
+                      );
+                      break;
+                    case PRODUCT_TYPE.REAL_ESTATE:
 
+                      Navigator.pushNamed(
+                          context,
+                          ProductsRoutes.REAL_ESTATE_DETAILS_SCREEN,
+                          arguments: displayedProducts[index].id
+                      );
+                      break;
+                  }
+                },
+                child: Container(
+//                  padding: EdgeInsets.symmetric(horizontal: 8, vertical: 8),
+                  child: ProductCard(
+                    image: displayedProducts[index].image,
+                    category: displayedProducts[index].category,
+                    likes: displayedProducts[index].likes,
+                    product: displayedProducts[index].product,
+                    type: displayedProducts[index].type,
+                  ),
+                ),
+              );
+            },
+              padding: EdgeInsets.symmetric(horizontal: 10),
+              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 2,
+                  mainAxisSpacing: 5,
+                  crossAxisSpacing: 5,
+                  childAspectRatio: (4/5)
+              ),
+              itemCount:displayedProducts.length,
 
-            Stack(
-              children: [
-                displayedProducts.isNotEmpty
-                    ? Container(
-                  margin: EdgeInsets.only(top: 80),
-                  child: ListView.builder(
-                    shrinkWrap: true,
-                      itemCount: displayedProducts.length,
-                      itemBuilder: (BuildContext context, int index) {
-                        return GestureDetector(
-                          onTap: () {
-                            switch (displayedProducts[index].type) {
-                              case PRODUCT_TYPE.CAR:
-                                Navigator.pushNamed(
-                                    context,
-                                    ProductsRoutes.CAR_DETAILS_SCREEN,
-                                    arguments: displayedProducts[index].id
-                                );
-                                break;
-                              case PRODUCT_TYPE.ELECTRONIC_DEVICE:
-                                Navigator.pushNamed(
-                                    context,
-                                    ProductsRoutes.ELECTRONIC_DEVICE_DETAILS_SCREEN,
-                                    arguments: displayedProducts[index].id
-                                );
-                                break;
-                              case PRODUCT_TYPE.REAL_ESTATE:
-
-                                Navigator.pushNamed(
-                                    context,
-                                    ProductsRoutes.REAL_ESTATE_DETAILS_SCREEN,
-                                    arguments: displayedProducts[index].id
-                                );
-                                break;
-                            }
-                          },
-                          child: Container(
-                            padding: EdgeInsets.symmetric(horizontal: 8, vertical: 10),
-                            child: ProductCard(
-                              image: displayedProducts[index].image,
-                              category: displayedProducts[index].category,
-                              likes: displayedProducts[index].likes,
-                              owner: displayedProducts[index].owner,
-                              product: displayedProducts[index].product,
-                              specification: displayedProducts[index].specification,
-                              type: displayedProducts[index].type,
-                            ),
-                          ),
-                        );
-                      }),
-                )
+              shrinkWrap: true,
+      )
                 :Container(
-                  margin: EdgeInsets.only(top: 80),
-                  child: Center(
-                    child:Text(
+              margin: EdgeInsets.only(top: 80),
+              child: Center(
+                  child:Text(
                       'You did not upload any products of this type yet'
-                    )
-                  ),
-                ),
+                  )
+              ),
+            ),
 
-                Positioned(
-                  left: 0.0,
-                  right: 0.0,
-                  top: 0.0,
-                  child: Container(
-                    color: Colors.black12,
-                    margin: EdgeInsets.only(top: 0,bottom: 10),
-                    padding: EdgeInsets.symmetric(horizontal: 5,vertical: 10),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: <Widget>[
 
-                        GestureDetector(
-                          onTap: (){
-                            displayedProducts =  profileData.cars + profileData.realEstates + profileData.electronicDevices;
-                            selectedMode = 1;
-                            screenState.refresh();
-                          },
-                          child: Container(
-                            width: 50,
-                            height: 50,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(50),
-                              color: (selectedMode == 1)
-                                  ? ProjectColors.SECONDARY_COLOR
-                                  :ProjectColors.THEME_COLOR,
-                            ),
-                            child: Center(
-                              child: Text(
-                                S.of(context).all,
-                                style: TextStyle(
-                                  color: Colors.white,
-                                ),
-                              ),
-                            ),
-                          ),
-                        ),
-                        GestureDetector(
-                          onTap: (){
-                            displayedProducts = profileData.realEstates;
-                            selectedMode = 2;
-                            screenState.refresh();
-                          },
-                          child: Container(
-                            width: 50,
-                            height: 50,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(50),
-                              color: (selectedMode == 2)
-                                  ? ProjectColors.SECONDARY_COLOR
-                                  :ProjectColors.THEME_COLOR,
-                            ),
-                            child: Icon(
-                              Icons.home,
-                              color: Colors.white,
-                            ),
-                          ),
-                        ),
-                        GestureDetector(
-                          onTap: (){
-                            displayedProducts = profileData.cars;
-                            selectedMode = 3;
-                            screenState.refresh();
-                          },
-                          child: Container(
-                            width: 50,
-                            height: 50,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(55),
-                              color: (selectedMode == 3)
-                                  ? ProjectColors.SECONDARY_COLOR
-                                  :ProjectColors.THEME_COLOR,
-                            ),
-                            child: Icon(
-                              Icons.directions_car,
-                              color: Colors.white,
-                            ),
-                          ),
-                        ),
-                        GestureDetector(
-                          onTap: (){
-                            displayedProducts = profileData.electronicDevices;
-                            selectedMode = 4;
-                            screenState.refresh();
-                          },
-                          child: Container(
-                            width: 50,
-                            height: 50,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(50),
-                              color: (selectedMode == 4)
-                                  ? ProjectColors.SECONDARY_COLOR
-                                  :ProjectColors.THEME_COLOR,
-                            ),
-                            child: Icon(
-                              Icons.phone_iphone,
-                              color: Colors.white,
-                            ),
-                          ),
-                        ),
 
-                      ],
-                    ),
-                  ),
-                ),
-              ],
-            )
           ],
         ),
       ),

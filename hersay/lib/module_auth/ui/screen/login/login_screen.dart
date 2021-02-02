@@ -46,7 +46,9 @@ class LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: _currentState.getUI(context),
+      body: SingleChildScrollView(
+          physics: AlwaysScrollableScrollPhysics(),
+          child: _currentState.getUI(context)),
     );
   }
 

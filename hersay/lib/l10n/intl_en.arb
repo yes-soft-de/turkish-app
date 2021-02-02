@@ -230,5 +230,6 @@
   "advancedSearch": "Advanced search",
   "chooseEntity": "choose entity",
   "pleaseGiveUsYourName": "please give us your name",
-  "profileUpdatedSuccessfully": "Profile updated successfully"
+  "profileUpdatedSuccessfully": "Profile updated successfully",
+  "backToHome": "Back to home"
 }

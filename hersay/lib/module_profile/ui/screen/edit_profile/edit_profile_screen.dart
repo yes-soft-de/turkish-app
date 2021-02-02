@@ -67,8 +67,8 @@ class EditProfileScreenState extends State<EditProfileScreen> {
     );
   }
 
-  void updateProfile(String userName,String imagePath){
-     widget._stateManager.updateProfile(userName, imagePath, this);
+  void updateProfile(String userName,String country, String city,String imagePath){
+     widget._stateManager.updateProfile(userName,country,city, imagePath, this);
   }
 
   @override

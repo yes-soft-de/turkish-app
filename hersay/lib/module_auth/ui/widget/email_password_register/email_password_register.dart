@@ -180,7 +180,7 @@ class _EmailPasswordRegisterFormState extends State<EmailPasswordRegisterForm> {
               child: GestureDetector(
                 onTap: () {
                   Navigator.of(context)
-                      .pushNamed(AuthorizationRoutes.LOGIN_SCREEN);
+                      .pushReplacementNamed(AuthorizationRoutes.LOGIN_SCREEN);
                 },
                 child: Text(
                   S.of(context).iHaveAnAccount,

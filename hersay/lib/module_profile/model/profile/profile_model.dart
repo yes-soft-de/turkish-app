@@ -5,6 +5,8 @@ import 'package:hersay/utils/enums/products/products.dart';
 class ProfileModel{
   String userName;
   String userImage;
+  String country;
+  String city;
   List<ProfileElement> realEstates;
   List<ProfileElement> cars;
   List<ProfileElement> electronicDevices;
@@ -16,6 +18,8 @@ class ProfileModel{
         this.realEstates,
         this.cars,
         this.electronicDevices,
+        this.city,
+        this.country,
       });
 
   static List<ProfileElement> toRealEstatesList(ProfileResponse homeData){
