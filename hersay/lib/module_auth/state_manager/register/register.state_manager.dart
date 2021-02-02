@@ -6,6 +6,7 @@ import 'package:hersay/module_auth/ui/states/register/register_state.dart';
 import 'package:hersay/module_auth/ui/states/register/register_state_code_sent.dart';
 import 'package:hersay/module_auth/ui/states/register/register_state_error.dart';
 import 'package:hersay/module_auth/ui/states/register/register_state_init.dart';
+import 'package:hersay/module_auth/ui/states/register/register_state_loading.dart';
 import 'package:hersay/module_auth/ui/states/register/register_state_success.dart';
 import 'package:inject/inject.dart';
 import 'package:rxdart/rxdart.dart';
@@ -50,6 +51,7 @@ class RegisterStateManager {
   void registerByEmail(String email, String name, String password,
       RegisterScreenState _registerScreenState) {
 
+    _registerStateSubject.add(RegisterStateLoading(_registerScreenState));
     _authService.authListener.listen((event) {
       switch (event) {
         case AuthStatus.AUTHORIZED:

@@ -25,8 +25,8 @@ class ProfileService{
                ?null
                :response.data.image,
         userName: response.data.userName,
-        city: response.data.city??'Lattakia',
-        country: response.data.country??'Syria',
+        city: response.data.city??'',
+        country: response.data.country??'',
         realEstates: ProfileModel.toRealEstatesList(response),
         cars : ProfileModel.toCarsList(response),
         electronicDevices:ProfileModel.toElectronicDevicesList(response)

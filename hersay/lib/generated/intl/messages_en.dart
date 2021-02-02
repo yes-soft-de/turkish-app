@@ -235,6 +235,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "toMyCollection" : MessageLookupByLibrary.simpleMessage("to my collection"),
     "tos" : MessageLookupByLibrary.simpleMessage("TOS"),
     "traveledDistance" : MessageLookupByLibrary.simpleMessage("Traveled Distance :"),
+    "tryAgain" : MessageLookupByLibrary.simpleMessage("Try again"),
     "type" : MessageLookupByLibrary.simpleMessage("Type :"),
     "unAccepted" : MessageLookupByLibrary.simpleMessage("Un accepted"),
     "unFollow" : MessageLookupByLibrary.simpleMessage("الغاء المتابعة"),

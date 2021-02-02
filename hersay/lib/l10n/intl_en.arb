@@ -231,5 +231,6 @@
   "chooseEntity": "choose entity",
   "pleaseGiveUsYourName": "please give us your name",
   "profileUpdatedSuccessfully": "Profile updated successfully",
-  "backToHome": "Back to home"
+  "backToHome": "Back to home",
+  "tryAgain": "Try again"
 }

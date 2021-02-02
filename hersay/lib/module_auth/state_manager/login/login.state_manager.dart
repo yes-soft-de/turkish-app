@@ -6,6 +6,7 @@ import 'package:hersay/module_auth/ui/states/login/login_state.dart';
 import 'package:hersay/module_auth/ui/states/login/login_state_code_sent.dart';
 import 'package:hersay/module_auth/ui/states/login/login_state_error.dart';
 import 'package:hersay/module_auth/ui/states/login/login_state_init.dart';
+import 'package:hersay/module_auth/ui/states/login/login_state_loading.dart';
 import 'package:hersay/module_auth/ui/states/login/login_state_success.dart';
 import 'package:inject/inject.dart';
 import 'package:rxdart/rxdart.dart';
@@ -51,6 +52,7 @@ class LoginStateManager {
   void login(String email, String password, LoginScreenState _loginScreenState) {
     _email = email;
     _password = password;
+    _loginStateSubject.add(LoginStateLoading(_loginScreenState));
     _authService.authListener.listen((event) {
       switch (event) {
         case AuthStatus.AUTHORIZED:
@@ -58,6 +60,7 @@ class LoginStateManager {
           break;
         default:
           _loginStateSubject.add(LoginStateInit(_loginScreenState));
+
           break;
       }
     }).onError((err) {
