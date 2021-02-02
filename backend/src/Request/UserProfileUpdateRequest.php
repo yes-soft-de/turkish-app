@@ -16,6 +16,10 @@ class UserProfileUpdateRequest
 
     private $image;
 
+    private $country;
+
+    private $city;
+
     /**
      * @return mixed
      */

@@ -13,4 +13,8 @@ class UserProfileCreateResponse
     public $story;
 
     public $image;
+
+    public $country;
+
+    public $city;
 }
