@@ -81,7 +81,17 @@ class MainController extends BaseController
     {
         $result = $this->mainService->getHistory($this->getUserId());
 
-        return $this->response($result,self::FETCH);
+        return $this->response($result, self::FETCH);
+    }
+
+    /**
+     * @Route("/userproperties", name="getAllUserProperties", methods={"GET"})
+     */
+    public function getUserProperties()
+    {
+        $result = $this->mainService->getUserProperties($this->getUserId());
+
+        return $this->response($result, self::FETCH);
     }
 
     /**

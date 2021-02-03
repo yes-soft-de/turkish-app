@@ -77,4 +77,17 @@ class MainService
 
         return $response;
     }
+
+    public function getUserProperties($userID)
+    {
+        $response = [];
+
+        $response['cars'] = $this->carService->getCarsOfUser($userID);
+
+        $response['devices'] = $this->deviceService->getDevicesOfUser($userID);
+
+        $response['realEstate'] = $this->realEstateService->getRealEstateByUser($userID);
+
+        return $response;
+    }
 }
