@@ -123,6 +123,17 @@ class RealEstateManager
         {
             return $this->repository->getFilterByTwoPricesAndCity($price, $price_2, $location);
         }
+
+        elseif ($price == null && $location == null && $price_2 != null)
+        {
+            return $this->repository->getFilterPrice($price_2);
+        }
+
+        elseif ($price == null && $location != null && $price_2 != null)
+        {
+            return $this->repository->getFilterByPriceAndCity($price_2, $location);
+        }
+        
     }
 
     public function getRealEstatesByType($type)

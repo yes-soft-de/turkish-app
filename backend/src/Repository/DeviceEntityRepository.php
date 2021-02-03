@@ -72,7 +72,7 @@ class DeviceEntityRepository extends ServiceEntityRepository
     public function getFilterPrice($value)
     {
         return $this->createQueryBuilder('device')
-            ->andWhere('device.price <= :value')
+            ->andWhere('device.price = :value')
             ->setParameter('value', $value)
             ->getQuery()
             ->getArrayResult();
@@ -115,7 +115,7 @@ class DeviceEntityRepository extends ServiceEntityRepository
     {
         return $this->createQueryBuilder('device')
 
-            ->andWhere('device.price <= :price')
+            ->andWhere('device.price = :price')
             ->andWhere('device.city = :value')
 
             ->setParameter('price', $price)

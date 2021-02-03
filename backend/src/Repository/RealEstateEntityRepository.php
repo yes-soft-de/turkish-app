@@ -133,7 +133,7 @@ class RealEstateEntityRepository extends ServiceEntityRepository
     {
         return $this->createQueryBuilder('RealEstateEntity')
 
-            ->andWhere('RealEstateEntity.price <= :value')
+            ->andWhere('RealEstateEntity.price = :value')
             ->andWhere("RealEstateEntity.state = 'Accepted'")
 
             ->setParameter('value', $value)
@@ -172,7 +172,7 @@ class RealEstateEntityRepository extends ServiceEntityRepository
     {
         return $this->createQueryBuilder('realEstate')
 
-            ->andWhere('realEstate.price <= :price')
+            ->andWhere('realEstate.price = :price')
             ->andWhere('realEstate.city = :value')
             ->andWhere("realEstate.state = 'Accepted'")
 
@@ -189,6 +189,7 @@ class RealEstateEntityRepository extends ServiceEntityRepository
 
             ->andWhere('realEstate.price >= :price')
             ->andWhere('realEstate.price <= :price2')
+            ->andWhere("realEstate.state = 'Accepted'")
 
             ->setParameter('price', $price)
             ->setParameter('price2', $price_2)
@@ -204,6 +205,7 @@ class RealEstateEntityRepository extends ServiceEntityRepository
             ->andWhere('realEstate.price >= :price')
             ->andWhere('realEstate.price <= :price2')
             ->andWhere('realEstate.city = :value')
+            ->andWhere("realEstate.state = 'Accepted'")
 
             ->setParameter('price', $price)
             ->setParameter('price2', $price_2)

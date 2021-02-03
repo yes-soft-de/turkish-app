@@ -134,7 +134,7 @@ class CarEntityRepository extends ServiceEntityRepository
     {
         return $this->createQueryBuilder('car')
 
-            ->andWhere('car.price <= :value')
+            ->andWhere('car.price = :value')
             ->andWhere("car.state = 'Accepted'")
 
             ->setParameter('value', $value)
@@ -172,7 +172,7 @@ class CarEntityRepository extends ServiceEntityRepository
     {
         return $this->createQueryBuilder('car')
 
-            ->andWhere('car.price <= :price')
+            ->andWhere('car.price = :price')
             ->andWhere('car.city = :value')
             ->andWhere("car.state = 'Accepted'")
 
