@@ -201,3 +201,10 @@ App\Request\FilterRequest:
   properties:
     entity:
       - NotBlank: ~
+
+App\Request\ChatCreateRequest:
+  properties:
+    itemID:
+      - NotBlank: ~
+    entity:
+      - NotBlank: ~
