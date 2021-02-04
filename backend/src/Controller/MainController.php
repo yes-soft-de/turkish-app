@@ -9,6 +9,7 @@ use App\Entity\CarEntity;
 use App\Entity\DeviceEntity;
 use App\Entity\DocumentEntity;
 use App\Entity\ImageEntity;
+use App\Entity\MessageEntity;
 use App\Entity\ReactionEntity;
 use App\Entity\RealEstateEntity;
 use App\Entity\SettingEntity;
@@ -148,10 +149,12 @@ class MainController extends BaseController
                 ->getQuery()
                 ->execute();
 
-            $setting = $em->getRepository(StatusEntity::class)->createQueryBuilder('status')
+            $message = $em->getRepository(MessageEntity::class)->createQueryBuilder('message')
                 ->delete()
                 ->getQuery()
                 ->execute();
+
+            
         }
         catch (\Exception $ex)
         {
