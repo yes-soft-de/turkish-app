@@ -31,7 +31,7 @@ class MessageEntity
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private $status;
+    private $status = "On going";
 
     /**
      * @ORM\Column(type="string", length=255)

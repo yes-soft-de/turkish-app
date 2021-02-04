@@ -36,8 +36,18 @@ class ChatCreateRequest
         $this->userOne = $userOneID;
     }
 
+    public function getUserOne()
+    {
+        return $this->userOne;
+    }
+
     public function setUserTwo($userTwoID)
     {
         $this->userTwo = $userTwoID;
+    }
+
+    public function getUserTwo()
+    {
+        return $this->userTwo;
     }
 }

@@ -6,26 +6,22 @@ use App\AutoMapping;
 use App\Entity\MessageEntity;
 use App\Manager\MessageManager;
 use App\Request\ChatCreateRequest;
-use ChatCreateResponse;
+use App\Response\ChatCreateResponse;
+use App\Response\ChatListGetResponse;
+use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
 
 class MessageService
 {
     private $autoMapping;
-    private $carService;
-    private $deviceService;
-    private $realEstateService;
-    private $statusService;
     private $messageManager;
+    private $params;
 
-    public function __construct(AutoMapping $autoMapping, MessageManager $messageManager, DeviceService $deviceService, RealEstateService $realEstateService,
-     CarService $carService, StatusService $statusService)
+    public function __construct(AutoMapping $autoMapping, MessageManager $messageManager, ParameterBagInterface $params)
     {
         $this->autoMapping = $autoMapping;
         $this->messageManager = $messageManager;
-        $this->carService = $carService;
-        $this->deviceService = $deviceService;
-        $this->realEstateService = $realEstateService;
-        $this->statusService = $statusService;
+
+        $this->params = $params->get('upload_base_url').'/';
     }
 
     public function chatWithOwner(ChatCreateRequest $request)
@@ -51,6 +47,22 @@ class MessageService
         $data[8] = chr(ord($data[8]) & 0x3f | 0x80);
 
         return  vsprintf('%s%s-%s-%s-%s-%s%s%s', str_split(bin2hex($data), 4));
+    }
+
+    public function getChatListOfUser($userID)
+    {
+        $response = [];
+
+        $chatResults = $this->messageManager->getChatListOfUser($userID);
+
+        foreach($chatResults as $row)
+        {
+            $row['image'] = $this->params . $row['image'];
+
+            $response[] = $this->autoMapping->map('array', ChatListGetResponse::class, $row);
+        }
+
+        return $response;
     }
 
 }

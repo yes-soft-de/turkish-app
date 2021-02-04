@@ -52,4 +52,14 @@ class MessageController extends BaseController
 
         return $this->response($result, self::FETCH);
     }
+
+    /**
+     * @Route("/getallchat", name="getAllChat", methods={"GET"})
+     */
+    public function getAllChat()
+    {
+        $result = $this->messageService->getChatListOfUser($this->getUserId());
+
+        return $this->response($result, self::FETCH);
+    }
 }
