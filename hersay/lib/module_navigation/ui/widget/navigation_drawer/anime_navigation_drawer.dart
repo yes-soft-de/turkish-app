@@ -109,28 +109,27 @@ class TurkishNavigationDrawer extends StatelessWidget {
                     ),
                   ),
                 ),
-
                 GestureDetector(
                   onTap: () {
                     Navigator.of(context).pushNamed(
-                        SettingsRoutes.SETTINGS_SCREEN
+                        SearchRoutes.ADVANCED_SEARCH_SCREEN_ROUTE
                     );
                   },
                   child: Container(
                     color: ProjectColors.SECONDARY_COLOR,
-                      padding: const EdgeInsets.fromLTRB(32, 15, 0, 15),
+                    padding: const EdgeInsets.fromLTRB(32, 15, 0, 15),
                     child: Flex(
                       direction: Axis.horizontal,
                       children: [
                         Icon(
-                          Icons.settings,
+                          Icons.search,
                           color: Colors.white,
                         ),
                         Container(
                           width: 16,
                         ),
                         Text(
-                          S.of(context).settings,
+                          S.of(context).advancedSearch,
                           style: TextStyle(
                               fontFamily: 'Roboto', color: Colors.white),
                         ),
@@ -138,6 +137,7 @@ class TurkishNavigationDrawer extends StatelessWidget {
                     ),
                   ),
                 ),
+
                 GestureDetector(
                   onTap: () {
                     Navigator.of(context).pushNamed(ProfileRoutes.PROFILE_SCREEN);
@@ -164,28 +164,27 @@ class TurkishNavigationDrawer extends StatelessWidget {
                     ),
                   ),
                 ),
-
                 GestureDetector(
                   onTap: () {
                     Navigator.of(context).pushNamed(
-                        SearchRoutes.ADVANCED_SEARCH_SCREEN_ROUTE
+                        SettingsRoutes.SETTINGS_SCREEN
                     );
                   },
                   child: Container(
                     color: ProjectColors.SECONDARY_COLOR,
-                      padding: const EdgeInsets.fromLTRB(32, 15, 0, 15),
+                    padding: const EdgeInsets.fromLTRB(32, 15, 0, 15),
                     child: Flex(
                       direction: Axis.horizontal,
                       children: [
                         Icon(
-                          Icons.search,
+                          Icons.settings,
                           color: Colors.white,
                         ),
                         Container(
                           width: 16,
                         ),
                         Text(
-                          S.of(context).advancedSearch,
+                          S.of(context).settings,
                           style: TextStyle(
                               fontFamily: 'Roboto', color: Colors.white),
                         ),
@@ -193,6 +192,7 @@ class TurkishNavigationDrawer extends StatelessWidget {
                     ),
                   ),
                 ),
+
 //                GestureDetector(
 //                  onTap: () {
 ////                  Navigator.of(context).pushNamed(

@@ -232,5 +232,8 @@
   "pleaseGiveUsYourName": "please give us your name",
   "profileUpdatedSuccessfully": "Profile updated successfully",
   "backToHome": "Back to home",
-  "tryAgain": "Try again"
+  "tryAgain": "Try again",
+  "lowestPrice": "Lowest Price",
+  "highestPrice": "Highest Price",
+  "selectYourImage": "Select your image"
 }

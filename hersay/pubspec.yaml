@@ -25,6 +25,10 @@ dependencies:
   # Crypto for SHA1
   crypto: ^2.1.5
 
+  # Pair and Other Types
+  analyzer_plugin: ^0.3.0
+  timeago: ^2.0.27
+
   # Dependency injection
   inject:
     git:

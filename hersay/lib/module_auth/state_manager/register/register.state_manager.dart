@@ -55,7 +55,8 @@ class RegisterStateManager {
     _authService.authListener.listen((event) {
       switch (event) {
         case AuthStatus.AUTHORIZED:
-          _registerStateSubject.add(RegisterStateSuccess(_registerScreenState));
+          _registerScreenState.moveToNext();
+//          _registerStateSubject.add(RegisterStateSuccess(_registerScreenState));
           break;
         default:
           _registerStateSubject.add(RegisterStateInit(_registerScreenState));

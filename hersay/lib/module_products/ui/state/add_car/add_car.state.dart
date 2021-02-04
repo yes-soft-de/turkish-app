@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:hersay/generated/l10n.dart';
 import 'package:hersay/main_screen/main_routes.dart';
-import 'package:hersay/main_screen/ui/main_screen.dart';
 import 'package:hersay/module_products/ui/screen/add_car/add_car_sceen.dart';
 import 'package:hersay/utils/project_colors/project_colors.dart';
 import 'package:image_picker/image_picker.dart';
@@ -322,6 +321,7 @@ class AddCarStateInit extends AddCarState {
                     color: Colors.black12,
                   ),
                   child: TextFormField(
+
                     controller: _mileagesController,
                     decoration: InputDecoration(
                       prefixIcon: Icon(Icons.watch_later),
@@ -458,6 +458,7 @@ class AddCarStateInit extends AddCarState {
                     color: Colors.black12,
                   ),
                   child: TextFormField(
+                    keyboardType: TextInputType.number,
                     controller: _priceController,
                     decoration: InputDecoration(
                       prefixIcon: Icon(Icons.attach_money),

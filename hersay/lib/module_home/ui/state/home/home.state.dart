@@ -65,6 +65,7 @@ class HomeStateDataLoaded extends HomeState {
   HomeStateDataLoaded(this.homeData, HomeScreenState screenState)
       : super(screenState){
     displayedProducts = homeData.cars+ homeData.realEstates + homeData.electronicDevices;
+    displayedProducts.shuffle();
   }
 
   @override
@@ -140,6 +141,7 @@ class HomeStateDataLoaded extends HomeState {
                   GestureDetector(
                     onTap: (){
                       displayedProducts =  homeData.cars + homeData.realEstates + homeData.electronicDevices;
+                      displayedProducts.shuffle();
                       selectedMode = 1;
                       screenState.refresh();
                     },

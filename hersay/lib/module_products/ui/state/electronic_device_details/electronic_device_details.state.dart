@@ -235,7 +235,9 @@ class ElectronicDeviceDetailsStateDataLoaded extends ElectronicDeviceDetailsStat
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(5)),
                       color: ProjectColors.THEME_COLOR,
-                      onPressed: () {},
+                      onPressed: () {
+                        screenState.getRoomId();
+                      },
                       child: Text(
                         S.of(context).chatWithOwner,
                         style: TextStyle(fontSize: 10, color: Colors.white),

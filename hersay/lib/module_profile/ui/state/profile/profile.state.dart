@@ -145,6 +145,7 @@ class ProfileStateDataLoaded extends ProfileState {
   ProfileStateDataLoaded(this.profileData, ProfileScreenState screenState  )
       : super(screenState){
      displayedProducts = profileData.realEstates + profileData.cars + profileData.electronicDevices;
+     displayedProducts.shuffle();
   }
   @override
   Widget getUI(BuildContext context) {
@@ -199,7 +200,7 @@ class ProfileStateDataLoaded extends ProfileState {
                           Navigator.pushNamed(
                               context,
                               ProfileRoutes.EDIT_PROFILE_SCREEN,
-                              arguments: '${profileData.userName}'
+                              arguments: profileData
                           );
                         },
                         child: Container(
@@ -247,6 +248,7 @@ class ProfileStateDataLoaded extends ProfileState {
                   GestureDetector(
                     onTap: (){
                       displayedProducts =  profileData.cars + profileData.realEstates + profileData.electronicDevices;
+                      displayedProducts.shuffle();
                       selectedMode = 1;
                       screenState.refresh();
                     },

@@ -226,9 +226,12 @@
   "realestate": "realEstate",
   "device": "device",
   "advancedSearch": "بحث متقدم",
-  "chooseEntity": "choose entity",
-  "pleaseGiveUsYourName": "please give us your name",
-  "profileUpdatedSuccessfully": "Profile updated successfully",
-  "backToHome": "Back to home",
-  "tryAgain": "Try again"
+  "chooseEntity": "اختر غرض",
+  "pleaseGiveUsYourName": "الرجاء أعطنا اسمك",
+  "profileUpdatedSuccessfully": "تم تعديل البروفايل بنجاح",
+  "backToHome": "عودة للرئيسية",
+  "tryAgain": "حاول ثانية",
+  "lowestPrice": "أدنى سعر",
+  "highestPrice": "أعلى سعر",
+  "selectYourImage": "اختر صورتك"
 }

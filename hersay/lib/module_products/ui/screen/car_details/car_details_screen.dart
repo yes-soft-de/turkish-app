@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hersay/module_chat/chat_routes.dart';
 import 'package:hersay/module_products/state_manager/car/car_details.state_manager.dart';
 import 'package:hersay/module_products/ui/state/car_details/car_details.state.dart';
 import 'package:hersay/utils/project_colors/project_colors.dart';
@@ -43,6 +44,18 @@ class CarDetailsScreenState extends State<CarDetailsScreen> {
 
   void getCarDetails(){
     widget._stateManager.getCarDetails(this,carId);
+  }
+
+  void getRoomId(){
+    widget._stateManager.getRoomId(carId, this);
+  }
+
+  void goToChat(String roomId){
+    Navigator.pushNamed(
+        context,
+        ChatRoutes.chatRoute,
+      arguments:  roomId
+    );
   }
 
   @override

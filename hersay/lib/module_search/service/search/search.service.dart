@@ -20,9 +20,10 @@ class SearchService{
      return SearchModel.getSearchModelResult(response);
   }
 
-  Future<List<SearchModel>> filteredSearch(String entity,String city, int price)async{
+  Future<List<SearchModel>> filteredSearch(String entity,String city, int lowestPrice,int highestPrice)async{
     FilteredSearchRequest searchRequest = new FilteredSearchRequest(
-      price: price,
+      lowestPrice: lowestPrice,
+      highestPrice: highestPrice,
       city: city,
       entity: entity
     );

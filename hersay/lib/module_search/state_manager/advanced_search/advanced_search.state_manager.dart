@@ -18,12 +18,13 @@ class AdvancedSearchStateManager{
   void advancedSearch(
       String entity,
       String city,
-      int price,
+      int lowestPrice,
+      int highestPrice,
       AdvancedSearchScreenState screenState){
     _stateSubject
         .add(AdvancedSearchStateLoading(  screenState));
 
-    _service.filteredSearch(entity,city,price).then((value) {
+    _service.filteredSearch(entity,city,lowestPrice,highestPrice).then((value) {
       if (value == null) {
         _stateSubject
             .add(AdvancedSearchStateError('Error Finding Data', screenState));

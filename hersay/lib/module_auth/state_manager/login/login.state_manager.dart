@@ -56,7 +56,8 @@ class LoginStateManager {
     _authService.authListener.listen((event) {
       switch (event) {
         case AuthStatus.AUTHORIZED:
-          _loginStateSubject.add(LoginStateSuccess(_loginScreenState));
+          _loginScreenState.moveToNext();
+//          _loginStateSubject.add(LoginStateSuccess(_loginScreenState));
           break;
         default:
           _loginStateSubject.add(LoginStateInit(_loginScreenState));

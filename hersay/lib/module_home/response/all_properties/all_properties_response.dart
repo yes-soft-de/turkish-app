@@ -41,7 +41,7 @@ class Data {
   String image;
   List<Reaction> reaction;
   String userName;
-  Null imageUser;
+  String imageUser;
   String space;
   String state;
   String numberOfFloors;

@@ -384,6 +384,7 @@ class AddElectronicDeviceStateInit extends AddElectronicDeviceState {
                     color: Colors.black12,
                   ),
                   child: TextFormField(
+                    keyboardType: TextInputType.number,
                     controller: _priceController,
                     decoration: InputDecoration(
                       prefixIcon: Icon(Icons.attach_money),

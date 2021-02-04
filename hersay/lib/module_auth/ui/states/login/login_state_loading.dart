@@ -27,9 +27,20 @@ class LoginStateLoading extends LoginState {
     return Container(
       height: MediaQuery.of(context).size.height,
       color: ProjectColors.THEME_COLOR,
-      child: Center(
-        child: CircularProgressIndicator(),
-      ),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: [
+          Text(
+            S.of(context).loading,
+            style: TextStyle(
+              color: Colors.white
+            ),
+          ),
+          Center(
+            child: CircularProgressIndicator(),
+          ),
+        ],
+      )
     );
   }
 }

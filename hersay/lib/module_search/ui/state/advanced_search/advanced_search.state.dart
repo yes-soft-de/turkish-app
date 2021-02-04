@@ -33,7 +33,8 @@ class AdvancedSearchStateInit extends AdvancedSearchState {
     bool _autoValidate = false;
 
     final TextEditingController _cityController = TextEditingController();
-    final TextEditingController _priceController = TextEditingController();
+    final TextEditingController _lowestPriceController = TextEditingController();
+    final TextEditingController _highestPriceController = TextEditingController();
 
     return Form(
       key: _searchFormKey,
@@ -50,7 +51,7 @@ class AdvancedSearchStateInit extends AdvancedSearchState {
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(15)),
                   child: Container(
-                    width: 400,
+                    width: 340,
                     padding: EdgeInsets.all(10),
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(15),
@@ -83,38 +84,80 @@ class AdvancedSearchStateInit extends AdvancedSearchState {
                     ),
                   )),
               // price
-              Card(
-                elevation: 10,
-                margin: EdgeInsets.only(top: 20),
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(15)),
-                child: Container(
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(15),
-                    color: Colors.black12,
-                  ),
-                  child: TextFormField(
-                    controller: _priceController,
-                    decoration: InputDecoration(
-                      prefixIcon: Icon(Icons.attach_money),
-                      border: OutlineInputBorder(
-                        borderSide: BorderSide.none,
-                        borderRadius: BorderRadius.circular(20),
-                      ),
-                      labelText: S.of(context).price,
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                Card(
+                  elevation: 10,
+                  margin: EdgeInsets.only(top: 20),
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(15)),
+                  child: Container(
+                    width: 160,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(15),
+                      color: Colors.black12,
                     ),
-                    textInputAction: TextInputAction.next,
+                    child: TextFormField(
+
+                      keyboardType: TextInputType.number,
+                      controller: _lowestPriceController,
+                      decoration: InputDecoration(
+                        prefixIcon: Icon(Icons.attach_money),
+                        border: OutlineInputBorder(
+                          borderSide: BorderSide.none,
+                          borderRadius: BorderRadius.circular(20),
+                        ),
+                        labelText:  S.of(context).lowestPrice,
+                      ),
+                      textInputAction: TextInputAction.next,
 //                  onEditingComplete: () => node.nextFocus(),
-                    // Move focus to next
-                    validator: (result) {
-                      if (result.isEmpty) {
-                        return S.of(context).thisFieldCannotBeEmpty;
-                      }
-                      return null;
-                    },
+                      // Move focus to next
+                      validator: (result) {
+                        if (result.isEmpty) {
+                          return S.of(context).thisFieldCannotBeEmpty;
+                        }
+                        return null;
+                      },
+                    ),
                   ),
                 ),
-              ),
+                Card(
+                  elevation: 10,
+                  margin: EdgeInsets.only(top: 20),
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(15)),
+                  child: Container(
+                    width: 160,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(15),
+                      color: Colors.black12,
+                    ),
+                    child: TextFormField(
+                      keyboardType: TextInputType.number,
+                      controller: _highestPriceController,
+                      decoration: InputDecoration(
+                        prefixIcon: Icon(Icons.attach_money),
+                        border: OutlineInputBorder(
+                          borderSide: BorderSide.none,
+                          borderRadius: BorderRadius.circular(20),
+                        ),
+                        labelText: S.of(context).highestPrice,
+                      ),
+                      textInputAction: TextInputAction.next,
+//                  onEditingComplete: () => node.nextFocus(),
+                      // Move focus to next
+                      validator: (result) {
+                        if (result.isEmpty) {
+                          return S.of(context).thisFieldCannotBeEmpty;
+                        }
+                        return null;
+                      },
+                    ),
+                  ),
+                ),
+              ],
+            ),
               // city
               Card(
                 elevation: 10,
@@ -122,6 +165,7 @@ class AdvancedSearchStateInit extends AdvancedSearchState {
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(15)),
                 child: Container(
+                  width: 340,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(15),
                     color: Colors.black12,
@@ -163,7 +207,8 @@ class AdvancedSearchStateInit extends AdvancedSearchState {
                           screenState.advancedSearch(
                               _selectedEntityType,
                               _cityController.text.trim(),
-                              int.parse(_priceController.text.trim())
+                            int.parse(_lowestPriceController.text.trim()),
+                            int.parse(_highestPriceController.text.trim()),
                           );
 //                        }
                       },
@@ -204,7 +249,8 @@ class AdvancedSearchStateDataLoaded extends AdvancedSearchState {
   bool _autoValidate = false;
 
   final TextEditingController _cityController = TextEditingController();
-  final TextEditingController _priceController = TextEditingController();
+  final TextEditingController _lowestPriceController = TextEditingController();
+  final TextEditingController _highestPriceController = TextEditingController();
 
   AdvancedSearchStateDataLoaded(this.searchResults, AdvancedSearchScreenState screenState
       )
@@ -228,7 +274,7 @@ class AdvancedSearchStateDataLoaded extends AdvancedSearchState {
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(15)),
                   child: Container(
-                    width: 400,
+                    width: 340,
                     padding: EdgeInsets.all(10),
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(15),
@@ -260,40 +306,78 @@ class AdvancedSearchStateDataLoaded extends AdvancedSearchState {
                     ),
                   )),
               // price
-              Container(
-                margin: EdgeInsets.symmetric(horizontal: 20,vertical: 10),
-                child: Card(
-                  elevation: 10,
-                  margin: EdgeInsets.only(top: 20),
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(15)),
-                  child: Container(
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(15),
-                      color: Colors.black12,
-                    ),
-                    child: TextFormField(
-                      controller: _priceController,
-                      decoration: InputDecoration(
-                        prefixIcon: Icon(Icons.attach_money),
-                        border: OutlineInputBorder(
-                          borderSide: BorderSide.none,
-                          borderRadius: BorderRadius.circular(20),
-                        ),
-                        labelText: S.of(context).price,
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  Card(
+                    elevation: 10,
+                    margin: EdgeInsets.only(top: 20),
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(15)),
+                    child: Container(
+                      width: 160,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(15),
+                        color: Colors.black12,
                       ),
-                      textInputAction: TextInputAction.next,
+                      child: TextFormField(
+                        keyboardType: TextInputType.number,
+                        controller: _lowestPriceController,
+                        decoration: InputDecoration(
+                          prefixIcon: Icon(Icons.attach_money),
+                          border: OutlineInputBorder(
+                            borderSide: BorderSide.none,
+                            borderRadius: BorderRadius.circular(20),
+                          ),
+                          labelText:  S.of(context).lowestPrice,
+                        ),
+                        textInputAction: TextInputAction.next,
 //                  onEditingComplete: () => node.nextFocus(),
-                      // Move focus to next
-                      validator: (result) {
-                        if (result.isEmpty) {
-                          return S.of(context).thisFieldCannotBeEmpty;
-                        }
-                        return null;
-                      },
+                        // Move focus to next
+                        validator: (result) {
+                          if (result.isEmpty) {
+                            return S.of(context).thisFieldCannotBeEmpty;
+                          }
+                          return null;
+                        },
+                      ),
                     ),
                   ),
-                ),
+                  Card(
+                    elevation: 10,
+                    margin: EdgeInsets.only(top: 20),
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(15)),
+                    child: Container(
+                      width: 160,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(15),
+                        color: Colors.black12,
+                      ),
+                      child: TextFormField(
+                        keyboardType: TextInputType.number,
+                        controller: _highestPriceController,
+                        decoration: InputDecoration(
+                          prefixIcon: Icon(Icons.attach_money),
+                          border: OutlineInputBorder(
+                            borderSide: BorderSide.none,
+                            borderRadius: BorderRadius.circular(20),
+                          ),
+                          labelText: S.of(context).highestPrice,
+                        ),
+                        textInputAction: TextInputAction.next,
+//                  onEditingComplete: () => node.nextFocus(),
+                        // Move focus to next
+                        validator: (result) {
+                          if (result.isEmpty) {
+                            return S.of(context).thisFieldCannotBeEmpty;
+                          }
+                          return null;
+                        },
+                      ),
+                    ),
+                  ),
+                ],
               ),
               // city
               Container(
@@ -304,6 +388,7 @@ class AdvancedSearchStateDataLoaded extends AdvancedSearchState {
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(15)),
                   child: Container(
+                    width: 340,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(15),
                       color: Colors.black12,
@@ -345,7 +430,8 @@ class AdvancedSearchStateDataLoaded extends AdvancedSearchState {
                           screenState.advancedSearch(
                               _selectedEntityType,
                               _cityController.text.trim(),
-                              int.parse(_priceController.text.trim())
+                            int.parse(_lowestPriceController.text.trim()),
+                            int.parse(_highestPriceController.text.trim()),
                           );
 //                        }
                       },

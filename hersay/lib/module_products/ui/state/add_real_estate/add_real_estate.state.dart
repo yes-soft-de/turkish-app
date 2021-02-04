@@ -105,6 +105,7 @@ class AddRealEstateStateInit extends AddRealEstateState {
                     color: Colors.black12,
                   ),
                   child: TextFormField(
+                    keyboardType: TextInputType.number,
                     controller: _spaceController,
                     decoration: InputDecoration(
 //                        prefixIcon: Icon(Icons.),
@@ -139,6 +140,7 @@ class AddRealEstateStateInit extends AddRealEstateState {
                     color: Colors.black12,
                   ),
                   child: TextFormField(
+                    keyboardType: TextInputType.number,
                     controller: _floorNumbersController,
                     decoration: InputDecoration(
 //                        prefixIcon: Icon(Icons.hors),
@@ -345,6 +347,7 @@ class AddRealEstateStateInit extends AddRealEstateState {
                     color: Colors.black12,
                   ),
                   child: TextFormField(
+                    keyboardType: TextInputType.number,
                     controller: _priceController,
                     decoration: InputDecoration(
                       prefixIcon: Icon(Icons.attach_money),
@@ -381,6 +384,7 @@ class AddRealEstateStateInit extends AddRealEstateState {
                     color: Colors.black12,
                   ),
                   child: TextFormField(
+                    keyboardType: TextInputType.number,
                     controller: _roomsNumberController,
                     decoration: InputDecoration(
                       prefixIcon: Icon(Icons.attach_money),

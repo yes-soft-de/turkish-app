@@ -20,57 +20,59 @@ class RegisterStateError extends RegisterState {
 
   @override
   Widget getUI(BuildContext context) {
-    return Container(
-      color: ProjectColors.THEME_COLOR,
-      height: MediaQuery.of(context).size.height,
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          Container(
+    return SingleChildScrollView(
+      child: Container(
+        color: ProjectColors.THEME_COLOR,
+        height: MediaQuery.of(context).size.height,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Container(
 
-            padding: EdgeInsets.all(10),
-            child: Center(
-              child: Container(
-                width: 250,
-                child: Text(
-                  errorMsg,
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                      color: Colors.white
-                  ),
-                ),
-              ),
-            ),
-          ),
-
-          GestureDetector(
-            onTap: (){
-              Navigator.of(context).pushNamedAndRemoveUntil(
-                AuthorizationRoutes.REGISTER_SCREEN,
-                    (r) => false,
-              );
-            },
-            child: Container(
-              width: 175,
-              height: 50,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(50),
-                color: Colors.black45,
-              ),
+              padding: EdgeInsets.all(10),
               child: Center(
-                child: Text(
-                  S.of(context).tryAgain,
-                  style: TextStyle(
-                    color: Colors.white,
+                child: Container(
+                  width: 250,
+                  child: Text(
+                    errorMsg,
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                        color: Colors.white
+                    ),
                   ),
                 ),
               ),
             ),
-          ),
+
+            GestureDetector(
+              onTap: (){
+                Navigator.of(context).pushNamedAndRemoveUntil(
+                  AuthorizationRoutes.REGISTER_SCREEN,
+                      (r) => false,
+                );
+              },
+              child: Container(
+                width: 175,
+                height: 50,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(50),
+                  color: Colors.black45,
+                ),
+                child: Center(
+                  child: Text(
+                    S.of(context).tryAgain,
+                    style: TextStyle(
+                      color: Colors.white,
+                    ),
+                  ),
+                ),
+              ),
+            ),
 
 
-        ],
+          ],
+        ),
       ),
     );
 

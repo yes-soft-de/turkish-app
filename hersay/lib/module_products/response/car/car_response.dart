@@ -44,7 +44,7 @@ class Data {
   String image;
   List<String> images;
   Reaction reaction;
-  Null state;
+  String state;
   String username;
   String userImage;
 

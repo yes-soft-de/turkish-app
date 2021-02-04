@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hersay/module_chat/chat_routes.dart';
 import 'package:hersay/module_products/state_manager/electroinic_device/electronic_device_details.state_manager.dart';
 import 'package:hersay/module_products/ui/state/electronic_device_details/electronic_device_details.state.dart';
 import 'package:hersay/utils/project_colors/project_colors.dart';
@@ -25,6 +26,18 @@ class  ElectronicDeviceDetailsScreenState extends State<ElectronicDeviceDetailsS
 
   void getElectronicDeviceDetails(){
     widget._stateManager.getElectronicDeviceDetails(this, electronicDeviceId);
+  }
+
+  void getRoomId(){
+    widget._stateManager.getRoomId(electronicDeviceId, this);
+  }
+
+  void goToChat(String roomId){
+    Navigator.pushNamed(
+        context,
+        ChatRoutes.chatRoute,
+        arguments:  roomId
+    );
   }
 
   @override

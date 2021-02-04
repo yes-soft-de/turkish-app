@@ -1,6 +1,7 @@
 class Urls {
   static const String DOMAIN = 'http://34.121.207.32';
   static const String BASE_API = DOMAIN + '/html/public/index.php';
+  static const String IMAGES_ROOT = DOMAIN + '/upload/';
   //USER APIS
   static const API_SIGN_UP = BASE_API + '/user';
   static const PROFILE = BASE_API + '/userprofile';
@@ -33,6 +34,8 @@ class Urls {
   static const NOTIFICATION = BASE_API +'/notification';
   //HISTORY
   static const HISTORY = BASE_API +'/history';
+  //CHAT
+  static const CHAT = BASE_API + '/chat';
 
 
 

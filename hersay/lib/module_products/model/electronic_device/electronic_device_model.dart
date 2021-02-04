@@ -1,4 +1,5 @@
 class ElectronicDeviceModel {
+  int id;
   String type;
   String brand;
   String releaseYear;
@@ -15,6 +16,7 @@ class ElectronicDeviceModel {
   bool isLoved;
 
   ElectronicDeviceModel({
+    this.id,
     this.price,
     this.brand,
     this.useDuration,

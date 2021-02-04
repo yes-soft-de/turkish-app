@@ -27,66 +27,7 @@ class HomeScreenState extends State<HomeScreen> {
 
   final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
 
-  List<HomeElement> products = [
-    new HomeElement(
-      image:
-          'https://www.wsupercars.com/wallpapers/Buick/1970-Buick-GSX-001-1080.jpg',
-      category: 'sport car',
-      likes: 100,
-      owner: 'ali',
-      product: 'Maclarn',
-      specification: '1500 KM',
-      type: PRODUCT_TYPE.CAR,
-    ),
-    new HomeElement(
-      image: 'https://cdn.mos.cms.futurecdn.net/FkMhmL6YzQmj7unhsupKMR.png',
-      category: 'Laptop',
-      likes: 100,
-      owner: 'mo',
-      product: 'Dell',
-      specification: 'Core i7',
-      type: PRODUCT_TYPE.ELECTRONIC_DEVICE,
-    ),
-    new HomeElement(
-      image:
-          'https://q4g9y5a8.rocketcdn.me/wp-content/uploads/2020/02/home-banner-2020-02-min.jpg',
-      category: 'House',
-      likes: 100,
-      owner: 'sami',
-      product: 'House',
-      specification: '250 SM',
-      type: PRODUCT_TYPE.REAL_ESTATE,
-    ),
-    new HomeElement(
-      image:
-          'https://www.wsupercars.com/wallpapers/Buick/1970-Buick-GSX-001-1080.jpg',
-      category: 'sport car',
-      likes: 100,
-      owner: 'ali',
-      product: 'Maclarn',
-      specification: '1500 KM',
-      type: PRODUCT_TYPE.CAR,
-    ),
-    new HomeElement(
-      image: 'https://cdn.mos.cms.futurecdn.net/FkMhmL6YzQmj7unhsupKMR.png',
-      category: 'Laptop',
-      likes: 100,
-      owner: 'mo',
-      product: 'Dell',
-      specification: 'Core i7',
-      type: PRODUCT_TYPE.ELECTRONIC_DEVICE,
-    ),
-    new HomeElement(
-      image:
-          'https://q4g9y5a8.rocketcdn.me/wp-content/uploads/2020/02/home-banner-2020-02-min.jpg',
-      category: 'House',
-      likes: 100,
-      owner: 'sami',
-      product: 'House',
-      specification: '250 SM',
-      type: PRODUCT_TYPE.REAL_ESTATE,
-    ),
-  ];
+
 
   @override
   void initState() {

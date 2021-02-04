@@ -46,8 +46,8 @@ class _EmailPasswordRegisterFormState extends State<EmailPasswordRegisterForm> {
           children: [
             Center(
               child: Container(
-                height: 100,
-                width: 100,
+                height: 90,
+                width: 90,
                 decoration: BoxDecoration(
                     color: Colors.white,
                     borderRadius: BorderRadius.circular(10),
@@ -73,7 +73,7 @@ class _EmailPasswordRegisterFormState extends State<EmailPasswordRegisterForm> {
               width: MediaQuery.of(context).size.width * 0.9,
               child: Card(
                 elevation: 10,
-                margin: EdgeInsets.only(top: 100),
+                margin: EdgeInsets.only(top: 35),
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(15)),
                 child: Container(
@@ -176,7 +176,7 @@ class _EmailPasswordRegisterFormState extends State<EmailPasswordRegisterForm> {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.only(top: 100.0),
+              padding: const EdgeInsets.only(top: 35.0),
               child: GestureDetector(
                 onTap: () {
                   Navigator.of(context)

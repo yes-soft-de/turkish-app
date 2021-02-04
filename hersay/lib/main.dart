@@ -6,6 +6,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:hersay/main_screen/main_module.dart';
 import 'package:hersay/module_auth/auth_module.dart';
+import 'package:hersay/module_chat/chat_module.dart';
 import 'package:hersay/module_history/history_module.dart';
 import 'package:hersay/module_home/home_module.dart';
 import 'package:hersay/module_profile/Profile_module.dart';
@@ -49,6 +50,7 @@ class MyApp extends StatefulWidget {
   final NotificationModule _notificationModulel;
   final ProfileModule _profileModule;
   final HistoryModule _historyModule;
+  final ChatModule _chatModule;
 
   MyApp(
       this._themeDataService,
@@ -63,6 +65,7 @@ class MyApp extends StatefulWidget {
       this._notificationModulel,
       this._profileModule,
       this._historyModule,
+      this._chatModule,
       );
 
   @override

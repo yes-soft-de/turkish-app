@@ -39,7 +39,7 @@ class Data {
   String homeFurnishing;
   String realEstateType;
   Reaction reaction;
-  Null documents;
+//  Null documents;
   String username;
   String userImage;
 
@@ -60,7 +60,7 @@ class Data {
         this.homeFurnishing,
         this.realEstateType,
         this.reaction,
-        this.documents,
+//        this.documents,
         this.username,
         this.userImage});
 
@@ -85,7 +85,7 @@ class Data {
     reaction = json['reaction'] != null
         ? new Reaction.fromJson(json['reaction'])
         : null;
-    documents = json['documents'];
+//    documents = json['documents'];
     username = json['username'];
     userImage = json['userImage'];
   }
@@ -112,7 +112,7 @@ class Data {
     if (this.reaction != null) {
       data['reaction'] = this.reaction.toJson();
     }
-    data['documents'] = this.documents;
+//    data['documents'] = this.documents;
     data['username'] = this.username;
     data['userImage'] = this.userImage;
     return data;

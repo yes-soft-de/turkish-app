@@ -42,8 +42,8 @@ class  AdvancedSearchScreenState extends State<AdvancedSearchScreen> {
 
   }
 
-  void advancedSearch(String entity, String city , int price){
-    widget._stateManager.advancedSearch(entity,city,price, this)  ;
+  void advancedSearch(String entity, String city , int lowestPrice, int highestPrice){
+    widget._stateManager.advancedSearch(entity,city,lowestPrice,highestPrice, this)  ;
   }
 
   void refresh(){

@@ -32,7 +32,7 @@ class Data {
   YearOfRelease yearOfRelease;
   String description;
   String status;
-  Null createdBy;
+  String createdBy;
   YearOfRelease createdAt;
   String gauge;
   String country;
@@ -41,7 +41,6 @@ class Data {
   String image;
   List<String> images;
   Reaction reaction;
-  Null specialLink;
   String username;
   String userImage;
 
@@ -64,7 +63,6 @@ class Data {
         this.image,
         this.images,
         this.reaction,
-        this.specialLink,
         this.username,
         this.userImage});
 
@@ -93,7 +91,7 @@ class Data {
     reaction = json['reaction'] != null
         ? new Reaction.fromJson(json['reaction'])
         : null;
-    specialLink = json['specialLink'];
+
     username = json['username'];
     userImage = json['userImage'];
   }
@@ -124,7 +122,7 @@ class Data {
     if (this.reaction != null) {
       data['reaction'] = this.reaction.toJson();
     }
-    data['specialLink'] = this.specialLink;
+
     data['username'] = this.username;
     data['userImage'] = this.userImage;
     return data;

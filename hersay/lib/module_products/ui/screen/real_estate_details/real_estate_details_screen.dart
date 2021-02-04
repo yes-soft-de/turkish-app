@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hersay/module_chat/chat_routes.dart';
 import 'package:hersay/module_products/state_manager/real_estate/real_estate_details.state_manager.dart';
 import 'package:hersay/module_products/ui/state/real_estate_details/real_estate_details.state.dart';
 import 'package:hersay/utils/project_colors/project_colors.dart';
@@ -40,7 +41,19 @@ class RealEstateDetailsScreenState extends State<RealEstateDetailsScreen> {
   void getRealEstateDetails(){
     widget._stateManager.getRealEstateDetails(this, realEstateId)  ;
   }
-  
+
+  void getRoomId(){
+    widget._stateManager.getRoomId(realEstateId, this);
+  }
+
+  void goToChat(String roomId){
+    Navigator.pushNamed(
+        context,
+        ChatRoutes.chatRoute,
+        arguments:  roomId
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     if (currentState is RealEstateDetailsStateInit) {

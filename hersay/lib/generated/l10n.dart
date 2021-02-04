@@ -2352,6 +2352,36 @@ class S {
       args: [],
     );
   }
+
+  /// `Lowest Price`
+  String get lowestPrice {
+    return Intl.message(
+      'Lowest Price',
+      name: 'lowestPrice',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Highest Price`
+  String get highestPrice {
+    return Intl.message(
+      'Highest Price',
+      name: 'highestPrice',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Select your image`
+  String get selectYourImage {
+    return Intl.message(
+      'Select your image',
+      name: 'selectYourImage',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

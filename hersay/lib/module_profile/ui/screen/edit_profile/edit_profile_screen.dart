@@ -1,14 +1,13 @@
-
 import 'dart:io';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:hersay/generated/l10n.dart';
+import 'package:hersay/module_profile/model/profile/profile_model.dart';
 import 'package:hersay/module_profile/profile_routes.dart';
 import 'package:hersay/module_profile/state_manager/edit_profile/edit_profile.state_manager.dart';
 import 'package:hersay/module_profile/ui/state/edit_profile/edit_profile.state.dart';
-import 'package:hersay/module_upload/service/image_upload/image_upload_service.dart';
 import 'package:hersay/utils/project_colors/project_colors.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:inject/inject.dart';
@@ -17,28 +16,34 @@ import 'package:inject/inject.dart';
 class EditProfileScreen extends StatefulWidget {
   final EditProfileStateManager _stateManager;
 
-
-
   EditProfileScreen(
-      this._stateManager,
-      );
+    this._stateManager,
+  );
 
   @override
   State<StatefulWidget> createState() => EditProfileScreenState();
 }
 
 class EditProfileScreenState extends State<EditProfileScreen> {
-  TextEditingController _nameController = TextEditingController() ;
+  final GlobalKey<FormState> _profileFormKey = GlobalKey<FormState>();
+
+  TextEditingController _nameController = TextEditingController();
+
+  TextEditingController _cityController = TextEditingController();
+
+  TextEditingController _countryController = TextEditingController();
+
   EditProfileState currentState;
 
+  bool _autoValidate = false;
   String _errorMsg;
   bool loading = false;
   String userImage;
 
   String userImageUrl;
+  String initialImage;
 
-  String initialName;
-
+  ProfileModel profile;
 
   @override
   void initState() {
@@ -46,163 +51,313 @@ class EditProfileScreenState extends State<EditProfileScreen> {
 
     widget._stateManager.stateStream.listen((event) {
       currentState = event;
-      if(this.mounted){
-        setState(() {
-
-        });
+      if (this.mounted) {
+        setState(() {});
       }
     });
   }
 
-  void refresh(String userName,String image){
-
-    currentState =  EditProfileStateInit(this,userName ,image: image);
-
+  void refresh(String userName, String image) {
+    currentState = EditProfileStateInit(this, userName, image: image);
   }
 
-  void goBackToProfile(){
-    Navigator.pushReplacementNamed(
-        context,
-        ProfileRoutes.PROFILE_SCREEN
-    );
+  void goBackToProfile() {
+    Navigator.pushReplacementNamed(context, ProfileRoutes.PROFILE_SCREEN);
   }
 
-  void updateProfile(String userName,String country, String city,String imagePath){
-     widget._stateManager.updateProfile(userName,country,city, imagePath, this);
+  void updateProfile(
+      String userName, String country, String city, String imagePath) {
+    widget._stateManager
+        .updateProfile(userName, country, city, imagePath, this);
   }
 
   @override
   Widget build(BuildContext context) {
-    initialName = ModalRoute.of(context).settings.arguments;
+    profile = ModalRoute.of(context).settings.arguments;
 
-    currentState = EditProfileStateInit(this,initialName);
+//    currentState = EditProfileStateInit(this,initialName);
 
+    _nameController.text = profile.userName;
+    _countryController.text = profile.country;
+    _cityController.text = profile.city;
+    initialImage = profile.userImage;
 
-    return Scaffold(
-      body: currentState.getUI(context),
-    );
+    return loading
+        ? Container(
+            height: MediaQuery.of(context).size.height,
+            color: ProjectColors.THEME_COLOR,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                Text(
+                  S.of(context).loading,
+                  style: TextStyle(color: Colors.white),
+                ),
+                Center(
+                  child: CircularProgressIndicator(),
+                ),
+              ],
+            ))
+        : _getProfileEditScreen();
   }
 
   Widget _getProfileEditScreen() {
-    return Form(
-      child: Flex(
-        direction: Axis.vertical,
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          Container(),
-          MediaQuery.of(context).viewInsets.bottom != 0
-              ? Container()
-              : Container(
-            height: 375,
-            child: Stack(
-              children: [
-                 Positioned.fill(
-                    child: Container(
-                        color: ProjectColors.THEME_COLOR,
-                        child:Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-
-
-                            Center(
-                              child: GestureDetector(
-                                onTap: () {
-                                  ImagePicker ip = ImagePicker();
-                                  ip
-                                      .getImage(source: ImageSource.gallery)
-                                      .then((value) {
-                                    if (value != null) {
-                                      userImage = value.path;
-                                      print('userImage image picked');
-                                      setState(() {
-
-                                      });
-
-                                    }
-                                  });
-                                },
-                                child: userImage == null ? Text(
-                                  S.of(context).selectAnImage,
-                                  style: TextStyle(
-                                      color: Colors.white, fontSize: 20),
-                                ):
-                                Image.file(
-                                  File(userImage),
-                                  fit: BoxFit.contain,
-                                ),
-                              ),
-                            ),
-                          ],
-                        )
-                    ))
-
-              ],
-            ),
-          ),
-
-
-
-          Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: TextFormField(
-                controller: _nameController,
-                decoration: InputDecoration(
-                  labelText: S.of(context).name,
-                  hintText: S.of(context).name,
-                ),
-                keyboardType: TextInputType.text,
-                onFieldSubmitted: (value)=> _nameController.text = value,
-                validator: (v) {
-                  if (v.isEmpty) {
-                    return S.of(context).pleaseProvideYourName;
-                  }
-                  return null;
-                }),
-          ),
-
-          _errorMsg != null ? Text(_errorMsg) : Container(),
-          Container(
-            height: 50,
-            decoration: BoxDecoration(color: ProjectColors.THEME_COLOR),
-            child: GestureDetector(
-              onTap: () {
-                if (_nameController.text.isEmpty) {
-                  Fluttertoast.showToast(
-                      msg: S.of(context).pleaseGiveUsYourName);
-                  return null;
-                }
-
-
-                loading = true;
-                if (mounted) setState(() {});
-//                widget.stateManager.saveProfile(
-//                  _nameController.text.trim(),
-//                  userImage,
-//                );
-              },
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.all(4.0),
-                    child: Text(
-                      loading == false
-                          ? S.of(context).saveProfile
-                          : S.of(context).loading,
-                      style: TextStyle(
-                        fontSize: 18,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.white,
+    return Scaffold(
+        body: SingleChildScrollView(
+      child: Form(
+        key: _profileFormKey,
+        autovalidate: _autoValidate,
+        child: Container(
+          height: MediaQuery.of(context).size.height,
+          child: Flex(
+            direction: Axis.vertical,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Container(),
+              MediaQuery.of(context).viewInsets.bottom != 0
+                  ? Container()
+                  : Container(
+                      height: 200,
+                      child: Stack(
+                        children: [
+                          Positioned.fill(
+                              child: Container(
+                                  color: ProjectColors.THEME_COLOR,
+                                  child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Center(
+                                        child: GestureDetector(
+                                          onTap: () {
+                                            ImagePicker ip = ImagePicker();
+                                            ip
+                                                .getImage(
+                                                    source: ImageSource.gallery)
+                                                .then((value) {
+                                              if (value != null) {
+                                                userImage = value.path;
+                                                print('userImage image picked');
+//                                      screenState.refresh(_nameController.text.trim(),userImage);
+                                                setState(() {});
+                                              }
+                                            });
+                                          },
+                                          child: userImage == null
+                                              ? CircleAvatar(
+                                                  backgroundImage:
+                                                      new NetworkImage(
+                                                    initialImage,
+                                                  ),
+                                                  radius: 80.0,
+                                                )
+                                              : CircleAvatar(
+                                                  backgroundImage:
+                                                      new FileImage(
+                                                    File(userImage),
+                                                  ),
+                                                  radius: 80.0,
+                                                ),
+//                                Image.file(
+//                                  File(userImage),
+//                                  fit: BoxFit.contain,
+//                                ),
+                                        ),
+                                      ),
+                                    ],
+                                  )))
+                        ],
                       ),
                     ),
+
+//                  Center(
+//                    child: Container(
+//                      width: 250,
+//                      height: 55,
+//                      margin: EdgeInsets.only(top: 30),
+//                      child: FlatButton(
+//                          shape: RoundedRectangleBorder(
+//                            borderRadius: BorderRadius.circular(10),
+//                          ),
+//                          onPressed: () {
+//                            ImagePicker ip = ImagePicker();
+//                            ip.getImage(source: ImageSource.gallery).then((value) {
+//                              if (value != null) {
+//                                userImage = value.path;
+//                                print('userImage image picked , path :$userImage');
+////                        screenState.refresh(_nameController.text.trim(),userImage);
+//
+//                              }
+//                            });
+//                          },
+//                          color: ProjectColors.SECONDARY_COLOR,
+//                          child: Row(
+//                            mainAxisAlignment: MainAxisAlignment.center,
+//                            children: [
+//                              Icon(
+//                                Icons.photo_library,
+//                                color: Colors.white,
+//                              ),
+//                              Text(
+//                                S.of(context).selectYourImage,
+//                                style: TextStyle(color: Colors.white),
+//                              ),
+//                            ],
+//                          )),
+//                    ),
+//                  ),
+
+              Container(
+                width: MediaQuery.of(context).size.width * 0.9,
+                child: Card(
+                  elevation: 10,
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(15)),
+                  child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(15),
+                      color: Colors.black12,
+                    ),
+                    child: TextFormField(
+                      keyboardType: TextInputType.text,
+                      controller: _nameController,
+                      decoration: InputDecoration(
+                        prefixIcon: Icon(Icons.person),
+                        border: OutlineInputBorder(
+                          borderSide: BorderSide.none,
+                          borderRadius: BorderRadius.circular(20),
+                        ),
+
+                        labelText: S.of(context).name,
+                      ),
+                      onFieldSubmitted: (value){
+                        profile.userName = value;
+                        _nameController.text = value;
+                        print(_nameController.text);
+                      },
+                    ),
                   ),
-                ],
+                ),
               ),
-            ),
+              Container(
+                width: MediaQuery.of(context).size.width * 0.9,
+                child: Card(
+                  elevation: 10,
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(15)),
+                  child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(15),
+                      color: Colors.black12,
+                    ),
+                    child: TextFormField(
+                      controller: _countryController,
+                      decoration: InputDecoration(
+                        prefixIcon: Icon(Icons.flag),
+                        border: OutlineInputBorder(
+                          borderSide: BorderSide.none,
+                          borderRadius: BorderRadius.circular(20),
+                        ),
+                        labelText: S.of(context).country,
+                      ),
+                      onFieldSubmitted: (value){
+                         profile.country = value;
+                        _countryController.text = value;
+                      },
+                      // Move focus to next
+                      validator: (result) {
+                        if (result.isEmpty) {
+                          return S.of(context).pleaseEnterYourEmail;
+                        }
+                        return null;
+                      },
+                    ),
+                  ),
+                ),
+              ),
+              Container(
+                width: MediaQuery.of(context).size.width * 0.9,
+                child: Card(
+                  elevation: 10,
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(15)),
+                  child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(15),
+                      color: Colors.black12,
+                    ),
+                    child: TextFormField(
+                      controller: _cityController,
+                      decoration: InputDecoration(
+                        prefixIcon: Icon(Icons.location_city),
+                        border: OutlineInputBorder(
+                          borderSide: BorderSide.none,
+                          borderRadius: BorderRadius.circular(20),
+                        ),
+                        labelText: S.of(context).city,
+                      ),
+                      onFieldSubmitted: (value){
+                          profile.city = value;
+                          _cityController.text = value;
+                        },
+
+                      validator: (result) {
+                        if (result.isEmpty) {
+                          return S.of(context).pleaseEnterYourEmail;
+                        }
+                        return null;
+                      },
+                    ),
+                  ),
+                ),
+              ),
+
+              _errorMsg != null ? Text(_errorMsg) : Container(),
+
+              Container(
+                height: 50,
+                decoration: BoxDecoration(color: ProjectColors.THEME_COLOR),
+                child: GestureDetector(
+                  onTap: () {
+                    if (_nameController.text.isEmpty) {
+                      Fluttertoast.showToast(
+                          msg: S.of(context).pleaseGiveUsYourName);
+                      return null;
+                    }
+
+                    loading = true;
+
+                    updateProfile(
+                      _nameController.text.trim(),
+                      _countryController.text.trim(),
+                      _cityController.text.trim(),
+                      userImage,
+                    );
+                  },
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.all(4.0),
+                        child: Text(
+                          loading == false
+                              ? S.of(context).saveProfile
+                              : S.of(context).loading,
+                          style: TextStyle(
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ],
           ),
-        ],
+        ),
       ),
-    );
+    ));
   }
 }
