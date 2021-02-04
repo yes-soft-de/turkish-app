@@ -57,24 +57,32 @@ class MessageEntityRepository extends ServiceEntityRepository
             ->getOneOrNullResult();
     }
 
-    // public function getReceivedMessagesList($userID)
-    // {
-    //     return $this->createQueryBuilder('message')
-    //         ->select('message.userOne', 'message.userTwo', 'message.roomID', 'message.createdAt as startAt', 
-    //         'userProfileEntity.userName as username', 'userProfileEntity.image')
+    public function getReceivedMessagesList($userID)
+    {
+        return $this->createQueryBuilder('message')
+            ->select('message.userOne', 'message.userTwo', 'message.roomID', 'message.createdAt as startAt', 
+            'userProfileEntity.userName as username', 'userProfileEntity.image')
 
-    //         ->andWhere('message.userTwo = :userID')
+            ->andWhere('message.userTwo = :userID')
 
-    //         ->setParameter('userID', $userID)
+            ->setParameter('userID', $userID)
 
-    //         ->leftJoin(
-    //             UserProfileEntity::class,
-    //             'userProfileEntity',
-    //             Join::WITH,
-    //             'userProfileEntity.userID = message.userOne'
-    //         )
+            ->leftJoin(
+                UserProfileEntity::class,
+                'userProfileEntity',
+                Join::WITH,
+                'userProfileEntity.userID = message.userOne'
+            )
 
-    //         ->getQuery()
-    //         ->getResult();
-    // }
+            ->getQuery()
+            ->getResult();
+    }
+
+    public function deleteAllChatRequests()
+    {
+        return $this->createQueryBuilder('message')
+            ->delete()
+            ->getQuery()
+            ->getResult();
+    }
 }

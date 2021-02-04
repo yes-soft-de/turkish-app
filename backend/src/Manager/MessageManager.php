@@ -57,6 +57,11 @@ class MessageManager
 
         $messageEntity = $this->messageEntityRepository->getChatByUsers($request->getUserOne(), $request->getUserTwo());
 
+        if(!$messageEntity)
+        {
+            $messageEntity = $this->messageEntityRepository->getChatByUsers($request->getUserTwo(), $request->getUserOne());
+        }
+
         if($messageEntity)
         {
             //dd($messageEntity);
@@ -80,11 +85,16 @@ class MessageManager
     {
         $sentMessage = $this->messageEntityRepository->getSendMessagesList($userID);
 
-        // $receivedMessage = $this->messageEntityRepository->getReceivedMessagesList($userID);
+        $receivedMessage = $this->messageEntityRepository->getReceivedMessagesList($userID);
 
-        // $chatList = array_merge($sentMessage, $receivedMessage);
+        $chatList = array_merge($sentMessage, $receivedMessage);
+        //dd($chatList);
+        return $chatList;
+    }
 
-        return $sentMessage;
+    public function deleteAllChatRequests()
+    {
+        return $this->messageEntityRepository->deleteAllChatRequests();
     }
 
 }

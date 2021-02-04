@@ -65,4 +65,9 @@ class MessageService
         return $response;
     }
 
+    public function deleteAllChatRequests()
+    {
+        return $this->messageManager->deleteAllChatRequests();
+    }
+
 }

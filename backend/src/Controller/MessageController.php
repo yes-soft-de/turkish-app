@@ -62,4 +62,14 @@ class MessageController extends BaseController
 
         return $this->response($result, self::FETCH);
     }
+
+    /**
+     * @Route("/deleteallchats", name="deleteAllChatRequests", methods={"DELETE"})
+     */
+    public function deleteAllChatRequests()
+    {
+        $result = $this->messageService->deleteAllChatRequests();
+
+        return $this->response($result, self::DELETE);
+    }
 }
