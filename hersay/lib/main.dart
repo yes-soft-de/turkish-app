@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:hersay/main_screen/main_module.dart';
+import 'package:hersay/main_screen/main_routes.dart';
 import 'package:hersay/module_auth/auth_module.dart';
 import 'package:hersay/module_chat/chat_module.dart';
 import 'package:hersay/module_history/history_module.dart';
@@ -138,7 +139,7 @@ class _MyAppState extends State<MyApp> {
       supportedLocales: S.delegate.supportedLocales,
       title: 'Hersay',
       routes: fullRoutesList,
-      initialRoute: SplashRoutes.SPLASH_SCREEN,
+      initialRoute: MainRoutes.MAIN_SCREEN_ROUTE,
     );
   }
 }

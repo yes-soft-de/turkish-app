@@ -17,7 +17,7 @@
   "usa": "الولايات المتحدة",
   "lebanon": "لبنان",
   "syria": "سوريا",
-  "chatRoom": "غلاف المحادثة",
+  "chatRoom": "المحادثة",
   "startWriting": "ابدأ الكتابة",
   "beTheFirstToComment": "كن أول المعلقين",
   "searchAGame": "ابحث عن لعبة :)",
@@ -233,5 +233,8 @@
   "tryAgain": "حاول ثانية",
   "lowestPrice": "أدنى سعر",
   "highestPrice": "أعلى سعر",
-  "selectYourImage": "اختر صورتك"
+  "selectYourImage": "اختر صورتك",
+  "youDoNotHaveAnyNotification": "لا يوجد إشعارات",
+  "youDidNotSellOrBuyAnyThingYet": "لم تقم ببيع أو شراء أي شيء بعد",
+  "youDidNotChatWithAnyOne": "لم تقم بمراسلة أحد بعد"
 }

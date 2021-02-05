@@ -54,7 +54,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   Padding(
                     padding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 10),
                     child: Text(
-                      'Zolfekar Seleten',
+                      '',
                       style: TextStyle(
                           fontWeight: FontWeight.bold, color: Colors.white),
                     ),
@@ -207,13 +207,16 @@ class _SettingsScreenState extends State<SettingsScreen> {
                           children: [
                             Text(S.of(context).signOut),
                             IconButton(
-                                icon: Icon(Icons.power_settings_new),
+                                icon: Icon(Icons.power_settings_new,color: Colors.red,),
                                 onPressed: () {
                                   widget._authService.logout().then((value) {
-                                    Navigator.pushNamedAndRemoveUntil(
+                                 /*   Navigator.pushNamedAndRemoveUntil(
                                         context,
                                         AuthorizationRoutes.LOGIN_SCREEN,
-                                            (route) => false);
+                                            (route) => false);*/
+                                 setState(() {
+
+                                 });
                                   });
                                 })
                           ],
@@ -225,7 +228,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                           children: [
                             Text(S.of(context).login),
                             IconButton(
-                                icon: Icon(Icons.power_settings_new),
+                                icon: Icon(Icons.power_settings_new,color: Colors.green,),
                                 onPressed: () {
                                   Navigator.of(context).pushNamed(
                                       AuthorizationRoutes.LOGIN_SCREEN);

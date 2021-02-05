@@ -36,6 +36,7 @@ class Urls {
   static const HISTORY = BASE_API +'/history';
   //CHAT
   static const CHAT = BASE_API + '/chat';
+  static const MY_CHATS = BASE_API + '/getallchat';
   //REACTION
   static const REACT = BASE_API + '/reactions';
 

@@ -1,4 +1,5 @@
 
+import 'package:hersay/generated/l10n.dart';
 import 'package:hersay/module_notification/service/notification/notification.service.dart';
 import 'package:hersay/module_notification/ui/screen/notifications/notification_screen.dart';
 import 'package:hersay/module_notification/ui/state/notification/notification.state.dart';
@@ -20,7 +21,7 @@ class NotificationStateManager{
     _service.getNotification().then((value) {
       if (value == null) {
         _stateSubject
-            .add(NotificationStateError('Error Finding Data', screenState));
+            .add(NotificationStateError(S.current.youDoNotHaveAnyNotification, screenState));
       } else {
         _stateSubject.add(NotificationStateDataLoaded(value, screenState));
       }

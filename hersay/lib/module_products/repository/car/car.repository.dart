@@ -31,10 +31,14 @@ class CarRepository{
 
   Future<CarResponse> getCarDetails(int carId)async{
     var token = await _authService.getToken();
-    dynamic response = await _apiClient.get(
+    dynamic response = (token != null)
+        ? await _apiClient.get(
       Urls.GET_CAR_DETAILS + '$carId',
       headers: {'Authorization': 'Bearer ' + token},
-    );
+    )
+        : await _apiClient.get( Urls.GET_CAR_DETAILS + '$carId',) ;
+
+
 
     if (response == null) return null;
     return CarResponse.fromJson(response);

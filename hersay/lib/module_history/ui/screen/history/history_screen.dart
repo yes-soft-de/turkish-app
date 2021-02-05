@@ -2,6 +2,9 @@
 
 import 'package:flutter/material.dart';
 import 'package:hersay/generated/l10n.dart';
+import 'package:hersay/module_auth/auth_routes.dart';
+import 'package:hersay/module_auth/service/auth/auth.service.dart';
+import 'package:hersay/module_history/history_routes.dart';
 import 'package:hersay/module_history/state_manager/history/history.state_manger.dart';
 import 'package:hersay/module_history/ui/state/history/history.state.dart';
 import 'package:hersay/module_navigation/ui/widget/navigation_drawer/anime_navigation_drawer.dart';
@@ -11,9 +14,11 @@ import 'package:inject/inject.dart';
 @provide
 class HistoryScreen extends StatefulWidget {
   final HistoryStateManager _stateManager;
+  final AuthService _authService;
 
   HistoryScreen(
       this._stateManager,
+      this._authService,
       );
 
   @override
@@ -46,6 +51,14 @@ class  HistoryScreenState extends State<HistoryScreen> {
 
   @override
   Widget build(BuildContext context) {
+    widget._authService.isLoggedIn.then((value){
+      if(!value) {
+        Navigator.of(context).pushNamed(
+          AuthorizationRoutes.LOGIN_SCREEN,
+          arguments: HistoryRoutes.HISTORY_ROUTE,
+        );
+      }
+    });
     return    Scaffold(
       key: _scaffoldKey,
       appBar: TurkishAppBar.getTurkishAppBar(context, _scaffoldKey, S.of(context).history),

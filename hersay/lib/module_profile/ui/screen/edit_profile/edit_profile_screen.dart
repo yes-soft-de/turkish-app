@@ -83,24 +83,29 @@ class EditProfileScreenState extends State<EditProfileScreen> {
     initialImage = profile.userImage;
 
     return loading
-        ? Container(
-            height: MediaQuery.of(context).size.height,
-            color: ProjectColors.THEME_COLOR,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                Text(
-                  S.of(context).loading,
-                  style: TextStyle(color: Colors.white),
-                ),
-                Center(
-                  child: CircularProgressIndicator(),
-                ),
-              ],
-            ))
+        ? _loadingWidget()
         : _getProfileEditScreen();
   }
 
+  Widget _loadingWidget(){
+    return Scaffold(
+      body: Container(
+          height: MediaQuery.of(context).size.height,
+          color: ProjectColors.THEME_COLOR,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              Text(
+                S.of(context).loading,
+                style: TextStyle(color: Colors.white),
+              ),
+              Center(
+                child: CircularProgressIndicator(),
+              ),
+            ],
+          )),
+    );
+  }
   Widget _getProfileEditScreen() {
     return Scaffold(
         body: SingleChildScrollView(
@@ -147,7 +152,7 @@ class EditProfileScreenState extends State<EditProfileScreen> {
                                               ? CircleAvatar(
                                                   backgroundImage:
                                                       new NetworkImage(
-                                                    initialImage,
+                                                    initialImage??'',
                                                   ),
                                                   radius: 80.0,
                                                 )

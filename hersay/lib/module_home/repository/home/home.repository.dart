@@ -42,10 +42,12 @@ class HomeRepository{
 
   Future<void> _getAllRealEstates()async{
     var token = await _authService.getToken();
-    dynamic response = await _apiClient.get(
-      Urls.ALL_REAL_ESTATES,
-      headers: {'Authorization': 'Bearer ' + token},
-    );
+    dynamic response = (token != null)
+        ? await _apiClient.get(
+                    Urls.ALL_REAL_ESTATES,
+                    headers: {'Authorization': 'Bearer ' + token},
+                  )
+        : await _apiClient.get(Urls.ALL_REAL_ESTATES,) ;
 
     if(response != null ) realEstates = AllRealEstatesResponse.fromJson(response);
 
@@ -53,21 +55,28 @@ class HomeRepository{
 
   Future<void> _getAllCars()async{
     var token = await _authService.getToken();
-    dynamic response = await _apiClient.get(
+
+    dynamic response = (token != null)
+        ? await _apiClient.get(
       Urls.ALL_CARS,
       headers: {'Authorization': 'Bearer ' + token},
-    );
+    )
+        : await _apiClient.get(Urls.ALL_CARS,) ;
 
-    if(response != null ) cars = AllCarsResponse.fromJson(response);
+      if(response != null ) cars = AllCarsResponse.fromJson(response);
 
   }
 
   Future<void> _getAllElectronicDevices()async{
     var token = await _authService.getToken();
-    dynamic response = await _apiClient.get(
+    dynamic response = (token != null)
+        ? await _apiClient.get(
       Urls.ALL_DEVICES,
       headers: {'Authorization': 'Bearer ' + token},
-    );
+    )
+        : await _apiClient.get(Urls.ALL_DEVICES,) ;
+
+
 
     if(response != null ) devices = AllDevicesResponse.fromJson(response);
 

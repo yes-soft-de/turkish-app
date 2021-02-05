@@ -2,7 +2,9 @@ import 'dart:convert';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:hersay/module_chat/manager/chat/chat_manager.dart';
 import 'package:hersay/module_chat/model/chat/chat_model.dart';
+import 'package:hersay/module_chat/model/chat_list/chat_list_model.dart';
 import 'package:hersay/module_chat/request/roomId_request/roomId_request.dart';
+import 'package:hersay/module_chat/response/chats_response/chats_response.dart';
 import 'package:hersay/utils/logger/logger.dart';
 import 'package:inject/inject.dart';
 import 'package:rxdart/rxdart.dart';
@@ -51,4 +53,12 @@ class ChatService {
 
     return _chatManager.getRoomId(request);
   }
+
+  Future<List<ChatListModel>> getMyChats()async{
+      ChatsResponse response = await _chatManager.getMyChats();
+      return ChatListModel.getChats(response)  ;
+  }
+
+
+
 }

@@ -220,7 +220,7 @@ class ProfileStateDataLoaded extends ProfileState {
                     ],
                   ),
                   Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    mainAxisAlignment: MainAxisAlignment.start,
                     children: [
                       Icon(Icons.location_on,color: Colors.white,),
                       Text(

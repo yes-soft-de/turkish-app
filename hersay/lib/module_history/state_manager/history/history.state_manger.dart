@@ -1,5 +1,6 @@
 
 
+import 'package:hersay/generated/l10n.dart';
 import 'package:hersay/module_history/service/history/history.service.dart';
 import 'package:hersay/module_history/ui/screen/history/history_screen.dart';
 import 'package:hersay/module_history/ui/state/history/history.state.dart';
@@ -21,7 +22,7 @@ class HistoryStateManager{
     _service.getHistory().then((value) {
       if (value == null) {
         _stateSubject
-            .add(HistoryStateError('Error Finding Data', screenState));
+            .add(HistoryStateError(S.current.youDidNotSellOrBuyAnyThingYet, screenState));
       } else {
         _stateSubject.add(HistoryStateDataLoaded(value, screenState));
       }

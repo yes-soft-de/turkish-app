@@ -12,10 +12,10 @@ class ReactionService{
       this._manager,
       );
 
-  Future<void> react(String entity,int itemId)async{
+  Future<bool> react(String entity,int itemId)async{
     ReactionRequest request = new ReactionRequest(
       itemID: itemId,
-      type: 1,
+      type: 3,
       entity: entity
     );
 

@@ -254,6 +254,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "worldWideSeries" : MessageLookupByLibrary.simpleMessage("المسلسلات الموصى بها عالميا"),
     "yearOfRelease" : MessageLookupByLibrary.simpleMessage("Year of release"),
     "youCanUseOnlyNumbers" : MessageLookupByLibrary.simpleMessage("you can use only numbers"),
+    "youDidNotChatWithAnyOne" : MessageLookupByLibrary.simpleMessage("You did not chat with any one"),
+    "youDidNotSellOrBuyAnyThingYet" : MessageLookupByLibrary.simpleMessage("You did not sell or buy any thing yet"),
+    "youDoNotHaveAnyNotification" : MessageLookupByLibrary.simpleMessage("You do not have any notification"),
     "yourName" : MessageLookupByLibrary.simpleMessage("Your Name"),
     "yourRequestHasBeenAddedAndInHoldForAdmin" : MessageLookupByLibrary.simpleMessage("your request has been added and in hold for admin approval")
   };

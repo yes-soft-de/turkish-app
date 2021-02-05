@@ -15,7 +15,7 @@ class ReactionRepository{
       this._authService,
       );
 
-  Future<void> react(ReactionRequest request)async{
+  Future<bool> react(ReactionRequest request)async{
     var token = await _authService.getToken();
     dynamic response = await _apiClient.post(
         Urls.REACT,

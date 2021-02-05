@@ -2382,6 +2382,36 @@ class S {
       args: [],
     );
   }
+
+  /// `You do not have any notification`
+  String get youDoNotHaveAnyNotification {
+    return Intl.message(
+      'You do not have any notification',
+      name: 'youDoNotHaveAnyNotification',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `You did not sell or buy any thing yet`
+  String get youDidNotSellOrBuyAnyThingYet {
+    return Intl.message(
+      'You did not sell or buy any thing yet',
+      name: 'youDidNotSellOrBuyAnyThingYet',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `You did not chat with any one`
+  String get youDidNotChatWithAnyOne {
+    return Intl.message(
+      'You did not chat with any one',
+      name: 'youDidNotChatWithAnyOne',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

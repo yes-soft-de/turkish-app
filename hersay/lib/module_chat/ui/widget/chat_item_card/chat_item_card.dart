@@ -5,12 +5,15 @@ import 'package:flutter/material.dart';
 class ChatItemCard extends StatelessWidget {
   final String userImage;
   final String userName;
+  final String time;
 
   ChatItemCard({
     this.userImage,
     this.userName,
+    this.time,
   });
-
+//61767327-6543-4f66-97d0-256427747323
+  //61767327-6543-4f66-97d0-256427747323
   @override
   Widget build(BuildContext context) {
     return   Container(
@@ -40,13 +43,13 @@ class ChatItemCard extends StatelessWidget {
                     SizedBox(width: 10,),
                    Container(
                      height: 50,
-                     width: MediaQuery.of(context).size.width*0.65,
+                     width: MediaQuery.of(context).size.width*0.4,
                      child: Column(
                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                        crossAxisAlignment: CrossAxisAlignment.start,
                        children: [
                          Text(
-                           userName,
+                           userName??'',
                            style: TextStyle(
                              fontSize: 12,
                              fontWeight: FontWeight.bold,
@@ -55,11 +58,33 @@ class ChatItemCard extends StatelessWidget {
                          Container(
                            height: 1,
                            color: Colors.grey,
-                             width: MediaQuery.of(context).size.width*0.65,
+                             width: MediaQuery.of(context).size.width*0.4,
                          )
                        ],
                      ),
-                   )
+                   ),
+                    Container(
+                      height: 50,
+                      width: MediaQuery.of(context).size.width*0.3,
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            time??'',
+                            style: TextStyle(
+                              fontSize: 12,
+                              color: Colors.grey
+                            ),
+                          ),
+                          Container(
+                            height: 1,
+                            color: Colors.grey,
+                            width: MediaQuery.of(context).size.width*0.3,
+                          )
+                        ],
+                      ),
+                    ),
                   ],
                 ),
               ),

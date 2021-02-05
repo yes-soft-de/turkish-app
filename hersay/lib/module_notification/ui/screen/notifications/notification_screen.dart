@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:hersay/generated/l10n.dart';
+import 'package:hersay/module_auth/auth_routes.dart';
+import 'package:hersay/module_auth/service/auth/auth.service.dart';
 import 'package:hersay/module_navigation/ui/widget/navigation_drawer/anime_navigation_drawer.dart';
+import 'package:hersay/module_notification/notification_routes.dart';
 import 'package:hersay/module_notification/state_manager/notification/notification.state_manger.dart';
 import 'package:hersay/module_notification/ui/state/notification/notification.state.dart';
 import 'package:hersay/module_notification/ui/widget/notification_card/notification_card.dart';
@@ -10,9 +13,10 @@ import 'package:inject/inject.dart';
 @provide
 class NotificationScreen extends StatefulWidget {
   final NotificationStateManager _stateManager;
-
+  final AuthService _authService;
   NotificationScreen(
       this._stateManager,
+      this._authService,
       );
 
   @override
@@ -41,6 +45,14 @@ class  NotificationScreenState extends State<NotificationScreen> {
 
   @override
   Widget build(BuildContext context) {
+    widget._authService.isLoggedIn.then((value){
+      if(!value) {
+        Navigator.of(context).pushNamed(
+            AuthorizationRoutes.LOGIN_SCREEN,
+            arguments: NotificationRoutes.NOTIFICATION_ROUTE
+        );
+      }
+    });
     return Scaffold(
       key: _scaffoldKey,
       appBar: TurkishAppBar.getTurkishAppBar(

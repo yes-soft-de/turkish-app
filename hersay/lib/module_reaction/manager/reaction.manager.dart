@@ -11,5 +11,5 @@ class ReactionManager{
       this._repository,
       );
 
-  Future<void> react(ReactionRequest request)async => _repository.react(request);
+  Future<bool> react(ReactionRequest request)async => _repository.react(request);
 }

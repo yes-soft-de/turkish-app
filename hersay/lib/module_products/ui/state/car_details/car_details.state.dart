@@ -125,7 +125,7 @@ class CarDetailsStateDataLoaded extends CarDetailsState {
                            )
                          : IconButton(
                               onPressed: (){
-
+                               screenState.loveCar(car);
                               },
                               icon: Icon(
                                 Icons.favorite_border,

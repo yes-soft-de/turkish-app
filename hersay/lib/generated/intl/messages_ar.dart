@@ -64,7 +64,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "carType" : MessageLookupByLibrary.simpleMessage("نوع السيارة"),
     "categories" : MessageLookupByLibrary.simpleMessage("التصنيفات"),
     "cc" : MessageLookupByLibrary.simpleMessage("نظام التحكم بالسرعة"),
-    "chatRoom" : MessageLookupByLibrary.simpleMessage("غلاف المحادثة"),
+    "chatRoom" : MessageLookupByLibrary.simpleMessage("المحادثة"),
     "chatWithLawyer" : MessageLookupByLibrary.simpleMessage("محادثة مع محامي"),
     "chatWithOwner" : MessageLookupByLibrary.simpleMessage("محادثة مع المالك"),
     "chats" : MessageLookupByLibrary.simpleMessage("الدردشة"),
@@ -252,6 +252,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "worldWideSeries" : MessageLookupByLibrary.simpleMessage("المسلسلات الموصى بها عالميا"),
     "yearOfRelease" : MessageLookupByLibrary.simpleMessage("تاريخ الانتاج"),
     "youCanUseOnlyNumbers" : MessageLookupByLibrary.simpleMessage("الرجاء استخدام الأرقام فقط"),
+    "youDidNotChatWithAnyOne" : MessageLookupByLibrary.simpleMessage("لم تقم بمراسلة أحد بعد"),
+    "youDidNotSellOrBuyAnyThingYet" : MessageLookupByLibrary.simpleMessage("لم تقم ببيع أو شراء أي شيء بعد"),
+    "youDoNotHaveAnyNotification" : MessageLookupByLibrary.simpleMessage("لا يوجد إشعارات"),
     "yourName" : MessageLookupByLibrary.simpleMessage("اسمي"),
     "yourRequestHasBeenAddedAndInHoldForAdmin" : MessageLookupByLibrary.simpleMessage("تم تسجيل طلبك وبانتظار موافقة مدير التطبيق")
   };

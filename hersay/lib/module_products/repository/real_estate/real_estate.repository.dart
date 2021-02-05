@@ -31,10 +31,13 @@ class RealEstateRepository{
 
   Future<RealEstateResponse> getRealEstateDetails(int realEstateId)async{
     var token = await _authService.getToken();
-    dynamic response = await _apiClient.get(
-      Urls.GET_REAL_ESTATE_DETAILS+'$realEstateId',
+    dynamic response = (token != null)
+        ? await _apiClient.get(
+      Urls.GET_CAR_DETAILS + '$realEstateId',
       headers: {'Authorization': 'Bearer ' + token},
-    );
+    )
+        : await _apiClient.get( Urls.GET_CAR_DETAILS + '$realEstateId',) ;
+
 
     if (response == null) return null;
     return RealEstateResponse.fromJson(response);

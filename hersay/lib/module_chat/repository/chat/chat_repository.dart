@@ -3,6 +3,7 @@ import 'package:hersay/consts/urls.dart';
 import 'package:hersay/module_auth/service/auth/auth.service.dart';
 import 'package:hersay/module_chat/model/chat/chat_model.dart';
 import 'package:hersay/module_chat/request/roomId_request/roomId_request.dart';
+import 'package:hersay/module_chat/response/chats_response/chats_response.dart';
 import 'package:hersay/module_network/http_client/http_client.dart';
 import 'package:inject/inject.dart';
 
@@ -39,11 +40,23 @@ class ChatRepository {
     dynamic response = await _apiClient.post(
         Urls.CHAT,
         request.toJson(),
-      headers: {'Authorization':'Bearer '+token}
+        headers: {'Authorization':'Bearer '+token}
     );
 
     if(response == null) return null;
 
     return response['Data']['roomID'];
+  }
+
+  Future<ChatsResponse> getMyChats()async{
+    var token = await _authService.getToken();
+    dynamic response = await _apiClient.get(
+      Urls.MY_CHATS,
+      headers: {'Authorization':'Bearer '+token}
+    );
+
+    if(response == null) return null;
+
+    return ChatsResponse.fromJson(response);
   }
 }

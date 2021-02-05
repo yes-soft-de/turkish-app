@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hersay/module_chat/chat_routes.dart';
+import 'package:hersay/module_products/model/car/car_model.dart';
 import 'package:hersay/module_products/state_manager/car/car_details.state_manager.dart';
 import 'package:hersay/module_products/ui/state/car_details/car_details.state.dart';
 import 'package:hersay/utils/project_colors/project_colors.dart';
@@ -34,6 +35,10 @@ class CarDetailsScreenState extends State<CarDetailsScreen> {
         });
       }
     });
+  }
+
+  void loveCar(CarModel car){
+    widget._stateManager.loveCar(carId, this, car);
   }
 
   void refresh(){

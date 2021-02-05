@@ -25,6 +25,7 @@ class LoginScreenState extends State<LoginScreen> {
 
   StreamSubscription _stateSubscription;
   bool deepLinkChecked = false;
+  String redirectTo = MainRoutes.MAIN_SCREEN_ROUTE;
 
   void refresh() {
     setState(() {});
@@ -45,6 +46,9 @@ class LoginScreenState extends State<LoginScreen> {
 
   @override
   Widget build(BuildContext context) {
+    String route = ModalRoute.of(context).settings.arguments;
+    if(route != null) redirectTo = route;
+
     return Scaffold(
       body: SingleChildScrollView(
           physics: AlwaysScrollableScrollPhysics(),
@@ -61,7 +65,7 @@ class LoginScreenState extends State<LoginScreen> {
   void moveToNext() {
     Navigator.pushNamed(
         context,
-       MainRoutes.MAIN_SCREEN_ROUTE
+        redirectTo
     );
 //    if (currentUserRole == UserRole.ROLE_OWNER) {
 //      Navigator.of(context).pushNamedAndRemoveUntil(OrdersRoutes.OWNER_ORDERS_SCREEN, (r) => false);

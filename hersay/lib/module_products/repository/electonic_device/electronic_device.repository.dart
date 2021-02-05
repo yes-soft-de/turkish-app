@@ -31,10 +31,13 @@ class ElectronicDeviceRepository{
 
   Future<ElectronicDeviceResponse> getElectronicDeviceDetails(int electronicDeviceId)async{
     var token = await _authService.getToken();
-    dynamic response = await _apiClient.get(
-      Urls.GET_DEVICE_DETAILS +'$electronicDeviceId',
+    dynamic response = (token != null)
+        ? await _apiClient.get(
+      Urls.GET_CAR_DETAILS + '$electronicDeviceId',
       headers: {'Authorization': 'Bearer ' + token},
-    );
+    )
+        : await _apiClient.get( Urls.GET_CAR_DETAILS + '$electronicDeviceId',) ;
+
 
     if (response == null) return null;
     return ElectronicDeviceResponse.fromJson(response);
