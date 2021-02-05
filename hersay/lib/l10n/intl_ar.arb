@@ -236,5 +236,6 @@
   "selectYourImage": "اختر صورتك",
   "youDoNotHaveAnyNotification": "لا يوجد إشعارات",
   "youDidNotSellOrBuyAnyThingYet": "لم تقم ببيع أو شراء أي شيء بعد",
-  "youDidNotChatWithAnyOne": "لم تقم بمراسلة أحد بعد"
+  "youDidNotChatWithAnyOne": "لم تقم بمراسلة أحد بعد",
+  "startedAt": "بدأت :"
 }

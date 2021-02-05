@@ -16,10 +16,11 @@ class TurkishNavigationDrawer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 230,
+      width: 250,
       child: Drawer(
           child: Container(
         color: ProjectColors.THEME_COLOR,
+
         child: Column(
           children: [
             Container(
@@ -28,6 +29,7 @@ class TurkishNavigationDrawer extends StatelessWidget {
               color: ProjectColors.SECONDARY_COLOR,
               child: Center(
                 child: Container(
+
                   height: 100,
                   width: 100,
                   decoration: BoxDecoration(
@@ -89,7 +91,7 @@ class TurkishNavigationDrawer extends StatelessWidget {
                   },
                   child: Container(
                     color: ProjectColors.THEME_COLOR,
-                    padding: const EdgeInsets.fromLTRB(32, 15, 0, 20),
+                    padding: const EdgeInsets.fromLTRB(32, 15, 10, 20),
                     child: Flex(
                       direction: Axis.horizontal,
                       children: [
@@ -117,7 +119,7 @@ class TurkishNavigationDrawer extends StatelessWidget {
                   },
                   child: Container(
                     color: ProjectColors.SECONDARY_COLOR,
-                    padding: const EdgeInsets.fromLTRB(32, 15, 0, 15),
+                    padding: const EdgeInsets.fromLTRB(32, 15, 10, 15),
                     child: Flex(
                       direction: Axis.horizontal,
                       children: [
@@ -144,7 +146,7 @@ class TurkishNavigationDrawer extends StatelessWidget {
                   },
                   child: Container(
                     color: ProjectColors.THEME_COLOR,
-                      padding: const EdgeInsets.fromLTRB(32, 15, 0, 15),
+                      padding: const EdgeInsets.fromLTRB(32, 15, 10, 15),
                     child: Flex(
                       direction: Axis.horizontal,
                       children: [
@@ -172,7 +174,7 @@ class TurkishNavigationDrawer extends StatelessWidget {
                   },
                   child: Container(
                     color: ProjectColors.SECONDARY_COLOR,
-                    padding: const EdgeInsets.fromLTRB(32, 15, 0, 15),
+                    padding: const EdgeInsets.fromLTRB(32, 15, 10, 15),
                     child: Flex(
                       direction: Axis.horizontal,
                       children: [
@@ -227,7 +229,7 @@ class TurkishNavigationDrawer extends StatelessWidget {
 //                      arguments: 1);
                   },
                   child: Container(
-                      padding: const EdgeInsets.fromLTRB(32, 15, 0, 15),
+                      padding: const EdgeInsets.fromLTRB(32, 15, 10, 15),
                     color: ProjectColors.THEME_COLOR,
                     child: Flex(
                       direction: Axis.horizontal,

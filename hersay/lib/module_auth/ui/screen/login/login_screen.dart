@@ -67,11 +67,6 @@ class LoginScreenState extends State<LoginScreen> {
         context,
         redirectTo
     );
-//    if (currentUserRole == UserRole.ROLE_OWNER) {
-//      Navigator.of(context).pushNamedAndRemoveUntil(OrdersRoutes.OWNER_ORDERS_SCREEN, (r) => false);
-//    } else if (currentUserRole == UserRole.ROLE_CAPTAIN) {
-//      Navigator.of(context).pushNamedAndRemoveUntil(OrdersRoutes.CAPTAIN_ORDERS_SCREEN, (r) => false);
-//    }
   }
 
 

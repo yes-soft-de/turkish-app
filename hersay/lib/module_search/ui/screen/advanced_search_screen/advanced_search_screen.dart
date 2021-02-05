@@ -55,8 +55,7 @@ class  AdvancedSearchScreenState extends State<AdvancedSearchScreen> {
   Widget build(BuildContext context) {
     return   Scaffold(
       key: _scaffoldKey,
-      drawer: TurkishNavigationDrawer(),
-      appBar: TurkishAppBar.getTurkishAppBar(context, _scaffoldKey, S.of(context).advancedSearch),
+      appBar: TurkishAppBar.getTurkishOrdinaryAppBar(context, S.of(context).advancedSearch),
       body: currentSate.getUI(context),
       bottomNavigationBar: GestureDetector(
         onTap: () {

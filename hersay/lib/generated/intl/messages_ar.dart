@@ -226,6 +226,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "spoilerAlert" : MessageLookupByLibrary.simpleMessage("يحوي حرق"),
     "startChat" : MessageLookupByLibrary.simpleMessage("ابدأ المحادثة"),
     "startWriting" : MessageLookupByLibrary.simpleMessage("ابدأ الكتابة"),
+    "startedAt" : MessageLookupByLibrary.simpleMessage("بدأت :"),
     "state" : MessageLookupByLibrary.simpleMessage("الوضع الراهن"),
     "statics" : MessageLookupByLibrary.simpleMessage("إحصاءات"),
     "storage" : MessageLookupByLibrary.simpleMessage("التخزين"),

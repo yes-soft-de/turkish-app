@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:hersay/generated/l10n.dart';
+import 'package:hersay/module_auth/auth_routes.dart';
+import 'package:hersay/module_auth/service/auth/auth.service.dart';
 import 'package:hersay/module_navigation/ui/widget/navigation_drawer/anime_navigation_drawer.dart';
+import 'package:hersay/module_profile/profile_routes.dart';
 import 'package:hersay/module_profile/state_manager/profile/profile.state_manager.dart';
 import 'package:hersay/module_profile/ui/state/profile/profile.state.dart';
 import 'package:hersay/utils/project_colors/project_colors.dart';
@@ -10,9 +13,11 @@ import 'package:inject/inject.dart';
 @provide
 class ProfileScreen extends StatefulWidget {
   final ProfileStateManager _stateManager;
+  final AuthService _authService;
 
   ProfileScreen(
       this._stateManager,
+      this._authService,
       );
 
   @override
@@ -48,6 +53,15 @@ class ProfileScreenState extends State<ProfileScreen> {
   }
   @override
   Widget build(BuildContext context) {
+    widget._authService.isLoggedIn.then((value){
+      if(!value) {
+        Navigator.of(context).pushNamed(
+          AuthorizationRoutes.LOGIN_SCREEN,
+          arguments: ProfileRoutes.PROFILE_SCREEN,
+        );
+      }
+      });
+
     if (currentState is ProfileStateInit) {
 
       getProfile();
@@ -55,9 +69,10 @@ class ProfileScreenState extends State<ProfileScreen> {
 
 
     return  Scaffold(
+
       key: _scaffoldKey,
-      appBar: TurkishAppBar.getTurkishAppBar(context, _scaffoldKey, S.of(context).profile),
-      drawer: TurkishNavigationDrawer(),
+      appBar: TurkishAppBar.getTurkishOrdinaryAppBar(context, S.of(context).profile),
+
       body: currentState.getUI(context),
     );
   }

@@ -227,6 +227,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "startChat" : MessageLookupByLibrary.simpleMessage("Start Chat"),
     "startWachingSeries" : MessageLookupByLibrary.simpleMessage("ابدأ متابعة المسلسلات"),
     "startWriting" : MessageLookupByLibrary.simpleMessage("Start Writing"),
+    "startedAt" : MessageLookupByLibrary.simpleMessage("Started at :"),
     "state" : MessageLookupByLibrary.simpleMessage("state"),
     "statics" : MessageLookupByLibrary.simpleMessage("إحصاءات"),
     "storage" : MessageLookupByLibrary.simpleMessage("Storage :"),

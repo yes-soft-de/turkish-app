@@ -32,6 +32,13 @@
                 "qualifier": null
               },
               "isProvider": false
+            },
+            {
+              "lookupKey": {
+                "root": "asset:hersay/lib/module_reaction/service/reaction.service.dart#ReactionService",
+                "qualifier": null
+              },
+              "isProvider": false
             }
           ]
         }

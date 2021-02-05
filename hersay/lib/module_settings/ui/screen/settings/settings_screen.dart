@@ -40,8 +40,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
   Widget _screenUi() {
     return Scaffold(
       key: _scaffoldKey,
-      drawer: TurkishNavigationDrawer(),
-      appBar: TurkishAppBar.getTurkishAppBar(context, _scaffoldKey, S.of(context).settings),
+      appBar: TurkishAppBar.getTurkishOrdinaryAppBar(context, S.of(context).settings),
       body: SingleChildScrollView(
         child: Column(
           children: [

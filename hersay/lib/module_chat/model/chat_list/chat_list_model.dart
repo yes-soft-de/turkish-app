@@ -11,7 +11,7 @@ class ChatListModel {
 
  static List<ChatListModel> getChats(ChatsResponse response){
    List<ChatListModel> result = [];
-   var df = new DateFormat('hh:mm dd/MM/yyyy');
+   var df = new DateFormat('dd/MM/yyyy');
 
    response.data.forEach((element) {
      var date = new DateTime.fromMillisecondsSinceEpoch(element.startAt.timestamp * 1000);

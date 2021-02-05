@@ -2412,6 +2412,16 @@ class S {
       args: [],
     );
   }
+
+  /// `Started at :`
+  String get startedAt {
+    return Intl.message(
+      'Started at :',
+      name: 'startedAt',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

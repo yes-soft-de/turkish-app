@@ -9,6 +9,7 @@ import 'package:hersay/module_profile/profile_routes.dart';
 import 'package:hersay/module_profile/state_manager/edit_profile/edit_profile.state_manager.dart';
 import 'package:hersay/module_profile/ui/state/edit_profile/edit_profile.state.dart';
 import 'package:hersay/utils/project_colors/project_colors.dart';
+import 'package:hersay/utils/widgets/turkish_app_bar/turkish_app_bar.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:inject/inject.dart';
 
@@ -96,7 +97,7 @@ class EditProfileScreenState extends State<EditProfileScreen> {
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               Text(
-                S.of(context).loading,
+                S.of(context).saving,
                 style: TextStyle(color: Colors.white),
               ),
               Center(
@@ -108,6 +109,8 @@ class EditProfileScreenState extends State<EditProfileScreen> {
   }
   Widget _getProfileEditScreen() {
     return Scaffold(
+
+        appBar: TurkishAppBar.getTurkishOrdinaryAppBar(context, S.of(context).editAccount),
         body: SingleChildScrollView(
       child: Form(
         key: _profileFormKey,
@@ -119,7 +122,6 @@ class EditProfileScreenState extends State<EditProfileScreen> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Container(),
               MediaQuery.of(context).viewInsets.bottom != 0
                   ? Container()
                   : Container(

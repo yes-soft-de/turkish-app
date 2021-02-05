@@ -69,7 +69,7 @@ class TurkishAppBar {
       elevation: 1,
       centerTitle: true,
       automaticallyImplyLeading: true,
-      title: Text('$title'),
+      title: Text('$title',style: TextStyle(color: Colors.white),),
     );
   }
 }

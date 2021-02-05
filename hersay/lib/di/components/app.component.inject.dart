@@ -57,17 +57,17 @@ import '../../module_products/state_manager/electroinic_device/electronic_device
 import '../../module_chat/service/chat/char_service.dart' as _i40;
 import '../../module_chat/manager/chat/chat_manager.dart' as _i41;
 import '../../module_chat/repository/chat/chat_repository.dart' as _i42;
+import '../../module_reaction/service/reaction.service.dart' as _i43;
+import '../../module_reaction/manager/reaction.manager.dart' as _i44;
+import '../../module_reaction/repository/reaction.repository.dart' as _i45;
 import '../../module_products/ui/screen/real_estate_details/real_estate_details_screen.dart'
-    as _i43;
-import '../../module_products/state_manager/real_estate/real_estate_details.state_manager.dart'
-    as _i44;
-import '../../module_products/ui/screen/car_details/car_details_screen.dart'
-    as _i45;
-import '../../module_products/state_manager/car/car_details.state_manager.dart'
     as _i46;
-import '../../module_reaction/service/reaction.service.dart' as _i47;
-import '../../module_reaction/manager/reaction.manager.dart' as _i48;
-import '../../module_reaction/repository/reaction.repository.dart' as _i49;
+import '../../module_products/state_manager/real_estate/real_estate_details.state_manager.dart'
+    as _i47;
+import '../../module_products/ui/screen/car_details/car_details_screen.dart'
+    as _i48;
+import '../../module_products/state_manager/car/car_details.state_manager.dart'
+    as _i49;
 import '../../module_splash/splash_module.dart' as _i50;
 import '../../module_splash/ui/screen/splash_screen/splash_screen.dart' as _i51;
 import '../../main_screen/main_module.dart' as _i52;
@@ -120,14 +120,16 @@ import '../../module_profile/service/profile/profile.service.dart' as _i86;
 import '../../module_profile/manager/profile/profile.manager.dart' as _i87;
 import '../../module_profile/repository/profile/profile.repository.dart'
     as _i88;
-import '../../module_profile/ui/screen/edit_profile/edit_profile_screen.dart'
+import '../../module_profile/presistance/profile_shared_preferences.dart'
     as _i89;
-import '../../module_profile/state_manager/edit_profile/edit_profile.state_manager.dart'
+import '../../module_profile/ui/screen/edit_profile/edit_profile_screen.dart'
     as _i90;
-import '../../module_history/history_module.dart' as _i91;
-import '../../module_chat/chat_module.dart' as _i92;
-import '../../module_chat/ui/screen/chat_page/chat_page_screen.dart' as _i93;
-import '../../module_chat/bloc/chat_page/chat_page.bloc.dart' as _i94;
+import '../../module_profile/state_manager/edit_profile/edit_profile.state_manager.dart'
+    as _i91;
+import '../../module_history/history_module.dart' as _i92;
+import '../../module_chat/chat_module.dart' as _i93;
+import '../../module_chat/ui/screen/chat_page/chat_page_screen.dart' as _i94;
+import '../../module_chat/bloc/chat_page/chat_page.bloc.dart' as _i95;
 
 class AppComponent$Injector implements _i1.AppComponent {
   AppComponent$Injector._();
@@ -240,29 +242,31 @@ class AppComponent$Injector implements _i1.AppComponent {
   _i39.ElectronicDeviceDetailsStateManager
       _createElectronicDeviceDetailsStateManager() =>
           _i39.ElectronicDeviceDetailsStateManager(
-              _createElectronicDeviceService(), _createChatService());
+              _createElectronicDeviceService(),
+              _createChatService(),
+              _createReactionService());
   _i40.ChatService _createChatService() =>
       _i40.ChatService(_createChatManager());
   _i41.ChatManager _createChatManager() =>
       _i41.ChatManager(_createChatRepository());
   _i42.ChatRepository _createChatRepository() =>
       _i42.ChatRepository(_createApiClient(), _createAuthService());
-  _i43.RealEstateDetailsScreen _createRealEstateDetailsScreen() =>
-      _i43.RealEstateDetailsScreen(_createRealEstateDetailsStateManager());
-  _i44.RealEstateDetailsStateManager _createRealEstateDetailsStateManager() =>
-      _i44.RealEstateDetailsStateManager(
-          _createRealEstateService(), _createChatService());
-  _i45.CarDetailsScreen _createCarDetailsScreen() =>
-      _i45.CarDetailsScreen(_createCarDetailsStateManager());
-  _i46.CarDetailsStateManager _createCarDetailsStateManager() =>
-      _i46.CarDetailsStateManager(
+  _i43.ReactionService _createReactionService() =>
+      _i43.ReactionService(_createReactionManager());
+  _i44.ReactionManager _createReactionManager() =>
+      _i44.ReactionManager(_createReactionRepository());
+  _i45.ReactionRepository _createReactionRepository() =>
+      _i45.ReactionRepository(_createApiClient(), _createAuthService());
+  _i46.RealEstateDetailsScreen _createRealEstateDetailsScreen() =>
+      _i46.RealEstateDetailsScreen(_createRealEstateDetailsStateManager());
+  _i47.RealEstateDetailsStateManager _createRealEstateDetailsStateManager() =>
+      _i47.RealEstateDetailsStateManager(_createRealEstateService(),
+          _createChatService(), _createReactionService());
+  _i48.CarDetailsScreen _createCarDetailsScreen() =>
+      _i48.CarDetailsScreen(_createCarDetailsStateManager());
+  _i49.CarDetailsStateManager _createCarDetailsStateManager() =>
+      _i49.CarDetailsStateManager(
           _createCarService(), _createChatService(), _createReactionService());
-  _i47.ReactionService _createReactionService() =>
-      _i47.ReactionService(_createReactionManager());
-  _i48.ReactionManager _createReactionManager() =>
-      _i48.ReactionManager(_createReactionRepository());
-  _i49.ReactionRepository _createReactionRepository() =>
-      _i49.ReactionRepository(_createApiClient(), _createAuthService());
   _i50.SplashModule _createSplashModule() =>
       _i50.SplashModule(_createSplashScreen());
   _i51.SplashScreen _createSplashScreen() =>
@@ -336,28 +340,32 @@ class AppComponent$Injector implements _i1.AppComponent {
   _i83.ProfileModule _createProfileModule() =>
       _i83.ProfileModule(_createProfileScreen(), _createEditProfileScreen());
   _i84.ProfileScreen _createProfileScreen() =>
-      _i84.ProfileScreen(_createProfileStateManager());
+      _i84.ProfileScreen(_createProfileStateManager(), _createAuthService());
   _i85.ProfileStateManager _createProfileStateManager() =>
       _i85.ProfileStateManager(_createProfileService(), _createAuthService());
-  _i86.ProfileService _createProfileService() =>
-      _i86.ProfileService(_createProfileManager(), _createImageUploadService());
+  _i86.ProfileService _createProfileService() => _i86.ProfileService(
+      _createProfileManager(),
+      _createImageUploadService(),
+      _createProfileSharedPreferencesHelper());
   _i87.ProfileManager _createProfileManager() =>
       _i87.ProfileManager(_createProfileRepository());
   _i88.ProfileRepository _createProfileRepository() =>
       _i88.ProfileRepository(_createApiClient(), _createAuthService());
-  _i89.EditProfileScreen _createEditProfileScreen() =>
-      _i89.EditProfileScreen(_createEditProfileStateManager());
-  _i90.EditProfileStateManager _createEditProfileStateManager() =>
-      _i90.EditProfileStateManager(
+  _i89.ProfileSharedPreferencesHelper _createProfileSharedPreferencesHelper() =>
+      _i89.ProfileSharedPreferencesHelper();
+  _i90.EditProfileScreen _createEditProfileScreen() =>
+      _i90.EditProfileScreen(_createEditProfileStateManager());
+  _i91.EditProfileStateManager _createEditProfileStateManager() =>
+      _i91.EditProfileStateManager(
           _createProfileService(), _createAuthService());
-  _i91.HistoryModule _createHistoryModule() =>
-      _i91.HistoryModule(_createHistoryScreen());
-  _i92.ChatModule _createChatModule() => _i92.ChatModule(
+  _i92.HistoryModule _createHistoryModule() =>
+      _i92.HistoryModule(_createHistoryScreen());
+  _i93.ChatModule _createChatModule() => _i93.ChatModule(
       _createChatsListScreen(), _createAuthService(), _createChatScreen());
-  _i93.ChatScreen _createChatScreen() =>
-      _i93.ChatScreen(_createChatPageBloc(), _createImageUploadService());
-  _i94.ChatPageBloc _createChatPageBloc() =>
-      _i94.ChatPageBloc(_createChatService());
+  _i94.ChatScreen _createChatScreen() =>
+      _i94.ChatScreen(_createChatPageBloc(), _createImageUploadService());
+  _i95.ChatPageBloc _createChatPageBloc() =>
+      _i95.ChatPageBloc(_createChatService());
   @override
   _i6.MyApp get app => _createMyApp();
 }

@@ -75,70 +75,89 @@ class RealEstateDetailsStateDataLoaded extends RealEstateDetailsState {
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Row(
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.all(5.0),
-                      child: Container(
-                        height: 65,
-                        width: 65,
-                        child: CircleAvatar(
-                          radius: 65,
-                          backgroundImage: NetworkImage(
-                              '${realEstate.userImage}'),
-                        ),
-                      ),
-                    ),
-                    SizedBox(
-                      width: 10,
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Text(
-                        '${realEstate.userName}',
-                        style: TextStyle(
-                          fontSize: 14,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
                 Container(
-                  width: MediaQuery.of(context).size.width,
+                  decoration: BoxDecoration(
+                    color: ProjectColors.THEME_COLOR,
+                    borderRadius: BorderRadius.circular(25),
+                  ),
+                  height: 50,
+                  padding: const EdgeInsets.all(8.0),
+                  margin: const EdgeInsets.all(8.0),
                   child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      // real estate type
-                      Text(
-                        '${realEstate.type}',
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 14,
-                        ),
-                      ),
-                      realEstate.isLoved
-                          ? Icon(
-                        Icons.favorite,
-                        color: ProjectColors.THEME_COLOR,
-                      )
-                          : IconButton(
-                        onPressed: (){
-
-                        },
-                        icon: Icon(
-                          Icons.favorite_border,
-                          color: ProjectColors.THEME_COLOR,
+                      Icon(Icons.phone_iphone,color: Colors.white,),
+                      SizedBox(width: 10,),
+                      Center(
+                        child:      Text(
+                          '${realEstate.type}',
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white,
+                            fontSize: 16,
+                          ),
                         ),
                       ),
                     ],
                   ),
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Flex(
+                      direction: Axis.horizontal,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.all(5.0),
+                          child: Container(
+                            height: 65,
+                            width: 65,
+                            child: CircleAvatar(
+                              radius: 65,
+                              backgroundImage: NetworkImage(
+                                  '${realEstate.userImage}'),
+                            ),
+                          ),
+                        ),
+                        SizedBox(
+                          width: 10,
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Text(
+                            '${realEstate.userName}',
+                            style: TextStyle(
+                              fontSize: 14,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+
+
+                    realEstate.isLoved
+                        ? Icon(
+                      Icons.favorite,
+                      color: ProjectColors.THEME_COLOR,
+                    )
+                        : IconButton(
+                      onPressed: (){
+                        screenState.loveRealEstate(realEstate);
+                      },
+                      icon: Icon(
+                        Icons.favorite_border,
+                        color: ProjectColors.THEME_COLOR,
+                      ),
+                    ),
+                  ],
                 ),
 
                 // House image
                 Container(
                   width: width,
                   height: 150,
+                  margin: EdgeInsets.only(top: 20),
                   decoration: BoxDecoration(
                       image: DecorationImage(
                           fit: BoxFit.fill,

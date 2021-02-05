@@ -1,5 +1,6 @@
 
 import 'package:flutter/material.dart';
+import 'package:hersay/generated/l10n.dart';
 
 
 class ChatItemCard extends StatelessWidget {
@@ -12,8 +13,6 @@ class ChatItemCard extends StatelessWidget {
     this.userName,
     this.time,
   });
-//61767327-6543-4f66-97d0-256427747323
-  //61767327-6543-4f66-97d0-256427747323
   @override
   Widget build(BuildContext context) {
     return   Container(
@@ -68,8 +67,15 @@ class ChatItemCard extends StatelessWidget {
                       width: MediaQuery.of(context).size.width*0.3,
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        crossAxisAlignment: CrossAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.end,
                         children: [
+                          Text(
+                           S.of(context).startedAt,
+                            style: TextStyle(
+                                fontSize: 12,
+                                color: Colors.grey
+                            ),
+                          ),
                           Text(
                             time??'',
                             style: TextStyle(

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hersay/module_chat/chat_routes.dart';
+import 'package:hersay/module_products/model/electronic_device/electronic_device_model.dart';
 import 'package:hersay/module_products/state_manager/electroinic_device/electronic_device_details.state_manager.dart';
 import 'package:hersay/module_products/ui/state/electronic_device_details/electronic_device_details.state.dart';
 import 'package:hersay/utils/project_colors/project_colors.dart';
@@ -23,6 +24,10 @@ class  ElectronicDeviceDetailsScreenState extends State<ElectronicDeviceDetailsS
   ElectronicDeviceDetailsState currentState;
   int electronicDeviceId;
   double width;
+
+  void loveDevice(ElectronicDeviceModel device){
+    widget._stateManager.loveDevice(electronicDeviceId, this, device);
+  }
 
   void getElectronicDeviceDetails(){
     widget._stateManager.getElectronicDeviceDetails(this, electronicDeviceId);

@@ -45,7 +45,7 @@ class CarDetailsStateManager{
   
   void loveCar(int carId,CarDetailsScreenState screenState,CarModel car){
     
-    _reactionService.react('CarEntity', carId).then((value) {
+    _reactionService.react('car', carId).then((value) {
       if(value ){
          car.isLoved = true ;
         _stateSubject.add(CarDetailsStateDataLoaded(car, screenState));

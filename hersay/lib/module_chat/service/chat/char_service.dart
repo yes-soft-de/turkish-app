@@ -56,6 +56,7 @@ class ChatService {
 
   Future<List<ChatListModel>> getMyChats()async{
       ChatsResponse response = await _chatManager.getMyChats();
+      if(response == null) return null;
       return ChatListModel.getChats(response)  ;
   }
 

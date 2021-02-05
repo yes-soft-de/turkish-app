@@ -238,5 +238,6 @@
   "selectYourImage": "Select your image",
   "youDoNotHaveAnyNotification": "You do not have any notification",
   "youDidNotSellOrBuyAnyThingYet": "You did not sell or buy any thing yet",
-  "youDidNotChatWithAnyOne": "You did not chat with any one"
+  "youDidNotChatWithAnyOne": "You did not chat with any one",
+  "startedAt": "Started at :"
 }

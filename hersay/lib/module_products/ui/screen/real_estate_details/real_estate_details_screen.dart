@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hersay/module_chat/chat_routes.dart';
+import 'package:hersay/module_products/model/real_estate/real_estate_model.dart';
 import 'package:hersay/module_products/state_manager/real_estate/real_estate_details.state_manager.dart';
 import 'package:hersay/module_products/ui/state/real_estate_details/real_estate_details.state.dart';
 import 'package:hersay/utils/project_colors/project_colors.dart';
@@ -37,7 +38,11 @@ class RealEstateDetailsScreenState extends State<RealEstateDetailsScreen> {
       }
     });
   }
-  
+
+  void loveRealEstate(RealEstateModel realEstate){
+    widget._stateManager.loveRealEstate(realEstateId, this, realEstate);
+  }
+
   void getRealEstateDetails(){
     widget._stateManager.getRealEstateDetails(this, realEstateId)  ;
   }

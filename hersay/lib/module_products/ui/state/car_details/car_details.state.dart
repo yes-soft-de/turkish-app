@@ -75,70 +75,89 @@ class CarDetailsStateDataLoaded extends CarDetailsState {
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Row(
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.all(5.0),
-                      child: Container(
-                        height: 65,
-                        width: 65,
-                        child: CircleAvatar(
-                          radius: 65,
-                          backgroundImage: NetworkImage(
-                              '${car.userImage}'),
+                Container(
+                  decoration: BoxDecoration(
+                    color: ProjectColors.THEME_COLOR,
+                    borderRadius: BorderRadius.circular(25),
+                  ),
+                  height: 50,
+                  padding: const EdgeInsets.all(8.0),
+                  margin: const EdgeInsets.all(8.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Icon(Icons.directions_car,color: Colors.white,),
+                      SizedBox(width: 10,),
+                      Center(
+                        child:      Text(
+                          '${car.brand}',
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white,
+                            fontSize: 16,
+                          ),
                         ),
                       ),
-                    ),
-                    SizedBox(
-                      width: 10,
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Text(
-                        '${car.userName}',
-                        style: TextStyle(
-                          fontSize: 14,
-                          fontWeight: FontWeight.bold,
+                    ],
+                  ),
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Flex(
+                      direction: Axis.horizontal,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.all(5.0),
+                          child: Container(
+                            height: 65,
+                            width: 65,
+                            child: CircleAvatar(
+                              radius: 65,
+                              backgroundImage: NetworkImage(
+                                  '${car.userImage}'),
+                            ),
+                          ),
                         ),
+                        SizedBox(
+                          width: 10,
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Text(
+                            '${car.userName}',
+                            style: TextStyle(
+                              fontSize: 14,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+
+
+                    car.isLoved
+                        ? Icon(
+                      Icons.favorite,
+                      color: ProjectColors.THEME_COLOR,
+                    )
+                        : IconButton(
+                      onPressed: (){
+                        screenState.loveCar(car);
+                      },
+                      icon: Icon(
+                        Icons.favorite_border,
+                        color: ProjectColors.THEME_COLOR,
                       ),
                     ),
                   ],
                 ),
-               Container(
-                 width: MediaQuery.of(context).size.width,
-                 child: Row(
-                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                   children: [
 
-                     // car model
-                     Text(
-                       '${car.brand}',
-                       style: TextStyle(
-                         fontWeight: FontWeight.bold,
-                         fontSize: 14,
-                       ),
-                     ),
-                     car.isLoved
-                         ? Icon(
-                             Icons.favorite,
-                             color: ProjectColors.THEME_COLOR,
-                           )
-                         : IconButton(
-                              onPressed: (){
-                               screenState.loveCar(car);
-                              },
-                              icon: Icon(
-                                Icons.favorite_border,
-                                color: ProjectColors.THEME_COLOR,
-                              ),
-                     ),
-                   ],
-                 ),
-               ),
                 // owner
 
                 // car image
                 Container(
+                  margin: EdgeInsets.only(top: 20),
                   width: width,
                   height: 150,
                   decoration: BoxDecoration(
