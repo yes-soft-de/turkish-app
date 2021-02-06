@@ -5,6 +5,8 @@ namespace App\Repository;
 use App\Entity\ReportEntity;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
+use App\Entity\UserProfileEntity;
+use Doctrine\ORM\Query\Expr\Join;
 
 /**
  * @method ReportEntity|null find($id, $lockMode = null, $lockVersion = null)
@@ -19,32 +21,19 @@ class ReportEntityRepository extends ServiceEntityRepository
         parent::__construct($registry, ReportEntity::class);
     }
 
-    // /**
-    //  * @return ReportEntity[] Returns an array of ReportEntity objects
-    //  */
-    /*
-    public function findByExampleField($value)
+    public function getAllReports()
     {
-        return $this->createQueryBuilder('r')
-            ->andWhere('r.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('r.id', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
-        ;
-    }
-    */
+        return $this->createQueryBuilder('report')
+            ->select('report.id', 'report.userID', 'report.entity', 'report.itemID', 'report.reason', 'userProfile.userName', 
+             'userProfile.image')
 
-    /*
-    public function findOneBySomeField($value): ?ReportEntity
-    {
-        return $this->createQueryBuilder('r')
-            ->andWhere('r.exampleField = :val')
-            ->setParameter('val', $value)
+             ->leftJoin(
+                UserProfileEntity::class, 
+                'userProfile', 
+                Join::WITH, 
+                'userProfile.userID = report.userID')
+            
             ->getQuery()
-            ->getOneOrNullResult()
-        ;
+            ->getResult();
     }
-    */
 }
