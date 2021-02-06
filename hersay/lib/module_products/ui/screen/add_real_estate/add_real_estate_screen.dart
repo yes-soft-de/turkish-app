@@ -4,6 +4,7 @@ import 'package:hersay/module_auth/auth_routes.dart';
 import 'package:hersay/module_auth/service/auth/auth.service.dart';
 import 'package:hersay/module_products/state_manager/real_estate/add_real_estate.manager.dart';
 import 'package:hersay/module_products/ui/state/add_real_estate/add_real_estate.state.dart';
+import 'package:hersay/utils/route_helper/route_helper.dart';
 import 'package:inject/inject.dart';
 
 import '../../../products_routes.dart';
@@ -54,18 +55,24 @@ class  AddRealEstateScreenState extends State<AddRealEstateScreen> {
       String rooms,
       String status,
       String state,
-      String mainImage){
+      String mainImage,
+      List<String> otherImages){
     widget._stateManager.addNewRealEstate(country,city,space,price,description,
-        numberOfFloors,cladding,homeFurnishing,realEstateType,rooms,status,state,mainImage, this);
+        numberOfFloors,cladding,homeFurnishing,realEstateType,rooms,status,state,mainImage,otherImages, this);
   }
 
   @override
   Widget build(BuildContext context) {
     widget._authService.isLoggedIn.then((value){
       if(!value) {
+        RouteHelper redirectTo = new RouteHelper(
+            redirectTo:  ProductsRoutes.ADD_REAL_ESTATE_SCREEN,
+            additionalData: null
+        );
+
         Navigator.of(context).pushNamed(
             AuthorizationRoutes.LOGIN_SCREEN,
-            arguments: ProductsRoutes.ADD_REAL_ESTATE_SCREEN
+            arguments: redirectTo
         );
       }
     });

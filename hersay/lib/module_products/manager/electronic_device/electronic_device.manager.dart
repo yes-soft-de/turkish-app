@@ -14,7 +14,7 @@ class ElectronicDeviceManager{
       this._repository,
       );
 
-  Future<bool> addNewElectronicDevice(ElectronicDeviceRequest electronicDeviceRequest) async =>
+  Future<int> addNewElectronicDevice(ElectronicDeviceRequest electronicDeviceRequest) async =>
       _repository.addNewElectronicDevice(electronicDeviceRequest);
 
   Future<ElectronicDeviceResponse> getElectronicDeviceDetails(int electronicDeviceId)async =>

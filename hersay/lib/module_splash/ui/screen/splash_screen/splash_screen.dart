@@ -21,20 +21,23 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   Widget build(BuildContext context) {
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-      widget._authService.isLoggedIn.then((value) {
-        if (value  ) {
+      Navigator.of(context).pushNamedAndRemoveUntil(
+          MainRoutes.MAIN_SCREEN_ROUTE, (route) => false);
 
-          Navigator.of(context).pushNamedAndRemoveUntil(
-              MainRoutes.MAIN_SCREEN_ROUTE, (route) => false);
-
-        }  else {
-          Navigator.of(context).pushNamedAndRemoveUntil(
-              AuthorizationRoutes.REGISTER_SCREEN, (route) => false);
-        }
-      }).catchError((err) {
-        Navigator.of(context).pushNamedAndRemoveUntil(
-            AuthorizationRoutes.REGISTER_SCREEN, (route) => false);
-      });
+//      widget._authService.isLoggedIn.then((value) {
+//        if (value  ) {
+//
+//          Navigator.of(context).pushNamedAndRemoveUntil(
+//              MainRoutes.MAIN_SCREEN_ROUTE, (route) => false);
+//
+//        }  else {
+//          Navigator.of(context).pushNamedAndRemoveUntil(
+//              AuthorizationRoutes.REGISTER_SCREEN, (route) => false);
+//        }
+//      }).catchError((err) {
+//        Navigator.of(context).pushNamedAndRemoveUntil(
+//            AuthorizationRoutes.REGISTER_SCREEN, (route) => false);
+//      });
     });
     return Scaffold(
       body:   Container(

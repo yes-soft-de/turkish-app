@@ -211,7 +211,8 @@ class AppComponent$Injector implements _i1.AppComponent {
       _i25.ImageUploadService(_createUploadManager());
   _i26.UploadManager _createUploadManager() =>
       _i26.UploadManager(_createUploadRepository());
-  _i27.UploadRepository _createUploadRepository() => _i27.UploadRepository();
+  _i27.UploadRepository _createUploadRepository() =>
+      _i27.UploadRepository(_createApiClient(), _createAuthService());
   _i28.AddCarScreen _createAddCarScreen() =>
       _i28.AddCarScreen(_createAddCarStateManager(), _createAuthService());
   _i29.AddCarStateManager _createAddCarStateManager() =>
@@ -238,7 +239,7 @@ class AppComponent$Injector implements _i1.AppComponent {
       _i37.ElectronicDeviceRepository(_createApiClient(), _createAuthService());
   _i38.ElectronicDeviceDetailsScreen _createElectronicDeviceDetailsScreen() =>
       _i38.ElectronicDeviceDetailsScreen(
-          _createElectronicDeviceDetailsStateManager());
+          _createElectronicDeviceDetailsStateManager(), _createAuthService());
   _i39.ElectronicDeviceDetailsStateManager
       _createElectronicDeviceDetailsStateManager() =>
           _i39.ElectronicDeviceDetailsStateManager(
@@ -258,12 +259,13 @@ class AppComponent$Injector implements _i1.AppComponent {
   _i45.ReactionRepository _createReactionRepository() =>
       _i45.ReactionRepository(_createApiClient(), _createAuthService());
   _i46.RealEstateDetailsScreen _createRealEstateDetailsScreen() =>
-      _i46.RealEstateDetailsScreen(_createRealEstateDetailsStateManager());
+      _i46.RealEstateDetailsScreen(
+          _createRealEstateDetailsStateManager(), _createAuthService());
   _i47.RealEstateDetailsStateManager _createRealEstateDetailsStateManager() =>
       _i47.RealEstateDetailsStateManager(_createRealEstateService(),
           _createChatService(), _createReactionService());
-  _i48.CarDetailsScreen _createCarDetailsScreen() =>
-      _i48.CarDetailsScreen(_createCarDetailsStateManager());
+  _i48.CarDetailsScreen _createCarDetailsScreen() => _i48.CarDetailsScreen(
+      _createCarDetailsStateManager(), _createAuthService());
   _i49.CarDetailsStateManager _createCarDetailsStateManager() =>
       _i49.CarDetailsStateManager(
           _createCarService(), _createChatService(), _createReactionService());

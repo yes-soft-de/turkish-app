@@ -2422,6 +2422,16 @@ class S {
       args: [],
     );
   }
+
+  /// `Add more images`
+  String get addMoreImages {
+    return Intl.message(
+      'Add more images',
+      name: 'addMoreImages',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

@@ -36,6 +36,7 @@ class CarService{
   String city,
   String state,
   String status,
+  List<String> otherImages,
       ) async {
 
     String uploadedImageUrl = (mainImagePath != null)
@@ -61,7 +62,18 @@ class CarService{
       gearType: gearType,
       location: location,
     );
-    return _manager.addNewCar(carRequest);
+    int result = await _manager.addNewCar(carRequest);
+
+
+    if (result != null )  await _uploadOtherImages(otherImages,result);
+
+    return result !=  null;
+  }
+
+  Future<void> _uploadOtherImages(List<String> filePaths,int itemId) async{
+     List<String> imagesUrl = await _imageUploadService.uploadMultipleImages(filePaths);
+     await _imageUploadService.setImagesToProduct(imagesUrl, 'car', itemId);
+
   }
 
   Future<CarModel> getCarDetails(int carId)async{

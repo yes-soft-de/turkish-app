@@ -9,4 +9,8 @@ class UploadManager {
   Future<String> upload(String filePath) {
     return _repository.upload(filePath);
   }
+
+  Future<bool> setImageToProduct(String imageUrl, int itemId, String entity) async =>
+      _repository.setImageToProduct(imageUrl, itemId, entity);
+
 }

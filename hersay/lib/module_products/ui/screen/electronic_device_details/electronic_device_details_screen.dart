@@ -1,18 +1,24 @@
 import 'package:flutter/material.dart';
+import 'package:hersay/module_auth/auth_routes.dart';
+import 'package:hersay/module_auth/service/auth/auth.service.dart';
 import 'package:hersay/module_chat/chat_routes.dart';
 import 'package:hersay/module_products/model/electronic_device/electronic_device_model.dart';
+import 'package:hersay/module_products/products_routes.dart';
 import 'package:hersay/module_products/state_manager/electroinic_device/electronic_device_details.state_manager.dart';
 import 'package:hersay/module_products/ui/state/electronic_device_details/electronic_device_details.state.dart';
 import 'package:hersay/utils/project_colors/project_colors.dart';
+import 'package:hersay/utils/route_helper/route_helper.dart';
 import 'package:hersay/utils/widgets/turkish_app_bar/turkish_app_bar.dart';
 import 'package:inject/inject.dart';
 
 @provide
 class ElectronicDeviceDetailsScreen extends StatefulWidget {
   final ElectronicDeviceDetailsStateManager _stateManager;
+  final AuthService _authService;
 
   ElectronicDeviceDetailsScreen(
-      this._stateManager
+      this._stateManager,
+      this._authService,
       );
 
   @override
@@ -34,7 +40,22 @@ class  ElectronicDeviceDetailsScreenState extends State<ElectronicDeviceDetailsS
   }
 
   void getRoomId(){
-    widget._stateManager.getRoomId(electronicDeviceId, this);
+    widget._authService.isLoggedIn.then((value){
+      if(!value) {
+        RouteHelper redirectTo = new RouteHelper(
+            redirectTo:  ProductsRoutes.ELECTRONIC_DEVICE_DETAILS_SCREEN,
+            additionalData: electronicDeviceId
+        );
+        Navigator.of(context).pushNamed(
+          AuthorizationRoutes.LOGIN_SCREEN,
+          arguments: redirectTo,
+        );
+      }else{
+        widget._stateManager.getRoomId(electronicDeviceId, this);
+      }
+    });
+
+
   }
 
   void goToChat(String roomId){

@@ -7,6 +7,7 @@ import 'package:hersay/module_notification/notification_routes.dart';
 import 'package:hersay/module_notification/state_manager/notification/notification.state_manger.dart';
 import 'package:hersay/module_notification/ui/state/notification/notification.state.dart';
 import 'package:hersay/module_notification/ui/widget/notification_card/notification_card.dart';
+import 'package:hersay/utils/route_helper/route_helper.dart';
 import 'package:hersay/utils/widgets/turkish_app_bar/turkish_app_bar.dart';
 import 'package:inject/inject.dart';
 
@@ -47,9 +48,13 @@ class  NotificationScreenState extends State<NotificationScreen> {
   Widget build(BuildContext context) {
     widget._authService.isLoggedIn.then((value){
       if(!value) {
+        RouteHelper redirectTo = new RouteHelper(
+          redirectTo: NotificationRoutes.NOTIFICATION_ROUTE,
+          additionalData: null
+        );
         Navigator.of(context).pushNamed(
             AuthorizationRoutes.LOGIN_SCREEN,
-            arguments: NotificationRoutes.NOTIFICATION_ROUTE
+            arguments: redirectTo
         );
       }
     });

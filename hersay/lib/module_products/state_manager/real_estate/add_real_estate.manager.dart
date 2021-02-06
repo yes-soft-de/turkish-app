@@ -28,10 +28,12 @@ class AddRealEstateStateManager {
       String status,
       String state,
       String mainImage,
+      List<String> otherImages,
       AddRealEstateScreenState screenState) {
+    _stateSubject.add(AddRealEstateStateLoading(screenState));
     _service
         .addNewRealEstate(country,city,space,price,description,
-        numberOfFloors,cladding,homeFurnishing,realEstateType,rooms,status,state,mainImage)
+        numberOfFloors,cladding,homeFurnishing,realEstateType,rooms,status,state,mainImage,otherImages)
         .then((newOrder) {
       if (newOrder) {
         _stateSubject.add(AddRealEstateSuccessState(screenState));

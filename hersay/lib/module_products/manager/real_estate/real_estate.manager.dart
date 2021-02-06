@@ -12,7 +12,7 @@ class RealEstateManager{
       this._repository,
       );
 
-  Future<bool> addNewRealEstate(RealEstateRequest realEstateRequest) async =>
+  Future<int> addNewRealEstate(RealEstateRequest realEstateRequest) async =>
       _repository.addNewRealEstate(realEstateRequest);
 
   Future<RealEstateResponse> getRealEstateDetails(int realEstateId)async =>

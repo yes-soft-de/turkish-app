@@ -1,18 +1,24 @@
 import 'package:flutter/material.dart';
+import 'package:hersay/module_auth/auth_routes.dart';
+import 'package:hersay/module_auth/service/auth/auth.service.dart';
 import 'package:hersay/module_chat/chat_routes.dart';
 import 'package:hersay/module_products/model/car/car_model.dart';
+import 'package:hersay/module_products/products_routes.dart';
 import 'package:hersay/module_products/state_manager/car/car_details.state_manager.dart';
 import 'package:hersay/module_products/ui/state/car_details/car_details.state.dart';
 import 'package:hersay/utils/project_colors/project_colors.dart';
+import 'package:hersay/utils/route_helper/route_helper.dart';
 import 'package:hersay/utils/widgets/turkish_app_bar/turkish_app_bar.dart';
 import 'package:inject/inject.dart';
 
 @provide
 class CarDetailsScreen extends StatefulWidget {
   final CarDetailsStateManager _stateManager;
+  final AuthService _authService;
 
   CarDetailsScreen(
       this._stateManager,
+      this._authService,
       );
 
   @override
@@ -52,7 +58,21 @@ class CarDetailsScreenState extends State<CarDetailsScreen> {
   }
 
   void getRoomId(){
-    widget._stateManager.getRoomId(carId, this);
+    widget._authService.isLoggedIn.then((value){
+      if(!value) {
+        RouteHelper redirectTo = new RouteHelper(
+            redirectTo:  ProductsRoutes.CAR_DETAILS_SCREEN,
+            additionalData: carId
+        );
+        Navigator.of(context).pushNamed(
+          AuthorizationRoutes.LOGIN_SCREEN,
+          arguments: redirectTo,
+        );
+      }else{
+        widget._stateManager.getRoomId(carId, this);
+      }
+    });
+
   }
 
   void goToChat(String roomId){

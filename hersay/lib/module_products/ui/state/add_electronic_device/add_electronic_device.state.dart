@@ -14,6 +14,17 @@ abstract class AddElectronicDeviceState {
 
   Widget getUI(BuildContext context);
 }
+class AddElectronicDeviceStateLoading extends AddElectronicDeviceState {
+  AddElectronicDeviceStateLoading( AddElectronicDeviceScreenState screenState)
+      : super(screenState);
+
+  @override
+  Widget getUI(BuildContext context) {
+    return Center(
+      child: CircularProgressIndicator(),
+    );
+  }
+}
 
 class AddElectronicDeviceStateInit extends AddElectronicDeviceState {
   final GlobalKey<FormState> _addDeviceFormKey = GlobalKey<FormState>();
@@ -43,6 +54,7 @@ class AddElectronicDeviceStateInit extends AddElectronicDeviceState {
   bool _autoValidate = false;
 
   String mainImage;
+  List<String> otherImages = [];
 
   AddElectronicDeviceStateInit(AddElectronicDeviceScreenState screenState)
       : super(screenState) {
@@ -543,6 +555,40 @@ class AddElectronicDeviceStateInit extends AddElectronicDeviceState {
               ),
               Center(
                 child: Container(
+                  width: 250,
+                  height: 55,
+                  margin: EdgeInsets.only(top: 30),
+                  child: FlatButton(
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      onPressed: () {
+                        ImagePicker ip = ImagePicker();
+                        ip.getImage(source: ImageSource.gallery).then((value) {
+                          if (value != null) {
+                            otherImages.add(value.path)  ;
+                            print('another image picked, images length ${otherImages.length}');
+                          }
+                        });
+                      },
+                      color: ProjectColors.SECONDARY_COLOR,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Icon(
+                            Icons.photo_library,
+                            color: Colors.white,
+                          ),
+                          Text(
+                            S.of(context).addMoreImages ,
+                            style: TextStyle(color: Colors.white),
+                          ),
+                        ],
+                      )),
+                ),
+              ),
+              Center(
+                child: Container(
                   width: 200,
                   height: 55,
                   margin: EdgeInsets.only(top: 30),
@@ -567,7 +613,9 @@ class AddElectronicDeviceStateInit extends AddElectronicDeviceState {
                               _useDurationController.text.trim(),
                               mainImage,
                               'not sold',
-                              'Unaccepted');
+                              'Unaccepted',
+                              otherImages
+                          );
                         }
                       },
                       //TODO : change this using theme service

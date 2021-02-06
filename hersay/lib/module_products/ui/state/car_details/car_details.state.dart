@@ -257,6 +257,7 @@ class CarDetailsStateDataLoaded extends CarDetailsState {
                           borderRadius: BorderRadius.circular(5)),
                       color: ProjectColors.THEME_COLOR,
                       onPressed: () {
+
                         screenState.getRoomId();
                       },
                       child: Text(

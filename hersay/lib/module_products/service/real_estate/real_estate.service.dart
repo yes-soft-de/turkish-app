@@ -31,7 +31,8 @@ class RealEstateService{
   String rooms,
   String status,
   String state,
-  String mainImagePath) async {
+  String mainImagePath,
+      List<String> otherImages) async {
 
     String uploadedImageUrl = (mainImagePath != null)
         ? await _imageUploadService.uploadImage(mainImagePath)
@@ -52,9 +53,19 @@ class RealEstateService{
       space: space,
       state: state,
     );
-    return _manager.addNewRealEstate(realEstateRequest);
+    int result = await _manager.addNewRealEstate(realEstateRequest);
+
+
+    if (result != null )  await _uploadOtherImages(otherImages,result);
+
+    return result !=  null;
   }
 
+  Future<void> _uploadOtherImages(List<String> filePaths,int itemId) async{
+    List<String> imagesUrl = await _imageUploadService.uploadMultipleImages(filePaths);
+    await _imageUploadService.setImagesToProduct(imagesUrl, 'realEstate', itemId);
+
+  }
   Future<RealEstateModel> getRealEstateDetails(int realEstateId)async{
     RealEstateResponse response = await _manager.getRealEstateDetails(realEstateId);
     if(response == null) return null;

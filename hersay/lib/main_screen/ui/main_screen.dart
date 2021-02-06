@@ -32,35 +32,27 @@ class MainScreen extends StatefulWidget {
 }
 
 class _MainScreenState extends State<MainScreen> {
-  final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
 
-  int _pageIndex;
+  int _pageIndex = 0;
+
+  @override
+  void initState() {
+    super.initState();
+
+  }
 
 //  @override
-//  void initState() {
-//    super.initState();
-//    widget._authService.isLoggedIn.then((value) {
-//      if (value != true) {
-//        Navigator.of(context).pushNamedAndRemoveUntil(
-//          AuthRoutes.ROUTE_AUTHORIZE,
-//              (route) => false,
-//        );
-//      }
-//    });
+//  void dispose() {
+//    super.dispose();
 //  }
 
   @override
-  void dispose() {
-    super.dispose();
-  }
-
-  @override
   Widget build(BuildContext context) {
-    if (_pageIndex == null) {
-      if (ModalRoute.of(context).settings.arguments is int) {
-        _pageIndex = ModalRoute.of(context).settings.arguments;
-      }
-    }
+//    if (_pageIndex == null) {
+//      if (ModalRoute.of(context).settings.arguments is int) {
+//        _pageIndex = ModalRoute.of(context).settings.arguments;
+//      }
+//    }
 
     var pages = [
       widget._homeScreen,
@@ -78,8 +70,7 @@ class _MainScreenState extends State<MainScreen> {
       },
       child: Scaffold(
 //        key: _scaffoldKey,
-//        drawer: widget._animeNavigationDrawer,
-//
+
         bottomNavigationBar: BottomNavigationBar(
           currentIndex: _pageIndex ?? 0,
           onTap: (newPos) {

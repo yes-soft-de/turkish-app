@@ -18,4 +18,22 @@ class ImageUploadService {
       return response;
     }
   }
+
+  Future<List<String>> uploadMultipleImages(List<String> filePaths) async {
+
+
+    List<String> list = await Future.wait(filePaths.map((filePath) => manager.upload(filePath)));
+
+    return list;
+  }
+
+  Future<void> setImagesToProduct(List<String> imagesUrls,String entity,int itemId)async{
+
+    List<bool> list = await Future.wait(imagesUrls.map((imageUrl) => manager.setImageToProduct(imageUrl,itemId,entity)));
+
+    return list.map((response){
+      (response == null)? false: response;
+    }).toList();
+  }
+
 }

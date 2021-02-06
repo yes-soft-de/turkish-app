@@ -16,7 +16,7 @@ class RealEstateRepository{
       this._authService,
       );
 
-  Future<bool> addNewRealEstate(RealEstateRequest realEstateRequest) async {
+  Future<int> addNewRealEstate(RealEstateRequest realEstateRequest) async {
     var token = await _authService.getToken();
     dynamic response = await _apiClient.post(
       Urls.ADD_NEW_REAL_ESTATE,
@@ -24,16 +24,16 @@ class RealEstateRepository{
       headers: {'Authorization': 'Bearer ' + token},
     );
 
-    if (response == null) return false;
+    if (response == null) return null;
 
-    return response['status_code'] == '201' ? true : false;
+    return response['status_code'] == '201' ? response['Data']['id'] : null;
   }
 
   Future<RealEstateResponse> getRealEstateDetails(int realEstateId)async{
     var token = await _authService.getToken();
     dynamic response = (token != null)
         ? await _apiClient.get(
-      Urls.GET_CAR_DETAILS + '$realEstateId',
+      Urls.GET_REAL_ESTATE_DETAILS + '$realEstateId',
       headers: {'Authorization': 'Bearer ' + token},
     )
         : await _apiClient.get( Urls.GET_CAR_DETAILS + '$realEstateId',) ;

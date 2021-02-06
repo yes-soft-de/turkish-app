@@ -6,6 +6,7 @@ import 'package:hersay/main_screen/ui/main_screen.dart';
 import 'package:hersay/module_auth/state_manager/login/login.state_manager.dart';
 import 'package:hersay/module_auth/ui/states/login/login_state.dart';
 import 'package:hersay/module_auth/ui/states/login/login_state_init.dart';
+import 'package:hersay/utils/route_helper/route_helper.dart';
 import 'package:inject/inject.dart';
 
 @provide
@@ -26,6 +27,7 @@ class LoginScreenState extends State<LoginScreen> {
   StreamSubscription _stateSubscription;
   bool deepLinkChecked = false;
   String redirectTo = MainRoutes.MAIN_SCREEN_ROUTE;
+  int itemId;
 
   void refresh() {
     setState(() {});
@@ -46,8 +48,11 @@ class LoginScreenState extends State<LoginScreen> {
 
   @override
   Widget build(BuildContext context) {
-    String route = ModalRoute.of(context).settings.arguments;
-    if(route != null) redirectTo = route;
+    RouteHelper route = ModalRoute.of(context).settings.arguments;
+    if(route != null) {
+      redirectTo = route.redirectTo;
+      if (route.additionalData != null) itemId = route.additionalData;
+    }
 
     return Scaffold(
       body: SingleChildScrollView(
@@ -63,10 +68,17 @@ class LoginScreenState extends State<LoginScreen> {
   }
 
   void moveToNext() {
-    Navigator.pushNamed(
+    (itemId == null)
+        ? Navigator.pushNamed(
         context,
         redirectTo
-    );
+    )
+        : Navigator.pushNamed(
+        context,
+        redirectTo,
+        arguments: itemId
+    )
+    ;
   }
 
 

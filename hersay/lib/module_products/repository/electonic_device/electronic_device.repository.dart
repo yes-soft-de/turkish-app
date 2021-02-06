@@ -16,7 +16,7 @@ class ElectronicDeviceRepository{
       this._authService,
       );
 
-  Future<bool> addNewElectronicDevice(ElectronicDeviceRequest electronicDeviceRequest) async {
+  Future<int> addNewElectronicDevice(ElectronicDeviceRequest electronicDeviceRequest) async {
     var token = await _authService.getToken();
     dynamic response = await _apiClient.post(
       Urls.ADD_NEW_DEVICE,
@@ -24,16 +24,16 @@ class ElectronicDeviceRepository{
       headers: {'Authorization': 'Bearer ' + token},
     );
 
-    if (response == null) return false;
+    if (response == null) return null;
 
-    return response['status_code'] == '201' ? true : false;
+    return response['status_code'] == '201' ? response['Data']['id'] : null;
   }
 
   Future<ElectronicDeviceResponse> getElectronicDeviceDetails(int electronicDeviceId)async{
     var token = await _authService.getToken();
     dynamic response = (token != null)
         ? await _apiClient.get(
-      Urls.GET_CAR_DETAILS + '$electronicDeviceId',
+      Urls.GET_DEVICE_DETAILS + '$electronicDeviceId',
       headers: {'Authorization': 'Bearer ' + token},
     )
         : await _apiClient.get( Urls.GET_CAR_DETAILS + '$electronicDeviceId',) ;

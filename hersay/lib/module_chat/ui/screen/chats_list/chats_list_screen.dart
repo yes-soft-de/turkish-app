@@ -7,6 +7,7 @@ import 'package:hersay/module_chat/state_manager/chats_list/chat_list.state_mang
 import 'package:hersay/module_chat/ui/state/chat_list/chat_list.state.dart';
 import 'package:hersay/module_chat/ui/widget/chat_item_card/chat_item_card.dart';
 import 'package:hersay/module_navigation/ui/widget/navigation_drawer/anime_navigation_drawer.dart';
+import 'package:hersay/utils/route_helper/route_helper.dart';
 import 'package:hersay/utils/widgets/turkish_app_bar/turkish_app_bar.dart';
 import 'package:inject/inject.dart';
 
@@ -53,9 +54,13 @@ class ChatsListScreenState extends State<ChatsListScreen> {
   Widget build(BuildContext context) {
     widget._authService.isLoggedIn.then((value){
       if(!value) {
+        RouteHelper redirectTo = new RouteHelper(
+            redirectTo:  ChatRoutes.chatsListRoute,
+            additionalData: null
+        );
         Navigator.of(context).pushNamed(
             AuthorizationRoutes.LOGIN_SCREEN,
-            arguments: ChatRoutes.chatsListRoute,
+            arguments: redirectTo,
         );
       }
     });

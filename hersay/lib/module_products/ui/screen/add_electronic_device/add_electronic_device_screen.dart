@@ -5,6 +5,7 @@ import 'package:hersay/module_auth/service/auth/auth.service.dart';
 import 'package:hersay/module_products/products_routes.dart';
 import 'package:hersay/module_products/state_manager/electroinic_device/add_electronic_device.state_manager.dart';
 import 'package:hersay/module_products/ui/state/add_electronic_device/add_electronic_device.state.dart';
+import 'package:hersay/utils/route_helper/route_helper.dart';
 import 'package:inject/inject.dart';
 
 @provide
@@ -55,18 +56,24 @@ class AddElectronicDeviceScreenState extends State<AddElectronicDeviceScreen> {
       String durationOfUse,
       String mainImage,
       String state,
-      String status,){
+      String status,
+      List<String> otherImages){
     widget._stateManager.addNewElectronicDevice(country, brand, type, cpu, ram, battery, price,
-        yearOfRelease, description, gauge, city, durationOfUse, mainImage, state, status, this);
+        yearOfRelease, description, gauge, city, durationOfUse, mainImage, state, status,otherImages, this);
   }
 
   @override
   Widget build(BuildContext context) {
     widget._authService.isLoggedIn.then((value){
       if(!value) {
+        RouteHelper redirectTo = new RouteHelper(
+            redirectTo:  ProductsRoutes.ADD_ELECTRONIC_DEVICE_SCREEN,
+            additionalData: null
+        );
+
         Navigator.of(context).pushNamed(
             AuthorizationRoutes.LOGIN_SCREEN,
-            arguments: ProductsRoutes.ADD_ELECTRONIC_DEVICE_SCREEN
+            arguments: redirectTo
         );
       }
     }

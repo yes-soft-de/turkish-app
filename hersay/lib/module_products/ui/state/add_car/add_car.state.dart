@@ -15,6 +15,18 @@ abstract class AddCarState {
   Widget getUI(BuildContext context);
 }
 
+class AddCarStateLoading extends AddCarState {
+  AddCarStateLoading(AddCarScreenState screenState)
+      : super(screenState);
+
+  @override
+  Widget getUI(BuildContext context) {
+    return Center(
+      child: CircularProgressIndicator(),
+    );
+  }
+}
+
 class AddCarStateInit extends AddCarState {
   final GlobalKey<FormState> _addCarFormKey = GlobalKey<FormState>();
 
@@ -40,6 +52,7 @@ class AddCarStateInit extends AddCarState {
   String _selectedstate;
 
   String mainImage;
+  List<String> otherImages = [];
 
   TextEditingController _dateController;
 
@@ -618,6 +631,40 @@ class AddCarStateInit extends AddCarState {
               ),
               Center(
                 child: Container(
+                  width: 250,
+                  height: 55,
+                  margin: EdgeInsets.only(top: 30),
+                  child: FlatButton(
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      onPressed: () {
+                        ImagePicker ip = ImagePicker();
+                        ip.getImage(source: ImageSource.gallery).then((value) {
+                          if (value != null) {
+                            otherImages.add(value.path)  ;
+                            print('another image picked, images length ${otherImages.length}');
+                          }
+                        });
+                      },
+                      color: ProjectColors.SECONDARY_COLOR,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Icon(
+                            Icons.photo_library,
+                            color: Colors.white,
+                          ),
+                          Text(
+                              S.of(context).addMoreImages ,
+                            style: TextStyle(color: Colors.white),
+                          ),
+                        ],
+                      )),
+                ),
+              ),
+              Center(
+                child: Container(
                   width: 200,
                   height: 55,
                   margin: EdgeInsets.only(top: 30),
@@ -645,6 +692,7 @@ class AddCarStateInit extends AddCarState {
                             _cityController.text.trim(),
                             'not sold',
                             _selectedstate,
+                            otherImages
                           );
                         }
                       },

@@ -35,6 +35,7 @@ class ElectronicDeviceService{
   String mainImagePath,
   String state,
   String status,
+      List<String> otherImages,
       ) async {
 
     String uploadedImageUrl = (mainImagePath != null)
@@ -56,9 +57,18 @@ class ElectronicDeviceService{
       durationOfUse: durationOfUse,
       gauge: gauge,
       ram: ram,
-      yearOfRelease: yearOfRelease
+      yearOfRelease: yearOfRelease,
     );
-    return _manager.addNewElectronicDevice(electronicDeviceRequest);
+    int result = await _manager.addNewElectronicDevice(electronicDeviceRequest);
+    if (result != null )  await _uploadOtherImages(otherImages,result);
+
+    return result !=  null;
+  }
+
+  Future<void> _uploadOtherImages(List<String> filePaths,int itemId) async{
+    List<String> imagesUrl = await _imageUploadService.uploadMultipleImages(filePaths);
+    await _imageUploadService.setImagesToProduct(imagesUrl, 'device', itemId);
+
   }
 
   Future<ElectronicDeviceModel> getElectronicDeviceDetails(int electronicDeviceId)async{

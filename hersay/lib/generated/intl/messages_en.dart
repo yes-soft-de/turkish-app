@@ -46,6 +46,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "activeMembers" : MessageLookupByLibrary.simpleMessage("أعضاء نشيطين"),
     "activities" : MessageLookupByLibrary.simpleMessage("نشاطات"),
     "add" : MessageLookupByLibrary.simpleMessage("Add"),
+    "addMoreImages" : MessageLookupByLibrary.simpleMessage("Add more images"),
     "addYourComment" : MessageLookupByLibrary.simpleMessage("اضف تعليقك"),
     "address" : MessageLookupByLibrary.simpleMessage("Address :"),
     "advancedSearch" : MessageLookupByLibrary.simpleMessage("Advanced search"),

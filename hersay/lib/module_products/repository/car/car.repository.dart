@@ -16,7 +16,7 @@ class CarRepository{
       this._authService,
       );
 
-  Future<bool> addNewCar(CarRequest carRequest) async {
+  Future<int> addNewCar(CarRequest carRequest) async {
     var token = await _authService.getToken();
     dynamic response = await _apiClient.post(
       Urls.ADD_NEW_CAR,
@@ -24,9 +24,9 @@ class CarRepository{
       headers: {'Authorization': 'Bearer ' + token},
     );
 
-    if (response == null) return false;
+    if (response == null) return null;
 
-    return response['status_code'] == '201' ? true : false;
+    return response['status_code'] == '201' ? response['Data']['id'] : null;
   }
 
   Future<CarResponse> getCarDetails(int carId)async{

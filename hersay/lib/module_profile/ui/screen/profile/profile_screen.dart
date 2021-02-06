@@ -7,6 +7,7 @@ import 'package:hersay/module_profile/profile_routes.dart';
 import 'package:hersay/module_profile/state_manager/profile/profile.state_manager.dart';
 import 'package:hersay/module_profile/ui/state/profile/profile.state.dart';
 import 'package:hersay/utils/project_colors/project_colors.dart';
+import 'package:hersay/utils/route_helper/route_helper.dart';
 import 'package:hersay/utils/widgets/turkish_app_bar/turkish_app_bar.dart';
 import 'package:inject/inject.dart';
 
@@ -55,9 +56,13 @@ class ProfileScreenState extends State<ProfileScreen> {
   Widget build(BuildContext context) {
     widget._authService.isLoggedIn.then((value){
       if(!value) {
+        RouteHelper redirectTo = new RouteHelper(
+            redirectTo:  ProfileRoutes.PROFILE_SCREEN,
+            additionalData: null
+        );
         Navigator.of(context).pushNamed(
           AuthorizationRoutes.LOGIN_SCREEN,
-          arguments: ProfileRoutes.PROFILE_SCREEN,
+          arguments: redirectTo,
         );
       }
       });

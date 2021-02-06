@@ -12,6 +12,7 @@ import 'package:hersay/module_history/history_module.dart';
 import 'package:hersay/module_home/home_module.dart';
 import 'package:hersay/module_profile/Profile_module.dart';
 import 'package:hersay/module_search/search_module.dart';
+import 'package:hersay/module_search/search_routes.dart';
 import 'package:hersay/module_settings/settings_module.dart';
 import 'package:hersay/module_splash/splash_routes.dart';
 import 'package:inject/inject.dart';
@@ -80,7 +81,6 @@ class _MyAppState extends State<MyApp> {
 
   String lang;
   ThemeData activeTheme;
-  bool authorized = false;
 
 
   @override
@@ -139,7 +139,7 @@ class _MyAppState extends State<MyApp> {
       supportedLocales: S.delegate.supportedLocales,
       title: 'Hersay',
       routes: fullRoutesList,
-      initialRoute: MainRoutes.MAIN_SCREEN_ROUTE,
+      initialRoute: SplashRoutes.SPLASH_SCREEN,
     );
   }
 }

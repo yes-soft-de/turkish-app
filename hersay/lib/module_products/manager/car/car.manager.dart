@@ -13,7 +13,7 @@ class CarManager{
       this._repository,
       );
 
-  Future<bool> addNewCar(CarRequest carRequest) async => _repository.addNewCar(carRequest);
+  Future<int> addNewCar(CarRequest carRequest) async => _repository.addNewCar(carRequest);
 
   Future<CarResponse> getCarDetails(int carId)async => _repository.getCarDetails(carId);
 }

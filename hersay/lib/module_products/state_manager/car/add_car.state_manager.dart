@@ -32,10 +32,12 @@ class AddCarStateManager {
   String city,
   String state,
   String status,
+  List<String> otherImages,
       AddCarScreenState screenState) {
+    _stateSubject.add(AddCarStateLoading(screenState));
     _service
         .addNewCar(brand,company,engine,price,description,distance,carType,gearType,
-    cc,fuel,location,yearOfRelease,image,country, city,state,status)
+    cc,fuel,location,yearOfRelease,image,country, city,state,status,otherImages)
         .then((newProduct) {
       if (newProduct) {
         _stateSubject.add(AddCarSuccessState(screenState));

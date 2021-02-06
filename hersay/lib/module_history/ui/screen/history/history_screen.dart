@@ -8,6 +8,7 @@ import 'package:hersay/module_history/history_routes.dart';
 import 'package:hersay/module_history/state_manager/history/history.state_manger.dart';
 import 'package:hersay/module_history/ui/state/history/history.state.dart';
 import 'package:hersay/module_navigation/ui/widget/navigation_drawer/anime_navigation_drawer.dart';
+import 'package:hersay/utils/route_helper/route_helper.dart';
 import 'package:hersay/utils/widgets/turkish_app_bar/turkish_app_bar.dart';
 import 'package:inject/inject.dart';
 
@@ -53,9 +54,13 @@ class  HistoryScreenState extends State<HistoryScreen> {
   Widget build(BuildContext context) {
     widget._authService.isLoggedIn.then((value){
       if(!value) {
+        RouteHelper redirectTo = new RouteHelper(
+            redirectTo:  HistoryRoutes.HISTORY_ROUTE,
+            additionalData: null
+        );
         Navigator.of(context).pushNamed(
           AuthorizationRoutes.LOGIN_SCREEN,
-          arguments: HistoryRoutes.HISTORY_ROUTE,
+          arguments: redirectTo,
         );
       }
     });

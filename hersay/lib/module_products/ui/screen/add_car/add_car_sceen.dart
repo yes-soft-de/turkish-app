@@ -4,6 +4,7 @@ import 'package:hersay/module_auth/auth_routes.dart';
 import 'package:hersay/module_auth/service/auth/auth.service.dart';
 import 'package:hersay/module_products/state_manager/car/add_car.state_manager.dart';
 import 'package:hersay/module_products/ui/state/add_car/add_car.state.dart';
+import 'package:hersay/utils/route_helper/route_helper.dart';
 import 'package:inject/inject.dart';
 
 import '../../../products_routes.dart';
@@ -58,18 +59,24 @@ class AddCarScreenState extends State<AddCarScreen> {
       String country,
       String city,
       String state,
-      String status, ) {
+      String status,
+      List<String> otherImages
+      ) {
     widget._stateManager.addNewCar(brand, company, engine, price, description, distance, carType,
-        gearType, cc, fuel, location, yearOfRelease, image, country, city, state, status, this);
+        gearType, cc, fuel, location, yearOfRelease, image, country, city, state, status, otherImages, this);
   }
 
   @override
   Widget build(BuildContext context) {
     widget._authService.isLoggedIn.then((value){
+      RouteHelper redirectTo = new RouteHelper(
+          redirectTo: ProductsRoutes.ADD_CAR_SCREEN,
+          additionalData: null
+      );
       if(!value) {
         Navigator.of(context).pushNamed(
             AuthorizationRoutes.LOGIN_SCREEN,
-            arguments: ProductsRoutes.ADD_CAR_SCREEN
+            arguments: redirectTo
         );
       }
     }
