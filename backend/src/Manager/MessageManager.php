@@ -81,6 +81,27 @@ class MessageManager
 
     }
 
+    public function chatWithLawyer(ChatCreateRequest $request)
+    {
+        $messageEntity = $this->messageEntityRepository->getChatByUsers($request->getUserOne(), $request->getUserTwo());
+
+        if($messageEntity)
+        {
+            return $messageEntity;
+        }
+
+        else
+        {
+            $messageEntity = $this->autoMapping->map(ChatCreateRequest::class, MessageEntity::class, $request);
+
+            $this->entityManager->persist($messageEntity);
+            $this->entityManager->flush();
+            $this->entityManager->clear();
+
+            return $messageEntity;
+        }
+    }
+
     public function getChatListOfUser($userID)
     {
         $sentMessage = $this->messageEntityRepository->getSendMessagesList($userID);

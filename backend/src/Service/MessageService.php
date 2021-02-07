@@ -8,19 +8,22 @@ use App\Manager\MessageManager;
 use App\Request\ChatCreateRequest;
 use App\Response\ChatCreateResponse;
 use App\Response\ChatListGetResponse;
+use App\Service\UserService;
 use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
 
 class MessageService
 {
     private $autoMapping;
     private $messageManager;
+    private $userService;
     private $params;
 
-    public function __construct(AutoMapping $autoMapping, MessageManager $messageManager, ParameterBagInterface $params)
+    public function __construct(AutoMapping $autoMapping, MessageManager $messageManager, ParameterBagInterface $params, 
+    UserService $userService)
     {
         $this->autoMapping = $autoMapping;
         $this->messageManager = $messageManager;
-
+        $this->userService = $userService;
         $this->params = $params->get('upload_base_url').'/';
     }
 
@@ -30,7 +33,18 @@ class MessageService
 
         $request->setRoomID($roomID);
 
-        $result = $this->messageManager->chatWithOwner($request);
+        if($request->getLawyer() == 0)
+        {
+            $result = $this->messageManager->chatWithOwner($request);
+        }
+        elseif($request->getLawyer() == 1)
+        {
+            $lawyerID = $this->userService->getLawyer()[0]->getUserID();
+            //dd($this->userService->getLawyer()[0]->getUserID());
+            $request->setUserTwo($lawyerID);
+
+            $result = $this->messageManager->chatWithLawyer($request);
+        }
 
         return $this->autoMapping->map(MessageEntity::class, ChatCreateResponse::class, $result);
     }

@@ -129,4 +129,9 @@ class UserManager
     {
         return $this->userRepository->getAllUsers();
     }
+
+    public function getLawyer()
+    {
+        return $this->userRepository->getLawyer();
+    }
 }

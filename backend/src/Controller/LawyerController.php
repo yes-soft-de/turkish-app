@@ -38,7 +38,9 @@ class LawyerController extends BaseController
     {
         $data = json_decode($request->getContent(), true);
 
-        $request = $this->autoMapping->map(stdClass::class,UserRegisterRequest::class,(object)$data);
+        $request = $this->autoMapping->map(stdClass::class, UserRegisterRequest::class, (object)$data);
+
+        $request->setRoles(['ROLE_LAWYER']);
 
         $violations = $this->validator->validate($request);
         if (\count($violations) > 0) {

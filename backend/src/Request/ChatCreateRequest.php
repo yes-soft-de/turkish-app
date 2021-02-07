@@ -16,6 +16,8 @@ class ChatCreateRequest
 
     private $userTwo;
 
+    private $lawyer;
+
     public function getItemID()
     {
         return $this->itemID;
@@ -50,4 +52,10 @@ class ChatCreateRequest
     {
         return $this->userTwo;
     }
+
+    public function getLawyer()
+    {
+        return $this->lawyer;
+    }
+
 }

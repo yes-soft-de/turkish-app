@@ -105,4 +105,18 @@ class UserService
 
         return $response;
     }
+
+    public function getLawyer()
+    {
+        $response = [];
+
+        $users = $this->userManager->getLawyer();
+        
+        foreach ($users as $row)
+        {
+            $response[] = $this->autoMapping->map('array', GetAllUsersResponse::class, $row);
+        }
+
+        return $response;
+    }
 }

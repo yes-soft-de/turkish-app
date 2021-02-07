@@ -52,4 +52,18 @@ class UserEntityRepository extends ServiceEntityRepository implements PasswordUp
         ->getQuery()
         ->getResult();
     }
+
+    public function getLawyer()
+    {
+        $lawyerRole = 'ROLE_LAWYER';
+
+        return $this->createQueryBuilder('user')
+            ->select('user.userID', 'user.roles')
+            
+            ->andWhere('user.roles LIKE :role')
+            ->setParameter('role', '%"'.$lawyerRole.'"%')
+
+            ->getQuery()
+            ->getResult();
+    }
 }

@@ -13,4 +13,9 @@ class GetAllUsersResponse
     public $roles = [];
 
     public $createDate;
+
+    public function getUserID()
+    {
+        return $this->userID;
+    }
 }
