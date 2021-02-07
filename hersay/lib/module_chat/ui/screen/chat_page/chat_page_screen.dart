@@ -34,6 +34,8 @@ class _ChatScreenState extends State<ChatScreen> {
 
   bool initiated = false;
 
+  ScrollController _scrollController = new ScrollController();
+
   @override
   void initState() {
     widget._chatPageBloc.chatBlocStream.listen((event) {
@@ -43,7 +45,10 @@ class _ChatScreenState extends State<ChatScreen> {
         if (chatsMessagesWidgets.length == _chatMessagesList.length) {
         } else {
           buildMessagesList(_chatMessagesList).then((value) {
-            if (this.mounted) setState(() {});
+            if (this.mounted) setState(() {
+
+            });
+            _scrollController.animateTo(_scrollController.position.maxScrollExtent, duration: const Duration(milliseconds: 300), curve: Curves.easeOut);
           });
         }
       }
@@ -75,8 +80,11 @@ class _ChatScreenState extends State<ChatScreen> {
           Expanded(
             child: chatsMessagesWidgets != null
                 ? ListView(
-              children: chatsMessagesWidgets,
+              controller: _scrollController,
               reverse: false,
+              shrinkWrap: true,
+              children: chatsMessagesWidgets,
+
             )
                 : Center(
               child: Text(S.of(context).loading),
@@ -85,6 +93,7 @@ class _ChatScreenState extends State<ChatScreen> {
           ChatWriterWidget(
             onMessageSend: (msg) {
               widget._chatPageBloc.sendMessage(chatRoomId, msg);
+
             },
             uploadService: widget._uploadService,
           ),
@@ -105,6 +114,7 @@ class _ChatScreenState extends State<ChatScreen> {
       ));
     });
     chatsMessagesWidgets = newMessagesList;
+
     return;
   }
 
