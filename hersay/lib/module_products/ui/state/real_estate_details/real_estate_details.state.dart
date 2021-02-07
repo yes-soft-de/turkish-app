@@ -267,7 +267,9 @@ class RealEstateDetailsStateDataLoaded extends RealEstateDetailsState {
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(5)),
                     color: ProjectColors.THEME_COLOR,
-                    onPressed: () {},
+                    onPressed: () {
+                      screenState.getRoomIdWithLawyer();
+                    },
                     child: Text(
                       S.of(context).chatWithLawyer,
                       style: TextStyle(fontSize: 10, color: Colors.white),

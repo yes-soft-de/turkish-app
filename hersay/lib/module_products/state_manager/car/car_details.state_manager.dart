@@ -42,7 +42,14 @@ class CarDetailsStateManager{
       }
     });
   }
-  
+  void getRoomIdWithLawyer(int itemId,CarDetailsScreenState screenState){
+
+    _chatService.getRoomIdWithLawyer('car', itemId).then((value) {
+      if(value != null){
+        screenState.goToChat(value);
+      }
+    });
+  }
   void loveCar(int carId,CarDetailsScreenState screenState,CarModel car){
     
     _reactionService.react('car', carId).then((value) {

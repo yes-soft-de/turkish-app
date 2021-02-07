@@ -99,8 +99,22 @@ class RealEstateDetailsScreenState extends State<RealEstateDetailsScreen> {
         widget._stateManager.getRoomId(realEstateId, this);
       }
     });
-
-
+  }
+  void getRoomIdWithLawyer(){
+    widget._authService.isLoggedIn.then((value){
+      if(!value) {
+        RouteHelper redirectTo = new RouteHelper(
+            redirectTo:  ProductsRoutes.REAL_ESTATE_DETAILS_SCREEN,
+            additionalData: realEstateId
+        );
+        Navigator.of(context).pushNamed(
+          AuthorizationRoutes.LOGIN_SCREEN,
+          arguments: redirectTo,
+        );
+      }else{
+        widget._stateManager.getRoomIdWithLawyer(realEstateId, this);
+      }
+    });
   }
 
   void goToChat(String roomId){

@@ -42,6 +42,14 @@ class ElectronicDeviceDetailsStateManager{
       }
     });
   }
+  void getRoomIdWithLawyer(int itemId,ElectronicDeviceDetailsScreenState screenState){
+
+    _chatService.getRoomIdWithLawyer('device', itemId).then((value) {
+      if(value != null){
+        screenState.goToChat(value);
+      }
+    });
+  }
 
   void loveDevice(int deviceId,ElectronicDeviceDetailsScreenState screenState,ElectronicDeviceModel device){
 

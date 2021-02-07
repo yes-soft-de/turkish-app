@@ -48,9 +48,17 @@ class ChatService {
   Future<String>  getRoomId(String entity,int itemId)async{
     RoomIdRequest request = new RoomIdRequest(
       entity: entity,
-      itemID: '$itemId'
+      itemID: '$itemId',
+      lawyer: 0
     );
+    return _chatManager.getRoomId(request);
+  }
 
+  Future<String>  getRoomIdWithLawyer(String entity,int itemId)async{
+    RoomIdRequest request = new RoomIdRequest(
+        entity: entity,
+        lawyer: 1
+    );
     return _chatManager.getRoomId(request);
   }
 

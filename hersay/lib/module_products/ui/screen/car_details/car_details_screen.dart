@@ -102,7 +102,22 @@ class CarDetailsScreenState extends State<CarDetailsScreen> {
         widget._stateManager.getRoomId(carId, this);
       }
     });
-
+  }
+  void getRoomIdWithLawyer(){
+    widget._authService.isLoggedIn.then((value){
+      if(!value) {
+        RouteHelper redirectTo = new RouteHelper(
+            redirectTo:  ProductsRoutes.CAR_DETAILS_SCREEN,
+            additionalData: carId
+        );
+        Navigator.of(context).pushNamed(
+          AuthorizationRoutes.LOGIN_SCREEN,
+          arguments: redirectTo,
+        );
+      }else{
+        widget._stateManager.getRoomIdWithLawyer(carId, this);
+      }
+    });
   }
 
 

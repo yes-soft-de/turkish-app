@@ -41,6 +41,14 @@ class RealEstateDetailsStateManager{
       }
     });
   }
+  void getRoomIdWithLawyer(int itemId,RealEstateDetailsScreenState screenState){
+
+    _chatService.getRoomIdWithLawyer('realEstate', itemId).then((value) {
+      if(value != null){
+        screenState.goToChat(value);
+      }
+    });
+  }
 
   void loveRealEstate(int deviceId,RealEstateDetailsScreenState screenState,RealEstateModel realEstate){
 

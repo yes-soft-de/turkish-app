@@ -85,8 +85,22 @@ class  ElectronicDeviceDetailsScreenState extends State<ElectronicDeviceDetailsS
         widget._stateManager.getRoomId(electronicDeviceId, this);
       }
     });
-
-
+  }
+  void getRoomIdWithLawyer(){
+    widget._authService.isLoggedIn.then((value){
+      if(!value) {
+        RouteHelper redirectTo = new RouteHelper(
+            redirectTo:  ProductsRoutes.ELECTRONIC_DEVICE_DETAILS_SCREEN,
+            additionalData: electronicDeviceId
+        );
+        Navigator.of(context).pushNamed(
+          AuthorizationRoutes.LOGIN_SCREEN,
+          arguments: redirectTo,
+        );
+      }else{
+        widget._stateManager.getRoomIdWithLawyer(electronicDeviceId, this);
+      }
+    });
   }
 
   void goToChat(String roomId){
