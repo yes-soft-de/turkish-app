@@ -149,6 +149,28 @@ class ElectronicDeviceDetailsStateDataLoaded
                       ),
                     ],
                   ),
+                  FlatButton(
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(5)),
+                    //TODO : change this
+                    color: ProjectColors.THEME_COLOR,
+                    onPressed: () {
+                      screenState.report();
+                    },
+                    child: Flex(
+                      direction: Axis.horizontal,
+                      children: [
+                        Icon(
+                          Icons.report_problem,
+                          color: Colors.white,
+                        ),
+                        Text(
+                          S.of(context).report,
+                          style: TextStyle(color: Colors.white),
+                        )
+                      ],
+                    ),
+                  ),
                   electronicDevice.isLoved
                       ? IconButton(
                           onPressed: () {

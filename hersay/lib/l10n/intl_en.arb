@@ -249,5 +249,7 @@
   "reasonIsRequired": "Reason is required",
   "reasonOfTheReport": "Reason of the report",
   "cancel": "Cancel",
-  "pleaseCompleteTheForm": "Please complete the form"
+  "pleaseCompleteTheForm": "Please complete the form",
+  "report": "Report",
+  "yourReportWasSentToTheAdmin": "your report was sent to the Admin"
 }

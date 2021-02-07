@@ -7,7 +7,9 @@ import 'package:hersay/module_products/model/car/car_model.dart';
 import 'package:hersay/module_products/products_routes.dart';
 import 'package:hersay/module_products/state_manager/car/car_details.state_manager.dart';
 import 'package:hersay/module_products/ui/state/car_details/car_details.state.dart';
+import 'package:hersay/module_report/report_routes.dart';
 import 'package:hersay/utils/project_colors/project_colors.dart';
+import 'package:hersay/utils/report_helper/report_helper.dart';
 import 'package:hersay/utils/route_helper/route_helper.dart';
 import 'package:hersay/utils/widgets/turkish_app_bar/turkish_app_bar.dart';
 import 'package:inject/inject.dart';
@@ -85,6 +87,30 @@ class CarDetailsScreenState extends State<CarDetailsScreen> {
 
   void getCarDetails(){
     widget._stateManager.getCarDetails(this,carId);
+  }
+
+  void report(){
+    widget._authService.isLoggedIn.then((value){
+      if(!value) {
+        RouteHelper redirectTo = new RouteHelper(
+            redirectTo:  ProductsRoutes.CAR_DETAILS_SCREEN,
+            additionalData: carId
+        );
+        Navigator.of(context).pushNamed(
+          AuthorizationRoutes.LOGIN_SCREEN,
+          arguments: redirectTo,
+        );
+      }else{
+        ReportHelper report = new ReportHelper(
+          entity: 'car',
+          itemId: carId,
+        );
+        Navigator.of(context).pushNamed(
+            ReportRoutes.REPORT_SCREEN,
+            arguments: report
+        );
+      }
+    });
   }
 
   void getRoomId(){

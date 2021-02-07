@@ -109,6 +109,13 @@
                 "qualifier": null
               },
               "isProvider": false
+            },
+            {
+              "lookupKey": {
+                "root": "asset:hersay/lib/module_report/report_module.dart#ReportModule",
+                "qualifier": null
+              },
+              "isProvider": false
             }
           ]
         }

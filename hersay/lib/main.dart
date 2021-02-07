@@ -24,6 +24,7 @@ import 'generated/l10n.dart';
 import 'module_localization/service/localization.service.dart';
 import 'module_notification/notification_module.dart';
 import 'module_products/products_module.dart';
+import 'module_report/report_module.dart';
 import 'module_splash/splash_module.dart';
 import 'module_theme/service/theme.service.dart';
 
@@ -54,6 +55,7 @@ class MyApp extends StatefulWidget {
   final ProfileModule _profileModule;
   final HistoryModule _historyModule;
   final ChatModule _chatModule;
+  final ReportModule _reportModule;
 
   MyApp(
       this._themeDataService,
@@ -69,6 +71,7 @@ class MyApp extends StatefulWidget {
       this._profileModule,
       this._historyModule,
       this._chatModule,
+      this._reportModule,
       );
 
   @override

@@ -7,7 +7,9 @@ import 'package:hersay/module_products/model/real_estate/real_estate_model.dart'
 import 'package:hersay/module_products/products_routes.dart';
 import 'package:hersay/module_products/state_manager/real_estate/real_estate_details.state_manager.dart';
 import 'package:hersay/module_products/ui/state/real_estate_details/real_estate_details.state.dart';
+import 'package:hersay/module_report/report_routes.dart';
 import 'package:hersay/utils/project_colors/project_colors.dart';
+import 'package:hersay/utils/report_helper/report_helper.dart';
 import 'package:hersay/utils/route_helper/route_helper.dart';
 import 'package:hersay/utils/widgets/turkish_app_bar/turkish_app_bar.dart';
 import 'package:inject/inject.dart';
@@ -113,6 +115,30 @@ class RealEstateDetailsScreenState extends State<RealEstateDetailsScreen> {
         );
       }else{
         widget._stateManager.getRoomIdWithLawyer(realEstateId, this);
+      }
+    });
+  }
+
+  void report(){
+    widget._authService.isLoggedIn.then((value){
+      if(!value) {
+        RouteHelper redirectTo = new RouteHelper(
+            redirectTo:  ProductsRoutes.REAL_ESTATE_DETAILS_SCREEN,
+            additionalData: realEstateId
+        );
+        Navigator.of(context).pushNamed(
+          AuthorizationRoutes.LOGIN_SCREEN,
+          arguments: redirectTo,
+        );
+      }else{
+        ReportHelper report = new ReportHelper(
+          entity: 'realEstate',
+          itemId: realEstateId,
+        );
+        Navigator.of(context).pushNamed(
+            ReportRoutes.REPORT_SCREEN,
+            arguments: report
+        );
       }
     });
   }

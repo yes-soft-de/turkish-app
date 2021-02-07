@@ -5,6 +5,7 @@ import 'package:hersay/module_products/service/car/car.service.dart';
 import 'package:hersay/module_products/ui/screen/car_details/car_details_screen.dart';
 import 'package:hersay/module_products/ui/state/car_details/car_details.state.dart';
 import 'package:hersay/module_reaction/service/reaction.service.dart';
+import 'package:hersay/module_report/service/report_service.dart';
 import 'package:inject/inject.dart';
 import 'package:rxdart/rxdart.dart';
 
@@ -13,6 +14,7 @@ class CarDetailsStateManager{
   final CarService _carService;
   final ChatService _chatService;
   final ReactionService _reactionService;
+  final ReportService _reportService;
   final PublishSubject<CarDetailsState> _stateSubject = new PublishSubject();
   Stream<CarDetailsState>  get stateStream => _stateSubject.stream;
 
@@ -20,6 +22,7 @@ class CarDetailsStateManager{
       this._carService,
       this._chatService,
       this._reactionService,
+      this._reportService,
       );
 
   void getCarDetails(CarDetailsScreenState screenState,int carId){
@@ -68,5 +71,8 @@ class CarDetailsStateManager{
       }
     });
   }
+
+
+
 
 }

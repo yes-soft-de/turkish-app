@@ -247,5 +247,7 @@
   "reasonIsRequired": "السبب مطلوب",
   "reasonOfTheReport": "سبب التبليغ",
   "cancel": "إلغاء",
-  "pleaseCompleteTheForm": "الرجاء أكمل الفورم"
+  "pleaseCompleteTheForm": "الرجاء أكمل الفورم",
+  "report": "إبلاغ",
+  "yourReportWasSentToTheAdmin": "بلاغك أرسل للأدمن"
 }

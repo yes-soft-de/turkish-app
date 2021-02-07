@@ -200,6 +200,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "reasonOfTheReport" : MessageLookupByLibrary.simpleMessage("Reason of the report"),
     "recomendationByFavorite" : MessageLookupByLibrary.simpleMessage("المسلسلات الموصى بها حسب تفضيلاتك"),
     "registerNewAccount" : MessageLookupByLibrary.simpleMessage("سجل حسابا جديدا"),
+    "report" : MessageLookupByLibrary.simpleMessage("Report"),
     "requestASwap" : MessageLookupByLibrary.simpleMessage("Request a Swap!"),
     "requestChat" : MessageLookupByLibrary.simpleMessage("Request Chat"),
     "requestLawer" : MessageLookupByLibrary.simpleMessage("Request Lawer"),
@@ -269,6 +270,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "youDidNotSellOrBuyAnyThingYet" : MessageLookupByLibrary.simpleMessage("You did not sell or buy any thing yet"),
     "youDoNotHaveAnyNotification" : MessageLookupByLibrary.simpleMessage("You do not have any notification"),
     "yourName" : MessageLookupByLibrary.simpleMessage("Your Name"),
+    "yourReportWasSentToTheAdmin" : MessageLookupByLibrary.simpleMessage("your report was sent to the Admin"),
     "yourRequestHasBeenAddedAndInHoldForAdmin" : MessageLookupByLibrary.simpleMessage("your request has been added and in hold for admin approval")
   };
 }

@@ -200,6 +200,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "reasonOfTheReport" : MessageLookupByLibrary.simpleMessage("سبب التبليغ"),
     "recomendationByFavorite" : MessageLookupByLibrary.simpleMessage("المسلسلات الموصى بها حسب تفضيلاتك"),
     "registerNewAccount" : MessageLookupByLibrary.simpleMessage("سجل حسابا جديدا"),
+    "report" : MessageLookupByLibrary.simpleMessage("إبلاغ"),
     "requestASwap" : MessageLookupByLibrary.simpleMessage("اطلب مبادلة!"),
     "requestChat" : MessageLookupByLibrary.simpleMessage("طلب محادثة مع المالك"),
     "requestLawer" : MessageLookupByLibrary.simpleMessage("طلب محامي"),
@@ -267,6 +268,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "youDidNotSellOrBuyAnyThingYet" : MessageLookupByLibrary.simpleMessage("لم تقم ببيع أو شراء أي شيء بعد"),
     "youDoNotHaveAnyNotification" : MessageLookupByLibrary.simpleMessage("لا يوجد إشعارات"),
     "yourName" : MessageLookupByLibrary.simpleMessage("اسمي"),
+    "yourReportWasSentToTheAdmin" : MessageLookupByLibrary.simpleMessage("بلاغك أرسل للأدمن"),
     "yourRequestHasBeenAddedAndInHoldForAdmin" : MessageLookupByLibrary.simpleMessage("تم تسجيل طلبك وبانتظار موافقة مدير التطبيق")
   };
 }

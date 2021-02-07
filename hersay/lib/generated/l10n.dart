@@ -2522,6 +2522,26 @@ class S {
       args: [],
     );
   }
+
+  /// `Report`
+  String get report {
+    return Intl.message(
+      'Report',
+      name: 'report',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `your report was sent to the Admin`
+  String get yourReportWasSentToTheAdmin {
+    return Intl.message(
+      'your report was sent to the Admin',
+      name: 'yourReportWasSentToTheAdmin',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {
