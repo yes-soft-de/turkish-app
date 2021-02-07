@@ -61,8 +61,23 @@ class RealEstateDetailsScreenState extends State<RealEstateDetailsScreen> {
         widget._stateManager.loveRealEstate(realEstateId, this, realEstate);
       }
     });
+  }
 
-
+  void unLoveRealEstate(RealEstateModel realEstate){
+    widget._authService.isLoggedIn.then((value){
+      if(!value) {
+        RouteHelper redirectTo = new RouteHelper(
+            redirectTo:  ProductsRoutes.CAR_DETAILS_SCREEN,
+            additionalData: realEstateId
+        );
+        Navigator.of(context).pushNamed(
+          AuthorizationRoutes.LOGIN_SCREEN,
+          arguments: redirectTo,
+        );
+      }else{
+        widget._stateManager.unLoveRealEstate(realEstateId, this, realEstate);
+      }
+    });
   }
 
   void getRealEstateDetails(){

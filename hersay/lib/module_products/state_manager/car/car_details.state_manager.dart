@@ -52,5 +52,14 @@ class CarDetailsStateManager{
       }
     });
   }
+  void unLoveCar(int carId,CarDetailsScreenState screenState,CarModel car){
+
+    _reactionService.deleteReact('car', carId).then((value) {
+      if(value ){
+        car.isLoved = false ;
+        _stateSubject.add(CarDetailsStateDataLoaded(car, screenState));
+      }
+    });
+  }
 
 }

@@ -47,8 +47,23 @@ class  ElectronicDeviceDetailsScreenState extends State<ElectronicDeviceDetailsS
         widget._stateManager.loveDevice(electronicDeviceId, this, device);
       }
     });
+  }
 
-
+  void unLoveDevice(ElectronicDeviceModel device){
+    widget._authService.isLoggedIn.then((value){
+      if(!value) {
+        RouteHelper redirectTo = new RouteHelper(
+            redirectTo:  ProductsRoutes.CAR_DETAILS_SCREEN,
+            additionalData: electronicDeviceId
+        );
+        Navigator.of(context).pushNamed(
+          AuthorizationRoutes.LOGIN_SCREEN,
+          arguments: redirectTo,
+        );
+      }else{
+        widget._stateManager.unLoveDevice(electronicDeviceId, this, device);
+      }
+    });
   }
 
   void getElectronicDeviceDetails(){

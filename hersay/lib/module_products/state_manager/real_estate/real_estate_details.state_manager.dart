@@ -51,4 +51,14 @@ class RealEstateDetailsStateManager{
       }
     });
   }
+
+  void unLoveRealEstate(int deviceId,RealEstateDetailsScreenState screenState,RealEstateModel realEstate){
+
+    _reactionService.deleteReact('realEstate', deviceId).then((value) {
+      if(value ){
+        realEstate.isLoved = false ;
+        _stateSubject.add(RealEstateDetailsStateDataLoaded(realEstate, screenState));
+      }
+    });
+  }
 }

@@ -47,7 +47,16 @@ class ElectronicDeviceDetailsStateManager{
 
     _reactionService.react('device', deviceId).then((value) {
       if(value ){
-          device.isLoved = true ;
+        device.isLoved = true ;
+        _stateSubject.add(ElectronicDeviceDetailsStateDataLoaded(device, screenState));
+      }
+    });
+  }
+  void unLoveDevice(int deviceId,ElectronicDeviceDetailsScreenState screenState,ElectronicDeviceModel device){
+
+    _reactionService.deleteReact('device', deviceId).then((value) {
+      if(value ){
+        device.isLoved = false ;
         _stateSubject.add(ElectronicDeviceDetailsStateDataLoaded(device, screenState));
       }
     });

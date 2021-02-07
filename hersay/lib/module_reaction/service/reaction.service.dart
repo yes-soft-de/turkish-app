@@ -21,4 +21,13 @@ class ReactionService{
 
     return _manager.react(request);
   }
+  Future<bool> deleteReact(String entity,int itemId)async{
+    ReactionRequest request = new ReactionRequest(
+        itemID: itemId,
+        entity: entity
+    );
+
+    return _manager.deleteReact(request);
+  }
+
 }

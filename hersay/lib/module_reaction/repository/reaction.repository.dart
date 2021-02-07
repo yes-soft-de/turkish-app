@@ -22,8 +22,18 @@ class ReactionRepository{
         request.toJson(),
        headers: {'Authorization':'Bearer '+token}
     );
-
+    if(response == null) return false;
     return (response['status_code']=='201')? true : false;
+
+  }
+  Future<bool> deleteReact(ReactionRequest request)async{
+    var token = await _authService.getToken();
+    dynamic response = await _apiClient.delete(
+        Urls.REACT + request.entity+'/'+request.itemID.toString(),
+        headers: {'Authorization':'Bearer '+token}
+    );
+    if(response == null) return false;
+    return (response['status_code']=='401')? true : false;
 
   }
 }

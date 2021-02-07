@@ -12,4 +12,5 @@ class ReactionManager{
       );
 
   Future<bool> react(ReactionRequest request)async => _repository.react(request);
+  Future<bool> deleteReact(ReactionRequest request)async => _repository.deleteReact(request);
 }

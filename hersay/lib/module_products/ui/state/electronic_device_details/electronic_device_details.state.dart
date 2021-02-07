@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:hersay/generated/l10n.dart';
 import 'package:hersay/module_auth/auth_routes.dart';
@@ -10,8 +9,6 @@ import 'package:hersay/utils/project_colors/project_colors.dart';
 
 import '../../../products_routes.dart';
 
-
-
 abstract class ElectronicDeviceDetailsState {
   final ElectronicDeviceDetailsScreenState screenState;
 
@@ -21,7 +18,9 @@ abstract class ElectronicDeviceDetailsState {
 }
 
 class ElectronicDeviceDetailsStateInit extends ElectronicDeviceDetailsState {
-  ElectronicDeviceDetailsStateInit(ElectronicDeviceDetailsScreenState screenState) : super(screenState);
+  ElectronicDeviceDetailsStateInit(
+      ElectronicDeviceDetailsScreenState screenState)
+      : super(screenState);
 
   @override
   Widget getUI(BuildContext context) {
@@ -32,7 +31,8 @@ class ElectronicDeviceDetailsStateInit extends ElectronicDeviceDetailsState {
 }
 
 class ElectronicDeviceDetailsStateLoading extends ElectronicDeviceDetailsState {
-  ElectronicDeviceDetailsStateLoading(ElectronicDeviceDetailsScreenState screenState)
+  ElectronicDeviceDetailsStateLoading(
+      ElectronicDeviceDetailsScreenState screenState)
       : super(screenState);
 
   @override
@@ -43,14 +43,17 @@ class ElectronicDeviceDetailsStateLoading extends ElectronicDeviceDetailsState {
   }
 }
 
-class ElectronicDeviceDetailsStateUnauthorized extends ElectronicDeviceDetailsState {
-  ElectronicDeviceDetailsStateUnauthorized(ElectronicDeviceDetailsScreenState screenState)
+class ElectronicDeviceDetailsStateUnauthorized
+    extends ElectronicDeviceDetailsState {
+  ElectronicDeviceDetailsStateUnauthorized(
+      ElectronicDeviceDetailsScreenState screenState)
       : super(screenState);
 
   @override
   Widget getUI(BuildContext context) {
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-      Navigator.of(context).pushNamedAndRemoveUntil(AuthorizationRoutes.LOGIN_SCREEN, (r) => false);
+      Navigator.of(context).pushNamedAndRemoveUntil(
+          AuthorizationRoutes.LOGIN_SCREEN, (r) => false);
     });
     return Center(
       child: CircularProgressIndicator(),
@@ -58,246 +61,257 @@ class ElectronicDeviceDetailsStateUnauthorized extends ElectronicDeviceDetailsSt
   }
 }
 
-class ElectronicDeviceDetailsStateDataLoaded extends ElectronicDeviceDetailsState {
+class ElectronicDeviceDetailsStateDataLoaded
+    extends ElectronicDeviceDetailsState {
   final ElectronicDeviceModel electronicDevice;
 
-  ElectronicDeviceDetailsStateDataLoaded(this.electronicDevice, ElectronicDeviceDetailsScreenState screenState)
+  ElectronicDeviceDetailsStateDataLoaded(
+      this.electronicDevice, ElectronicDeviceDetailsScreenState screenState)
       : super(screenState);
+
   @override
   Widget getUI(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
 
     return RefreshIndicator(
-        onRefresh: () {
-          screenState.getElectronicDeviceDetails();
-          return Future.delayed(Duration(seconds: 3));
-        },
-        child:SingleChildScrollView(
-          child: Container(
-            padding: EdgeInsets.all(10),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Container(
-                  decoration: BoxDecoration(
-                    color: ProjectColors.THEME_COLOR,
-                    borderRadius: BorderRadius.circular(25),
-                  ),
-                  height: 50,
-                  padding: const EdgeInsets.all(8.0),
-                  margin: const EdgeInsets.all(8.0),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Icon(Icons.phone_iphone,color: Colors.white,),
-                      SizedBox(width: 10,),
-                      Center(
-                        child:      Text(
-                          '${electronicDevice.brand}',
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            color: Colors.white,
-                            fontSize: 16,
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
+      onRefresh: () {
+        screenState.getElectronicDeviceDetails();
+        return Future.delayed(Duration(seconds: 3));
+      },
+      child: SingleChildScrollView(
+        child: Container(
+          padding: EdgeInsets.all(10),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Container(
+                decoration: BoxDecoration(
+                  color: ProjectColors.THEME_COLOR,
+                  borderRadius: BorderRadius.circular(25),
                 ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                height: 50,
+                padding: const EdgeInsets.all(8.0),
+                margin: const EdgeInsets.all(8.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Flex(
-                      direction: Axis.horizontal,
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.all(5.0),
-                          child: Container(
-                            height: 65,
-                            width: 65,
-                            child: CircleAvatar(
-                              radius: 65,
-                              backgroundImage: NetworkImage(
-                                  '${electronicDevice.userImage}'),
-                            ),
-                          ),
-                        ),
-                        SizedBox(
-                          width: 10,
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Text(
-                            '${electronicDevice.userName}',
-                            style: TextStyle(
-                              fontSize: 14,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                        ),
-                      ],
+                    Icon(
+                      Icons.phone_iphone,
+                      color: Colors.white,
                     ),
-
-
-                    electronicDevice.isLoved
-                        ? Icon(
-                      Icons.favorite,
-                      color: ProjectColors.THEME_COLOR,
-                    )
-                        : IconButton(
-                      onPressed: (){
-                        screenState.loveDevice(electronicDevice);
-                      },
-                      icon: Icon(
-                        Icons.favorite_border,
-                        color: ProjectColors.THEME_COLOR,
+                    SizedBox(
+                      width: 10,
+                    ),
+                    Center(
+                      child: Text(
+                        '${electronicDevice.brand}',
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white,
+                          fontSize: 16,
+                        ),
                       ),
                     ),
                   ],
                 ),
-
-
-
-                // ElectronicDevice image
-                Container(
-                  margin: EdgeInsets.only(top: 20),
-                  width: width,
-                  height: 150,
-                  decoration: BoxDecoration(
-                      image: DecorationImage(
-                          fit: BoxFit.fill,
-                          image: NetworkImage(
-                              electronicDevice.image?? 'https://cdn.mos.cms.futurecdn.net/FkMhmL6YzQmj7unhsupKMR.png'))),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Flex(
+                    direction: Axis.horizontal,
                     children: [
-                      FlatButton(
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(5)),
-                        color: ProjectColors.THEME_COLOR,
-                        onPressed: () {
-                          Navigator.pushNamed(
-                              context,
-                              ProductsRoutes.PRODUCT_IMAGES,
-                              arguments: electronicDevice.images
-                          );
-                        },
-                        child: Flex(
-                          direction: Axis.horizontal,
-                          children: [
-                            Icon(
-                              Icons.picture_in_picture,
-                              color: Colors.white,
-                            ),
-                            Text(
-                              S.of(context).showPics,
-                              style: TextStyle(color: Colors.white),
-                            )
-                          ],
+                      Padding(
+                        padding: const EdgeInsets.all(5.0),
+                        child: Container(
+                          height: 65,
+                          width: 65,
+                          child: CircleAvatar(
+                            radius: 65,
+                            backgroundImage:
+                                NetworkImage('${electronicDevice.userImage}'),
+                          ),
                         ),
-                      )
+                      ),
+                      SizedBox(
+                        width: 10,
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Text(
+                          '${electronicDevice.userName}',
+                          style: TextStyle(
+                            fontSize: 14,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ),
                     ],
                   ),
-                ),
+                  electronicDevice.isLoved
+                      ? IconButton(
+                          onPressed: () {
+                            screenState.unLoveDevice(electronicDevice);
+                          },
+                          icon: Icon(
+                            Icons.favorite,
+                            color: ProjectColors.THEME_COLOR,
+                          ),
+                        )
+                      : IconButton(
+                          onPressed: () {
+                            screenState.loveDevice(electronicDevice);
+                          },
+                          icon: Icon(
+                            Icons.favorite_border,
+                            color: ProjectColors.THEME_COLOR,
+                          ),
+                        ),
+                ],
+              ),
 
-                //ElectronicDevice details
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Text(S.of(context).type+' ${electronicDevice.type}'),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Text(S.of(context).brand+' ${electronicDevice.brand}'),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Text(S.of(context).yearOfRelease+'${electronicDevice.releaseYear}'),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Text(S.of(context).durationOfUse+'${electronicDevice.useDuration}'),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Text(S.of(context).display+'${electronicDevice.description}'),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Text(S.of(context).processor+' ${electronicDevice.processor}'),
-                ),
-                //TODO : change  this
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Text(S.of(context).storage+' 512GB PCIe 3*4 SSD'),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Text(S.of(context).graphics+' ${electronicDevice.graphics}'),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Text(S.of(context).location+' ${electronicDevice.location}'),
-                ),
-                Container(
-                  decoration: BoxDecoration(
-                    color: Colors.black38,
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  height: 50,
-                  padding: const EdgeInsets.all(8.0),
-                  margin: const EdgeInsets.all(8.0),
-                  child: Center(
-                    child: Text(S.of(context).price+'${electronicDevice.price} \$'),
-                  ),
-                ),
-
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              // ElectronicDevice image
+              Container(
+                margin: EdgeInsets.only(top: 20),
+                width: width,
+                height: 150,
+                decoration: BoxDecoration(
+                    image: DecorationImage(
+                        fit: BoxFit.fill,
+                        image: NetworkImage(electronicDevice.image ??
+                            'https://cdn.mos.cms.futurecdn.net/FkMhmL6YzQmj7unhsupKMR.png'))),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     FlatButton(
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(5)),
                       color: ProjectColors.THEME_COLOR,
                       onPressed: () {
-                        screenState.getRoomId();
+                        Navigator.pushNamed(
+                            context, ProductsRoutes.PRODUCT_IMAGES,
+                            arguments: electronicDevice.images);
                       },
-                      child: Text(
-                        S.of(context).chatWithOwner,
-                        style: TextStyle(fontSize: 10, color: Colors.white),
+                      child: Flex(
+                        direction: Axis.horizontal,
+                        children: [
+                          Icon(
+                            Icons.picture_in_picture,
+                            color: Colors.white,
+                          ),
+                          Text(
+                            S.of(context).showPics,
+                            style: TextStyle(color: Colors.white),
+                          )
+                        ],
                       ),
-                    ),
-                    FlatButton(
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(5)),
-                      color: ProjectColors.THEME_COLOR,
-                      onPressed: () {},
-                      child: Text(
-                        S.of(context).chatWithLawyer,
-                        style: TextStyle(fontSize: 10, color: Colors.white),
-                      ),
-                    ),
+                    )
                   ],
                 ),
-              ],
-            ),
+              ),
+
+              //ElectronicDevice details
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Text(S.of(context).type + ' ${electronicDevice.type}'),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Text(S.of(context).brand + ' ${electronicDevice.brand}'),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Text(S.of(context).yearOfRelease +
+                    '${electronicDevice.releaseYear}'),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Text(S.of(context).durationOfUse +
+                    '${electronicDevice.useDuration}'),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Text(
+                    S.of(context).display + '${electronicDevice.description}'),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Text(
+                    S.of(context).processor + ' ${electronicDevice.processor}'),
+              ),
+              //TODO : change  this
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Text(S.of(context).storage + ' 512GB PCIe 3*4 SSD'),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Text(
+                    S.of(context).graphics + ' ${electronicDevice.graphics}'),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Text(
+                    S.of(context).location + ' ${electronicDevice.location}'),
+              ),
+              Container(
+                decoration: BoxDecoration(
+                  color: Colors.black38,
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                height: 50,
+                padding: const EdgeInsets.all(8.0),
+                margin: const EdgeInsets.all(8.0),
+                child: Center(
+                  child: Text(
+                      S.of(context).price + '${electronicDevice.price} \$'),
+                ),
+              ),
+
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  FlatButton(
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(5)),
+                    color: ProjectColors.THEME_COLOR,
+                    onPressed: () {
+                      screenState.getRoomId();
+                    },
+                    child: Text(
+                      S.of(context).chatWithOwner,
+                      style: TextStyle(fontSize: 10, color: Colors.white),
+                    ),
+                  ),
+                  FlatButton(
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(5)),
+                    color: ProjectColors.THEME_COLOR,
+                    onPressed: () {},
+                    child: Text(
+                      S.of(context).chatWithLawyer,
+                      style: TextStyle(fontSize: 10, color: Colors.white),
+                    ),
+                  ),
+                ],
+              ),
+            ],
           ),
         ),
-
-
+      ),
     );
   }
-
-
 }
 
 class ElectronicDeviceDetailsStateError extends ElectronicDeviceDetailsState {
   final String errorMsg;
 
-  ElectronicDeviceDetailsStateError(this.errorMsg, ElectronicDeviceDetailsScreenState screenState)
+  ElectronicDeviceDetailsStateError(
+      this.errorMsg, ElectronicDeviceDetailsScreenState screenState)
       : super(screenState);
 
   @override
