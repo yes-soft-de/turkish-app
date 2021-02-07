@@ -164,6 +164,7 @@ class ElectronicDeviceDetailsStateDataLoaded
                           Icons.report_problem,
                           color: Colors.white,
                         ),
+                        SizedBox(width: 5,),
                         Text(
                           S.of(context).report,
                           style: TextStyle(color: Colors.white),
@@ -225,6 +226,7 @@ class ElectronicDeviceDetailsStateDataLoaded
                             Icons.picture_in_picture,
                             color: Colors.white,
                           ),
+                          SizedBox(width: 5,),
                           Text(
                             S.of(context).showPics,
                             style: TextStyle(color: Colors.white),
@@ -290,7 +292,7 @@ class ElectronicDeviceDetailsStateDataLoaded
                 margin: const EdgeInsets.all(8.0),
                 child: Center(
                   child: Text(
-                      S.of(context).price + '${electronicDevice.price} \$'),
+                      S.of(context).price + '  ${electronicDevice.price} \$'),
                 ),
               ),
 

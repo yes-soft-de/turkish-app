@@ -7,5 +7,5 @@ class ReportManager{
   final ReportRepository _repository;
   ReportManager(this._repository);
 
-  Future<dynamic> createReport(ReportRequest request) => _repository.createReport(request);
+  Future<bool> createReport(ReportRequest request) => _repository.createReport(request);
 }

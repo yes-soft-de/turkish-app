@@ -78,10 +78,6 @@ class EditProfileScreenState extends State<EditProfileScreen> {
 
 //    currentState = EditProfileStateInit(this,initialName);
 
-    _nameController.text = profile.userName;
-    _countryController.text = profile.country;
-    _cityController.text = profile.city;
-    initialImage = profile.userImage;
 
     return loading
         ? _loadingWidget()
@@ -226,7 +222,6 @@ class EditProfileScreenState extends State<EditProfileScreen> {
                       color: Colors.black12,
                     ),
                     child: TextFormField(
-                      keyboardType: TextInputType.text,
                       controller: _nameController,
                       decoration: InputDecoration(
                         prefixIcon: Icon(Icons.person),
@@ -235,12 +230,10 @@ class EditProfileScreenState extends State<EditProfileScreen> {
                           borderRadius: BorderRadius.circular(20),
                         ),
 
-                        labelText: S.of(context).name,
+                        labelText: S.of(context).name +' (${profile.userName})',
                       ),
-                      onFieldSubmitted: (value){
+                      onChanged: (value){
                         profile.userName = value;
-                        _nameController.text = value;
-                        print(_nameController.text);
                       },
                     ),
                   ),
@@ -265,11 +258,10 @@ class EditProfileScreenState extends State<EditProfileScreen> {
                           borderSide: BorderSide.none,
                           borderRadius: BorderRadius.circular(20),
                         ),
-                        labelText: S.of(context).country,
+                        labelText: S.of(context).country + ' (${profile.country})',
                       ),
-                      onFieldSubmitted: (value){
+                      onChanged: (value){
                          profile.country = value;
-                        _countryController.text = value;
                       },
                       // Move focus to next
                       validator: (result) {
@@ -301,11 +293,10 @@ class EditProfileScreenState extends State<EditProfileScreen> {
                           borderSide: BorderSide.none,
                           borderRadius: BorderRadius.circular(20),
                         ),
-                        labelText: S.of(context).city,
+                        labelText: S.of(context).city + ' (${profile.city})',
                       ),
-                      onFieldSubmitted: (value){
+                      onChanged: (value){
                           profile.city = value;
-                          _cityController.text = value;
                         },
 
                       validator: (result) {
@@ -326,18 +317,14 @@ class EditProfileScreenState extends State<EditProfileScreen> {
                 decoration: BoxDecoration(color: ProjectColors.THEME_COLOR),
                 child: GestureDetector(
                   onTap: () {
-                    if (_nameController.text.isEmpty) {
-                      Fluttertoast.showToast(
-                          msg: S.of(context).pleaseGiveUsYourName);
-                      return null;
-                    }
+
 
                     loading = true;
 
                     updateProfile(
-                      _nameController.text.trim(),
-                      _countryController.text.trim(),
-                      _cityController.text.trim(),
+                      profile.userName,
+                     profile.country,
+                      profile.city,
                       userImage,
                     );
                   },

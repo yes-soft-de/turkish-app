@@ -152,7 +152,7 @@ class CarDetailsScreenState extends State<CarDetailsScreen> {
     Navigator.pushNamed(
         context,
         ChatRoutes.chatRoute,
-      arguments:  roomId
+        arguments:  roomId
     );
   }
 

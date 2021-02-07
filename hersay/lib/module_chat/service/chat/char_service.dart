@@ -57,6 +57,7 @@ class ChatService {
   Future<String>  getRoomIdWithLawyer(String entity,int itemId)async{
     RoomIdRequest request = new RoomIdRequest(
         entity: entity,
+        itemID: '0',
         lawyer: 1
     );
     return _chatManager.getRoomId(request);

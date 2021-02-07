@@ -153,6 +153,7 @@ class CarDetailsStateDataLoaded extends CarDetailsState {
                           Icons.report_problem,
                           color: Colors.white,
                         ),
+                        SizedBox(width: 5,),
                         Text(
                           S.of(context).report,
                           style: TextStyle(color: Colors.white),
@@ -212,11 +213,13 @@ class CarDetailsStateDataLoaded extends CarDetailsState {
                       },
                       child: Flex(
                         direction: Axis.horizontal,
+
                         children: [
                           Icon(
                             Icons.picture_in_picture,
                             color: Colors.white,
                           ),
+                          SizedBox(width: 5,),
                           Text(
                             S.of(context).showPics,
                             style: TextStyle(color: Colors.white),
@@ -280,7 +283,7 @@ class CarDetailsStateDataLoaded extends CarDetailsState {
                 padding: const EdgeInsets.all(8.0),
                 margin: const EdgeInsets.all(8.0),
                 child: Center(
-                  child: Text(S.of(context).price + '${car.price} \$'),
+                  child: Text(S.of(context).price + '  ${car.price} \$'),
                 ),
               ),
 

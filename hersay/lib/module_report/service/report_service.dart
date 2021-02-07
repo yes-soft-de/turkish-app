@@ -7,7 +7,7 @@ class ReportService {
   final ReportManager _manager;
   ReportService(this._manager);
 
-  Future<dynamic> createReport(int itemId,String entity, String reason) {
+  Future<bool> createReport(int itemId,String entity, String reason) {
     return _manager.createReport(ReportRequest(
       entity: entity,
       itemID: itemId,

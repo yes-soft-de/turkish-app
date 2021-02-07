@@ -89,7 +89,7 @@ class RealEstateDetailsStateDataLoaded extends RealEstateDetailsState {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Icon(
-                      Icons.phone_iphone,
+                      Icons.home,
                       color: Colors.white,
                     ),
                     SizedBox(
@@ -156,6 +156,7 @@ class RealEstateDetailsStateDataLoaded extends RealEstateDetailsState {
                           Icons.report_problem,
                           color: Colors.white,
                         ),
+                        SizedBox(width: 5,),
                         Text(
                           S.of(context).report,
                           style: TextStyle(color: Colors.white),
@@ -212,11 +213,13 @@ class RealEstateDetailsStateDataLoaded extends RealEstateDetailsState {
                       },
                       child: Flex(
                         direction: Axis.horizontal,
+
                         children: [
                           Icon(
                             Icons.picture_in_picture,
                             color: Colors.white,
                           ),
+                          SizedBox(width: 5,),
                           Text(
                             S.of(context).showPics,
                             style: TextStyle(color: Colors.white),
@@ -267,7 +270,7 @@ class RealEstateDetailsStateDataLoaded extends RealEstateDetailsState {
                 padding: const EdgeInsets.all(8.0),
                 margin: const EdgeInsets.all(8.0),
                 child: Center(
-                  child: Text(S.of(context).price + '${realEstate.price} \$'),
+                  child: Text(S.of(context).price + '  ${realEstate.price} \$'),
                 ),
               ),
               Row(

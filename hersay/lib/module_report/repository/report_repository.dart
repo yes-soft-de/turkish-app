@@ -13,13 +13,14 @@ class ReportRepository {
 
   ReportRepository(this._apiClient, this._authService);
 
-  Future<dynamic> createReport(ReportRequest request) async {
+  Future<bool> createReport(ReportRequest request) async {
 
     var token = await _authService.getToken();
 
-    await _apiClient.post(Urls.REPORT_API, request.toJson(),
+    dynamic response = await _apiClient.post(Urls.REPORT_API, request.toJson(),
         headers: {'Authorization': 'Bearer $token'});
 
-    return null;
+    if(response == null )return false;
+    return (response['status_code']=='201')? true : false;
   }
 }

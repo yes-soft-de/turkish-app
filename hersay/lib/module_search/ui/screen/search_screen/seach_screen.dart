@@ -57,24 +57,24 @@ class  SearchScreenState extends State<SearchScreen> {
       key: _scaffoldKey,
       appBar: TurkishAppBar.getTurkishOrdinaryAppBar(context, S.of(context).search),
       body: currentSate.getUI(context),
-      bottomNavigationBar: GestureDetector(
-        onTap: () {
-          Navigator.pop(context);
-        },
-        child: Container(
-          color: ProjectColors.THEME_COLOR,
-          height: 65,
-          child: Center(
-            child: Text(
-              S.of(context).goBack,
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: 16,
-              ),
-            ),
-          ),
-        ),
-      ),
+//      bottomNavigationBar: GestureDetector(
+//        onTap: () {
+//          Navigator.pop(context);
+//        },
+//        child: Container(
+//          color: ProjectColors.THEME_COLOR,
+//          height: 65,
+//          child: Center(
+//            child: Text(
+//              S.of(context).goBack,
+//              style: TextStyle(
+//                color: Colors.white,
+//                fontSize: 16,
+//              ),
+//            ),
+//          ),
+//        ),
+//      ),
     );
   }
 

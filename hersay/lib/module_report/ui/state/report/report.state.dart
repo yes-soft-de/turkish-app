@@ -35,70 +35,83 @@ class ReportStateInit extends ReportState {
 
   @override
   Widget getUI(context) {
-    final node = FocusScope.of(context);
 
     return SingleChildScrollView(
-      child:  Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: Text(S
-                .of(context)
-                .createReport, style: TextStyle(fontSize: 20),),
-          ),
-          Expanded(
-            child: Form(
-              child: Padding(
-                padding: const EdgeInsets.all(16.0),
-                child: TextFormField(
-                  validator: (reason) {
-                    if (reason.isEmpty) {
-                      return S
+      child:  Container(
+        height: 700,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: Text(S
+                  .of(context)
+                  .createReport, style: TextStyle(fontSize: 20),),
+            ),
+            Expanded(
+              child: Form(
+                child: Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: TextFormField(
+                    validator: (reason) {
+                      if (reason.isEmpty) {
+                        return S
+                            .of(context)
+                            .reasonIsRequired;
+                      }
+                      return null;
+                    },
+                    controller: _reasonController,
+                    decoration: InputDecoration(
+                      hintText: S
                           .of(context)
-                          .reasonIsRequired;
-                    }
-                    return null;
-                  },
-                  controller: _reasonController,
-                  decoration: InputDecoration(
-                    hintText: S
-                        .of(context)
-                        .reasonOfTheReport,
+                          .reasonOfTheReport,
+                    ),
+                    maxLines: 6,
                   ),
-                  maxLines: 6,
                 ),
               ),
             ),
-          ),
-          RaisedButton(
-              child: Text(
-                S
-                    .of(context)
-                    .cancel,
-                style: TextStyle(color: Colors.white),
-              ),
-              onPressed: () {
-                Navigator.of(context).pop();
-              }),
-          RaisedButton(
-              color: Colors.red,
-              child: Text(
-                S
-                    .of(context)
-                    .save,
-                style: TextStyle(color: Colors.white),
-              ),
-              onPressed: () {
-                if (_reasonController.text.isNotEmpty) {
-                 screenState.createReport(_reasonController.text);
-                } else {
-                  Scaffold.of(context).showSnackBar(SnackBar(content: Text(S
-                      .of(context)
-                      .pleaseCompleteTheForm)));
-                }
-              }),
-        ],
+           Row(
+             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+             children: [
+               Container(
+                 width: 100,
+                 child: RaisedButton(
+                     child: Text(
+                       S
+                           .of(context)
+                           .cancel,
+                       style: TextStyle(color: Colors.white),
+                     ),
+                     onPressed: () {
+                       Navigator.of(context).pop();
+                     }),
+               ),
+               Container(
+                 width: 100,
+                 child: RaisedButton(
+                     color: ProjectColors.THEME_COLOR,
+                     child: Text(
+                       S
+                           .of(context)
+                           .save,
+                       style: TextStyle(color: Colors.white),
+                     ),
+                     onPressed: () {
+                       if (_reasonController.text.isNotEmpty) {
+                         screenState.createReport(_reasonController.text);
+                       } else {
+                         Scaffold.of(context).showSnackBar(SnackBar(content: Text(S
+                             .of(context)
+                             .pleaseCompleteTheForm)));
+                       }
+                     }),
+               ),
+             ],
+           ),
+          ],
+        ),
       ),
     );
   }
