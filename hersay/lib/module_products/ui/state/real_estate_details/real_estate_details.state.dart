@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:hersay/generated/l10n.dart';
 import 'package:hersay/module_auth/auth_routes.dart';
 import 'package:hersay/module_products/model/real_estate/real_estate_model.dart';
+import 'package:hersay/module_products/products_routes.dart';
 import 'package:hersay/module_products/ui/screen/real_estate_details/real_estate_details_screen.dart';
 import 'package:hersay/utils/project_colors/project_colors.dart';
 
@@ -173,7 +174,13 @@ class RealEstateDetailsStateDataLoaded extends RealEstateDetailsState {
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(5)),
                         color: ProjectColors.THEME_COLOR,
-                        onPressed: () {},
+                        onPressed: () {
+                          Navigator.pushNamed(
+                              context,
+                              ProductsRoutes.PRODUCT_IMAGES,
+                              arguments: realEstate.images
+                          );
+                        },
                         child: Flex(
                           direction: Axis.horizontal,
                           children: [

@@ -97,8 +97,19 @@ class CarService{
        userName: response.data.username,
        userImage: response.data.userImage,
        isLoved: response.data.reaction.isLoved,
+       images: _getImages(response),
    );
 
+  }
+
+  List<String> _getImages(CarResponse response){
+    List<String> result = [];
+
+    response.data.images.forEach((element) {
+      result.add(element.image);
+    });
+
+    return result;
   }
 
 }

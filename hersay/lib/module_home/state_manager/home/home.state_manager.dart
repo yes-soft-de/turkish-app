@@ -20,8 +20,7 @@ class HomeStateManager {
       );
 
   void getHomeScreenData(HomeScreenState screenState) {
-    _authService.isLoggedIn.then((value) {
-      if (value) {
+
         _stateSubject.add(HomeStateLoading(screenState));
         _homeService.getHomeScreenData().then((value) {
           if (value == null) {
@@ -31,9 +30,6 @@ class HomeStateManager {
             _stateSubject.add(HomeStateDataLoaded(value, screenState));
           }
         });
-      } else {
-        _stateSubject.add(HomeStateUnauthorized(screenState));
-      }
-    });
+
   }
 }

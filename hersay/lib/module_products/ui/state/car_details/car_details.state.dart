@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:hersay/generated/l10n.dart';
 import 'package:hersay/module_auth/auth_routes.dart';
 import 'package:hersay/module_products/model/car/car_model.dart';
+import 'package:hersay/module_products/products_routes.dart';
 import 'package:hersay/module_products/ui/screen/car_details/car_details_screen.dart';
 import 'package:hersay/utils/project_colors/project_colors.dart';
 
@@ -176,7 +177,13 @@ class CarDetailsStateDataLoaded extends CarDetailsState {
                             borderRadius: BorderRadius.circular(5)),
                         //TODO : change this
                         color: ProjectColors.THEME_COLOR,
-                        onPressed: () {},
+                        onPressed: () {
+                          Navigator.pushNamed(
+                              context,
+                              ProductsRoutes.PRODUCT_IMAGES,
+                              arguments: car.images
+                          );
+                        },
                         child: Flex(
                           direction: Axis.horizontal,
                           children: [

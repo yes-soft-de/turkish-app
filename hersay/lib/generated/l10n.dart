@@ -1763,10 +1763,10 @@ class S {
     );
   }
 
-  /// `Rooms description`
+  /// `description`
   String get roomsDescription {
     return Intl.message(
-      'Rooms description',
+      'description',
       name: 'roomsDescription',
       desc: '',
       args: [],
@@ -2428,6 +2428,96 @@ class S {
     return Intl.message(
       'Add more images',
       name: 'addMoreImages',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Thre is not other images`
+  String get threIsNotOtherImages {
+    return Intl.message(
+      'Thre is not other images',
+      name: 'threIsNotOtherImages',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Details`
+  String get details {
+    return Intl.message(
+      'Details',
+      name: 'details',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `image:`
+  String get image {
+    return Intl.message(
+      'image:',
+      name: 'image',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Images`
+  String get images {
+    return Intl.message(
+      'Images',
+      name: 'images',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Create report`
+  String get createReport {
+    return Intl.message(
+      'Create report',
+      name: 'createReport',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Reason is required`
+  String get reasonIsRequired {
+    return Intl.message(
+      'Reason is required',
+      name: 'reasonIsRequired',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Reason of the report`
+  String get reasonOfTheReport {
+    return Intl.message(
+      'Reason of the report',
+      name: 'reasonOfTheReport',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Cancel`
+  String get cancel {
+    return Intl.message(
+      'Cancel',
+      name: 'cancel',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please complete the form`
+  String get pleaseCompleteTheForm {
+    return Intl.message(
+      'Please complete the form',
+      name: 'pleaseCompleteTheForm',
       desc: '',
       args: [],
     );

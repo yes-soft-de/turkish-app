@@ -8,6 +8,8 @@ import 'package:hersay/module_products/ui/screen/car_details/car_details_screen.
 import 'package:hersay/module_products/ui/screen/electronic_device_details/electronic_device_details_screen.dart';
 import 'package:hersay/utils/project_colors/project_colors.dart';
 
+import '../../../products_routes.dart';
+
 
 
 abstract class ElectronicDeviceDetailsState {
@@ -177,7 +179,13 @@ class ElectronicDeviceDetailsStateDataLoaded extends ElectronicDeviceDetailsStat
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(5)),
                         color: ProjectColors.THEME_COLOR,
-                        onPressed: () {},
+                        onPressed: () {
+                          Navigator.pushNamed(
+                              context,
+                              ProductsRoutes.PRODUCT_IMAGES,
+                              arguments: electronicDevice.images
+                          );
+                        },
                         child: Flex(
                           direction: Axis.horizontal,
                           children: [

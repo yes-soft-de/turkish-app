@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hersay/generated/l10n.dart';
 import 'package:hersay/module_auth/auth_routes.dart';
 import 'package:hersay/module_auth/service/auth/auth.service.dart';
 import 'package:hersay/module_chat/chat_routes.dart';
@@ -32,7 +33,22 @@ class  ElectronicDeviceDetailsScreenState extends State<ElectronicDeviceDetailsS
   double width;
 
   void loveDevice(ElectronicDeviceModel device){
-    widget._stateManager.loveDevice(electronicDeviceId, this, device);
+    widget._authService.isLoggedIn.then((value){
+      if(!value) {
+        RouteHelper redirectTo = new RouteHelper(
+            redirectTo:  ProductsRoutes.CAR_DETAILS_SCREEN,
+            additionalData: electronicDeviceId
+        );
+        Navigator.of(context).pushNamed(
+          AuthorizationRoutes.LOGIN_SCREEN,
+          arguments: redirectTo,
+        );
+      }else{
+        widget._stateManager.loveDevice(electronicDeviceId, this, device);
+      }
+    });
+
+
   }
 
   void getElectronicDeviceDetails(){
@@ -91,7 +107,7 @@ class  ElectronicDeviceDetailsScreenState extends State<ElectronicDeviceDetailsS
 
     width = MediaQuery.of(context).size.width;
     return Scaffold(
-      appBar: TurkishAppBar.getTurkishOrdinaryAppBar(context, ''),
+      appBar: TurkishAppBar.getTurkishOrdinaryAppBar(context,  S.of(context).details),
       body: currentState.getUI(context),
     );
   }

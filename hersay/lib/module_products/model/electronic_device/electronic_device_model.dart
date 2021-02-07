@@ -14,6 +14,7 @@ class ElectronicDeviceModel {
   String userName;
   String userImage;
   bool isLoved;
+  List<String> images;
 
   ElectronicDeviceModel({
     this.id,
@@ -31,5 +32,6 @@ class ElectronicDeviceModel {
     this.userName,
     this.userImage,
     this.isLoved,
+    this.images,
   });
 }

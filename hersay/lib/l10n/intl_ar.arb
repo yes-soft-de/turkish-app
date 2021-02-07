@@ -172,7 +172,7 @@
   "price": "السعر",
   "country": "الدولة",
   "city": "المدينة",
-  "roomsDescription": "وصف الغرفة",
+  "roomsDescription": "الوصف",
   "selectMainImage": "اختيار الصورة الرئيسية",
   "save": "حفظ",
   "yourRequestHasBeenAddedAndInHoldForAdmin": "تم تسجيل طلبك وبانتظار موافقة مدير التطبيق",
@@ -238,5 +238,14 @@
   "youDidNotSellOrBuyAnyThingYet": "لم تقم ببيع أو شراء أي شيء بعد",
   "youDidNotChatWithAnyOne": "لم تقم بمراسلة أحد بعد",
   "startedAt": "بدأت :",
-  "addMoreImages": "أضف المزيد من الصور"
+  "addMoreImages": "أضف المزيد من الصور",
+  "threIsNotOtherImages": "لا يوجد المزيد من الصور",
+  "details": "التفاصيل",
+  "image": "الصورة :",
+  "images": "الصور",
+  "createReport": "تبليغ",
+  "reasonIsRequired": "السبب مطلوب",
+  "reasonOfTheReport": "سبب التبليغ",
+  "cancel": "إلغاء",
+  "pleaseCompleteTheForm": "الرجاء أكمل الفورم"
 }

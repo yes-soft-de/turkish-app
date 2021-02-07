@@ -10,6 +10,7 @@ import 'package:hersay/module_auth/auth_module.dart';
 import 'package:hersay/module_chat/chat_module.dart';
 import 'package:hersay/module_history/history_module.dart';
 import 'package:hersay/module_home/home_module.dart';
+import 'package:hersay/module_home/home_routes.dart';
 import 'package:hersay/module_profile/Profile_module.dart';
 import 'package:hersay/module_search/search_module.dart';
 import 'package:hersay/module_search/search_routes.dart';
@@ -139,7 +140,7 @@ class _MyAppState extends State<MyApp> {
       supportedLocales: S.delegate.supportedLocales,
       title: 'Hersay',
       routes: fullRoutesList,
-      initialRoute: SplashRoutes.SPLASH_SCREEN,
+      initialRoute: MainRoutes.MAIN_SCREEN_ROUTE,
     );
   }
 }

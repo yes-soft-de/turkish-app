@@ -389,7 +389,7 @@ class ProfileStateDataLoaded extends ProfileState {
                   childAspectRatio: (4/5)
               ),
               itemCount:displayedProducts.length,
-
+              physics: NeverScrollableScrollPhysics(),
               shrinkWrap: true,
       )
                 :Container(

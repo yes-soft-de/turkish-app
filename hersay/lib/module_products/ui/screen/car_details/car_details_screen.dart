@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hersay/generated/l10n.dart';
 import 'package:hersay/module_auth/auth_routes.dart';
 import 'package:hersay/module_auth/service/auth/auth.service.dart';
 import 'package:hersay/module_chat/chat_routes.dart';
@@ -44,7 +45,21 @@ class CarDetailsScreenState extends State<CarDetailsScreen> {
   }
 
   void loveCar(CarModel car){
-    widget._stateManager.loveCar(carId, this, car);
+    widget._authService.isLoggedIn.then((value){
+      if(!value) {
+        RouteHelper redirectTo = new RouteHelper(
+            redirectTo:  ProductsRoutes.CAR_DETAILS_SCREEN,
+            additionalData: carId
+        );
+        Navigator.of(context).pushNamed(
+          AuthorizationRoutes.LOGIN_SCREEN,
+          arguments: redirectTo,
+        );
+      }else{
+        widget._stateManager.loveCar(carId, this, car);
+      }
+    });
+
   }
 
   void refresh(){
@@ -75,6 +90,8 @@ class CarDetailsScreenState extends State<CarDetailsScreen> {
 
   }
 
+
+
   void goToChat(String roomId){
     Navigator.pushNamed(
         context,
@@ -94,7 +111,7 @@ class CarDetailsScreenState extends State<CarDetailsScreen> {
 
 
     return Scaffold(
-      appBar: TurkishAppBar.getTurkishOrdinaryAppBar(context, ''),
+      appBar: TurkishAppBar.getTurkishOrdinaryAppBar(context, S.of(context).details),
       body: currentState.getUI(context),
     );
   }

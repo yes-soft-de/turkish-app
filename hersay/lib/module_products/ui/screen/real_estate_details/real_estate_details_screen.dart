@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hersay/generated/l10n.dart';
 import 'package:hersay/module_auth/auth_routes.dart';
 import 'package:hersay/module_auth/service/auth/auth.service.dart';
 import 'package:hersay/module_chat/chat_routes.dart';
@@ -46,7 +47,22 @@ class RealEstateDetailsScreenState extends State<RealEstateDetailsScreen> {
   }
 
   void loveRealEstate(RealEstateModel realEstate){
-    widget._stateManager.loveRealEstate(realEstateId, this, realEstate);
+    widget._authService.isLoggedIn.then((value){
+      if(!value) {
+        RouteHelper redirectTo = new RouteHelper(
+            redirectTo:  ProductsRoutes.CAR_DETAILS_SCREEN,
+            additionalData: realEstateId
+        );
+        Navigator.of(context).pushNamed(
+          AuthorizationRoutes.LOGIN_SCREEN,
+          arguments: redirectTo,
+        );
+      }else{
+        widget._stateManager.loveRealEstate(realEstateId, this, realEstate);
+      }
+    });
+
+
   }
 
   void getRealEstateDetails(){
@@ -91,7 +107,7 @@ class RealEstateDetailsScreenState extends State<RealEstateDetailsScreen> {
     
     width = MediaQuery.of(context).size.width;
     return Scaffold(
-      appBar: TurkishAppBar.getTurkishOrdinaryAppBar(context, ''),
+      appBar: TurkishAppBar.getTurkishOrdinaryAppBar(context,  S.of(context).details),
       body: currentState.getUI(context),
     );
   }

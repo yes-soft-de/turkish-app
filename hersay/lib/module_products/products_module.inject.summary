@@ -60,6 +60,13 @@
                 "qualifier": null
               },
               "isProvider": false
+            },
+            {
+              "lookupKey": {
+                "root": "asset:hersay/lib/module_products/ui/screen/product_images/product_images_screen.dart#ProductImagesScreen",
+                "qualifier": null
+              },
+              "isProvider": false
             }
           ]
         }

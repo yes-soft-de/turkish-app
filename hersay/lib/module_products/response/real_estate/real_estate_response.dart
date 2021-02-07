@@ -33,7 +33,7 @@ class Data {
   CreatedAt createdAt;
   String state;
   String image;
-  List<String> images;
+  List<Images> images;
   String numberOfFloors;
   String cladding;
   String homeFurnishing;
@@ -77,7 +77,12 @@ class Data {
         : null;
     state = json['state'];
     image = json['image'];
-    images = json['images'].cast<String>();
+    if (json['images'] != null) {
+      images = new List<Images>();
+      json['images'].forEach((v) {
+        images.add(new Images.fromJson(v));
+      });
+    }
     numberOfFloors = json['numberOfFloors'];
     cladding = json['cladding'];
     homeFurnishing = json['homeFurnishing'];
@@ -104,7 +109,9 @@ class Data {
     }
     data['state'] = this.state;
     data['image'] = this.image;
-    data['images'] = this.images;
+    if (this.images != null) {
+      data['images'] = this.images.map((v) => v.toJson()).toList();
+    }
     data['numberOfFloors'] = this.numberOfFloors;
     data['cladding'] = this.cladding;
     data['homeFurnishing'] = this.homeFurnishing;
@@ -249,6 +256,24 @@ class Reaction {
     data['reactionCount'] = this.reactionCount;
     data['createdBy'] = this.createdBy;
     data['isLoved'] = this.isLoved;
+    return data;
+  }
+}
+class Images {
+  String image;
+  Null specialLink;
+
+  Images({this.image, this.specialLink});
+
+  Images.fromJson(Map<String, dynamic> json) {
+    image = json['image'];
+    specialLink = json['specialLink'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['image'] = this.image;
+    data['specialLink'] = this.specialLink;
     return data;
   }
 }

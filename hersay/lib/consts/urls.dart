@@ -39,6 +39,8 @@ class Urls {
   static const MY_CHATS = BASE_API + '/getallchat';
   //REACTION
   static const REACT = BASE_API + '/reactions';
+  //REPORT
+  static const REPORT_API = BASE_API + '/report';
 
 
 

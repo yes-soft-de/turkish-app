@@ -42,7 +42,7 @@ class Data {
   String country;
   String city;
   String image;
-  List<String> images;
+  List<Images> images;
   Reaction reaction;
   String state;
   String username;
@@ -100,7 +100,12 @@ class Data {
     country = json['country'];
     city = json['city'];
     image = json['image'];
-    images = json['images'].cast<String>();
+    if (json['images'] != null) {
+      images = new List<Images>();
+      json['images'].forEach((v) {
+        images.add(new Images.fromJson(v));
+      });
+    }
     reaction = json['reaction'] != null
         ? new Reaction.fromJson(json['reaction'])
         : null;
@@ -136,7 +141,9 @@ class Data {
     data['country'] = this.country;
     data['city'] = this.city;
     data['image'] = this.image;
-    data['images'] = this.images;
+    if (this.images != null) {
+      data['images'] = this.images.map((v) => v.toJson()).toList();
+    }
     if (this.reaction != null) {
       data['reaction'] = this.reaction.toJson();
     }
@@ -277,6 +284,25 @@ class Reaction {
     data['reactionCount'] = this.reactionCount;
     data['createdBy'] = this.createdBy;
     data['isLoved'] = this.isLoved;
+    return data;
+  }
+}
+
+class Images {
+  String image;
+  Null specialLink;
+
+  Images({this.image, this.specialLink});
+
+  Images.fromJson(Map<String, dynamic> json) {
+    image = json['image'];
+    specialLink = json['specialLink'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['image'] = this.image;
+    data['specialLink'] = this.specialLink;
     return data;
   }
 }

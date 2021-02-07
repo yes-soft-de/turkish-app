@@ -13,6 +13,7 @@ class CarModel {
   String userName;
   String userImage;
   bool isLoved;
+  List<String> images;
 
   CarModel({
     this.type,
@@ -28,6 +29,7 @@ class CarModel {
     this.image,
     this.userImage,
     this.userName,
-    this.isLoved
+    this.isLoved,
+    this.images,
   });
 }

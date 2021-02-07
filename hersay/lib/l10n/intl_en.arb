@@ -174,7 +174,7 @@
   "price": "Price",
   "country": "Country",
   "city": "City",
-  "roomsDescription": "Rooms description",
+  "roomsDescription": "description",
   "selectMainImage": "Select main image",
   "save": "Save",
   "yourRequestHasBeenAddedAndInHoldForAdmin": "your request has been added and in hold for admin approval",
@@ -240,5 +240,14 @@
   "youDidNotSellOrBuyAnyThingYet": "You did not sell or buy any thing yet",
   "youDidNotChatWithAnyOne": "You did not chat with any one",
   "startedAt": "Started at :",
-  "addMoreImages": "Add more images"
+  "addMoreImages": "Add more images",
+  "threIsNotOtherImages": "Thre is not other images",
+  "details": "Details",
+  "image": "image:",
+  "images": "Images",
+  "createReport": "Create report",
+  "reasonIsRequired": "Reason is required",
+  "reasonOfTheReport": "Reason of the report",
+  "cancel": "Cancel",
+  "pleaseCompleteTheForm": "Please complete the form"
 }
