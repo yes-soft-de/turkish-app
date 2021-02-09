@@ -51,15 +51,15 @@ class ReportManager
             
             if($entity == "car")
             {
-                $results[$i]['itemName'] = $this->carManager->getCarById($result['id'])[0]['carType'];
+                $results[$i]['itemName'] = $this->carManager->getCarById($result['itemID'])[0]['carType'];
             }
             elseif ($entity == "device")
             {
-                $results[$i]['itemName'] = $this->deviceManager->getDeviceById($result['id'])[0]['brand'];
+                $results[$i]['itemName'] = $this->deviceManager->getDeviceById($result['itemID'])[0]['brand'];
             }
             elseif ($entity == "realEstate")
             {
-                $results[$i]['itemName'] = $this->realEstateManager->getRealEstateById($result['id'])[0]['realEstateType'];
+                $results[$i]['itemName'] = $this->realEstateManager->getRealEstateById($result['itemID'])[0]['realEstateType'];
             }
             
             $i++;
@@ -73,18 +73,18 @@ class ReportManager
         $report = $this->repository->getReportById($id);
 
         $entity = $report[0]['entity'];
-        //dd($entity);
+        
         if($entity == "car")
         {
-            $report[0]['itemName'] = $this->carManager->getCarById($report[0]['id'])[0]['carType'];
+            $report[0]['itemName'] = $this->carManager->getCarById($report[0]['itemID'])[0]['carType'];
         }
         elseif ($entity == "device")
         {
-            $report[0]['itemName'] = $this->deviceManager->getDeviceById($report[0]['id'])[0]['brand'];
+            $report[0]['itemName'] = $this->deviceManager->getDeviceById($report[0]['itemID'])[0]['brand'];
         }
         elseif ($entity == "realEstate")
         {
-            $report[0]['itemName'] = $this->realEstateManager->getRealEstateById($report[0]['id'])[0]['realEstateType'];
+            $report[0]['itemName'] = $this->realEstateManager->getRealEstateById($report[0]['itemID'])[0]['realEstateType'];
         }
 
         return $report;
