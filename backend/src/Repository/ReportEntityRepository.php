@@ -36,4 +36,23 @@ class ReportEntityRepository extends ServiceEntityRepository
             ->getQuery()
             ->getResult();
     }
+
+    public function getReportById($id)
+    {
+        return $this->createQueryBuilder('report')
+            ->select('report.id', 'report.userID', 'report.entity', 'report.itemID', 'report.reason', 'userProfile.userName', 
+             'userProfile.image')
+
+            ->leftJoin(
+                UserProfileEntity::class, 
+                'userProfile', 
+                Join::WITH, 
+                'userProfile.userID = report.userID')
+
+            ->andWhere('report.id =:id')
+            ->setParameter('id', $id)
+            
+            ->getQuery()
+            ->getResult();
+    }
 }

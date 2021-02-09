@@ -39,4 +39,25 @@ class ReportService
         
         return $response;
     }
+
+    public function getReportById($id)
+    {
+        $response = [];
+
+        $items = $this->reportManager->getReportById($id);
+        
+        foreach ($items as $row)
+        {
+            $response[] = $this->autoMapping->map('array', ReportResponse::class, $row);
+        }
+
+        return $response;
+    }
+
+    public function delete($request)
+    {
+        $result = $this->reportManager->delete($request);
+
+        return $this->autoMapping->map(ReportEntity::class, ReportResponse::class, $result);
+    }
 }

@@ -13,6 +13,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Serializer\SerializerInterface;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
+use App\Request\DeleteRequest;
 
 class ReportController extends BaseController
 {
@@ -64,5 +65,27 @@ class ReportController extends BaseController
         $result = $this->reportService->getReports();
 
         return $this->response($result, self::FETCH);
+    }
+
+    /**
+     * @Route("report/{id}", name="getReportById", methods={"GET"})
+     */
+    public function getReportById($id)
+    {
+        $result = $this->reportService->getReportById($id);
+
+        return $this->response($result, self::FETCH);
+    }
+
+    /**
+     * @Route("report/{id}", name="deleteReportById", methods={"DELETE"})
+     */
+    public function delete(Request $request)
+    {
+        $request = new DeleteRequest($request->get('id'));
+        
+        $result = $this->reportService->delete($request);
+
+        return $this->response("deleted ", self::DELETE);
     }
 }
