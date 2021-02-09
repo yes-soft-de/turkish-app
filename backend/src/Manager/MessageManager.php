@@ -118,4 +118,9 @@ class MessageManager
         return $this->messageEntityRepository->deleteAllChatRequests();
     }
 
+    public function getAllChats()
+    {
+        return $this->messageEntityRepository->findAll();
+    }
+
 }

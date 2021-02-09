@@ -151,4 +151,9 @@ class ReactionManager
 
         return $reaction;
     }
+
+    public function getAllReactions()
+    {
+        return $this->repository->findAll();
+    }
 }

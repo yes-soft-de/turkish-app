@@ -10,21 +10,26 @@ use Doctrine\ORM\EntityManagerInterface;
 class MainManager
 {
     private $autoMapping;
-    private $entityManager;
     private $statusManager;
     private $carManager;
     private $deviceManager;
     private $realEstateManager;
+    private $userManager;
+    private $reactionManager;
+    private $messageManager;
 
-    public function __construct(AutoMapping $autoMapping, EntityManagerInterface $entityManager, StatusManager $statusManager,
-    CarManager $carManager, DeviceManager $deviceManager, RealEstateManager $realEstateManager)
+    public function __construct(AutoMapping $autoMapping, StatusManager $statusManager, CarManager $carManager, 
+     DeviceManager $deviceManager, RealEstateManager $realEstateManager, UserManager $userManager, 
+     ReactionManager $reactionManager, MessageManager $messageManager)
     {
         $this->autoMapping = $autoMapping;
-        $this->entityManager = $entityManager;
         $this->statusManager = $statusManager;
         $this->carManager = $carManager;
         $this->deviceManager = $deviceManager;
         $this->realEstateManager = $realEstateManager;
+        $this->userManager = $userManager;
+        $this->reactionManager = $reactionManager;
+        $this->messageManager = $messageManager;
     }
 
     public function getHistory($userID)
@@ -56,9 +61,8 @@ class MainManager
             $response[$i]['state'] = "Buy";
 
             $i++;
-            //dd($response);
         }
-        //dd($response);
+        
         $cars = $this->carManager->getSoldCarsOfUser($userID);
 
         $devices = $this->deviceManager->getSoldDevicesOfUser($userID);
@@ -66,8 +70,29 @@ class MainManager
         $realEstates = $this->realEstateManager->getSoldRealEstatesOfUser($userID);
 
         $response2 = array_merge_recursive($cars, $devices, $realEstates, $response);
-        //dd($response2);
+        
         return $response2;
+    }
+
+    public function getStatistics()
+    {
+        $response = [];
+        
+        $response['cars'] = count($this->carManager->getAllCars());
+
+        $response['devices'] = count($this->deviceManager->getAllDevices());
+
+        $response['realEstates'] = count($this->realEstateManager->getAllRealEstate());
+
+        $response['properties'] = $response['cars'] + $response['devices'] + $response['realEstates'];
+
+        $response['users'] = count($this->userManager->getAllusers());
+
+        $response['reactions'] = count($this->reactionManager->getAllReactions());
+
+        $response['chats'] = count($this->messageManager->getAllChats());
+
+        return $response;
     }
 
 }

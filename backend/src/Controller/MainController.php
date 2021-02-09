@@ -96,6 +96,16 @@ class MainController extends BaseController
     }
 
     /**
+     * @Route("statistics", name="getStatistics", methods={"GET"})
+     */
+    public function getStatistics()
+    {
+        $result = $this->mainService->getStatistics();
+
+        return $this->response($result, self::FETCH);
+    }
+
+    /**
      * @Route("/eraseall", name="deleteAllData", methods={"DELETE"})
      */
     public function eraseAllData()

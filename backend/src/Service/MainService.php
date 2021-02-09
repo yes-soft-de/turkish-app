@@ -8,6 +8,7 @@ use App\AutoMapping;
 use App\Manager\MainManager;
 use App\Request\FilterRequest;
 use App\Response\GetHistoryResponse;
+use App\Response\GetStatisticsResponse;
 
 class MainService
 {
@@ -40,8 +41,6 @@ class MainService
         $realEstatesResult = $this->realEstateService->getRealEstatesByType($query);
 
         $response = array_merge_recursive($carsResult, $devicesResult, $realEstatesResult);
-
-        //dd($realEstatesResult);
 
         return $response;
     }
@@ -87,6 +86,17 @@ class MainService
         $response['devices'] = $this->deviceService->getDevicesOfUser($userID);
 
         $response['realEstate'] = $this->realEstateService->getRealEstateByUser($userID);
+
+        return $response;
+    }
+
+    public function getStatistics()
+    {
+        $response = [];
+
+        $results = $this->mainManager->getStatistics();
+
+        $response[] = $this->autoMapping->map('array', GetStatisticsResponse::class, $results);
 
         return $response;
     }
