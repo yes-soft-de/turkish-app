@@ -91,4 +91,14 @@ class ReportController extends BaseController
 
         return $this->response("deleted ", self::DELETE);
     }
+
+    /**
+     * @Route("deletereports", name="deleteReportById", methods={"DELETE"})
+     */
+    public function deleteAll()
+    {
+        $result = $this->reportService->deleteAll();
+
+        return $this->response($result, self::DELETE);
+    }
 }

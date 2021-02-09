@@ -55,4 +55,12 @@ class ReportEntityRepository extends ServiceEntityRepository
             ->getQuery()
             ->getResult();
     }
+
+    public function deleteAll()
+    {
+        return $this->createQueryBuilder('report')
+            ->delete()
+            ->getQuery()
+            ->getResult();
+    }
 }

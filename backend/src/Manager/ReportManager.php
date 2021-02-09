@@ -106,4 +106,9 @@ class ReportManager
 
         return $item;
     }
+
+    public function deleteAll()
+    {
+        return $this->repository->deleteAll();
+    }
 }

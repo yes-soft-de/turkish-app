@@ -68,4 +68,9 @@ class ReportService
 
         return $this->autoMapping->map(ReportEntity::class, ReportResponse::class, $result);
     }
+
+    public function deleteAll()
+    {
+        return $this->reportManager->deleteAll();
+    }
 }
