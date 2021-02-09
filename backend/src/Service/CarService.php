@@ -197,6 +197,10 @@ class CarService
 
         foreach ($result as $row)
         {
+            $row['userImage'] = $this->params . $row['userImage'];
+
+            $row['image'] = $this->params . $row['image'];
+
             $response[] = $this->autoMapping->map('array', CarGetFilterResponse::class, $row);
         }
 

@@ -151,6 +151,10 @@ class DeviceService
       
         foreach ($result as $row)
         {
+            $row['userImage'] = $this->params . $row['userImage'];
+
+            $row['image'] = $this->params . $row['image'];
+
             $response[] = $this->autoMapping->map('array', DevicesGetFilterResponse::class, $row);
         }
 

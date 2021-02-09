@@ -119,6 +119,17 @@ class RealEstateEntityRepository extends ServiceEntityRepository
     public function getFilterCity($value)
     {
         return $this->createQueryBuilder('RealEstateEntity')
+            ->select('RealEstateEntity.country','RealEstateEntity.city', 'RealEstateEntity.space', 'RealEstateEntity.price', 'RealEstateEntity.description', 'RealEstateEntity.status',
+                    'RealEstateEntity.createdBy', 'RealEstateEntity.createdAt', 'RealEstateEntity.updateAt', 'RealEstateEntity.state', 'RealEstateEntity.image', 'RealEstateEntity.specialLink',
+                    'RealEstateEntity.numberOfFloors', 'RealEstateEntity.cladding', 'RealEstateEntity.homeFurnishing', 'RealEstateEntity.realEstateType',
+                    'RealEstateEntity.rooms', 'userProfileEntity.userName as username', 'userProfileEntity.image as userImage')
+
+            ->leftJoin(
+                UserProfileEntity::class,
+                'userProfileEntity',
+                Join::WITH,
+                'userProfileEntity.userID = RealEstateEntity.createdBy'
+            )
 
             ->andWhere('RealEstateEntity.city = :value')
             ->andWhere("RealEstateEntity.state = 'Accepted'")
@@ -132,6 +143,17 @@ class RealEstateEntityRepository extends ServiceEntityRepository
     public function getFilterPrice($value)
     {
         return $this->createQueryBuilder('RealEstateEntity')
+            ->select('RealEstateEntity.country','RealEstateEntity.city', 'RealEstateEntity.space', 'RealEstateEntity.price', 'RealEstateEntity.description', 'RealEstateEntity.status',
+                    'RealEstateEntity.createdBy', 'RealEstateEntity.createdAt', 'RealEstateEntity.updateAt', 'RealEstateEntity.state', 'RealEstateEntity.image', 'RealEstateEntity.specialLink',
+                    'RealEstateEntity.numberOfFloors', 'RealEstateEntity.cladding', 'RealEstateEntity.homeFurnishing', 'RealEstateEntity.realEstateType',
+                    'RealEstateEntity.rooms', 'userProfileEntity.userName as username', 'userProfileEntity.image as userImage')
+
+            ->leftJoin(
+                UserProfileEntity::class,
+                'userProfileEntity',
+                Join::WITH,
+                'userProfileEntity.userID = RealEstateEntity.createdBy'
+            )
 
             ->andWhere('RealEstateEntity.price = :value')
             ->andWhere("RealEstateEntity.state = 'Accepted'")
@@ -171,6 +193,17 @@ class RealEstateEntityRepository extends ServiceEntityRepository
     public function getFilterByPriceAndCity($price, $location)
     {
         return $this->createQueryBuilder('realEstate')
+            ->select('realEstate.country','realEstate.city', 'realEstate.space', 'realEstate.price', 'realEstate.description', 'realEstate.status',
+                    'realEstate.createdBy', 'realEstate.createdAt', 'realEstate.updateAt', 'realEstate.state', 'realEstate.image', 'realEstate.specialLink',
+                    'realEstate.numberOfFloors', 'realEstate.cladding', 'realEstate.homeFurnishing', 'realEstate.realEstateType',
+                    'realEstate.rooms', 'userProfileEntity.userName as username', 'userProfileEntity.image as userImage')
+
+            ->leftJoin(
+                UserProfileEntity::class,
+                'userProfileEntity',
+                Join::WITH,
+                'userProfileEntity.userID = realEstate.createdBy'
+            )
 
             ->andWhere('realEstate.price = :price')
             ->andWhere('realEstate.city = :value')
@@ -186,6 +219,17 @@ class RealEstateEntityRepository extends ServiceEntityRepository
     public function getFilterByTwoPrices($price, $price_2)
     {
         return $this->createQueryBuilder('realEstate')
+            ->select('realEstate.country','realEstate.city', 'realEstate.space', 'realEstate.price', 'realEstate.description', 'realEstate.status',
+                    'realEstate.createdBy', 'realEstate.createdAt', 'realEstate.updateAt', 'realEstate.state', 'realEstate.image', 'realEstate.specialLink',
+                    'realEstate.numberOfFloors', 'realEstate.cladding', 'realEstate.homeFurnishing', 'realEstate.realEstateType',
+                    'realEstate.rooms', 'userProfileEntity.userName as username', 'userProfileEntity.image as userImage')
+
+            ->leftJoin(
+                UserProfileEntity::class,
+                'userProfileEntity',
+                Join::WITH,
+                'userProfileEntity.userID = realEstate.createdBy'
+            )
 
             ->andWhere('realEstate.price >= :price')
             ->andWhere('realEstate.price <= :price2')
@@ -201,6 +245,17 @@ class RealEstateEntityRepository extends ServiceEntityRepository
     public function getFilterByTwoPricesAndCity($price, $price_2, $location)
     {
         return $this->createQueryBuilder('realEstate')
+            ->select('realEstate.country','realEstate.city', 'realEstate.space', 'realEstate.price', 'realEstate.description', 'realEstate.status',
+                    'realEstate.createdBy', 'realEstate.createdAt', 'realEstate.updateAt', 'realEstate.state', 'realEstate.image', 'realEstate.specialLink',
+                    'realEstate.numberOfFloors', 'realEstate.cladding', 'RealEstateEntity.homeFurnishing', 'realEstate.realEstateType',
+                    'realEstate.rooms', 'userProfileEntity.userName as username', 'userProfileEntity.image as userImage')
+
+            ->leftJoin(
+                UserProfileEntity::class,
+                'userProfileEntity',
+                Join::WITH,
+                'userProfileEntity.userID = realEstate.createdBy'
+            )
 
             ->andWhere('realEstate.price >= :price')
             ->andWhere('realEstate.price <= :price2')

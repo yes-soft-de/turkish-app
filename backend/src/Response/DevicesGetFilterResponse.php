@@ -26,7 +26,9 @@ class DevicesGetFilterResponse
 
     public $status;
 
-    public $createdBy;
+    public $username;
+
+    public $userImage;
 
     public $createdAt;
 

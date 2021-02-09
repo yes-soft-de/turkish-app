@@ -72,6 +72,17 @@ class DeviceEntityRepository extends ServiceEntityRepository
     public function getFilterPrice($value)
     {
         return $this->createQueryBuilder('device')
+            ->select('device.id', 'device.specialLink', 'device.image','device.brand', 'device.type', 'device.cpu', 'device.ram', 'device.createdBy',
+                'device.battery', 'device.price', 'device.yearOfRelease', 'device.description', 'device.status', 'device.createdAt',
+                'device.updateAt', 'device.country', 'device.city', 'device.durationOfUse', 'device.gauge', 'userProfileEntity.userName as username', 'userProfileEntity.image as userImage')
+
+            ->leftJoin(
+                UserProfileEntity::class,
+                'userProfileEntity',
+                Join::WITH,
+                'userProfileEntity.userID = device.createdBy'
+            )
+
             ->andWhere('device.price = :value')
             ->setParameter('value', $value)
             ->getQuery()
@@ -81,6 +92,17 @@ class DeviceEntityRepository extends ServiceEntityRepository
     public function getFilterCity($value)
     {
         return $this->createQueryBuilder('device')
+            ->select('device.id', 'device.specialLink', 'device.image','device.brand', 'device.type', 'device.cpu', 'device.ram', 'device.createdBy',
+            'device.battery', 'device.price', 'device.yearOfRelease', 'device.description', 'device.status', 'device.createdAt',
+            'device.updateAt', 'device.country', 'device.city', 'device.durationOfUse', 'device.gauge', 'userProfileEntity.userName as username', 'userProfileEntity.image as userImage')
+
+            ->leftJoin(
+                UserProfileEntity::class,
+                'userProfileEntity',
+                Join::WITH,
+                'userProfileEntity.userID = device.createdBy'
+            )
+
             ->andWhere('device.city = :value')
             ->setParameter('value', $value)
             ->getQuery()
@@ -114,6 +136,16 @@ class DeviceEntityRepository extends ServiceEntityRepository
     public function getFilterByPriceAndCity($price, $location)
     {
         return $this->createQueryBuilder('device')
+            ->select('device.id', 'device.specialLink', 'device.image','device.brand', 'device.type', 'device.cpu', 'device.ram', 'device.createdBy',
+            'device.battery', 'device.price', 'device.yearOfRelease', 'device.description', 'device.status', 'device.createdAt',
+            'device.updateAt', 'device.country', 'device.city', 'device.durationOfUse', 'device.gauge', 'userProfileEntity.userName as username', 'userProfileEntity.image as userImage')
+
+            ->leftJoin(
+                UserProfileEntity::class,
+                'userProfileEntity',
+                Join::WITH,
+                'userProfileEntity.userID = device.createdBy'
+            )
 
             ->andWhere('device.price = :price')
             ->andWhere('device.city = :value')
@@ -128,6 +160,16 @@ class DeviceEntityRepository extends ServiceEntityRepository
     public function getFilterByTwoPrices($price, $price_2)
     {
         return $this->createQueryBuilder('device')
+            ->select('device.id', 'device.specialLink', 'device.image','device.brand', 'device.type', 'device.cpu', 'device.ram', 'device.createdBy',
+            'device.battery', 'device.price', 'device.yearOfRelease', 'device.description', 'device.status', 'device.createdAt',
+            'device.updateAt', 'device.country', 'device.city', 'device.durationOfUse', 'device.gauge', 'userProfileEntity.userName as username', 'userProfileEntity.image as userImage')
+
+            ->leftJoin(
+                UserProfileEntity::class,
+                'userProfileEntity',
+                Join::WITH,
+                'userProfileEntity.userID = device.createdBy'
+            )   
 
             ->andWhere('device.price >= :price')
             ->andWhere('device.price <= :price2')
@@ -142,6 +184,16 @@ class DeviceEntityRepository extends ServiceEntityRepository
     public function getFilterByTwoPricesAndCity($price, $price_2, $location)
     {
         return $this->createQueryBuilder('device')
+            ->select('device.id', 'device.specialLink', 'device.image','device.brand', 'device.type', 'device.cpu', 'device.ram', 'device.createdBy',
+            'device.battery', 'device.price', 'device.yearOfRelease', 'device.description', 'device.status', 'device.createdAt',
+            'device.updateAt', 'device.country', 'device.city', 'device.durationOfUse', 'device.gauge', 'userProfileEntity.userName as username', 'userProfileEntity.image as userImage')
+
+            ->leftJoin(
+                UserProfileEntity::class,
+                'userProfileEntity',
+                Join::WITH,
+                'userProfileEntity.userID = device.createdBy'
+            )
 
             ->andWhere('device.price >= :price')
             ->andWhere('device.price <= :price2')

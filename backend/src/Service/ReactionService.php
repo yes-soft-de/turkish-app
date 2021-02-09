@@ -12,18 +12,19 @@ use App\Response\GetNotificationResponse;
 use App\Response\ReactionCreateResponse;
 use App\Response\ReactionGetByUserResponse;
 use App\Response\ReactionGetResponse;
+use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
 
 class ReactionService
 {
     private $reactionManager;
     private $autoMapping;
-//    private $carService;
+    private $params;
 
-    public function __construct(ReactionManager $reactionManager, AutoMapping $autoMapping)
+    public function __construct(ReactionManager $reactionManager, AutoMapping $autoMapping, ParameterBagInterface $params)
     {
         $this->reactionManager = $reactionManager;
         $this->autoMapping = $autoMapping;
-//        $this->carService = $carService;
+        $this->params = $params->get('upload_base_url').'/';
     }
   
     public function reactionCreate(ReactionCreateRequest $request)
@@ -84,10 +85,11 @@ class ReactionService
 
         foreach ($reactions as $reaction)
         {
+            $reaction['userImage'] = $this->params . $reaction['userImage'];
+
             $response[] = $this->autoMapping->map('array', GetNotificationResponse::class, $reaction);
         }
 
-        //dd($reactions);
         return $response;
     }
 
