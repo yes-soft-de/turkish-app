@@ -42,7 +42,30 @@ class ReportManager
 
     public function getReports()
     {
-        return $this->repository->getAllReports();
+        $results = $this->repository->getAllReports();
+        
+        $i = 0;
+        foreach($results as $result)
+        {
+            $entity = $result['entity'];
+            
+            if($entity == "car")
+            {
+                $results[$i]['itemName'] = $this->carManager->getCarById($result['id'])[0]['carType'];
+            }
+            elseif ($entity == "device")
+            {
+                $results[$i]['itemName'] = $this->deviceManager->getDeviceById($result['id'])[0]['brand'];
+            }
+            elseif ($entity == "realEstate")
+            {
+                $results[$i]['itemName'] = $this->realEstateManager->getRealEstateById($result['id'])[0]['realEstateType'];
+            }
+            
+            $i++;
+        }
+
+        return $results;
     }
 
     public function getReportById($id)

@@ -208,3 +208,10 @@ App\Request\ChatCreateRequest:
       - NotBlank: ~
     entity:
       - NotBlank: ~
+
+App\Request\ReportCreateRequest:
+  properties:
+    itemID:
+      - NotBlank: ~
+    entity:
+      - NotBlank: ~

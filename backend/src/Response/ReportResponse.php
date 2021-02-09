@@ -15,4 +15,6 @@ class ReportResponse
     public $itemName;
     
     public $userName;
+
+    public $image;
 }

@@ -41,7 +41,7 @@ class ReportController extends BaseController
         $request = $this->autoMapping->map(stdClass::class, ReportCreateRequest::class, (object)$data);
         
         $request->setUserId($this->getUserId());
-        
+        //dd($request);
         $violations = $this->validator->validate($request);
 
         if (\count($violations) > 0) 
@@ -57,6 +57,7 @@ class ReportController extends BaseController
     }
 
     /**
+     * @IsGranted("ROLE_LAWYER", message="Access denied")
      * @Route("reports", name="getReportsForAdmin", methods={"GET"})
      * @return JsonResponse
      */
@@ -68,6 +69,7 @@ class ReportController extends BaseController
     }
 
     /**
+     * @IsGranted("ROLE_LAWYER", message="Access denied")
      * @Route("report/{id}", name="getReportById", methods={"GET"})
      */
     public function getReportById($id)
@@ -78,6 +80,7 @@ class ReportController extends BaseController
     }
 
     /**
+     * @IsGranted("ROLE_LAWYER", message="Access denied")
      * @Route("report/{id}", name="deleteReportById", methods={"DELETE"})
      */
     public function delete(Request $request)

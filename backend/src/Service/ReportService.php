@@ -7,16 +7,20 @@ use App\Entity\ReportEntity;
 use App\Manager\ReportManager;
 use App\Request\ReportCreateRequest;
 use App\Response\ReportResponse;
+use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
 
 class ReportService
 {
     private $autoMapping;
     private $reportManager;
+    private $params;
 
-    public function __construct(AutoMapping $autoMapping, ReportManager $reportManager)
+    public function __construct(AutoMapping $autoMapping, ReportManager $reportManager, ParameterBagInterface $params)
     {
         $this->autoMapping = $autoMapping;
         $this->reportManager = $reportManager;
+
+        $this->params = $params->get('upload_base_url') . '/';
     }
 
     public function create(ReportCreateRequest $request)
@@ -34,6 +38,8 @@ class ReportService
 
         foreach ($items as $item) 
         {
+            $item['image'] = $this->params . $item['image'];
+
             $response[] =  $this->autoMapping->map('array', ReportResponse::class, $item);
         }
         
@@ -48,6 +54,8 @@ class ReportService
         
         foreach ($items as $row)
         {
+            $row['image'] = $this->params . $row['image'];
+
             $response[] = $this->autoMapping->map('array', ReportResponse::class, $row);
         }
 
