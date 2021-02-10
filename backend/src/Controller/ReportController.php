@@ -81,7 +81,8 @@ class ReportController extends BaseController
 
     /**
      * @IsGranted("ROLE_LAWYER", message="Access denied")
-     * @Route("report/{id}", name="deleteReportById", methods={"DELETE"})
+     * @Route("/deletereport/{id}", name="deleteReportById", methods={"DELETE"})
+     * @param Request $request
      */
     public function delete(Request $request)
     {
@@ -93,7 +94,7 @@ class ReportController extends BaseController
     }
 
     /**
-     * @Route("deletereports", name="deleteReportById", methods={"DELETE"})
+     * @Route("deletereports", name="deleteAllReports", methods={"DELETE"})
      */
     public function deleteAll()
     {
