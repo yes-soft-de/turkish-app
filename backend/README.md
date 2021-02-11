@@ -35,7 +35,7 @@ php bin/console doctrine:migration:migrate
 * [Device](#device)
 * [Document](#document)
 * [Image](#image)
-
+* [Report](#report)
 
 
 ### Main
@@ -51,6 +51,12 @@ _Note: Get the history of Sell and Buy operations of a user
 /history
 methods: GET
 ```
+#### Get statistics
+```
+/statistics
+methods: POST
+```
+
 ### Account
 #### Create new lawyer
 ```
@@ -299,4 +305,32 @@ methods: GET
 ```
 /image
 methods: POST
+```
+
+### Report
+
+#### Create new report
+```
+/report
+methods: POST
+```
+#### Get all reports
+```
+/reports
+methods: GET
+```
+#### Get a specific report by Id
+```
+/report/id
+methods: GET
+```
+#### Delete a specific report by Id
+```
+/deletereport/id
+methods: DELETE
+```
+#### Delete all reports
+```
+/deletereports
+methods: DELETE
 ```
