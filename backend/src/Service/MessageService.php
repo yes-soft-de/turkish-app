@@ -40,7 +40,7 @@ class MessageService
         elseif($request->getLawyer() == 1)
         {
             $lawyerID = $this->userService->getLawyer()[0]->getUserID();
-            //dd($this->userService->getLawyer()[0]->getUserID());
+            
             $request->setUserTwo($lawyerID);
 
             $result = $this->messageManager->chatWithLawyer($request);

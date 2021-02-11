@@ -41,19 +41,43 @@ class MessageManager
         {
             $carOwner = $this->carManager->getCarById($request->getItemID())[0]['createdBy'];
 
-            $request->setUserTwo($carOwner);
+            if($carOwner != $request->getUserOne())
+            {
+                $request->setUserTwo($carOwner);
+            }
+            elseif($carOwner == $request->getUserOne())
+            {
+                // return "Can't chat with yourself";
+            }
+            
         }
         elseif ($entity == "device")
         {
             $deviceOwner = $this->deviceManager->getDeviceById($request->getItemID())[0]['createdBy'];
 
-            $request->setUserTwo($deviceOwner);
+            if($deviceOwner != $request->getUserOne())
+            {
+                $request->setUserTwo($deviceOwner);
+            }
+            elseif($deviceOwner == $request->getUserOne())
+            {
+                // return "Can't chat with yourself";
+            }
+            
         }
         elseif ($entity == "realEstate")
         {
             $realEstateOwner = $this->realEstateManager->getRealEstateById($request->getItemID())[0]['createdBy'];
 
-            $request->setUserTwo($realEstateOwner);
+            if($realEstateOwner != $request->getUserOne())
+            {
+                $request->setUserTwo($realEstateOwner);
+            }
+            elseif($realEstateOwner == $request->getUserOne())
+            {
+                // return "Can't chat with yourself";
+            }
+            
         }
 
         //Check if there is a previous chat for the both users
