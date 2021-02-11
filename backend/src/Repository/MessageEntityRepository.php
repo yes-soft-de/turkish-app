@@ -85,4 +85,9 @@ class MessageEntityRepository extends ServiceEntityRepository
             ->getQuery()
             ->getResult();
     }
+
+    public function getChatsCountByRole($role)
+    {
+        
+    }
 }

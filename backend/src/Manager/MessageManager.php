@@ -17,9 +17,11 @@ class MessageManager
     private $carManager;
     private $deviceManager;
     private $realEstateManager;
+    private $userManager;
 
     public function __construct(AutoMapping $autoMapping, EntityManagerInterface $entityManager, StatusManager $statusManager,
-    CarManager $carManager, DeviceManager $deviceManager, RealEstateManager $realEstateManager, MessageEntityRepository $messageEntityRepository)
+    CarManager $carManager, DeviceManager $deviceManager, RealEstateManager $realEstateManager, MessageEntityRepository $messageEntityRepository,
+     UserManager $userManager)
     {
         $this->autoMapping = $autoMapping;
         $this->entityManager = $entityManager;
@@ -28,6 +30,7 @@ class MessageManager
         $this->carManager = $carManager;
         $this->deviceManager = $deviceManager;
         $this->realEstateManager = $realEstateManager;
+        $this->userManager = $userManager;
     }
 
     public function chatWithOwner(ChatCreateRequest $request)
@@ -120,7 +123,19 @@ class MessageManager
 
     public function getAllChats()
     {
-        return $this->messageEntityRepository->findAll();
+        $response = [];
+
+        $lawyerUserID = $this->userManager->getLawyer()[0]['userID'];
+
+        //dd($lawyerUserID);
+
+        $response['total'] = count($this->messageEntityRepository->findAll());
+
+        $response['chatsWithLawyer'] = count($this->getChatListOfUser($lawyerUserID));
+
+        $response['chatsWithUsers'] = $response['total'] - $response['chatsWithLawyer'];
+
+        return $response;
     }
 
 }

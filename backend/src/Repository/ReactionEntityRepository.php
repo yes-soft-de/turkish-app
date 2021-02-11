@@ -145,4 +145,16 @@ class ReactionEntityRepository extends ServiceEntityRepository
             ->getOneOrNullResult();
     }
 
+    public function getReactionsCountOfEntity($entity)
+    {
+        return $this->createQueryBuilder('reaction')
+            ->select('count(reaction.id)')
+
+            ->andWhere('reaction.entity =:entity')
+            ->setParameter('entity', $entity)
+
+            ->getQuery()
+            ->getOneOrNullResult();
+    }
+
    }

@@ -88,9 +88,9 @@ class MainManager
 
         $response['users'] = count($this->userManager->getAllusers());
 
-        $response['reactions'] = count($this->reactionManager->getAllReactions());
+        $response['reactions'] = $this->reactionManager->getAllReactions();
 
-        $response['chats'] = count($this->messageManager->getAllChats());
+        $response['chats'] = $this->messageManager->getAllChats();
 
         return $response;
     }

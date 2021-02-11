@@ -154,6 +154,18 @@ class ReactionManager
 
     public function getAllReactions()
     {
-        return $this->repository->findAll();
+        $response = [];
+
+        $response['total'] = count($this->repository->findAll());
+
+        //dd($this->repository->getReactionsCountOfEntity("car"));
+
+        $response['carReactions'] = $this->repository->getReactionsCountOfEntity("car")[1];
+
+        $response['deviceReactions'] = $this->repository->getReactionsCountOfEntity("device")[1];
+
+        $response['realEstateReactions'] = $this->repository->getReactionsCountOfEntity("realEntity")[1];
+
+        return $response;
     }
 }
