@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:hersay/generated/l10n.dart';
@@ -46,9 +48,12 @@ class _ChatScreenState extends State<ChatScreen> {
         } else {
           buildMessagesList(_chatMessagesList).then((value) {
             if (this.mounted) setState(() {
-
+              _scrollController.animateTo(
+                  _scrollController.position.maxScrollExtent,
+                  duration: const Duration(milliseconds: 300),
+                  curve: Curves.easeOut
+              );
             });
-            _scrollController.animateTo(_scrollController.position.maxScrollExtent, duration: const Duration(milliseconds: 300), curve: Curves.easeOut);
           });
         }
       }
@@ -62,6 +67,7 @@ class _ChatScreenState extends State<ChatScreen> {
       chatRoomId = ModalRoute.of(context).settings.arguments;
       widget._chatPageBloc.getMessages(chatRoomId);
     }
+    Timer(Duration(milliseconds: 150), () => _scrollController.jumpTo(_scrollController.position.maxScrollExtent));
 
     return Scaffold(
       body: Column(
@@ -93,7 +99,6 @@ class _ChatScreenState extends State<ChatScreen> {
           ChatWriterWidget(
             onMessageSend: (msg) {
               widget._chatPageBloc.sendMessage(chatRoomId, msg);
-
             },
             uploadService: widget._uploadService,
           ),
@@ -114,6 +119,7 @@ class _ChatScreenState extends State<ChatScreen> {
       ));
     });
     chatsMessagesWidgets = newMessagesList;
+
 
     return;
   }

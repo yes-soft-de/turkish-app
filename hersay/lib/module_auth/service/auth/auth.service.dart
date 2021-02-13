@@ -203,7 +203,7 @@ class AuthService {
       var diff = DateTime.now().difference(tokenDate).inMinutes;
       if (isLoggedIn) {
 
-        if (diff.abs() < 55) {
+        if (diff.abs() < 30) {
           return _prefsHelper.getToken();
         }
         await refreshToken();
@@ -221,7 +221,7 @@ class AuthService {
     try {
       var tokenDate = await this._prefsHelper.getTokenDate();
       var diff = DateTime.now().difference(tokenDate).inMinutes;
-      if (diff.abs() > 55) {
+      if (diff.abs() > 30) {
         throw TokenExpiredException('Token is created ${diff} minutes ago');
       }
       return this._prefsHelper.getToken();

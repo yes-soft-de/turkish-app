@@ -74,6 +74,7 @@ class NotificationStateDataLoaded extends NotificationState {
               child: NotificationCard(
                 userName: notifications[index].userName,
                 notification: S.of(context).likesYour + ' ${notifications[index].entityName}',
+                time: notifications[index].date,
               ),
             );
           }),

@@ -19,11 +19,11 @@ class NotificationCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return   Container(
         width: MediaQuery.of(context).size.width  ,
-        padding: EdgeInsetsDirectional.fromSTEB(10, 10, 10, 0),
+        padding: EdgeInsetsDirectional.fromSTEB(5, 10, 5, 0),
         child:Column(
           children: [
             Row(
-              mainAxisAlignment: MainAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 GestureDetector(
 
@@ -43,7 +43,7 @@ class NotificationCard extends StatelessWidget {
                       ),
                       SizedBox(width: 10,),
                       Container(
-                        width: MediaQuery.of(context).size.width*0.6,
+                        width: MediaQuery.of(context).size.width*0.5,
                         child:Column(
                           children: [
 

@@ -17,7 +17,7 @@ class NotificationModel {
 
   static List<NotificationModel> getNotificationModelList(NotificationResponse response){
     List<NotificationModel> notifications = [];
-    var df = DateFormat('dd-MM-yyyy hh:mm');
+    var df = DateFormat('dd-MM-yyyy');
     response.data.forEach((element) {
       var date = new DateTime.fromMillisecondsSinceEpoch(element.createdAt.timestamp * 1000);
 

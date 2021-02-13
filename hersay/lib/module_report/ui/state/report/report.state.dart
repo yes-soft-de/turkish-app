@@ -38,7 +38,7 @@ class ReportStateInit extends ReportState {
 
     return SingleChildScrollView(
       child:  Container(
-        height: 700,
+        height: 500,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
