@@ -54,7 +54,7 @@ methods: GET
 #### Get statistics
 ```
 /statistics
-methods: POST
+methods: GET
 ```
 
 ### Account
