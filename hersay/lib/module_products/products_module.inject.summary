@@ -1,0 +1,76 @@
+{
+  "asset": "asset:hersay/lib/module_products/products_module.dart",
+  "summary": {
+    "injector": [],
+    "module": [],
+    "injectable": [
+      {
+        "name": "ProductsModule",
+        "constructor": {
+          "name": "",
+          "kind": "constructor",
+          "injectedType": {
+            "lookupKey": {
+              "root": "asset:hersay/lib/module_products/products_module.dart#ProductsModule",
+              "qualifier": null
+            },
+            "isProvider": false
+          },
+          "singleton": true,
+          "asynchronous": false,
+          "dependencies": [
+            {
+              "lookupKey": {
+                "root": "asset:hersay/lib/module_products/ui/screen/add_real_estate/add_real_estate_screen.dart#AddRealEstateScreen",
+                "qualifier": null
+              },
+              "isProvider": false
+            },
+            {
+              "lookupKey": {
+                "root": "asset:hersay/lib/module_products/ui/screen/add_car/add_car_sceen.dart#AddCarScreen",
+                "qualifier": null
+              },
+              "isProvider": false
+            },
+            {
+              "lookupKey": {
+                "root": "asset:hersay/lib/module_products/ui/screen/add_electronic_device/add_electronic_device_screen.dart#AddElectronicDeviceScreen",
+                "qualifier": null
+              },
+              "isProvider": false
+            },
+            {
+              "lookupKey": {
+                "root": "asset:hersay/lib/module_products/ui/screen/electronic_device_details/electronic_device_details_screen.dart#ElectronicDeviceDetailsScreen",
+                "qualifier": null
+              },
+              "isProvider": false
+            },
+            {
+              "lookupKey": {
+                "root": "asset:hersay/lib/module_products/ui/screen/real_estate_details/real_estate_details_screen.dart#RealEstateDetailsScreen",
+                "qualifier": null
+              },
+              "isProvider": false
+            },
+            {
+              "lookupKey": {
+                "root": "asset:hersay/lib/module_products/ui/screen/car_details/car_details_screen.dart#CarDetailsScreen",
+                "qualifier": null
+              },
+              "isProvider": false
+            },
+            {
+              "lookupKey": {
+                "root": "asset:hersay/lib/module_products/ui/screen/product_images/product_images_screen.dart#ProductImagesScreen",
+                "qualifier": null
+              },
+              "isProvider": false
+            }
+          ]
+        }
+      }
+    ]
+  }
+}

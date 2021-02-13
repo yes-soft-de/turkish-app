@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:hersay/module_products/ui/screen/add_car/add_car_sceen.dart';
-import 'package:hersay/module_products/ui/screen/add_electronic_device/add_electronic_device_screen.dart';
-import 'package:hersay/module_products/ui/screen/add_house/add_house_screen.dart';
+import 'package:hersay/module_products/products_routes.dart';
 import 'package:hersay/utils/project_colors/project_colors.dart';
 import 'package:animate_icons/animate_icons.dart';
 
@@ -33,7 +31,7 @@ class _VerticalFabState extends State<VerticalFab>
     controller = AnimateIconController();
 
     _animationController =
-        AnimationController(duration: Duration(milliseconds: 500))
+        AnimationController(duration: Duration(milliseconds: 500),vsync: this)
           ..addListener(() {
             setState(() {});
           });
@@ -87,13 +85,13 @@ class _VerticalFabState extends State<VerticalFab>
         heroTag: 'device',
         backgroundColor: ProjectColors.THEME_COLOR,
         onPressed: () {
-          Navigator.push(
+          Navigator.pushNamed(
               context,
-              MaterialPageRoute(
-                  builder: (context) => AddElectronicDeviceScreen()));
+              ProductsRoutes.ADD_ELECTRONIC_DEVICE_SCREEN
+          );
         },
         tooltip: 'Add',
-        child: Icon(Icons.mobile_screen_share),
+        child: Icon(Icons.phone_iphone),
       ),
     );
   }
@@ -106,8 +104,10 @@ class _VerticalFabState extends State<VerticalFab>
         heroTag: 'car',
         backgroundColor: ProjectColors.THEME_COLOR,
         onPressed: () {
-          Navigator.push(
-              context, MaterialPageRoute(builder: (context) => AddCarScreen()));
+          Navigator.pushNamed(
+              context,
+              ProductsRoutes.ADD_CAR_SCREEN
+          );
         },
         tooltip: 'Image',
         child: Icon(Icons.directions_car),
@@ -123,8 +123,11 @@ class _VerticalFabState extends State<VerticalFab>
         heroTag: 'house',
         backgroundColor: ProjectColors.THEME_COLOR,
         onPressed: () {
-          Navigator.push(context,
-              MaterialPageRoute(builder: (context) => AddHouseScreen()));
+          Navigator.pushNamed(
+              context,
+              ProductsRoutes.ADD_REAL_ESTATE_SCREEN
+          );
+
         },
         tooltip: 'Inbox',
         child: Icon(Icons.home),

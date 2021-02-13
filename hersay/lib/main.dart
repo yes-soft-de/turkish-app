@@ -1,53 +1,152 @@
+import 'package:firebase_analytics/firebase_analytics.dart';
+import 'package:firebase_analytics/observer.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:hersay/main_screen/main_module.dart';
+import 'package:hersay/main_screen/main_routes.dart';
+import 'package:hersay/module_auth/auth_module.dart';
+import 'package:hersay/module_chat/chat_module.dart';
+import 'package:hersay/module_history/history_module.dart';
+import 'package:hersay/module_home/home_module.dart';
+import 'package:hersay/module_home/home_routes.dart';
+import 'package:hersay/module_profile/Profile_module.dart';
+import 'package:hersay/module_search/search_module.dart';
+import 'package:hersay/module_search/search_routes.dart';
+import 'package:hersay/module_settings/settings_module.dart';
+import 'package:hersay/module_splash/splash_routes.dart';
+import 'package:inject/inject.dart';
 
-import 'main_screen/ui/main_screen.dart';
-import 'module_auth/ui/screen/auth_screen.dart';
-import 'module_chat/ui/screen/chats_list/chats_list_screen.dart';
-import 'module_history/ui/screen/history/history_screen.dart';
-import 'module_home/ui/sceen/home/home_screen.dart';
-import 'module_notification/ui/screen/notifications/notification_screen.dart';
-import 'module_products/ui/screen/add_car/add_car_sceen.dart';
-import 'module_products/ui/screen/add_electronic_device/add_electronic_device_screen.dart';
-import 'module_products/ui/screen/add_house/add_house_screen.dart';
-import 'module_products/ui/screen/car_details/car_details_screen.dart';
-import 'module_products/ui/screen/electronic_device_details/electronic_device_details_screen.dart';
-import 'module_products/ui/screen/house_details/house_details_screen.dart';
-import 'module_profile/ui/screen/profile/profile_screen.dart';
-import 'module_settings/ui/screen/settings/settings_screen.dart';
+import 'abstracts/module/yes_module.dart';
+import 'di/components/app.component.dart';
+import 'generated/l10n.dart';
+import 'module_localization/service/localization.service.dart';
+import 'module_notification/notification_module.dart';
+import 'module_products/products_module.dart';
+import 'module_report/report_module.dart';
+import 'module_splash/splash_module.dart';
+import 'module_theme/service/theme.service.dart';
 
-void main() {
-  runApp(MyApp());
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
+  //await FirebaseCrashlytics.instance.setCrashlyticsCollectionEnabled(true);
+  await SystemChrome.setPreferredOrientations([
+    DeviceOrientation.portraitUp,
+  ]).then((_) async {
+    final container = await AppComponent.create();
+    runApp(container.app);
+  });
 }
 
-class MyApp extends StatelessWidget {
-  // This widget is the root of your application.
+@provide
+class MyApp extends StatefulWidget {
+  final AppThemeDataService _themeDataService;
+  final LocalizationService _localizationService;
+  final AuthorizationModule _authorizationModule;
+  final ProductsModule _productsModule;
+  final SplashModule _splashModule;
+  final MainModule _mainModule;
+  final HomeModule _homeModule;
+  final SearchModule _searchModule;
+  final SettingModule _settingModule;
+  final NotificationModule _notificationModulel;
+  final ProfileModule _profileModule;
+  final HistoryModule _historyModule;
+  final ChatModule _chatModule;
+  final ReportModule _reportModule;
+
+  MyApp(
+      this._themeDataService,
+      this._localizationService,
+      this._authorizationModule,
+      this._productsModule,
+      this._splashModule,
+      this._mainModule,
+      this._homeModule,
+      this._searchModule,
+      this._settingModule,
+      this._notificationModulel,
+      this._profileModule,
+      this._historyModule,
+      this._chatModule,
+      this._reportModule,
+      );
+
+  @override
+  State<StatefulWidget> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  static FirebaseAnalytics analytics = FirebaseAnalytics();
+  static FirebaseAnalyticsObserver observer =
+  FirebaseAnalyticsObserver(analytics: analytics);
+
+  String lang;
+  ThemeData activeTheme;
+
+
+  @override
+  void initState() {
+    super.initState();
+    widget._localizationService.localizationStream.listen((event) {
+      setState(() {});
+    });
+
+    widget._themeDataService.darkModeStream.listen((event) {
+      activeTheme = event;
+      setState(() {});
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
+
+    return FutureBuilder(
+      initialData: ThemeData.light(),
+      future: widget._themeDataService.getActiveTheme(),
+      builder: (BuildContext context, AsyncSnapshot<ThemeData> themeSnapshot) {
+        return FutureBuilder(
+            initialData: 'en',
+            future: widget._localizationService.getLanguage(),
+            builder:
+                (BuildContext context, AsyncSnapshot<String> langSnapshot) {
+              return getConfiguratedApp(
+                YesModule.RoutesMap,
+                themeSnapshot.data,
+                langSnapshot.data,
+              );
+            });
+      },
+    );
+  }
+
+  Widget getConfiguratedApp(
+      Map<String, WidgetBuilder> fullRoutesList,
+      ThemeData theme,
+      String activeLanguage,
+      ) {
     return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        // This is the theme of your application.
-        //
-        // Try running your application with "flutter run". You'll see the
-        // application has a blue toolbar. Then, without quitting the app, try
-        // changing the primarySwatch below to Colors.green and then invoke
-        // "hot reload" (press "r" in the console where you ran "flutter run",
-        // or simply save your changes to "hot reload" in a Flutter IDE).
-        // Notice that the counter didn't reset back to zero; the application
-        // is not restarted.
-        primarySwatch: Colors.blue,
-        // This makes the visual density adapt to the platform that you run
-        // the app on. For desktop platforms, the controls will be smaller and
-        // closer together (more dense) than on mobile platforms.
-        visualDensity: VisualDensity.adaptivePlatformDensity,
+      debugShowCheckedModeBanner: false,
+      navigatorObservers: <NavigatorObserver>[observer],
+      locale: Locale.fromSubtags(
+        languageCode: activeLanguage,
       ),
-      home: LoginScreen(),
+      localizationsDelegates: [
+        S.delegate,
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
+      ],
+      theme: theme,
+      supportedLocales: S.delegate.supportedLocales,
+      title: 'Hersay',
+      routes: fullRoutesList,
+      initialRoute: MainRoutes.MAIN_SCREEN_ROUTE,
     );
   }
 }
-
-
-
 
 
 

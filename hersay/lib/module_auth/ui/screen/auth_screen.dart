@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hersay/main_screen/main_routes.dart';
 import 'package:hersay/main_screen/ui/main_screen.dart';
 import 'package:hersay/utils/project_colors/project_colors.dart';
 
@@ -311,10 +312,10 @@ class _LoginScreenState extends State<LoginScreen> {
                               if (_registerFormKey.currentState.validate()) {
                                 setState(() {
                                   loading = true;
-                                  Navigator.push(
+                                  Navigator.pushNamed(
                                       context,
-                                      MaterialPageRoute(
-                                          builder: (context) => MainScreen()));
+                                      MainRoutes.MAIN_SCREEN_ROUTE
+                                  );
                                 });
 
 //                            widget._stateManager.registerWithoutFirebase(
@@ -508,10 +509,10 @@ class _LoginScreenState extends State<LoginScreen> {
                               if (_loginFormKey.currentState.validate()) {
                                 setState(() {
 //                            loading = true;
-                                  Navigator.push(
+                                  Navigator.pushNamed(
                                       context,
-                                      MaterialPageRoute(
-                                          builder: (context) => MainScreen()));
+                                     MainRoutes.MAIN_SCREEN_ROUTE
+                                  );
                                 });
 
 //                          widget._stateManager.loginWithoutFirebase(

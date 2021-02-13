@@ -1,21 +1,170 @@
 import 'package:flutter/material.dart';
+import 'package:hersay/generated/l10n.dart';
+import 'package:hersay/module_auth/auth_routes.dart';
+import 'package:hersay/module_auth/service/auth/auth.service.dart';
+import 'package:hersay/module_chat/chat_routes.dart';
+import 'package:hersay/module_products/model/electronic_device/electronic_device_model.dart';
+import 'package:hersay/module_products/products_routes.dart';
+import 'package:hersay/module_products/state_manager/electroinic_device/electronic_device_details.state_manager.dart';
+import 'package:hersay/module_products/ui/state/electronic_device_details/electronic_device_details.state.dart';
+import 'package:hersay/module_report/report_routes.dart';
 import 'package:hersay/utils/project_colors/project_colors.dart';
+import 'package:hersay/utils/report_helper/report_helper.dart';
+import 'package:hersay/utils/route_helper/route_helper.dart';
 import 'package:hersay/utils/widgets/turkish_app_bar/turkish_app_bar.dart';
+import 'package:inject/inject.dart';
 
+@provide
 class ElectronicDeviceDetailsScreen extends StatefulWidget {
+  final ElectronicDeviceDetailsStateManager _stateManager;
+  final AuthService _authService;
+
+  ElectronicDeviceDetailsScreen(
+      this._stateManager,
+      this._authService,
+      );
+
   @override
-  _ElectronicDeviceDetailsScreenState createState() =>
-      _ElectronicDeviceDetailsScreenState();
+   ElectronicDeviceDetailsScreenState createState() =>
+      ElectronicDeviceDetailsScreenState();
 }
 
-class _ElectronicDeviceDetailsScreenState
-    extends State<ElectronicDeviceDetailsScreen> {
+class  ElectronicDeviceDetailsScreenState extends State<ElectronicDeviceDetailsScreen> {
+  ElectronicDeviceDetailsState currentState;
+  int electronicDeviceId;
   double width;
+
+  void loveDevice(ElectronicDeviceModel device){
+    widget._authService.isLoggedIn.then((value){
+      if(!value) {
+        RouteHelper redirectTo = new RouteHelper(
+            redirectTo:  ProductsRoutes.CAR_DETAILS_SCREEN,
+            additionalData: electronicDeviceId
+        );
+        Navigator.of(context).pushNamed(
+          AuthorizationRoutes.LOGIN_SCREEN,
+          arguments: redirectTo,
+        );
+      }else{
+        widget._stateManager.loveDevice(electronicDeviceId, this, device);
+      }
+    });
+  }
+
+  void unLoveDevice(ElectronicDeviceModel device){
+    widget._authService.isLoggedIn.then((value){
+      if(!value) {
+        RouteHelper redirectTo = new RouteHelper(
+            redirectTo:  ProductsRoutes.CAR_DETAILS_SCREEN,
+            additionalData: electronicDeviceId
+        );
+        Navigator.of(context).pushNamed(
+          AuthorizationRoutes.LOGIN_SCREEN,
+          arguments: redirectTo,
+        );
+      }else{
+        widget._stateManager.unLoveDevice(electronicDeviceId, this, device);
+      }
+    });
+  }
+
+  void getElectronicDeviceDetails(){
+    widget._stateManager.getElectronicDeviceDetails(this, electronicDeviceId);
+  }
+
+  void getRoomId(){
+    widget._authService.isLoggedIn.then((value){
+      if(!value) {
+        RouteHelper redirectTo = new RouteHelper(
+            redirectTo:  ProductsRoutes.ELECTRONIC_DEVICE_DETAILS_SCREEN,
+            additionalData: electronicDeviceId
+        );
+        Navigator.of(context).pushNamed(
+          AuthorizationRoutes.LOGIN_SCREEN,
+          arguments: redirectTo,
+        );
+      }else{
+        widget._stateManager.getRoomId(electronicDeviceId, this);
+      }
+    });
+  }
+  void getRoomIdWithLawyer(){
+    widget._authService.isLoggedIn.then((value){
+      if(!value) {
+        RouteHelper redirectTo = new RouteHelper(
+            redirectTo:  ProductsRoutes.ELECTRONIC_DEVICE_DETAILS_SCREEN,
+            additionalData: electronicDeviceId
+        );
+        Navigator.of(context).pushNamed(
+          AuthorizationRoutes.LOGIN_SCREEN,
+          arguments: redirectTo,
+        );
+      }else{
+        widget._stateManager.getRoomIdWithLawyer(electronicDeviceId, this);
+      }
+    });
+  }
+
+  void report(){
+    widget._authService.isLoggedIn.then((value){
+      if(!value) {
+        RouteHelper redirectTo = new RouteHelper(
+            redirectTo:  ProductsRoutes.ELECTRONIC_DEVICE_DETAILS_SCREEN,
+            additionalData: electronicDeviceId
+        );
+        Navigator.of(context).pushNamed(
+          AuthorizationRoutes.LOGIN_SCREEN,
+          arguments: redirectTo,
+        );
+      }else{
+        ReportHelper report = new ReportHelper(
+          entity: 'device',
+          itemId: electronicDeviceId,
+        );
+        Navigator.of(context).pushNamed(
+            ReportRoutes.REPORT_SCREEN,
+            arguments: report
+        );
+      }
+    });
+  }
+
+  void goToChat(String roomId){
+    Navigator.pushNamed(
+        context,
+        ChatRoutes.chatRoute,
+        arguments:  roomId
+    );
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    currentState = ElectronicDeviceDetailsStateInit(this);
+    widget._stateManager.stateStream.listen((event) {
+      currentState = event;
+      if(this.mounted){
+        setState(() {
+
+        });
+      }
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
+    if (currentState is ElectronicDeviceDetailsStateInit) {
+      electronicDeviceId = ModalRoute.of(context).settings.arguments;
+      getElectronicDeviceDetails();
+    }
+
+
+
     width = MediaQuery.of(context).size.width;
-    return _screenUi();
+    return Scaffold(
+      appBar: TurkishAppBar.getTurkishOrdinaryAppBar(context,  S.of(context).details),
+      body: currentState.getUI(context),
+    );
   }
 
   Widget _screenUi() {

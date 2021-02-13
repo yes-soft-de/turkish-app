@@ -1,31 +1,94 @@
 import 'package:flutter/material.dart';
+import 'package:hersay/generated/l10n.dart';
+import 'package:hersay/module_auth/auth_routes.dart';
+import 'package:hersay/module_auth/service/auth/auth.service.dart';
 import 'package:hersay/module_navigation/ui/widget/navigation_drawer/anime_navigation_drawer.dart';
-import 'package:hersay/module_profile/widget/circular_image.dart';
+import 'package:hersay/module_profile/profile_routes.dart';
+import 'package:hersay/module_profile/state_manager/profile/profile.state_manager.dart';
+import 'package:hersay/module_profile/ui/state/profile/profile.state.dart';
 import 'package:hersay/utils/project_colors/project_colors.dart';
+import 'package:hersay/utils/route_helper/route_helper.dart';
 import 'package:hersay/utils/widgets/turkish_app_bar/turkish_app_bar.dart';
+import 'package:inject/inject.dart';
 
+@provide
 class ProfileScreen extends StatefulWidget {
+  final ProfileStateManager _stateManager;
+  final AuthService _authService;
+
+  ProfileScreen(
+      this._stateManager,
+      this._authService,
+      );
+
   @override
-  _ProfileScreenState createState() => _ProfileScreenState();
+  ProfileScreenState createState() => ProfileScreenState();
 }
 
-class _ProfileScreenState extends State<ProfileScreen> {
+class ProfileScreenState extends State<ProfileScreen> {
   final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
+  ProfileState currentState;
 
   @override
+  void initState() {
+    super.initState();
+    currentState = ProfileStateInit(this);
+    widget._stateManager.stateStream.listen((event) {
+      currentState = event;
+      if(this.mounted){
+        setState(() {
+
+        });
+      }
+    });
+  }
+
+  void getProfile(){
+    widget._stateManager.getProfileScreenData(this);
+  }
+
+  void refresh(){
+    setState(() {
+
+    });
+  }
+  @override
   Widget build(BuildContext context) {
-    double height = MediaQuery.of(context).size.height;
-    return _screenUi(height);
+    widget._authService.isLoggedIn.then((value){
+      if(!value) {
+        RouteHelper redirectTo = new RouteHelper(
+            redirectTo:  ProfileRoutes.PROFILE_SCREEN,
+            additionalData: null
+        );
+        Navigator.of(context).pushNamed(
+          AuthorizationRoutes.LOGIN_SCREEN,
+          arguments: redirectTo,
+        );
+      }
+      });
+
+    if (currentState is ProfileStateInit) {
+
+      getProfile();
+    }
+
+
+    return  Scaffold(
+
+      key: _scaffoldKey,
+      appBar: TurkishAppBar.getTurkishOrdinaryAppBar(context, S.of(context).profile),
+
+      body: currentState.getUI(context),
+    );
   }
 
   Widget _screenUi(double height) {
     return Scaffold(
       key: _scaffoldKey,
-      appBar: TurkishAppBar.getTurkishAppBar(context, _scaffoldKey, 'Profile'),
+      appBar: TurkishAppBar.getTurkishAppBar(context, _scaffoldKey, S.of(context).profile),
       drawer: TurkishNavigationDrawer(),
       body: SingleChildScrollView(
         child: Container(
-          color: ProjectColors.BACKGROUND_COLOR,
           child: Column(
             children: [
               Container(
@@ -84,6 +147,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
               ),
               Container(
                 height: 200,
+                color: Colors.black12,
                 padding: EdgeInsets.symmetric(horizontal: 30),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -92,7 +156,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                          'Edit Account',
+                          S.of(context).editAccount,
                           style: TextStyle(
                             fontSize: 14,
                             fontWeight: FontWeight.bold,
@@ -111,29 +175,30 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         ),
                       ],
                     ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text(
-                          'Delete Account',
-                          style: TextStyle(
-                            fontSize: 14,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                        Container(
-                          height: 40,
-                          child: FloatingActionButton(
-                            onPressed: () {},
-                            backgroundColor: Colors.white,
-                            child: Icon(
-                              Icons.delete,
-                              color: ProjectColors.SECONDARY_COLOR,
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
+//                    Row(
+//                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+//
+//                      children: [
+//                        Text(
+//                          'Delete Account',
+//                          style: TextStyle(
+//                            fontSize: 14,
+//                            fontWeight: FontWeight.bold,
+//                          ),
+//                        ),
+//                        Container(
+//                          height: 40,
+//                          child: FloatingActionButton(
+//                            onPressed: () {},
+//                            backgroundColor: Colors.white,
+//                            child: Icon(
+//                              Icons.delete,
+//                              color: ProjectColors.SECONDARY_COLOR,
+//                            ),
+//                          ),
+//                        ),
+//                      ],
+//                    ),
                   ],
                 ),
               )

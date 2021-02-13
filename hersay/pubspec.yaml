@@ -25,6 +25,10 @@ dependencies:
   # Crypto for SHA1
   crypto: ^2.1.5
 
+  # Pair and Other Types
+  analyzer_plugin: ^0.3.0
+  timeago: ^2.0.27
+
   # Dependency injection
   inject:
     git:
@@ -38,7 +42,7 @@ dependencies:
   shared_preferences: ^0.5.12+4
 
   # Open Url in Chrome
-  url_launcher: ^5.7.10
+  url_launcher: ^5.7.0
 
   # Network Agent
   dio: ^3.0.10
@@ -74,7 +78,7 @@ dependencies:
   # Internationalization
   intl: ^0.16.1
   intl_translation: ^0.17.10
-  intl_utils: ^1.9.0
+  intl_utils: ^1.6.5
 
   # Toasts
   fluttertoast: ^7.1.6
@@ -85,9 +89,12 @@ dependencies:
   # Payment
   flutter_credit_card: ^0.1.1
 
+
+
   # Others
   date_time_picker: ^1.1.1
   animate_icons: ^1.0.0
+  image_picker: ^0.6.7+14
 
 dev_dependencies:
   flutter_test:
@@ -95,7 +102,7 @@ dev_dependencies:
 
   build_runner: ^1.10.1
 
-  test: ^1.15.4
+  test: ^1.15.2
 
   inject_generator:
     git:
@@ -112,6 +119,11 @@ flutter:
   uses-material-design: true
   assets:
     - assets/images/
+
+  fonts:
+    - family: Roboto
+      fonts:
+        - asset: assets/fonts/RB/RB.ttf
 
 flutter_intl:
   enabled: true

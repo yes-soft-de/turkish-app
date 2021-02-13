@@ -3,14 +3,16 @@ import 'package:flutter/material.dart';
 
 
 class NotificationCard extends StatelessWidget {
-  final String userImage;
   final String userName;
   final String notification;
+  final String userImage;
+  final String time;
 
   NotificationCard({
-    this.userImage,
     this.userName,
     this.notification,
+    this.userImage,
+    this.time,
   });
 
   @override
@@ -27,6 +29,7 @@ class NotificationCard extends StatelessWidget {
 
                   child: Row(
                     children: [
+
                       Padding(
                         padding: const EdgeInsets.all(5.0),
                         child: Container(
@@ -34,7 +37,7 @@ class NotificationCard extends StatelessWidget {
                           width: 45,
                           child: CircleAvatar(
                             radius: 45,
-                            backgroundImage: NetworkImage(userImage),
+                            backgroundImage: NetworkImage('$userImage'),
                           ),
                         ),
                       ),
@@ -47,13 +50,20 @@ class NotificationCard extends StatelessWidget {
                             Text(
                               '$userName $notification' ,
                               style: TextStyle(
-                                fontSize: 12,
+                                fontSize: 14,
                               ),
                             ),
 
                           ],
                         )
                       ),
+                      Text(
+                        'at $time' ,
+                        style: TextStyle(
+                          fontSize: 11,
+                        ),
+                      ),
+                      Icon(Icons.notifications_active),
 
 
                     ],
@@ -63,6 +73,7 @@ class NotificationCard extends StatelessWidget {
               ],
             ),
             Container(
+              margin: EdgeInsets.only(top: 10),
               height: 1,
               color: Colors.grey,
               width: MediaQuery.of(context).size.width  ,

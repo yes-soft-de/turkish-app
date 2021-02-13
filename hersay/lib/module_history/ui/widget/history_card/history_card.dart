@@ -4,9 +4,9 @@ import 'package:hersay/utils/enums/products/products.dart';
 class HistoryCard extends StatelessWidget {
   final String product;
   final String operationType;
-  final PRODUCT_TYPE productType;
+  final String date;
 
-  HistoryCard({this.product, this.operationType, this.productType});
+  HistoryCard({this.product, this.operationType, this.date});
 
   @override
   Widget build(BuildContext context) {
@@ -24,8 +24,9 @@ class HistoryCard extends StatelessWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            _iconText(icon: _getRightIcon(productType), text: '$product'),
-            Text('($operationType)')
+            _iconText(icon: Icons.history, text: '$product'),
+            Text('($operationType)'),
+            Text('($date)'),
           ],
         ),
       ),
