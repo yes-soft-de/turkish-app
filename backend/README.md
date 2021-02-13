@@ -123,12 +123,12 @@ methods: POST
 ```
 #### Get a real estate by ID
 ```
-/realEstate/ID
+/realEstate/{ID}
 methods: GET
 ```
 #### Get a real estate by ID Unaccepted
 ```
-/realEstateUnaccepted/ID
+/realEstateUnaccepted/{ID}
 methods: GET
 ```
 #### Get all real estates Accepted
@@ -157,7 +157,7 @@ methods: PUT
 ```
 #### Delete an existing real estate
 ```
-/realEstate/ID
+/realEstate/{ID}
 methods: DELETE
 ```
 
@@ -176,7 +176,7 @@ methods: POST
 #### Get all reactions for specific property
 
 ```
-/reactions/itemID
+/reactions/{itemID}
 methods: GET
 ```
 #### Get all reactions for specific user. 
@@ -186,7 +186,7 @@ methods: GET
 ```
 #### Get reaction for specific user And specific item. 
 ```
-/reactionForUser/itemID
+/reactionForUser/{itemID}
 methods: GET
 ```
 #### Get notifications for a specific user.
@@ -214,7 +214,7 @@ methods: GET
 ```
 #### Get a car by ID Unaccepted
 ```
-/carUnaccepted/id
+/carUnaccepted/{id}
 methods: GET
 ```
 #### Get the cars of specific user
@@ -261,7 +261,7 @@ methods: POST
 ```
 #### Get a device by ID
 ```
-/device/id
+/device/{id}
 methods: GET
 ```
 #### Get the devices of specific user
@@ -295,7 +295,7 @@ methods: POST
 ```
 #### Get documents for item
 ```
-documents/itemID/entity
+documents/{itemID}/{entity}
 methods: GET
 ```
 ### Image
@@ -320,12 +320,12 @@ methods: GET
 ```
 #### Get a specific report by Id
 ```
-/report/id
+/report/{id}
 methods: GET
 ```
 #### Delete a specific report by Id
 ```
-/deletereport/id
+/deletereport/{id}
 methods: DELETE
 ```
 #### Delete all reports
