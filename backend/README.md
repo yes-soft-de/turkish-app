@@ -46,7 +46,6 @@ _Note: search is done by brand for Cars and Devices,and by type for Real-Estates
 methods: GET
 ```
 #### Get the history Buy and Sell operations of a user
-_Note: Get the history of Sell and Buy operations of a user
 ```
 /history
 methods: GET
