@@ -64,7 +64,7 @@ class _SplashScreenState extends State<SplashScreen> {
                   )
                 ]),
             child: Image(
-              image: AssetImage('assets/images/logo.png'),
+              image: AssetImage('assets/images/logo2.png'),
             ),
           ),
         ),

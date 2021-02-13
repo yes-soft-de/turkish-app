@@ -69,7 +69,7 @@ class _EmailPasswordLoginFormState extends State<EmailPasswordLoginForm> {
                       )
                     ]),
                 child: Image(
-                  image: AssetImage('assets/images/logo.png'),
+                  image: AssetImage('assets/images/logo2.png'),
                 ),
               ),
             ),
