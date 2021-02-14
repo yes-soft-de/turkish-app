@@ -1,10 +1,9 @@
 
 import 'package:flutter/material.dart';
-import 'package:hersay/generated/l10n.dart';
 import 'package:hersay/module_auth/auth_routes.dart';
-import 'package:hersay/module_history/ui/widget/History_card/History_card.dart';
 import 'package:hersay/module_history/model/history/history_model.dart';
 import 'package:hersay/module_history/ui/screen/history/history_screen.dart';
+import 'package:hersay/module_history/ui/widget/history_card/history_card.dart';
 
 
 abstract class HistoryState {
