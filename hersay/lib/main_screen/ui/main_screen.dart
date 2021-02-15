@@ -9,6 +9,7 @@ import 'package:hersay/module_settings/ui/screen/settings/settings_screen.dart';
 import 'package:hersay/utils/project_colors/project_colors.dart';
 import 'package:inject/inject.dart';
 
+
 @provide
 class MainScreen extends StatefulWidget {
   final HomeScreen _homeScreen;
