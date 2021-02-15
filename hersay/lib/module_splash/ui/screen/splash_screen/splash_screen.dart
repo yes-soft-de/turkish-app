@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:hersay/main_screen/main_routes.dart';
 import 'package:hersay/main_screen/ui/main_screen.dart';
@@ -40,7 +39,7 @@ class _SplashScreenState extends State<SplashScreen> {
 //      });
     });
     return Scaffold(
-      body:   Container(
+      body: Container(
         color: ProjectColors.THEME_COLOR,
         height: MediaQuery.of(context).size.height,
         child: Center(
@@ -53,10 +52,8 @@ class _SplashScreenState extends State<SplashScreen> {
                 boxShadow: [
                   BoxShadow(
                     color: Colors.black12,
-                    blurRadius:
-                    2.0, // has the effect of softening the shadow
-                    spreadRadius:
-                    2.0, // has the effect of extending the shadow
+                    blurRadius: 2.0, // has the effect of softening the shadow
+                    spreadRadius: 2.0, // has the effect of extending the shadow
                     offset: Offset(
                       5.0, // horizontal, move right 10
                       5.0, // vertical, move down 10
@@ -64,12 +61,11 @@ class _SplashScreenState extends State<SplashScreen> {
                   )
                 ]),
             child: Image(
-              image: AssetImage('assets/images/logo2.png'),
+              image: AssetImage('assets/images/logo2.jpg'),
             ),
           ),
         ),
       ),
-
     );
   }
 }
