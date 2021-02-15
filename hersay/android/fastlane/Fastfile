@@ -4,22 +4,18 @@ platform :android do
   lane :alpha do
     gradle(
       gradle_path: "/usr/bin/gradle",
-      task: "bundle",
-      build_type: "Release"
+      task: "assemble",
+      build_type: "Debug"
+    )
+    gradle(
+      gradle_path: "/usr/bin/gradle",
+      task: "assemble",
+      build_type: "Profile"
     )
     gradle(
       gradle_path: "/usr/bin/gradle",
       task: "assemble",
       build_type: "Release"
     )
-    upload_to_play_store(
-        version_code: ENV['GITHUB_RUN_NUMBER'],
-        track: 'internal',
-        aab: '../build/app/outputs/bundle/release/app-release.aab',
-        skip_upload_metadata: true,
-        skip_upload_images: true,
-        skip_upload_screenshots: true,
-        release_status: "draft",
-      )
   end
 end
