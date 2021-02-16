@@ -13,7 +13,7 @@ spec:
   strategy:
     rollingUpdate:
       maxSurge: 25%
-      maxUnavailable: 1
+      maxUnavailable: 25%
     type: RollingUpdate
   template:
     metadata:
@@ -21,14 +21,7 @@ spec:
         app: apache
     spec:
       containers:
-        - env:
-            - name: MYSQL_PASSWORD
-              valueFrom:
-                secretKeyRef:
-                  key: userpassword
-                  name: turkey-app-mysql-secrets
-          image: >-
-            gcr.io/pc-api-6479467557629758909-343/github.com/yes-soft-de/turkish-app
+        - image: gcr.io/pc-api-6479467557629758909-343/github_yes-soft-de_turkish-app
           imagePullPolicy: Always
           name: php-apache
           ports:
