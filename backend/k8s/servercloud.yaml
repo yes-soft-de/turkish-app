@@ -41,3 +41,23 @@ spec:
         - name: turkey-app-pvc-sym-m
           persistentVolumeClaim:
             claimName: turkey-app-pvc-sym-uploud
+ ---
+ apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    cloud.google.com/neg: '{"ingress":true}'
+  labels:
+    app: apache
+  name: turkey-app-webserver-service
+  namespace: turkey-app
+spec:
+  clusterIP: 10.4.10.66
+  ports:
+    - port: 80
+      protocol: TCP
+      targetPort: 80
+  selector:
+    app: apache
+  sessionAffinity: None
+  type: ClusterIP
