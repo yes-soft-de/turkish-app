@@ -111,7 +111,7 @@ methods: GET
 ```
 
 ### RealEstate
-note:in postman send "entity":"RealEstateEntity"
+note:in postman send "entity":"realEstate"
 
 #### Create new real estate
 note : status field have default value : not sold.
@@ -164,7 +164,7 @@ methods: DELETE
 ### Reaction
 note: type = 1 .
 
-note : in body postman  send entity value : CarEntity or DeviceEntity or RealEstateEntity .
+note : in body postman  send entity value : car or device or realEstate.
 
 note : itemID could be a car ID, a device ID, or a real estate ID .
 
@@ -196,13 +196,12 @@ methods: GET
 ```
 
 ### Car
-note:in body postman send "entity":"CarEntity"
+note:in body postman send "entity":"car"
 
 #### Insert new car
 note : status field have default value : not sold.
 
 note : state field have default value : Unaccepted.
-
 ```
 /cars
 methods: POST
@@ -245,7 +244,6 @@ methods: PUT
 /cars/id
 methods: DELETE
 ```
-
 #### Get all properties (Cars, Real Estates, and Devices)
 ```
 /allproperties
@@ -253,7 +251,7 @@ methods: GET
 ```
 
 ### Device
-note:in postman send "entity":"DeviceEntity"
+note:in postman send "entity":"device"
 #### Insert new device
 ```
 /devices
@@ -286,8 +284,7 @@ methods: DELETE
 ```
 
 ### Document
-note:in postman body send entity: RealEstateEntity.
-
+note:in postman body send entity: realEstate.
 #### Insert new document
 ```
 /document
@@ -298,8 +295,8 @@ methods: POST
 documents/{itemID}/{entity}
 methods: GET
 ```
-### Image
 
+### Image
 #### Insert new image
 ```
 /image
@@ -307,7 +304,6 @@ methods: POST
 ```
 
 ### Report
-
 #### Create new report
 ```
 /report
