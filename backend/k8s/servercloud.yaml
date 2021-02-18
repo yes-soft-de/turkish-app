@@ -1,4 +1,3 @@
-#
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -22,15 +21,11 @@ spec:
         app: apache
     spec:
       containers:
+
+         
         - image: gcr.io/pc-api-6479467557629758909-343/github_yes-soft-de_turkish-app
           imagePullPolicy: Always
           name: php-apache
-          env:
-           - name: MYSQL_PASSWORD
-             valueFrom:
-               secretKeyRef:
-                 name: turkey-app-mysql-secrets
-                 key: userpassword
           ports:
             - containerPort: 80
               protocol: TCP
@@ -47,21 +42,17 @@ kind: Service
 metadata:
   annotations:
     cloud.google.com/neg: '{"ingress":true}'
-  finalizers:
-    - service.kubernetes.io/load-balancer-cleanup
   labels:
-    run: turkey-app-web-service
-  name: turkey-app-web-service
+    app: apache
+  name: turkey-app-webserver-service
   namespace: turkey-app
 spec:
-  clusterIP: 10.4.12.3
-  externalTrafficPolicy: Cluster
+  clusterIP: 10.4.10.66
   ports:
-    - nodePort: 32679
-      port: 80
+    - port: 80
       protocol: TCP
       targetPort: 80
   selector:
     app: apache
   sessionAffinity: None
-  type: LoadBalancer
+  type: ClusterIP
