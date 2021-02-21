@@ -51,15 +51,43 @@ class ReportManager
             
             if($entity == "car")
             {
-                $results[$i]['itemName'] = $this->carManager->getCarById($result['itemID'])[0]['carType'];
+                $item = $this->carManager->getCarById($result['itemID']);
+
+                if($item)
+                {
+                    $results[$i]['itemName'] = $item[0]['carType'];
+                }
+                else
+                {
+                    $results[$i]['itemName'] = "Property Deleted";
+                }
             }
             elseif ($entity == "device")
             {
-                $results[$i]['itemName'] = $this->deviceManager->getDeviceById($result['itemID'])[0]['brand'];
+                $item = $this->deviceManager->getDeviceById($result['itemID']);
+
+                if($item)
+                {
+                    $results[$i]['itemName'] = $item[0]['brand'];
+                }
+                else
+                {
+                    $results[$i]['itemName'] = "Property Deleted";
+                }
             }
             elseif ($entity == "realEstate")
             {
-                $results[$i]['itemName'] = $this->realEstateManager->getRealEstateById($result['itemID'])[0]['realEstateType'];
+                
+                $item = $this->realEstateManager->getRealEstateById($result['itemID']);
+
+                if($item)
+                {
+                    $results[$i]['itemName'] = $item[0]['realEstateType'];
+                }
+                else
+                {
+                    $results[$i]['itemName'] = "Property Deleted";
+                }
             }
             
             $i++;
