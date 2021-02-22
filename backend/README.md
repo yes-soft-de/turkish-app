@@ -196,7 +196,7 @@ methods: GET
 ```
 
 ### Car
-note:in body postman send "entity":"car"
+Note:in body postman send "entity":"car"
 
 #### Insert new car
 note : status field have default value : not sold.
@@ -232,7 +232,7 @@ methods: GET
 methods: GET
 ```
 #### Update a specific car by ID
-note : if sold, submit status field value (sold).
+Note : if sold, submit status field value (sold).
 
 note : if the admin agrees to offer the product, submit state field value (Accepted).
 ```
@@ -251,7 +251,7 @@ methods: GET
 ```
 
 ### Device
-note:in postman send "entity":"device"
+Note:in postman send "entity":"device"
 #### Insert new device
 ```
 /devices
@@ -284,7 +284,7 @@ methods: DELETE
 ```
 
 ### Document
-note:in postman body send entity: realEstate.
+Note:in postman body send entity: realEstate.
 #### Insert new document
 ```
 /document
