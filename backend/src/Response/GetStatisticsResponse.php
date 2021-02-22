@@ -6,6 +6,8 @@ namespace App\Response;
 
 class GetStatisticsResponse
 {
+    public $id;
+    
     public $cars;
 
     public $devices;

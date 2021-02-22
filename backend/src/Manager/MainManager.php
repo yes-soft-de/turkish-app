@@ -17,6 +17,7 @@ class MainManager
     private $userManager;
     private $reactionManager;
     private $messageManager;
+    private $statisticsID = 0;
 
     public function __construct(AutoMapping $autoMapping, StatusManager $statusManager, CarManager $carManager, 
      DeviceManager $deviceManager, RealEstateManager $realEstateManager, UserManager $userManager, 
@@ -77,6 +78,8 @@ class MainManager
     public function getStatistics()
     {
         $response = [];
+
+        $response['id'] = $this->statisticsID;
         
         $response['cars'] = count($this->carManager->getAllCars());
 
@@ -91,6 +94,8 @@ class MainManager
         $response['reactions'] = $this->reactionManager->getAllReactions();
 
         $response['chats'] = $this->messageManager->getAllChats();
+
+        $this->statisticsID++;
 
         return $response;
     }
