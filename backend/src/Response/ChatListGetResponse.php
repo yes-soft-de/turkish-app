@@ -4,6 +4,8 @@ namespace App\Response;
 
 class ChatListGetResponse
 {
+    public $id;
+    
     public $roomID;
 
     public $username;

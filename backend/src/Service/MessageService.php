@@ -66,14 +66,19 @@ class MessageService
     public function getChatListOfUser($userID)
     {
         $response = [];
+        $counter = 0;
 
         $chatResults = $this->messageManager->getChatListOfUser($userID);
 
         foreach($chatResults as $row)
         {
+            $row['id'] = $counter;
+
             $row['image'] = $this->params . $row['image'];
 
             $response[] = $this->autoMapping->map('array', ChatListGetResponse::class, $row);
+
+            $counter++;
         }
 
         return $response;

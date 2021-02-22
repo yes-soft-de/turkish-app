@@ -136,7 +136,7 @@ class MessageManager
         $receivedMessage = $this->messageEntityRepository->getReceivedMessagesList($userID);
 
         $chatList = array_merge($sentMessage, $receivedMessage);
-        //dd($chatList);
+        
         return $chatList;
     }
 

@@ -24,7 +24,7 @@ class MessageEntityRepository extends ServiceEntityRepository
     public function getSendMessagesList($userID)
     {
         return $this->createQueryBuilder('message')
-            ->select('message.userOne', 'message.userTwo', 'message.roomID', 'message.createdAt as startAt', 
+            ->select('message.id', 'message.userOne', 'message.userTwo', 'message.roomID', 'message.createdAt as startAt', 
             'userProfileEntity.userName as username', 'userProfileEntity.image')
 
             ->andWhere('message.userOne = :userID')
@@ -60,7 +60,7 @@ class MessageEntityRepository extends ServiceEntityRepository
     public function getReceivedMessagesList($userID)
     {
         return $this->createQueryBuilder('message')
-            ->select('message.userOne', 'message.userTwo', 'message.roomID', 'message.createdAt as startAt', 
+            ->select('message.id', 'message.userOne', 'message.userTwo', 'message.roomID', 'message.createdAt as startAt', 
             'userProfileEntity.userName as username', 'userProfileEntity.image')
 
             ->andWhere('message.userTwo = :userID')
@@ -84,10 +84,5 @@ class MessageEntityRepository extends ServiceEntityRepository
             ->delete()
             ->getQuery()
             ->getResult();
-    }
-
-    public function getChatsCountByRole($role)
-    {
-        
     }
 }
