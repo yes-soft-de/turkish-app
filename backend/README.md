@@ -57,7 +57,7 @@ methods: GET
 ```
 
 ### Account
-#### Create new lawyer
+#### Create new lawyer.
 ```
 /lawyer
 methods: POST
@@ -111,12 +111,12 @@ methods: GET
 ```
 
 ### RealEstate
-note:in postman send "entity":"realEstate"
+Note:in postman send "entity":"realEstate"
 
 #### Create new real estate
-note : status field have default value : not sold.
+Note : status field have default value : not sold.
 
-note : state field have default value : Unaccepted.
+Note : state field have default value : Unaccepted.
 ```
 /realEstate
 methods: POST
@@ -147,9 +147,9 @@ methods: GET
 methods: GET
 ```
 #### Update an existing real estate
-note : if sold, submit status field value (sold).
+Note : if sold, submit status field value (sold).
 
-note : if the admin agrees to offer the product, submit state field value (Accepted).
+Note : if the admin agrees to offer the product, submit state field value (Accepted).
 
 ```
 /realEstate
@@ -162,11 +162,11 @@ methods: DELETE
 ```
 
 ### Reaction
-note: type = 1 .
+Note: type = 1 .
 
-note : in body postman  send entity value : car or device or realEstate.
+Note : in body postman  send entity value : car or device or realEstate.
 
-note : itemID could be a car ID, a device ID, or a real estate ID .
+Note : itemID could be a car ID, a device ID, or a real estate ID .
 
 #### Insert new reaction
 ```
