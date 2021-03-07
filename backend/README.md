@@ -36,7 +36,7 @@ php bin/console doctrine:migration:migrate
 * [Document](#document)
 * [Image](#image)
 * [Report](#report)
-
+* [Comment](#comment)
 
 ### Main
 #### Search for a specific property by query
@@ -331,7 +331,8 @@ methods: DELETE
 ```
 
 ### Comment
-Note:in postman send "entity":"device", "car", or "realEstate"
+
+Note: in postman send "entity":"device", "car", or "realEstate"
 #### Insert new comment
 ```
 /comment
