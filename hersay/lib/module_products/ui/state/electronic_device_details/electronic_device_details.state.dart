@@ -245,22 +245,22 @@ class ElectronicDeviceDetailsStateDataLoaded
               ),
               Padding(
                 padding: const EdgeInsets.all(8.0),
-                child: Text(S.of(context).brand + ' ${electronicDevice.brand}'),
+                child: Text(S.of(context).brand + ' : ${electronicDevice.brand}'),
               ),
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Text(S.of(context).yearOfRelease +
-                    '${electronicDevice.releaseYear}'),
+                    ' : ${electronicDevice.releaseYear}'),
               ),
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Text(S.of(context).durationOfUse +
-                    '${electronicDevice.useDuration}'),
+                    ' ${electronicDevice.useDuration}'),
               ),
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Text(
-                    S.of(context).display + '${electronicDevice.description}'),
+                    S.of(context).descriptio + ' : ${electronicDevice.description}'),
               ),
               Padding(
                 padding: const EdgeInsets.all(8.0),
@@ -268,10 +268,10 @@ class ElectronicDeviceDetailsStateDataLoaded
                     S.of(context).processor + ' ${electronicDevice.processor}'),
               ),
               //TODO : change  this
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Text(S.of(context).storage + ' 512GB PCIe 3*4 SSD'),
-              ),
+//              Padding(
+//                padding: const EdgeInsets.all(8.0),
+//                child: Text(S.of(context).storage + ' 512GB PCIe 3*4 SSD'),
+//              ),
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Text(
@@ -280,7 +280,7 @@ class ElectronicDeviceDetailsStateDataLoaded
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Text(
-                    S.of(context).location + ' ${electronicDevice.location}'),
+                    S.of(context).location + ' : ${electronicDevice.location}'),
               ),
               Container(
                 decoration: BoxDecoration(
@@ -292,7 +292,7 @@ class ElectronicDeviceDetailsStateDataLoaded
                 margin: const EdgeInsets.all(8.0),
                 child: Center(
                   child: Text(
-                      S.of(context).price + '  ${electronicDevice.price} \$'),
+                      S.of(context).price + ' : ${electronicDevice.price} \$'),
                 ),
               ),
 

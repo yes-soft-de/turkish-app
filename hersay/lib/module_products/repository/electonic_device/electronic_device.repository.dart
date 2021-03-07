@@ -31,12 +31,13 @@ class ElectronicDeviceRepository{
 
   Future<ElectronicDeviceResponse> getElectronicDeviceDetails(int electronicDeviceId)async{
     var token = await _authService.getToken();
+    print('kolkol');
     dynamic response = (token != null)
         ? await _apiClient.get(
       Urls.GET_DEVICE_DETAILS + '$electronicDeviceId',
       headers: {'Authorization': 'Bearer ' + token},
     )
-        : await _apiClient.get( Urls.GET_CAR_DETAILS + '$electronicDeviceId',) ;
+        : await _apiClient.get( Urls.GET_DEVICE_DETAILS + '$electronicDeviceId',) ;
 
 
     if (response == null) return null;

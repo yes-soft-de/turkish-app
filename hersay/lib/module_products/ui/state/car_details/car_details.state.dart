@@ -238,7 +238,7 @@ class CarDetailsStateDataLoaded extends CarDetailsState {
               ),
               Padding(
                 padding: const EdgeInsets.all(8.0),
-                child: Text(S.of(context).brand + ' ${car.brand}'),
+                child: Text(S.of(context).brand + ' : ${car.brand}'),
               ),
               Padding(
                 padding: const EdgeInsets.all(8.0),
@@ -252,7 +252,7 @@ class CarDetailsStateDataLoaded extends CarDetailsState {
               ),
               Padding(
                 padding: const EdgeInsets.all(8.0),
-                child: Text(S.of(context).gearType + ' ${car.gearType}'),
+                child: Text(S.of(context).gearType + ' : ${car.gearType}'),
               ),
               Padding(
                 padding: const EdgeInsets.all(8.0),
@@ -264,11 +264,11 @@ class CarDetailsStateDataLoaded extends CarDetailsState {
               ),
               Padding(
                 padding: const EdgeInsets.all(8.0),
-                child: Text(S.of(context).fuel + ' ${car.fuel}'),
+                child: Text(S.of(context).fuel + ' : ${car.fuel}'),
               ),
               Padding(
                 padding: const EdgeInsets.all(8.0),
-                child: Text(S.of(context).location + ' ${car.location}'),
+                child: Text(S.of(context).location + ' : ${car.location}'),
               ),
               Padding(
                 padding: const EdgeInsets.all(8.0),

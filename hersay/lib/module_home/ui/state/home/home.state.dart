@@ -84,6 +84,7 @@ class HomeStateDataLoaded extends HomeState {
                 itemBuilder: (BuildContext context, int index) {
                   return GestureDetector(
                     onTap: () {
+
                       switch (displayedProducts[index].type) {
                         case PRODUCT_TYPE.CAR:
                           Navigator.pushNamed(

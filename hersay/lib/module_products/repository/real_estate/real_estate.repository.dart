@@ -36,7 +36,7 @@ class RealEstateRepository{
       Urls.GET_REAL_ESTATE_DETAILS + '$realEstateId',
       headers: {'Authorization': 'Bearer ' + token},
     )
-        : await _apiClient.get( Urls.GET_CAR_DETAILS + '$realEstateId',) ;
+        : await _apiClient.get( Urls.GET_REAL_ESTATE_DETAILS + '$realEstateId',) ;
 
 
     if (response == null) return null;

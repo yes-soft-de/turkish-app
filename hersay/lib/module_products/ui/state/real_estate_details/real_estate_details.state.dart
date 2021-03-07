@@ -238,7 +238,7 @@ class RealEstateDetailsStateDataLoaded extends RealEstateDetailsState {
               ),
               Padding(
                 padding: const EdgeInsets.all(8.0),
-                child: Text(S.of(context).space + ' ${realEstate.space} SM'),
+                child: Text(S.of(context).space + ' : ${realEstate.space} SM'),
               ),
               Padding(
                 padding: const EdgeInsets.all(8.0),
@@ -247,7 +247,7 @@ class RealEstateDetailsStateDataLoaded extends RealEstateDetailsState {
               ),
               Padding(
                 padding: const EdgeInsets.all(8.0),
-                child: Text(S.of(context).cladding + ' ${realEstate.cladding}'),
+                child: Text(S.of(context).cladding + ' : ${realEstate.cladding}'),
               ),
               Padding(
                 padding: const EdgeInsets.all(8.0),

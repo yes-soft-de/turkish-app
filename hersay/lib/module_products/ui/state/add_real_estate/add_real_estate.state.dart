@@ -399,7 +399,6 @@ class AddRealEstateStateInit extends AddRealEstateState {
                     keyboardType: TextInputType.number,
                     controller: _roomsNumberController,
                     decoration: InputDecoration(
-                      prefixIcon: Icon(Icons.attach_money),
                       border: OutlineInputBorder(
                         borderSide: BorderSide.none,
                         borderRadius: BorderRadius.circular(20),

@@ -99,7 +99,11 @@ class ProductCard extends StatelessWidget {
                 Container(
                   width: MediaQuery.of(context).size.width*0.35,
                   child: Text(
-                    '$specification'
+                    '$specification',
+                    overflow: TextOverflow.fade,
+                    maxLines: 1,
+                    softWrap: false,
+
                   ),
                 ),
 //                IconTextWidget(icon: null, text: '$specification'),
