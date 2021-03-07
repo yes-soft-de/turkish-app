@@ -329,3 +329,21 @@ methods: DELETE
 /deletereports
 methods: DELETE
 ```
+
+### Comment
+Note:in postman send "entity":"device", "car", or "realEstate"
+#### Insert new comment
+```
+/comment
+methods: POST
+```
+#### Delete a comment by ID
+```
+/comment/{ID}
+methods: DELETE
+```
+#### Get all comments on a property by entity and itemID
+```
+/comments/{entity}/{itemID}
+methods: GET
+```
