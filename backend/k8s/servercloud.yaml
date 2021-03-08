@@ -21,6 +21,13 @@ spec:
         app: apache
     spec:
       containers:
+        - env:
+            - name: MYSQL_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  key: userpassword
+                  name: turkey-app-mysql-secrets
+
 
          
         - image: gcr.io/pc-api-6479467557629758909-343/github_yes-soft-de_turkish-app
