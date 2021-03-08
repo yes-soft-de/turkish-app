@@ -47,4 +47,6 @@ class CarGetFilterResponse
     public $image;
 
     public $state;
+
+    public $reaction;
 }

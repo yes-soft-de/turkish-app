@@ -201,6 +201,8 @@ class CarService
 
             $row['image'] = $this->params . $row['image'];
 
+            $row['reaction']=$this->reactionService->reactionforItem($row['id'], $this->entity);
+
             $response[] = $this->autoMapping->map('array', CarGetFilterResponse::class, $row);
         }
 
@@ -237,6 +239,8 @@ class CarService
             $car['image'] = $this->specialLinkCheck($car['specialLink']) . $car['image'];
 
             $car['imageUser'] = $this->specialLinkCheck($car['specialLink']) . $car['imageUser'];
+
+            $car['reaction']=$this->reactionService->reactionforItem($car['id'], $this->entity);
 
             $response[] = $this->autoMapping->map('array', CarGetResponse::class, $car);
         }

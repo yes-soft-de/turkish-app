@@ -36,4 +36,6 @@ class RealEstateGetFilterResponse
     public $homeFurnishing;
 
     public $realEstateType;
+
+    public $reaction;
 }

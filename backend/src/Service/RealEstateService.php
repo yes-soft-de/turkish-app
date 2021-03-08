@@ -191,6 +191,8 @@ class RealEstateService
 
             $row['image'] = $this->params . $row['image'];
 
+            $row['reaction']=$this->reactionService->reactionforItem($row['id'], $this->entity);
+
             $response[] = $this->autoMapping->map('array', RealEstateGetFilterResponse::class, $row);
         }
 
@@ -209,6 +211,8 @@ class RealEstateService
 
             $realEstate['imageUser'] = $this->specialLinkCheck($realEstate['specialLink']) . $realEstate['imageUser'];
 
+            $realEstate['reaction']=$this->reactionService->reactionforItem($realEstate['id'], $this->entity);
+            
             $response[] = $this->autoMapping->map('array', RealEstateGetAllResponse::class, $realEstate);
         }
 
@@ -220,7 +224,7 @@ class RealEstateService
         $response = [];
 
         $soldRealEstates = $this->realEstateManager->getSoldRealEstatesOfUser($userID);
-        //dd($soldRealEstates);
+        
         foreach ($soldRealEstates as $realEstate)
         {
             $realEstate['image'] = $this->specialLinkCheck($realEstate['specialLink']) . $realEstate['image'];

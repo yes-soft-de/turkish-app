@@ -107,6 +107,7 @@ class DeviceService
             $row['imageUser'] = $this->params . $row['imageUser'];
            
             $row['reaction']=$this->reactionService->reactionforItem($row['id'], $this->entity);
+
             ($row['reaction'][0]['createdBy'] == $userID) ?  $row['reaction'][0]['createdBy'] = true : $row['reaction'][0]['createdBy'] = false ;
           
             $response[] = $this->autoMapping->map('array', DeviceGetResponse::class, $row);
@@ -155,6 +156,8 @@ class DeviceService
 
             $row['image'] = $this->params . $row['image'];
 
+            $row['reaction']=$this->reactionService->reactionforItem($row['id'], $this->entity);
+
             $response[] = $this->autoMapping->map('array', DevicesGetFilterResponse::class, $row);
         }
 
@@ -173,6 +176,8 @@ class DeviceService
 
             $device['imageUser'] = $this->specialLinkCheck($device['specialLink']) . $device['imageUser'];
 
+            $device['reaction']=$this->reactionService->reactionforItem($device['id'], $this->entity);
+            
             $response[] = $this->autoMapping->map('array', DeviceGetResponse::class, $device);
         }
 

@@ -41,4 +41,6 @@ class DevicesGetFilterResponse
     public $durationOfUse;
 
     public $image;
+
+    public $reaction;
 }
