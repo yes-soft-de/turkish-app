@@ -9,6 +9,7 @@ FROM php:7.4-apache
 RUN apt-get update && apt-get install -y build-essential libssl-dev zlib1g-dev libpng-dev libjpeg-dev libfreetype6-dev
 COPY 000-default.conf /etc/apache2/sites-available/000-default.conf
 COPY . /var/www/html
+RUN apt update -y && apt install zip -y && curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
 COPY --from=gcr.io/pc-api-6479467557629758909-343/turcsec ./.env /var/www/html
 COPY --from=gcr.io/pc-api-6479467557629758909-343/turcsec ./.htaccess /var/www/html/public
