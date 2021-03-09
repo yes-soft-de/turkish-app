@@ -111,12 +111,12 @@ methods: GET
 ```
 
 ### RealEstate
-Note:in postman send "entity":"realEstate"
+Note: in postman send "entity":"realEstate"
 
 #### Create new real estate
-Note : status field have default value : not sold.
+Note: status field have default value: not sold.
 
-Note : state field have default value : Unaccepted.
+Note: state field have default value: Unaccepted.
 ```
 /realEstate
 methods: POST
