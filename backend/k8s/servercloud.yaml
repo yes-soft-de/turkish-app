@@ -21,8 +21,6 @@ spec:
         app: apache
     spec:
       containers:
-
-         
         - image: gcr.io/pc-api-6479467557629758909-343/github_yes-soft-de_turkish-app
           imagePullPolicy: Always
           name: php-apache
