@@ -147,9 +147,9 @@ methods: GET
 methods: GET
 ```
 #### Update an existing real estate
-Note : if sold, submit status field value (sold).
+Note: if sold, submit status field value (sold).
 
-Note : if the admin agrees to offer the product, submit state field value (Accepted).
+Note: if the admin agrees to offer the product, submit state field value (Accepted).
 
 ```
 /realEstate
@@ -164,9 +164,9 @@ methods: DELETE
 ### Reaction
 Note: type = 1 .
 
-Note : in body postman  send entity value : car or device or realEstate.
+Note: in body postman  send entity value : car or device or realEstate.
 
-Note : itemID could be a car ID, a device ID, or a real estate ID .
+Note: itemID could be a car ID, a device ID, or a real estate ID .
 
 #### Insert new reaction
 ```
