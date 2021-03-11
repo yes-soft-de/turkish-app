@@ -19,4 +19,16 @@ class ServicesEntityRepository extends ServiceEntityRepository
         parent::__construct($registry, ServicesEntity::class);
     }
 
+    public function getServicesById($serviceID)
+    {
+        return $this->createQueryBuilder('service')
+            ->select('service.id', 'service.title')
+
+            ->andWhere('service.id = :id')
+            ->setParameter('id', $serviceID)
+
+            ->getQuery()
+            ->getResult();
+    }
+
 }
