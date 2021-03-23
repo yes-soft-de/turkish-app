@@ -21,3 +21,4 @@ RUN docker-php-ext-configure gd && docker-php-ext-install gd
 RUN composer require symfony/orm-pack &&  composer require --dev symfony/maker-bundle
 RUN chmod  +x ./entrypoint.sh 
 CMD ["./entrypoint.sh"]
+#
