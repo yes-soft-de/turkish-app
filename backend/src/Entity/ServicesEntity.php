@@ -27,6 +27,11 @@ class ServicesEntity
      */
     private $description;
 
+    /**
+     * @ORM\Column(type="string", length=300)
+     */
+    private $createdBy;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -52,6 +57,18 @@ class ServicesEntity
     public function setDescription(?string $description): self
     {
         $this->description = $description;
+
+        return $this;
+    }
+
+    public function getCreatedBy(): ?string
+    {
+        return $this->createdBy;
+    }
+
+    public function setCreatedBy(string $createdBy): self
+    {
+        $this->createdBy = $createdBy;
 
         return $this;
     }
