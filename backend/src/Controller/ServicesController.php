@@ -41,6 +41,8 @@ class ServicesController extends BaseController
 
         $request = $this->autoMapping->map(stdClass::class, ServiceCreateRequest::class, (object)$data);
 
+        $request->setCreatedBy($this->getUserId());
+        
         $violations = $this->validator->validate($request);
 
         if (\count($violations) > 0)
@@ -59,9 +61,20 @@ class ServicesController extends BaseController
      * @Route("services/{serviceID}", name="getServicesOfSignedInUser", methods={"GET"})
      * @return JsonResponse
      */
-    public function getServicesById($serviceID)
+    public function getServiceById($serviceID)
     {
         $result = $this->servicesService->getServicesById($serviceID);
+
+        return $this->response($result, self::FETCH);
+    }
+
+    /**
+     * @Route("services", name="getAllServices", methods={"GET"})
+     * @return JsonResponse
+     */
+    public function getServices()
+    {
+        $result = $this->servicesService->getAllServices($this->getUserId());
 
         return $this->response($result, self::FETCH);
     }

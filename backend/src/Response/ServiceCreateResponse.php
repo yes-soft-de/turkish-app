@@ -9,4 +9,6 @@ class ServiceCreateResponse
     public $id;
     
     public $title;
+
+    public $createdAt;
 }

@@ -39,4 +39,9 @@ class ServicesManager
         return $this->servicesEntityRepository->getServicesById($serviceID);
     }
 
+    public function getAllServices()
+    {
+        return $this->servicesEntityRepository->getAllServices();
+    }
+
 }

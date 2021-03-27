@@ -215,3 +215,10 @@ App\Request\ReportCreateRequest:
       - NotBlank: ~
     entity:
       - NotBlank: ~
+
+App\Request\ServiceCreateRequest:
+  properties:
+    title:
+      - NotBlank: ~
+    type:
+      - NotBlank: ~

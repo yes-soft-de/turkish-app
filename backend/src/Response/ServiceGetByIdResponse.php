@@ -9,7 +9,13 @@ class ServiceGetByIdResponse
     
     public $title;
 
-    // public $description;
+    public $description;
 
-    // public $createdBy;
+    public $createdAt;
+
+    public $type;
+
+    public $userName;
+
+    public $userImage;
 }
