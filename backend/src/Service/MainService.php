@@ -18,9 +18,10 @@ class MainService
     private $deviceService;
     private $realEstateService;
     private $statusService;
+    private $servicesService;
 
     public function __construct(AutoMapping $autoMapping, DeviceService $deviceService, RealEstateService $realEstateService,
-     CarService $carService, StatusService $statusService, MainManager $mainManager)
+     CarService $carService, StatusService $statusService, MainManager $mainManager, ServicesService $servicesService)
     {
         $this->autoMapping = $autoMapping;
         $this->mainManager = $mainManager;
@@ -28,6 +29,7 @@ class MainService
         $this->deviceService = $deviceService;
         $this->realEstateService = $realEstateService;
         $this->statusService = $statusService;
+        $this->servicesService = $servicesService;
     }
 
     public function search($query)
@@ -97,6 +99,27 @@ class MainService
         $results = $this->mainManager->getStatistics();
 
         $response[] = $this->autoMapping->map('array', GetStatisticsResponse::class, $results);
+
+        return $response;
+    }
+
+    public function getAdvertisements($userID)
+    {
+        $response = [];
+
+        $cars = $this->carService->getAllCars($userID);
+
+        $devices = $this->deviceService->getAllDevices($userID);
+
+        $realEstates = $this->realEstateService->getAllRealEstate($userID);
+
+        $services = $this->servicesService->getAllServices($userID);
+
+        $response = array_merge_recursive($cars, $devices, $realEstates, $services);
+
+        //dd($response);
+
+        shuffle($response);
 
         return $response;
     }
