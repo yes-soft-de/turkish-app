@@ -42,4 +42,6 @@ class RealEstateGetByIdResponse
     public $username;
 
     public $userImage;
+
+    public $comments;
 }

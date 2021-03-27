@@ -53,4 +53,6 @@ class CarGetByIdResponse
     public $username;
 
     public $userImage;
+
+    public $comments;
 }

@@ -47,5 +47,7 @@ class DeviceGetByIdResponse
     public $username;
 
     public $userImage;
+
+    public $comments;
    
 }

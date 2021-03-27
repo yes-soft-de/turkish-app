@@ -31,9 +31,10 @@ class CarService
     private $entity = "car";
     private $deviceService;
     private $realEstateService;
+    private $commentService;
 
     public function __construct(AutoMapping $autoMapping, CarManager $carManager, ReactionService $reactionService, ImageService $imageService,
-                                DocumentService $documentService, ParameterBagInterface $params, DeviceService $deviceService, RealEstateService $realEstateService)
+        DocumentService $documentService, ParameterBagInterface $params, DeviceService $deviceService, RealEstateService $realEstateService, CommentService $commentService)
     {
         $this->autoMapping = $autoMapping;
         $this->carManager = $carManager;
@@ -42,6 +43,7 @@ class CarService
         $this->documentService = $documentService;
         $this->deviceService = $deviceService;
         $this->realEstateService = $realEstateService;
+        $this->commentService = $commentService;
 
         $this->params = $params->get('upload_base_url').'/';
     }
@@ -74,6 +76,8 @@ class CarService
             $row['reaction'] = $this->reactionService->reactionforItem($id, $this->entity)[0];
             
             ($row['reaction']['createdBy'] == $userID) ?  $row['reaction']['createdBy'] = true : $row['reaction']['createdBy'] = false ;
+
+            $row['comments'] = $this->commentService->getCommentsByEntityAndItemID("car", $id);
 
             $response = $this->autoMapping->map('array', CarGetByIdResponse::class, $row);
         }
@@ -117,6 +121,8 @@ class CarService
             $row['reaction']=$this->reactionService->reactionforItem($row['id'], $this->entity);
 
             ($row['reaction'][0]['createdBy'] == $userID) ?  $row['reaction'][0]['createdBy'] = true : $row['reaction'][0]['createdBy'] = false ;
+          
+            $row['commentsNumber'] = $this->carManager->getCarCommentsNumber($row['id'])[1];
 
             $response[] = $this->autoMapping->map('array', CarGetResponse::class, $row);
         }
@@ -138,6 +144,8 @@ class CarService
             //dd($row['reaction']);
             ($row['reaction'][0]['createdBy'] == $userID) ?  $row['reaction'][0]['createdBy'] = true : $row['reaction'][0]['createdBy'] = false ;
           
+            $row['commentsNumber'] = $this->carManager->getCarCommentsNumber($row['id'])[1];
+
             $response[] = $this->autoMapping->map('array', CarGetResponse::class, $row);
         }
 
@@ -202,6 +210,8 @@ class CarService
             $row['image'] = $this->params . $row['image'];
 
             $row['reaction']=$this->reactionService->reactionforItem($row['id'], $this->entity);
+          
+            $row['commentsNumber'] = $this->carManager->getCarCommentsNumber($row['id'])[1];
 
             $response[] = $this->autoMapping->map('array', CarGetFilterResponse::class, $row);
         }
@@ -241,6 +251,8 @@ class CarService
             $car['imageUser'] = $this->specialLinkCheck($car['specialLink']) . $car['imageUser'];
 
             $car['reaction']=$this->reactionService->reactionforItem($car['id'], $this->entity);
+          
+            $car['commentsNumber'] = $this->carManager->getCarCommentsNumber($car['id'])[1];
 
             $response[] = $this->autoMapping->map('array', CarGetResponse::class, $car);
         }

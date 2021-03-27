@@ -43,4 +43,19 @@ class CommentEntityRepository extends ServiceEntityRepository
             ->getQuery()
             ->getResult();
     }
+
+    public function getCommentsNumber($entity, $itemID)
+    {
+        return $this->createQueryBuilder('comment')
+            ->select('count(comment.id)')
+
+            ->andWhere('comment.entity = :entity')
+            ->setParameter('entity', $entity)
+
+            ->andWhere('comment.itemID = :itemID')
+            ->setParameter('itemID', $itemID)
+
+            ->getQuery()
+            ->getOneOrNullResult();
+    }
 }

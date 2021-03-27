@@ -53,4 +53,6 @@ class CarGetResponse
     public $imageUser;
 
     public $state;
+
+    public $commentsNumber;
 }

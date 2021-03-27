@@ -26,14 +26,17 @@ class RealEstateService
     private $documentService;
     private $params;
     private $entity = "realEstate";
+    private $commentService;
 
-    public function __construct(AutoMapping $autoMapping, RealEstateManager $realEstateManager, ImageService $imageService, DocumentService $documentService, ReactionService $reactionService, ParameterBagInterface $params)
+    public function __construct(AutoMapping $autoMapping, RealEstateManager $realEstateManager, ImageService $imageService, DocumentService $documentService, 
+    ReactionService $reactionService, ParameterBagInterface $params, CommentService $commentService)
     {
         $this->autoMapping = $autoMapping;
         $this->realEstateManager = $realEstateManager;
         $this->reactionService = $reactionService;
         $this->imageService = $imageService;
         $this->documentService = $documentService;
+        $this->commentService = $commentService;
 
         $this->params = $params->get('upload_base_url') . '/';
     }
@@ -66,6 +69,8 @@ class RealEstateService
             $row['reaction'] = $this->reactionService->reactionforItem($id, $this->entity)[0];
         
             ($row['reaction']['createdBy'] == $userID) ?  $row['reaction']['createdBy'] = true : $row['reaction']['createdBy'] = false ;
+
+            $row['comments'] = $this->commentService->getCommentsByEntityAndItemID("realEstate", $id);
            
             $response = $this->autoMapping->map('array', RealEstateGetByIdResponse::class, $row);
            
@@ -113,6 +118,8 @@ class RealEstateService
             $row['reaction']=$this->reactionService->reactionforItem($row['id'], $this->entity);
             ($row['reaction'][0]['createdBy'] == $userID) ?  $row['reaction'][0]['createdBy'] = true : $row['reaction'][0]['createdBy'] = false ;
           
+            $row['commentsNumber'] = $this->realEstateManager->getRealEstateCommentsNumber($row['id'])[1];
+          
             $response[] = $this->autoMapping->map('array', RealEstateGetAllResponse::class, $row);
         }
 
@@ -148,6 +155,8 @@ class RealEstateService
             $row['reaction']=$this->reactionService->reactionforItem($row['id'], $this->entity);
 
             ($row['reaction'][0]['createdBy'] == $userID) ?  $row['reaction'][0]['createdBy'] = true : $row['reaction'][0]['createdBy'] = false ;
+          
+            $row['commentsNumber'] = $this->realEstateManager->getRealEstateCommentsNumber($row['id'])[1];
 
             $response[] = $this->autoMapping->map('array', RealEstateGetAllResponse::class, $row);
         }
@@ -192,6 +201,8 @@ class RealEstateService
             $row['image'] = $this->params . $row['image'];
 
             $row['reaction']=$this->reactionService->reactionforItem($row['id'], $this->entity);
+          
+            $row['commentsNumber'] = $this->realEstateManager->getRealEstateCommentsNumber($row['id'])[1];
 
             $response[] = $this->autoMapping->map('array', RealEstateGetFilterResponse::class, $row);
         }
@@ -212,6 +223,8 @@ class RealEstateService
             $realEstate['imageUser'] = $this->specialLinkCheck($realEstate['specialLink']) . $realEstate['imageUser'];
 
             $realEstate['reaction']=$this->reactionService->reactionforItem($realEstate['id'], $this->entity);
+          
+            $realEstate['commentsNumber'] = $this->realEstateManager->getRealEstateCommentsNumber($realEstate['id'])[1];
             
             $response[] = $this->autoMapping->map('array', RealEstateGetAllResponse::class, $realEstate);
         }

@@ -16,12 +16,15 @@ class RealEstateManager
     private $autoMapping;
     private $entityManager;
     private $repository;
+    private $commentManager;
 
-    public function __construct(AutoMapping $autoMapping, EntityManagerInterface $entityManager, RealEstateEntityRepository $repository)
+    public function __construct(AutoMapping $autoMapping, EntityManagerInterface $entityManager, RealEstateEntityRepository $repository,
+     CommentManager $commentManager)
     {
         $this->autoMapping = $autoMapping;
         $this->entityManager = $entityManager;
         $this->repository = $repository;
+        $this->commentManager = $commentManager;
     }
 
     public function RealEstateCreate(RealEstateCreateRequest $request)
@@ -156,6 +159,11 @@ class RealEstateManager
     public function getRealEstateOfUserById($userID, $id)
     {
         return $this->repository->getRealEstateOfUserById($userID, $id);
+    }
+
+    public function getRealEstateCommentsNumber($id)
+    {
+        return $this->commentManager->getCommentsNumber("realEstate", $id);
     }
     
 }

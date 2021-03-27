@@ -24,13 +24,16 @@ class DeviceService
     private $imageService;
     private $params;
     private $entity = "device";
+    private $commentService;
 
-    public function __construct(AutoMapping $autoMapping, DeviceManager $deviceManager, ReactionService $reactionService , ImageService $imageService ,ParameterBagInterface $params)
+    public function __construct(AutoMapping $autoMapping, DeviceManager $deviceManager, ReactionService $reactionService , ImageService $imageService,
+     ParameterBagInterface $params, CommentService $commentService)
     {
         $this->autoMapping = $autoMapping;
         $this->deviceManager = $deviceManager;
         $this->reactionService = $reactionService;
         $this->imageService = $imageService;
+        $this->commentService = $commentService;
 
         $this->params = $params->get('upload_base_url').'/';
     }
@@ -63,7 +66,9 @@ class DeviceService
             $row['reaction'] = $this->reactionService->reactionforItem($id, $this->entity)[0];
             
             ($row['reaction']['createdBy'] == $userID) ?  $row['reaction']['createdBy'] = true : $row['reaction']['createdBy'] = false ;
-              
+            
+            $row['comments'] = $this->commentService->getCommentsByEntityAndItemID("device", $id);
+
             $response = $this->autoMapping->map('array', DeviceGetByIdResponse::class, $row);
            
         }
@@ -88,6 +93,8 @@ class DeviceService
             $row['reaction']=$this->reactionService->reactionforItem($row['id'], $this->entity);
 
             ($row['reaction'][0]['createdBy'] == $userID) ?  $row['reaction'][0]['createdBy'] = true : $row['reaction'][0]['createdBy'] = false ;
+          
+            $row['commentsNumber'] = $this->deviceManager->getDeviceCommentsNumber($row['id'])[1];
             
             $response[] = $this->autoMapping->map('array', DeviceGetResponse::class, $row);
         }
@@ -109,6 +116,8 @@ class DeviceService
             $row['reaction']=$this->reactionService->reactionforItem($row['id'], $this->entity);
 
             ($row['reaction'][0]['createdBy'] == $userID) ?  $row['reaction'][0]['createdBy'] = true : $row['reaction'][0]['createdBy'] = false ;
+          
+            $row['commentsNumber'] = $this->deviceManager->getDeviceCommentsNumber($row['id'])[1];
           
             $response[] = $this->autoMapping->map('array', DeviceGetResponse::class, $row);
         }
@@ -157,6 +166,8 @@ class DeviceService
             $row['image'] = $this->params . $row['image'];
 
             $row['reaction']=$this->reactionService->reactionforItem($row['id'], $this->entity);
+          
+            $row['commentsNumber'] = $this->deviceManager->getDeviceCommentsNumber($row['id'])[1];
 
             $response[] = $this->autoMapping->map('array', DevicesGetFilterResponse::class, $row);
         }
@@ -177,6 +188,8 @@ class DeviceService
             $device['imageUser'] = $this->specialLinkCheck($device['specialLink']) . $device['imageUser'];
 
             $device['reaction']=$this->reactionService->reactionforItem($device['id'], $this->entity);
+          
+            $device['commentsNumber'] = $this->deviceManager->getDeviceCommentsNumber($device['id'])[1];
             
             $response[] = $this->autoMapping->map('array', DeviceGetResponse::class, $device);
         }

@@ -18,12 +18,15 @@ class CarManager
     private $autoMapping;
     private $entityManager;
     private $carEntityRepository;
+    private $commentManager;
 
-    public function __construct(AutoMapping $autoMapping, EntityManagerInterface $entityManager, CarEntityRepository $carEntityRepository)
+    public function __construct(AutoMapping $autoMapping, EntityManagerInterface $entityManager, CarEntityRepository $carEntityRepository,
+     CommentManager $commentManager)
     {
         $this->autoMapping = $autoMapping;
         $this->entityManager = $entityManager;
         $this->carEntityRepository = $carEntityRepository;
+        $this->commentManager = $commentManager;
     }
 
     public function create(CarCreateRequest $request)
@@ -162,6 +165,11 @@ class CarManager
     public function getCarOfUserById($userID, $id)
     {
         return $this->carEntityRepository->getCarOfUserById($userID, $id);
+    }
+
+    public function getCarCommentsNumber($id)
+    {
+        return $this->commentManager->getCommentsNumber("car", $id);
     }
     
 }

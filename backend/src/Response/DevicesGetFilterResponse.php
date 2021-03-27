@@ -43,4 +43,6 @@ class DevicesGetFilterResponse
     public $image;
 
     public $reaction;
+
+    public $commentsNumber;
 }

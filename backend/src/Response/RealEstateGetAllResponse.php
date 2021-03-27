@@ -43,5 +43,6 @@ class RealEstateGetAllResponse
     
     public $imageUser;
 
+    public $commentsNumber;
     
 }

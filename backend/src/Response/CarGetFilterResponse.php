@@ -49,4 +49,6 @@ class CarGetFilterResponse
     public $state;
 
     public $reaction;
+
+    public $commentsNumber;
 }

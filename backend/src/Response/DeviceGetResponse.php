@@ -45,4 +45,6 @@ class DeviceGetResponse
     public $userName;
     
     public $imageUser;
+
+    public $commentsNumber;
 }

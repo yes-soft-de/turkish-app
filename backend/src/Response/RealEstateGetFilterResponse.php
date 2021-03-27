@@ -38,4 +38,6 @@ class RealEstateGetFilterResponse
     public $realEstateType;
 
     public $reaction;
+
+    public $commentsNumber;
 }

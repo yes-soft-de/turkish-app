@@ -18,12 +18,15 @@ class DeviceManager
     private $autoMapping;
     private $entityManager;
     private $deviceEntityRepository;
+    private $commentManager;
 
-    public function __construct(AutoMapping $autoMapping, EntityManagerInterface $entityManager, DeviceEntityRepository $deviceEntityRepository)
+    public function __construct(AutoMapping $autoMapping, EntityManagerInterface $entityManager, DeviceEntityRepository $deviceEntityRepository,
+     CommentManager $commentManager)
     {
         $this->autoMapping = $autoMapping;
         $this->entityManager = $entityManager;
         $this->deviceEntityRepository = $deviceEntityRepository;
+        $this->commentManager = $commentManager;
     }
 
     public function create(DeviceCreateRequest $request)
@@ -153,6 +156,11 @@ class DeviceManager
     public function getDeviceOfUserById($userID, $id)
     {
         return $this->deviceEntityRepository->getDeviceOfUserById($userID, $id);
+    }
+
+    public function getDeviceCommentsNumber($id)
+    {
+        return $this->commentManager->getCommentsNumber("device", $id);
     }
     
 }

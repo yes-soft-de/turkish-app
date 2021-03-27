@@ -54,4 +54,9 @@ class CommentManager
         return $this->commentRepository->getCommentsByEntityAndItemID($entity, $itemID);
     }
 
+    public function getCommentsNumber($entity, $itemID)
+    {
+        return $this->commentRepository->getCommentsNumber($entity, $itemID);
+    }
+
 }
