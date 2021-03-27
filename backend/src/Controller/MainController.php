@@ -106,6 +106,17 @@ class MainController extends BaseController
     }
 
     /**
+     * @Route("/advertisements", name="getAllAdvertisements", methods={"GET"})
+     * @return JsonResponse
+     */
+    public function getAllAdvertisements()
+    {
+        $result = $this->mainService->getAdvertisements($this->getUserId());
+
+        return $this->response($result, self::FETCH);
+    }
+
+    /**
      * @Route("/eraseall", name="deleteAllData", methods={"DELETE"})
      */
     public function eraseAllData()
