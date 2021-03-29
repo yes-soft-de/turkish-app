@@ -1,0 +1,96 @@
+<div *ngIf="devices != null">
+    <div *ngIf="devices.length !== 0">
+      <!-- <div class="container-fluid"> -->
+        <h1 class="text-center details-title my-4">{{'manage-devices-page' | translate}}</h1>
+          <div class="row">
+              <div class="col-10 col-sm-8 col-md-6 col-xl-4">
+                  <div class="form-group mb-4">
+                      <input
+                        id="exampleFormControlInput2"
+                        [(ngModel)]="name"
+                        (keyup)="applyFilter()"
+                        type="text"
+                        placeholder="{{'device-search-input' | translate}}"
+                        title="{{'device-search-input' | translate}}"
+                        class="form-control form-control-underlined border-primary search-input">
+                  </div>
+              </div>
+              <div class="col-5 col-md-6 col-xl-8 align-self-center">
+                <!-- <a class="btn btn-primary btn-sm mb-2 float-right" routerLink="/devices/add">
+                  <i class="fa fa-plus"></i>
+                  {{'add-new-car' | translate}}
+                </a> -->
+              </div>
+          </div>
+        <div class="table-responsive text-center">
+            <table class="table table-bordered main-table">
+                <tr class="bg-dark text-white">
+                    <td>{{'image' | translate}}</td>
+                    <td>{{'username' | translate}}</td>
+                    <td>{{'brand' | translate}}</td>
+                    <td>{{'cpu' | translate}}</td>
+                    <td>{{'ram' | translate}}</td>
+                    <td>{{'battery' | translate}}</td>
+                    <td>{{'price' | translate}}</td>
+                    <td>{{'country' | translate}}</td>
+                    <td>{{'type' | translate}}</td>
+                    <td style="white-space: nowrap;">{{'yearOfRelease' | translate}}</td>
+                    <td>{{'control' | translate}}</td>
+                </tr>
+                <tr *ngFor="let device of devicesFilterList | paginate: config">
+                  <td><img src="{{device?.image}}" alt="{{device.brand}} Image" class="img-thumbnail img-custom"></td>
+                  <td>{{device.userName ? device.userName : '-'}}</td>
+                  <td>{{device.brand ? device.brand : '-'}}</td>
+                  <td class="td-custom">{{device.cpu ? device.cpu : '-'}}</td>
+                  <td>{{device.ram ? device.ram : '-'}}</td>
+                  <td>{{device.battery ? device.battery : '-'}}</td>
+                  <td>{{device.price ? (device.price | currency) : '-'}}</td>
+                  <td>{{device.country ? device.country : '-'}}</td>
+                  <td>{{device.type ? device.type : '-'}}</td>
+                  <td style="white-space: nowrap;">{{device.yearOfRelease.timestamp * 1000 | date: 'yyyy-MM-dd'}}</td>
+                  <!-- <td>
+                    <a (click)="suggest(device.id, (device.suggest ? false : true))"
+                       class="text-primary mr-1 mb-1"
+                       title="Change To {{device.suggest ? 'Not Recommended' : 'Recommended' }}"
+
+                       style="cursor: pointer; {{ suggestProgress ? 'pointer-events: none;' : '' }}">
+                      {{ device.suggest ? 'Recommended' : 'Not Recommended' }}
+                    </a>
+                  </td> -->
+                  <td>
+                      <a routerLink="/devices/{{device.id}}" class="btn btn-success btn-sm mr-1 mb-1">
+                        {{'view' | translate}}
+                    </a>
+                    <a (click)="delete(device.id)" class="btn btn-danger confirm btn-sm mr-1 mb-1 {{isDeleted ? 'disabled' : ''}}">
+                        {{'delete' | translate}}
+                      </a>
+                  </td>
+                </tr>
+            </table>
+            <pagination-controls class="my-pagination"
+                                 (pageChange)="pageChanged($event)"
+                                 autoHide="true"
+                                 maxSize="5"
+                                 responsive="true"
+                                 previousLabel="{{'prev' | translate}}"
+                                 nextLabel="{{'next' | translate}}"
+                                 screenReaderPaginationLabel="Pagination"
+                                 screenReaderPageLabel="page"
+                                 screenReaderCurrentLabel="{{'you-are-on-page' | translate}}">
+            </pagination-controls>
+        </div>
+      <!-- </div> -->
+    </div>
+    <!-- <div *ngIf="devicesFilterList.length === 0">
+        <div class="container">
+            <div class="alert alert-primary text-center mt-5">{{'devices-not-found' | translate}}</div>
+            <a routerLink="/devices/add" class="btn btn-primary btn-sm mb-2 float-right">
+                <i class="fa fa-plus"></i>
+                {{'add-new-device' | translate}}
+            </a>
+        </div>
+    </div> -->
+</div>
+<div *ngIf="devices.length === 0">
+    <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
+</div>

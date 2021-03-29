@@ -1,10 +1,19 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
+import { TranslateService } from '@ngx-translate/core';
+import { SIDEBAR_MENU_ITEM } from './sidebar-menu';
+
+
 
 @Component({
   selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  template: `<router-outlet><router-outlet>`
 })
 export class AppComponent {
-  title = 'frontend';
+  menu = SIDEBAR_MENU_ITEM;
+  title = 'Her Sey Dashboard';
+
+  constructor() {
+  }
+
+
 }

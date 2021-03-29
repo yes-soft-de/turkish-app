@@ -1,0 +1,94 @@
+<div *ngIf="cars != null">
+    <div *ngIf="cars.length !== 0">
+      <!-- <div class="container-fluid"> -->
+        <h1 class="text-center details-title my-4">{{'manage-cars-page' | translate}}</h1>
+          <div class="row">
+              <div class="col-10 col-sm-8 col-md-6 col-xl-4">
+                  <div class="form-group mb-4">
+                      <input
+                        id="exampleFormControlInput2"
+                        [(ngModel)]="name"
+                        (keyup)="applyFilter()"
+                        type="text"
+                        placeholder="{{'car-search-input' | translate}}"
+                        title="{{'car-search-input' | translate}}"
+                        class="form-control form-control-underlined border-primary search-input">
+                  </div>
+              </div>
+              <div class="col-5 col-md-6 col-xl-8 align-self-center">
+                <!-- <a class="btn btn-primary btn-sm mb-2 float-right" routerLink="/cars/add">
+                  <i class="fa fa-plus"></i>
+                  {{'add-new-car' | translate}}
+                </a> -->
+              </div>
+          </div>
+        <div class="table-responsive text-center">
+            <table class="table table-bordered main-table">
+                <tr class="bg-dark text-white">
+                    <td>{{'image' | translate}}</td>
+                    <td>{{'brand' | translate}}</td>
+                    <td>{{'company' | translate}}</td>
+                    <td>{{'engine' | translate}}</td>
+                    <td>{{'price' | translate}}</td>
+                    <td>{{'gearType' | translate}}</td>
+                    <td>{{'country' | translate}}</td>
+                    <td>{{'carType' | translate}}</td>
+                    <td>{{'yearOfRelease' | translate}}</td>
+                    <td>{{'control' | translate}}</td>
+                </tr>
+                <tr *ngFor="let car of carsFilterList | paginate: config">
+                  <td><img src="{{car?.image}}" alt="{{car.brand}} Image" class="img-thumbnail img-custom"></td>
+                  <td>{{car.brand ? car.brand : '-'}}</td>
+                  <td>{{car.company ? car.company : '-'}}</td>
+                  <td>{{car.engine ? car.engine : '-'}}</td>
+                  <td>{{car.price ? (car.price | currency) : '-'}}</td>
+                  <td>{{car.gearType ? car.gearType : '-'}}</td>
+                  <td>{{car.country ? car.country : '-'}}</td>
+                  <td>{{car.carType ? car.carType : '-'}}</td>
+                  <td style="white-space: nowrap;">{{car.yearOfRelease.timestamp * 1000 | date: 'yyyy-MM-dd'}}</td>
+                  <!-- <td>
+                    <a (click)="suggest(car.id, (car.suggest ? false : true))"
+                       class="text-primary mr-1 mb-1"
+                       title="Change To {{car.suggest ? 'Not Recommended' : 'Recommended' }}"
+
+                       style="cursor: pointer; {{ suggestProgress ? 'pointer-events: none;' : '' }}">
+                      {{ car.suggest ? 'Recommended' : 'Not Recommended' }}
+                    </a>
+                  </td> -->
+                  <td>
+                      <a routerLink="/cars/{{car.id}}" class="btn btn-success btn-sm mr-1 mb-1">
+                        {{'view' | translate}}
+                    </a>
+                    <a (click)="delete(car.id)" class="btn btn-danger confirm btn-sm mr-1 mb-1 {{isDeleted ? 'disabled' : ''}}">
+                        {{'delete' | translate}}
+                      </a>
+                  </td>
+                </tr>
+            </table>
+            <pagination-controls class="my-pagination"
+                                 (pageChange)="pageChanged($event)"
+                                 autoHide="true"
+                                 maxSize="5"
+                                 responsive="true"
+                                 previousLabel="{{'prev' | translate}}"
+                                 nextLabel="{{'next' | translate}}"
+                                 screenReaderPaginationLabel="Pagination"
+                                 screenReaderPageLabel="page"
+                                 screenReaderCurrentLabel="{{'you-are-on-page' | translate}}">
+            </pagination-controls>
+        </div>
+      <!-- </div> -->
+    </div>
+    <!-- <div *ngIf="carsFilterList.length === 0">
+        <div class="container">
+            <div class="alert alert-primary text-center mt-5">{{'cars-not-found' | translate}}</div>
+            <a routerLink="/cars/add" class="btn btn-primary btn-sm mb-2 float-right">
+                <i class="fa fa-plus"></i>
+                {{'add-new-car' | translate}}
+            </a>
+        </div>
+    </div> -->
+</div>
+<div *ngIf="cars.length === 0">
+    <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
+</div>

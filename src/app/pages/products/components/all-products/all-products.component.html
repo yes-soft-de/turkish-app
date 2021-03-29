@@ -1,0 +1,112 @@
+<div *ngIf="products != null">
+    <div *ngIf="products.length !== 0">
+      <!-- <div class="container-fluid"> -->
+        <h1 class="text-center details-title my-4">{{'manage-products-page' | translate}}</h1>
+          <div class="row">
+              <div class="col-10 col-sm-8 col-md-6 col-xl-5">
+                  <div class="form-group mb-4">
+                      <input
+                        id="exampleFormControlInput2"
+                        [(ngModel)]="name"
+                        (keyup)="applyFilter()"
+                        type="text"
+                        placeholder="{{'product-search-input' | translate}}"
+                        title="{{'product-search-input' | translate}}"
+                        class="form-control form-control-underlined border-primary search-input">
+                  </div>
+              </div>
+              <div class="col-5 col-md-6 col-xl-8 align-self-center">
+                <!-- <a class="btn btn-primary btn-sm mb-2 float-right" routerLink="/products/add">
+                  <i class="fa fa-plus"></i>
+                  {{'add-new-product' | translate}}
+                </a> -->
+              </div>
+          </div>
+        <div class="table-responsive text-center">
+            <table class="table table-bordered main-table">
+                <tr class="bg-dark text-white">
+                    <td>#ID</td>
+                    <td>{{'image' | translate}}</td>
+                    <td>{{'username' | translate}}</td>
+                    <td>{{'city' | translate}}</td>
+                    <td>{{'cladding' | translate}}</td>
+                    <td>{{'country' | translate}}</td>
+                    <td>{{'description' | translate}}</td>
+                    <td>{{'entity' | translate}}</td>
+                    <!-- <td style="white-space: nowrap;">{{'home-furnishing' | translate}}</td> -->
+                    <!-- <td style="white-space: nowrap;">{{'number-of-floors' | translate}}</td> -->
+                    <td>{{'price' | translate}}</td>
+                    <!-- <td>{{'reaction' | translate}}</td> -->
+                    <!-- <td style="white-space: nowrap;">{{'real-estate-type' | translate}}</td> -->
+                    <!-- <td>{{'rooms' | translate}}</td> -->
+                    <!-- <td>{{'space' | translate}}</td> -->
+<!--                    <td>{{'state' | translate}}</td>-->
+                    <td>{{'status' | translate}}</td>
+                    <td>{{'createdAt' | translate}}</td>
+                    <!-- <td>{{'control' | translate}}</td> -->
+                </tr>
+                <tr *ngFor="let product of productsFilterList | paginate: config">
+                  <td>{{product.id}}</td>
+                  <td><img src="{{product?.image}}" alt="{{product.name}} Image" class="img-thumbnail img-custom"></td>
+                  <td>{{product.userName ? product.userName : '-'}}</td>
+                  <td>{{product.city ? product.city : '-'}}</td>
+                  <td>{{product.cladding ? product.cladding : '-'}}</td>
+                  <td>{{product.country ? product.country : '-'}}</td>
+                  <td class="td-custom">{{product.description ? product.description : '-'}}</td>
+                  <td>{{product.entity ? product.entity : '-'}}</td>
+                  <!-- <td>{{product.homeFurnishing ? product.homeFurnishing : '-'}}</td> -->
+                  <!-- <td>{{product.numberOfFloors ? product.numberOfFloors : '-'}}</td> -->
+                  <td>{{product.price ? (product.price | currency) : '-'}}</td>
+                  <!-- <td>{{product.reaction ? product.reaction : '-'}}</td> -->
+                  <!-- <td>{{product.realEstateType ? product.realEstateType : '-'}}</td> -->
+                  <!-- <td>{{product.rooms ? product.rooms : '-'}}</td> -->
+                  <!-- <td>{{product.space ? product.space : '-'}}</td> -->
+<!--                  <td>{{product.state ? product.state : '-'}}</td>-->
+                  <td>{{product.status ? product.status : '-'}}</td>
+                  <td style="white-space: nowrap;">{{product.createdAt.timestamp * 1000 | date: 'MMM d, y, h:mm:ss a'}}</td>
+                  <!-- <td>
+                    <a (click)="suggest(product.id, (product.suggest ? false : true))"
+                       class="text-primary mr-1 mb-1"
+                       title="Change To {{product.suggest ? 'Not Recommended' : 'Recommended' }}"
+
+                       style="cursor: pointer; {{ suggestProgress ? 'pointer-events: none;' : '' }}">
+                      {{ product.suggest ? 'Recommended' : 'Not Recommended' }}
+                    </a>
+                  </td> -->
+                  <!-- <td>
+                      <a routerLink="/products/edit/{{product.id}}" class="btn btn-success btn-sm mr-1 mb-1">
+                        {{'view' | translate}}
+                    </a>
+                    <a (click)="delete(product.id)" class="btn btn-danger confirm btn-sm mr-1 mb-1 {{isDeleted ? 'disabled' : ''}}">
+                        {{'delete' | translate}}
+                      </a>
+                  </td> -->
+                </tr>
+            </table>
+            <pagination-controls class="my-pagination"
+                                 (pageChange)="pageChanged($event)"
+                                 autoHide="true"
+                                 maxSize="5"
+                                 responsive="true"
+                                 previousLabel="{{'prev' | translate}}"
+                                 nextLabel="{{'next' | translate}}"
+                                 screenReaderPaginationLabel="Pagination"
+                                 screenReaderPageLabel="page"
+                                 screenReaderCurrentLabel="{{'you-are-on-page' | translate}}">
+            </pagination-controls>
+        </div>
+      <!-- </div> -->
+    </div>
+    <!-- <div *ngIf="productsFilterList.length === 0">
+        <div class="container">
+            <div class="alert alert-primary text-center mt-5">{{'products-not-found' | translate}}</div>
+            <a routerLink="/products/add" class="btn btn-primary btn-sm mb-2 float-right">
+                <i class="fa fa-plus"></i>
+                {{'add-new-product' | translate}}
+            </a>
+        </div>
+    </div> -->
+</div>
+<div *ngIf="products.length === 0">
+    <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
+</div>

@@ -1,0 +1,33 @@
+<div class="messages">
+    <div class="container">
+        <h1 class="text-center my-4">{{'chat-room' | translate}}</h1>
+        <div class="col-12 col-md-8 mx-auto border mt-4">
+            <div class="messages-body my-3 pt-3 p-2">
+                <ng-container *ngFor="let message of messages">
+                  <ng-container *ngIf="message.sender == firstSender">
+                    <p class="col-12 col-sm-11 col-md-10 recieved-message text-white py-1 px-2 rounded bg-light-blue mr-custom-auto">
+                      {{message?.msg ? message.msg : ''}}<br>
+                      <span class="message-time">{{message.sentDate | date: 'h:mm a'}}</span>
+                    </p>
+                  </ng-container>
+                    <ng-container *ngIf="message.sender == secondSender">
+                        <p class="col-12 col-sm-11 col-md-10 recieved-message text-white py-1 px-2 rounded bg-grey-blue ml-custom-auto">
+                            {{message?.msg ? message.msg : ''}}<br>
+                            <span class="message-time">{{message.sentDate | date: 'h:mm a'}}</span>
+                        </p>
+                    </ng-container>
+                </ng-container>
+            </div>
+            <div>
+            </div>
+            <form [formGroup]="messageForm" class="" (ngSubmit)="onSubmit()">
+                <div class="input-group mb-3">
+                    <input type="text" class="form-control" name="message" formControlName="message" placeholder="{{'type-here' | translate}}" aria-label="Type here" aria-describedby="basic-addon2">
+                    <div class="input-group-append">
+                        <button class="btn btn-primary" type="submit" [disabled]="!messageForm.valid">{{'send' | translate}}</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,78 @@
+<div class="device-details" *ngIf="device">
+  <div class="container">
+    <h1 class="my-3 details-title">{{'device-details-page' | translate}}</h1>
+    <div class="row">
+      <div class="col-12 col-sm-6 mx-auto text-center">
+        <div class="image-details mb-3">
+          <img (load)="checkImageloaded()" class="img-fluid img-thumbnail" src="{{device?.image}}" (error)="device.image = '../../../../../assets/default-Item.jpg'" alt="{{device?.brand}} Image" />
+        </div>
+        <div class="row w-100 mx-auto" *ngIf="device.images.length != 0">
+          <div class="col-4 mx-auto px-0 mb-1" *ngFor="let img of device.images; let i = index">
+            <div #secondImageDetails class="second-images-details" (click)="viewImage(secondImageDetails)">
+              <img (load)="checkSecondImagesloaded(i)" class="img-fluid" src="{{img?.image}}" (error)="img.image = '../../../../../assets/default-Item.jpg'" alt="Second Images" />
+            </div>
+          </div>
+        </div>
+        <div class="overlay" *ngIf="rendering && imagesRendering">
+          <div class="overlay-lds-ring"><div></div><div></div><div></div><div></div></div>
+        </div>
+      </div>
+      <div class="col-12 col-sm-6 mx-auto">
+        <div class="info-details">
+          <ul class="list-unstyled">
+            <li>
+              <div class="row">
+                <div class="col">
+                  <h4 class="text-info">{{device?.brand}}</h4>
+                </div>
+                <div class="col align-self-center text-right">
+                  <span class="status border border-secondary rounded py-1 px-2">{{device?.status}}</span>
+                </div>
+              </div>
+            </li>
+            <li class="my-2" *ngIf="device?.userImage && device?.username">
+              <div class="row">
+                <div class="col-4 col-xl-3 text-center">
+                  <img class="img-fluid img-thumbnail" src="{{device?.userImage}}" alt="{{device?.username}} Image" />
+                </div>
+                <div class="col-7 align-self-center">
+                  <h4 class="mb-2 text-secondary">{{device?.username}}</h4>
+                </div>
+              </div>
+            </li>
+            <li *ngIf="device?.type"><p class="mb-2">{{'type' | translate }} : <span class="text-secondary">{{device?.type}}</span></p></li>
+            <li *ngIf="device?.country"><p class="mb-2">{{'country' | translate }} : <span class="text-secondary">{{device?.country}}</span></p></li>
+            <li *ngIf="device?.price"><p class="mb-2">{{'price' | translate }} : <span class="text-secondary">{{device?.price | currency}}</span></p></li>
+            <li *ngIf="device?.yearOfRelease"><p class="mb-2">{{'yearOfRelease' | translate }} : <span class="text-secondary">{{device?.yearOfRelease.timestamp * 1000 | date: 'yyyy-MM-dd'}}</span></p></li>
+          </ul>
+        </div><!--.info-details-->
+      </div><!--.col-12-->
+      <div class="col-12">
+        <hr class="w-50 mx-auto">
+      </div>
+      <div class="col-12">
+        <h3 class="">{{'more-info' | translate}} :</h3>
+      </div>
+      <div class="col-12 col-sm-6 mx-auto">
+        <ul class="list-unstyled">
+          <li *ngIf="device?.city"><p class="mb-2">{{'city' | translate }} : {{device?.city}}</p></li>
+<!--          <li *ngIf="device?.distance"><p class="mb-2">{{'distance' | translate }} : {{device?.distance}}</p></li>-->
+        </ul>
+      </div><!--.col-12-->
+      <div class="col-12 col-sm-6 mx-auto">
+        <ul class="list-unstyled">
+          <li *ngIf="device?.createdBy"><p class="mb-2">{{'createdBy' | translate }} : {{device?.createdBy}}</p></li>
+          <li *ngIf="device?.createdAt"><p class="mb-2">{{'createdAt' | translate }} : {{device?.createdAt.timestamp * 1000 | date: 'yyyy-MM-dd'}}</p></li>
+          <li *ngIf="device?.updatedAt"><p class="mb-2">{{'updatedAt' | translate }} : {{device?.updatedAt.timestamp * 1000 | date: 'yyyy-MM-dd'}}</p></li>
+        </ul>
+      </div><!--.col-12-->
+      <div class="col-12" *ngIf="device?.description">
+        <h5>{{'description' | translate }} : </h5>
+        <p>{{device?.description}}</p>
+      </div>
+    </div><!--.row-->
+  </div>
+</div>
+<div *ngIf="!device">
+  <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
+</div>

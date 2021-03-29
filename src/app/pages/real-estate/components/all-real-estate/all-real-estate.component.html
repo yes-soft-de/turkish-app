@@ -1,0 +1,94 @@
+<div *ngIf="realEstates != null">
+    <div *ngIf="realEstates.length !== 0">
+      <!-- <div class="container-fluid"> -->
+        <h1 class="text-center details-title my-4">{{'manage-real-estates-page' | translate}}</h1>
+          <div class="row">
+              <div class="col-10 col-sm-8 col-md-6 col-xl-4">
+                  <div class="form-group mb-4">
+                      <input
+                        id="exampleFormControlInput2"
+                        [(ngModel)]="name"
+                        (keyup)="applyFilter()"
+                        type="text"
+                        placeholder="{{'real-estate-search-input' | translate}}"
+                        title="{{'real-estate-search-input' | translate}}"
+                        class="form-control form-control-underlined border-primary search-input">
+                  </div>
+              </div>
+              <div class="col-5 col-md-6 col-xl-8 align-self-center">
+                <!-- <a class="btn btn-primary btn-sm mb-2 float-right" routerLink="/realEstates/add">
+                  <i class="fa fa-plus"></i>
+                  {{'add-new-realEstate' | translate}}
+                </a> -->
+              </div>
+          </div>
+        <div class="table-responsive text-center">
+            <table class="table table-bordered main-table">
+                <tr class="bg-dark text-white">
+                  <td>{{'image' | translate}}</td>
+                  <td>{{'username' | translate}}</td>
+                  <td>{{'country' | translate}}</td>
+                  <td>{{'real-estate-type' | translate}}</td>
+                  <td>{{'number-of-floors' | translate}}</td>
+                  <td>{{'rooms' | translate}}</td>
+                  <td>{{'city' | translate}}</td>
+                  <td>{{'price' | translate}}</td>
+                  <td>{{'createdAt' | translate}}</td>
+                  <td>{{'control' | translate}}</td>
+                </tr>
+                <tr *ngFor="let realEstate of realEstatesFilterList | paginate: config">
+                  <td><img src="{{realEstate?.image}}" alt="Real Estate Image" class="img-thumbnail img-custom"></td>
+                  <td>{{realEstate?.userName ? realEstate?.userName : '-'}}</td>
+                  <td>{{realEstate?.country ? realEstate?.country : '-'}}</td>
+                  <td>{{realEstate?.realEstateType ? realEstate?.realEstateType : '-'}}</td>
+                  <td>{{realEstate?.numberOfFloors ? realEstate?.numberOfFloors : '-'}}</td>
+                  <td>{{realEstate?.rooms ? realEstate?.rooms : '-'}}</td>
+                  <td>{{realEstate?.city ? realEstate?.city : '-'}}</td>
+                  <td>{{realEstate?.price ? (realEstate?.price | currency) : '-'}}</td>
+                  <td style="white-space: nowrap;">{{realEstate?.createdAt?.timestamp * 1000 | date: 'MMM d, y, h:mm:ss a'}}</td>
+                  <!-- <td>
+                    <a (click)="suggest(realEstate.id, (realEstate.suggest ? false : true))"
+                       class="text-primary mr-1 mb-1"
+                       title="Change To {{realEstate.suggest ? 'Not Recommended' : 'Recommended' }}"
+
+                       style="cursor: pointer; {{ suggestProgress ? 'pointer-events: none;' : '' }}">
+                      {{ realEstate.suggest ? 'Recommended' : 'Not Recommended' }}
+                    </a>
+                  </td> -->
+                  <td>
+                      <a routerLink="/real-estate/{{realEstate.id}}" class="btn btn-success btn-sm mr-1 mb-1">
+                        {{'view' | translate}}
+                    </a>
+                    <a (click)="delete(realEstate.id)" class="btn btn-danger confirm btn-sm mr-1 mb-1 {{isDeleted ? 'disabled' : ''}}">
+                        {{'delete' | translate}}
+                      </a>
+                  </td>
+                </tr>
+            </table>
+            <pagination-controls class="my-pagination"
+                                 (pageChange)="pageChanged($event)"
+                                 autoHide="true"
+                                 maxSize="5"
+                                 responsive="true"
+                                 previousLabel="{{'prev' | translate}}"
+                                 nextLabel="{{'next' | translate}}"
+                                 screenReaderPaginationLabel="Pagination"
+                                 screenReaderPageLabel="page"
+                                 screenReaderCurrentLabel="{{'you-are-on-page' | translate}}">
+            </pagination-controls>
+        </div>
+      <!-- </div> -->
+    </div>
+    <!-- <div *ngIf="realEstatesFilterList.length === 0">
+        <div class="container">
+            <div class="alert alert-primary text-center mt-5">{{'realEstates-not-found' | translate}}</div>
+            <a routerLink="/realEstates/add" class="btn btn-primary btn-sm mb-2 float-right">
+                <i class="fa fa-plus"></i>
+                {{'add-new-realEstate' | translate}}
+            </a>
+        </div>
+    </div> -->
+</div>
+<div *ngIf="realEstates.length === 0">
+    <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
+</div>

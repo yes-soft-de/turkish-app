@@ -1,0 +1,35 @@
+<div class="car-details" *ngIf="reportDetails">
+  <div class="container">
+    <h1 class="my-3 details-title">{{'car-details-page' | translate}}</h1>
+    <div class="row">
+      <div class="col-12 col-sm-6 mx-auto text-center">
+        <div class="image-details mb-3">
+          <img class="img-fluid img-thumbnail" src="{{reportDetails?.image}}" (error)="reportDetails.image = '../../../../../assets/default-Item.jpg'" alt="{{reportDetails?.itemName}} Image" />
+        </div>
+      </div>
+      <div class="col-12 col-sm-6 mx-auto">
+        <div class="info-details">
+          <ul class="list-unstyled">
+            <li>
+              <div class="row">
+                <div class="col">
+                  <h4 class="text-info">{{reportDetails?.itemName}}</h4>
+                </div>
+<!--                <div class="col align-self-center">-->
+<!--                  <span class="border border-secondary rounded py-1 px-2">{{reportDetails?.status}}</span>-->
+<!--                </div>-->
+              </div>
+            </li>
+            <li *ngIf="reportDetails?.userName"><p class="mb-2">{{'username' | translate }} : <span class="text-secondary">{{reportDetails?.userName}}</span></p></li>
+            <li *ngIf="reportDetails?.entity"><p class="mb-2">{{'entity' | translate }} : <span class="text-secondary">{{reportDetails?.entity}}</span></p></li>
+            <li *ngIf="reportDetails?.reason"><p class="mb-2">{{'reason' | translate }} : <span class="text-secondary">{{reportDetails?.reason | currency}}</span></p></li>
+<!--            <li *ngIf="reportDetails?.yearOfRelease"><p class="mb-2">{{'yearOfRelease' | translate }} : <span class="text-secondary">{{reportDetails?.yearOfRelease.timestamp * 1000 | date: 'yyyy-MM-dd'}}</span></p></li>-->
+          </ul>
+        </div><!--.info-details-->
+      </div><!--.col-12-->
+    </div><!--.row-->
+  </div>
+</div>
+<div *ngIf="!reportDetails">
+  <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
+</div>

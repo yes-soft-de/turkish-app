@@ -1,0 +1,72 @@
+<div class="chats" *ngIf="chats.length != 0">
+   <div class="container-fluid">
+    <div class="card my-5">
+      <div class="card-header">
+        <h1 class="text-center details-title my-4">{{'manage-chats-page' | translate}}</h1>
+      </div>
+      <div class="card-body p-2">
+        <div class="row">
+          <div class="col-10 col-sm-8 col-md-6 col-xl-4">
+            <div class="form-group mb-0 mt-3">
+              <input
+                id="exampleFormControlInput2"
+                [(ngModel)]="name"
+                (keyup)="applyFilter()"
+                type="text"
+                placeholder="{{'chat-search-input' | translate}}"
+                title="{{'chat-search-input' | translate}}"
+                class="form-control form-control-underlined border-primary search-input">
+            </div>
+          </div>
+          <div class="col-5 col-md-6 col-xl-8 align-self-center">
+            <!-- <a class="btn btn-primary btn-sm mb-2 float-right" routerLink="/cars/add">
+              <i class="fa fa-plus"></i>
+              {{'add-new-car' | translate}}
+            </a> -->
+          </div>
+        </div>
+        <div class="messages-body my-3 pt-3 p-2">
+          <div class="comment-block" *ngFor="let chat of chatsList | paginate: config">
+            <a routerLink="{{chat?.roomID}}">
+              <div class="row">
+                <div class="col-2 col-lg-1 text-center pr-0 align-self-center">
+                  <div class="user-img">
+                    <img class="res-image"
+                        src="{{chat?.image ? chat?.image :  '../../../../../assets/default-avatar.jpg'}}"
+                        alt=""/>
+                  </div>
+                </div>
+                <div class="col-10 col-lg-11 mt-2 mt-sm-0">
+                  <div class="comment-body py-2 px-3">
+                    <div class="time">
+                      <span class="pb-1">{{chat?.username}} {{chat?.startAt != null ? '( ' + (chat?.startAt.timestamp * 1000 | date: 'medium') + ' )' : ''}}</span>
+                    </div>
+    <!--                <p class="comment m-0 mt-2">-->
+    <!--                  {{comment.body}}-->
+    <!--                </p>-->
+                  </div>
+                </div>
+              </div><!--.row-->
+            </a>
+          </div><!--.comment-block-->
+        </div><!--.messages-body-->
+      </div><!--.card-body-->
+      <div class="card-footer">
+        <pagination-controls class="my-pagination"
+                             (pageChange)="pageChanged($event)"
+                             autoHide="true"
+                             maxSize="5"
+                             responsive="true"
+                             previousLabel="{{'prev' | translate}}"
+                             nextLabel="{{'next' | translate}}"
+                             screenReaderPaginationLabel="Pagination"
+                             screenReaderPageLabel="page"
+                             screenReaderCurrentLabel="{{'you-are-on-page' | translate}}">
+        </pagination-controls>
+      </div><!--.card-footer-->
+    </div><!--.card-->
+   </div>
+</div><!--.chats-->
+<div *ngIf="chats.length === 0">
+  <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
+</div>
