@@ -8,13 +8,7 @@ class CarGetFilterResponse
 
     public $id;
 
-    public $brand;
-
-    public $company;
-
-    public $yearOfRelease;
-
-    public $engine;
+    public $yearOfProduction;
 
     public $price;
 
@@ -36,17 +30,11 @@ class CarGetFilterResponse
 
     public $gearType;
 
-    public $cc;
-
-    public $fuel;
-
     public $country;
 
     public $city;
 
     public $image;
-
-    public $state;
 
     public $reaction;
 

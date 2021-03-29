@@ -29,29 +29,9 @@ class DeviceEntity
     private $type;
 
     /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $cpu;
-
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $ram;
-
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $battery;
-
-    /**
      * @ORM\Column(type="integer", length=255)
      */
     private $price;
-
-    /**
-     * @ORM\Column(type="date", nullable=true)
-     */
-    private $yearOfRelease;
 
     /**
      * @ORM\Column(type="text", nullable=true)
@@ -79,11 +59,6 @@ class DeviceEntity
      * @ORM\Column(type="datetime", nullable=true)
      */
     private $updateAt;
-    
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $gauge;
 
      /**
      * @ORM\Column(type="string", length=100)
@@ -94,11 +69,6 @@ class DeviceEntity
      * @ORM\Column(type="string", length=100)
      */
     private $city;
-
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $durationOfUse;
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -144,42 +114,6 @@ class DeviceEntity
         return $this;
     }
 
-    public function getCpu(): ?string
-    {
-        return $this->cpu;
-    }
-
-    public function setCpu(string $cpu): self
-    {
-        $this->cpu = $cpu;
-
-        return $this;
-    }
-
-    public function getRam(): ?string
-    {
-        return $this->ram;
-    }
-
-    public function setRam(string $ram): self
-    {
-        $this->ram = $ram;
-
-        return $this;
-    }
-
-    public function getBattery(): ?string
-    {
-        return $this->battery;
-    }
-
-    public function setBattery(string $battery): self
-    {
-        $this->battery = $battery;
-
-        return $this;
-    }
-
     public function getPrice(): ?string
     {
         return $this->price;
@@ -188,18 +122,6 @@ class DeviceEntity
     public function setPrice(string $price): self
     {
         $this->price = $price;
-
-        return $this;
-    }
-
-    public function getProductionYear()
-    {
-        return $this->yearOfRelease;
-    }
-
-    public function setProductionYear($yearOfRelease): self
-    {
-        $this->yearOfRelease = new \DateTime($yearOfRelease);
 
         return $this;
     }
@@ -264,18 +186,6 @@ class DeviceEntity
         return $this;
     }
 
-    public function getGauge(): ?string
-    {
-        return $this->gauge;
-    }
-
-    public function setGauge(string $gauge): self
-    {
-        $this->gauge = $gauge;
-
-        return $this;
-    }
-
     public function getCountry(): ?string
     {
         return $this->country;
@@ -296,18 +206,6 @@ class DeviceEntity
     public function setCity(string $city): self
     {
         $this->city = $city;
-
-        return $this;
-    }
-
-    public function getDurationOfUse(): ?string
-    {
-        return $this->durationOfUse;
-    }
-
-    public function setDurationOfUse(string $durationOfUse): self
-    {
-        $this->durationOfUse = $durationOfUse;
 
         return $this;
     }

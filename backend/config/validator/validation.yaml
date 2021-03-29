@@ -22,12 +22,6 @@ App\Request\UpdateImageRequest:
 
 App\Request\CarCreateRequest:
   properties:
-    brand:
-      - NotBlank: ~
-    company:
-      - NotBlank: ~
-    engine:
-      - NotBlank: ~
     price:
       - NotBlank: ~
     createdBy:
@@ -35,10 +29,6 @@ App\Request\CarCreateRequest:
     distance:
       - NotBlank: ~
     carType:
-      - NotBlank: ~
-    fuel:
-      - NotBlank: ~
-    cc:
       - NotBlank: ~
     city:
       - NotBlank: ~
@@ -51,12 +41,6 @@ App\Request\CarUpdateRequest:
   properties:
     id:
       - NotBlank: ~
-    brand:
-      - NotBlank: ~
-    company:
-      - NotBlank: ~
-    engine:
-      - NotBlank: ~
     price:
       - NotBlank: ~
     status:
@@ -65,40 +49,22 @@ App\Request\CarUpdateRequest:
       - NotBlank: ~
     carType:
       - NotBlank: ~
-    fuel:
-      - NotBlank: ~
-    cc:
-      - NotBlank: ~
     city:
       - NotBlank: ~
     country:
       - NotBlank: ~
     gearType:
       - NotBlank: ~
-    state:
-      - NotBlank: ~
 
 App\Request\DeviceCreateRequest:
   properties:
     brand:
       - NotBlank: ~
-    cpu:
-      - NotBlank: ~
-    ram:
-      - NotBlank: ~
-    battery:
-      - NotBlank: ~
     price:
       - NotBlank: ~
     createdBy:
       - NotBlank: ~
-    gauge:
-      - NotBlank: ~
-    durationOfUse:
-      - NotBlank: ~
     city:
-      - NotBlank: ~
-    yearOfRelease:
       - NotBlank: ~
 
 App\Request\DeviceUpdateRequest:
@@ -107,19 +73,9 @@ App\Request\DeviceUpdateRequest:
       - NotBlank: ~
     brand:
       - NotBlank: ~
-    cpu:
-      - NotBlank: ~
-    ram:
-      - NotBlank: ~
-    battery:
-      - NotBlank: ~
     price:
       - NotBlank: ~
     status:
-      - NotBlank: ~
-    gauge:
-      - NotBlank: ~
-    durationOfUse:
       - NotBlank: ~
     city:
       - NotBlank: ~
@@ -134,8 +90,6 @@ App\Request\RealEstateCreateRequest:
       - NotBlank: ~
     createdBy:
       - NotBlank: ~
-    rooms:
-      - NotBlank: ~
 
 App\Request\RealEstateUpdateRequest:
   properties:
@@ -148,10 +102,6 @@ App\Request\RealEstateUpdateRequest:
     price:
       - NotBlank: ~
     status:
-      - NotBlank: ~
-    state:
-      - NotBlank: ~
-    rooms:
       - NotBlank: ~
 
 App\Request\StatusCreateRequest:

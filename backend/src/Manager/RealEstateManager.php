@@ -43,19 +43,9 @@ class RealEstateManager
         return $result = $this->repository->getRealEstateById($id);
     }
 
-    public function getRealEstateByIdUnaccepted($id)
-    {
-        return $result = $this->repository->getRealEstateByIdUnaccepted($id);
-    }
-
     public function getAllRealEstate()
     {
         return $result = $this->repository->getAllRealEstate();
-    }
-
-    public function getAllRealEstateUnaccepted()
-    {
-        return $result = $this->repository->getAllRealEstateUnaccepted();
     }
 
     public function getRealEstateByUser($userID)
@@ -66,20 +56,23 @@ class RealEstateManager
     public function realEstateUpdate(RealEstateUpdateRequest $request)
     {
         $Entity = $this->repository->find($request->getId());
-        $request->setUpdateAt($request->getUpdateAt());
-        if (!$Entity) {
+        
+        if (!$Entity) 
+        {
 
         }
-        else {
+        else 
+        {
             $Entity = $this->autoMapping->mapToObject(RealEstateUpdateRequest::class, RealEstateEntity::class, $request, $Entity);
 
-            if($request->getStatus() == "sold")
+            if($request->getStatus() == "sold" && $Entity->getCompleteDate() == null)
             {
                 $Entity->setCompleteDate(new \DateTime('Now'));
             }
 
             $this->entityManager->flush();
         }
+
         return $Entity;
     }
 
@@ -100,41 +93,41 @@ class RealEstateManager
         return $item;
     }
 
-    public function getFilter($price, $price_2, $location)
+    public function getFilter($price, $price_2, $city)
     {
-        if ($location != null && $price == null && $price_2 == null)
+        if ($city != null && $price == null && $price_2 == null)
         {
-            return $this->repository->getFilterCity($location);
+            return $this->repository->getFilterCity($city);
         }
 
-        elseif ($price != null && $location == null && $price_2 == null)
+        elseif ($price != null && $city == null && $price_2 == null)
         {
             return $this->repository->getFilterPrice($price);
         }
 
-        elseif ($price != null && $location != null && $price_2 == null)
+        elseif ($price != null && $city != null && $price_2 == null)
         {
-            return $this->repository->getFilterByPriceAndCity($price, $location);
+            return $this->repository->getFilterByPriceAndCity($price, $city);
         }
 
-        elseif ($price != null && $price_2 != null && $location == null)
+        elseif ($price != null && $price_2 != null && $city == null)
         {
             return $this->repository->getFilterByTwoPrices($price, $price_2);
         }
 
-        elseif ($price != null && $price_2 != null && $location != null)
+        elseif ($price != null && $price_2 != null && $city != null)
         {
-            return $this->repository->getFilterByTwoPricesAndCity($price, $price_2, $location);
+            return $this->repository->getFilterByTwoPricesAndCity($price, $price_2, $city);
         }
 
-        elseif ($price == null && $location == null && $price_2 != null)
+        elseif ($price == null && $city == null && $price_2 != null)
         {
             return $this->repository->getFilterPrice($price_2);
         }
 
-        elseif ($price == null && $location != null && $price_2 != null)
+        elseif ($price == null && $city != null && $price_2 != null)
         {
-            return $this->repository->getFilterByPriceAndCity($price_2, $location);
+            return $this->repository->getFilterByPriceAndCity($price_2, $city);
         }
         
     }

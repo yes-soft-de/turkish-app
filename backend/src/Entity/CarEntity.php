@@ -19,24 +19,9 @@ class CarEntity
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $brand;
-
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $company;
-
-    /**
      * @ORM\Column(type="date", nullable=true)
      */
-    private $yearOfRelease;
-
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $engine;
+    private $yearOfProduction;
 
     /**
      * @ORM\Column(type="integer", length=50, nullable=true)
@@ -86,16 +71,6 @@ class CarEntity
     private $gearType;
 
     /**
-     * @ORM\Column(type="string", length=50)
-     */
-    private $cc;
-
-    /**
-     * @ORM\Column(type="string", length=50)
-     */
-    private $fuel;
-
-    /**
      * @ORM\Column(type="string", length=100)
      */
     private $country;
@@ -116,11 +91,6 @@ class CarEntity
     private $specialLink;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
-    private $state;
-
-    /**
      * @ORM\Column(type="datetime", nullable=true)
      */
     private $completeDate;
@@ -131,50 +101,14 @@ class CarEntity
         return $this->id;
     }
 
-    public function getModel(): ?string
-    {
-        return $this->brand;
-    }
-
-    public function setModel(string $brand): self
-    {
-        $this->brand = $brand;
-
-        return $this;
-    }
-
-    public function getCompany(): ?string
-    {
-        return $this->company;
-    }
-
-    public function setCompany(string $company): self
-    {
-        $this->company = $company;
-
-        return $this;
-    }
-
     public function getProductionYear()
     {
-        return $this->yearOfRelease;
+        return $this->yearOfProduction;
     }
 
-    public function setProductionYear($yearOfRelease): self
+    public function setProductionYear($yearOfProduction): self
     {
-        $this->yearOfRelease = new \DateTime($yearOfRelease);
-
-        return $this;
-    }
-
-    public function getEngine(): ?string
-    {
-        return $this->engine;
-    }
-
-    public function setEngine(string $engine): self
-    {
-        $this->engine = $engine;
+        $this->yearOfProduction = new \DateTime($yearOfProduction);
 
         return $this;
     }
@@ -287,42 +221,6 @@ class CarEntity
         return $this;
     }
 
-    public function getCc(): ?string
-    {
-        return $this->cc;
-    }
-
-    public function setCc(string $cc): self
-    {
-        $this->cc = $cc;
-
-        return $this;
-    }
-
-    public function getFuel(): ?string
-    {
-        return $this->fuel;
-    }
-
-    public function setFuel(string $fuel): self
-    {
-        $this->fuel = $fuel;
-
-        return $this;
-    }
-
-    public function getLocation(): ?string
-    {
-        return $this->location;
-    }
-
-    public function setLocation(string $location): self
-    {
-        $this->location = $location;
-
-        return $this;
-    }
-
     public function getImage(): ?string
     {
         return $this->image;
@@ -343,18 +241,6 @@ class CarEntity
     public function setSpecialLink(?bool $specialLink): self
     {
         $this->specialLink = $specialLink;
-
-        return $this;
-    }
-
-    public function getState(): ?string
-    {
-        return $this->state;
-    }
-
-    public function setState(?string $state): self
-    {
-        $this->state = $state;
 
         return $this;
     }

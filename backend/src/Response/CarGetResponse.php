@@ -10,13 +10,7 @@ class CarGetResponse
 
     public $id;
 
-    public $brand;
-
-    public $company;
-
-    public $yearOfRelease;
-
-    public $engine;
+    public $yearOfProduction;
 
     public $price;
 
@@ -36,10 +30,6 @@ class CarGetResponse
 
     public $gearType;
 
-    public $cc;
-
-    public $fuel;
-
     public $country;
 
     public $city;
@@ -51,8 +41,6 @@ class CarGetResponse
     public $userName;
     
     public $imageUser;
-
-    public $state;
 
     public $commentsNumber;
 }

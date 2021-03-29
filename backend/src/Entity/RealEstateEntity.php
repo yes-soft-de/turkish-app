@@ -66,11 +66,6 @@ class RealEstateEntity
     private $updateAt;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
-    private $state;
-
-    /**
      * @ORM\Column(type="string", length=255)
      */
     private $image;
@@ -86,11 +81,6 @@ class RealEstateEntity
     private $numberOfFloors;
 
     /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $cladding;
-
-    /**
      * @ORM\Column(type="string", length=50)
      */
     private $homeFurnishing;
@@ -99,11 +89,6 @@ class RealEstateEntity
      * @ORM\Column(type="string", length=50)
      */
     private $realEstateType;
-
-    /**
-     * @ORM\Column(type="string", length=50, nullable=true)
-     */
-    private $rooms;
 
     /**
      * @ORM\Column(type="datetime", nullable=true)
@@ -204,7 +189,6 @@ class RealEstateEntity
 
         return $this;
     }
-
     
     public function getUpdateAt(): ?\DateTimeInterface
     {
@@ -214,18 +198,6 @@ class RealEstateEntity
     public function setUpdateAt(\DateTimeInterface $updateAt): self
     {
         $this->updateAt = $updateAt;
-
-        return $this;
-    }
-    
-    public function getState(): ?string
-    {
-        return $this->state;
-    }
-
-    public function setState(?string $state): self
-    {
-        $this->state = $state;
 
         return $this;
     }
@@ -266,18 +238,6 @@ class RealEstateEntity
         return $this;
     }
 
-    public function getCladding(): ?string
-    {
-        return $this->cladding;
-    }
-
-    public function setCladding(string $cladding): self
-    {
-        $this->cladding = $cladding;
-
-        return $this;
-    }
-
     public function getHomeFurnishing(): ?string
     {
         return $this->homeFurnishing;
@@ -298,18 +258,6 @@ class RealEstateEntity
     public function setRealEstateType(string $realEstateType): self
     {
         $this->realEstateType = $realEstateType;
-
-        return $this;
-    }
-
-    public function getRooms(): ?string
-    {
-        return $this->rooms;
-    }
-
-    public function setRooms(?string $rooms): self
-    {
-        $this->rooms = $rooms;
 
         return $this;
     }

@@ -45,11 +45,6 @@ class CarManager
         return $this->carEntityRepository->getCarById($id);
     }
 
-    public function getCarByIdUnaccepted($id)
-    {
-        return $this->carEntityRepository->getCarByIdUnaccepted($id);
-    }
-
     public function getCarsOfUser($userID)
     {
         return $this->carEntityRepository->getCarsOfUser($userID);
@@ -60,15 +55,9 @@ class CarManager
         return $this->carEntityRepository->getAllCars();
     }
 
-    public function getAllCarsUnaccepted()
-    {
-        return $this->carEntityRepository->getAllCarsUnaccepted();
-    }
-
     public function update(CarUpdateRequest $request)
     {
         $carEntity = $this->carEntityRepository->find($request->getId());
-        $request->setUpdateAt($request->getUpdateAt());
         
         if(!$carEntity)
         {
@@ -79,7 +68,7 @@ class CarManager
             $carEntity = $this->autoMapping->mapToObject(CarUpdateRequest::class,
                 CarEntity::class, $request, $carEntity);
 
-            if($request->getStatus() == "sold")
+            if($request->getStatus() == "sold" && $carEntity->getCompleteDate() == null)
             {
                 $carEntity->setCompleteDate(new \DateTime('Now'));
             }
@@ -145,9 +134,9 @@ class CarManager
         }
     }
 
-    public function getCarsByBrand($brand)
+    public function getCarsByType($brand)
     {
-        return $this->carEntityRepository->getCarsByBrand($brand);
+        return $this->carEntityRepository->getCarsByType($brand);
     }
 
     public function getSoldCarsOfUser($userID)

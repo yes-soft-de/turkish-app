@@ -36,7 +36,7 @@ class MainService
     {
         $response = [];
 
-        $carsResult = $this->carService->getCarsByBrand($query);
+        $carsResult = $this->carService->getCarsByType($query);
 
         $devicesResult = $this->deviceService->getDevicesByBrand($query);
 

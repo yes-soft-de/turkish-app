@@ -12,31 +12,15 @@ class DeviceUpdateRequest
     
     private $brand;
 
-    private $cpu;
-
-    private $ram;
-
-    private $battery;
-
     private $price;
-
-    private $yearOfRelease;
 
     private $description;
 
     private $status;
 
-    // private $createdBy;
-
-    private $updateAt;
-
-    private $gauge;
-
     private $country;
 
     private $city;
-
-    private $durationOfUse;
 
     private $image;
 
@@ -75,54 +59,6 @@ class DeviceUpdateRequest
     /**
      * @return mixed
      */
-    public function getCpu()
-    {
-        return $this->cpu;
-    }
-
-    /**
-     * @param mixed $cpu
-     */
-    public function setCpu($cpu): void
-    {
-        $this->cpu = $cpu;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getRam()
-    {
-        return $this->ram;
-    }
-
-    /**
-     * @param mixed $ram
-     */
-    public function setRam($ram): void
-    {
-        $this->ram = $ram;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getBattery()
-    {
-        return $this->battery;
-    }
-
-    /**
-     * @param mixed $battery
-     */
-    public function setBattery($battery): void
-    {
-        $this->battery = $battery;
-    }
-
-    /**
-     * @return mixed
-     */
     public function getPrice()
     {
         return $this->price;
@@ -134,22 +70,6 @@ class DeviceUpdateRequest
     public function setPrice($price): void
     {
         $this->price = $price;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getYearOfRelease()
-    {
-        return $this->yearOfRelease;
-    }
-
-    /**
-     * @param mixed $yearOfRelease
-     */
-    public function setYearOfRelease($yearOfRelease): void
-    {
-        $this->yearOfRelease = $yearOfRelease;
     }
 
     /**
@@ -184,22 +104,6 @@ class DeviceUpdateRequest
         $this->status = $status;
     }
 
-    // /**
-    //  * @return mixed
-    //  */
-    // public function getCreatedBy()
-    // {
-    //     return $this->createdBy;
-    // }
-
-    // /**
-    //  * @param mixed $createdBy
-    //  */
-    // public function setCreatedBy($createdBy): void
-    // {
-    //     $this->createdBy = $createdBy;
-    // }
-
      /**
      * @return mixed
      */
@@ -214,22 +118,6 @@ class DeviceUpdateRequest
     public function setUpdateAt($updateAt): void
     {
          $this->updateAt = new DateTime('Now')  ;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getGauge()
-    {
-        return $this->gauge;
-    }
-
-    /**
-     * @param mixed $gauge
-     */
-    public function setGauge($gauge): void
-    {
-        $this->gauge = $gauge;
     }
 
     /**
@@ -261,22 +149,6 @@ class DeviceUpdateRequest
     public function setCity($city): void
     {
         $this->city = $city;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getDurationOfUse()
-    {
-        return $this->durationOfUse;
-    }
-
-    /**
-     * @param mixed $durationOfUse
-     */
-    public function setDurationOfUse($durationOfUse): void
-    {
-        $this->durationOfUse = $durationOfUse;
     }
 
 }

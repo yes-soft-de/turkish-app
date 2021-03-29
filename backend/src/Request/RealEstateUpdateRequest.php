@@ -20,23 +20,13 @@ class RealEstateUpdateRequest
 
     private $status;
 
-    // private $createdBy;
-
-    private $updateAt;
-
-    private $state;
-
     private $image;
 
     private $numberOfFloors;
 
-    private $cladding;
-
     private $homeFurnishing;
 
     private $realEstateType;
-    
-    private $rooms;
 
     /**
      * Get the value of id
@@ -53,41 +43,9 @@ class RealEstateUpdateRequest
      */ 
     public function setId($id)
     {
-    $this->id = $id;
+        $this->id = $id;
 
-    return $this;
-    }
-
-    // /**
-    //  * @return mixed
-    //  */
-    // public function getCreatedBy()
-    // {
-    //     return $this->createdBy;
-    // }
-
-    // /**
-    //  * @param mixed $createdBy
-    //  */
-    // public function setCreatedBy($createdBy): void
-    // {
-    //     $this->createdBy = $createdBy;
-    // }
-
-    /**
-     * @return mixed
-     */
-    public function getUpdateAt()
-    {
-        return $this->updateAt;
-    }
-
-    /**
-     * @param mixed $updateAt
-     */
-    public function setUpdateAt($updateAt): void
-    {
-         $this->updateAt = new DateTime('Now')  ;
+        return $this;
     }
 
     /**

@@ -20,13 +20,14 @@ class DeviceEntityRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, DeviceEntity::class);
     }
+
     public $country;
+
     public function getDeviceById($id)
     {
         return $this->createQueryBuilder('device')
-            ->select('device.id', 'device.specialLink', 'device.image','device.brand', 'device.type', 'device.cpu', 'device.ram', 'device.createdBy',
-                'device.battery', 'device.price', 'device.yearOfRelease', 'device.description', 'device.status', 'device.createdAt',
-                'device.updateAt', 'device.country', 'device.city', 'device.durationOfUse', 'device.gauge', 'userProfileEntity.userName as username', 'userProfileEntity.image as userImage')
+            ->select('device.id', 'device.specialLink', 'device.image','device.brand', 'device.type', 'device.createdBy', 'device.price', 'device.description', 
+            'device.status', 'device.createdAt', 'device.updateAt', 'device.country', 'device.city', 'userProfileEntity.userName as username', 'userProfileEntity.image as userImage')
 
             ->andWhere('device.id = :id')
 
@@ -46,8 +47,19 @@ class DeviceEntityRepository extends ServiceEntityRepository
     public function getDevicesOfUser($createdBy)
     {
         return $this->createQueryBuilder('device')
+            ->select('device.id', 'device.specialLink', 'device.image','device.brand', 'device.type', 'device.createdBy', 'device.price', 'device.description', 
+            'device.status', 'device.createdAt', 'device.updateAt', 'device.country', 'device.city', 'userProfileEntity.userName', 'userProfileEntity.image as imageUser')
+
+            ->leftJoin(
+                UserProfileEntity::class,
+                'userProfileEntity',
+                Join::WITH,
+                'userProfileEntity.userID = device.createdBy'
+            )
+
             ->andWhere('device.createdBy = :createdBy')
             ->setParameter('createdBy', $createdBy)
+
             ->getQuery()
             ->getArrayResult();
     }
@@ -55,26 +67,26 @@ class DeviceEntityRepository extends ServiceEntityRepository
     public function getAllDevices()
     {
         return $this->createQueryBuilder('device')
-             ->select('device.id', 'device.specialLink', 'device.image','device.brand', 'device.type', 'device.cpu', 'device.ram','device.battery',
-                 'device.price', 'device.yearOfRelease','device.description', 'device.status', 'device.createdAt','device.updateAt','device.country',
-                 'device.city','device.durationOfUse', 'device.gauge', 'UserProfileEntity.image as imageUser', 'UserProfileEntity.userName')
+            ->select('device.id', 'device.specialLink', 'device.image','device.brand', 'device.type',
+                 'device.price', 'device.description', 'device.status', 'device.createdAt','device.updateAt','device.country',
+                 'device.city', 'UserProfileEntity.image as imageUser', 'UserProfileEntity.userName')
 
-             ->leftJoin(
+            ->leftJoin(
                 UserProfileEntity::class,
                 'UserProfileEntity',
                 Join::WITH,
                 'UserProfileEntity.userID = device.createdBy'
             )
-             ->getQuery()
-             ->getArrayResult();
+
+            ->getQuery()
+            ->getArrayResult();
     }
 
     public function getFilterPrice($value)
     {
         return $this->createQueryBuilder('device')
-            ->select('device.id', 'device.specialLink', 'device.image','device.brand', 'device.type', 'device.cpu', 'device.ram', 'device.createdBy',
-                'device.battery', 'device.price', 'device.yearOfRelease', 'device.description', 'device.status', 'device.createdAt',
-                'device.updateAt', 'device.country', 'device.city', 'device.durationOfUse', 'device.gauge', 'userProfileEntity.userName as username', 'userProfileEntity.image as userImage')
+            ->select('device.id', 'device.specialLink', 'device.image','device.brand', 'device.type', 'device.createdBy', 'device.price', 'device.description', 
+            'device.status', 'device.createdAt', 'device.updateAt', 'device.country', 'device.city', 'userProfileEntity.userName as username', 'userProfileEntity.image as userImage')
 
             ->leftJoin(
                 UserProfileEntity::class,
@@ -85,6 +97,7 @@ class DeviceEntityRepository extends ServiceEntityRepository
 
             ->andWhere('device.price = :value')
             ->setParameter('value', $value)
+
             ->getQuery()
             ->getArrayResult();
     }
@@ -92,9 +105,8 @@ class DeviceEntityRepository extends ServiceEntityRepository
     public function getFilterCity($value)
     {
         return $this->createQueryBuilder('device')
-            ->select('device.id', 'device.specialLink', 'device.image','device.brand', 'device.type', 'device.cpu', 'device.ram', 'device.createdBy',
-            'device.battery', 'device.price', 'device.yearOfRelease', 'device.description', 'device.status', 'device.createdAt',
-            'device.updateAt', 'device.country', 'device.city', 'device.durationOfUse', 'device.gauge', 'userProfileEntity.userName as username', 'userProfileEntity.image as userImage')
+            ->select('device.id', 'device.specialLink', 'device.image','device.brand', 'device.type', 'device.createdBy', 'device.price', 
+            'device.description', 'device.status', 'device.createdAt', 'device.updateAt', 'device.country', 'device.city', 'userProfileEntity.userName as username', 'userProfileEntity.image as userImage')
 
             ->leftJoin(
                 UserProfileEntity::class,
@@ -105,6 +117,7 @@ class DeviceEntityRepository extends ServiceEntityRepository
 
             ->andWhere('device.city = :value')
             ->setParameter('value', $value)
+
             ->getQuery()
             ->getArrayResult();
     }
@@ -112,9 +125,9 @@ class DeviceEntityRepository extends ServiceEntityRepository
     public function getDevicesByBrand($brand)
     {
         return $this->createQueryBuilder('device')
-            ->select('device.id', 'device.specialLink', 'device.image','device.brand', 'device.type', 'device.cpu', 'device.ram',
-                'device.battery', 'device.price', 'device.yearOfRelease', 'device.description', 'device.status', 'device.createdAt',
-                'device.updateAt', 'device.country', 'device.city', 'device.durationOfUse', 'device.gauge', 'device.createdBy', 'userProfileEntity.image as imageUser', 'userProfileEntity.userName')
+            ->select('device.id', 'device.specialLink', 'device.image','device.brand', 'device.type', 'device.price', 'device.description', 'device.status', 'device.createdAt',
+                'device.updateAt', 'device.country', 'device.city', 'device.createdBy', 'userProfileEntity.image as imageUser', 
+                'userProfileEntity.userName')
 
             ->andWhere('device.brand LIKE :brand')
 
@@ -129,16 +142,15 @@ class DeviceEntityRepository extends ServiceEntityRepository
 
             ->orderBy('device.id')
             ->getQuery()
-            ->getResult()
-            ;
+            ->getResult();
     }
 
     public function getFilterByPriceAndCity($price, $location)
     {
         return $this->createQueryBuilder('device')
-            ->select('device.id', 'device.specialLink', 'device.image','device.brand', 'device.type', 'device.cpu', 'device.ram', 'device.createdBy',
-            'device.battery', 'device.price', 'device.yearOfRelease', 'device.description', 'device.status', 'device.createdAt',
-            'device.updateAt', 'device.country', 'device.city', 'device.durationOfUse', 'device.gauge', 'userProfileEntity.userName as username', 'userProfileEntity.image as userImage')
+            ->select('device.id', 'device.specialLink', 'device.image','device.brand', 'device.type', 'device.createdBy', 'device.price', 
+            'device.description', 'device.status', 'device.createdAt', 'device.updateAt', 'device.country', 'device.city',
+            'userProfileEntity.userName as username', 'userProfileEntity.image as userImage')
 
             ->leftJoin(
                 UserProfileEntity::class,
@@ -160,9 +172,8 @@ class DeviceEntityRepository extends ServiceEntityRepository
     public function getFilterByTwoPrices($price, $price_2)
     {
         return $this->createQueryBuilder('device')
-            ->select('device.id', 'device.specialLink', 'device.image','device.brand', 'device.type', 'device.cpu', 'device.ram', 'device.createdBy',
-            'device.battery', 'device.price', 'device.yearOfRelease', 'device.description', 'device.status', 'device.createdAt',
-            'device.updateAt', 'device.country', 'device.city', 'device.durationOfUse', 'device.gauge', 'userProfileEntity.userName as username', 'userProfileEntity.image as userImage')
+            ->select('device.id', 'device.specialLink', 'device.image','device.brand', 'device.type', 'device.createdBy', 'device.price',  'device.description', 
+            'device.status', 'device.createdAt', 'device.updateAt', 'device.country', 'device.city', 'userProfileEntity.userName as username', 'userProfileEntity.image as userImage')
 
             ->leftJoin(
                 UserProfileEntity::class,
@@ -181,12 +192,11 @@ class DeviceEntityRepository extends ServiceEntityRepository
             ->getArrayResult();
     }
 
-    public function getFilterByTwoPricesAndCity($price, $price_2, $location)
+    public function getFilterByTwoPricesAndCity($price, $price_2, $city)
     {
         return $this->createQueryBuilder('device')
-            ->select('device.id', 'device.specialLink', 'device.image','device.brand', 'device.type', 'device.cpu', 'device.ram', 'device.createdBy',
-            'device.battery', 'device.price', 'device.yearOfRelease', 'device.description', 'device.status', 'device.createdAt',
-            'device.updateAt', 'device.country', 'device.city', 'device.durationOfUse', 'device.gauge', 'userProfileEntity.userName as username', 'userProfileEntity.image as userImage')
+            ->select('device.id', 'device.specialLink', 'device.image','device.brand', 'device.type', 'device.createdBy', 'device.price', 'device.description', 
+            'device.status', 'device.createdAt', 'device.updateAt', 'device.country', 'device.city', 'userProfileEntity.userName as username', 'userProfileEntity.image as userImage')
 
             ->leftJoin(
                 UserProfileEntity::class,
@@ -201,7 +211,7 @@ class DeviceEntityRepository extends ServiceEntityRepository
 
             ->setParameter('price', $price)
             ->setParameter('price2', $price_2)
-            ->setParameter('value', $location)
+            ->setParameter('value', $city)
 
             ->getQuery()
             ->getArrayResult();

@@ -6,13 +6,7 @@ namespace App\Request;
 
 class CarCreateRequest
 {
-    private $brand;
-
-    private $company;
-
-    private $yearOfRelease;
-
-    private $engine;
+    private $yearOfProduction;
 
     private $price;
 
@@ -30,49 +24,11 @@ class CarCreateRequest
 
     private $gearType;
 
-    private $cc;
-
-    private $fuel;
-
     private $country;
 
     private $city;
 
     private $image;
-    
-    private $state;
-
-    /**
-     * @return mixed
-     */
-    public function getCompany()
-    {
-        return $this->company;
-    }
-
-    /**
-     * @param mixed $company
-     */
-    public function setCompany($company): void
-    {
-        $this->company = $company;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getEngine()
-    {
-        return $this->engine;
-    }
-
-    /**
-     * @param mixed $engine
-     */
-    public function setEngine($engine): void
-    {
-        $this->engine = $engine;
-    }
 
     /**
      * @return mixed
@@ -173,33 +129,17 @@ class CarCreateRequest
     /**
      * @return mixed
      */
-    public function getBrand()
+    public function getYearOfProduction()
     {
-        return $this->brand;
+        return $this->yearOfProduction;
     }
 
     /**
-     * @param mixed $brand
+     * @param mixed $yearOfProduction
      */
-    public function setBrand($brand): void
+    public function setYearOfProduction($yearOfProduction): void
     {
-        $this->brand = $brand;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getYearOfRelease()
-    {
-        return $this->yearOfRelease;
-    }
-
-    /**
-     * @param mixed $yearOfRelease
-     */
-    public function setYearOfRelease($yearOfRelease): void
-    {
-        $this->yearOfRelease = $yearOfRelease;
+        $this->yearOfProduction = $yearOfProduction;
     }
 
     /**
@@ -237,38 +177,6 @@ class CarCreateRequest
     /**
      * @return mixed
      */
-    public function getCc()
-    {
-        return $this->cc;
-    }
-
-    /**
-     * @param mixed $cc
-     */
-    public function setCc($cc): void
-    {
-        $this->cc = $cc;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getFuel()
-    {
-        return $this->fuel;
-    }
-
-    /**
-     * @param mixed $fuel
-     */
-    public function setFuel($fuel): void
-    {
-        $this->fuel = $fuel;
-    }
-
-    /**
-     * @return mixed
-     */
     public function getCountry()
     {
         return $this->country;
@@ -296,18 +204,6 @@ class CarCreateRequest
     public function setCity($city): void
     {
         $this->city = $city;
-    }
-
-    public function getState(): ?string
-    {
-        return $this->state;
-    }
-
-    public function setState(?string $state): self
-    {
-        $this->state = $state;
-
-        return $this;
     }
 
 }

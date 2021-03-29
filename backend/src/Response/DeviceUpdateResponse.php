@@ -10,15 +10,7 @@ class DeviceUpdateResponse
     
     public $brand;
 
-    public $cpu;
-
-    public $ram;
-
-    public $battery;
-
     public $price;
-
-    public $yearOfRelease;
 
     public $description;
 
@@ -28,13 +20,11 @@ class DeviceUpdateResponse
 
     public $createdAt;
 
-    public $gauge;
+    public $updateAt;
 
     public $country;
 
     public $city;
-
-    public $durationOfUse;
 
     public $image;
 }

@@ -21,15 +21,11 @@ class RealEstateGetByIdResponse
 
     public $createdAt;
 
-    public $state;
-
     public $image;
 
     public $images;
 
     public $numberOfFloors;
-
-    public $cladding;
 
     public $homeFurnishing;
 

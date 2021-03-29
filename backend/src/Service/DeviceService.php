@@ -47,7 +47,7 @@ class DeviceService
         return $this->autoMapping->map(DeviceEntity::class, DeviceCreateResponse::class, $deviceResult);
     }
 
-    public function getDeviceById($id,$userID)
+    public function getDeviceById($id, $userID)
     { 
         $response = [] ;
         $result = $this->deviceManager->getDeviceById($id);
@@ -88,6 +88,8 @@ class DeviceService
 
         foreach ($result as $row)
         {
+            $row['imageUser'] = $this->params . $row['imageUser'];
+
             $row['image'] = $this->specialLinkCheck($row['specialLink']).$row['image'];
 
             $row['reaction']=$this->reactionService->reactionforItem($row['id'], $this->entity);
@@ -153,12 +155,12 @@ class DeviceService
         }
     }
 
-    public function getFilter($price, $price_2, $location)
+    public function getFilter($price, $price_2, $city)
     {
         $response = [];
 
-        $result = $this->deviceManager->getFilter($price, $price_2, $location);
-      
+        $result = $this->deviceManager->getFilter($price, $price_2, $city);
+        
         foreach ($result as $row)
         {
             $row['userImage'] = $this->params . $row['userImage'];
@@ -202,7 +204,7 @@ class DeviceService
         $response = [];
 
         $soldDevices = $this->deviceManager->getSoldDevicesOfUser($userID);
-        //dd($soldDevices);
+        
         foreach ($soldDevices as $device)
         {
             $device['image'] = $this->specialLinkCheck($device['specialLink']) . $device['image'];

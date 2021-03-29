@@ -25,13 +25,9 @@ class RealEstateGetFilterResponse
 
     public $createdAt;
 
-    public $state;
-
     public $image;
 
     public $numberOfFloors;
-
-    public $cladding;
 
     public $homeFurnishing;
 

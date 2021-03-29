@@ -42,13 +42,14 @@ class DeviceController extends BaseController
     {
         $data = json_decode($request->getContent(), true);
 
-        $request = $this->autoMapping->map(stdClass::class,DeviceCreateRequest::class, (object)$data);
+        $request = $this->autoMapping->map(stdClass::class, DeviceCreateRequest::class, (object)$data);
 
         $request->setCreatedBy($this->getUserId());
 
-        if (!$request->getStatus()) {
+        if (!$request->getStatus()) 
+        {
             $request->setStatus('not sold');
-            }
+        }
 
         $violations = $this->validator->validate($request);
 
@@ -106,8 +107,6 @@ class DeviceController extends BaseController
 
         $request = $this->autoMapping->map(\stdClass::class, DeviceUpdateRequest::class, (object) $data);
 
-        // $request->setCreatedBy($this->getUserId());
-
         $violations = $this->validator->validate($request);
 
         if (\count($violations) > 0)
@@ -136,14 +135,4 @@ class DeviceController extends BaseController
         return $this->response("deleted ", self::DELETE);
     }
     
-    /**
-     * @Route("devicesFilter/{key}/{value}", name="filterFordevices ",methods={"GET"})
-     * @return JsonResponse
-     */
-    public function getFilter($key, $value)
-    {       
-        $result = $this->deviceService->getFilter($key, $value);
-
-        return $this->response($result, self::FETCH);
-    }
 }

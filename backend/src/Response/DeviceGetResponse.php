@@ -14,15 +14,7 @@ class DeviceGetResponse
 
     public $brand;
 
-    public $cpu;
-
-    public $ram;
-
-    public $battery;
-
     public $price;
-
-    public $yearOfRelease;
 
     public $description;
 
@@ -30,13 +22,9 @@ class DeviceGetResponse
 
     public $createdAt;
 
-    public $gauge;
-
     public $country;
 
     public $city;
-
-    public $durationOfUse;
 
     public $image;
 
@@ -47,4 +35,5 @@ class DeviceGetResponse
     public $imageUser;
 
     public $commentsNumber;
+    
 }

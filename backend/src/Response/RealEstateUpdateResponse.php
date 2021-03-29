@@ -23,17 +23,12 @@ class RealEstateUpdateResponse
 
     public $createdAt;
 
-    public $state;
-
     public $image;
 
     public $numberOfFloors;
 
-    public $cladding;
-
     public $homeFurnishing;
 
     public $realEstateType;
-
-    public $rooms;
+    
 }

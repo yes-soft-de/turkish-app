@@ -12,15 +12,7 @@ class DevicesGetFilterResponse
 
     public $brand;
 
-    public $cpu;
-
-    public $ram;
-
-    public $battery;
-
     public $price;
-
-    public $yearOfRelease;
 
     public $description;
 
@@ -32,13 +24,9 @@ class DevicesGetFilterResponse
 
     public $createdAt;
 
-    public $gauge;
-
     public $country;
 
     public $city;
-
-    public $durationOfUse;
 
     public $image;
 

@@ -32,7 +32,7 @@ class DeviceManager
     public function create(DeviceCreateRequest $request)
     {
         $deviceEntity = $this->autoMapping->map(DeviceCreateRequest::class, DeviceEntity::class, $request);
-        $deviceEntity->setProductionYear($deviceEntity->getProductionYear());
+        
         $this->entityManager->persist($deviceEntity);
         $this->entityManager->flush();
         $this->entityManager->clear();
@@ -58,7 +58,6 @@ class DeviceManager
     public function update(DeviceUpdateRequest $request)
     {
         $deviceEntity = $this->deviceEntityRepository->find($request->getId());
-        $request->setUpdateAt($request->getUpdateAt());
         
         if(!$deviceEntity)
         {
@@ -66,16 +65,13 @@ class DeviceManager
         }
         else
         {
-            
             $deviceEntity = $this->autoMapping->mapToObject(DeviceUpdateRequest::class,
                 DeviceEntity::class, $request, $deviceEntity);
 
-            if($request->getStatus() == "sold")
+            if($request->getStatus() == "sold" && $deviceEntity->getCompleteDate() == null)
             {
                 $deviceEntity->setCompleteDate(new \DateTime('Now'));
             }
-
-            $deviceEntity->setProductionYear($deviceEntity->getProductionYear());
 
             $this->entityManager->flush();
 
@@ -86,6 +82,7 @@ class DeviceManager
     public function delete(DeleteRequest $request)
     {
         $deviceEntity = $this->deviceEntityRepository->find($request->getId());
+
         if(!$deviceEntity )
         {
 
@@ -95,44 +92,45 @@ class DeviceManager
             $this->entityManager->remove($deviceEntity);
             $this->entityManager->flush();
         }
+        
         return $deviceEntity;
     }
 
-    public function getFilter($price, $price_2, $location)
+    public function getFilter($price, $price_2, $city)
     {
-        if ($location != null && $price == null && $price_2 == null)
+        if ($city != null && $price == null && $price_2 == null)
         {
-            return $this->deviceEntityRepository->getFilterCity($location);
+            return $this->deviceEntityRepository->getFilterCity($city);
         }
 
-        elseif ($price != null && $location == null && $price_2 == null)
+        elseif ($price != null && $city == null && $price_2 == null)
         {
             return $this->deviceEntityRepository->getFilterPrice($price);
         }
 
-        elseif ($price != null && $location != null && $price_2 == null)
+        elseif ($price != null && $city != null && $price_2 == null)
         {
-            return $this->deviceEntityRepository->getFilterByPriceAndCity($price, $location);
+            return $this->deviceEntityRepository->getFilterByPriceAndCity($price, $city);
         }
 
-        elseif ($price != null && $price_2 != null && $location == null)
+        elseif ($price != null && $price_2 != null && $city == null)
         {
             return $this->deviceEntityRepository->getFilterByTwoPrices($price, $price_2);
         }
 
-        elseif ($price != null && $price_2 != null && $location != null)
+        elseif ($price != null && $price_2 != null && $city != null)
         {
-            return $this->deviceEntityRepository->getFilterByTwoPricesAndCity($price, $price_2, $location);
+            return $this->deviceEntityRepository->getFilterByTwoPricesAndCity($price, $price_2, $city);
         }
 
-        elseif ($price == null && $location == null && $price_2 != null)
+        elseif ($price == null && $city == null && $price_2 != null)
         {
             return $this->deviceEntityRepository->getFilterPrice($price_2);
         }
 
-        elseif ($price == null && $location != null && $price_2 != null)
+        elseif ($price == null && $city != null && $price_2 != null)
         {
-            return $this->deviceEntityRepository->getFilterByPriceAndCity($price_2, $location);
+            return $this->deviceEntityRepository->getFilterByPriceAndCity($price_2, $city);
         }
     }
 

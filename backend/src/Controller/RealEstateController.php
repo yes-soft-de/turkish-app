@@ -41,15 +41,14 @@ class RealEstateController extends BaseController
 
         $request->setCreatedBy($this->getUserId());
         
-        if (!$request->getStatus()) {
+        if (!$request->getStatus()) 
+        {
             $request->setStatus('not sold');
-            }
-        if (!$request->getState()) {
-            $request->setState('Unaccepted');
-            }
+        }
             
         $violations = $this->validator->validate($request);
-        if (\count($violations) > 0) {
+        if (\count($violations) > 0) 
+        {
             $violationsString = (string) $violations;
 
             return new JsonResponse($violationsString, Response::HTTP_OK);
@@ -72,34 +71,12 @@ class RealEstateController extends BaseController
     }
 
     /**
-     * @Route("/realEstateUnaccepted/{id}", name="GetAnItemByIDUnaccepted", methods={"GET"})
-     * @return JsonResponse
-     */
-    public function getRealEstateByIdUnaccepted($id)
-    {
-        $result = $this->realEstateService->getRealEstateByIdUnaccepted($id, $this->getUserId());
-
-        return $this->response($result, self::FETCH);
-    }
-
-    /**
      * @Route("/allRealEstate", name="GetAllItemsAccepted", methods={"GET"})
      * @return JsonResponse
      */
     public function getAllRealEstate()
     {
         $result = $this->realEstateService->getAllRealEstate($this->getUserId());
-
-        return $this->response($result, self::FETCH);
-    }
-
-    /**
-     * @Route("/allRealEstateUnaccepted", name="GetAllItemsUnaccepted", methods={"GET"})
-     * @return JsonResponse
-     */
-    public function getAllRealEstateUnaccepted()
-    {
-        $result = $this->realEstateService->getAllRealEstateUnaccepted($this->getUserId());
 
         return $this->response($result, self::FETCH);
     }
@@ -123,9 +100,8 @@ class RealEstateController extends BaseController
     public function realEstateUpdate(Request $request)
     {
         $data = json_decode($request->getContent(), true);
-        $request = $this->autoMapping->map(\stdClass::class, RealEstateUpdateRequest::class, (object) $data);
 
-        // $request->setCreatedBy($this->getUserId());
+        $request = $this->autoMapping->map(\stdClass::class, RealEstateUpdateRequest::class, (object) $data);
 
         $violations = $this->validator->validate($request);
         if (\count($violations) > 0)
@@ -136,6 +112,7 @@ class RealEstateController extends BaseController
         }
         
         $result = $this->realEstateService->realEstateUpdate($request);
+
         return $this->response($result, self::UPDATE);
     } 
 
@@ -147,18 +124,10 @@ class RealEstateController extends BaseController
     public function delete(Request $request)
     {
         $request = new DeleteRequest($request->get('ID'));
+
         $result = $this->realEstateService->delete($request);
+        
         return $this->response("deleted ", self::DELETE);
     }
 
-//    /**
-//     * @Route("realEstatesFilter/{key}/{value}", name="filterForRealEstates ",methods={"GET"})
-//     * @return JsonResponse
-//     */
-//    public function getFilter($key, $value)
-//    {
-//        $result = $this->realEstateService->getFilter($key, $value);
-//
-//        return $this->response($result, self::FETCH);
-//    }
 }

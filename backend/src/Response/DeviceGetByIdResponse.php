@@ -10,15 +10,7 @@ class DeviceGetByIdResponse
     
     public $brand;
 
-    public $cpu;
-
-    public $ram;
-
-    public $battery;
-
     public $price;
-
-    public $yearOfRelease;
 
     public $description;
 
@@ -28,13 +20,9 @@ class DeviceGetByIdResponse
 
     public $createdAt;
 
-    public $gauge;
-
     public $country;
 
     public $city;
-
-    public $durationOfUse;
 
     public $image;
 

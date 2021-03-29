@@ -12,15 +12,7 @@ class DeviceCreateResponse
 
     public $brand;
 
-    public $cpu;
-
-    public $ram;
-
-    public $battery;
-
     public $price;
-
-    public $yearOfRelease;
 
     public $description;
 
@@ -30,13 +22,9 @@ class DeviceCreateResponse
 
     public $createdAt;
 
-    public $gauge;
-
     public $country;
 
     public $city;
-
-    public $durationOfUse;
 
     public $image;
 }

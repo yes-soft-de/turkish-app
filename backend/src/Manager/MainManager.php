@@ -48,7 +48,7 @@ class MainManager
 
             if ($entity == "car")
             {
-                $response[$i]['itemName'] = $this->carManager->getCarById($status['itemID'])[0]['brand'];
+                $response[$i]['itemName'] = $this->carManager->getCarById($status['itemID'])[0]['carType'];
             }
             elseif ($entity == "device")
             {

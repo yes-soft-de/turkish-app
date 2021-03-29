@@ -42,16 +42,14 @@ class CarController extends BaseController
     {
         $data = json_decode($request->getContent(), true);
 
-        $request = $this->autoMapping->map(stdClass::class,CarCreateRequest::class, (object)$data);
+        $request = $this->autoMapping->map(stdClass::class, CarCreateRequest::class, (object)$data);
 
         $request->setCreatedBy($this->getUserId());
 
-        if (!$request->getStatus()) {
-        $request->setStatus('not sold');
+        if (!$request->getStatus()) 
+        {
+            $request->setStatus('not sold');
         }
-        if (!$request->getState()) {
-            $request->setState('Unaccepted');
-            }
 
         $violations = $this->validator->validate($request);
 
@@ -79,17 +77,6 @@ class CarController extends BaseController
     }
 
     /**
-     * @Route("carUnaccepted/{id}", name="getCarByIdUnaccepted", methods={"GET"})
-     * @return JsonResponse
-     */
-    public function getCarByIdUnaccepted($id)
-    {
-        $result = $this->carService->getCarByIdUnaccepted($id, $this->getUserId());
-
-        return $this->response($result, self::FETCH);
-    }
-
-    /**
      * @Route("cars", name="getCarsOfSpecificUser", methods={"GET"})
      * @return JsonResponse
      */
@@ -111,16 +98,6 @@ class CarController extends BaseController
     }
 
     /**
-     * @Route("allCarsUnaccepted", name="getAllUnacceptedCars", methods={"GET"})
-     */
-    public function getAllCarsUnaccepted()
-    {
-        $result = $this->carService->getAllCarsUnaccepted($this->getUserId());
-
-        return $this->response($result, self::FETCH);
-    }
-
-    /**
      * @Route("cars", name="updateCar", methods={"PUT"})
      * @param Request $request
      * @return JsonResponse
@@ -130,8 +107,6 @@ class CarController extends BaseController
         $data = json_decode($request->getContent(), true);
 
         $request = $this->autoMapping->map(\stdClass::class, CarUpdateRequest::class, (object) $data);
-
-        // $request->setCreatedBy($this->getUserId());
 
         $violations = $this->validator->validate($request);
 
@@ -160,17 +135,6 @@ class CarController extends BaseController
 
         return $this->response("deleted ", self::DELETE);
     }
-    
-//    /**
-//     * @Route("carsFilter/{key}/{value}", name="filterForcars ",methods={"GET"})
-//     * @return JsonResponse
-//     */
-//    public function getFilter($key, $value)
-//    {
-//        $result = $this->carService->getFilter($key, $value);
-//
-//        return $this->response($result, self::FETCH);
-//    }
 
     /**
      * @Route("/allproperties", name="getAllProprties", methods={"GET"})

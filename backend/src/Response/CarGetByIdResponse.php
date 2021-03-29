@@ -7,14 +7,8 @@ namespace App\Response;
 class CarGetByIdResponse
 {
     public $id;
-    
-    public $brand;
 
-    public $company;
-
-    public $yearOfRelease;
-
-    public $engine;
+    public $yearOfProduction;
 
     public $price;
 
@@ -34,10 +28,6 @@ class CarGetByIdResponse
 
     public $gearType;
 
-    public $cc;
-
-    public $fuel;
-
     public $country;
 
     public $city;
@@ -47,8 +37,6 @@ class CarGetByIdResponse
     public $images;
 
     public $reaction;
-    
-    public $state;
 
     public $username;
 

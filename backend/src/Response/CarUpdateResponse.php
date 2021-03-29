@@ -6,13 +6,7 @@ namespace App\Response;
 
 class CarUpdateResponse
 {
-    public $brand;
-
-    public $company;
-
-    public $yearOfRelease;
-
-    public $engine;
+    public $yearOfProduction;
 
     public $price;
 
@@ -32,15 +26,10 @@ class CarUpdateResponse
 
     public $gearType;
 
-    public $cc;
-
-    public $fuel;
-
     public $country;
 
     public $city;
 
     public $image;
-
-    public $state;
+    
 }

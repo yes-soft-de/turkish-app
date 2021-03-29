@@ -25,35 +25,12 @@ class RealEstateEntityRepository extends ServiceEntityRepository
     {
         return $this->createQueryBuilder('RealEstateEntity')
             ->select('RealEstateEntity.country','RealEstateEntity.city', 'RealEstateEntity.space', 'RealEstateEntity.price', 'RealEstateEntity.description', 'RealEstateEntity.status',
-                'RealEstateEntity.createdBy', 'RealEstateEntity.createdAt', 'RealEstateEntity.updateAt', 'RealEstateEntity.state', 'RealEstateEntity.image', 'RealEstateEntity.specialLink',
-                'RealEstateEntity.numberOfFloors', 'RealEstateEntity.cladding', 'RealEstateEntity.homeFurnishing', 'RealEstateEntity.realEstateType',
-                'RealEstateEntity.rooms', 'userProfileEntity.userName as username', 'userProfileEntity.image as userImage')
-
-            ->andWhere('RealEstateEntity.id = :id')
-
-            ->setParameter('id', $id)
-
-            ->leftJoin(
-                UserProfileEntity::class,
-                'userProfileEntity',
-                Join::WITH,
-                'userProfileEntity.userID = RealEstateEntity.createdBy'
-            )
-
-            ->getQuery()
-            ->getResult();
-    }
-
-    public function getRealEstateByIdUnaccepted($id)
-    {
-        return $this->createQueryBuilder('RealEstateEntity')
-            ->select('RealEstateEntity.country','RealEstateEntity.city', 'RealEstateEntity.space', 'RealEstateEntity.price', 'RealEstateEntity.description', 'RealEstateEntity.status',
-                'RealEstateEntity.createdBy', 'RealEstateEntity.createdAt', 'RealEstateEntity.updateAt', 'RealEstateEntity.state', 'RealEstateEntity.image', 'RealEstateEntity.specialLink',
-                'RealEstateEntity.numberOfFloors', 'RealEstateEntity.cladding', 'RealEstateEntity.homeFurnishing', 'RealEstateEntity.realEstateType', 'RealEstateEntity.rooms',
+                'RealEstateEntity.createdBy', 'RealEstateEntity.createdAt', 'RealEstateEntity.updateAt', 'RealEstateEntity.image', 'RealEstateEntity.specialLink',
+                'RealEstateEntity.numberOfFloors', 'RealEstateEntity.homeFurnishing', 'RealEstateEntity.realEstateType',
                 'userProfileEntity.userName as username', 'userProfileEntity.image as userImage')
-         
+
             ->andWhere('RealEstateEntity.id = :id')
-          
+
             ->setParameter('id', $id)
 
             ->leftJoin(
@@ -70,7 +47,9 @@ class RealEstateEntityRepository extends ServiceEntityRepository
     public function getAllRealEstate()
     {
         return $this->createQueryBuilder('RealEstateEntity')
-            ->select('RealEstateEntity.id', 'RealEstateEntity.country', 'RealEstateEntity.city', 'RealEstateEntity.space', 'RealEstateEntity.price', 'RealEstateEntity.description', 'RealEstateEntity.status', 'RealEstateEntity.createdBy', 'RealEstateEntity.createdAt', 'RealEstateEntity.updateAt', 'RealEstateEntity.state', 'RealEstateEntity.image', 'RealEstateEntity.specialLink', 'RealEstateEntity.numberOfFloors', 'RealEstateEntity.cladding', 'RealEstateEntity.homeFurnishing', 'RealEstateEntity.realEstateType', 'RealEstateEntity.rooms', 'UserProfileEntity.userName', 'UserProfileEntity.image as imageUser')
+            ->select('RealEstateEntity.id', 'RealEstateEntity.country', 'RealEstateEntity.city', 'RealEstateEntity.space', 'RealEstateEntity.price', 'RealEstateEntity.description', 
+            'RealEstateEntity.status', 'RealEstateEntity.createdBy', 'RealEstateEntity.createdAt', 'RealEstateEntity.updateAt', 'RealEstateEntity.image', 'RealEstateEntity.specialLink', 
+            'RealEstateEntity.numberOfFloors', 'RealEstateEntity.homeFurnishing', 'RealEstateEntity.realEstateType', 'UserProfileEntity.userName', 'UserProfileEntity.image as imageUser')
 
             ->leftJoin(
                 UserProfileEntity::class,
@@ -78,26 +57,6 @@ class RealEstateEntityRepository extends ServiceEntityRepository
                 Join::WITH,
                 'UserProfileEntity.userID = RealEstateEntity.createdBy'
             )
-            
-//            ->andWhere("RealEstateEntity.state = 'Accepted'")
-
-            ->getQuery()
-            ->getResult();
-    }
-
-    public function getAllRealEstateUnaccepted()
-    {
-        return $this->createQueryBuilder('RealEstateEntity')
-            ->select('RealEstateEntity.id', 'RealEstateEntity.country', 'RealEstateEntity.city', 'RealEstateEntity.space', 'RealEstateEntity.price', 'RealEstateEntity.description', 'RealEstateEntity.status', 'RealEstateEntity.createdBy', 'RealEstateEntity.createdAt', 'RealEstateEntity.updateAt', 'RealEstateEntity.state', 'RealEstateEntity.image', 'RealEstateEntity.specialLink', 'RealEstateEntity.numberOfFloors', 'RealEstateEntity.cladding', 'RealEstateEntity.homeFurnishing', 'RealEstateEntity.realEstateType', 'RealEstateEntity.rooms', 'UserProfileEntity.userName', 'UserProfileEntity.image as imageUser')
-
-            ->leftJoin(
-                UserProfileEntity::class,
-                'UserProfileEntity',
-                Join::WITH,
-                'UserProfileEntity.userID = RealEstateEntity.createdBy'
-            )
-            
-            ->andWhere("RealEstateEntity.state = 'Unaccepted'")
 
             ->getQuery()
             ->getResult();
@@ -106,7 +65,16 @@ class RealEstateEntityRepository extends ServiceEntityRepository
     public function getRealEstateByUser($userID)
     {
         return $this->createQueryBuilder('RealEstateEntity')
-            ->select('RealEstateEntity.id', 'RealEstateEntity.country', 'RealEstateEntity.city', 'RealEstateEntity.space', 'RealEstateEntity.price', 'RealEstateEntity.description', 'RealEstateEntity.status', 'RealEstateEntity.createdBy', 'RealEstateEntity.createdAt', 'RealEstateEntity.updateAt', 'RealEstateEntity.state', 'RealEstateEntity.image', 'RealEstateEntity.specialLink', 'RealEstateEntity.numberOfFloors', 'RealEstateEntity.cladding', 'RealEstateEntity.homeFurnishing', 'RealEstateEntity.realEstateType', 'RealEstateEntity.rooms')
+            ->select('RealEstateEntity.id', 'RealEstateEntity.country', 'RealEstateEntity.city', 'RealEstateEntity.space', 'RealEstateEntity.price', 'RealEstateEntity.description', 'RealEstateEntity.status', 
+            'RealEstateEntity.createdBy', 'RealEstateEntity.createdAt', 'RealEstateEntity.updateAt', 'RealEstateEntity.image', 'RealEstateEntity.specialLink', 'RealEstateEntity.numberOfFloors',
+            'RealEstateEntity.homeFurnishing', 'RealEstateEntity.realEstateType', 'userProfileEntity.userName', 'userProfileEntity.image as imageUser')
+
+            ->leftJoin(
+                UserProfileEntity::class,
+                'userProfileEntity',
+                Join::WITH,
+                'userProfileEntity.userID = RealEstateEntity.createdBy'
+            )
 
             ->andWhere('RealEstateEntity.createdBy = :userID')
 
@@ -132,7 +100,6 @@ class RealEstateEntityRepository extends ServiceEntityRepository
             )
 
             ->andWhere('RealEstateEntity.city = :value')
-            ->andWhere("RealEstateEntity.state = 'Accepted'")
 
             ->setParameter('value', $value)
 
@@ -144,9 +111,9 @@ class RealEstateEntityRepository extends ServiceEntityRepository
     {
         return $this->createQueryBuilder('RealEstateEntity')
             ->select('RealEstateEntity.id', 'RealEstateEntity.country','RealEstateEntity.city', 'RealEstateEntity.space', 'RealEstateEntity.price', 'RealEstateEntity.description', 'RealEstateEntity.status',
-                    'RealEstateEntity.createdBy', 'RealEstateEntity.createdAt', 'RealEstateEntity.updateAt', 'RealEstateEntity.state', 'RealEstateEntity.image', 'RealEstateEntity.specialLink',
-                    'RealEstateEntity.numberOfFloors', 'RealEstateEntity.cladding', 'RealEstateEntity.homeFurnishing', 'RealEstateEntity.realEstateType',
-                    'RealEstateEntity.rooms', 'userProfileEntity.userName as username', 'userProfileEntity.image as userImage')
+                    'RealEstateEntity.createdBy', 'RealEstateEntity.createdAt', 'RealEstateEntity.updateAt', 'RealEstateEntity.image', 'RealEstateEntity.specialLink',
+                    'RealEstateEntity.numberOfFloors', 'RealEstateEntity.homeFurnishing', 'RealEstateEntity.realEstateType',
+                    'userProfileEntity.userName as username', 'userProfileEntity.image as userImage')
 
             ->leftJoin(
                 UserProfileEntity::class,
@@ -156,7 +123,6 @@ class RealEstateEntityRepository extends ServiceEntityRepository
             )
 
             ->andWhere('RealEstateEntity.price = :value')
-            ->andWhere("RealEstateEntity.state = 'Accepted'")
 
             ->setParameter('value', $value)
 
@@ -167,10 +133,10 @@ class RealEstateEntityRepository extends ServiceEntityRepository
     public function getRealEstatesByType($realEstateType)
     {
         return $this->createQueryBuilder('RealEstateEntity')
-            ->select('RealEstateEntity.id', 'RealEstateEntity.country','RealEstateEntity.city', 'RealEstateEntity.space', 'RealEstateEntity.price', 'RealEstateEntity.description', 'RealEstateEntity.status',
-                'RealEstateEntity.createdBy', 'RealEstateEntity.createdAt', 'RealEstateEntity.updateAt', 'RealEstateEntity.state', 'RealEstateEntity.image', 'RealEstateEntity.specialLink',
-                'RealEstateEntity.numberOfFloors', 'RealEstateEntity.cladding', 'RealEstateEntity.homeFurnishing', 'RealEstateEntity.realEstateType', 
-                'RealEstateEntity.rooms', 'userProfileEntity.userName as userName', 'userProfileEntity.image as imageUser')
+            ->select('RealEstateEntity.id', 'RealEstateEntity.country','RealEstateEntity.city', 'RealEstateEntity.space', 'RealEstateEntity.price', 
+            'RealEstateEntity.description', 'RealEstateEntity.status', 'RealEstateEntity.createdBy', 'RealEstateEntity.createdAt', 'RealEstateEntity.updateAt', 
+            'RealEstateEntity.image', 'RealEstateEntity.specialLink', 'RealEstateEntity.numberOfFloors', 'RealEstateEntity.homeFurnishing', 'RealEstateEntity.realEstateType', 
+            'userProfileEntity.userName as userName', 'userProfileEntity.image as imageUser')
 
             ->andWhere('RealEstateEntity.realEstateType LIKE :realEstateType')
 
@@ -194,9 +160,9 @@ class RealEstateEntityRepository extends ServiceEntityRepository
     {
         return $this->createQueryBuilder('realEstate')
             ->select('realEstate.id', 'realEstate.country','realEstate.city', 'realEstate.space', 'realEstate.price', 'realEstate.description', 'realEstate.status',
-                    'realEstate.createdBy', 'realEstate.createdAt', 'realEstate.updateAt', 'realEstate.state', 'realEstate.image', 'realEstate.specialLink',
-                    'realEstate.numberOfFloors', 'realEstate.cladding', 'realEstate.homeFurnishing', 'realEstate.realEstateType',
-                    'realEstate.rooms', 'userProfileEntity.userName as username', 'userProfileEntity.image as userImage')
+                    'realEstate.createdBy', 'realEstate.createdAt', 'realEstate.updateAt', 'realEstate.image', 'realEstate.specialLink',
+                    'realEstate.numberOfFloors', 'realEstate.homeFurnishing', 'realEstate.realEstateType',
+                    'userProfileEntity.userName as username', 'userProfileEntity.image as userImage')
 
             ->leftJoin(
                 UserProfileEntity::class,
@@ -207,7 +173,6 @@ class RealEstateEntityRepository extends ServiceEntityRepository
 
             ->andWhere('realEstate.price = :price')
             ->andWhere('realEstate.city = :value')
-            ->andWhere("realEstate.state = 'Accepted'")
 
             ->setParameter('price', $price)
             ->setParameter('value', $location)
@@ -220,9 +185,9 @@ class RealEstateEntityRepository extends ServiceEntityRepository
     {
         return $this->createQueryBuilder('realEstate')
             ->select('realEstate.id', 'realEstate.country','realEstate.city', 'realEstate.space', 'realEstate.price', 'realEstate.description', 'realEstate.status',
-                    'realEstate.createdBy', 'realEstate.createdAt', 'realEstate.updateAt', 'realEstate.state', 'realEstate.image', 'realEstate.specialLink',
-                    'realEstate.numberOfFloors', 'realEstate.cladding', 'realEstate.homeFurnishing', 'realEstate.realEstateType',
-                    'realEstate.rooms', 'userProfileEntity.userName as username', 'userProfileEntity.image as userImage')
+                    'realEstate.createdBy', 'realEstate.createdAt', 'realEstate.updateAt', 'realEstate.image', 'realEstate.specialLink',
+                    'realEstate.numberOfFloors', 'realEstate.homeFurnishing', 'realEstate.realEstateType',
+                    'userProfileEntity.userName as username', 'userProfileEntity.image as userImage')
 
             ->leftJoin(
                 UserProfileEntity::class,
@@ -233,7 +198,6 @@ class RealEstateEntityRepository extends ServiceEntityRepository
 
             ->andWhere('realEstate.price >= :price')
             ->andWhere('realEstate.price <= :price2')
-            ->andWhere("realEstate.state = 'Accepted'")
 
             ->setParameter('price', $price)
             ->setParameter('price2', $price_2)
@@ -246,9 +210,9 @@ class RealEstateEntityRepository extends ServiceEntityRepository
     {
         return $this->createQueryBuilder('realEstate')
             ->select('realEstate.id', 'realEstate.country','realEstate.city', 'realEstate.space', 'realEstate.price', 'realEstate.description', 'realEstate.status',
-                    'realEstate.createdBy', 'realEstate.createdAt', 'realEstate.updateAt', 'realEstate.state', 'realEstate.image', 'realEstate.specialLink',
-                    'realEstate.numberOfFloors', 'realEstate.cladding', 'RealEstateEntity.homeFurnishing', 'realEstate.realEstateType',
-                    'realEstate.rooms', 'userProfileEntity.userName as username', 'userProfileEntity.image as userImage')
+                    'realEstate.createdBy', 'realEstate.createdAt', 'realEstate.updateAt', 'realEstate.image', 'realEstate.specialLink',
+                    'realEstate.numberOfFloors', 'realEstate.homeFurnishing', 'realEstate.realEstateType',
+                    'userProfileEntity.userName as username', 'userProfileEntity.image as userImage')
 
             ->leftJoin(
                 UserProfileEntity::class,
@@ -260,7 +224,6 @@ class RealEstateEntityRepository extends ServiceEntityRepository
             ->andWhere('realEstate.price >= :price')
             ->andWhere('realEstate.price <= :price2')
             ->andWhere('realEstate.city = :value')
-            ->andWhere("realEstate.state = 'Accepted'")
 
             ->setParameter('price', $price)
             ->setParameter('price2', $price_2)
@@ -288,9 +251,9 @@ class RealEstateEntityRepository extends ServiceEntityRepository
     {
         return $this->createQueryBuilder('RealEstateEntity')
             ->select('RealEstateEntity.country','RealEstateEntity.city', 'RealEstateEntity.space', 'RealEstateEntity.price', 'RealEstateEntity.description', 'RealEstateEntity.status',
-                'RealEstateEntity.createdBy', 'RealEstateEntity.createdAt', 'RealEstateEntity.updateAt', 'RealEstateEntity.state', 'RealEstateEntity.image', 'RealEstateEntity.specialLink',
-                'RealEstateEntity.numberOfFloors', 'RealEstateEntity.cladding', 'RealEstateEntity.homeFurnishing', 'RealEstateEntity.realEstateType',
-                'RealEstateEntity.rooms', 'userProfileEntity.userName as username', 'userProfileEntity.image as userImage')
+                'RealEstateEntity.createdBy', 'RealEstateEntity.createdAt', 'RealEstateEntity.updateAt', 'RealEstateEntity.image', 'RealEstateEntity.specialLink',
+                'RealEstateEntity.numberOfFloors', 'RealEstateEntity.homeFurnishing', 'RealEstateEntity.realEstateType',
+                'userProfileEntity.userName as username', 'userProfileEntity.image as userImage')
 
             ->andWhere('RealEstateEntity.id = :id')
             ->andWhere('RealEstateEntity.createdBy = :userID')

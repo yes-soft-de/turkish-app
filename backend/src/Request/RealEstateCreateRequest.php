@@ -22,19 +22,13 @@ class RealEstateCreateRequest
 
     private $createdAt;
 
-    private $state;
-
     private $image;
 
     private $numberOfFloors;
 
-    private $cladding;
-
     private $homeFurnishing;
 
     private $realEstateType;
-
-    private $rooms;
 
     /**
      * @param mixed $createdBy
@@ -60,15 +54,4 @@ class RealEstateCreateRequest
         $this->status = $status;
     }
 
-    public function getState(): ?string
-    {
-        return $this->state;
-    }
-
-    public function setState(?string $state): self
-    {
-        $this->state = $state;
-
-        return $this;
-    }
 }

@@ -84,26 +84,6 @@ class RealEstateService
         return $response;
     }
 
-    public function getRealEstateByIdUnaccepted($id,$userID)
-    {
-        $response = [] ;
-        $result = $this->realEstateManager->getRealEstateByIdUnaccepted($id);
-     
-        foreach ($result as $row) {
-
-            $row['image'] = $this->specialLinkCheck($row['specialLink']).$row['image'];
-
-            $row['userImage'] = $this->params . $row['userImage'];
-          
-            $row['images'] = $this->imageService->getImages($id, $this->entity);
-            $row['documents'] = $this->documentService->getDocuments($id, $this->entity);
-           
-            $response = $this->autoMapping->map('array', RealEstateGetByIdResponse::class, $row);
-           
-            }
-        return $response;
-    }
-
     public function getAllRealEstate($userID)
     {
         $response = [];
@@ -126,23 +106,6 @@ class RealEstateService
         return $response;
     }
 
-    public function getAllRealEstateUnaccepted($userID)
-    {
-        $response = [];
-        $result = $this->realEstateManager->getAllRealEstateUnaccepted();
-        
-        foreach ($result as $row)
-        {
-            $row['image'] = $this->specialLinkCheck($row['specialLink']) . $row['image'];
-
-            $row['imageUser'] = $this->params . $row['imageUser'];
-                      
-            $response[] = $this->autoMapping->map('array', RealEstateGetAllResponse::class, $row);
-        }
-
-        return $response;
-    }
-
     public function getRealEstateByUser($userID)
     {
         $response = [];
@@ -150,6 +113,8 @@ class RealEstateService
 
         foreach ($result as $row)
         {
+            $row['imageUser'] = $this->params . $row['imageUser'];
+
             $row['image'] = $this->specialLinkCheck($row['specialLink']) . $row['image'];
 
             $row['reaction']=$this->reactionService->reactionforItem($row['id'], $this->entity);
@@ -188,11 +153,11 @@ class RealEstateService
         }
     }
 
-    public function getFilter($price, $price_2, $location)
+    public function getFilter($price, $price_2, $city)
     {
         $response = [];
 
-        $result = $this->realEstateManager->getFilter($price, $price_2, $location);
+        $result = $this->realEstateManager->getFilter($price, $price_2, $city);
       
         foreach ($result as $row)
         {
