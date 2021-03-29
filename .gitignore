@@ -35,7 +35,7 @@
 .idea/**/dynamic.xml
 .idea/**/uiDesigner.xml
 
-
+backend/debug.log
 .env
 .env.test
 /.env
