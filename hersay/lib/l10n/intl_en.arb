@@ -108,7 +108,7 @@
   "isFollowed": "متابع",
   "help": "مساعدة",
   "edit": "تعديل",
-  "comments": "التعليقات",
+  "comments": "Comments",
   "following": "متابعات",
   "series": "مسلسل",
   "aboutMe": "عني",
@@ -251,5 +251,7 @@
   "cancel": "Cancel",
   "pleaseCompleteTheForm": "Please complete the form",
   "report": "Report",
-  "yourReportWasSentToTheAdmin": "your report was sent to the Admin"
+  "yourReportWasSentToTheAdmin": "your report was sent to the Admin",
+  "date": "Date",
+  "commentHint": "place your comment here"
 }

@@ -20,121 +20,128 @@ class ElectronicDeviceDetailsScreen extends StatefulWidget {
   final AuthService _authService;
 
   ElectronicDeviceDetailsScreen(
-      this._stateManager,
-      this._authService,
-      );
+    this._stateManager,
+    this._authService,
+  );
 
   @override
-   ElectronicDeviceDetailsScreenState createState() =>
+  ElectronicDeviceDetailsScreenState createState() =>
       ElectronicDeviceDetailsScreenState();
 }
 
-class  ElectronicDeviceDetailsScreenState extends State<ElectronicDeviceDetailsScreen> {
+class ElectronicDeviceDetailsScreenState
+    extends State<ElectronicDeviceDetailsScreen> {
   ElectronicDeviceDetailsState currentState;
   int electronicDeviceId;
   double width;
 
-  void loveDevice(ElectronicDeviceModel device){
-    widget._authService.isLoggedIn.then((value){
-      if(!value) {
+  void loveDevice(ElectronicDeviceModel device) {
+    widget._authService.isLoggedIn.then((value) {
+      if (!value) {
         RouteHelper redirectTo = new RouteHelper(
-            redirectTo:  ProductsRoutes.CAR_DETAILS_SCREEN,
-            additionalData: electronicDeviceId
-        );
+            redirectTo: ProductsRoutes.CAR_DETAILS_SCREEN,
+            additionalData: electronicDeviceId);
         Navigator.of(context).pushNamed(
           AuthorizationRoutes.LOGIN_SCREEN,
           arguments: redirectTo,
         );
-      }else{
+      } else {
         widget._stateManager.loveDevice(electronicDeviceId, this, device);
       }
     });
   }
 
-  void unLoveDevice(ElectronicDeviceModel device){
-    widget._authService.isLoggedIn.then((value){
-      if(!value) {
+  void unLoveDevice(ElectronicDeviceModel device) {
+    widget._authService.isLoggedIn.then((value) {
+      if (!value) {
         RouteHelper redirectTo = new RouteHelper(
-            redirectTo:  ProductsRoutes.CAR_DETAILS_SCREEN,
-            additionalData: electronicDeviceId
-        );
+            redirectTo: ProductsRoutes.CAR_DETAILS_SCREEN,
+            additionalData: electronicDeviceId);
         Navigator.of(context).pushNamed(
           AuthorizationRoutes.LOGIN_SCREEN,
           arguments: redirectTo,
         );
-      }else{
+      } else {
         widget._stateManager.unLoveDevice(electronicDeviceId, this, device);
       }
     });
   }
 
-  void getElectronicDeviceDetails(){
+  void getElectronicDeviceDetails() {
     widget._stateManager.getElectronicDeviceDetails(this, electronicDeviceId);
   }
 
-  void getRoomId(){
-    widget._authService.isLoggedIn.then((value){
-      if(!value) {
+  void getRoomId() {
+    widget._authService.isLoggedIn.then((value) {
+      if (!value) {
         RouteHelper redirectTo = new RouteHelper(
-            redirectTo:  ProductsRoutes.ELECTRONIC_DEVICE_DETAILS_SCREEN,
-            additionalData: electronicDeviceId
-        );
+            redirectTo: ProductsRoutes.ELECTRONIC_DEVICE_DETAILS_SCREEN,
+            additionalData: electronicDeviceId);
         Navigator.of(context).pushNamed(
           AuthorizationRoutes.LOGIN_SCREEN,
           arguments: redirectTo,
         );
-      }else{
+      } else {
         widget._stateManager.getRoomId(electronicDeviceId, this);
       }
     });
   }
-  void getRoomIdWithLawyer(){
-    widget._authService.isLoggedIn.then((value){
-      if(!value) {
+
+  void placeComment(String comment,String entity, int itemId) {  
+       widget._authService.isLoggedIn.then((value) {
+      if (!value) {
         RouteHelper redirectTo = new RouteHelper(
-            redirectTo:  ProductsRoutes.ELECTRONIC_DEVICE_DETAILS_SCREEN,
-            additionalData: electronicDeviceId
-        );
+            redirectTo: ProductsRoutes.ELECTRONIC_DEVICE_DETAILS_SCREEN,
+            additionalData: electronicDeviceId);
         Navigator.of(context).pushNamed(
           AuthorizationRoutes.LOGIN_SCREEN,
           arguments: redirectTo,
         );
-      }else{
+      } else {
+        widget._stateManager.placeComment(comment,entity,itemId,this);
+      }
+    });
+  }
+
+  void getRoomIdWithLawyer() {
+    widget._authService.isLoggedIn.then((value) {
+      if (!value) {
+        RouteHelper redirectTo = new RouteHelper(
+            redirectTo: ProductsRoutes.ELECTRONIC_DEVICE_DETAILS_SCREEN,
+            additionalData: electronicDeviceId);
+        Navigator.of(context).pushNamed(
+          AuthorizationRoutes.LOGIN_SCREEN,
+          arguments: redirectTo,
+        );
+      } else {
         widget._stateManager.getRoomIdWithLawyer(electronicDeviceId, this);
       }
     });
   }
 
-  void report(){
-    widget._authService.isLoggedIn.then((value){
-      if(!value) {
+  void report() {
+    widget._authService.isLoggedIn.then((value) {
+      if (!value) {
         RouteHelper redirectTo = new RouteHelper(
-            redirectTo:  ProductsRoutes.ELECTRONIC_DEVICE_DETAILS_SCREEN,
-            additionalData: electronicDeviceId
-        );
+            redirectTo: ProductsRoutes.ELECTRONIC_DEVICE_DETAILS_SCREEN,
+            additionalData: electronicDeviceId);
         Navigator.of(context).pushNamed(
           AuthorizationRoutes.LOGIN_SCREEN,
           arguments: redirectTo,
         );
-      }else{
+      } else {
         ReportHelper report = new ReportHelper(
           entity: 'device',
           itemId: electronicDeviceId,
         );
-        Navigator.of(context).pushNamed(
-            ReportRoutes.REPORT_SCREEN,
-            arguments: report
-        );
+        Navigator.of(context)
+            .pushNamed(ReportRoutes.REPORT_SCREEN, arguments: report);
       }
     });
   }
 
-  void goToChat(String roomId){
-    Navigator.pushNamed(
-        context,
-        ChatRoutes.chatRoute,
-        arguments:  roomId
-    );
+  void goToChat(String roomId) {
+    Navigator.pushNamed(context, ChatRoutes.chatRoute, arguments: roomId);
   }
 
   @override
@@ -143,10 +150,8 @@ class  ElectronicDeviceDetailsScreenState extends State<ElectronicDeviceDetailsS
     currentState = ElectronicDeviceDetailsStateInit(this);
     widget._stateManager.stateStream.listen((event) {
       currentState = event;
-      if(this.mounted){
-        setState(() {
-
-        });
+      if (this.mounted) {
+        setState(() {});
       }
     });
   }
@@ -158,11 +163,10 @@ class  ElectronicDeviceDetailsScreenState extends State<ElectronicDeviceDetailsS
       getElectronicDeviceDetails();
     }
 
-
-
     width = MediaQuery.of(context).size.width;
     return Scaffold(
-      appBar: TurkishAppBar.getTurkishOrdinaryAppBar(context,  S.of(context).details),
+      appBar: TurkishAppBar.getTurkishOrdinaryAppBar(
+          context, S.of(context).details),
       body: currentState.getUI(context),
     );
   }

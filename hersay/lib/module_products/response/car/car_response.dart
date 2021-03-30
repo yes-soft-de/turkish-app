@@ -1,3 +1,5 @@
+import 'package:hersay/module_products/response/electronic_device/electronic_device_response.dart';
+
 class CarResponse {
   String statusCode;
   String msg;
@@ -47,32 +49,34 @@ class Data {
   String state;
   String username;
   String userImage;
+  List<Comment> comments;
 
   Data(
       {this.id,
-        this.brand,
-        this.company,
-        this.yearOfRelease,
-        this.engine,
-        this.price,
-        this.description,
-        this.status,
-        this.createdBy,
-        this.createdAt,
-        this.updateAt,
-        this.distance,
-        this.carType,
-        this.gearType,
-        this.cc,
-        this.fuel,
-        this.country,
-        this.city,
-        this.image,
-        this.images,
-        this.reaction,
-        this.state,
-        this.username,
-        this.userImage});
+      this.brand,
+      this.company,
+      this.yearOfRelease,
+      this.engine,
+      this.price,
+      this.description,
+      this.status,
+      this.createdBy,
+      this.createdAt,
+      this.updateAt,
+      this.distance,
+      this.carType,
+      this.gearType,
+      this.cc,
+      this.fuel,
+      this.country,
+      this.city,
+      this.image,
+      this.images,
+      this.reaction,
+      this.state,
+      this.username,
+      this.userImage,
+      this.comments});
 
   Data.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -109,6 +113,12 @@ class Data {
     reaction = json['reaction'] != null
         ? new Reaction.fromJson(json['reaction'])
         : null;
+    if (json['comments'] != null) {
+      comments = new List<Comment>();
+      json['comments'].forEach((v) {
+        comments.add(new Comment.fromJson(v));
+      });
+    }
     state = json['state'];
     username = json['username'];
     userImage = json['userImage'];
@@ -146,6 +156,9 @@ class Data {
     }
     if (this.reaction != null) {
       data['reaction'] = this.reaction.toJson();
+    }
+    if (this.comments != null) {
+      data['comments'] = this.comments.map((v) => v.toJson()).toList();
     }
     data['state'] = this.state;
     data['username'] = this.username;

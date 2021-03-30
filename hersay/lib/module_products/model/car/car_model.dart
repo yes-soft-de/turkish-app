@@ -1,4 +1,7 @@
+import 'package:hersay/module_products/response/electronic_device/electronic_device_response.dart';
+
 class CarModel {
+  int id;
   String type;
   String brand;
   String distance;
@@ -14,8 +17,9 @@ class CarModel {
   String userImage;
   bool isLoved;
   List<String> images;
-
+  List<Comment> comments;
   CarModel({
+    this.id,
     this.type,
     this.brand,
     this.distance,
@@ -31,5 +35,6 @@ class CarModel {
     this.userName,
     this.isLoved,
     this.images,
+    this.comments
   });
 }

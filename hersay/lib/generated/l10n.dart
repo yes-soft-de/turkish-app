@@ -9,6 +9,8 @@ import 'intl/messages_all.dart';
 // **************************************************************************
 
 // ignore_for_file: non_constant_identifier_names, lines_longer_than_80_chars
+// ignore_for_file: join_return_with_assignment, prefer_final_in_for_each
+// ignore_for_file: avoid_redundant_argument_values
 
 class S {
   S();
@@ -1103,10 +1105,10 @@ class S {
     );
   }
 
-  /// `التعليقات`
+  /// `Comments`
   String get comments {
     return Intl.message(
-      'التعليقات',
+      'Comments',
       name: 'comments',
       desc: '',
       args: [],
@@ -2538,6 +2540,26 @@ class S {
     return Intl.message(
       'your report was sent to the Admin',
       name: 'yourReportWasSentToTheAdmin',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Date`
+  String get date {
+    return Intl.message(
+      'Date',
+      name: 'date',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `place your comment here`
+  String get commentHint {
+    return Intl.message(
+      'place your comment here',
+      name: 'commentHint',
       desc: '',
       args: [],
     );

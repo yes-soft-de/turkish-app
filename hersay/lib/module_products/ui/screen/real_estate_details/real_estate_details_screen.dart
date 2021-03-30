@@ -47,7 +47,21 @@ class RealEstateDetailsScreenState extends State<RealEstateDetailsScreen> {
       }
     });
   }
-
+void placeComment(String comment, String entity, int itemId) {
+    widget._authService.isLoggedIn.then((value) {
+      if (!value) {
+        RouteHelper redirectTo = new RouteHelper(
+            redirectTo: ProductsRoutes.REAL_ESTATE_DETAILS_SCREEN,
+            additionalData: realEstateId);
+        Navigator.of(context).pushNamed(
+          AuthorizationRoutes.LOGIN_SCREEN,
+          arguments: redirectTo,
+        );
+      } else {
+        widget._stateManager.placeComment(comment, entity, itemId, this);
+      }
+    });
+  }
   void loveRealEstate(RealEstateModel realEstate){
     widget._authService.isLoggedIn.then((value){
       if(!value) {

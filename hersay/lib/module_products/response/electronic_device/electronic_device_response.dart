@@ -43,28 +43,30 @@ class Data {
   Reaction reaction;
   String username;
   String userImage;
+  List<Comment> comments;
 
   Data(
       {this.type,
-        this.brand,
-        this.cpu,
-        this.ram,
-        this.battery,
-        this.price,
-        this.yearOfRelease,
-        this.description,
-        this.status,
-        this.createdBy,
-        this.createdAt,
-        this.gauge,
-        this.country,
-        this.city,
-        this.durationOfUse,
-        this.image,
-        this.images,
-        this.reaction,
-        this.username,
-        this.userImage});
+      this.brand,
+      this.cpu,
+      this.ram,
+      this.battery,
+      this.price,
+      this.yearOfRelease,
+      this.description,
+      this.status,
+      this.createdBy,
+      this.createdAt,
+      this.gauge,
+      this.country,
+      this.city,
+      this.durationOfUse,
+      this.image,
+      this.images,
+      this.reaction,
+      this.username,
+      this.userImage,
+      this.comments});
 
   Data.fromJson(Map<String, dynamic> json) {
     type = json['type'];
@@ -91,6 +93,12 @@ class Data {
       images = new List<Images>();
       json['images'].forEach((v) {
         images.add(new Images.fromJson(v));
+      });
+    }
+    if (json['comments'] != null) {
+      comments = new List<Comment>();
+      json['comments'].forEach((v) {
+        comments.add(new Comment.fromJson(v));
       });
     }
     reaction = json['reaction'] != null
@@ -129,7 +137,9 @@ class Data {
     if (this.reaction != null) {
       data['reaction'] = this.reaction.toJson();
     }
-
+    if (this.comments != null) {
+      data['comments'] = this.comments.map((v) => v.toJson()).toList();
+    }
     data['username'] = this.username;
     data['userImage'] = this.userImage;
     return data;
@@ -285,6 +295,51 @@ class Images {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     data['image'] = this.image;
     data['specialLink'] = this.specialLink;
+    return data;
+  }
+}
+
+class Comment {
+  int id;
+  String userName;
+  String image;
+  String entity;
+  int itemID;
+  String comment;
+  YearOfRelease createdAt;
+
+  Comment({
+    this.id,
+    this.userName,
+    this.image,
+    this.entity,
+    this.itemID,
+    this.comment,
+    this.createdAt,
+  });
+  Comment.fromJson(Map<String, dynamic> json) {
+    id = json['id'];
+    userName = json['userName'];
+    image = json['image'];
+    entity = json['entity'];
+    itemID = json['itemID'];
+    comment = json['comment'];
+    createdAt = json['createdAt'] != null
+        ? new YearOfRelease.fromJson(json['createdAt'])
+        : null;
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['id'] = this.id;
+    data['userName'] = this.userName;
+    data['image'] = this.image;
+    data['entity'] = this.entity;
+    data['itemID'] = this.itemID;
+    data['comment'] = this.comment;
+    if (this.createdAt != null) {
+      data['createdAt'] = this.createdAt.toJson();
+    }
     return data;
   }
 }

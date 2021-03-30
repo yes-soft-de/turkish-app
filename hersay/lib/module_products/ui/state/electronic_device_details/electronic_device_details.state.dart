@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:hersay/generated/l10n.dart';
 import 'package:hersay/module_auth/auth_routes.dart';
@@ -5,7 +7,9 @@ import 'package:hersay/module_products/model/car/car_model.dart';
 import 'package:hersay/module_products/model/electronic_device/electronic_device_model.dart';
 import 'package:hersay/module_products/ui/screen/car_details/car_details_screen.dart';
 import 'package:hersay/module_products/ui/screen/electronic_device_details/electronic_device_details_screen.dart';
+import 'package:hersay/module_products/ui/widgets/commentCard.dart';
 import 'package:hersay/utils/project_colors/project_colors.dart';
+import 'package:intl/intl.dart';
 
 import '../../../products_routes.dart';
 
@@ -64,15 +68,14 @@ class ElectronicDeviceDetailsStateUnauthorized
 class ElectronicDeviceDetailsStateDataLoaded
     extends ElectronicDeviceDetailsState {
   final ElectronicDeviceModel electronicDevice;
-
-  ElectronicDeviceDetailsStateDataLoaded(
-      this.electronicDevice, ElectronicDeviceDetailsScreenState screenState)
+  final List<Widget> comments;
+  ElectronicDeviceDetailsStateDataLoaded(this.electronicDevice, this.comments,
+      ElectronicDeviceDetailsScreenState screenState)
       : super(screenState);
-
   @override
+  TextEditingController _comment = TextEditingController();
   Widget getUI(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
-
     return RefreshIndicator(
       onRefresh: () {
         screenState.getElectronicDeviceDetails();
@@ -164,7 +167,9 @@ class ElectronicDeviceDetailsStateDataLoaded
                           Icons.report_problem,
                           color: Colors.white,
                         ),
-                        SizedBox(width: 5,),
+                        SizedBox(
+                          width: 5,
+                        ),
                         Text(
                           S.of(context).report,
                           style: TextStyle(color: Colors.white),
@@ -201,7 +206,7 @@ class ElectronicDeviceDetailsStateDataLoaded
                 height: 150,
                 decoration: BoxDecoration(
                     image: DecorationImage(
-                        fit: BoxFit.fill,
+                        fit: BoxFit.cover,
                         image: NetworkImage(electronicDevice.image ??
                             'https://cdn.mos.cms.futurecdn.net/FkMhmL6YzQmj7unhsupKMR.png'))),
               ),
@@ -226,7 +231,9 @@ class ElectronicDeviceDetailsStateDataLoaded
                             Icons.picture_in_picture,
                             color: Colors.white,
                           ),
-                          SizedBox(width: 5,),
+                          SizedBox(
+                            width: 5,
+                          ),
                           Text(
                             S.of(context).showPics,
                             style: TextStyle(color: Colors.white),
@@ -245,7 +252,8 @@ class ElectronicDeviceDetailsStateDataLoaded
               ),
               Padding(
                 padding: const EdgeInsets.all(8.0),
-                child: Text(S.of(context).brand + ' : ${electronicDevice.brand}'),
+                child:
+                    Text(S.of(context).brand + ' : ${electronicDevice.brand}'),
               ),
               Padding(
                 padding: const EdgeInsets.all(8.0),
@@ -259,8 +267,8 @@ class ElectronicDeviceDetailsStateDataLoaded
               ),
               Padding(
                 padding: const EdgeInsets.all(8.0),
-                child: Text(
-                    S.of(context).descriptio + ' : ${electronicDevice.description}'),
+                child: Text(S.of(context).descriptio +
+                    ' : ${electronicDevice.description}'),
               ),
               Padding(
                 padding: const EdgeInsets.all(8.0),
@@ -325,6 +333,78 @@ class ElectronicDeviceDetailsStateDataLoaded
                   ),
                 ],
               ),
+              Padding(
+                padding: const EdgeInsets.only(top: 16.0),
+                child: Container(
+                  height: 65,
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10),
+                      color: ProjectColors.THEME_COLOR),
+                  width: MediaQuery.of(context).size.width,
+                  child: Flex(
+                    direction: Axis.horizontal,
+                    children: [
+                      Expanded(
+                        child: Padding(
+                          padding: const EdgeInsets.only(
+                              right: 8.0, left: 8.0, top: 8, bottom: 8),
+                          child: Container(
+                            decoration: BoxDecoration(
+                                color: Theme.of(context).brightness ==
+                                        Brightness.dark
+                                    ? Colors.grey[900]
+                                    : ProjectColors.BACKGROUND_COLOR,
+                                borderRadius: BorderRadius.circular(10)),
+                            child: TextField(
+                              controller: _comment,
+                              decoration: InputDecoration(
+                                hintText: '${S.of(context).commentHint}',
+                                prefixIcon: Icon(Icons.comment),
+                                border: InputBorder.none,
+                                contentPadding: EdgeInsets.all(13),
+                              ),
+                              onEditingComplete: () =>
+                                  FocusScope.of(context).unfocus(),
+                              textInputAction: TextInputAction.done,
+                            ),
+                          ),
+                        ),
+                      ),
+                      IconButton(
+                          splashRadius: 20,
+                          icon: Icon(
+                            Icons.check,
+                            color: Colors.white,
+                          ),
+                          onPressed: () {
+                            screenState.placeComment(_comment.text,
+                                'device', electronicDevice.id);
+                          }),
+                    ],
+                  ),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(top: 16.0, right: 4, left: 4),
+                child: Divider(
+                  color: ProjectColors.THEME_COLOR,
+                  thickness: 5,
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(top: 16.0, left: 16, right: 16),
+                child: Text(
+                  '${S.of(context).comments}',
+                  style: TextStyle(fontWeight: FontWeight.w600),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(top: 16.0),
+                child: Column(
+                  children: comments,
+                ),
+              ),
+            
             ],
           ),
         ),

@@ -44,24 +44,25 @@ class Data {
 
   Data(
       {this.id,
-        this.type,
-        this.brand,
-        this.cpu,
-        this.ram,
-        this.battery,
-        this.price,
-        this.yearOfRelease,
-        this.description,
-        this.status,
-        this.createdAt,
-        this.gauge,
-        this.country,
-        this.city,
-        this.durationOfUse,
-        this.image,
-        this.reaction,
-        this.userName,
-        this.imageUser});
+      this.type,
+      this.brand,
+      this.cpu,
+      this.ram,
+      this.battery,
+      this.price,
+      this.yearOfRelease,
+      this.description,
+      this.status,
+      this.createdAt,
+      this.gauge,
+      this.country,
+      this.city,
+      this.durationOfUse,
+      this.image,
+      this.reaction,
+      this.userName,
+      this.imageUser,
+      });
 
   Data.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -123,6 +124,7 @@ class Data {
     data['imageUser'] = this.imageUser;
     return data;
   }
+
 }
 
 class YearOfRelease {
@@ -255,3 +257,4 @@ class Reaction {
     return data;
   }
 }
+

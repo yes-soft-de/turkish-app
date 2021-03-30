@@ -13,10 +13,10 @@ class ApiClient {
   ApiClient(this._logger);
 
   Future<Map<String, dynamic>> get(
-      String url, {
-        Map<String, String> queryParams,
-        Map<String, String> headers,
-      }) async {
+    String url, {
+    Map<String, String> queryParams,
+    Map<String, String> headers,
+  }) async {
     try {
       _logger.info(tag, 'Requesting GET to: ' + url);
       _logger.info(tag, 'Headers: ' + headers.toString());
@@ -44,11 +44,11 @@ class ApiClient {
   }
 
   Future<Map<String, dynamic>> post(
-      String url,
-      Map<String, dynamic> payLoad, {
-        Map<String, String> queryParams,
-        Map<String, String> headers,
-      }) async {
+    String url,
+    Map<String, dynamic> payLoad, {
+    Map<String, String> queryParams,
+    Map<String, String> headers,
+  }) async {
     Dio client = Dio(BaseOptions(
       sendTimeout: 60000,
       receiveTimeout: 60000,
@@ -77,11 +77,11 @@ class ApiClient {
   }
 
   Future<Map<String, dynamic>> put(
-      String url,
-      Map<String, dynamic> payLoad, {
-        Map<String, String> queryParams,
-        Map<String, String> headers,
-      }) async {
+    String url,
+    Map<String, dynamic> payLoad, {
+    Map<String, String> queryParams,
+    Map<String, String> headers,
+  }) async {
     try {
       _logger.info(tag, 'Requesting PUT to: ' + url);
       _logger.info(tag, 'PUT: ' + jsonEncode(payLoad));
@@ -109,10 +109,10 @@ class ApiClient {
   }
 
   Future<Map<String, dynamic>> delete(
-      String url, {
-        Map<String, String> queryParams,
-        Map<String, String> headers,
-      }) async {
+    String url, {
+    Map<String, String> queryParams,
+    Map<String, String> headers,
+  }) async {
     try {
       _logger.info(tag, 'Requesting DELETE to: ' + url);
       _logger.info(tag, 'Headers: ' + headers.toString());

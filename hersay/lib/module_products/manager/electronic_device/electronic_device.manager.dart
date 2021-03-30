@@ -1,6 +1,7 @@
 
 import 'package:hersay/module_products/repository/electonic_device/electronic_device.repository.dart';
 import 'package:hersay/module_products/repository/real_estate/real_estate.repository.dart';
+import 'package:hersay/module_products/request/comment/comment_request.dart';
 import 'package:hersay/module_products/request/electonic_device/electronic_device_request.dart';
 import 'package:hersay/module_products/request/real_estate/real_estate_request.dart';
 import 'package:hersay/module_products/response/electronic_device/electronic_device_response.dart';
@@ -19,4 +20,6 @@ class ElectronicDeviceManager{
 
   Future<ElectronicDeviceResponse> getElectronicDeviceDetails(int electronicDeviceId)async =>
       _repository.getElectronicDeviceDetails(electronicDeviceId);
+        Future placeComment(CommentRequest request)async =>
+      _repository.placeComment(request);
 }

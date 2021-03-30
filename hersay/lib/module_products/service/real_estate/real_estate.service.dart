@@ -1,6 +1,7 @@
 
 import 'package:hersay/module_products/manager/real_estate/real_estate.manager.dart';
 import 'package:hersay/module_products/model/real_estate/real_estate_model.dart';
+import 'package:hersay/module_products/request/comment/comment_request.dart';
 import 'package:hersay/module_products/request/real_estate/real_estate_request.dart';
 import 'package:hersay/module_products/response/real_estate/real_estate_response.dart';
 import 'package:hersay/module_upload/service/image_upload/image_upload_service.dart';
@@ -73,6 +74,7 @@ class RealEstateService{
 
 
     return new RealEstateModel(
+      id:realEstateId,
        price: response.data.price.toString(),
       description: response.data.description,
       type: response.data.realEstateType,
@@ -87,6 +89,7 @@ class RealEstateService{
       userImage: response.data.userImage,
       isLoved: response.data.reaction.isLoved,
       images: _getImages(response),
+      comments: response.data.comments,
     );
 
   }
@@ -98,5 +101,8 @@ class RealEstateService{
     });
 
     return result;
+  }
+  Future<void> placeComment(CommentRequest request) async {
+    var response = await _manager.placeComment(request);
   }
 }

@@ -2,6 +2,7 @@
 import 'package:hersay/consts/urls.dart';
 import 'package:hersay/module_auth/service/auth/auth.service.dart';
 import 'package:hersay/module_network/http_client/http_client.dart';
+import 'package:hersay/module_products/request/comment/comment_request.dart';
 import 'package:hersay/module_products/request/real_estate/real_estate_request.dart';
 import 'package:hersay/module_products/response/real_estate/real_estate_response.dart';
 import 'package:inject/inject.dart';
@@ -41,5 +42,13 @@ class RealEstateRepository{
 
     if (response == null) return null;
     return RealEstateResponse.fromJson(response);
+  }
+  Future placeComment(CommentRequest request) async {
+    var token = await _authService.getToken();
+    var response = await _apiClient.post(
+      Urls.COMMENT_API,
+      request.toJson(),
+      headers: {'Authorization': 'Bearer ' + token},
+    );
   }
 }

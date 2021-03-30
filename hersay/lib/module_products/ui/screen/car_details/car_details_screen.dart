@@ -20,9 +20,9 @@ class CarDetailsScreen extends StatefulWidget {
   final AuthService _authService;
 
   CarDetailsScreen(
-      this._stateManager,
-      this._authService,
-      );
+    this._stateManager,
+    this._authService,
+  );
 
   @override
   CarDetailsScreenState createState() => CarDetailsScreenState();
@@ -38,122 +38,123 @@ class CarDetailsScreenState extends State<CarDetailsScreen> {
     currentState = CarDetailsStateInit(this);
     widget._stateManager.stateStream.listen((event) {
       currentState = event;
-      if(this.mounted){
-        setState(() {
-
-        });
+      if (this.mounted) {
+        setState(() {});
       }
     });
   }
 
-  void loveCar(CarModel car){
-    widget._authService.isLoggedIn.then((value){
-      if(!value) {
+  void placeComment(String comment, String entity, int itemId) {
+    widget._authService.isLoggedIn.then((value) {
+      if (!value) {
         RouteHelper redirectTo = new RouteHelper(
-            redirectTo:  ProductsRoutes.CAR_DETAILS_SCREEN,
-            additionalData: carId
-        );
+            redirectTo: ProductsRoutes.CAR_DETAILS_SCREEN,
+            additionalData: carId);
         Navigator.of(context).pushNamed(
           AuthorizationRoutes.LOGIN_SCREEN,
           arguments: redirectTo,
         );
-      }else{
+      } else {
+        widget._stateManager.placeComment(comment, entity, itemId, this);
+      }
+    });
+  }
+
+  void loveCar(CarModel car) {
+    widget._authService.isLoggedIn.then((value) {
+      if (!value) {
+        RouteHelper redirectTo = new RouteHelper(
+            redirectTo: ProductsRoutes.CAR_DETAILS_SCREEN,
+            additionalData: carId);
+        Navigator.of(context).pushNamed(
+          AuthorizationRoutes.LOGIN_SCREEN,
+          arguments: redirectTo,
+        );
+      } else {
         widget._stateManager.loveCar(carId, this, car);
       }
     });
   }
-  void unLoveCar(CarModel car){
-    widget._authService.isLoggedIn.then((value){
-      if(!value) {
+
+  void unLoveCar(CarModel car) {
+    widget._authService.isLoggedIn.then((value) {
+      if (!value) {
         RouteHelper redirectTo = new RouteHelper(
-            redirectTo:  ProductsRoutes.CAR_DETAILS_SCREEN,
-            additionalData: carId
-        );
+            redirectTo: ProductsRoutes.CAR_DETAILS_SCREEN,
+            additionalData: carId);
         Navigator.of(context).pushNamed(
           AuthorizationRoutes.LOGIN_SCREEN,
           arguments: redirectTo,
         );
-      }else{
+      } else {
         widget._stateManager.unLoveCar(carId, this, car);
       }
     });
   }
 
-  void refresh(){
-    setState(() {
-
-    });
+  void refresh() {
+    setState(() {});
   }
 
-  void getCarDetails(){
-    widget._stateManager.getCarDetails(this,carId);
+  void getCarDetails() {
+    widget._stateManager.getCarDetails(this, carId);
   }
 
-  void report(){
-    widget._authService.isLoggedIn.then((value){
-      if(!value) {
+  void report() {
+    widget._authService.isLoggedIn.then((value) {
+      if (!value) {
         RouteHelper redirectTo = new RouteHelper(
-            redirectTo:  ProductsRoutes.CAR_DETAILS_SCREEN,
-            additionalData: carId
-        );
+            redirectTo: ProductsRoutes.CAR_DETAILS_SCREEN,
+            additionalData: carId);
         Navigator.of(context).pushNamed(
           AuthorizationRoutes.LOGIN_SCREEN,
           arguments: redirectTo,
         );
-      }else{
+      } else {
         ReportHelper report = new ReportHelper(
           entity: 'car',
           itemId: carId,
         );
-        Navigator.of(context).pushNamed(
-            ReportRoutes.REPORT_SCREEN,
-            arguments: report
-        );
+        Navigator.of(context)
+            .pushNamed(ReportRoutes.REPORT_SCREEN, arguments: report);
       }
     });
   }
 
-  void getRoomId(){
-    widget._authService.isLoggedIn.then((value){
-      if(!value) {
+  void getRoomId() {
+    widget._authService.isLoggedIn.then((value) {
+      if (!value) {
         RouteHelper redirectTo = new RouteHelper(
-            redirectTo:  ProductsRoutes.CAR_DETAILS_SCREEN,
-            additionalData: carId
-        );
+            redirectTo: ProductsRoutes.CAR_DETAILS_SCREEN,
+            additionalData: carId);
         Navigator.of(context).pushNamed(
           AuthorizationRoutes.LOGIN_SCREEN,
           arguments: redirectTo,
         );
-      }else{
+      } else {
         widget._stateManager.getRoomId(carId, this);
       }
     });
   }
-  void getRoomIdWithLawyer(){
-    widget._authService.isLoggedIn.then((value){
-      if(!value) {
+
+  void getRoomIdWithLawyer() {
+    widget._authService.isLoggedIn.then((value) {
+      if (!value) {
         RouteHelper redirectTo = new RouteHelper(
-            redirectTo:  ProductsRoutes.CAR_DETAILS_SCREEN,
-            additionalData: carId
-        );
+            redirectTo: ProductsRoutes.CAR_DETAILS_SCREEN,
+            additionalData: carId);
         Navigator.of(context).pushNamed(
           AuthorizationRoutes.LOGIN_SCREEN,
           arguments: redirectTo,
         );
-      }else{
+      } else {
         widget._stateManager.getRoomIdWithLawyer(carId, this);
       }
     });
   }
 
-
-
-  void goToChat(String roomId){
-    Navigator.pushNamed(
-        context,
-        ChatRoutes.chatRoute,
-        arguments:  roomId
-    );
+  void goToChat(String roomId) {
+    Navigator.pushNamed(context, ChatRoutes.chatRoute, arguments: roomId);
   }
 
   @override
@@ -164,10 +165,9 @@ class CarDetailsScreenState extends State<CarDetailsScreen> {
       getCarDetails();
     }
 
-
-
     return Scaffold(
-      appBar: TurkishAppBar.getTurkishOrdinaryAppBar(context, S.of(context).details),
+      appBar: TurkishAppBar.getTurkishOrdinaryAppBar(
+          context, S.of(context).details),
       body: currentState.getUI(context),
     );
   }

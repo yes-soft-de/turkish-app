@@ -66,7 +66,7 @@ class ProductCard extends StatelessWidget {
               height: 165,
               decoration: BoxDecoration(
                 image: DecorationImage(
-                  fit: BoxFit.fill,
+                  fit: BoxFit.cover,
                   image: NetworkImage(
                     image ?? '',
                   ),
@@ -92,6 +92,7 @@ class ProductCard extends StatelessWidget {
                         ),
                       ),
                     ),
+                    
                     SizedBox(width: 5,),
                     Text('$owner'),
                   ],

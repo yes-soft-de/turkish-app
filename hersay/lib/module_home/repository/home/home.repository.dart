@@ -75,9 +75,6 @@ class HomeRepository{
       headers: {'Authorization': 'Bearer ' + token},
     )
         : await _apiClient.get(Urls.ALL_DEVICES,) ;
-
-
-
     if(response != null ) devices = AllDevicesResponse.fromJson(response);
 
   }

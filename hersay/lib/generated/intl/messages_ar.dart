@@ -89,6 +89,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "createReport" : MessageLookupByLibrary.simpleMessage("تبليغ"),
     "cylynder" : MessageLookupByLibrary.simpleMessage("اسطوانة المحرك"),
     "darkMode" : MessageLookupByLibrary.simpleMessage("الوضع الليلي"),
+    "date" : MessageLookupByLibrary.simpleMessage("التاريخ"),
     "descriptio" : MessageLookupByLibrary.simpleMessage("الوصف"),
     "desktop" : MessageLookupByLibrary.simpleMessage("حاسوب مكتبي"),
     "details" : MessageLookupByLibrary.simpleMessage("التفاصيل"),

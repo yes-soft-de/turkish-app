@@ -1,3 +1,5 @@
+import 'package:hersay/module_products/response/electronic_device/electronic_device_response.dart';
+
 class RealEstateResponse {
   String statusCode;
   String msg;
@@ -42,27 +44,29 @@ class Data {
 //  Null documents;
   String username;
   String userImage;
+  List<Comment> comments;
 
   Data(
       {this.id,
-        this.country,
-        this.city,
-        this.space,
-        this.price,
-        this.description,
-        this.status,
-        this.createdAt,
-        this.state,
-        this.image,
-        this.images,
-        this.numberOfFloors,
-        this.cladding,
-        this.homeFurnishing,
-        this.realEstateType,
-        this.reaction,
+      this.country,
+      this.city,
+      this.space,
+      this.price,
+      this.description,
+      this.status,
+      this.createdAt,
+      this.state,
+      this.image,
+      this.images,
+      this.numberOfFloors,
+      this.cladding,
+      this.homeFurnishing,
+      this.realEstateType,
+      this.reaction,
 //        this.documents,
-        this.username,
-        this.userImage});
+      this.username,
+      this.userImage,
+      this.comments});
 
   Data.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -81,6 +85,12 @@ class Data {
       images = new List<Images>();
       json['images'].forEach((v) {
         images.add(new Images.fromJson(v));
+      });
+    }
+    if (json['comments'] != null) {
+      comments = new List<Comment>();
+      json['comments'].forEach((v) {
+        comments.add(new Comment.fromJson(v));
       });
     }
     numberOfFloors = json['numberOfFloors'];
@@ -111,6 +121,9 @@ class Data {
     data['image'] = this.image;
     if (this.images != null) {
       data['images'] = this.images.map((v) => v.toJson()).toList();
+    }
+    if (this.comments != null) {
+      data['comments'] = this.comments.map((v) => v.toJson()).toList();
     }
     data['numberOfFloors'] = this.numberOfFloors;
     data['cladding'] = this.cladding;
@@ -259,6 +272,7 @@ class Reaction {
     return data;
   }
 }
+
 class Images {
   String image;
   Null specialLink;

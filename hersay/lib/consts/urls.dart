@@ -13,7 +13,7 @@ class Urls {
   static const GET_USER_REAL_ESTATES = BASE_API + '/realEstates';
   static const DELETE_REAL_ESTATE = BASE_API +'/realEstate/';
   //CAR APIS
-  static const ADD_NEW_CAR = BASE_API + '/cars';
+  static const ADD_NEW_CAR = BASE_API + '/';
   static const ALL_CARS = BASE_API + '/allCars';
   static const GET_CAR_DETAILS = BASE_API + '/car/';
   static const GET_USER_CARS = BASE_API + '/cars';
@@ -42,7 +42,8 @@ class Urls {
   static const DELETE_REACT = BASE_API + '/reaction/';
   //REPORT
   static const REPORT_API = BASE_API + '/report';
-
+  //COMMENT
+  static const COMMENT_API = BASE_API +'/comment';
 
 
 }

@@ -56,11 +56,11 @@ class RealEstateDetailsStateUnauthorized extends RealEstateDetailsState {
 
 class RealEstateDetailsStateDataLoaded extends RealEstateDetailsState {
   final RealEstateModel realEstate;
-
+  final List<Widget> comments;
   RealEstateDetailsStateDataLoaded(
-      this.realEstate, RealEstateDetailsScreenState screenState)
+      this.realEstate, this.comments, RealEstateDetailsScreenState screenState)
       : super(screenState);
-
+  TextEditingController _comment = TextEditingController();
   @override
   Widget getUI(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
@@ -156,7 +156,9 @@ class RealEstateDetailsStateDataLoaded extends RealEstateDetailsState {
                           Icons.report_problem,
                           color: Colors.white,
                         ),
-                        SizedBox(width: 5,),
+                        SizedBox(
+                          width: 5,
+                        ),
                         Text(
                           S.of(context).report,
                           style: TextStyle(color: Colors.white),
@@ -193,7 +195,7 @@ class RealEstateDetailsStateDataLoaded extends RealEstateDetailsState {
                 margin: EdgeInsets.only(top: 20),
                 decoration: BoxDecoration(
                     image: DecorationImage(
-                        fit: BoxFit.fill,
+                        fit: BoxFit.cover,
                         image: NetworkImage(realEstate.image ??
                             'https://q4g9y5a8.rocketcdn.me/wp-content/uploads/2020/02/home-banner-2020-02-min.jpg'))),
               ),
@@ -213,13 +215,14 @@ class RealEstateDetailsStateDataLoaded extends RealEstateDetailsState {
                       },
                       child: Flex(
                         direction: Axis.horizontal,
-
                         children: [
                           Icon(
                             Icons.picture_in_picture,
                             color: Colors.white,
                           ),
-                          SizedBox(width: 5,),
+                          SizedBox(
+                            width: 5,
+                          ),
                           Text(
                             S.of(context).showPics,
                             style: TextStyle(color: Colors.white),
@@ -247,7 +250,8 @@ class RealEstateDetailsStateDataLoaded extends RealEstateDetailsState {
               ),
               Padding(
                 padding: const EdgeInsets.all(8.0),
-                child: Text(S.of(context).cladding + ' : ${realEstate.cladding}'),
+                child:
+                    Text(S.of(context).cladding + ' : ${realEstate.cladding}'),
               ),
               Padding(
                 padding: const EdgeInsets.all(8.0),
@@ -301,6 +305,77 @@ class RealEstateDetailsStateDataLoaded extends RealEstateDetailsState {
                     ),
                   ),
                 ],
+              ),
+              Padding(
+                padding: const EdgeInsets.only(top: 16.0),
+                child: Container(
+                  height: 65,
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10),
+                      color: ProjectColors.THEME_COLOR),
+                  width: MediaQuery.of(context).size.width,
+                  child: Flex(
+                    direction: Axis.horizontal,
+                    children: [
+                      Expanded(
+                        child: Padding(
+                          padding: const EdgeInsets.only(
+                              right: 8.0, left: 8.0, top: 8, bottom: 8),
+                          child: Container(
+                            decoration: BoxDecoration(
+                                color: Theme.of(context).brightness ==
+                                        Brightness.dark
+                                    ? Colors.grey[900]
+                                    : ProjectColors.BACKGROUND_COLOR,
+                                borderRadius: BorderRadius.circular(10)),
+                            child: TextField(
+                              controller: _comment,
+                              decoration: InputDecoration(
+                                hintText: '${S.of(context).commentHint}',
+                                prefixIcon: Icon(Icons.comment),
+                                border: InputBorder.none,
+                                contentPadding: EdgeInsets.all(13),
+                              ),
+                              onEditingComplete: () =>
+                                  FocusScope.of(context).unfocus(),
+                              textInputAction: TextInputAction.done,
+                            ),
+                          ),
+                        ),
+                      ),
+                      IconButton(
+                          splashRadius: 20,
+                          icon: Icon(
+                            Icons.check,
+                            color: Colors.white,
+                          ),
+                          onPressed: () {
+                            screenState.placeComment(
+                                _comment.text, 'realEstate', realEstate.id);
+                          }),
+                    ],
+                  ),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(top: 16.0, right: 4, left: 4),
+                child: Divider(
+                  color: ProjectColors.THEME_COLOR,
+                  thickness: 5,
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(top: 16.0, left: 16, right: 16),
+                child: Text(
+                  '${S.of(context).comments}',
+                  style: TextStyle(fontWeight: FontWeight.w600),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(top: 16.0),
+                child: Column(
+                  children: comments,
+                ),
               ),
             ],
           ),

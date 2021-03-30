@@ -249,5 +249,7 @@
   "cancel": "إلغاء",
   "pleaseCompleteTheForm": "الرجاء أكمل الفورم",
   "report": "إبلاغ",
-  "yourReportWasSentToTheAdmin": "بلاغك أرسل للأدمن"
+  "yourReportWasSentToTheAdmin": "بلاغك أرسل للأدمن",
+  "date":"التاريخ",
+  "commintHint":"اكتب تعليقك هنا"
 }
