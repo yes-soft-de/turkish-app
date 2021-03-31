@@ -5,7 +5,9 @@ namespace App\Controller;
 
 
 use App\AutoMapping;
+use App\Request\DeleteRequest;
 use App\Request\ServiceCreateRequest;
+use App\Request\ServicesUpdateRequest;
 use App\Service\ServicesService;
 use stdClass;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -77,6 +79,45 @@ class ServicesController extends BaseController
         $result = $this->servicesService->getAllServices($this->getUserId());
 
         return $this->response($result, self::FETCH);
+    }
+
+    /**
+     * @Route("services", name="updateExistingService", methods={"PUT"})
+     * @param Request $request
+     * @return JsonResponse
+     */
+    public function update(Request $request)
+    {
+        $data = json_decode($request->getContent(), true);
+
+        $request = $this->autoMapping->map(\stdClass::class, ServicesUpdateRequest::class, (object) $data);
+
+        $violations = $this->validator->validate($request);
+
+        if (\count($violations) > 0)
+        {
+            $violationsString = (string) $violations;
+
+            return new JsonResponse($violationsString, Response::HTTP_OK);
+        }
+
+        $result = $this->servicesService->update($request);
+
+        return $this->response($result, self::UPDATE);
+    }
+
+    /**
+     * @Route("services/{id}", name="deleteServiceById", methods={"DELETE"})
+     * @param Request $request
+     * @return JsonResponse
+     */
+    public function delete(Request $request)
+    {
+        $request = new DeleteRequest($request->get('id'));
+
+        $result = $this->servicesService->delete($request);
+
+        return $this->response("deleted ", self::DELETE);
     }
 
 }

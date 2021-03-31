@@ -75,6 +75,25 @@ class ServicesService
         return $response;
     }
 
+    public function update($request)
+    {
+        $serviceResult = $this->servicesManager->update($request);
+
+        return $this->autoMapping->map(ServicesEntity::class, ServicesGetResponse::class, $serviceResult);
+    }
+
+    public function delete($result)
+    {
+        $serviceResult = $this->servicesManager->delete($result);
+
+        if($serviceResult == null)
+        {
+            return null;
+        }
+
+        return  $this->autoMapping->map(ServicesEntity::class, ServiceGetByIdResponse::class, $serviceResult);
+    }
+
     public function specialLinkCheck($bool)
     {
         if (!$bool)

@@ -172,3 +172,12 @@ App\Request\ServiceCreateRequest:
       - NotBlank: ~
     type:
       - NotBlank: ~
+
+App\Request\ServicesUpdateRequest:
+  properties:
+    id:
+      - NotBlank: ~
+    title:
+      - NotBlank: ~
+    type:
+      - NotBlank: ~
