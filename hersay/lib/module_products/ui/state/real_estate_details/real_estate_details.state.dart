@@ -250,11 +250,6 @@ class RealEstateDetailsStateDataLoaded extends RealEstateDetailsState {
               ),
               Padding(
                 padding: const EdgeInsets.all(8.0),
-                child:
-                    Text(S.of(context).cladding + ' : ${realEstate.cladding}'),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
                 child: Text('${realEstate.isFurnished}'),
               ),
               Padding(
@@ -263,7 +258,7 @@ class RealEstateDetailsStateDataLoaded extends RealEstateDetailsState {
               ),
               Padding(
                 padding: const EdgeInsets.all(8.0),
-                child: Text(S.of(context).rooms + ' ${realEstate.description}'),
+                child: Text(S.of(context).roomsDescription + ' ${realEstate.description}'),
               ),
               Container(
                 decoration: BoxDecoration(

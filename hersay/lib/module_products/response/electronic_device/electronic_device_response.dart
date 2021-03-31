@@ -25,19 +25,13 @@ class ElectronicDeviceResponse {
 class Data {
   String type;
   String brand;
-  String cpu;
-  String ram;
-  String battery;
   int price;
-  YearOfRelease yearOfRelease;
   String description;
   String status;
   String createdBy;
   YearOfRelease createdAt;
-  String gauge;
   String country;
   String city;
-  String durationOfUse;
   String image;
   List<Images> images;
   Reaction reaction;
@@ -48,19 +42,13 @@ class Data {
   Data(
       {this.type,
       this.brand,
-      this.cpu,
-      this.ram,
-      this.battery,
       this.price,
-      this.yearOfRelease,
       this.description,
       this.status,
       this.createdBy,
       this.createdAt,
-      this.gauge,
       this.country,
       this.city,
-      this.durationOfUse,
       this.image,
       this.images,
       this.reaction,
@@ -71,23 +59,15 @@ class Data {
   Data.fromJson(Map<String, dynamic> json) {
     type = json['type'];
     brand = json['brand'];
-    cpu = json['cpu'];
-    ram = json['ram'];
-    battery = json['battery'];
     price = json['price'];
-    yearOfRelease = json['yearOfRelease'] != null
-        ? new YearOfRelease.fromJson(json['yearOfRelease'])
-        : null;
     description = json['description'];
     status = json['status'];
     createdBy = json['createdBy'];
     createdAt = json['createdAt'] != null
         ? new YearOfRelease.fromJson(json['createdAt'])
         : null;
-    gauge = json['gauge'];
     country = json['country'];
     city = json['city'];
-    durationOfUse = json['durationOfUse'];
     image = json['image'];
     if (json['images'] != null) {
       images = new List<Images>();
@@ -113,23 +93,15 @@ class Data {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     data['type'] = this.type;
     data['brand'] = this.brand;
-    data['cpu'] = this.cpu;
-    data['ram'] = this.ram;
-    data['battery'] = this.battery;
     data['price'] = this.price;
-    if (this.yearOfRelease != null) {
-      data['yearOfRelease'] = this.yearOfRelease.toJson();
-    }
     data['description'] = this.description;
     data['status'] = this.status;
     data['createdBy'] = this.createdBy;
     if (this.createdAt != null) {
       data['createdAt'] = this.createdAt.toJson();
     }
-    data['gauge'] = this.gauge;
     data['country'] = this.country;
     data['city'] = this.city;
-    data['durationOfUse'] = this.durationOfUse;
     data['image'] = this.image;
     if (this.images != null) {
       data['images'] = this.images.map((v) => v.toJson()).toList();

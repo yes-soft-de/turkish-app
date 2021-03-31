@@ -43,27 +43,20 @@ class AddCarScreenState extends State<AddCarScreen> {
   }
 
   void addNewCar(
-      String brand,
-      String company,
-      String engine,
       int price,
       String description,
       String distance,
       String carType,
       String gearType,
-      String cc,
-      String fuel,
       String location,
       String yearOfRelease,
       String image,
       String country,
       String city,
-      String state,
       String status,
       List<String> otherImages
       ) {
-    widget._stateManager.addNewCar(brand, company, engine, price, description, distance, carType,
-        gearType, cc, fuel, location, yearOfRelease, image, country, city, state, status, otherImages, this);
+    widget._stateManager.addNewCar(price, description, distance, carType, gearType, location, yearOfRelease, image, country, city, status, otherImages, this);
   }
 
   @override

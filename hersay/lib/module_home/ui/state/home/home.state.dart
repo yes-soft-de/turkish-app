@@ -121,6 +121,7 @@ class HomeStateDataLoaded extends HomeState {
                         product: displayedProducts[index].product,
                         specification: displayedProducts[index].specification,
                         type: displayedProducts[index].type,
+                        comments: displayedProducts[index].comments,
                       ),
                     ),
                   );

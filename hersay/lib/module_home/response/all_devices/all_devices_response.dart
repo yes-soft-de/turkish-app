@@ -41,28 +41,29 @@ class Data {
   List<Reaction> reaction;
   String userName;
   String imageUser;
-
-  Data(
-      {this.id,
-      this.type,
-      this.brand,
-      this.cpu,
-      this.ram,
-      this.battery,
-      this.price,
-      this.yearOfRelease,
-      this.description,
-      this.status,
-      this.createdAt,
-      this.gauge,
-      this.country,
-      this.city,
-      this.durationOfUse,
-      this.image,
-      this.reaction,
-      this.userName,
-      this.imageUser,
-      });
+  int commentsCount;
+  Data({
+    this.id,
+    this.type,
+    this.brand,
+    this.cpu,
+    this.ram,
+    this.battery,
+    this.price,
+    this.yearOfRelease,
+    this.description,
+    this.status,
+    this.createdAt,
+    this.gauge,
+    this.country,
+    this.city,
+    this.durationOfUse,
+    this.image,
+    this.reaction,
+    this.userName,
+    this.imageUser,
+    this.commentsCount
+  });
 
   Data.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -72,6 +73,7 @@ class Data {
     ram = json['ram'];
     battery = json['battery'];
     price = json['price'];
+    commentsCount = json['commentsNumber'];
     yearOfRelease = json['yearOfRelease'] != null
         ? new YearOfRelease.fromJson(json['yearOfRelease'])
         : null;
@@ -124,7 +126,6 @@ class Data {
     data['imageUser'] = this.imageUser;
     return data;
   }
-
 }
 
 class YearOfRelease {
@@ -257,4 +258,3 @@ class Reaction {
     return data;
   }
 }
-

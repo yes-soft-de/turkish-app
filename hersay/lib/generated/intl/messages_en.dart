@@ -266,7 +266,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "watchedSeries" : MessageLookupByLibrary.simpleMessage("مسلسلات متابعة"),
     "whatYouWantToSeachAbout" : MessageLookupByLibrary.simpleMessage("what you want to seach about"),
     "worldWideSeries" : MessageLookupByLibrary.simpleMessage("المسلسلات الموصى بها عالميا"),
-    "yearOfRelease" : MessageLookupByLibrary.simpleMessage("Year of release"),
+    "yearOfRelease" : MessageLookupByLibrary.simpleMessage("Year of production"),
     "youCanUseOnlyNumbers" : MessageLookupByLibrary.simpleMessage("you can use only numbers"),
     "youDidNotChatWithAnyOne" : MessageLookupByLibrary.simpleMessage("You did not chat with any one"),
     "youDidNotSellOrBuyAnyThingYet" : MessageLookupByLibrary.simpleMessage("You did not sell or buy any thing yet"),

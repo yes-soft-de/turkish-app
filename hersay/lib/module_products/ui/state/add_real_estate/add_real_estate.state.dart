@@ -139,7 +139,6 @@ class AddRealEstateStateInit extends AddRealEstateState {
                   ),
                 ),
               ),
-
               // floor number
               Card(
                 elevation: 10,
@@ -161,39 +160,6 @@ class AddRealEstateStateInit extends AddRealEstateState {
                         borderRadius: BorderRadius.circular(20),
                       ),
                       labelText: S.of(context).appartmentFloorOrNumberOfFloors,
-                    ),
-                    textInputAction: TextInputAction.next,
-                    onEditingComplete: () => node.nextFocus(),
-                    // Move focus to next
-                    validator: (result) {
-                      if (result.isEmpty) {
-                        return S.of(context).thisFieldCannotBeEmpty;
-                      }
-                      return null;
-                    },
-                  ),
-                ),
-              ),
-              // cladding
-              Card(
-                elevation: 10,
-                margin: EdgeInsets.only(top: 20),
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(15)),
-                child: Container(
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(15),
-                    color: Colors.black12,
-                  ),
-                  child: TextFormField(
-                    controller: _claddingController,
-                    decoration: InputDecoration(
-//                        prefixIcon: Icon(Icons.hors),
-                      border: OutlineInputBorder(
-                        borderSide: BorderSide.none,
-                        borderRadius: BorderRadius.circular(20),
-                      ),
-                      labelText: S.of(context).cladding,
                     ),
                     textInputAction: TextInputAction.next,
                     onEditingComplete: () => node.nextFocus(),
@@ -239,43 +205,6 @@ class AddRealEstateStateInit extends AddRealEstateState {
                           }).toList(),
                           onChanged: (value) {
                             _selectedHouseType = _houseTypes.firstWhere(
-                                (element) => element.toString() == value);
-                            screenState.refresh();
-                          }),
-                    ),
-                  )),
-              //state
-              Card(
-                  elevation: 10,
-                  margin: EdgeInsets.only(top: 20),
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(15)),
-                  child: Container(
-                    width: 400,
-                    padding: EdgeInsets.all(10),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(15),
-                      color: Colors.black12,
-                    ),
-                    child: DropdownButtonHideUnderline(
-                      child: DropdownButton(
-                          hint: _selectedstate == null
-                              ? Text(
-                                  S.of(context).state,
-                                  style: TextStyle(color: Colors.grey),
-                                )
-                              : Text(
-                                  '$_selectedstate',
-                                  style: TextStyle(color: Colors.grey),
-                                ),
-                          items: _stateTypes.map((String place) {
-                            return new DropdownMenuItem<String>(
-                              value: place.toString(),
-                              child: new Text(place),
-                            );
-                          }).toList(),
-                          onChanged: (value) {
-                            _selectedstate = _stateTypes.firstWhere(
                                 (element) => element.toString() == value);
                             screenState.refresh();
                           }),
@@ -368,42 +297,6 @@ class AddRealEstateStateInit extends AddRealEstateState {
                         borderRadius: BorderRadius.circular(20),
                       ),
                       labelText: S.of(context).price,
-                    ),
-                    textInputAction: TextInputAction.next,
-                    onEditingComplete: () => node.nextFocus(),
-                    // Move focus to next
-                    validator: (result) {
-                      if (result.isEmpty) {
-                        return S.of(context).thisFieldCannotBeEmpty;
-                      }
-                      if (!isNumeric(result)) {
-                        return S.of(context).youCanUseOnlyNumbers;
-                      }
-                      return null;
-                    },
-                  ),
-                ),
-              ),
-              // rooms number
-              Card(
-                elevation: 10,
-                margin: EdgeInsets.only(top: 20),
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(15)),
-                child: Container(
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(15),
-                    color: Colors.black12,
-                  ),
-                  child: TextFormField(
-                    keyboardType: TextInputType.number,
-                    controller: _roomsNumberController,
-                    decoration: InputDecoration(
-                      border: OutlineInputBorder(
-                        borderSide: BorderSide.none,
-                        borderRadius: BorderRadius.circular(20),
-                      ),
-                      labelText: S.of(context).roomsNumber,
                     ),
                     textInputAction: TextInputAction.next,
                     onEditingComplete: () => node.nextFocus(),
@@ -541,12 +434,9 @@ class AddRealEstateStateInit extends AddRealEstateState {
                             int.parse(_priceController.text.trim()),
                             _descriptionController.text.trim(),
                             _floorNumbersController.text.trim(),
-                            _claddingController.text.trim(),
                             _selectedHouseType,
                             _realEstateTypeController.text.trim(),
-                            _roomsNumberController.text.trim(),
                             'not sold',
-                            _selectedstate,
                             mainImage,
                             otherImages,
                           );

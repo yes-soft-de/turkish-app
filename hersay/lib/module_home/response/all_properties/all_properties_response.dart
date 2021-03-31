@@ -58,44 +58,45 @@ class Data {
   String gearType;
   String cc;
   String fuel;
-
+  int commentsCount;
   Data(
       {this.entity,
-        this.id,
-        this.type,
-        this.brand,
-        this.cpu,
-        this.ram,
-        this.battery,
-        this.price,
-        this.yearOfRelease,
-        this.description,
-        this.status,
-        this.createdAt,
-        this.gauge,
-        this.country,
-        this.city,
-        this.durationOfUse,
-        this.image,
-        this.reaction,
-        this.userName,
-        this.imageUser,
-        this.space,
-        this.state,
-        this.numberOfFloors,
-        this.cladding,
-        this.homeFurnishing,
-        this.realEstateType,
-        this.rooms,
-        this.company,
-        this.engine,
-        this.createdBy,
-        this.updateAt,
-        this.distance,
-        this.carType,
-        this.gearType,
-        this.cc,
-        this.fuel});
+      this.id,
+      this.type,
+      this.brand,
+      this.cpu,
+      this.ram,
+      this.battery,
+      this.price,
+      this.yearOfRelease,
+      this.description,
+      this.status,
+      this.createdAt,
+      this.gauge,
+      this.country,
+      this.city,
+      this.durationOfUse,
+      this.image,
+      this.reaction,
+      this.userName,
+      this.imageUser,
+      this.space,
+      this.state,
+      this.numberOfFloors,
+      this.cladding,
+      this.homeFurnishing,
+      this.realEstateType,
+      this.rooms,
+      this.company,
+      this.engine,
+      this.createdBy,
+      this.updateAt,
+      this.distance,
+      this.carType,
+      this.gearType,
+      this.cc,
+      this.fuel,
+      this.commentsCount});
 
   Data.fromJson(Map<String, dynamic> json) {
     entity = json['entity'];
@@ -106,6 +107,7 @@ class Data {
     ram = json['ram'];
     battery = json['battery'];
     price = json['price'];
+    commentsCount = json['commentsNumber'];
     yearOfRelease = json['yearOfRelease'] != null
         ? new YearOfRelease.fromJson(json['yearOfRelease'])
         : null;

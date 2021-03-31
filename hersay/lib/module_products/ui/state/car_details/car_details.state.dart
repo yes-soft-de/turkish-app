@@ -242,42 +242,36 @@ class CarDetailsStateDataLoaded extends CarDetailsState {
               ),
               Padding(
                 padding: const EdgeInsets.all(8.0),
-                child: Text(S.of(context).brand + ' : ${car.brand}'),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
                 child: Text(
                     S.of(context).traveledDistance + ' ${car.distance} KM'),
               ),
-              Padding(
+              
+              // Padding(
+              //   padding: const EdgeInsets.all(8.0),
+              //   child:
+              //       Text(S.of(context).dureationOfUse + ' ${car.useDuration}'),
+              // ),
+                Padding(
                 padding: const EdgeInsets.all(8.0),
                 child:
-                    Text(S.of(context).dureationOfUse + ' ${car.useDuration}'),
+                    Text(S.of(context).yearOfRelease + ' : ${car.yearOfProdaction}'),
               ),
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Text(S.of(context).gearType + ' : ${car.gearType}'),
               ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Text('CC : ${car.cc} CC'),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Text(S.of(context).cylynder + ' ${car.cylinder}'),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Text(S.of(context).fuel + ' : ${car.fuel}'),
-              ),
+              // Padding(
+              //   padding: const EdgeInsets.all(8.0),
+              //   child: Text(S.of(context).cylynder + ' ${car.cylinder}'),
+              // ),
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Text(S.of(context).location + ' : ${car.location}'),
               ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Text(S.of(context).plated),
-              ),
+              // Padding(
+              //   padding: const EdgeInsets.all(8.0),
+              //   child: Text(S.of(context).plated),
+              // ),
               Container(
                 decoration: BoxDecoration(
                   color: Colors.black38,

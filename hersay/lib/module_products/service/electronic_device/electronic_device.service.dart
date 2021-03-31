@@ -21,15 +21,9 @@ class ElectronicDeviceService {
     String country,
     String brand,
     String type,
-    String cpu,
-    String ram,
-    String battery,
     int price,
-    String yearOfRelease,
     String description,
-    String gauge,
     String city,
-    String durationOfUse,
     String mainImagePath,
     String state,
     String status,
@@ -48,13 +42,7 @@ class ElectronicDeviceService {
       city: city,
       image: uploadedImageUrl,
       type: type,
-      battery: battery,
       brand: brand,
-      cpu: cpu,
-      durationOfUse: durationOfUse,
-      gauge: gauge,
-      ram: ram,
-      yearOfRelease: yearOfRelease,
     );
     int result = await _manager.addNewElectronicDevice(electronicDeviceRequest);
     if (result != null) await _uploadOtherImages(otherImages, result);
@@ -75,29 +63,18 @@ class ElectronicDeviceService {
     if (response == null) return null;
 
     var df = new DateFormat('yyyy');
-    var date;
-    if (response.data.yearOfRelease != null) {
-      date = new DateTime.fromMillisecondsSinceEpoch(
-          response.data.yearOfRelease.timestamp * 1000);
-    } else {
-      date = DateTime.now();
-    }
-
     return new ElectronicDeviceModel(
       id: electronicDeviceId,
         type: response.data.type,
         //TODO : change this after been added to the response
-        location: '',
+        location:response.data.city,
         description: response.data.description,
         price: response.data.price.toString(),
         brand: response.data.brand,
         //TODO : change this after been added to the response
         graphics: '',
-        processor: response.data.cpu,
-        releaseYear: df.format(date).toString(),
         //TODO : change this after been added to the response
         storage: '',
-        useDuration: response.data.durationOfUse,
         image: response.data.image,
         userName: response.data.username,
         userImage: response.data.userImage,

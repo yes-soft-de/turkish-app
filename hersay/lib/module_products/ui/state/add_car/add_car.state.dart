@@ -16,8 +16,7 @@ abstract class AddCarState {
 }
 
 class AddCarStateLoading extends AddCarState {
-  AddCarStateLoading(AddCarScreenState screenState)
-      : super(screenState);
+  AddCarStateLoading(AddCarScreenState screenState) : super(screenState);
 
   @override
   Widget getUI(BuildContext context) {
@@ -110,105 +109,6 @@ class AddCarStateInit extends AddCarState {
                   ),
                 ),
               ),
-              // Brand
-              Card(
-                elevation: 10,
-                margin: EdgeInsets.only(top: 20),
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(15)),
-                child: Container(
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(15),
-                    color: Colors.black12,
-                  ),
-                  child: TextFormField(
-                    controller: _brandController,
-                    decoration: InputDecoration(
-                      prefixIcon: Icon(Icons.branding_watermark),
-                      border: OutlineInputBorder(
-                        borderSide: BorderSide.none,
-                        borderRadius: BorderRadius.circular(20),
-                      ),
-                      labelText: S.current.brand,
-                    ),
-                    textInputAction: TextInputAction.next,
-                    onEditingComplete: () => node.nextFocus(),
-                    // Move focus to next
-                    validator: (result) {
-                      if (result.isEmpty) {
-                        return S.of(context).thisFieldCannotBeEmpty;
-                      }
-                      return null;
-                    },
-                  ),
-                ),
-              ),
-              //company
-              Card(
-                elevation: 10,
-                margin: EdgeInsets.only(top: 20),
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(15)),
-                child: Container(
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(15),
-                    color: Colors.black12,
-                  ),
-                  child: TextFormField(
-                    controller: _companyController,
-                    decoration: InputDecoration(
-                      prefixIcon: Icon(Icons.branding_watermark),
-                      border: OutlineInputBorder(
-                        borderSide: BorderSide.none,
-                        borderRadius: BorderRadius.circular(20),
-                      ),
-                      labelText: S.current.company,
-                    ),
-                    textInputAction: TextInputAction.next,
-                    onEditingComplete: () => node.nextFocus(),
-                    // Move focus to next
-                    validator: (result) {
-                      if (result.isEmpty) {
-                        return S.of(context).thisFieldCannotBeEmpty;
-                      }
-                      return null;
-                    },
-                  ),
-                ),
-              ),
-              //engine
-              Card(
-                elevation: 10,
-                margin: EdgeInsets.only(top: 20),
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(15)),
-                child: Container(
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(15),
-                    color: Colors.black12,
-                  ),
-                  child: TextFormField(
-                    controller: _engineController,
-                    decoration: InputDecoration(
-                      prefixIcon: Icon(Icons.branding_watermark),
-                      border: OutlineInputBorder(
-                        borderSide: BorderSide.none,
-                        borderRadius: BorderRadius.circular(20),
-                      ),
-                      labelText: S.current.engine,
-                    ),
-                    textInputAction: TextInputAction.next,
-                    onEditingComplete: () => node.nextFocus(),
-                    // Move focus to next
-                    validator: (result) {
-                      if (result.isEmpty) {
-                        return S.of(context).thisFieldCannotBeEmpty;
-                      }
-                      return null;
-                    },
-                  ),
-                ),
-              ),
               //build year
               Card(
                 elevation: 10,
@@ -247,7 +147,6 @@ class AddCarStateInit extends AddCarState {
                   ),
                 ),
               ),
-
               //Gear Type
               Card(
                   elevation: 10,
@@ -285,43 +184,6 @@ class AddCarStateInit extends AddCarState {
                           }),
                     ),
                   )),
-              //state
-              Card(
-                  elevation: 10,
-                  margin: EdgeInsets.only(top: 20),
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(15)),
-                  child: Container(
-                    width: 400,
-                    padding: EdgeInsets.all(10),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(15),
-                      color: Colors.black12,
-                    ),
-                    child: DropdownButtonHideUnderline(
-                      child: DropdownButton(
-                          hint: _selectedstate == null
-                              ? Text(
-                                  S.of(context).state,
-                                  style: TextStyle(color: Colors.grey),
-                                )
-                              : Text(
-                                  '$_selectedstate',
-                                  style: TextStyle(color: Colors.grey),
-                                ),
-                          items: _stateTypes.map((String place) {
-                            return new DropdownMenuItem<String>(
-                              value: place.toString(),
-                              child: new Text(place),
-                            );
-                          }).toList(),
-                          onChanged: (value) {
-                            _selectedstate = _stateTypes.firstWhere(
-                                (element) => element.toString() == value);
-                            screenState.refresh();
-                          }),
-                    ),
-                  )),
               // mileages
               Card(
                 elevation: 10,
@@ -334,7 +196,6 @@ class AddCarStateInit extends AddCarState {
                     color: Colors.black12,
                   ),
                   child: TextFormField(
-
                     controller: _mileagesController,
                     decoration: InputDecoration(
                       prefixIcon: Icon(Icons.watch_later),
@@ -356,76 +217,6 @@ class AddCarStateInit extends AddCarState {
                   ),
                 ),
               ),
-              // cc
-              Card(
-                elevation: 10,
-                margin: EdgeInsets.only(top: 20),
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(15)),
-                child: Container(
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(15),
-                    color: Colors.black12,
-                  ),
-                  child: TextFormField(
-                    controller: _ccController,
-                    decoration: InputDecoration(
-//                        prefixIcon: Icon(Icons.hors),
-                      border: OutlineInputBorder(
-                        borderSide: BorderSide.none,
-                        borderRadius: BorderRadius.circular(20),
-                      ),
-                      labelText: S.of(context).cc,
-                    ),
-                    textInputAction: TextInputAction.next,
-                    onEditingComplete: () => node.nextFocus(),
-                    // Move focus to next
-                    validator: (result) {
-                      if (result.isEmpty) {
-                        return S.of(context).thisFieldCannotBeEmpty;
-                      }
-                      return null;
-                    },
-                  ),
-                ),
-              ),
-              // fuel
-              Card(
-                  elevation: 10,
-                  margin: EdgeInsets.only(top: 20),
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(15)),
-                  child: Container(
-                    width: 400,
-                    padding: EdgeInsets.all(10),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(15),
-                      color: Colors.black12,
-                    ),
-                    child: DropdownButtonHideUnderline(
-                      child: DropdownButton(
-                          hint: _selectedFuelType == null
-                              ? Text(
-                                  S.of(context).fuel,
-                                  style: TextStyle(color: Colors.grey),
-                                )
-                              : Text(
-                                  '$_selectedFuelType',
-                                  style: TextStyle(color: Colors.grey),
-                                ),
-                          items: _fuelsTypes.map((String place) {
-                            return new DropdownMenuItem<String>(
-                              value: place.toString(),
-                              child: new Text(place),
-                            );
-                          }).toList(),
-                          onChanged: (value) {
-                            _selectedFuelType = _fuelsTypes.firstWhere(
-                                (element) => element.toString() == value);
-                            screenState.refresh();
-                          }),
-                    ),
-                  )),
               // location
               Card(
                 elevation: 10,
@@ -493,7 +284,6 @@ class AddCarStateInit extends AddCarState {
                   ),
                 ),
               ),
-
               // country
               Card(
                 elevation: 10,
@@ -642,8 +432,9 @@ class AddCarStateInit extends AddCarState {
                         ImagePicker ip = ImagePicker();
                         ip.getImage(source: ImageSource.gallery).then((value) {
                           if (value != null) {
-                            otherImages.add(value.path)  ;
-                            print('another image picked, images length ${otherImages.length}');
+                            otherImages.add(value.path);
+                            print(
+                                'another image picked, images length ${otherImages.length}');
                           }
                         });
                       },
@@ -656,7 +447,7 @@ class AddCarStateInit extends AddCarState {
                             color: Colors.white,
                           ),
                           Text(
-                              S.of(context).addMoreImages ,
+                            S.of(context).addMoreImages,
                             style: TextStyle(color: Colors.white),
                           ),
                         ],
@@ -675,25 +466,18 @@ class AddCarStateInit extends AddCarState {
                       onPressed: () {
                         if (_addCarFormKey.currentState.validate()) {
                           screenState.addNewCar(
-                            _brandController.text.trim(),
-                            _companyController.text.trim(),
-                            _engineController.text.trim(),
-                            int.parse(_priceController.text.trim()),
-                            _descriptionController.text.trim(),
-                            _mileagesController.text.trim(),
-                            _carTypeController.text.trim(),
-                            _selectedGearType,
-                            _ccController.text.trim(),
-                            _selectedFuelType,
-                            _locationController.text.trim(),
-                            _dateController.text.trim(),
-                            mainImage,
-                            _countryController.text.trim(),
-                            _cityController.text.trim(),
-                            'not sold',
-                            _selectedstate,
-                            otherImages
-                          );
+                              int.parse(_priceController.text.trim()),
+                              _descriptionController.text.trim(),
+                              _mileagesController.text.trim(),
+                              _carTypeController.text.trim(),
+                              _selectedGearType,
+                              _locationController.text.trim(),
+                              _dateController.text.trim(),
+                              mainImage,
+                              _countryController.text.trim(),
+                              _cityController.text.trim(),
+                              'not sold',
+                              otherImages);
                         }
                       },
                       //TODO : change this using theme service
@@ -738,7 +522,6 @@ class AddCarSuccessState extends AddCarState {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Container(
-
             padding: EdgeInsets.all(10),
             child: Center(
               child: Container(
@@ -746,19 +529,16 @@ class AddCarSuccessState extends AddCarState {
                 child: Text(
                   S.of(context).yourRequestHasBeenAddedAndInHoldForAdmin,
                   textAlign: TextAlign.center,
-                  style: TextStyle(
-                      color: Colors.white
-                  ),
+                  style: TextStyle(color: Colors.white),
                 ),
               ),
             ),
           ),
-
           GestureDetector(
-            onTap: (){
+            onTap: () {
               Navigator.of(context).pushNamedAndRemoveUntil(
                 MainRoutes.MAIN_SCREEN_ROUTE,
-                    (r) => false,
+                (r) => false,
               );
             },
             child: Container(
@@ -778,8 +558,6 @@ class AddCarSuccessState extends AddCarState {
               ),
             ),
           ),
-
-
         ],
       ),
     );

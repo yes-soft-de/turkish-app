@@ -40,26 +40,28 @@ class Data {
   String rooms;
   String userName;
   String imageUser;
-
+  int commentsCount;
   Data(
       {this.id,
-        this.country,
-        this.city,
-        this.space,
-        this.price,
-        this.description,
-        this.status,
-        this.createdAt,
-        this.state,
-        this.image,
-        this.numberOfFloors,
-        this.cladding,
-        this.homeFurnishing,
-        this.realEstateType,
-        this.reaction,
-        this.rooms,
-        this.userName,
-        this.imageUser});
+      this.country,
+      this.city,
+      this.space,
+      this.price,
+      this.description,
+      this.status,
+      this.createdAt,
+      this.state,
+      this.image,
+      this.numberOfFloors,
+      this.cladding,
+      this.homeFurnishing,
+      this.realEstateType,
+      this.reaction,
+      this.rooms,
+      this.userName,
+      this.imageUser,
+      this.commentsCount
+      });
 
   Data.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -87,6 +89,7 @@ class Data {
     rooms = json['rooms'];
     userName = json['userName'];
     imageUser = json['imageUser'];
+    commentsCount = json['commentsNumber'];
   }
 
   Map<String, dynamic> toJson() {

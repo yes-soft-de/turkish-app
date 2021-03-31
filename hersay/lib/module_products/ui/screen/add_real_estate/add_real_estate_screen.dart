@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:hersay/module_auth/auth_routes.dart';
 import 'package:hersay/module_auth/service/auth/auth.service.dart';
@@ -15,15 +14,15 @@ class AddRealEstateScreen extends StatefulWidget {
   final AuthService _authService;
 
   AddRealEstateScreen(
-      this._stateManager,
-      this._authService,
-      );
+    this._stateManager,
+    this._authService,
+  );
 
   @override
-   AddRealEstateScreenState createState() =>  AddRealEstateScreenState();
+  AddRealEstateScreenState createState() => AddRealEstateScreenState();
 }
 
-class  AddRealEstateScreenState extends State<AddRealEstateScreen> {
+class AddRealEstateScreenState extends State<AddRealEstateScreen> {
   AddRealEstateState currentState;
 
   @override
@@ -49,31 +48,36 @@ class  AddRealEstateScreenState extends State<AddRealEstateScreen> {
       int price,
       String description,
       String numberOfFloors,
-      String cladding,
       String homeFurnishing,
       String realEstateType,
-      String rooms,
       String status,
-      String state,
       String mainImage,
-      List<String> otherImages){
-    widget._stateManager.addNewRealEstate(country,city,space,price,description,
-        numberOfFloors,cladding,homeFurnishing,realEstateType,rooms,status,state,mainImage,otherImages, this);
+      List<String> otherImages) {
+    widget._stateManager.addNewRealEstate(
+        country,
+        city,
+        space,
+        price,
+        description,
+        numberOfFloors,
+        homeFurnishing,
+        realEstateType,
+        status,
+        mainImage,
+        otherImages,
+        this);
   }
 
   @override
   Widget build(BuildContext context) {
-    widget._authService.isLoggedIn.then((value){
-      if(!value) {
+    widget._authService.isLoggedIn.then((value) {
+      if (!value) {
         RouteHelper redirectTo = new RouteHelper(
-            redirectTo:  ProductsRoutes.ADD_REAL_ESTATE_SCREEN,
-            additionalData: null
-        );
+            redirectTo: ProductsRoutes.ADD_REAL_ESTATE_SCREEN,
+            additionalData: null);
 
-        Navigator.of(context).pushNamed(
-            AuthorizationRoutes.LOGIN_SCREEN,
-            arguments: redirectTo
-        );
+        Navigator.of(context)
+            .pushNamed(AuthorizationRoutes.LOGIN_SCREEN, arguments: redirectTo);
       }
     });
     return Scaffold(
@@ -82,8 +86,6 @@ class  AddRealEstateScreenState extends State<AddRealEstateScreen> {
       ),
     );
   }
-
-
 
 //  Widget _screenUi() {
 //    final node = FocusScope.of(context);

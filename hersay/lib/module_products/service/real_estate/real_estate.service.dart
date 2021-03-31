@@ -26,12 +26,9 @@ class RealEstateService{
   int price,
   String description,
   String numberOfFloors,
-  String cladding,
   String homeFurnishing,
   String realEstateType,
-  String rooms,
   String status,
-  String state,
   String mainImagePath,
       List<String> otherImages) async {
 
@@ -45,14 +42,11 @@ class RealEstateService{
       status: status,
       price: price,
       description: description,
-      cladding: cladding,
       country: country,
       homeFurnishing: homeFurnishing,
       numberOfFloors: numberOfFloors,
       realEstateType: realEstateType,
-      rooms: realEstateType,
       space: space,
-      state: state,
     );
     int result = await _manager.addNewRealEstate(realEstateRequest);
 
@@ -79,7 +73,6 @@ class RealEstateService{
       description: response.data.description,
       type: response.data.realEstateType,
       space: response.data.space,
-      cladding: response.data.cladding,
       //TODO : change this after been added to the response
       address: '',
       floorsNumber: response.data.numberOfFloors,

@@ -11,7 +11,7 @@ class ProductCard extends StatelessWidget {
   final PRODUCT_TYPE type;
   final String specification;
   final int likes;
-
+  final int comments;
   ProductCard(
       {this.image,
       this.likes,
@@ -20,7 +20,9 @@ class ProductCard extends StatelessWidget {
       this.ownerImage,
       this.product,
       this.specification,
-      this.type});
+      this.type,
+      this.comments
+      });
 
   @override
   Widget build(BuildContext context) {
@@ -76,7 +78,6 @@ class ProductCard extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-
                 Flex(
                   direction: Axis.horizontal,
                   children: [
@@ -87,28 +88,28 @@ class ProductCard extends StatelessWidget {
                         width: 30,
                         child: CircleAvatar(
                           radius: 20,
-                          backgroundImage: NetworkImage(
-                              '${ownerImage}'),
+                          backgroundImage: NetworkImage('${ownerImage}'),
                         ),
                       ),
                     ),
-                    
-                    SizedBox(width: 5,),
+                    SizedBox(
+                      width: 5,
+                    ),
                     Text('$owner'),
                   ],
                 ),
                 Container(
-                  width: MediaQuery.of(context).size.width*0.35,
+                  width: MediaQuery.of(context).size.width * 0.35,
                   child: Text(
                     '$specification',
                     overflow: TextOverflow.fade,
                     maxLines: 1,
                     softWrap: false,
-
                   ),
                 ),
 //                IconTextWidget(icon: null, text: '$specification'),
                 IconTextWidget(icon: Icons.favorite, text: '$likes'),
+                IconTextWidget(icon: Icons.comment, text: '$comments'),
 //                Icon(
 //                  Icons.share,
 //                  color: Colors.grey,

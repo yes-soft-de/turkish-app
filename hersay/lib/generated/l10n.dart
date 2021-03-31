@@ -1675,10 +1675,10 @@ class S {
     );
   }
 
-  /// `Year of release`
+  /// `Year of production`
   String get yearOfRelease {
     return Intl.message(
-      'Year of release',
+      'Year of production',
       name: 'yearOfRelease',
       desc: '',
       args: [],

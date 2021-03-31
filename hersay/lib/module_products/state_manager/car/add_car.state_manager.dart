@@ -15,30 +15,22 @@ class AddCarStateManager {
   AddCarStateManager(this._service);
 
   void addNewCar(
-  String brand,
-  String company,
-  String engine,
   int price,
   String description,
   String distance,
   String carType,
   String gearType,
-  String cc,
-  String fuel,
   String location,
   String yearOfRelease,
   String image,
   String country,
   String city,
-  String state,
   String status,
   List<String> otherImages,
       AddCarScreenState screenState) {
     _stateSubject.add(AddCarStateLoading(screenState));
     _service
-        .addNewCar(brand,company,engine,price,description,distance,carType,gearType,
-    cc,fuel,location,yearOfRelease,image,country, city,state,status,otherImages)
-        .then((newProduct) {
+        .addNewCar(price, description, distance, carType, gearType, location, yearOfRelease, image, country, city, status, otherImages).then((newProduct) {
       if (newProduct) {
         _stateSubject.add(AddCarSuccessState(screenState));
       } else {

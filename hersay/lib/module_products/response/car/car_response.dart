@@ -26,10 +26,7 @@ class CarResponse {
 
 class Data {
   int id;
-  String brand;
-  String company;
   YearOfRelease yearOfRelease;
-  String engine;
   int price;
   String description;
   String status;
@@ -39,24 +36,18 @@ class Data {
   String distance;
   String carType;
   String gearType;
-  String cc;
-  String fuel;
   String country;
   String city;
   String image;
   List<Images> images;
   Reaction reaction;
-  String state;
   String username;
   String userImage;
   List<Comment> comments;
 
   Data(
       {this.id,
-      this.brand,
-      this.company,
       this.yearOfRelease,
-      this.engine,
       this.price,
       this.description,
       this.status,
@@ -66,26 +57,20 @@ class Data {
       this.distance,
       this.carType,
       this.gearType,
-      this.cc,
-      this.fuel,
       this.country,
       this.city,
       this.image,
       this.images,
       this.reaction,
-      this.state,
       this.username,
       this.userImage,
       this.comments});
 
   Data.fromJson(Map<String, dynamic> json) {
     id = json['id'];
-    brand = json['brand'];
-    company = json['company'];
-    yearOfRelease = json['yearOfRelease'] != null
-        ? new YearOfRelease.fromJson(json['yearOfRelease'])
+    yearOfRelease = json['yearOfProduction'] != null
+        ? new YearOfRelease.fromJson(json['yearOfProduction'])
         : null;
-    engine = json['engine'];
     price = json['price'];
     description = json['description'];
     status = json['status'];
@@ -99,8 +84,6 @@ class Data {
     distance = json['distance'];
     carType = json['carType'];
     gearType = json['gearType'];
-    cc = json['cc'];
-    fuel = json['fuel'];
     country = json['country'];
     city = json['city'];
     image = json['image'];
@@ -119,7 +102,6 @@ class Data {
         comments.add(new Comment.fromJson(v));
       });
     }
-    state = json['state'];
     username = json['username'];
     userImage = json['userImage'];
   }
@@ -127,12 +109,10 @@ class Data {
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     data['id'] = this.id;
-    data['brand'] = this.brand;
-    data['company'] = this.company;
+    
     if (this.yearOfRelease != null) {
-      data['yearOfRelease'] = this.yearOfRelease.toJson();
+      data['yearOfProduction'] = this.yearOfRelease.toJson();
     }
-    data['engine'] = this.engine;
     data['price'] = this.price;
     data['description'] = this.description;
     data['status'] = this.status;
@@ -146,8 +126,6 @@ class Data {
     data['distance'] = this.distance;
     data['carType'] = this.carType;
     data['gearType'] = this.gearType;
-    data['cc'] = this.cc;
-    data['fuel'] = this.fuel;
     data['country'] = this.country;
     data['city'] = this.city;
     data['image'] = this.image;
@@ -160,7 +138,6 @@ class Data {
     if (this.comments != null) {
       data['comments'] = this.comments.map((v) => v.toJson()).toList();
     }
-    data['state'] = this.state;
     data['username'] = this.username;
     data['userImage'] = this.userImage;
     return data;

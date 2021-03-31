@@ -5,6 +5,7 @@ import 'package:hersay/module_products/request/comment/comment_request.dart';
 import 'package:hersay/module_products/response/car/car_response.dart';
 import 'package:hersay/module_upload/service/image_upload/image_upload_service.dart';
 import 'package:inject/inject.dart';
+import 'package:intl/intl.dart';
 
 @provide
 class CarService {
@@ -17,22 +18,16 @@ class CarService {
   );
 
   Future<bool> addNewCar(
-    String brand,
-    String company,
-    String engine,
     int price,
     String description,
     String distance,
     String carType,
     String gearType,
-    String cc,
-    String fuel,
     String location,
     String yearOfRelease,
     String mainImagePath,
     String country,
     String city,
-    String state,
     String status,
     List<String> otherImages,
   ) async {
@@ -42,20 +37,14 @@ class CarService {
 
     var carRequest = CarRequest(
       yearOfRelease: yearOfRelease,
-      brand: brand,
       image: uploadedImageUrl,
       city: city,
       status: status,
       price: price,
       description: description,
       country: country,
-      state: state,
       carType: carType,
-      cc: cc,
-      company: company,
       distance: distance,
-      engine: engine,
-      fuel: fuel,
       gearType: gearType,
       location: location,
     );
@@ -75,26 +64,24 @@ class CarService {
   Future<CarModel> getCarDetails(int carId) async {
     CarResponse response = await _manager.getCarDetails(carId);
     if (response == null) return null;
-
+var format = DateFormat('yyyy');
+var date = format.format(DateTime.fromMillisecondsSinceEpoch(response.data.yearOfRelease.timestamp*1000));
     return new CarModel(
       id: carId,
       type: response.data.carType,
-      brand: response.data.brand,
       distance: response.data.distance,
       //TODO : change this after been added to the response
-      location: '',
-      fuel: response.data.fuel,
+      location:response.data.country,
       gearType: response.data.gearType,
       price: response.data.price.toString(),
-      cc: response.data.cc,
       //TODO : change this after been added to the response
       useDuration: '',
-      cylinder: response.data.engine,
       image: response.data.image,
       userName: response.data.username,
       userImage: response.data.userImage,
       isLoved: response.data.reaction.isLoved,
       images: _getImages(response),
+      yearOfProdaction:date.toString(),
       comments: response.data.comments
     );
   }

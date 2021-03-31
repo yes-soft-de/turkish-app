@@ -1,4 +1,3 @@
-
 import 'package:hersay/module_products/service/real_estate/real_estate.service.dart';
 import 'package:hersay/module_products/ui/screen/add_real_estate/add_real_estate_screen.dart';
 import 'package:hersay/module_products/ui/state/add_real_estate/add_real_estate.state.dart';
@@ -21,19 +20,26 @@ class AddRealEstateStateManager {
       int price,
       String description,
       String numberOfFloors,
-      String cladding,
       String homeFurnishing,
       String realEstateType,
-      String rooms,
       String status,
-      String state,
       String mainImage,
       List<String> otherImages,
       AddRealEstateScreenState screenState) {
     _stateSubject.add(AddRealEstateStateLoading(screenState));
     _service
-        .addNewRealEstate(country,city,space,price,description,
-        numberOfFloors,cladding,homeFurnishing,realEstateType,rooms,status,state,mainImage,otherImages)
+        .addNewRealEstate(
+            country,
+            city,
+            space,
+            price,
+            description,
+            numberOfFloors,
+            homeFurnishing,
+            realEstateType,
+            status,
+            mainImage,
+            otherImages)
         .then((newOrder) {
       if (newOrder) {
         _stateSubject.add(AddRealEstateSuccessState(screenState));

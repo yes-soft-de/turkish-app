@@ -45,31 +45,33 @@ class Data {
   List<Reaction> reaction;
   String userName;
   String imageUser;
-
+  int commentsCount;
   Data(
       {this.id,
-        this.brand,
-        this.company,
-        this.yearOfRelease,
-        this.engine,
-        this.price,
-        this.description,
-        this.status,
-        this.createdBy,
-        this.createdAt,
-        this.updateAt,
-        this.distance,
-        this.carType,
-        this.gearType,
-        this.cc,
-        this.fuel,
-        this.country,
-        this.city,
-        this.image,
-        this.state,
-        this.reaction,
-        this.userName,
-        this.imageUser});
+      this.brand,
+      this.company,
+      this.yearOfRelease,
+      this.engine,
+      this.price,
+      this.description,
+      this.status,
+      this.createdBy,
+      this.createdAt,
+      this.updateAt,
+      this.distance,
+      this.carType,
+      this.gearType,
+      this.cc,
+      this.fuel,
+      this.country,
+      this.city,
+      this.image,
+      this.state,
+      this.reaction,
+      this.userName,
+      this.imageUser,
+      this.commentsCount
+      });
 
   Data.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -106,6 +108,7 @@ class Data {
     }
     userName = json['userName'];
     imageUser = json['imageUser'];
+    commentsCount = json['commentsNumber'];
   }
 
   Map<String, dynamic> toJson() {

@@ -257,34 +257,14 @@ class ElectronicDeviceDetailsStateDataLoaded
               ),
               Padding(
                 padding: const EdgeInsets.all(8.0),
-                child: Text(S.of(context).yearOfRelease +
-                    ' : ${electronicDevice.releaseYear}'),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Text(S.of(context).durationOfUse +
-                    ' ${electronicDevice.useDuration}'),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
                 child: Text(S.of(context).descriptio +
                     ' : ${electronicDevice.description}'),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Text(
-                    S.of(context).processor + ' ${electronicDevice.processor}'),
               ),
               //TODO : change  this
 //              Padding(
 //                padding: const EdgeInsets.all(8.0),
 //                child: Text(S.of(context).storage + ' 512GB PCIe 3*4 SSD'),
 //              ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Text(
-                    S.of(context).graphics + ' ${electronicDevice.graphics}'),
-              ),
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Text(

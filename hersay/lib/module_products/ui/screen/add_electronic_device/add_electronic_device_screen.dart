@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:hersay/module_auth/auth_routes.dart';
 import 'package:hersay/module_auth/service/auth/auth.service.dart';
@@ -14,9 +13,9 @@ class AddElectronicDeviceScreen extends StatefulWidget {
   final AuthService _authService;
 
   AddElectronicDeviceScreen(
-      this._stateManager,
-      this._authService,
-      );
+    this._stateManager,
+    this._authService,
+  );
 
   @override
   AddElectronicDeviceScreenState createState() =>
@@ -37,6 +36,7 @@ class AddElectronicDeviceScreenState extends State<AddElectronicDeviceScreen> {
       }
     });
   }
+
   void refresh() {
     setState(() {});
   }
@@ -45,39 +45,29 @@ class AddElectronicDeviceScreenState extends State<AddElectronicDeviceScreen> {
       String country,
       String brand,
       String type,
-      String cpu,
-      String ram,
-      String battery,
       int price,
-      String yearOfRelease,
       String description,
-      String gauge,
       String city,
-      String durationOfUse,
       String mainImage,
       String state,
       String status,
-      List<String> otherImages){
-    widget._stateManager.addNewElectronicDevice(country, brand, type, cpu, ram, battery, price,
-        yearOfRelease, description, gauge, city, durationOfUse, mainImage, state, status,otherImages, this);
+      List<String> otherImages) {
+    widget._stateManager.addNewElectronicDevice(country, brand, type, price,
+        description, city, mainImage, state, status, otherImages, this);
   }
 
   @override
   Widget build(BuildContext context) {
-    widget._authService.isLoggedIn.then((value){
-      if(!value) {
+    widget._authService.isLoggedIn.then((value) {
+      if (!value) {
         RouteHelper redirectTo = new RouteHelper(
-            redirectTo:  ProductsRoutes.ADD_ELECTRONIC_DEVICE_SCREEN,
-            additionalData: null
-        );
+            redirectTo: ProductsRoutes.ADD_ELECTRONIC_DEVICE_SCREEN,
+            additionalData: null);
 
-        Navigator.of(context).pushNamed(
-            AuthorizationRoutes.LOGIN_SCREEN,
-            arguments: redirectTo
-        );
+        Navigator.of(context)
+            .pushNamed(AuthorizationRoutes.LOGIN_SCREEN, arguments: redirectTo);
       }
-    }
-    );
+    });
 
     return Scaffold(
       body: SafeArea(
@@ -85,5 +75,4 @@ class AddElectronicDeviceScreenState extends State<AddElectronicDeviceScreen> {
       ),
     );
   }
-
 }

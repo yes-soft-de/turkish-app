@@ -18,15 +18,9 @@ class AddElectronicDeviceStateManager {
       String country,
       String brand,
       String type,
-      String cpu,
-      String ram,
-      String battery,
       int price,
-      String yearOfRelease,
       String description,
-      String gauge,
       String city,
-      String durationOfUse,
       String mainImage,
       String state,
       String status,
@@ -34,8 +28,7 @@ class AddElectronicDeviceStateManager {
       AddElectronicDeviceScreenState screenState) {
     _stateSubject.add(AddElectronicDeviceStateLoading(screenState));
     _service
-        .addNewElectronicDevice(country, brand, type, cpu, ram, battery, price, yearOfRelease,
-        description, gauge, city, durationOfUse, mainImage, state, status,otherImages)
+        .addNewElectronicDevice(country, brand, type, price, description, city, mainImage, state, status, otherImages)
         .then((newProduct) {
       if (newProduct) {
         _stateSubject.add(AddElectronicDeviceSuccessState(screenState));

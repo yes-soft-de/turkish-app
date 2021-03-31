@@ -33,11 +33,9 @@ class Data {
   String description;
   String status;
   CreatedAt createdAt;
-  String state;
   String image;
   List<Images> images;
   String numberOfFloors;
-  String cladding;
   String homeFurnishing;
   String realEstateType;
   Reaction reaction;
@@ -55,11 +53,9 @@ class Data {
       this.description,
       this.status,
       this.createdAt,
-      this.state,
       this.image,
       this.images,
       this.numberOfFloors,
-      this.cladding,
       this.homeFurnishing,
       this.realEstateType,
       this.reaction,
@@ -79,7 +75,6 @@ class Data {
     createdAt = json['createdAt'] != null
         ? new CreatedAt.fromJson(json['createdAt'])
         : null;
-    state = json['state'];
     image = json['image'];
     if (json['images'] != null) {
       images = new List<Images>();
@@ -94,7 +89,6 @@ class Data {
       });
     }
     numberOfFloors = json['numberOfFloors'];
-    cladding = json['cladding'];
     homeFurnishing = json['homeFurnishing'];
     realEstateType = json['realEstateType'];
     reaction = json['reaction'] != null
@@ -117,7 +111,6 @@ class Data {
     if (this.createdAt != null) {
       data['createdAt'] = this.createdAt.toJson();
     }
-    data['state'] = this.state;
     data['image'] = this.image;
     if (this.images != null) {
       data['images'] = this.images.map((v) => v.toJson()).toList();
@@ -126,7 +119,6 @@ class Data {
       data['comments'] = this.comments.map((v) => v.toJson()).toList();
     }
     data['numberOfFloors'] = this.numberOfFloors;
-    data['cladding'] = this.cladding;
     data['homeFurnishing'] = this.homeFurnishing;
     data['realEstateType'] = this.realEstateType;
     if (this.reaction != null) {
