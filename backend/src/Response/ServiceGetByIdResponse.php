@@ -20,4 +20,6 @@ class ServiceGetByIdResponse
     public $userName;
 
     public $userImage;
+
+    public $comments;
 }

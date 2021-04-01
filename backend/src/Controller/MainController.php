@@ -6,12 +6,14 @@ namespace App\Controller;
 
 use App\AutoMapping;
 use App\Entity\CarEntity;
+use App\Entity\CommentEntity;
 use App\Entity\DeviceEntity;
 use App\Entity\DocumentEntity;
 use App\Entity\ImageEntity;
 use App\Entity\MessageEntity;
 use App\Entity\ReactionEntity;
 use App\Entity\RealEstateEntity;
+use App\Entity\ServicesEntity;
 use App\Entity\SettingEntity;
 use App\Entity\StatusEntity;
 use App\Entity\UserEntity;
@@ -125,56 +127,65 @@ class MainController extends BaseController
         {
             $em = $this->getDoctrine()->getManager();
 
-            $swap = $em->getRepository(CarEntity::class)->createQueryBuilder('car_entity')
+            $em->getRepository(CarEntity::class)->createQueryBuilder('car_entity')
                 ->delete()
                 ->getQuery()
                 ->execute();
 
-            $swapItems = $em->getRepository(DeviceEntity::class)->createQueryBuilder('device_entity')
+            $em->getRepository(DeviceEntity::class)->createQueryBuilder('device_entity')
                 ->delete()
                 ->getQuery()
                 ->execute();
 
-            $usersProfiles = $em->getRepository(UserProfileEntity::class)->createQueryBuilder('profile')
+            $em->getRepository(UserProfileEntity::class)->createQueryBuilder('profile')
                 ->delete()
                 ->getQuery()
                 ->execute();
 
-            $report = $em->getRepository(DocumentEntity::class)->createQueryBuilder('document_entity')
+            $em->getRepository(DocumentEntity::class)->createQueryBuilder('document_entity')
                 ->delete()
                 ->getQuery()
                 ->execute();
 
-            $comments = $em->getRepository(ImageEntity::class)->createQueryBuilder('image_entity')
+            $em->getRepository(ImageEntity::class)->createQueryBuilder('image_entity')
                 ->delete()
                 ->getQuery()
                 ->execute();
 
-            $interactions = $em->getRepository(ReactionEntity::class)->createQueryBuilder('reaction_entity')
+            $em->getRepository(ReactionEntity::class)->createQueryBuilder('reaction_entity')
                 ->delete()
                 ->getQuery()
                 ->execute();
 
-            $images = $em->getRepository(RealEstateEntity::class)->createQueryBuilder('real_estate_entity')
+            $em->getRepository(RealEstateEntity::class)->createQueryBuilder('real_estate_entity')
                 ->delete()
                 ->getQuery()
                 ->execute();
 
-            $users = $em->getRepository(UserEntity::class)->createQueryBuilder('user')
+            $em->getRepository(UserEntity::class)->createQueryBuilder('user')
                 ->delete()
                 ->getQuery()
                 ->execute();
 
-            $setting = $em->getRepository(SettingEntity::class)->createQueryBuilder('setting')
+            $em->getRepository(SettingEntity::class)->createQueryBuilder('setting')
                 ->delete()
                 ->getQuery()
                 ->execute();
 
-            $message = $em->getRepository(MessageEntity::class)->createQueryBuilder('message')
+            $em->getRepository(MessageEntity::class)->createQueryBuilder('message')
                 ->delete()
                 ->getQuery()
                 ->execute();
 
+            $em->getRepository(CommentEntity::class)->createQueryBuilder('comment')
+                ->delete()
+                ->getQuery()
+                ->execute();
+
+            $em->getRepository(ServicesEntity::class)->createQueryBuilder('services')
+                ->delete()
+                ->getQuery()
+                ->execute();
             
         }
         catch (\Exception $ex)

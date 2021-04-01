@@ -42,7 +42,9 @@ class MainService
 
         $realEstatesResult = $this->realEstateService->getRealEstatesByType($query);
 
-        $response = array_merge_recursive($carsResult, $devicesResult, $realEstatesResult);
+        $servicesResult = $this->servicesService->getServicesByQuery($query);
+
+        $response = array_merge_recursive($carsResult, $devicesResult, $realEstatesResult, $servicesResult);
 
         return $response;
     }
@@ -89,6 +91,8 @@ class MainService
 
         $response['realEstate'] = $this->realEstateService->getRealEstateByUser($userID);
 
+        $response['services'] = $this->servicesService->getServicesOfUser($userID);
+
         return $response;
     }
 
@@ -116,8 +120,6 @@ class MainService
         $services = $this->servicesService->getAllServices($userID);
 
         $response = array_merge_recursive($cars, $devices, $realEstates, $services);
-
-        //dd($response);
 
         shuffle($response);
 

@@ -24,4 +24,6 @@ class ServicesGetResponse
     public $type;
 
     public $reaction;
+
+    public $commentsNumber;
 }

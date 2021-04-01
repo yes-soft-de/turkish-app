@@ -18,10 +18,11 @@ class MainManager
     private $reactionManager;
     private $messageManager;
     private $statisticsID = 0;
+    private $servicesManager;
 
     public function __construct(AutoMapping $autoMapping, StatusManager $statusManager, CarManager $carManager, 
      DeviceManager $deviceManager, RealEstateManager $realEstateManager, UserManager $userManager, 
-     ReactionManager $reactionManager, MessageManager $messageManager)
+     ReactionManager $reactionManager, MessageManager $messageManager, ServicesManager $servicesManager)
     {
         $this->autoMapping = $autoMapping;
         $this->statusManager = $statusManager;
@@ -31,6 +32,7 @@ class MainManager
         $this->userManager = $userManager;
         $this->reactionManager = $reactionManager;
         $this->messageManager = $messageManager;
+        $this->servicesManager = $servicesManager;
     }
 
     public function getHistory($userID)
@@ -87,7 +89,9 @@ class MainManager
 
         $response['realEstates'] = count($this->realEstateManager->getAllRealEstate());
 
-        $response['properties'] = $response['cars'] + $response['devices'] + $response['realEstates'];
+        $response['services'] = count($this->servicesManager->getAllServices());
+
+        $response['properties'] = $response['cars'] + $response['devices'] + $response['realEstates'] + $response['services'];
 
         $response['users'] = count($this->userManager->getAllusers());
 
