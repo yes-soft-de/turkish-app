@@ -37,6 +37,7 @@ php bin/console doctrine:migration:migrate
 * [Image](#image)
 * [Report](#report)
 * [Comment](#comment)
+* [Services](#services)
 
 ### Main
 #### Search for a specific property by query
@@ -347,4 +348,31 @@ methods: DELETE
 ```
 /comments/{entity}/{itemID}
 methods: GET
+```
+
+### Services
+#### Insert new service
+```
+/service
+methods: POST
+```
+#### Get service by ID
+```
+/services/{serviceID}
+methods: GET
+```
+#### Get all services
+```
+/services
+methods: GET
+```
+#### Update existing service
+```
+/services
+methods: PUT
+```
+#### Delete existing service by ID
+```
+/services/{id}
+methods: DELETE
 ```
