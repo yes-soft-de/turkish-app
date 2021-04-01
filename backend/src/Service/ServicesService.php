@@ -19,13 +19,15 @@ class ServicesService
     private $servicesManager;
     private $reactionService;
     private $params;
+    private $commentService;
 
     public function __construct(AutoMapping $autoMapping, ServicesManager $servicesManager, ParameterBagInterface $params,
-     ReactionService $reactionService)
+     ReactionService $reactionService, CommentService $commentService)
     {
         $this->autoMapping = $autoMapping;
         $this->servicesManager = $servicesManager;
-        $this->services = $reactionService;
+        $this->reactionService = $reactionService;
+        $this->commentService = $commentService;
         
         $this->params = $params->get('upload_base_url').'/';
     }
@@ -49,6 +51,8 @@ class ServicesService
 
             $result['userImage'] = $this->params . $result['userImage'];
 
+            $result['comments'] = $this->commentService->getCommentsByEntityAndItemID($result['type'], $result['id']);
+
             $servicesResponse[] = $this->autoMapping->map('array', ServiceGetByIdResponse::class, $result);
         }
 
@@ -63,13 +67,61 @@ class ServicesService
         foreach ($result as $row)
         {
             $row['image'] = $this->params . $row['image'];
+
             $row['userImage'] = $this->params . $row['userImage'];
 
-            // $row['reaction']=$this->reactionService->reactionforItem($row['id']);
-            // //dd($row['reaction']);
-            // ($row['reaction'][0]['createdBy'] == $userID) ?  $row['reaction'][0]['createdBy'] = true : $row['reaction'][0]['createdBy'] = false ;
+            $row['reaction']=$this->reactionService->reactionforItem($row['id'], $row['type']);
+            
+            ($row['reaction'][0]['createdBy'] == $userID) ?  $row['reaction'][0]['createdBy'] = true : $row['reaction'][0]['createdBy'] = false ;
           
+            $row['commentsNumber'] = $this->servicesManager->getServiceCommentsNumber($row['type'], $row['id'])[1];
+            
             $response[] = $this->autoMapping->map('array', ServicesGetResponse::class, $row);
+        }
+
+        return $response;
+    }
+
+    public function getServicesOfUser($userID)
+    {
+        $response = [];
+        $result = $this->servicesManager->getServicesOfUser($userID);
+
+        foreach ($result as $row)
+        {
+            $row['image'] = $this->params . $row['image'];
+
+            $row['userImage'] = $this->params . $row['userImage'];
+
+            $row['reaction']= $this->reactionService->reactionforItem($row['id'], $row['type']);
+
+            ($row['reaction'][0]['createdBy'] == $userID) ?  $row['reaction'][0]['createdBy'] = true : $row['reaction'][0]['createdBy'] = false ;
+          
+            $row['commentsNumber'] = $this->servicesManager->getServiceCommentsNumber($row['type'], $row['id'])[1];
+
+            $response[] = $this->autoMapping->map('array', ServicesGetResponse::class, $row);
+        }
+
+        return $response;
+    }
+
+    public function getServicesByQuery($brand)
+    {
+        $response = [];
+
+        $results = $this->servicesManager->getServicesByQuery($brand);
+
+        foreach ($results as $result)
+        {
+            $result['image'] = $this->params . $result['image'];
+
+            $result['userImage'] = $this->params . $result['userImage'];
+
+            $result['reaction']=$this->reactionService->reactionforItem($result['id'], $result['type']);
+          
+            $result['commentsNumber'] = $this->servicesManager->getServiceCommentsNumber($result['type'], $result['id'])[1];
+
+            $response[] = $this->autoMapping->map('array', ServicesGetResponse::class, $result);
         }
 
         return $response;
