@@ -99,5 +99,10 @@ class ServicesManager
     {
         return $this->servicesEntityRepository->getServicesByQuery($query);
     }
+    
+    public function getServiceOfUserById($userID, $id)
+    {
+        return $this->servicesEntityRepository->getServiceOfUserById($userID, $id);
+    }
 
 }
