@@ -1,3 +1,5 @@
+import 'package:hersay/module_products/response/electronic_device/electronic_device_response.dart';
+
 class SearchResponse {
   List<Data> data;
 
@@ -42,7 +44,7 @@ class Data {
   String country;
   String city;
   String image;
-  Null reaction;
+ List<Reaction> reaction;
   String userName;
   String imageUser;
   String state;
@@ -58,44 +60,45 @@ class Data {
   String homeFurnishing;
   String realEstateType;
   String rooms;
-
+  int commentsNumber;
   Data(
       {this.entity,
-        this.id,
-        this.brand,
-        this.company,
-        this.yearOfRelease,
-        this.engine,
-        this.price,
-        this.description,
-        this.status,
-        this.createdBy,
-        this.createdAt,
-        this.updateAt,
-        this.distance,
-        this.carType,
-        this.gearType,
-        this.cc,
-        this.fuel,
-        this.country,
-        this.city,
-        this.image,
-        this.reaction,
-        this.userName,
-        this.imageUser,
-        this.state,
-        this.type,
-        this.cpu,
-        this.ram,
-        this.battery,
-        this.gauge,
-        this.durationOfUse,
-        this.space,
-        this.numberOfFloors,
-        this.cladding,
-        this.homeFurnishing,
-        this.realEstateType,
-        this.rooms});
+      this.id,
+      this.brand,
+      this.company,
+      this.yearOfRelease,
+      this.engine,
+      this.price,
+      this.description,
+      this.status,
+      this.createdBy,
+      this.createdAt,
+      this.updateAt,
+      this.distance,
+      this.carType,
+      this.gearType,
+      this.cc,
+      this.fuel,
+      this.country,
+      this.city,
+      this.image,
+      this.reaction,
+      this.userName,
+      this.imageUser,
+      this.state,
+      this.type,
+      this.cpu,
+      this.ram,
+      this.battery,
+      this.gauge,
+      this.durationOfUse,
+      this.space,
+      this.numberOfFloors,
+      this.cladding,
+      this.homeFurnishing,
+      this.realEstateType,
+      this.rooms,
+      this.commentsNumber});
 
   Data.fromJson(Map<String, dynamic> json) {
     entity = json['entity'];
@@ -124,8 +127,13 @@ class Data {
     country = json['country'];
     city = json['city'];
     image = json['image'];
-    reaction = json['reaction'];
-    userName = json['userName'];
+    if (json['reaction'] != null) {
+      reaction = new List<Reaction>();
+      json['reaction'].forEach((v) {
+        reaction.add(new Reaction.fromJson(v));
+      });
+    }
+    userName = json['username'];
     imageUser = json['imageUser'];
     state = json['state'];
     type = json['type'];
@@ -140,6 +148,7 @@ class Data {
     homeFurnishing = json['homeFurnishing'];
     realEstateType = json['realEstateType'];
     rooms = json['rooms'];
+    commentsNumber = json['commentsNumber'];
   }
 
   Map<String, dynamic> toJson() {
@@ -171,7 +180,7 @@ class Data {
     data['city'] = this.city;
     data['image'] = this.image;
     data['reaction'] = this.reaction;
-    data['userName'] = this.userName;
+    data['username'] = this.userName;
     data['imageUser'] = this.imageUser;
     data['state'] = this.state;
     data['type'] = this.type;
@@ -186,6 +195,8 @@ class Data {
     data['homeFurnishing'] = this.homeFurnishing;
     data['realEstateType'] = this.realEstateType;
     data['rooms'] = this.rooms;
+    data['commentsNumber'] = this.commentsNumber;
+
     return data;
   }
 }

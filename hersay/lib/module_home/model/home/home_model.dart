@@ -37,13 +37,13 @@ class HomeModel {
     homeData.cars.data.forEach((element) {
       result.add(new HomeElement(
           id: element.id,
-          product: element.brand,
+          product: element.carType,
           image: element.image,
           type: PRODUCT_TYPE.CAR,
           likes: (element.reaction != null)
               ? element.reaction[0].reactionCount
               : 0,
-          category: element.company,
+          category: element.gearType??'',
           owner: element.userName ?? '',
           ownerImage: element.imageUser ?? '',
           specification: element.distance + ' KM',
@@ -66,7 +66,7 @@ class HomeModel {
           category: element.type,
           ownerImage: element.imageUser ?? '',
           owner: element.userName ?? '',
-          specification: element.cpu,
+          specification:element.description,
           comments: element.commentsCount));
     });
     return result;

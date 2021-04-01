@@ -21,8 +21,7 @@ class ProductCard extends StatelessWidget {
       this.product,
       this.specification,
       this.type,
-      this.comments
-      });
+      this.comments});
 
   @override
   Widget build(BuildContext context) {

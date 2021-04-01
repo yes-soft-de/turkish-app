@@ -14,15 +14,16 @@ class AdvancedSearchScreen extends StatefulWidget {
   AdvancedSearchScreen(this._stateManager);
 
   @override
-   AdvancedSearchScreenState createState() =>  AdvancedSearchScreenState();
+  AdvancedSearchScreenState createState() => AdvancedSearchScreenState();
 }
 
-class  AdvancedSearchScreenState extends State<AdvancedSearchScreen> {
+class AdvancedSearchScreenState extends State<AdvancedSearchScreen> {
   final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
 
-  final TextEditingController _AdvancedSearchController = TextEditingController();
+  final TextEditingController _AdvancedSearchController =
+      TextEditingController();
 
-   AdvancedSearchState currentSate ;
+  AdvancedSearchState currentSate;
   bool loading = false;
 
   @override
@@ -32,30 +33,37 @@ class  AdvancedSearchScreenState extends State<AdvancedSearchScreen> {
     widget._stateManager.stateStream.listen((event) {
       currentSate = event;
 
-        if(this.mounted){
-          setState(() {
-
-          });
-
+      if (this.mounted) {
+        setState(() {});
       }
     });
-
   }
 
-  void advancedSearch(String entity, String city , int lowestPrice, int highestPrice){
-    widget._stateManager.advancedSearch(entity,city,lowestPrice,highestPrice, this)  ;
+  void advancedSearch(
+      String entity, String city, String lowestPrice, String highestPrice) {
+    if (city.isEmpty) {
+      city = null;
+    }
+    if (lowestPrice.isEmpty) {
+      lowestPrice = null;
+    }
+    if (highestPrice.isEmpty) {
+      highestPrice = null;
+    }
+    widget._stateManager
+        .advancedSearch(entity, city, lowestPrice, highestPrice, this);
   }
 
-  void refresh(){
-    setState(() {
-
-    });
+  void refresh() {
+    setState(() {});
   }
+
   @override
   Widget build(BuildContext context) {
-    return   Scaffold(
+    return Scaffold(
       key: _scaffoldKey,
-      appBar: TurkishAppBar.getTurkishOrdinaryAppBar(context, S.of(context).advancedSearch),
+      appBar: TurkishAppBar.getTurkishOrdinaryAppBar(
+          context, S.of(context).advancedSearch),
       body: currentSate.getUI(context),
 //      bottomNavigationBar: GestureDetector(
 //        onTap: () {
@@ -77,6 +85,4 @@ class  AdvancedSearchScreenState extends State<AdvancedSearchScreen> {
 //      ),
     );
   }
-
-
 }

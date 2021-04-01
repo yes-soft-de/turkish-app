@@ -258,7 +258,7 @@ class RealEstateDetailsStateDataLoaded extends RealEstateDetailsState {
               ),
               Padding(
                 padding: const EdgeInsets.all(8.0),
-                child: Text(S.of(context).roomsDescription + ' ${realEstate.description}'),
+                child: Text(S.of(context).roomsDescription + ' : ${realEstate.description}'),
               ),
               Container(
                 decoration: BoxDecoration(

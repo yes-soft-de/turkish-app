@@ -18,8 +18,8 @@ class AdvancedSearchStateManager{
   void advancedSearch(
       String entity,
       String city,
-      int lowestPrice,
-      int highestPrice,
+      String lowestPrice,
+      String highestPrice,
       AdvancedSearchScreenState screenState){
     _stateSubject
         .add(AdvancedSearchStateLoading(  screenState));

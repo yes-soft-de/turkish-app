@@ -183,12 +183,13 @@ class SearchStateDataLoaded extends SearchState {
                       child: ProductCard(
                         image: searchResults[index].image,
                         category: searchResults[index].category,
-                        likes: 0,
+                        likes: searchResults[index].likes,
                         owner: searchResults[index].userName,
                         ownerImage: searchResults[index].userImage,
                         product: (searchResults[index].type!='')?searchResults[index].type:searchResults[index].brand,
                         specification: searchResults[index].specification,
                         type: searchResults[index].productType,
+                        comments: searchResults[index].commentsNumber??0,
                       ),
                     ),
 

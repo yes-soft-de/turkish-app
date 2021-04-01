@@ -232,7 +232,7 @@ class Location {
 
 class Reaction {
   int reactionCount;
-  bool createdBy;
+  var createdBy;
   bool isLoved;
 
   Reaction({this.reactionCount, this.createdBy, this.isLoved});

@@ -96,7 +96,7 @@ class CarDetailsStateDataLoaded extends CarDetailsState {
                     ),
                     Center(
                       child: Text(
-                        '${car.brand}',
+                        '${car.type}',
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
                           color: Colors.white,

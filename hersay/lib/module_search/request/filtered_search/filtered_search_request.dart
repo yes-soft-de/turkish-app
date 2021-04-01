@@ -1,10 +1,11 @@
 class FilteredSearchRequest {
   String entity;
   String city;
-  int lowestPrice;
-  int highestPrice;
+  String lowestPrice;
+  String highestPrice;
 
-  FilteredSearchRequest({this.entity, this.city, this.lowestPrice,this.highestPrice});
+  FilteredSearchRequest(
+      {this.entity, this.city, this.lowestPrice, this.highestPrice});
 
   FilteredSearchRequest.fromJson(Map<String, dynamic> json) {
     entity = json['entity'];
@@ -15,10 +16,18 @@ class FilteredSearchRequest {
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['entity'] = this.entity;
-    data['city'] = this.city;
-    data['price'] = this.lowestPrice;
-    data['price_2'] = this.highestPrice;
+    if (this.entity != null) {
+      data['entity'] = this.entity;
+    }
+    if (this.city != null) {
+      data['city'] = this.city;
+    }
+    if (this.lowestPrice != null) {
+      data['price'] = this.lowestPrice;
+    }
+    if (this.highestPrice != null) {
+      data['price_2'] = this.highestPrice;
+    }
     return data;
   }
 }
