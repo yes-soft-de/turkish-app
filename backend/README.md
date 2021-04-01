@@ -332,7 +332,6 @@ methods: DELETE
 ```
 
 ### Comment
-
 Note: in postman send "entity":"device", "car", or "realEstate"
 #### Insert new comment
 ```
