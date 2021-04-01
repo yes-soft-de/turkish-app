@@ -17,12 +17,15 @@ class ServicesManager
     private $autoMapping;
     private $entityManager;
     private $servicesEntityRepository;
+    private $commentManager;
 
-    public function __construct(AutoMapping $autoMapping, EntityManagerInterface $entityManager, ServicesEntityRepository $servicesEntityRepository)
+    public function __construct(AutoMapping $autoMapping, EntityManagerInterface $entityManager, 
+    ServicesEntityRepository $servicesEntityRepository, CommentManager $commentManager)
     {
         $this->autoMapping = $autoMapping;
         $this->entityManager = $entityManager;
         $this->servicesEntityRepository = $servicesEntityRepository;
+        $this->commentManager = $commentManager;
     }
 
     public function create(ServiceCreateRequest $request)
@@ -80,6 +83,21 @@ class ServicesManager
         }
 
         return $serviceEntity;
+    }
+
+    public function getServiceCommentsNumber($type, $id)
+    {
+        return $this->commentManager->getCommentsNumber($type, $id);
+    }
+
+    public function getServicesOfUser($userID)
+    {
+        return $this->servicesEntityRepository->getServicesOfUser($userID);
+    }
+
+    public function getServicesByQuery($query)
+    {
+        return $this->servicesEntityRepository->getServicesByQuery($query);
     }
 
 }
