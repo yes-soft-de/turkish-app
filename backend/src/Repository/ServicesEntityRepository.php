@@ -24,7 +24,7 @@ class ServicesEntityRepository extends ServiceEntityRepository
     public function getServicesById($serviceID)
     {
         return $this->createQueryBuilder('service')
-            ->select('service.id', 'service.title', 'service.createdBy', 'service.createdAt', 'service.description', 'service.type',
+            ->select('service.id', 'service.title', 'service.createdBy', 'service.createdAt', 'service.updatedAt', 'service.description', 'service.type',
              'service.image', 'userProfile.userName', 'userProfile.image as userImage')
 
             ->leftJoin(
@@ -44,7 +44,7 @@ class ServicesEntityRepository extends ServiceEntityRepository
     public function getAllServices()
     {
         return $this->createQueryBuilder('service')
-              ->select('service.id', 'service.title', 'service.createdBy', 'service.createdAt', 'service.description', 'service.type',
+              ->select('service.id', 'service.title', 'service.createdBy', 'service.createdAt', 'service.updatedAt', 'service.description', 'service.type',
               'service.image', 'userProfile.userName', 'userProfile.image as userImage')
 
               ->leftJoin(

@@ -17,6 +17,8 @@ class ServicesGetResponse
 
     public $createdAt;
 
+    public $updatedAt;
+
     public $description;
 
     public $type;

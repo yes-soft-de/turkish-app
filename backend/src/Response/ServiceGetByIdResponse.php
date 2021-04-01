@@ -13,6 +13,8 @@ class ServiceGetByIdResponse
 
     public $createdAt;
 
+    public $updatedAt;
+
     public $type;
 
     public $userName;

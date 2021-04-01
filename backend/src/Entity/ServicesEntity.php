@@ -49,6 +49,12 @@ class ServicesEntity
      */
     private $type;
 
+    /**
+     * @Gedmo\Timestampable(on="update")
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    private $updatedAt;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -122,6 +128,18 @@ class ServicesEntity
     public function setType(string $type): self
     {
         $this->type = $type;
+
+        return $this;
+    }
+
+    public function getUpdatedAt(): ?\DateTimeInterface
+    {
+        return $this->updatedAt;
+    }
+
+    public function setUpdatedAt(?\DateTimeInterface $updatedAt): self
+    {
+        $this->updatedAt = $updatedAt;
 
         return $this;
     }
