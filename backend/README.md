@@ -362,6 +362,11 @@ methods: GET
 ```
 #### Get all services
 ```
+/allservices
+methods: GET
+```
+#### Get all services of user
+```
 /services
 methods: GET
 ```
