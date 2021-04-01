@@ -15,9 +15,10 @@ class ReactionManager
     private $carManager;
     private $deviceManager;
     private $realEstateManager;
+    private $servicesManager;
 
     public function __construct(EntityManagerInterface $entityManagerInterface, ReactionEntityRepository $repository, AutoMapping $autoMapping,
-                                CarManager $carManager, DeviceManager $deviceManager, RealEstateManager $realEstateManager) {
+                                CarManager $carManager, DeviceManager $deviceManager, RealEstateManager $realEstateManager, ServicesManager $servicesManager) {
 
         $this->entityManager = $entityManagerInterface;
         $this->repository = $repository;
@@ -25,6 +26,7 @@ class ReactionManager
         $this->carManager = $carManager;
         $this->deviceManager = $deviceManager;
         $this->realEstateManager = $realEstateManager;
+        $this->servicesManager = $servicesManager;
     }
     public function reactionCreate(ReactionCreateRequest $request)
     {
@@ -76,7 +78,7 @@ class ReactionManager
 
                 if($car)
                 {
-                    $result['entityName'] = $car[0]['brand'];
+                    $result['entityName'] = $car[0]['carType'];
                     $response[] = $result;
                 }
             }
@@ -97,6 +99,16 @@ class ReactionManager
                 if($realEstate)
                 {
                     $result['entityName'] = $realEstate[0]['realEstateType'];
+                    $response[] = $result;
+                }
+            }
+            elseif ($result['entity'] != null)
+            {
+                $services = $this->servicesManager->getServiceOfUserById($userID, $result['itemID']);
+
+                if($services)
+                {
+                    $result['entityName'] = $services[0]['title'];
                     $response[] = $result;
                 }
             }
@@ -157,8 +169,6 @@ class ReactionManager
         $response = [];
 
         $response['total'] = count($this->repository->findAll());
-
-        //dd($this->repository->getReactionsCountOfEntity("car"));
 
         $response['carReactions'] = $this->repository->getReactionsCountOfEntity("car")[1];
 
