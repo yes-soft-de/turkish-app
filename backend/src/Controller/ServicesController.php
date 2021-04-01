@@ -71,12 +71,23 @@ class ServicesController extends BaseController
     }
 
     /**
-     * @Route("services", name="getAllServices", methods={"GET"})
+     * @Route("allservices", name="getAllServices", methods={"GET"})
      * @return JsonResponse
      */
     public function getServices()
     {
         $result = $this->servicesService->getAllServices($this->getUserId());
+
+        return $this->response($result, self::FETCH);
+    }
+
+    /**
+     * @Route("services", name="getServicesOfSpecificUser", methods={"GET"})
+     * @return JsonResponse
+     */
+    public function getServicesOfUser(Request $request)
+    {
+        $result = $this->servicesService->getServicesOfUser($this->getUserId());
 
         return $this->response($result, self::FETCH);
     }
