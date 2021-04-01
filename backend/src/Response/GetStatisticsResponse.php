@@ -14,6 +14,8 @@ class GetStatisticsResponse
 
     public $realEstates;
 
+    public $services;
+
     public $properties;
 
     public $reactions;
