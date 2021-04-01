@@ -99,5 +99,28 @@ class ServicesEntityRepository extends ServiceEntityRepository
             ->getQuery()
             ->getArrayResult();
     }
+   
+    public function getServiceOfUserById($userID, $id)
+    {
+        return $this->createQueryBuilder('service')
+            ->select('service.id', 'service.title', 'service.createdBy', 'service.createdAt', 'service.updatedAt', 'service.description', 'service.type',
+            'service.image', 'userProfile.userName', 'userProfile.image as userImage')
+
+            ->andWhere('service.id = :id')
+            ->andWhere('service.createdBy = :userID')
+
+            ->setParameter('id', $id)
+            ->setParameter('userID', $userID)
+
+            ->leftJoin(
+                UserProfileEntity::class,
+                'userProfile',
+                Join::WITH,
+                'userProfile.userID = service.createdBy'
+            )
+
+            ->getQuery()
+            ->getResult();
+    }
 
 }
