@@ -35,7 +35,7 @@ class RealEstateGetAllResponse
 
     public $userName;
     
-    public $imageUser;
+    public $userImage;
 
     public $commentsNumber;
     

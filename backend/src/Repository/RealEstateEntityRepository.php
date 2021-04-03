@@ -49,7 +49,7 @@ class RealEstateEntityRepository extends ServiceEntityRepository
         return $this->createQueryBuilder('RealEstateEntity')
             ->select('RealEstateEntity.id', 'RealEstateEntity.country', 'RealEstateEntity.city', 'RealEstateEntity.space', 'RealEstateEntity.price', 'RealEstateEntity.description', 
             'RealEstateEntity.status', 'RealEstateEntity.createdBy', 'RealEstateEntity.createdAt', 'RealEstateEntity.updateAt', 'RealEstateEntity.image', 'RealEstateEntity.specialLink', 
-            'RealEstateEntity.numberOfFloors', 'RealEstateEntity.homeFurnishing', 'RealEstateEntity.realEstateType', 'UserProfileEntity.userName', 'UserProfileEntity.image as imageUser')
+            'RealEstateEntity.numberOfFloors', 'RealEstateEntity.homeFurnishing', 'RealEstateEntity.realEstateType', 'UserProfileEntity.userName', 'UserProfileEntity.image as userImage')
 
             ->leftJoin(
                 UserProfileEntity::class,
@@ -67,7 +67,7 @@ class RealEstateEntityRepository extends ServiceEntityRepository
         return $this->createQueryBuilder('RealEstateEntity')
             ->select('RealEstateEntity.id', 'RealEstateEntity.country', 'RealEstateEntity.city', 'RealEstateEntity.space', 'RealEstateEntity.price', 'RealEstateEntity.description', 'RealEstateEntity.status', 
             'RealEstateEntity.createdBy', 'RealEstateEntity.createdAt', 'RealEstateEntity.updateAt', 'RealEstateEntity.image', 'RealEstateEntity.specialLink', 'RealEstateEntity.numberOfFloors',
-            'RealEstateEntity.homeFurnishing', 'RealEstateEntity.realEstateType', 'userProfileEntity.userName', 'userProfileEntity.image as imageUser')
+            'RealEstateEntity.homeFurnishing', 'RealEstateEntity.realEstateType', 'userProfileEntity.userName', 'userProfileEntity.image as userImage')
 
             ->leftJoin(
                 UserProfileEntity::class,
@@ -87,10 +87,10 @@ class RealEstateEntityRepository extends ServiceEntityRepository
     public function getFilterCity($value)
     {
         return $this->createQueryBuilder('RealEstateEntity')
-            ->select('RealEstateEntity.id', 'RealEstateEntity.country','RealEstateEntity.city', 'RealEstateEntity.space', 'RealEstateEntity.price', 'RealEstateEntity.description', 'RealEstateEntity.status',
-                    'RealEstateEntity.createdBy', 'RealEstateEntity.createdAt', 'RealEstateEntity.updateAt', 'RealEstateEntity.state', 'RealEstateEntity.image', 'RealEstateEntity.specialLink',
-                    'RealEstateEntity.numberOfFloors', 'RealEstateEntity.cladding', 'RealEstateEntity.homeFurnishing', 'RealEstateEntity.realEstateType',
-                    'RealEstateEntity.rooms', 'userProfileEntity.userName as username', 'userProfileEntity.image as userImage')
+            ->select('RealEstateEntity.id', 'RealEstateEntity.country','RealEstateEntity.city', 'RealEstateEntity.space', 'RealEstateEntity.price', 'RealEstateEntity.description', 
+                'RealEstateEntity.status', 'RealEstateEntity.createdBy', 'RealEstateEntity.createdAt', 'RealEstateEntity.updateAt', 'RealEstateEntity.image', 'RealEstateEntity.specialLink',
+                'RealEstateEntity.numberOfFloors', 'RealEstateEntity.homeFurnishing', 'RealEstateEntity.realEstateType',
+                'userProfileEntity.userName', 'userProfileEntity.image as userImage')
 
             ->leftJoin(
                 UserProfileEntity::class,
@@ -113,7 +113,7 @@ class RealEstateEntityRepository extends ServiceEntityRepository
             ->select('RealEstateEntity.id', 'RealEstateEntity.country','RealEstateEntity.city', 'RealEstateEntity.space', 'RealEstateEntity.price', 'RealEstateEntity.description', 'RealEstateEntity.status',
                     'RealEstateEntity.createdBy', 'RealEstateEntity.createdAt', 'RealEstateEntity.updateAt', 'RealEstateEntity.image', 'RealEstateEntity.specialLink',
                     'RealEstateEntity.numberOfFloors', 'RealEstateEntity.homeFurnishing', 'RealEstateEntity.realEstateType',
-                    'userProfileEntity.userName as username', 'userProfileEntity.image as userImage')
+                    'userProfileEntity.userName', 'userProfileEntity.image as userImage')
 
             ->leftJoin(
                 UserProfileEntity::class,
@@ -136,7 +136,7 @@ class RealEstateEntityRepository extends ServiceEntityRepository
             ->select('RealEstateEntity.id', 'RealEstateEntity.country','RealEstateEntity.city', 'RealEstateEntity.space', 'RealEstateEntity.price', 
             'RealEstateEntity.description', 'RealEstateEntity.status', 'RealEstateEntity.createdBy', 'RealEstateEntity.createdAt', 'RealEstateEntity.updateAt', 
             'RealEstateEntity.image', 'RealEstateEntity.specialLink', 'RealEstateEntity.numberOfFloors', 'RealEstateEntity.homeFurnishing', 'RealEstateEntity.realEstateType', 
-            'userProfileEntity.userName as userName', 'userProfileEntity.image as imageUser')
+            'userProfileEntity.userName as userName', 'userProfileEntity.image as userImage')
 
             ->andWhere('RealEstateEntity.realEstateType LIKE :realEstateType')
 
@@ -162,7 +162,7 @@ class RealEstateEntityRepository extends ServiceEntityRepository
             ->select('realEstate.id', 'realEstate.country','realEstate.city', 'realEstate.space', 'realEstate.price', 'realEstate.description', 'realEstate.status',
                     'realEstate.createdBy', 'realEstate.createdAt', 'realEstate.updateAt', 'realEstate.image', 'realEstate.specialLink',
                     'realEstate.numberOfFloors', 'realEstate.homeFurnishing', 'realEstate.realEstateType',
-                    'userProfileEntity.userName as username', 'userProfileEntity.image as userImage')
+                    'userProfileEntity.userName', 'userProfileEntity.image as userImage')
 
             ->leftJoin(
                 UserProfileEntity::class,
@@ -212,7 +212,7 @@ class RealEstateEntityRepository extends ServiceEntityRepository
             ->select('realEstate.id', 'realEstate.country','realEstate.city', 'realEstate.space', 'realEstate.price', 'realEstate.description', 'realEstate.status',
                     'realEstate.createdBy', 'realEstate.createdAt', 'realEstate.updateAt', 'realEstate.image', 'realEstate.specialLink',
                     'realEstate.numberOfFloors', 'realEstate.homeFurnishing', 'realEstate.realEstateType',
-                    'userProfileEntity.userName as username', 'userProfileEntity.image as userImage')
+                    'userProfileEntity.userName', 'userProfileEntity.image as userImage')
 
             ->leftJoin(
                 UserProfileEntity::class,

@@ -18,7 +18,7 @@ class DevicesGetFilterResponse
 
     public $status;
 
-    public $username;
+    public $userName;
 
     public $userImage;
 

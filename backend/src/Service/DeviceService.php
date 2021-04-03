@@ -88,7 +88,7 @@ class DeviceService
 
         foreach ($result as $row)
         {
-            $row['imageUser'] = $this->params . $row['imageUser'];
+            $row['userImage'] = $this->params . $row['userImage'];
 
             $row['image'] = $this->specialLinkCheck($row['specialLink']).$row['image'];
 
@@ -113,7 +113,7 @@ class DeviceService
         {
             $row['image'] = $this->specialLinkCheck($row['specialLink']) . $row['image'];
 
-            $row['imageUser'] = $this->params . $row['imageUser'];
+            $row['userImage'] = $this->params . $row['userImage'];
            
             $row['reaction']=$this->reactionService->reactionforItem($row['id'], $this->entity);
 
@@ -187,7 +187,7 @@ class DeviceService
         {
             $device['image'] = $this->specialLinkCheck($device['specialLink']) . $device['image'];
 
-            $device['imageUser'] = $this->specialLinkCheck($device['specialLink']) . $device['imageUser'];
+            $device['userImage'] = $this->specialLinkCheck($device['specialLink']) . $device['userImage'];
 
             $device['reaction']=$this->reactionService->reactionforItem($device['id'], $this->entity);
           

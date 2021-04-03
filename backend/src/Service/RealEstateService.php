@@ -93,7 +93,7 @@ class RealEstateService
         {
             $row['image'] = $this->specialLinkCheck($row['specialLink']) . $row['image'];
 
-            $row['imageUser'] = $this->params . $row['imageUser'];
+            $row['userImage'] = $this->params . $row['userImage'];
            
             $row['reaction']=$this->reactionService->reactionforItem($row['id'], $this->entity);
             ($row['reaction'][0]['createdBy'] == $userID) ?  $row['reaction'][0]['createdBy'] = true : $row['reaction'][0]['createdBy'] = false ;
@@ -113,7 +113,7 @@ class RealEstateService
 
         foreach ($result as $row)
         {
-            $row['imageUser'] = $this->params . $row['imageUser'];
+            $row['userImage'] = $this->params . $row['userImage'];
 
             $row['image'] = $this->specialLinkCheck($row['specialLink']) . $row['image'];
 
@@ -185,7 +185,7 @@ class RealEstateService
         {
             $realEstate['image'] = $this->specialLinkCheck($realEstate['specialLink']) . $realEstate['image'];
 
-            $realEstate['imageUser'] = $this->specialLinkCheck($realEstate['specialLink']) . $realEstate['imageUser'];
+            $realEstate['userImage'] = $this->specialLinkCheck($realEstate['specialLink']) . $realEstate['userImage'];
 
             $realEstate['reaction']=$this->reactionService->reactionforItem($realEstate['id'], $this->entity);
           

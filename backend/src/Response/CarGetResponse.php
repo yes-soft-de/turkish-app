@@ -40,7 +40,7 @@ class CarGetResponse
 
     public $userName;
     
-    public $imageUser;
+    public $userImage;
 
     public $commentsNumber;
 }

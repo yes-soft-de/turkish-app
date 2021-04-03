@@ -19,7 +19,7 @@ class RealEstateGetFilterResponse
 
     public $status;
 
-    public $username;
+    public $userName;
 
     public $userImage;
 

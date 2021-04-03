@@ -32,7 +32,7 @@ class DeviceGetResponse
     
     public $userName;
     
-    public $imageUser;
+    public $userImage;
 
     public $commentsNumber;
     

@@ -69,7 +69,7 @@ class CarEntityRepository extends ServiceEntityRepository
         return $this->createQueryBuilder('car')
             ->select("car.id", "car.yearOfProduction", "car.price", "car.description", "car.status", "car.createdBy", "car.createdAt", 
             "car.updateAt", "car.distance", "car.carType", "car.gearType", "car.country", "car.city", "car.image", "car.specialLink",
-             'userProfileEntity.userName', 'userProfileEntity.image as imageUser')
+             'userProfileEntity.userName', 'userProfileEntity.image as userImage')
 
             ->andWhere('car.createdBy = :createdBy')
 
@@ -91,7 +91,7 @@ class CarEntityRepository extends ServiceEntityRepository
         return $this->createQueryBuilder('car')
             ->select("car.id", "car.yearOfProduction", "car.price", "car.description", "car.status", "car.createdBy", 
             "car.createdAt", "car.updateAt", "car.distance", "car.carType", "car.gearType", "car.country", "car.city", "car.image", 
-            "car.specialLink", "UserProfileEntity.image as imageUser", "UserProfileEntity.userName")
+            "car.specialLink", "UserProfileEntity.image as userImage", "UserProfileEntity.userName")
 
             ->leftJoin(
                 UserProfileEntity::class,
@@ -110,7 +110,7 @@ class CarEntityRepository extends ServiceEntityRepository
         return $this->createQueryBuilder('car')
             ->select("car.id", "car.yearOfProduction", "car.price", "car.description", "car.status", "car.createdBy", "car.createdAt", 
             "car.updateAt", "car.distance", "car.carType", "car.gearType", "car.country", "car.city", "car.image", "car.specialLink", 
-            'userProfileEntity.userName as username', 'userProfileEntity.image as userImage')
+            'userProfileEntity.userName', 'userProfileEntity.image as userImage')
 
             ->leftJoin(
                 UserProfileEntity::class,
@@ -130,7 +130,7 @@ class CarEntityRepository extends ServiceEntityRepository
     {
         return $this->createQueryBuilder('car')
             ->select("car.id", "car.yearOfProduction", "car.price", "car.description", "car.status", "car.createdBy", "car.createdAt", "car.updateAt", "car.distance", 
-            "car.carType", "car.gearType", "car.country", "car.city", "car.image", "car.specialLink", 'userProfileEntity.userName as username', 'userProfileEntity.image as userImage')
+            "car.carType", "car.gearType", "car.country", "car.city", "car.image", "car.specialLink", 'userProfileEntity.userName', 'userProfileEntity.image as userImage')
 
             ->leftJoin(
                 UserProfileEntity::class,
@@ -150,8 +150,8 @@ class CarEntityRepository extends ServiceEntityRepository
     {
         return $this->createQueryBuilder('car')
             ->select('car.id', 'car.createdBy', 'car.carType', 'car.createdAt', 'car.description', 'car.distance', 'car.gearType', 
-            'car.image', 'car.price', 'car.yearOfProduction', 'car.status', 'car.updateAt', 'car.description', 'car.city', 'car.country', 'car.specialLink', "userProfileEntity.image as imageUser", 
-            "userProfileEntity.userName")
+            'car.image', 'car.price', 'car.yearOfProduction', 'car.status', 'car.updateAt', 'car.description', 'car.city', 'car.country', 
+            'car.specialLink', "userProfileEntity.image as userImage", "userProfileEntity.userName")
 
             ->andWhere('car.carType LIKE :type')
 
@@ -174,7 +174,7 @@ class CarEntityRepository extends ServiceEntityRepository
     {
         return $this->createQueryBuilder('car')
             ->select("car.id", "car.yearOfProduction", "car.price", "car.description", "car.status", "car.createdBy", "car.createdAt", "car.updateAt", "car.distance", 
-            "car.carType", "car.gearType", "car.country", "car.city", "car.image", "car.specialLink", 'userProfileEntity.userName as username', 'userProfileEntity.image as userImage')
+            "car.carType", "car.gearType", "car.country", "car.city", "car.image", "car.specialLink", 'userProfileEntity.userName', 'userProfileEntity.image as userImage')
 
             ->leftJoin(
                 UserProfileEntity::class,
@@ -197,7 +197,7 @@ class CarEntityRepository extends ServiceEntityRepository
     {
         return $this->createQueryBuilder('car')
             ->select("car.id", "car.yearOfProduction", "car.price", "car.description", "car.status", "car.createdBy", "car.createdAt", "car.updateAt", 
-            "car.distance", "car.carType", "car.gearType", "car.country", "car.city", "car.image", "car.specialLink", 'userProfileEntity.userName as username', 
+            "car.distance", "car.carType", "car.gearType", "car.country", "car.city", "car.image", "car.specialLink", 'userProfileEntity.userName', 
             'userProfileEntity.image as userImage')
 
             ->leftJoin(
@@ -221,7 +221,7 @@ class CarEntityRepository extends ServiceEntityRepository
     {
         return $this->createQueryBuilder('car')
             ->select("car.id", "car.yearOfProduction", "car.price", "car.description", "car.status", "car.createdBy", "car.createdAt", "car.updateAt", "car.distance", "car.carType", 
-            "car.gearType", "car.country", "car.city", "car.image", "car.specialLink", 'userProfileEntity.userName as username', 'userProfileEntity.image as userImage')
+            "car.gearType", "car.country", "car.city", "car.image", "car.specialLink", 'userProfileEntity.userName', 'userProfileEntity.image as userImage')
 
             ->leftJoin(
                 UserProfileEntity::class,
