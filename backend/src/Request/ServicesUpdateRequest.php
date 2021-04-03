@@ -11,8 +11,6 @@ class ServicesUpdateRequest
 
     private $description;
 
-    private $createdBy;
-
     private $image;
 
     private $type;
@@ -20,16 +18,6 @@ class ServicesUpdateRequest
     public function getId()
     {
         return $this->id;
-    }
-
-    public function getCreatedBy()
-    {
-        return $this->createdBy;
-    }
-
-    public function setCreatedBy($createdBy)
-    {
-        $this->createdBy = $createdBy;
     }
 
     public function getImage()
