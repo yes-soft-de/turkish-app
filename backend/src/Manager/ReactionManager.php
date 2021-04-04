@@ -176,6 +176,8 @@ class ReactionManager
 
         $response['realEstateReactions'] = $this->repository->getReactionsCountOfEntity("realEntity")[1];
 
+        $response['services'] = $response['total'] - ($response['carReactions'] + $response['deviceReactions'] + $response['realEstateReactions']);
+        
         return $response;
     }
 }
