@@ -53,7 +53,7 @@ class ServicesService
 
             $result['comments'] = $this->commentService->getCommentsByEntityAndItemID($result['type'], $result['id']);
 
-            $servicesResponse[] = $this->autoMapping->map('array', ServiceGetByIdResponse::class, $result);
+            $servicesResponse = $this->autoMapping->map('array', ServiceGetByIdResponse::class, $result);
         }
 
         return $servicesResponse;
