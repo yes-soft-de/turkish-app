@@ -9,6 +9,8 @@ class ServiceGetByIdResponse
     
     public $title;
 
+    public $image;
+
     public $description;
 
     public $createdAt;
