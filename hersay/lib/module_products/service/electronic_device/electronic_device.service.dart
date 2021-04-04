@@ -76,7 +76,7 @@ class ElectronicDeviceService {
         //TODO : change this after been added to the response
         storage: '',
         image: response.data.image,
-        userName: response.data.username,
+        userName: response.data.username??'',
         userImage: response.data.userImage,
         isLoved: response.data.reaction.isLoved,
         images: _getImages(response),

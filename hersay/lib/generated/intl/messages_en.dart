@@ -249,6 +249,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "thisFieldCannotBeEmpty" : MessageLookupByLibrary.simpleMessage("this field cannot be empty"),
     "thisGameIsGreat" : MessageLookupByLibrary.simpleMessage("This Game is Great"),
     "threIsNotOtherImages" : MessageLookupByLibrary.simpleMessage("Thre is not other images"),
+    "title" : MessageLookupByLibrary.simpleMessage("Title"),
     "toMyCollection" : MessageLookupByLibrary.simpleMessage("to my collection"),
     "tos" : MessageLookupByLibrary.simpleMessage("TOS"),
     "traveledDistance" : MessageLookupByLibrary.simpleMessage("Traveled Distance :"),

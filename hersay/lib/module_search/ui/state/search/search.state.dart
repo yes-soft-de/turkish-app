@@ -176,6 +176,13 @@ class SearchStateDataLoaded extends SearchState {
                                   arguments: searchResults[index].id
                               );
                               break;
+                              case PRODUCT_TYPE.ADVERTISMENT:
+                              Navigator.pushNamed(
+                                  context,
+                                  ProductsRoutes.SERVICE_DETAILS_SCREEN,
+                                  arguments: searchResults[index].id
+                              );
+                              break;
                           }
                         },
                         child: Container(
@@ -184,7 +191,7 @@ class SearchStateDataLoaded extends SearchState {
                         image: searchResults[index].image,
                         category: searchResults[index].category,
                         likes: searchResults[index].likes,
-                        owner: searchResults[index].userName,
+                        owner: searchResults[index].userName??'',
                         ownerImage: searchResults[index].userImage,
                         product: (searchResults[index].type!='')?searchResults[index].type:searchResults[index].brand,
                         specification: searchResults[index].specification,

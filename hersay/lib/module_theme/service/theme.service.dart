@@ -6,7 +6,7 @@ import 'package:rxdart/rxdart.dart';
 @provide
 class AppThemeDataService {
   static final PublishSubject<ThemeData> _darkModeSubject =
-  PublishSubject<ThemeData>();
+      PublishSubject<ThemeData>();
   Stream<ThemeData> get darkModeStream => _darkModeSubject.stream;
 
   final ThemePreferencesHelper _preferencesHelper;
@@ -28,7 +28,6 @@ class AppThemeDataService {
   static Color get backgroundColor {
     return Color(0xffEFEFEF);
   }
-
 
   static Color get PrimaryDarker {
     return Color(0xFF665EFF);

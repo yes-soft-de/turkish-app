@@ -489,6 +489,11 @@ class AdvancedSearchStateDataLoaded extends AdvancedSearchState {
                                   ProductsRoutes.REAL_ESTATE_DETAILS_SCREEN,
                                   arguments: searchResults[index].id);
                               break;
+                              case PRODUCT_TYPE.ADVERTISMENT:
+                              Navigator.pushNamed(context,
+                                  ProductsRoutes.SERVICE_DETAILS_SCREEN,
+                                  arguments: searchResults[index].id);
+                              break;
                           }
                         },
                         child: Container(

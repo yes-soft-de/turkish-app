@@ -133,8 +133,8 @@ class Data {
         reaction.add(new Reaction.fromJson(v));
       });
     }
-    userName = json['username'];
-    imageUser = json['imageUser'];
+    userName = json['userName'];
+    imageUser = json['userImage'];
     state = json['state'];
     type = json['type'];
     cpu = json['cpu'];
@@ -180,8 +180,8 @@ class Data {
     data['city'] = this.city;
     data['image'] = this.image;
     data['reaction'] = this.reaction;
-    data['username'] = this.userName;
-    data['imageUser'] = this.imageUser;
+    data['userName'] = this.userName;
+    data['userImage'] = this.imageUser;
     data['state'] = this.state;
     data['type'] = this.type;
     data['cpu'] = this.cpu;

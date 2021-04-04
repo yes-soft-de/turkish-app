@@ -128,7 +128,7 @@ class Data {
       });
     }
     userName = json['userName'];
-    imageUser = json['imageUser'];
+    imageUser = json['userImage'];
     space = json['space'];
     state = json['state'];
     numberOfFloors = json['numberOfFloors'];
@@ -176,7 +176,7 @@ class Data {
       data['reaction'] = this.reaction.map((v) => v.toJson()).toList();
     }
     data['userName'] = this.userName;
-    data['imageUser'] = this.imageUser;
+    data['userImage'] = this.imageUser;
     data['space'] = this.space;
     data['state'] = this.state;
     data['numberOfFloors'] = this.numberOfFloors;

@@ -105,7 +105,7 @@ class CarData {
       });
     }
     userName = json['userName'];
-    imageUser = json['imageUser'];
+    imageUser = json['userImage'];
   }
 
   Map<String, dynamic> toJson() {
@@ -140,7 +140,7 @@ class CarData {
       data['reaction'] = this.reaction.map((v) => v.toJson()).toList();
     }
     data['userName'] = this.userName;
-    data['imageUser'] = this.imageUser;
+    data['userImage'] = this.imageUser;
 
     return data;
   }

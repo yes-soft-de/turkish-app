@@ -31,7 +31,6 @@ class SearchModel {
     List<SearchModel> result = [];
     if (entity != null) {
       response.data.forEach((element) {
-        print(element.userName);
         switch (entity) {
           case 'car':
             result.add(SearchModel(

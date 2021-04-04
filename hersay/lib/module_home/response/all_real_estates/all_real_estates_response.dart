@@ -88,7 +88,7 @@ class Data {
     }
     rooms = json['rooms'];
     userName = json['userName'];
-    imageUser = json['imageUser'];
+    imageUser = json['userImage'];
     commentsCount = json['commentsNumber'];
   }
 
@@ -115,7 +115,7 @@ class Data {
     }
     data['rooms'] = this.rooms;
     data['userName'] = this.userName;
-    data['imageUser'] = this.imageUser;
+    data['userImage'] = this.imageUser;
     return data;
   }
 }

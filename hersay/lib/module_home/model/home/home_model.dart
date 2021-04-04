@@ -5,12 +5,12 @@ class HomeModel {
   List<HomeElement> realEstates;
   List<HomeElement> cars;
   List<HomeElement> electronicDevices;
-
-  HomeModel({
-    this.realEstates,
-    this.cars,
-    this.electronicDevices,
-  });
+  List<HomeElement> advertisement;
+  HomeModel(
+      {this.realEstates,
+      this.cars,
+      this.electronicDevices,
+      this.advertisement});
 
   static List<HomeElement> toRealEstatesList(HomeResponse homeData) {
     List<HomeElement> result = [];
@@ -43,7 +43,7 @@ class HomeModel {
           likes: (element.reaction != null)
               ? element.reaction[0].reactionCount
               : 0,
-          category: element.gearType??'',
+          category: element.gearType ?? '',
           owner: element.userName ?? '',
           ownerImage: element.imageUser ?? '',
           specification: element.distance + ' KM',
@@ -66,7 +66,27 @@ class HomeModel {
           category: element.type,
           ownerImage: element.imageUser ?? '',
           owner: element.userName ?? '',
-          specification:element.description,
+          specification: element.description,
+          comments: element.commentsCount));
+    });
+    return result;
+  }
+
+  static List<HomeElement> toAdvertisementList(HomeResponse homeData) {
+    List<HomeElement> result = [];
+    homeData.allAdvertisement.data.forEach((element) {
+      result.add(new HomeElement(
+          id: element.id,
+          product: element.type ?? '',
+          image: element.image,
+          type: PRODUCT_TYPE.ADVERTISMENT,
+          likes: (element.reaction != null)
+              ? element.reaction[0].reactionCount
+              : 0,
+          category:element.title??'',
+          ownerImage: element.imageUser ?? '',
+          owner: element.userName ?? '',
+          specification: element.description,
           comments: element.commentsCount));
     });
     return result;
@@ -84,6 +104,7 @@ class HomeElement {
   String specification;
   int likes;
   int comments;
+  String title;
   HomeElement(
       {this.id,
       this.image,
@@ -94,5 +115,7 @@ class HomeElement {
       this.product,
       this.specification,
       this.type,
-      this.comments});
+      this.comments,
+      this.title
+      });
 }

@@ -17,7 +17,6 @@ import 'package:hersay/module_search/search_routes.dart';
 import 'package:hersay/module_settings/settings_module.dart';
 import 'package:hersay/module_splash/splash_routes.dart';
 import 'package:inject/inject.dart';
-
 import 'abstracts/module/yes_module.dart';
 import 'di/components/app.component.dart';
 import 'generated/l10n.dart';

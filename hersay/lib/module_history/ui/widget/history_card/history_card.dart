@@ -45,6 +45,9 @@ class HistoryCard extends StatelessWidget {
       case PRODUCT_TYPE.REAL_ESTATE:
         icon = Icons.home;
         break;
+        case PRODUCT_TYPE.ADVERTISMENT:
+        icon = Icons.design_services;
+        break;
     }
 
     return icon;

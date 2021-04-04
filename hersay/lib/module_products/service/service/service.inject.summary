@@ -1,0 +1,41 @@
+{
+  "asset": "asset:hersay/lib/module_products/service/service/service.dart",
+  "summary": {
+    "injector": [],
+    "module": [],
+    "injectable": [
+      {
+        "name": "ServiceService",
+        "constructor": {
+          "name": "",
+          "kind": "constructor",
+          "injectedType": {
+            "lookupKey": {
+              "root": "asset:hersay/lib/module_products/service/service/service.dart#ServiceService",
+              "qualifier": null
+            },
+            "isProvider": false
+          },
+          "singleton": false,
+          "asynchronous": false,
+          "dependencies": [
+            {
+              "lookupKey": {
+                "root": "asset:hersay/lib/module_products/manager/service/service_manager.dart#ServiceManager",
+                "qualifier": null
+              },
+              "isProvider": false
+            },
+            {
+              "lookupKey": {
+                "root": "asset:hersay/lib/module_upload/service/image_upload/image_upload_service.dart#ImageUploadService",
+                "qualifier": null
+              },
+              "isProvider": false
+            }
+          ]
+        }
+      }
+    ]
+  }
+}

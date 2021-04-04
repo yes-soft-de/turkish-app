@@ -367,6 +367,14 @@ class ProfileStateDataLoaded extends ProfileState {
                           arguments: displayedProducts[index].id
                       );
                       break;
+                      case PRODUCT_TYPE.ADVERTISMENT:
+
+                      Navigator.pushNamed(
+                          context,
+                          ProductsRoutes.SERVICE_DETAILS_SCREEN,
+                          arguments: displayedProducts[index].id
+                      );
+                      break;
                   }
                 },
                 child: Container(

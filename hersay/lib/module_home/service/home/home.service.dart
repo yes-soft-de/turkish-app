@@ -19,7 +19,8 @@ class HomeService{
     HomeModel homeData = new HomeModel(
         realEstates: HomeModel.toRealEstatesList(response),
         cars : HomeModel.toCarsList(response),
-        electronicDevices:HomeModel.toElectronicDevicesList(response)
+        electronicDevices:HomeModel.toElectronicDevicesList(response),
+        advertisement: HomeModel.toAdvertisementList(response)
     );
 
     return homeData;

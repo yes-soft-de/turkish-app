@@ -1,0 +1,41 @@
+{
+  "asset": "asset:hersay/lib/module_products/ui/screen/service_details/service_details.dart",
+  "summary": {
+    "injector": [],
+    "module": [],
+    "injectable": [
+      {
+        "name": "ServiceDetailsScreen",
+        "constructor": {
+          "name": "",
+          "kind": "constructor",
+          "injectedType": {
+            "lookupKey": {
+              "root": "asset:hersay/lib/module_products/ui/screen/service_details/service_details.dart#ServiceDetailsScreen",
+              "qualifier": null
+            },
+            "isProvider": false
+          },
+          "singleton": false,
+          "asynchronous": false,
+          "dependencies": [
+            {
+              "lookupKey": {
+                "root": "asset:hersay/lib/module_products/state_manager/service/service_details.state_manager.dart#ServicesDetailsStateManager",
+                "qualifier": null
+              },
+              "isProvider": false
+            },
+            {
+              "lookupKey": {
+                "root": "asset:hersay/lib/module_auth/service/auth/auth.service.dart#AuthService",
+                "qualifier": null
+              },
+              "isProvider": false
+            }
+          ]
+        }
+      }
+    ]
+  }
+}

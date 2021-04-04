@@ -21,7 +21,9 @@ class CommentCard extends StatelessWidget {
       padding: const EdgeInsets.all(8.0),
       child: Container(
         decoration: BoxDecoration(
-          color: ProjectColors.BACKGROUND_COLOR,
+          color: Theme.of(context).brightness == Brightness.dark
+              ? Colors.grey[900]
+              : ProjectColors.BACKGROUND_COLOR,
           borderRadius: BorderRadius.circular(25),
         ),
         width: double.maxFinite,

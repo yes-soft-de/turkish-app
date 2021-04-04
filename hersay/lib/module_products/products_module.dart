@@ -8,6 +8,7 @@ import 'package:hersay/module_products/ui/screen/car_details/car_details_screen.
 import 'package:hersay/module_products/ui/screen/electronic_device_details/electronic_device_details_screen.dart';
 import 'package:hersay/module_products/ui/screen/product_images/product_images_screen.dart';
 import 'package:hersay/module_products/ui/screen/real_estate_details/real_estate_details_screen.dart';
+import 'package:hersay/module_products/ui/screen/service_details/service_details.dart';
 import 'package:inject/inject.dart';
 
 @provide
@@ -20,7 +21,7 @@ class ProductsModule extends YesModule {
   final RealEstateDetailsScreen _realEstateDetailsScreen;
   final ElectronicDeviceDetailsScreen _electronicDeviceDetailsScreen;
   final ProductImagesScreen _productImagesScreen;
-
+  final ServiceDetailsScreen _serviceDetailsScreen;
   ProductsModule(
       this._addRealEstateScreen,
       this._addCarScreen,
@@ -29,7 +30,7 @@ class ProductsModule extends YesModule {
       this._realEstateDetailsScreen,
       this._carDetailsScreen,
       this._productImagesScreen,
-      ) {
+      this._serviceDetailsScreen) {
     YesModule.RoutesMap.addAll(getRoutes());
   }
 
@@ -37,12 +38,15 @@ class ProductsModule extends YesModule {
     return {
       ProductsRoutes.ADD_REAL_ESTATE_SCREEN: (context) => _addRealEstateScreen,
       ProductsRoutes.ADD_CAR_SCREEN: (context) => _addCarScreen,
-      ProductsRoutes.ADD_ELECTRONIC_DEVICE_SCREEN: (context) => _addElectronicDeviceScreen,
+      ProductsRoutes.ADD_ELECTRONIC_DEVICE_SCREEN: (context) =>
+          _addElectronicDeviceScreen,
       ProductsRoutes.CAR_DETAILS_SCREEN: (context) => _carDetailsScreen,
-      ProductsRoutes.ELECTRONIC_DEVICE_DETAILS_SCREEN: (context) => _electronicDeviceDetailsScreen,
-      ProductsRoutes.REAL_ESTATE_DETAILS_SCREEN: (context) => _realEstateDetailsScreen,
+      ProductsRoutes.ELECTRONIC_DEVICE_DETAILS_SCREEN: (context) =>
+          _electronicDeviceDetailsScreen,
+      ProductsRoutes.REAL_ESTATE_DETAILS_SCREEN: (context) =>
+          _realEstateDetailsScreen,
       ProductsRoutes.PRODUCT_IMAGES: (context) => _productImagesScreen,
+      ProductsRoutes.SERVICE_DETAILS_SCREEN: (context) => _serviceDetailsScreen,
     };
   }
 }
-

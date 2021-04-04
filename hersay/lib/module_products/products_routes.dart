@@ -6,6 +6,6 @@ class ProductsRoutes{
   static const REAL_ESTATE_DETAILS_SCREEN = '/real_estate_details';
   static const CAR_DETAILS_SCREEN = '/car_details';
   static const ELECTRONIC_DEVICE_DETAILS_SCREEN = '/electronic_device_details';
-
+  static const SERVICE_DETAILS_SCREEN = '/service_details';
   static const PRODUCT_IMAGES = '/product_images';
 }

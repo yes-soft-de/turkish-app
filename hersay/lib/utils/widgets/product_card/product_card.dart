@@ -142,6 +142,12 @@ class ProductCard extends StatelessWidget {
           color: Colors.grey,
         );
         break;
+        case PRODUCT_TYPE.ADVERTISMENT:
+        icon = Icon(
+          Icons.design_services,
+          color: Colors.grey,
+        );
+        break;
     }
 
     return icon;

@@ -246,6 +246,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "thisFieldCannotBeEmpty" : MessageLookupByLibrary.simpleMessage("الرجاء تعبئة الحقل"),
     "thisGameIsGreat" : MessageLookupByLibrary.simpleMessage("لعبة رائعة"),
     "threIsNotOtherImages" : MessageLookupByLibrary.simpleMessage("لا يوجد المزيد من الصور"),
+    "title" : MessageLookupByLibrary.simpleMessage("العنوان"),
     "toMyCollection" : MessageLookupByLibrary.simpleMessage("لمجموعتي"),
     "tos" : MessageLookupByLibrary.simpleMessage("شروط الاستخدام"),
     "traveledDistance" : MessageLookupByLibrary.simpleMessage("المسافة المقطوعة"),

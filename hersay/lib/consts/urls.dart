@@ -11,19 +11,19 @@ class Urls {
   static const ALL_REAL_ESTATES = BASE_API + '/allRealEstate';
   static const GET_REAL_ESTATE_DETAILS = BASE_API + '/realEstate/';
   static const GET_USER_REAL_ESTATES = BASE_API + '/realEstates';
-  static const DELETE_REAL_ESTATE = BASE_API +'/realEstate/';
+  static const DELETE_REAL_ESTATE = BASE_API + '/realEstate/';
   //CAR APIS
   static const ADD_NEW_CAR = BASE_API + '/cars';
   static const ALL_CARS = BASE_API + '/allCars';
   static const GET_CAR_DETAILS = BASE_API + '/car/';
   static const GET_USER_CARS = BASE_API + '/cars';
-  static const DELETE_CAR = BASE_API +'/cars/';
+  static const DELETE_CAR = BASE_API + '/cars/';
   //ELECTRONIC DEVICES APIS
   static const ADD_NEW_DEVICE = BASE_API + '/devices';
   static const ALL_DEVICES = BASE_API + '/allDevices';
   static const GET_DEVICE_DETAILS = BASE_API + '/device/';
   static const GET_USER_DEVICES = BASE_API + '/devices';
-  static const DELETE_DEVICE = BASE_API +'/devices/';
+  static const DELETE_DEVICE = BASE_API + '/devices/';
   //SEARCH AND FILTRATION
   static const SEARCH = BASE_API + '/search/';
   static const FILTERED_SEARCH = BASE_API + '/filter';
@@ -31,9 +31,9 @@ class Urls {
   static const UPLOAD_FILE = BASE_API + '/uploadfile';
   static const ADD_PRODUCT_IMAGE = BASE_API + '/image';
   //NOTIFICATION
-  static const NOTIFICATION = BASE_API +'/notification';
+  static const NOTIFICATION = BASE_API + '/notification';
   //HISTORY
-  static const HISTORY = BASE_API +'/history';
+  static const HISTORY = BASE_API + '/history';
   //CHAT
   static const CHAT = BASE_API + '/chat';
   static const MY_CHATS = BASE_API + '/getallchat';
@@ -43,7 +43,8 @@ class Urls {
   //REPORT
   static const REPORT_API = BASE_API + '/report';
   //COMMENT
-  static const COMMENT_API = BASE_API +'/comment';
-
-
+  static const COMMENT_API = BASE_API + '/comment';
+  //Services
+  static const ADVERTISEMENT_API = BASE_API + '/allservices';
+  static const SERVICE_DETAILS_API = BASE_API + '/services/';
 }

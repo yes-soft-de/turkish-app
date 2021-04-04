@@ -86,7 +86,7 @@ class RealEstateData {
     }
     rooms = json['rooms'];
     userName = json['userName'];
-    imageUser = json['imageUser'];
+    imageUser = json['userImage'];
   }
 
   Map<String, dynamic> toJson() {
@@ -112,7 +112,7 @@ class RealEstateData {
     }
     data['rooms'] = this.rooms;
     data['userName'] = this.userName;
-    data['imageUser'] = this.imageUser;
+    data['userImage'] = this.imageUser;
     return data;
   }
 }

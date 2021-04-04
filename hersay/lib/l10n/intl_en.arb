@@ -253,5 +253,6 @@
   "report": "Report",
   "yourReportWasSentToTheAdmin": "your report was sent to the Admin",
   "date": "Date",
-  "commentHint": "place your comment here"
+  "commentHint": "place your comment here",
+  "title":"Title"
 }
