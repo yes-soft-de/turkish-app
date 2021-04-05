@@ -39,7 +39,7 @@ class ServicesService
         return $this->autoMapping->map(ServicesEntity::class, ServiceCreateResponse::class, $serviceRegister);
     }
 
-    public function getServicesById($serviceID)
+    public function getServicesById($serviceID, $userID)
     {
         $servicesResponse = [];
 
@@ -47,6 +47,15 @@ class ServicesService
 
         foreach($results as $result)
         {
+            if((is_string($userID) && $result['createdBy'] != $userID) || (is_int($userID) && $userID == 0))
+            {
+                $result['editable'] = false;
+            }
+            elseif(is_string($userID) && $result['createdBy'] == $userID)
+            {
+                $result['editable'] = true;
+            }
+
             $result['image'] = $this->params . $result['image'];
 
             $result['userImage'] = $this->params . $result['userImage'];

@@ -14,6 +14,8 @@ use App\Response\DeviceGetResponse;
 use App\Response\DevicesGetFilterResponse;
 use App\Response\DeviceUpdateResponse;
 use App\Service\ReactionService;
+use AutoMapperPlus\DataType;
+use Doctrine\DBAL\Types\Type;
 use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
 
 class DeviceService
@@ -56,6 +58,14 @@ class DeviceService
 
         foreach ($result as $row) 
         {
+            if((is_string($userID) && $row['createdBy'] != $userID) || (is_int($userID) && $userID == 0))
+            {
+                $row['editable'] = false;
+            }
+            elseif(is_string($userID) && $row['createdBy'] == $userID)
+            {
+                $row['editable'] = true;
+            }
 
             $row['image'] = $this->specialLinkCheck($row['specialLink']).$row['image'];
 

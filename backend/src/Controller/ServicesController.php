@@ -65,7 +65,7 @@ class ServicesController extends BaseController
      */
     public function getServiceById($serviceID)
     {
-        $result = $this->servicesService->getServicesById($serviceID);
+        $result = $this->servicesService->getServicesById($serviceID, $this->getUserId());
 
         return $this->response($result, self::FETCH);
     }

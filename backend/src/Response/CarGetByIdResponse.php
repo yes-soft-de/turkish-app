@@ -43,4 +43,7 @@ class CarGetByIdResponse
     public $userImage;
 
     public $comments;
+
+    public $editable;
+
 }

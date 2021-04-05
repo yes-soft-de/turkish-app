@@ -40,4 +40,7 @@ class RealEstateGetByIdResponse
     public $userImage;
 
     public $comments;
+
+    public $editable;
+   
 }

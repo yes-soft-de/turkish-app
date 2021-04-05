@@ -57,7 +57,7 @@ class CarService
         return $this->autoMapping->map(CarEntity::class, CarCreateResponse::class, $carResult);
     }
 
-    public function getCarById($id,$userID)
+    public function getCarById($id, $userID)
     { 
         $response = [] ;
         $result = $this->carManager->getCarById($id);
@@ -66,6 +66,14 @@ class CarService
         
         foreach ($result as $row)
         {
+            if((is_string($userID) && $row['createdBy'] != $userID) || (is_int($userID) && $userID == 0))
+            {
+                $row['editable'] = false;
+            }
+            elseif(is_string($userID) && $row['createdBy'] == $userID)
+            {
+                $row['editable'] = true;
+            }
 
             $row['image'] = $this->specialLinkCheck($row['specialLink']).$row['image'];
 

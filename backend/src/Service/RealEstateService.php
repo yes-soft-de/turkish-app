@@ -50,7 +50,7 @@ class RealEstateService
         return $this->autoMapping->map(RealEstateEntity::class, RealEstateCreateResponse::class, $create);
     }
 
-    public function getRealEstateById($id,$userID)
+    public function getRealEstateById($id, $userID)
     {
         $response = [] ;
         $result = $this->realEstateManager->getRealEstateById($id);
@@ -59,6 +59,14 @@ class RealEstateService
      
         foreach ($result as $row) 
         {
+            if((is_string($userID) && $row['createdBy'] != $userID) || (is_int($userID) && $userID == 0))
+            {
+                $row['editable'] = false;
+            }
+            elseif(is_string($userID) && $row['createdBy'] == $userID)
+            {
+                $row['editable'] = true;
+            }
 
             $row['image'] = $this->specialLinkCheck($row['specialLink']).$row['image'];
 

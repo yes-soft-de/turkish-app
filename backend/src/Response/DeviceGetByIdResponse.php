@@ -37,5 +37,7 @@ class DeviceGetByIdResponse
     public $userImage;
 
     public $comments;
+
+    public $editable;
    
 }

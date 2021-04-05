@@ -24,4 +24,7 @@ class ServiceGetByIdResponse
     public $userImage;
 
     public $comments;
+
+    public $editable;
+   
 }
