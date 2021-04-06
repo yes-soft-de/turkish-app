@@ -55,6 +55,21 @@ class AddElectronicDeviceScreenState extends State<AddElectronicDeviceScreen> {
     widget._stateManager.addNewElectronicDevice(country, brand, type, price,
         description, city, mainImage, state, status, otherImages, this);
   }
+  void updateElectronicDevice(
+      int id ,
+      String country,
+      String brand,
+      String type,
+      int price,
+      String description,
+      String city,
+      String mainImage,
+      String state,
+      String status,
+      List<String> otherImages) {
+    widget._stateManager.updateElectronicDevice(id,country, brand, type, price,
+        description, city, mainImage, state, status, otherImages, this);
+  }
 
   @override
   Widget build(BuildContext context) {

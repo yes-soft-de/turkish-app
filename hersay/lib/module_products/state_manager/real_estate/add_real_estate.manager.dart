@@ -1,3 +1,4 @@
+import 'package:hersay/module_products/request/real_estate/real_estate_request.dart';
 import 'package:hersay/module_products/service/real_estate/real_estate.service.dart';
 import 'package:hersay/module_products/ui/screen/add_real_estate/add_real_estate_screen.dart';
 import 'package:hersay/module_products/ui/state/add_real_estate/add_real_estate.state.dart';
@@ -46,6 +47,47 @@ class AddRealEstateStateManager {
       } else {
         _stateSubject
             .add(AddRealEstateErrorState('Error Creating Order', screenState));
+      }
+    });
+  }
+
+  void updateRealEstate(
+      int id,
+      String country,
+      String city,
+      String space,
+      int price,
+      String description,
+      String numberOfFloors,
+      String homeFurnishing,
+      String realEstateType,
+      String status,
+      String mainImage,
+      List<String> otherImages,
+      AddRealEstateScreenState screenState) {
+    _stateSubject.add(AddRealEstateStateLoading(screenState));
+    _service
+        .updateRealEstate(
+            RealEstateRequest(
+              id: id,
+              price: price,
+              description: description,
+              image: mainImage,
+              country: country,
+              city: city,
+              status: status,
+              realEstateType: realEstateType,
+              homeFurnishing: homeFurnishing,
+              numberOfFloors: numberOfFloors,
+              space: space
+            ),
+            otherImages)
+        .then((newProduct) {
+      if (newProduct) {
+        _stateSubject.add(AddRealEstateSuccessState(screenState));
+      } else {
+        _stateSubject
+            .add(AddRealEstateErrorState('Error updating Order', screenState));
       }
     });
   }

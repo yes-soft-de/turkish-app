@@ -1,4 +1,5 @@
 class ElectronicDeviceRequest {
+  int id;
   String country;
   String brand;
   String type;
@@ -9,22 +10,24 @@ class ElectronicDeviceRequest {
   String status;
   String state;
 
-  ElectronicDeviceRequest(
-      {this.country,
-        this.brand,
-        this.type,
-        this.price,
-        this.description,
-        this.city,
-        this.image,
-        this.state,
-        this.status,
-      });
-
-
+  ElectronicDeviceRequest({
+    this.id,
+    this.country,
+    this.brand,
+    this.type,
+    this.price,
+    this.description,
+    this.city,
+    this.image,
+    this.state,
+    this.status,
+  });
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
+    if (this.id != null) {
+      data['id'] = this.id;
+    }
     data['country'] = this.country;
     data['brand'] = this.brand;
     data['type'] = this.type;

@@ -19,4 +19,6 @@ class RealEstateManager {
       _repository.getRealEstateDetails(realEstateId);
   Future placeComment(CommentRequest request) async =>
       _repository.placeComment(request);
+  Future<int> updateRealEstate(RealEstateRequest realEstateRequest) async =>
+      _repository.updateRealEstate(realEstateRequest);
 }

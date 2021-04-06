@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:hersay/generated/l10n.dart';
 import 'package:hersay/main_screen/main_routes.dart';
+import 'package:hersay/module_products/model/electronic_device/electronic_device_model.dart';
 import 'package:hersay/module_products/ui/screen/add_electronic_device/add_electronic_device_screen.dart';
 import 'package:hersay/utils/project_colors/project_colors.dart';
 import 'package:image_picker/image_picker.dart';
@@ -14,8 +15,9 @@ abstract class AddElectronicDeviceState {
 
   Widget getUI(BuildContext context);
 }
+
 class AddElectronicDeviceStateLoading extends AddElectronicDeviceState {
-  AddElectronicDeviceStateLoading( AddElectronicDeviceScreenState screenState)
+  AddElectronicDeviceStateLoading(AddElectronicDeviceScreenState screenState)
       : super(screenState);
 
   @override
@@ -55,7 +57,7 @@ class AddElectronicDeviceStateInit extends AddElectronicDeviceState {
 
   String mainImage;
   List<String> otherImages = [];
-
+  bool flag = true;
   AddElectronicDeviceStateInit(AddElectronicDeviceScreenState screenState)
       : super(screenState) {
     var startDate = new DateTime.utc(1900, 1, 1);
@@ -66,7 +68,18 @@ class AddElectronicDeviceStateInit extends AddElectronicDeviceState {
   @override
   Widget getUI(context) {
     final node = FocusScope.of(context);
+    ElectronicDeviceModel device = ModalRoute.of(context).settings.arguments;
 
+    if (flag && device != null) {
+      _descriptionController.text = device.description;
+      _countryController.text = device.country;
+      _cityController.text = device.city;
+      _priceController.text = device.price;
+      _locationController.text = device.location;
+      _brandController.text = device.brand;
+      _selectedDeviceType = device.type;
+      flag = false;
+    }
     return SingleChildScrollView(
       child: Form(
         key: _addDeviceFormKey,
@@ -361,8 +374,9 @@ class AddElectronicDeviceStateInit extends AddElectronicDeviceState {
                         ImagePicker ip = ImagePicker();
                         ip.getImage(source: ImageSource.gallery).then((value) {
                           if (value != null) {
-                            otherImages.add(value.path)  ;
-                            print('another image picked, images length ${otherImages.length}');
+                            otherImages.add(value.path);
+                            print(
+                                'another image picked, images length ${otherImages.length}');
                           }
                         });
                       },
@@ -375,7 +389,7 @@ class AddElectronicDeviceStateInit extends AddElectronicDeviceState {
                             color: Colors.white,
                           ),
                           Text(
-                            S.of(context).addMoreImages ,
+                            S.of(context).addMoreImages,
                             style: TextStyle(color: Colors.white),
                           ),
                         ],
@@ -393,18 +407,32 @@ class AddElectronicDeviceStateInit extends AddElectronicDeviceState {
                       ),
                       onPressed: () {
                         if (_addDeviceFormKey.currentState.validate()) {
-                          screenState.addNewElectronicDevice(
-                              _countryController.text.trim(),
-                              _brandController.text.trim(),
-                              _selectedDeviceType,
-                              int.parse(_priceController.text.trim()),
-                              _descriptionController.text.trim(),
-                              _cityController.text.trim(),
-                              mainImage,
-                              'not sold',
-                              'Unaccepted',
-                              otherImages
-                          );
+                          if (device != null) {
+                            screenState.updateElectronicDevice(
+                                device.id,
+                                _countryController.text.trim(),
+                                _brandController.text.trim(),
+                                _selectedDeviceType,
+                                int.parse(_priceController.text.trim()),
+                                _descriptionController.text.trim(),
+                                _cityController.text.trim(),
+                                mainImage??device.image,
+                                'not sold',
+                                'Unaccepted',
+                                otherImages);
+                          } else {
+                            screenState.addNewElectronicDevice(
+                                _countryController.text.trim(),
+                                _brandController.text.trim(),
+                                _selectedDeviceType,
+                                int.parse(_priceController.text.trim()),
+                                _descriptionController.text.trim(),
+                                _cityController.text.trim(),
+                                mainImage,
+                                'not sold',
+                                'Unaccepted',
+                                otherImages);
+                          }
                         }
                       },
                       //TODO : change this using theme service
@@ -450,7 +478,6 @@ class AddElectronicDeviceSuccessState extends AddElectronicDeviceState {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Container(
-
             padding: EdgeInsets.all(10),
             child: Center(
               child: Container(
@@ -458,19 +485,16 @@ class AddElectronicDeviceSuccessState extends AddElectronicDeviceState {
                 child: Text(
                   S.of(context).yourRequestHasBeenAddedAndInHoldForAdmin,
                   textAlign: TextAlign.center,
-                  style: TextStyle(
-                      color: Colors.white
-                  ),
+                  style: TextStyle(color: Colors.white),
                 ),
               ),
             ),
           ),
-
           GestureDetector(
-            onTap: (){
+            onTap: () {
               Navigator.of(context).pushNamedAndRemoveUntil(
                 MainRoutes.MAIN_SCREEN_ROUTE,
-                    (r) => false,
+                (r) => false,
               );
             },
             child: Container(
@@ -490,8 +514,6 @@ class AddElectronicDeviceSuccessState extends AddElectronicDeviceState {
               ),
             ),
           ),
-
-
         ],
       ),
     );

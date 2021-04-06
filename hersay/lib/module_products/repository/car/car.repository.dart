@@ -44,6 +44,19 @@ class CarRepository {
     return CarResponse.fromJson(response);
   }
 
+  Future<int> updateCar(CarRequest serviceRequest) async {
+    var token = await _authService.getToken();
+    dynamic response = await _apiClient.put(
+      Urls.ADD_NEW_CAR,
+      serviceRequest.toJson(),
+      headers: {'Authorization': 'Bearer ' + token},
+    );
+
+    if (response == null) return null;
+
+    return response['status_code'] == '204' ? response['Data']['id'] : null;
+  }
+
   Future placeComment(CommentRequest request) async {
     var token = await _authService.getToken();
     var response = await _apiClient.post(

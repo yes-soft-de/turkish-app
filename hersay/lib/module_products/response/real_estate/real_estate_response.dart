@@ -43,7 +43,7 @@ class Data {
   String username;
   String userImage;
   List<Comment> comments;
-
+  bool editable;
   Data(
       {this.id,
       this.country,
@@ -59,6 +59,7 @@ class Data {
       this.homeFurnishing,
       this.realEstateType,
       this.reaction,
+      this.editable,
 //        this.documents,
       this.username,
       this.userImage,
@@ -66,6 +67,7 @@ class Data {
 
   Data.fromJson(Map<String, dynamic> json) {
     id = json['id'];
+    editable = json['editable'];
     country = json['country'];
     city = json['city'];
     space = json['space'];

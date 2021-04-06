@@ -15,26 +15,32 @@ class ElectronicDeviceModel {
   String image;
   String userName;
   String userImage;
+  String country;
+  String city;
+  bool editable;
   bool isLoved;
   List<String> images;
   List<Comment> comments;
-  ElectronicDeviceModel({
-    this.id,
-    this.price,
-    this.brand,
-    this.useDuration,
-    this.location,
-    this.type,
-    this.description,
-    this.graphics,
-    this.processor,
-    this.releaseYear,
-    this.storage,
-    this.image,
-    this.userName,
-    this.userImage,
-    this.isLoved,
-    this.images,
-    this.comments
-  });
+  ElectronicDeviceModel(
+      {this.id,
+      this.price,
+      this.brand,
+      this.useDuration,
+      this.location,
+      this.type,
+      this.description,
+      this.graphics,
+      this.processor,
+      this.releaseYear,
+      this.storage,
+      this.image,
+      this.userName,
+      this.userImage,
+      this.isLoved,
+      this.images,
+      this.comments,
+      this.city,
+      this.country,
+      this.editable
+      });
 }

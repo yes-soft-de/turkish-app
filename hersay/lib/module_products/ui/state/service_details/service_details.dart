@@ -17,7 +17,8 @@ abstract class ServicesDetailsState {
 }
 
 class ServiceDetailsStateInit extends ServicesDetailsState {
-  ServiceDetailsStateInit(ServiceDetailsScreenState screenState) : super(screenState);
+  ServiceDetailsStateInit(ServiceDetailsScreenState screenState)
+      : super(screenState);
 
   @override
   Widget getUI(BuildContext context) {
@@ -58,7 +59,8 @@ class ServiceDetailsStateUnauthorized extends ServicesDetailsState {
 class ServiceDetailsStateDataLoaded extends ServicesDetailsState {
   final ServiceModel service;
   final List<Widget> comments;
-  ServiceDetailsStateDataLoaded(this.service,this.comments,ServiceDetailsScreenState screenState)
+  ServiceDetailsStateDataLoaded(
+      this.service, this.comments, ServiceDetailsScreenState screenState)
       : super(screenState);
   TextEditingController _comment = TextEditingController();
 
@@ -122,7 +124,8 @@ class ServiceDetailsStateDataLoaded extends ServicesDetailsState {
                           width: 65,
                           child: CircleAvatar(
                             radius: 65,
-                            backgroundImage: NetworkImage('${service.userImage}'),
+                            backgroundImage:
+                                NetworkImage('${service.userImage}'),
                           ),
                         ),
                       ),
@@ -147,7 +150,7 @@ class ServiceDetailsStateDataLoaded extends ServicesDetailsState {
                     //TODO : change this
                     color: ProjectColors.THEME_COLOR,
                     onPressed: () {
-                      screenState.report();
+                      screenState.report(service.type);
                     },
                     child: Flex(
                       direction: Axis.horizontal,
@@ -166,10 +169,41 @@ class ServiceDetailsStateDataLoaded extends ServicesDetailsState {
                       ],
                     ),
                   ),
+                  service.editable
+                      ? FlatButton(
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(5)),
+                          //TODO : change this
+                          color: ProjectColors.THEME_COLOR,
+                          onPressed: () {
+                            print(service);
+                            Navigator.pushNamed(
+                                context, ProductsRoutes.ADD_SERVICE_SCREEN,
+                                arguments: service);
+                          },
+                          child: Flex(
+                            direction: Axis.horizontal,
+                            children: [
+                              Icon(
+                                Icons.edit,
+                                color: Colors.white,
+                              ),
+                              SizedBox(
+                                width: 5,
+                              ),
+                              Text(
+                                S.of(context).edit,
+                                style: TextStyle(color: Colors.white),
+                              )
+                            ],
+                          ),
+                        )
+                      : Container(),
+
                   // service.isLoved
                   //     ? IconButton(
                   //         onPressed: () {
-                  //           screenState.unLoveCar(service);
+                  //           screenState.unLoveService(service);
                   //         },
                   //         icon: Icon(
                   //           Icons.favorite,
@@ -178,20 +212,19 @@ class ServiceDetailsStateDataLoaded extends ServicesDetailsState {
                   //       )
                   //     : IconButton(
                   //         onPressed: () {
-                  //           screenState.loveCar(service);
+                  //           screenState.loveService(service);
                   //         },
                   //         icon: Icon(
                   //           Icons.favorite_border,
                   //           color: ProjectColors.THEME_COLOR,
                   //         ),
                   //       ),
-                
                 ],
               ),
 
               // owner
 
-              // car image
+              // service image
               Container(
                 margin: EdgeInsets.only(top: 20),
                 width: width,
@@ -238,7 +271,7 @@ class ServiceDetailsStateDataLoaded extends ServicesDetailsState {
               //   ),
               // ),
 
-              //car details
+              //service details
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Text(S.of(context).type + ' ${service.type}'),
@@ -247,36 +280,11 @@ class ServiceDetailsStateDataLoaded extends ServicesDetailsState {
                 padding: const EdgeInsets.all(8.0),
                 child: Text(S.of(context).title + ' : ${service.title}'),
               ),
-              // Padding(
-              //   padding: const EdgeInsets.all(8.0),
-              //   child:
-              //       Text(S.of(context).dureationOfUse + ' ${car.useDuration}'),
-              // ),
-              // Padding(
-              //   padding: const EdgeInsets.all(8.0),
-              //   child: Text(S.of(context).cylynder + ' ${car.cylinder}'),
-              // ),
-              // Padding(
-              //   padding: const EdgeInsets.all(8.0),
-              //   child: Text(S.of(context).location + ' : ${service.address}'),
-              // ),
-               Padding(
-                 padding: const EdgeInsets.all(8.0),
-                 child: Text(S.of(context).descriptio + ' : ${service.description}'),
-               ),
-              Container(
-                decoration: BoxDecoration(
-                  color: Colors.black38,
-                  borderRadius: BorderRadius.circular(10),
-                ),
-                height: 50,
+              Padding(
                 padding: const EdgeInsets.all(8.0),
-                margin: const EdgeInsets.all(8.0),
-                child: Center(
-                  child: Text(S.of(context).price + '  ${service.price} \$'),
-                ),
+                child: Text(
+                    S.of(context).descriptio + ' : ${service.description}'),
               ),
-
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
@@ -285,7 +293,7 @@ class ServiceDetailsStateDataLoaded extends ServicesDetailsState {
                         borderRadius: BorderRadius.circular(5)),
                     color: ProjectColors.THEME_COLOR,
                     onPressed: () {
-                      screenState.getRoomId();
+                      screenState.getRoomId(service.type);
                     },
                     child: Text(
                       S.of(context).chatWithOwner,
@@ -297,7 +305,7 @@ class ServiceDetailsStateDataLoaded extends ServicesDetailsState {
                         borderRadius: BorderRadius.circular(5)),
                     color: ProjectColors.THEME_COLOR,
                     onPressed: () {
-                      screenState.getRoomIdWithLawyer();
+                      screenState.getRoomIdWithLawyer(service.type);
                     },
                     child: Text(
                       S.of(context).chatWithLawyer,
@@ -351,7 +359,7 @@ class ServiceDetailsStateDataLoaded extends ServicesDetailsState {
                           ),
                           onPressed: () {
                             screenState.placeComment(
-                                _comment.text, 'car', service.id);
+                                _comment.text, '${service.type}', service.id);
                           }),
                     ],
                   ),
@@ -377,7 +385,6 @@ class ServiceDetailsStateDataLoaded extends ServicesDetailsState {
                   children: comments,
                 ),
               ),
-            
             ],
           ),
         ),

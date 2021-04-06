@@ -44,6 +44,15 @@ class ServiceDetailsScreenState extends State<ServiceDetailsScreen> {
     });
   }
 
+  Future<bool> isOwner() async {
+    bool islogged = await widget._authService.isLoggedIn;
+    if (islogged) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
   void placeComment(String comment, String entity, int itemId) {
     widget._authService.isLoggedIn.then((value) {
       if (!value) {
@@ -60,7 +69,7 @@ class ServiceDetailsScreenState extends State<ServiceDetailsScreen> {
     });
   }
 
-  void loveCar(ServiceModel service) {
+  void loveService(ServiceModel service) {
     widget._authService.isLoggedIn.then((value) {
       if (!value) {
         RouteHelper redirectTo = new RouteHelper(
@@ -71,12 +80,12 @@ class ServiceDetailsScreenState extends State<ServiceDetailsScreen> {
           arguments: redirectTo,
         );
       } else {
-        widget._stateManager.loveCar(serviceId, this, service);
+        widget._stateManager.loveService(serviceId, this, service);
       }
     });
   }
 
-  void unLoveCar(ServiceModel service) {
+  void unLoveService(ServiceModel service) {
     widget._authService.isLoggedIn.then((value) {
       if (!value) {
         RouteHelper redirectTo = new RouteHelper(
@@ -87,7 +96,7 @@ class ServiceDetailsScreenState extends State<ServiceDetailsScreen> {
           arguments: redirectTo,
         );
       } else {
-        widget._stateManager.unLoveCar(serviceId, this, service);
+        widget._stateManager.unLoveService(serviceId, this, service);
       }
     });
   }
@@ -100,7 +109,7 @@ class ServiceDetailsScreenState extends State<ServiceDetailsScreen> {
     widget._stateManager.getServicesDetails(this, serviceId);
   }
 
-  void report() {
+  void report(String type) {
     widget._authService.isLoggedIn.then((value) {
       if (!value) {
         RouteHelper redirectTo = new RouteHelper(
@@ -112,7 +121,7 @@ class ServiceDetailsScreenState extends State<ServiceDetailsScreen> {
         );
       } else {
         ReportHelper report = new ReportHelper(
-          entity: 'service',
+          entity: type,
           itemId: serviceId,
         );
         Navigator.of(context)
@@ -121,7 +130,7 @@ class ServiceDetailsScreenState extends State<ServiceDetailsScreen> {
     });
   }
 
-  void getRoomId() {
+  void getRoomId(String type) {
     widget._authService.isLoggedIn.then((value) {
       if (!value) {
         RouteHelper redirectTo = new RouteHelper(
@@ -132,12 +141,12 @@ class ServiceDetailsScreenState extends State<ServiceDetailsScreen> {
           arguments: redirectTo,
         );
       } else {
-        widget._stateManager.getRoomId(serviceId, this);
+        widget._stateManager.getRoomId(serviceId, type, this);
       }
     });
   }
 
-  void getRoomIdWithLawyer() {
+  void getRoomIdWithLawyer(String type) {
     widget._authService.isLoggedIn.then((value) {
       if (!value) {
         RouteHelper redirectTo = new RouteHelper(
@@ -148,7 +157,7 @@ class ServiceDetailsScreenState extends State<ServiceDetailsScreen> {
           arguments: redirectTo,
         );
       } else {
-        widget._stateManager.getRoomIdWithLawyer(serviceId, this);
+        widget._stateManager.getRoomIdWithLawyer(serviceId, type, this);
       }
     });
   }

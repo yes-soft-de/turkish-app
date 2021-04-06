@@ -88,6 +88,44 @@ class ElectronicDeviceDetailsStateDataLoaded
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
+                electronicDevice.editable
+                  ? Container(
+                      height: 50,
+                      padding: const EdgeInsets.only(right:8.0,left:8.0),
+                      child: FlatButton(
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(25)),
+                        //TODO : change this
+                        color: ProjectColors.THEME_COLOR,
+                        onPressed: () {
+                          Navigator.pushNamed(
+                              context, ProductsRoutes.ADD_ELECTRONIC_DEVICE_SCREEN,
+                              arguments: electronicDevice);
+                        },
+                        child: Center(
+                          child: Flex(
+                            direction: Axis.horizontal,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Icon(
+                                Icons.edit,
+                                color: Colors.white,
+                              ),
+                              SizedBox(
+                                width: 5,
+                              ),
+                              Text(
+                                S.of(context).edit,
+                                style: TextStyle(color: Colors.white),
+                              )
+                            ],
+                          ),
+                        ),
+                      ),
+                    )
+                  : Container(),
+
               Container(
                 decoration: BoxDecoration(
                   color: ProjectColors.THEME_COLOR,

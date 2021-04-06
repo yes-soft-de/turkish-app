@@ -22,4 +22,6 @@ class ElectronicDeviceManager{
       _repository.getElectronicDeviceDetails(electronicDeviceId);
         Future placeComment(CommentRequest request)async =>
       _repository.placeComment(request);
+  Future<int> updateElectronicDevice(ElectronicDeviceRequest electronicRequest) async => _repository.updateElectronicDevice(electronicRequest);
+
 }

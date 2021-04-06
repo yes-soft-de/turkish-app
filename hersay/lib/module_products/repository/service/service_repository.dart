@@ -4,6 +4,7 @@ import 'package:hersay/module_auth/service/auth/auth.service.dart';
 import 'package:hersay/module_network/http_client/http_client.dart';
 import 'package:hersay/module_products/request/comment/comment_request.dart';
 import 'package:hersay/module_products/request/real_estate/real_estate_request.dart';
+import 'package:hersay/module_products/request/service/service_request.dart';
 import 'package:hersay/module_products/response/real_estate/real_estate_response.dart';
 import 'package:hersay/module_products/response/service/service_response.dart';
 import 'package:inject/inject.dart';
@@ -18,18 +19,30 @@ class ServiceRepository{
       this._authService,
       );
 
-  // Future<int> addNewRealEstate(RealEstateRequest realEstateRequest) async {
-  //   var token = await _authService.getToken();
-  //   dynamic response = await _apiClient.post(
-  //     Urls.ADD_NEW_REAL_ESTATE,
-  //     realEstateRequest.toJson(),
-  //     headers: {'Authorization': 'Bearer ' + token},
-  //   );
+  Future<int> addNewService(ServiceRequest serviceRequest) async {
+    var token = await _authService.getToken();
+    dynamic response = await _apiClient.post(
+      Urls.ADD_NEW_SERVICE,
+      serviceRequest.toJson(),
+      headers: {'Authorization': 'Bearer ' + token},
+    );
 
-  //   if (response == null) return null;
+    if (response == null) return null;
 
-  //   return response['status_code'] == '201' ? response['Data']['id'] : null;
-  // }
+    return response['status_code'] == '201' ? response['Data']['id'] : null;
+  }
+  Future<int> updateService(ServiceRequest serviceRequest) async {
+    var token = await _authService.getToken();
+    dynamic response = await _apiClient.put(
+      Urls.UPDATE_SERVICE,
+      serviceRequest.toJson(),
+      headers: {'Authorization': 'Bearer ' + token},
+    );
+
+    if (response == null) return null;
+
+    return response['status_code'] == '204' ? response['Data']['id'] : null;
+  }
 
   Future<ServiceResponse> getServiceDetails(int serviceId)async{
     var token = await _authService.getToken();

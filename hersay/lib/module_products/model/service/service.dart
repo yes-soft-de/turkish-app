@@ -17,6 +17,7 @@ class ServiceModel {
   List<String> images;
   List<Comment> comments;
   String title;
+  bool editable;
   ServiceModel(
       {this.id,
       this.price,
@@ -33,6 +34,7 @@ class ServiceModel {
       this.isLoved,
       this.images,
       this.comments,
-      this.title
+      this.title,
+      this.editable
       });
 }

@@ -42,24 +42,24 @@ class ServicesDetailsStateManager {
     });
   }
 
-  void getRoomId(int itemId, ServiceDetailsScreenState screenState) {
-    _chatService.getRoomId('service', itemId).then((value) {
+  void getRoomId(int itemId,String type,ServiceDetailsScreenState screenState) {
+    _chatService.getRoomId(type, itemId).then((value) {
       if (value != null) {
         screenState.goToChat(value);
       }
     });
   }
 
-  void getRoomIdWithLawyer(int itemId, ServiceDetailsScreenState screenState) {
-    _chatService.getRoomIdWithLawyer('service', itemId).then((value) {
+  void getRoomIdWithLawyer(int itemId, String type,ServiceDetailsScreenState screenState) {
+    _chatService.getRoomIdWithLawyer(type, itemId).then((value) {
       if (value != null) {
         screenState.goToChat(value);
       }
     });
   }
 
-  void loveCar(int serviceId, ServiceDetailsScreenState screenState, ServiceModel service) {
-    _reactionService.react('service', serviceId).then((value) {
+  void loveService(int serviceId, ServiceDetailsScreenState screenState, ServiceModel service) {
+    _reactionService.react(service.type, serviceId).then((value) {
       if (value) {
         service.isLoved = true;
         _stateSubject.add(ServiceDetailsStateDataLoaded(service,getComments(service),screenState));
@@ -67,8 +67,8 @@ class ServicesDetailsStateManager {
     });
   }
 
-  void unLoveCar(int carId, ServiceDetailsScreenState screenState, ServiceModel service) {
-    _reactionService.deleteReact('service', carId).then((value) {
+  void unLoveService(int serviceId, ServiceDetailsScreenState screenState, ServiceModel service) {
+    _reactionService.deleteReact(service.type, serviceId).then((value) {
       if (value) {
         service.isLoved = false;
         _stateSubject.add(ServiceDetailsStateDataLoaded(service,getComments(service),screenState));
@@ -94,10 +94,10 @@ class ServicesDetailsStateManager {
     });
   }
 
-  List<Widget> getComments(ServiceModel car) {
+  List<Widget> getComments(ServiceModel service) {
     List<Widget> comments = [];
     var df = DateFormat('yyyy/MM/dd');
-    car.comments.forEach((element) {
+    service.comments.forEach((element) {
       comments.add(CommentCard(
         userImage: element.image,
         userName: element.userName,

@@ -42,6 +42,13 @@
             },
             {
               "lookupKey": {
+                "root": "asset:hersay/lib/module_products/ui/screen/add_service/add_service_screen.dart#AddServiceScreen",
+                "qualifier": null
+              },
+              "isProvider": false
+            },
+            {
+              "lookupKey": {
                 "root": "asset:hersay/lib/module_products/ui/screen/electronic_device_details/electronic_device_details_screen.dart#ElectronicDeviceDetailsScreen",
                 "qualifier": null
               },

@@ -78,8 +78,39 @@ class RealEstateService {
       userImage: response.data.userImage,
       isLoved: response.data.reaction.isLoved,
       images: _getImages(response),
+      editable: response.data.editable ?? false,
+      country: response.data.country,
+      city: response.data.city,
       comments: response.data.comments,
     );
+  }
+
+  Future<bool> updateRealEstate(
+      RealEstateRequest request, var otherImages) async {
+    String uploadedImageUrl = request.image;
+    if (!uploadedImageUrl.contains('http')) {
+      uploadedImageUrl = (request.image != null)
+          ? await _imageUploadService.uploadImage(request.image)
+          : '';
+    }
+
+    var realEstateRequest = RealEstateRequest(
+        id: request.id,
+        image: uploadedImageUrl ?? '',
+        price: request.price,
+        description: request.description,
+        country: request.country,
+        city: request.city,
+        status: request.status,
+        realEstateType: request.realEstateType,
+        homeFurnishing: request.homeFurnishing,
+        numberOfFloors: request.numberOfFloors,
+        space: request.space
+        );
+    int result = await _manager.updateRealEstate(realEstateRequest);
+
+    if (result != null) await _uploadOtherImages(otherImages, result);
+    return result != null;
   }
 
   List<String> _getImages(RealEstateResponse response) {

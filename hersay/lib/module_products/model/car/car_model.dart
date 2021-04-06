@@ -19,6 +19,10 @@ class CarModel {
   List<String> images;
   String yearOfProdaction;
   List<Comment> comments;
+  String discription;
+  bool editable;
+  String city;
+  String country;
   CarModel(
       {this.id,
       this.type,
@@ -37,5 +41,9 @@ class CarModel {
       this.isLoved,
       this.images,
       this.yearOfProdaction,
+      this.discription,
+      this.editable,
+      this.city,
+      this.country,
       this.comments});
 }

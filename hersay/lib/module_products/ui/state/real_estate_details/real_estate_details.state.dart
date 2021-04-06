@@ -77,6 +77,44 @@ class RealEstateDetailsStateDataLoaded extends RealEstateDetailsState {
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
+              realEstate.editable
+                  ? Container(
+                      height: 50,
+                      padding: const EdgeInsets.only(right: 8.0, left: 8.0),
+                      child: FlatButton(
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(25)),
+                        //TODO : change this
+                        color: ProjectColors.THEME_COLOR,
+                        onPressed: () {
+                          Navigator.pushNamed(
+                              context, ProductsRoutes.ADD_REAL_ESTATE_SCREEN,
+                              arguments: realEstate);
+                        },
+                        child: Center(
+                          child: Flex(
+                            direction: Axis.horizontal,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Icon(
+                                Icons.edit,
+                                color: Colors.white,
+                              ),
+                              SizedBox(
+                                width: 5,
+                              ),
+                              Text(
+                                S.of(context).edit,
+                                style: TextStyle(color: Colors.white),
+                              )
+                            ],
+                          ),
+                        ),
+                      ),
+                    )
+                  : Container(),
+
               Container(
                 decoration: BoxDecoration(
                   color: ProjectColors.THEME_COLOR,
@@ -258,7 +296,8 @@ class RealEstateDetailsStateDataLoaded extends RealEstateDetailsState {
               ),
               Padding(
                 padding: const EdgeInsets.all(8.0),
-                child: Text(S.of(context).roomsDescription + ' : ${realEstate.description}'),
+                child: Text(S.of(context).roomsDescription +
+                    ' : ${realEstate.description}'),
               ),
               Container(
                 decoration: BoxDecoration(

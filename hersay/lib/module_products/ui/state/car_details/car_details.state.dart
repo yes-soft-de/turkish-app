@@ -56,7 +56,8 @@ class CarDetailsStateUnauthorized extends CarDetailsState {
 class CarDetailsStateDataLoaded extends CarDetailsState {
   final CarModel car;
   final List<Widget> comments;
-  CarDetailsStateDataLoaded(this.car,this.comments,CarDetailsScreenState screenState)
+  CarDetailsStateDataLoaded(
+      this.car, this.comments, CarDetailsScreenState screenState)
       : super(screenState);
   TextEditingController _comment = TextEditingController();
 
@@ -76,6 +77,44 @@ class CarDetailsStateDataLoaded extends CarDetailsState {
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
+              car.editable
+                  ? Container(
+                      height: 50,
+                      padding: const EdgeInsets.only(right:8.0,left:8.0),
+                      child: FlatButton(
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(25)),
+                        //TODO : change this
+                        color: ProjectColors.THEME_COLOR,
+                        onPressed: () {
+                          Navigator.pushNamed(
+                              context, ProductsRoutes.ADD_CAR_SCREEN,
+                              arguments: car);
+                        },
+                        child: Center(
+                          child: Flex(
+                            direction: Axis.horizontal,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Icon(
+                                Icons.edit,
+                                color: Colors.white,
+                              ),
+                              SizedBox(
+                                width: 5,
+                              ),
+                              Text(
+                                S.of(context).edit,
+                                style: TextStyle(color: Colors.white),
+                              )
+                            ],
+                          ),
+                        ),
+                      ),
+                    )
+                  : Container(),
+
               Container(
                 decoration: BoxDecoration(
                   color: ProjectColors.THEME_COLOR,
@@ -185,7 +224,6 @@ class CarDetailsStateDataLoaded extends CarDetailsState {
                         ),
                 ],
               ),
-
               // owner
 
               // car image
@@ -245,16 +283,16 @@ class CarDetailsStateDataLoaded extends CarDetailsState {
                 child: Text(
                     S.of(context).traveledDistance + ' ${car.distance} KM'),
               ),
-              
+
               // Padding(
               //   padding: const EdgeInsets.all(8.0),
               //   child:
               //       Text(S.of(context).dureationOfUse + ' ${car.useDuration}'),
               // ),
-                Padding(
+              Padding(
                 padding: const EdgeInsets.all(8.0),
-                child:
-                    Text(S.of(context).yearOfRelease + ' : ${car.yearOfProdaction}'),
+                child: Text(
+                    S.of(context).yearOfRelease + ' : ${car.yearOfProdaction}'),
               ),
               Padding(
                 padding: const EdgeInsets.all(8.0),
@@ -385,7 +423,6 @@ class CarDetailsStateDataLoaded extends CarDetailsState {
                   children: comments,
                 ),
               ),
-            
             ],
           ),
         ),

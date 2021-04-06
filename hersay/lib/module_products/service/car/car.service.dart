@@ -64,26 +64,59 @@ class CarService {
   Future<CarModel> getCarDetails(int carId) async {
     CarResponse response = await _manager.getCarDetails(carId);
     if (response == null) return null;
-var format = DateFormat('yyyy');
-var date = format.format(DateTime.fromMillisecondsSinceEpoch(response.data.yearOfRelease.timestamp*1000));
+    var format = DateFormat('yyyy');
+    var date = format.format(DateTime.fromMillisecondsSinceEpoch(
+        response.data.yearOfRelease.timestamp * 1000));
     return new CarModel(
-      id: carId,
-      type: response.data.carType,
-      distance: response.data.distance,
-      //TODO : change this after been added to the response
-      location:response.data.country,
-      gearType: response.data.gearType,
-      price: response.data.price.toString(),
-      //TODO : change this after been added to the response
-      useDuration: '',
-      image: response.data.image,
-      userName: response.data.username,
-      userImage: response.data.userImage,
-      isLoved: response.data.reaction.isLoved,
-      images: _getImages(response),
-      yearOfProdaction:date.toString(),
-      comments: response.data.comments
+        id: carId,
+        type: response.data.carType,
+        distance: response.data.distance,
+        //TODO : change this after been added to the response
+        location: response.data.country,
+        gearType: response.data.gearType,
+        price: response.data.price.toString(),
+        //TODO : change this after been added to the response
+        useDuration: '',
+        city: response.data.city,
+        country: response.data.country,
+        image: response.data.image,
+        userName: response.data.username,
+        userImage: response.data.userImage,
+        isLoved: response.data.reaction.isLoved,
+        images: _getImages(response),
+        yearOfProdaction: date.toString(),
+        discription: response.data.description,
+        editable: response.data.editable ?? false,
+        comments: response.data.comments);
+  }
+
+  Future<bool> updateCar(CarRequest request, List<String> otherImages) async {
+    String uploadedImageUrl = request.image;
+    if (!uploadedImageUrl.contains('http')) {
+      uploadedImageUrl = (request.image != null)
+          ? await _imageUploadService.uploadImage(request.image)
+          : '';
+    }
+
+    var carRequest = CarRequest(
+      id: request.id,
+      image: uploadedImageUrl ?? '',
+      description: request.description,
+      yearOfRelease: request.yearOfRelease,
+      city: request.city,
+      status: request.status,
+      price: request.price,
+      country: request.country,
+      carType: request.carType,
+      distance: request.distance,
+      gearType: request.gearType,
+      location: request.location,
     );
+    int result = await _manager.updateCar(carRequest);
+
+    if (result != null && otherImages != null ) await _uploadOtherImages(otherImages, result);
+
+    return result != null;
   }
 
   List<String> _getImages(CarResponse response) {

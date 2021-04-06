@@ -1,4 +1,5 @@
 class RealEstateRequest {
+  int id;
   String country;
   String city;
   String space;
@@ -11,6 +12,7 @@ class RealEstateRequest {
   String status;
 
   RealEstateRequest({
+    this.id,
     this.country,
     this.city,
     this.space,
@@ -25,6 +27,9 @@ class RealEstateRequest {
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
+    if (this.id != null) {
+      data['id'] = this.id;
+    }
     data['country'] = this.country;
     data['city'] = this.city;
     data['space'] = this.space;

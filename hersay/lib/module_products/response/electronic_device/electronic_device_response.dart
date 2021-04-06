@@ -38,7 +38,7 @@ class Data {
   String username;
   String userImage;
   List<Comment> comments;
-
+  bool editable;
   Data(
       {this.type,
       this.brand,
@@ -54,10 +54,12 @@ class Data {
       this.reaction,
       this.username,
       this.userImage,
-      this.comments});
+      this.comments,
+      this.editable});
 
   Data.fromJson(Map<String, dynamic> json) {
     type = json['type'];
+    editable = json['editable'];
     brand = json['brand'];
     price = json['price'];
     description = json['description'];

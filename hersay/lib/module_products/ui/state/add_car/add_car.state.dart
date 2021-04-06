@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:hersay/generated/l10n.dart';
 import 'package:hersay/main_screen/main_routes.dart';
+import 'package:hersay/module_products/model/car/car_model.dart';
 import 'package:hersay/module_products/ui/screen/add_car/add_car_sceen.dart';
 import 'package:hersay/utils/project_colors/project_colors.dart';
 import 'package:image_picker/image_picker.dart';
@@ -56,7 +57,7 @@ class AddCarStateInit extends AddCarState {
   TextEditingController _dateController;
 
   bool _autoValidate = false;
-
+  bool flag = true;
   AddCarStateInit(AddCarScreenState screenState) : super(screenState) {
     var startDate = new DateTime.utc(1900, 1, 1);
     _dateController = TextEditingController(text: startDate.toString());
@@ -66,7 +67,20 @@ class AddCarStateInit extends AddCarState {
   @override
   Widget getUI(context) {
     final node = FocusScope.of(context);
+    CarModel car = ModalRoute.of(context).settings.arguments;
 
+    if (flag && car != null) {
+      _descriptionController.text = car.discription;
+      _carTypeController.text = car.type;
+      _countryController.text = car.country;
+      _cityController.text = car.city;
+      _priceController.text = car.price;
+      _locationController.text = car.location;
+      _mileagesController.text = car.distance;
+      _dateController.text = car.yearOfProdaction;
+      _selectedGearType = car.gearType;
+      flag = false;
+    }
     return SingleChildScrollView(
       child: Form(
         key: _addCarFormKey,
@@ -171,6 +185,7 @@ class AddCarStateInit extends AddCarState {
                                   '$_selectedGearType',
                                   style: TextStyle(color: Colors.grey),
                                 ),
+                          //value: _selectedGearType,
                           items: _gearTypes.map((String place) {
                             return new DropdownMenuItem<String>(
                               value: place.toString(),
@@ -465,19 +480,36 @@ class AddCarStateInit extends AddCarState {
                       ),
                       onPressed: () {
                         if (_addCarFormKey.currentState.validate()) {
-                          screenState.addNewCar(
-                              int.parse(_priceController.text.trim()),
-                              _descriptionController.text.trim(),
-                              _mileagesController.text.trim(),
-                              _carTypeController.text.trim(),
-                              _selectedGearType,
-                              _locationController.text.trim(),
-                              _dateController.text.trim(),
-                              mainImage,
-                              _countryController.text.trim(),
-                              _cityController.text.trim(),
-                              'not sold',
-                              otherImages);
+                          if (car != null) {
+                            screenState.updateCar(
+                                car.id,
+                                int.parse(_priceController.text.trim()),
+                                _descriptionController.text.trim(),
+                                _mileagesController.text.trim(),
+                                _carTypeController.text.trim(),
+                                _selectedGearType,
+                                _locationController.text.trim(),
+                                _dateController.text.trim(),
+                                mainImage,
+                                _countryController.text.trim(),
+                                _cityController.text.trim(),
+                                'not sold',
+                                otherImages);
+                          } else {
+                            screenState.addNewCar(
+                                int.parse(_priceController.text.trim()),
+                                _descriptionController.text.trim(),
+                                _mileagesController.text.trim(),
+                                _carTypeController.text.trim(),
+                                _selectedGearType,
+                                _locationController.text.trim(),
+                                _dateController.text.trim(),
+                                mainImage,
+                                _countryController.text.trim(),
+                                _cityController.text.trim(),
+                                'not sold',
+                                otherImages);
+                          }
                         }
                       },
                       //TODO : change this using theme service

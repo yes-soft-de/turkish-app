@@ -46,6 +46,7 @@ class Data {
   List<Comment> comments;
   String type;
   String title;
+  bool editable;
   Data(
       {this.id,
       this.yearOfRelease,
@@ -67,7 +68,8 @@ class Data {
       this.userImage,
       this.comments,
       this.type,
-      this.title
+      this.title,
+      this.editable
       });
 
   Data.fromJson(Map<String, dynamic> json) {
@@ -76,6 +78,7 @@ class Data {
         ? new YearOfRelease.fromJson(json['yearOfProduction'])
         : null;
     price = json['price'];
+    editable = json['editable'];
     description = json['description'];
     status = json['status'];
     createdBy = json['createdBy'];

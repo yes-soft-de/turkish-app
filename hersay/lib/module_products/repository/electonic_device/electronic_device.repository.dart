@@ -47,6 +47,21 @@ class ElectronicDeviceRepository {
     return ElectronicDeviceResponse.fromJson(response);
   }
 
+  Future<int> updateElectronicDevice(
+      ElectronicDeviceRequest electronicDeviceRequest) async {
+    var token = await _authService.getToken();
+    dynamic response = await _apiClient.put(
+      Urls.ADD_NEW_DEVICE,
+      electronicDeviceRequest.toJson(),
+      headers: {'Authorization': 'Bearer ' + token},
+    );
+
+    if (response == null) return null;
+    return response['status_code'] == '204'
+        ? (response['Data']['id'] ?? int.parse(response['status_code']))
+        : null;
+  }
+
   Future placeComment(CommentRequest request) async {
     var token = await _authService.getToken();
     var response = await _apiClient.post(

@@ -1,4 +1,5 @@
 class CarRequest {
+  int id;
   int price;
   String description;
   String distance;
@@ -11,24 +12,26 @@ class CarRequest {
   String city;
   String status;
 
-  CarRequest(
-      {
-        this.price,
-        this.description,
-        this.distance,
-        this.carType,
-        this.gearType,
-        this.location,
-        this.yearOfRelease,
-        this.image,
-        this.country,
-        this.city,
-        this.status,
-      });
-
+  CarRequest({
+    this.id,
+    this.price,
+    this.description,
+    this.distance,
+    this.carType,
+    this.gearType,
+    this.location,
+    this.yearOfRelease,
+    this.image,
+    this.country,
+    this.city,
+    this.status,
+  });
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
+    if (this.id != null) {
+      data['id'] = this.id;
+    }
     data['price'] = this.price;
     data['description'] = this.description;
     data['distance'] = this.distance;

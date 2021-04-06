@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:hersay/module_auth/auth_routes.dart';
 import 'package:hersay/module_auth/service/auth/auth.service.dart';
@@ -11,13 +10,13 @@ import '../../../products_routes.dart';
 
 @provide
 class AddCarScreen extends StatefulWidget {
-  final AddCarStateManager  _stateManager;
+  final AddCarStateManager _stateManager;
   final AuthService _authService;
 
   AddCarScreen(
-      this._stateManager,
-      this._authService,
-      );
+    this._stateManager,
+    this._authService,
+  );
 
   @override
   AddCarScreenState createState() => AddCarScreenState();
@@ -54,32 +53,68 @@ class AddCarScreenState extends State<AddCarScreen> {
       String country,
       String city,
       String status,
-      List<String> otherImages
-      ) {
-    widget._stateManager.addNewCar(price, description, distance, carType, gearType, location, yearOfRelease, image, country, city, status, otherImages, this);
+      List<String> otherImages) {
+    widget._stateManager.addNewCar(
+        price,
+        description,
+        distance,
+        carType,
+        gearType,
+        location,
+        yearOfRelease,
+        image,
+        country,
+        city,
+        status,
+        otherImages,
+        this);
+  }
+
+  void updateCar(
+      int id,
+      int price,
+      String description,
+      String distance,
+      String carType,
+      String gearType,
+      String location,
+      String yearOfRelease,
+      String image,
+      String country,
+      String city,
+      String status,
+      List<String> otherImages) {
+    widget._stateManager.updateCar(
+        id,
+        price,
+        description,
+        distance,
+        carType,
+        gearType,
+        location,
+        yearOfRelease,
+        image,
+        country,
+        city,
+        status,
+        otherImages,
+        this);
   }
 
   @override
   Widget build(BuildContext context) {
-    widget._authService.isLoggedIn.then((value){
+    widget._authService.isLoggedIn.then((value) {
       RouteHelper redirectTo = new RouteHelper(
-          redirectTo: ProductsRoutes.ADD_CAR_SCREEN,
-          additionalData: null
-      );
-      if(!value) {
-        Navigator.of(context).pushNamed(
-            AuthorizationRoutes.LOGIN_SCREEN,
-            arguments: redirectTo
-        );
+          redirectTo: ProductsRoutes.ADD_CAR_SCREEN, additionalData: null);
+      if (!value) {
+        Navigator.of(context)
+            .pushNamed(AuthorizationRoutes.LOGIN_SCREEN, arguments: redirectTo);
       }
-    }
-    );
+    });
     return Scaffold(
       body: SafeArea(
         child: currentState.getUI(context),
       ),
     );
   }
-
-
 }

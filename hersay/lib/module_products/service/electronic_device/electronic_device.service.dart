@@ -64,23 +64,54 @@ class ElectronicDeviceService {
 
     var df = new DateFormat('yyyy');
     return new ElectronicDeviceModel(
-      id: electronicDeviceId,
+        id: electronicDeviceId,
         type: response.data.type,
         //TODO : change this after been added to the response
-        location:response.data.city,
+        location: response.data.city,
         description: response.data.description,
         price: response.data.price.toString(),
         brand: response.data.brand,
+        city: response.data.city,
+        country: response.data.country,
+        editable: response.data.editable ?? false,
         //TODO : change this after been added to the response
         graphics: '',
         //TODO : change this after been added to the response
         storage: '',
         image: response.data.image,
-        userName: response.data.username??'',
+        userName: response.data.username ?? '',
         userImage: response.data.userImage,
         isLoved: response.data.reaction.isLoved,
         images: _getImages(response),
         comments: response.data.comments);
+  }
+
+  Future<bool> updateElectronicDevice(
+      ElectronicDeviceRequest request, otherImages) async {
+    String uploadedImageUrl = request.image;
+    if (!uploadedImageUrl.contains('http')) {
+      uploadedImageUrl = (request.image != null)
+          ? await _imageUploadService.uploadImage(request.image)
+          : '';
+    }
+
+    var electronicRequest = ElectronicDeviceRequest(
+      id: request.id,
+      image: uploadedImageUrl ?? '',
+      state: request.state,
+      country: request.country,
+      description: request.description,
+      price: request.price,
+      status: request.status,
+      city: request.city,
+      type: request.type,
+      brand: request.brand,
+    );
+    int result = await _manager.updateElectronicDevice(electronicRequest);
+
+    if (result != null) await _uploadOtherImages(otherImages, result);
+    print(result);
+    return result != null;
   }
 
   List<String> _getImages(ElectronicDeviceResponse response) {
@@ -93,8 +124,7 @@ class ElectronicDeviceService {
     return result;
   }
 
-   Future<void> placeComment(CommentRequest request) async {
-    var response =
-        await _manager.placeComment(request);
+  Future<void> placeComment(CommentRequest request) async {
+    var response = await _manager.placeComment(request);
   }
 }

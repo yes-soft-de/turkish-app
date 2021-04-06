@@ -1,4 +1,3 @@
-
 import 'package:hersay/module_products/response/electronic_device/electronic_device_response.dart';
 
 class RealEstateModel {
@@ -17,6 +16,9 @@ class RealEstateModel {
   bool isLoved;
   List<String> images;
   List<Comment> comments;
+  bool editable;
+  String city;
+  String country;
   RealEstateModel(
       {this.id,
       this.price,
@@ -32,5 +34,9 @@ class RealEstateModel {
       this.userName,
       this.isLoved,
       this.images,
-      this.comments});
+      this.comments,
+      this.editable,
+      this.country,
+      this.city
+      });
 }

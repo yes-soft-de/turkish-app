@@ -4,6 +4,7 @@ import 'package:hersay/module_products/products_routes.dart';
 import 'package:hersay/module_products/ui/screen/add_car/add_car_sceen.dart';
 import 'package:hersay/module_products/ui/screen/add_electronic_device/add_electronic_device_screen.dart';
 import 'package:hersay/module_products/ui/screen/add_real_estate/add_real_estate_screen.dart';
+import 'package:hersay/module_products/ui/screen/add_service/add_service_screen.dart';
 import 'package:hersay/module_products/ui/screen/car_details/car_details_screen.dart';
 import 'package:hersay/module_products/ui/screen/electronic_device_details/electronic_device_details_screen.dart';
 import 'package:hersay/module_products/ui/screen/product_images/product_images_screen.dart';
@@ -17,6 +18,7 @@ class ProductsModule extends YesModule {
   final AddRealEstateScreen _addRealEstateScreen;
   final AddCarScreen _addCarScreen;
   final AddElectronicDeviceScreen _addElectronicDeviceScreen;
+  final AddServiceScreen _addServiceScreen;
   final CarDetailsScreen _carDetailsScreen;
   final RealEstateDetailsScreen _realEstateDetailsScreen;
   final ElectronicDeviceDetailsScreen _electronicDeviceDetailsScreen;
@@ -26,6 +28,7 @@ class ProductsModule extends YesModule {
       this._addRealEstateScreen,
       this._addCarScreen,
       this._addElectronicDeviceScreen,
+      this._addServiceScreen,
       this._electronicDeviceDetailsScreen,
       this._realEstateDetailsScreen,
       this._carDetailsScreen,
@@ -47,6 +50,8 @@ class ProductsModule extends YesModule {
           _realEstateDetailsScreen,
       ProductsRoutes.PRODUCT_IMAGES: (context) => _productImagesScreen,
       ProductsRoutes.SERVICE_DETAILS_SCREEN: (context) => _serviceDetailsScreen,
+      ProductsRoutes.ADD_SERVICE_SCREEN: (context) => _addServiceScreen,
+
     };
   }
 }

@@ -4,6 +4,7 @@ import 'package:flutter/services.dart';
 import 'package:hersay/generated/l10n.dart';
 import 'package:hersay/main_screen/main_routes.dart';
 import 'package:hersay/main_screen/ui/main_screen.dart';
+import 'package:hersay/module_products/model/real_estate/real_estate_model.dart';
 import 'package:hersay/module_products/ui/screen/add_real_estate/add_real_estate_screen.dart';
 import 'package:hersay/utils/project_colors/project_colors.dart';
 import 'package:image_picker/image_picker.dart';
@@ -16,6 +17,7 @@ abstract class AddRealEstateState {
 
   Widget getUI(BuildContext context);
 }
+
 class AddRealEstateStateLoading extends AddRealEstateState {
   AddRealEstateStateLoading(AddRealEstateScreenState screenState)
       : super(screenState);
@@ -55,14 +57,26 @@ class AddRealEstateStateInit extends AddRealEstateState {
   List<String> otherImages = [];
 
   bool _autoValidate = false;
-
+  bool flag = true;
   AddRealEstateStateInit(AddRealEstateScreenState screenState)
       : super(screenState);
 
   @override
   Widget getUI(context) {
     final node = FocusScope.of(context);
+    RealEstateModel realEstate = ModalRoute.of(context).settings.arguments;
 
+    if (flag && realEstate != null) {
+      _descriptionController.text = realEstate.description;
+      _countryController.text = realEstate.country;
+      _cityController.text = realEstate.city;
+      _priceController.text = realEstate.price;
+      _realEstateTypeController.text = realEstate.type;
+      _spaceController.text = realEstate.space;
+      _floorNumbersController.text = realEstate.floorsNumber;
+      _selectedHouseType = realEstate.isFurnished;
+      flag = false;
+    }
     return SingleChildScrollView(
       child: Form(
         key: _addRealEstateFormKey,
@@ -395,8 +409,9 @@ class AddRealEstateStateInit extends AddRealEstateState {
                         ImagePicker ip = ImagePicker();
                         ip.getImage(source: ImageSource.gallery).then((value) {
                           if (value != null) {
-                            otherImages.add(value.path)  ;
-                            print('another image picked, images length ${otherImages.length}');
+                            otherImages.add(value.path);
+                            print(
+                                'another image picked, images length ${otherImages.length}');
                           }
                         });
                       },
@@ -409,7 +424,7 @@ class AddRealEstateStateInit extends AddRealEstateState {
                             color: Colors.white,
                           ),
                           Text(
-                            S.of(context).addMoreImages ,
+                            S.of(context).addMoreImages,
                             style: TextStyle(color: Colors.white),
                           ),
                         ],
@@ -427,7 +442,22 @@ class AddRealEstateStateInit extends AddRealEstateState {
                       ),
                       onPressed: () {
                         if (_addRealEstateFormKey.currentState.validate()) {
-                          screenState.addNewRealEstate(
+                          if (realEstate != null) {
+                            screenState.updateRealEstate(
+                                realEstate.id,
+                                _countryController.text.trim(),
+                                _cityController.text.trim(),
+                                _spaceController.text.trim(),
+                                int.parse(_priceController.text.trim()),
+                                _descriptionController.text.trim(),
+                                _floorNumbersController.text.trim(),
+                                _selectedHouseType,
+                                _realEstateTypeController.text.trim(),
+                                'not sold',
+                                mainImage,
+                                otherImages);
+                          } else {
+                              screenState.addNewRealEstate(
                             _countryController.text.trim(),
                             _cityController.text.trim(),
                             _spaceController.text.trim(),
@@ -440,6 +470,8 @@ class AddRealEstateStateInit extends AddRealEstateState {
                             mainImage,
                             otherImages,
                           );
+                          }
+                        
                         }
                       },
                       //TODO : change this using theme service
@@ -485,7 +517,6 @@ class AddRealEstateSuccessState extends AddRealEstateState {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Container(
-
             padding: EdgeInsets.all(10),
             child: Center(
               child: Container(
@@ -493,19 +524,16 @@ class AddRealEstateSuccessState extends AddRealEstateState {
                 child: Text(
                   S.of(context).yourRequestHasBeenAddedAndInHoldForAdmin,
                   textAlign: TextAlign.center,
-                  style: TextStyle(
-                      color: Colors.white
-                  ),
+                  style: TextStyle(color: Colors.white),
                 ),
               ),
             ),
           ),
-
           GestureDetector(
-            onTap: (){
+            onTap: () {
               Navigator.of(context).pushNamedAndRemoveUntil(
                 MainRoutes.MAIN_SCREEN_ROUTE,
-                    (r) => false,
+                (r) => false,
               );
             },
             child: Container(
@@ -525,8 +553,6 @@ class AddRealEstateSuccessState extends AddRealEstateState {
               ),
             ),
           ),
-
-
         ],
       ),
     );

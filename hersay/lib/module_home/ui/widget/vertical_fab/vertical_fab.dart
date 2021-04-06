@@ -95,6 +95,24 @@ class _VerticalFabState extends State<VerticalFab>
       ),
     );
   }
+  Widget service() {
+    return Container(
+      width: 37,
+      height: 37,
+      child: FloatingActionButton(
+        heroTag: 'service',
+        backgroundColor: ProjectColors.THEME_COLOR,
+        onPressed: () {
+          Navigator.pushNamed(
+              context,
+              ProductsRoutes.ADD_SERVICE_SCREEN
+          );
+        },
+        tooltip: 'Add',
+        child: Icon(Icons.design_services),
+      ),
+    );
+  }
 
   Widget car() {
     return Container(
@@ -173,6 +191,14 @@ class _VerticalFabState extends State<VerticalFab>
     return Column(
       mainAxisAlignment: MainAxisAlignment.end,
       children: <Widget>[
+        Transform(
+          transform: Matrix4.translationValues(
+            0.0,
+            _translateButton.value * (isOpened?2.5:2.65),
+            0.0,
+          ),
+          child: service(),
+        ),
         Transform(
           transform: Matrix4.translationValues(
             0.0,
