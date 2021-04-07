@@ -60,6 +60,10 @@ class ServicesService
 
             $result['userImage'] = $this->params . $result['userImage'];
 
+            $result['reaction'] = $this->reactionService->reactionforItem($result['id'], $result['type'])[0];
+            
+            ($result['reaction']['createdBy'] == $userID) ?  $result['reaction']['createdBy'] = true : $result['reaction']['createdBy'] = false ;
+
             $result['comments'] = $this->commentService->getCommentsByEntityAndItemID($result['type'], $result['id']);
 
             $servicesResponse = $this->autoMapping->map('array', ServiceGetByIdResponse::class, $result);

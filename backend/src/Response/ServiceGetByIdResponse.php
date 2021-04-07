@@ -26,5 +26,7 @@ class ServiceGetByIdResponse
     public $comments;
 
     public $editable;
+
+    public $reaction;
    
 }
