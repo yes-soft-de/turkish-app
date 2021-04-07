@@ -1,15 +1,16 @@
 import 'package:hersay/module_profile/response/all_cars/all_cars_response.dart';
 import 'package:hersay/module_profile/response/all_devices/all_devices_response.dart';
 import 'package:hersay/module_profile/response/all_real_estates/all_real_estates_response.dart';
+import 'package:hersay/module_profile/response/all_services/all_advertisement.dart';
 
 class ProfileResponse {
   String statusCode;
   String msg;
   Data data;
-  AllDevicesResponse  electronicDevices;
+  AllDevicesResponse electronicDevices;
   AllCarsResponse cars;
   AllRealEstatesResponse realEstates;
-
+  AllAdvertisementResponse services;
   ProfileResponse({
     this.statusCode,
     this.msg,
@@ -17,6 +18,7 @@ class ProfileResponse {
     this.electronicDevices,
     this.cars,
     this.realEstates,
+    this.services
   });
 
   ProfileResponse.fromJson(Map<String, dynamic> json) {
@@ -44,7 +46,14 @@ class Data {
   String country;
   String city;
 
-  Data({this.userName, this.location, this.story, this.image,this.city, this.country,});
+  Data({
+    this.userName,
+    this.location,
+    this.story,
+    this.image,
+    this.city,
+    this.country,
+  });
 
   Data.fromJson(Map<String, dynamic> json) {
     userName = json['userName'];

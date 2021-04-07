@@ -144,7 +144,7 @@ class ProfileStateDataLoaded extends ProfileState {
 
   ProfileStateDataLoaded(this.profileData, ProfileScreenState screenState  )
       : super(screenState){
-     displayedProducts = profileData.realEstates + profileData.cars + profileData.electronicDevices;
+     displayedProducts = profileData.realEstates + profileData.cars + profileData.electronicDevices + profileData.services;
      displayedProducts.shuffle();
   }
   @override
@@ -247,7 +247,7 @@ class ProfileStateDataLoaded extends ProfileState {
 
                   GestureDetector(
                     onTap: (){
-                      displayedProducts =  profileData.cars + profileData.realEstates + profileData.electronicDevices;
+                      displayedProducts =  profileData.cars + profileData.realEstates + profileData.electronicDevices+profileData.services;
                       displayedProducts.shuffle();
                       selectedMode = 1;
                       screenState.refresh();
@@ -334,7 +334,27 @@ class ProfileStateDataLoaded extends ProfileState {
                       ),
                     ),
                   ),
-
+                  GestureDetector(
+                    onTap: (){
+                      displayedProducts = profileData.services;
+                      selectedMode = 5;
+                      screenState.refresh();
+                    },
+                    child: Container(
+                      width: 50,
+                      height: 50,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(50),
+                        color: (selectedMode == 5)
+                            ? ProjectColors.SECONDARY_COLOR
+                            :ProjectColors.THEME_COLOR,
+                      ),
+                      child: Icon(
+                        Icons.design_services,
+                        color: Colors.white,
+                      ),
+                    ),
+                  ),
                 ],
               ),
             ),
@@ -385,6 +405,7 @@ class ProfileStateDataLoaded extends ProfileState {
                     likes: displayedProducts[index].likes,
                     product: displayedProducts[index].product,
                     type: displayedProducts[index].type,
+                    comments: displayedProducts[index].comments??0,
                   ),
                 ),
               );

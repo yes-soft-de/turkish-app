@@ -34,7 +34,8 @@ class ProfileService{
         country: response.data.country??'',
         realEstates: ProfileModel.toRealEstatesList(response),
         cars : ProfileModel.toCarsList(response),
-        electronicDevices:ProfileModel.toElectronicDevicesList(response)
+        electronicDevices:ProfileModel.toElectronicDevicesList(response),
+        services:ProfileModel.toServiceList(response)
     );
 
     return profileData;

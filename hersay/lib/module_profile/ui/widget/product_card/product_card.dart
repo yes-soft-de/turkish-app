@@ -8,23 +8,21 @@ class ProductCard extends StatelessWidget {
   final String image;
   final PRODUCT_TYPE type;
   final int likes;
-
+  final int comments;
   ProductCard(
       {this.image,
       this.likes,
       this.category,
       this.product,
-      this.type});
+      this.type,
+      this.comments});
 
   @override
   Widget build(BuildContext context) {
     return Card(
-
       elevation: 10,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
       child: Container(
-
-
         padding: EdgeInsets.symmetric(vertical: 7, horizontal: 0),
         decoration: BoxDecoration(
           color: Colors.black12,
@@ -74,8 +72,8 @@ class ProductCard extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-
                 IconTextWidget(icon: Icons.favorite, text: '$likes'),
+                IconTextWidget(icon: Icons.comment, text: '$comments'),
 //                Icon(
 //                  Icons.share,
 //                  color: Colors.grey,
@@ -109,7 +107,7 @@ class ProductCard extends StatelessWidget {
           color: Colors.grey,
         );
         break;
-        case PRODUCT_TYPE.ADVERTISMENT:
+      case PRODUCT_TYPE.ADVERTISMENT:
         icon = Icon(
           Icons.design_services,
           color: Colors.grey,

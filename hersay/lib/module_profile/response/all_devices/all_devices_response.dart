@@ -1,13 +1,13 @@
 class AllDevicesResponse {
-  List<DeviceData> data;
+  List<Data> data;
 
   AllDevicesResponse({this.data});
 
   AllDevicesResponse.fromJson(Map<String, dynamic> json) {
     if (json['Data'] != null) {
-      data = new List<DeviceData>();
+      data = new List<Data>();
       json['Data'].forEach((v) {
-        data.add(new DeviceData.fromJson(v));
+        data.add(new Data.fromJson(v));
       });
     }
   }
@@ -21,7 +21,7 @@ class AllDevicesResponse {
   }
 }
 
-class DeviceData {
+class Data {
   int id;
   String type;
   String brand;
@@ -41,29 +41,31 @@ class DeviceData {
   List<Reaction> reaction;
   String userName;
   String imageUser;
+  int commentsCount;
+  Data({
+    this.id,
+    this.type,
+    this.brand,
+    this.cpu,
+    this.ram,
+    this.battery,
+    this.price,
+    this.yearOfRelease,
+    this.description,
+    this.status,
+    this.createdAt,
+    this.gauge,
+    this.country,
+    this.city,
+    this.durationOfUse,
+    this.image,
+    this.reaction,
+    this.userName,
+    this.imageUser,
+    this.commentsCount
+  });
 
-  DeviceData(
-      {this.id,
-        this.type,
-        this.brand,
-        this.cpu,
-        this.ram,
-        this.battery,
-        this.price,
-        this.yearOfRelease,
-        this.description,
-        this.status,
-        this.createdAt,
-        this.gauge,
-        this.country,
-        this.city,
-        this.durationOfUse,
-        this.image,
-        this.reaction,
-        this.userName,
-        this.imageUser});
-
-  DeviceData.fromJson(Map<String, dynamic> json) {
+  Data.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     type = json['type'];
     brand = json['brand'];
@@ -71,6 +73,7 @@ class DeviceData {
     ram = json['ram'];
     battery = json['battery'];
     price = json['price'];
+    commentsCount = json['commentsNumber'];
     yearOfRelease = json['yearOfRelease'] != null
         ? new YearOfRelease.fromJson(json['yearOfRelease'])
         : null;

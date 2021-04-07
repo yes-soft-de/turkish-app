@@ -1,9 +1,9 @@
 import 'package:hersay/consts/urls.dart';
 import 'package:hersay/module_auth/service/auth/auth.service.dart';
-import 'package:hersay/module_home/response/all_advertisement/all_advertisement.dart';
 import 'package:hersay/module_home/response/all_cars/all_cars_response.dart';
 import 'package:hersay/module_home/response/all_devices/all_devices_response.dart';
 import 'package:hersay/module_home/response/all_real_estates/all_real_estates_response.dart';
+import 'package:hersay/module_home/response/all_services/all_advertisement.dart';
 import 'package:hersay/module_home/response/home/home_response.dart';
 import 'package:hersay/module_network/http_client/http_client.dart';
 import 'package:inject/inject.dart';

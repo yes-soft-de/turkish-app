@@ -1,13 +1,13 @@
 class AllCarsResponse {
-  List<CarData> data;
+  List<Data> data;
 
   AllCarsResponse({this.data});
 
   AllCarsResponse.fromJson(Map<String, dynamic> json) {
     if (json['Data'] != null) {
-      data = new List<CarData>();
+      data = new List<Data>();
       json['Data'].forEach((v) {
-        data.add(new CarData.fromJson(v));
+        data.add(new Data.fromJson(v));
       });
     }
   }
@@ -21,7 +21,7 @@ class AllCarsResponse {
   }
 }
 
-class CarData {
+class Data {
   int id;
   String brand;
   String company;
@@ -45,33 +45,35 @@ class CarData {
   List<Reaction> reaction;
   String userName;
   String imageUser;
-
-  CarData(
+  int commentsCount;
+  Data(
       {this.id,
-        this.brand,
-        this.company,
-        this.yearOfRelease,
-        this.engine,
-        this.price,
-        this.description,
-        this.status,
-        this.createdBy,
-        this.createdAt,
-        this.updateAt,
-        this.distance,
-        this.carType,
-        this.gearType,
-        this.cc,
-        this.fuel,
-        this.country,
-        this.city,
-        this.image,
-        this.state,
-        this.reaction,
-        this.userName,
-        this.imageUser});
+      this.brand,
+      this.company,
+      this.yearOfRelease,
+      this.engine,
+      this.price,
+      this.description,
+      this.status,
+      this.createdBy,
+      this.createdAt,
+      this.updateAt,
+      this.distance,
+      this.carType,
+      this.gearType,
+      this.cc,
+      this.fuel,
+      this.country,
+      this.city,
+      this.image,
+      this.state,
+      this.reaction,
+      this.userName,
+      this.imageUser,
+      this.commentsCount
+      });
 
-  CarData.fromJson(Map<String, dynamic> json) {
+  Data.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     brand = json['brand'];
     company = json['company'];
@@ -106,6 +108,7 @@ class CarData {
     }
     userName = json['userName'];
     imageUser = json['userImage'];
+    commentsCount = json['commentsNumber'];
   }
 
   Map<String, dynamic> toJson() {

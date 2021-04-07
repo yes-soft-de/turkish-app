@@ -1,9 +1,9 @@
-class AllRealEstatesResponse {
+class AllAdvertisementResponse {
   List<Data> data;
 
-  AllRealEstatesResponse({this.data});
+  AllAdvertisementResponse({this.data});
 
-  AllRealEstatesResponse.fromJson(Map<String, dynamic> json) {
+  AllAdvertisementResponse.fromJson(Map<String, dynamic> json) {
     if (json['Data'] != null) {
       data = new List<Data>();
       json['Data'].forEach((v) {
@@ -22,112 +22,195 @@ class AllRealEstatesResponse {
 }
 
 class Data {
+  String entity;
   int id;
-  String country;
-  String city;
-  String space;
+  String type;
+  String brand;
+  String cpu;
+  String ram;
+  String battery;
   int price;
+  YearOfRelease yearOfRelease;
   String description;
   String status;
-  CreatedAt createdAt;
-  String state;
+  YearOfRelease createdAt;
+  String gauge;
+  String country;
+  String city;
+  String durationOfUse;
   String image;
+  List<Reaction> reaction;
+  String userName;
+  String imageUser;
+  String space;
+  String state;
   String numberOfFloors;
   String cladding;
   String homeFurnishing;
   String realEstateType;
-  List<Reaction> reaction;
   String rooms;
-  String userName;
-  String imageUser;
+  String company;
+  String engine;
+  String createdBy;
+  YearOfRelease updateAt;
+  String distance;
+  String carType;
+  String gearType;
+  String cc;
+  String fuel;
   int commentsCount;
+  String title;
   Data(
-      {this.id,
-      this.country,
-      this.city,
-      this.space,
+      {this.entity,
+      this.id,
+      this.type,
+      this.brand,
+      this.cpu,
+      this.ram,
+      this.battery,
       this.price,
+      this.yearOfRelease,
       this.description,
       this.status,
       this.createdAt,
-      this.state,
+      this.gauge,
+      this.country,
+      this.city,
+      this.durationOfUse,
       this.image,
+      this.reaction,
+      this.userName,
+      this.imageUser,
+      this.space,
+      this.state,
       this.numberOfFloors,
       this.cladding,
       this.homeFurnishing,
       this.realEstateType,
-      this.reaction,
       this.rooms,
-      this.userName,
-      this.imageUser,
-      this.commentsCount
+      this.company,
+      this.engine,
+      this.createdBy,
+      this.updateAt,
+      this.distance,
+      this.carType,
+      this.gearType,
+      this.cc,
+      this.fuel,
+      this.commentsCount,
+      this.title
       });
 
   Data.fromJson(Map<String, dynamic> json) {
+    entity = json['entity'];
     id = json['id'];
-    country = json['country'];
-    city = json['city'];
-    space = json['space'];
+    type = json['type'];
+    title = json['title'];
+    brand = json['brand'];
+    cpu = json['cpu'];
+    ram = json['ram'];
+    battery = json['battery'];
     price = json['price'];
+    commentsCount = json['commentsNumber'];
+    yearOfRelease = json['yearOfRelease'] != null
+        ? new YearOfRelease.fromJson(json['yearOfRelease'])
+        : null;
     description = json['description'];
     status = json['status'];
     createdAt = json['createdAt'] != null
-        ? new CreatedAt.fromJson(json['createdAt'])
+        ? new YearOfRelease.fromJson(json['createdAt'])
         : null;
-    state = json['state'];
+    gauge = json['gauge'];
+    country = json['country'];
+    city = json['city'];
+    durationOfUse = json['durationOfUse'];
     image = json['image'];
-    numberOfFloors = json['numberOfFloors'];
-    cladding = json['cladding'];
-    homeFurnishing = json['homeFurnishing'];
-    realEstateType = json['realEstateType'];
     if (json['reaction'] != null) {
       reaction = new List<Reaction>();
       json['reaction'].forEach((v) {
         reaction.add(new Reaction.fromJson(v));
       });
     }
-    rooms = json['rooms'];
     userName = json['userName'];
     imageUser = json['userImage'];
-    commentsCount = json['commentsNumber'];
+    space = json['space'];
+    state = json['state'];
+    numberOfFloors = json['numberOfFloors'];
+    cladding = json['cladding'];
+    homeFurnishing = json['homeFurnishing'];
+    realEstateType = json['realEstateType'];
+    rooms = json['rooms'];
+    company = json['company'];
+    engine = json['engine'];
+    createdBy = json['createdBy'];
+    updateAt = json['updateAt'] != null
+        ? new YearOfRelease.fromJson(json['updateAt'])
+        : null;
+    distance = json['distance'];
+    carType = json['carType'];
+    gearType = json['gearType'];
+    cc = json['cc'];
+    fuel = json['fuel'];
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['entity'] = this.entity;
     data['id'] = this.id;
-    data['country'] = this.country;
-    data['city'] = this.city;
-    data['space'] = this.space;
+    data['type'] = this.type;
+    data['brand'] = this.brand;
+    data['cpu'] = this.cpu;
+    data['ram'] = this.ram;
+    data['battery'] = this.battery;
     data['price'] = this.price;
+    if (this.yearOfRelease != null) {
+      data['yearOfRelease'] = this.yearOfRelease.toJson();
+    }
     data['description'] = this.description;
     data['status'] = this.status;
     if (this.createdAt != null) {
       data['createdAt'] = this.createdAt.toJson();
     }
-    data['state'] = this.state;
+    data['gauge'] = this.gauge;
+    data['country'] = this.country;
+    data['city'] = this.city;
+    data['durationOfUse'] = this.durationOfUse;
     data['image'] = this.image;
+    if (this.reaction != null) {
+      data['reaction'] = this.reaction.map((v) => v.toJson()).toList();
+    }
+    data['userName'] = this.userName;
+    data['userImage'] = this.imageUser;
+    data['space'] = this.space;
+    data['state'] = this.state;
     data['numberOfFloors'] = this.numberOfFloors;
     data['cladding'] = this.cladding;
     data['homeFurnishing'] = this.homeFurnishing;
     data['realEstateType'] = this.realEstateType;
-    if (this.reaction != null) {
-      data['reaction'] = this.reaction.map((v) => v.toJson()).toList();
-    }
     data['rooms'] = this.rooms;
-    data['userName'] = this.userName;
-    data['userImage'] = this.imageUser;
+    data['company'] = this.company;
+    data['engine'] = this.engine;
+    data['createdBy'] = this.createdBy;
+    if (this.updateAt != null) {
+      data['updateAt'] = this.updateAt.toJson();
+    }
+    data['distance'] = this.distance;
+    data['carType'] = this.carType;
+    data['gearType'] = this.gearType;
+    data['cc'] = this.cc;
+    data['fuel'] = this.fuel;
     return data;
   }
 }
 
-class CreatedAt {
+class YearOfRelease {
   Timezone timezone;
   int offset;
   int timestamp;
 
-  CreatedAt({this.timezone, this.offset, this.timestamp});
+  YearOfRelease({this.timezone, this.offset, this.timestamp});
 
-  CreatedAt.fromJson(Map<String, dynamic> json) {
+  YearOfRelease.fromJson(Map<String, dynamic> json) {
     timezone = json['timezone'] != null
         ? new Timezone.fromJson(json['timezone'])
         : null;
