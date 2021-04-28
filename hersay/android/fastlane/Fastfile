@@ -7,10 +7,6 @@ platform :android do
       build_type: "Debug"
     )
     gradle(
-      task: "assemble",
-      build_type: "Profile"
-    )
-    gradle(
       task: "bundle",
       build_type: "Release"
     )
