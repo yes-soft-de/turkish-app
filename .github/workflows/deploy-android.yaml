@@ -80,7 +80,7 @@ jobs:
 
       - name: Generate Gradle Wrapper
         run: |
-          cd flutter/android
+          cd hersay/android
           gradle flutterWrapper
           chmod +x gradlew
 
