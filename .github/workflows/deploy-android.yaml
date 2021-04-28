@@ -74,10 +74,19 @@ jobs:
           bundle config path vendor/bundle
           bundle install --jobs 4 --retry 3
 
+      - uses: eskatos/gradle-command-action@v1
+        with:
+          gradle-version: 6.7.1
+
+      - name: Generate Gradle Wrapper
+        run: |
+          cd flutter/android
+          gradle flutterWrapper
+          chmod +x gradlew
+
       - name: Distribute app to Alpha track 🚀
         run: |
           cd ./hersay/android
-          chmod +x gradlew
           bundle exec fastlane alpha
 
       - name: Upload APK as artifacts
