@@ -31,7 +31,7 @@ class _HomeFabState extends State<HomeFab> with SingleTickerProviderStateMixin {
     controller = AnimateIconController();
 
     _animationController =
-        AnimationController(duration: Duration(milliseconds: 500),vsync: this)
+        AnimationController(duration: Duration(milliseconds: 500), vsync: this)
           ..addListener(() {
             setState(() {});
           });
@@ -143,7 +143,7 @@ class _HomeFabState extends State<HomeFab> with SingleTickerProviderStateMixin {
             return true;
           },
           duration: Duration(milliseconds: 500),
-          color: Colors.grey,
+          // color: Colors.grey,
           clockwise: false,
         ),
 //          progress: _animateIcon,

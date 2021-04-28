@@ -31,7 +31,7 @@ class _VerticalFabState extends State<VerticalFab>
     controller = AnimateIconController();
 
     _animationController =
-        AnimationController(duration: Duration(milliseconds: 500),vsync: this)
+        AnimationController(duration: Duration(milliseconds: 500), vsync: this)
           ..addListener(() {
             setState(() {});
           });
@@ -86,15 +86,14 @@ class _VerticalFabState extends State<VerticalFab>
         backgroundColor: ProjectColors.THEME_COLOR,
         onPressed: () {
           Navigator.pushNamed(
-              context,
-              ProductsRoutes.ADD_ELECTRONIC_DEVICE_SCREEN
-          );
+              context, ProductsRoutes.ADD_ELECTRONIC_DEVICE_SCREEN);
         },
         tooltip: 'Add',
         child: Icon(Icons.phone_iphone),
       ),
     );
   }
+
   Widget service() {
     return Container(
       width: 37,
@@ -103,10 +102,7 @@ class _VerticalFabState extends State<VerticalFab>
         heroTag: 'service',
         backgroundColor: ProjectColors.THEME_COLOR,
         onPressed: () {
-          Navigator.pushNamed(
-              context,
-              ProductsRoutes.ADD_SERVICE_SCREEN
-          );
+          Navigator.pushNamed(context, ProductsRoutes.ADD_SERVICE_SCREEN);
         },
         tooltip: 'Add',
         child: Icon(Icons.design_services),
@@ -122,10 +118,7 @@ class _VerticalFabState extends State<VerticalFab>
         heroTag: 'car',
         backgroundColor: ProjectColors.THEME_COLOR,
         onPressed: () {
-          Navigator.pushNamed(
-              context,
-              ProductsRoutes.ADD_CAR_SCREEN
-          );
+          Navigator.pushNamed(context, ProductsRoutes.ADD_CAR_SCREEN);
         },
         tooltip: 'Image',
         child: Icon(Icons.directions_car),
@@ -141,11 +134,7 @@ class _VerticalFabState extends State<VerticalFab>
         heroTag: 'house',
         backgroundColor: ProjectColors.THEME_COLOR,
         onPressed: () {
-          Navigator.pushNamed(
-              context,
-              ProductsRoutes.ADD_REAL_ESTATE_SCREEN
-          );
-
+          Navigator.pushNamed(context, ProductsRoutes.ADD_REAL_ESTATE_SCREEN);
         },
         tooltip: 'Inbox',
         child: Icon(Icons.home),
@@ -177,7 +166,7 @@ class _VerticalFabState extends State<VerticalFab>
             return true;
           },
           duration: Duration(milliseconds: 500),
-          color: Colors.grey,
+          // color: Colors.grey,
           clockwise: false,
         ),
 //          progress: _animateIcon,
@@ -194,7 +183,7 @@ class _VerticalFabState extends State<VerticalFab>
         Transform(
           transform: Matrix4.translationValues(
             0.0,
-            _translateButton.value * (isOpened?2.5:2.65),
+            _translateButton.value * (isOpened ? 2.5 : 2.65),
             0.0,
           ),
           child: service(),
