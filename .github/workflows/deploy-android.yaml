@@ -61,6 +61,8 @@ jobs:
 
       - name: Get Flutter Packages tools
         run: |
+          flutter upgrade
+          flutter downgrade 1.22.5
           cd hersay && flutter pub get
 
       - name: Install NDK
