@@ -15,6 +15,12 @@ class ServicesUpdateRequest
 
     private $type;
 
+    private $city;
+
+    private $country;
+
+    private $price;
+
     public function getId()
     {
         return $this->id;

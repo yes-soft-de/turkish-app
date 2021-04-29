@@ -25,7 +25,7 @@ class ServicesEntityRepository extends ServiceEntityRepository
     {
         return $this->createQueryBuilder('service')
             ->select('service.id', 'service.title', 'service.createdBy', 'service.createdAt', 'service.updatedAt', 'service.description', 'service.type',
-             'service.image', 'userProfile.userName', 'userProfile.image as userImage')
+             'service.image', 'service.city', 'service.country', 'service.price', 'userProfile.userName', 'userProfile.image as userImage')
 
             ->leftJoin(
                 UserProfileEntity::class,
@@ -45,7 +45,7 @@ class ServicesEntityRepository extends ServiceEntityRepository
     {
         return $this->createQueryBuilder('service')
               ->select('service.id', 'service.title', 'service.createdBy', 'service.createdAt', 'service.updatedAt', 'service.description', 'service.type',
-              'service.image', 'userProfile.userName', 'userProfile.image as userImage')
+              'service.image', 'service.city', 'service.country', 'service.price', 'userProfile.userName', 'userProfile.image as userImage')
 
               ->leftJoin(
                 UserProfileEntity::class,
@@ -62,7 +62,7 @@ class ServicesEntityRepository extends ServiceEntityRepository
     {
         return $this->createQueryBuilder('service')
             ->select('service.id', 'service.title', 'service.createdBy', 'service.createdAt', 'service.updatedAt', 'service.description', 'service.type',
-            'service.image', 'userProfile.userName', 'userProfile.image as userImage')
+            'service.image', 'service.city', 'service.country', 'service.price', 'userProfile.userName', 'userProfile.image as userImage')
 
             ->andWhere('service.createdBy = :createdBy')
             ->setParameter('createdBy', $createdBy)

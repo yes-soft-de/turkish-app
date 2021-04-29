@@ -26,4 +26,10 @@ class ServicesGetResponse
     public $reaction;
 
     public $commentsNumber;
+
+    public $city;
+
+    public $country;
+
+    public $price;
 }

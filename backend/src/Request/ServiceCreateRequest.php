@@ -16,6 +16,12 @@ class ServiceCreateRequest
 
     private $type;
 
+    private $city;
+
+    private $country;
+
+    private $price;
+
     public function setCreatedBy($createdBy)
     {
         $this->createdBy = $createdBy;

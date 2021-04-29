@@ -28,5 +28,11 @@ class ServiceGetByIdResponse
     public $editable;
 
     public $reaction;
+
+    public $city;
+
+    public $country;
+
+    public $price;
    
 }
