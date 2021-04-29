@@ -371,6 +371,11 @@ methods: GET
 /services
 methods: GET
 ```
+#### Get services according to specific type
+```
+/filterservices/{type}
+methods: GET
+```
 #### Update existing service
 ```
 /services

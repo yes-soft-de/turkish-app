@@ -123,4 +123,24 @@ class ServicesEntityRepository extends ServiceEntityRepository
             ->getResult();
     }
 
+    public function getServicesByType($type)
+    {
+        return $this->createQueryBuilder('service')
+            ->select('service.id', 'service.title', 'service.createdBy', 'service.createdAt', 'service.updatedAt', 'service.description', 'service.type',
+             'service.image', 'service.city', 'service.country', 'service.price', 'userProfile.userName', 'userProfile.image as userImage')
+
+            ->leftJoin(
+                UserProfileEntity::class,
+                'userProfile',
+                Join::WITH,
+                'userProfile.userID = service.createdBy'
+            )
+
+            ->andWhere('service.type = :type')
+            ->setParameter('type', $type)
+
+            ->getQuery()
+            ->getResult();
+    }
+
 }

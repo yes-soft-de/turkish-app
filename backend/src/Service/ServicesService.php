@@ -159,6 +159,31 @@ class ServicesService
         return  $this->autoMapping->map(ServicesEntity::class, ServiceGetByIdResponse::class, $serviceResult);
     }
 
+    public function getServicesByType($type)
+    {
+        $response = [];
+
+        $results = $this->servicesManager->getServicesByType($type);
+
+        foreach ($results as $result)
+        {
+            if($result['image'])
+            {
+                $result['image'] = $this->params . $result['image'];
+
+                $result['userImage'] = $this->params . $result['userImage'];
+            }
+            
+            $result['reaction']=$this->reactionService->reactionforItem($result['id'], $result['type']);
+          
+            $result['commentsNumber'] = $this->servicesManager->getServiceCommentsNumber($result['type'], $result['id'])[1];
+
+            $response[] = $this->autoMapping->map('array', ServicesGetResponse::class, $result);
+        }
+
+        return $response;
+    }
+
     public function specialLinkCheck($bool)
     {
         if (!$bool)

@@ -131,4 +131,15 @@ class ServicesController extends BaseController
         return $this->response("deleted ", self::DELETE);
     }
 
+    /**
+     * @Route("filterservices/{type}", name="getServicesByType", methods={"GET"})
+     * @return JsonResponse
+     */
+    public function getServiceByType($type)
+    {
+        $result = $this->servicesService->getServicesByType($type);
+
+        return $this->response($result, self::FETCH);
+    }
+
 }

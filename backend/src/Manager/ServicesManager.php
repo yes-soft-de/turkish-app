@@ -105,4 +105,9 @@ class ServicesManager
         return $this->servicesEntityRepository->getServiceOfUserById($userID, $id);
     }
 
+    public function getServicesByType($type)
+    {
+        return $this->servicesEntityRepository->getServicesByType($type);
+    }
+
 }
