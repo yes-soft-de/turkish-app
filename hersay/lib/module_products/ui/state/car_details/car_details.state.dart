@@ -65,7 +65,38 @@ class CarDetailsStateDataLoaded extends CarDetailsState {
   Widget getUI(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
 
-    return RefreshIndicator(
+    return Scaffold(
+      appBar: AppBar(
+                title: Text(
+          S.of(context).details,
+          style: TextStyle(
+            color: Colors.white,
+          ),
+        ),
+        iconTheme: IconThemeData(
+          color: Colors.white,
+        ),
+        backgroundColor: ProjectColors.THEME_COLOR,
+        actions: [
+          IconButton(
+            icon: Icon(Icons.report),
+            onPressed: () {
+              screenState.report();
+            },
+          ),
+          car.editable
+              ? IconButton(
+                  icon: Icon(Icons.edit),
+                  onPressed: () {
+                    Navigator.pushNamed(
+                        context, ProductsRoutes.ADD_CAR_SCREEN,
+                        arguments: car);
+                  },
+                )
+              : Container(),
+        ],
+      ),
+      body: RefreshIndicator(
       onRefresh: () {
         screenState.getCarDetails();
         return Future.delayed(Duration(seconds: 3));
@@ -77,48 +108,10 @@ class CarDetailsStateDataLoaded extends CarDetailsState {
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              car.editable
-                  ? Container(
-                      height: 50,
-                      padding: const EdgeInsets.only(right:8.0,left:8.0),
-                      child: FlatButton(
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(25)),
-                        //TODO : change this
-                        color: ProjectColors.THEME_COLOR,
-                        onPressed: () {
-                          Navigator.pushNamed(
-                              context, ProductsRoutes.ADD_CAR_SCREEN,
-                              arguments: car);
-                        },
-                        child: Center(
-                          child: Flex(
-                            direction: Axis.horizontal,
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Icon(
-                                Icons.edit,
-                                color: Colors.white,
-                              ),
-                              SizedBox(
-                                width: 5,
-                              ),
-                              Text(
-                                S.of(context).edit,
-                                style: TextStyle(color: Colors.white),
-                              )
-                            ],
-                          ),
-                        ),
-                      ),
-                    )
-                  : Container(),
-
               Container(
                 decoration: BoxDecoration(
                   color: ProjectColors.THEME_COLOR,
-                  borderRadius: BorderRadius.circular(25),
+                  borderRadius: BorderRadius.circular(10),
                 ),
                 height: 50,
                 padding: const EdgeInsets.all(8.0),
@@ -177,31 +170,6 @@ class CarDetailsStateDataLoaded extends CarDetailsState {
                         ),
                       ),
                     ],
-                  ),
-                  FlatButton(
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(5)),
-                    //TODO : change this
-                    color: ProjectColors.THEME_COLOR,
-                    onPressed: () {
-                      screenState.report();
-                    },
-                    child: Flex(
-                      direction: Axis.horizontal,
-                      children: [
-                        Icon(
-                          Icons.report_problem,
-                          color: Colors.white,
-                        ),
-                        SizedBox(
-                          width: 5,
-                        ),
-                        Text(
-                          S.of(context).report,
-                          style: TextStyle(color: Colors.white),
-                        )
-                      ],
-                    ),
                   ),
                   car.isLoved
                       ? IconButton(
@@ -427,6 +395,7 @@ class CarDetailsStateDataLoaded extends CarDetailsState {
           ),
         ),
       ),
+    ),
     );
   }
 }

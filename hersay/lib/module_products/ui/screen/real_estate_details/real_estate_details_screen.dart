@@ -176,7 +176,7 @@ void placeComment(String comment, String entity, int itemId) {
     
     width = MediaQuery.of(context).size.width;
     return Scaffold(
-      appBar: TurkishAppBar.getTurkishOrdinaryAppBar(context,  S.of(context).details),
+      appBar: currentState is RealEstateDetailsStateDataLoaded ? null : TurkishAppBar.getTurkishOrdinaryAppBar(context,  S.of(context).details),
       body: currentState.getUI(context),
     );
   }

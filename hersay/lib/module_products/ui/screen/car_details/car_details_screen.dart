@@ -166,7 +166,7 @@ class CarDetailsScreenState extends State<CarDetailsScreen> {
     }
 
     return Scaffold(
-      appBar: TurkishAppBar.getTurkishOrdinaryAppBar(
+      appBar:currentState is CarDetailsStateDataLoaded ? null :TurkishAppBar.getTurkishOrdinaryAppBar(
           context, S.of(context).details),
       body: currentState.getUI(context),
     );

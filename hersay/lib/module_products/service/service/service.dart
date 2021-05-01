@@ -76,7 +76,7 @@ class ServiceService {
       userImage: response.data.userImage,
       title: response.data.title,
       editable:response.data.editable??false,
-      //isLoved: response.data.reaction.isLoved??false,
+      isLoved: response.data.reaction.createdBy??false,
       //images: _getImages(response),
       comments: response.data.comments,
     );

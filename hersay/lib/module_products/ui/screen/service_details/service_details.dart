@@ -174,7 +174,7 @@ class ServiceDetailsScreenState extends State<ServiceDetailsScreen> {
     }
 
     return Scaffold(
-      appBar: TurkishAppBar.getTurkishOrdinaryAppBar(
+      appBar:currentState is ServiceDetailsStateDataLoaded ?null:TurkishAppBar.getTurkishOrdinaryAppBar(
           context, S.of(context).details),
       body: currentState.getUI(context),
     );

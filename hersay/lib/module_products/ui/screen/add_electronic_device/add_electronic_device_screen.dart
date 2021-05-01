@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:hersay/generated/l10n.dart';
 import 'package:hersay/module_auth/auth_routes.dart';
 import 'package:hersay/module_auth/service/auth/auth.service.dart';
 import 'package:hersay/module_products/products_routes.dart';
 import 'package:hersay/module_products/state_manager/electroinic_device/add_electronic_device.state_manager.dart';
 import 'package:hersay/module_products/ui/state/add_electronic_device/add_electronic_device.state.dart';
+import 'package:hersay/utils/project_colors/project_colors.dart';
 import 'package:hersay/utils/route_helper/route_helper.dart';
 import 'package:inject/inject.dart';
 
@@ -55,8 +57,9 @@ class AddElectronicDeviceScreenState extends State<AddElectronicDeviceScreen> {
     widget._stateManager.addNewElectronicDevice(country, brand, type, price,
         description, city, mainImage, state, status, otherImages, this);
   }
+
   void updateElectronicDevice(
-      int id ,
+      int id,
       String country,
       String brand,
       String type,
@@ -67,7 +70,7 @@ class AddElectronicDeviceScreenState extends State<AddElectronicDeviceScreen> {
       String state,
       String status,
       List<String> otherImages) {
-    widget._stateManager.updateElectronicDevice(id,country, brand, type, price,
+    widget._stateManager.updateElectronicDevice(id, country, brand, type, price,
         description, city, mainImage, state, status, otherImages, this);
   }
 
@@ -85,6 +88,11 @@ class AddElectronicDeviceScreenState extends State<AddElectronicDeviceScreen> {
     });
 
     return Scaffold(
+      appBar: AppBar(
+        elevation: 0,
+        backgroundColor: ProjectColors.THEME_COLOR,
+        title: Text(S.of(context).details),
+      ),
       body: SafeArea(
         child: currentState.getUI(context),
       ),
