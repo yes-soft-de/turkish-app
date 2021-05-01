@@ -181,3 +181,15 @@ App\Request\ServicesUpdateRequest:
       - NotBlank: ~
     type:
       - NotBlank: ~
+
+App\Request\CategoryCreateRequest:
+  properties:
+    name:
+      - NotBlank: ~
+
+App\Request\CategoryUpdateRequest:
+  properties:
+    id:
+      - NotBlank: ~
+    name:
+      - NotBlank: ~
