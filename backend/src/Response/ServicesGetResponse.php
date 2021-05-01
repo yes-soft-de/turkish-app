@@ -32,4 +32,8 @@ class ServicesGetResponse
     public $country;
 
     public $price;
+
+    public $categoryID;
+
+    public $categoryName;
 }

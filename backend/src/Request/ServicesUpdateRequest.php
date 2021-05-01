@@ -21,6 +21,8 @@ class ServicesUpdateRequest
 
     private $price;
 
+    private $categoryID;
+
     public function getId()
     {
         return $this->id;

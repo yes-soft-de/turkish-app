@@ -70,6 +70,11 @@ class ServicesEntity
      */
     private $price;
 
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $categoryID;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -191,6 +196,18 @@ class ServicesEntity
     public function setPrice(?int $price): self
     {
         $this->price = $price;
+
+        return $this;
+    }
+
+    public function getCategoryID(): ?int
+    {
+        return $this->categoryID;
+    }
+
+    public function setCategoryID(int $categoryID): self
+    {
+        $this->categoryID = $categoryID;
 
         return $this;
     }

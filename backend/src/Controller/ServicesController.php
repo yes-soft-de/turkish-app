@@ -132,12 +132,12 @@ class ServicesController extends BaseController
     }
 
     /**
-     * @Route("filterservices/{type}", name="getServicesByType", methods={"GET"})
+     * @Route("servicesbycategory/{categoryID}", name="getServicesByType", methods={"GET"})
      * @return JsonResponse
      */
-    public function getServiceByType($type)
+    public function getServicesByCategoryID($categoryID)
     {
-        $result = $this->servicesService->getServicesByType($type);
+        $result = $this->servicesService->getServicesByCategoryID($categoryID);
 
         return $this->response($result, self::FETCH);
     }

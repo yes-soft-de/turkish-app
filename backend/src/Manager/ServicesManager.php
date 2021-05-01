@@ -105,9 +105,9 @@ class ServicesManager
         return $this->servicesEntityRepository->getServiceOfUserById($userID, $id);
     }
 
-    public function getServicesByType($type)
+    public function getServicesByCategoryID($categoryID)
     {
-        return $this->servicesEntityRepository->getServicesByType($type);
+        return $this->servicesEntityRepository->getServicesByCategoryID($categoryID);
     }
 
     public function getFilter($price, $price_2, $city)

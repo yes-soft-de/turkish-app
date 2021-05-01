@@ -2,6 +2,7 @@
 
 namespace App\Repository;
 
+use App\Entity\CategoryEntity;
 use App\Entity\ServicesEntity;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
@@ -25,13 +26,20 @@ class ServicesEntityRepository extends ServiceEntityRepository
     {
         return $this->createQueryBuilder('service')
             ->select('service.id', 'service.title', 'service.createdBy', 'service.createdAt', 'service.updatedAt', 'service.description', 'service.type',
-             'service.image', 'service.city', 'service.country', 'service.price', 'userProfile.userName', 'userProfile.image as userImage')
+            'service.categoryID', 'category.name as categoryName', 'service.image', 'service.city', 'service.country', 'service.price', 'userProfile.userName', 'userProfile.image as userImage')
 
             ->leftJoin(
                 UserProfileEntity::class,
                 'userProfile',
                 Join::WITH,
                 'userProfile.userID = service.createdBy'
+            )
+
+            ->leftJoin(
+                CategoryEntity::class,
+                'category',
+                Join::WITH,
+                'category.id = service.categoryID'
             )
 
             ->andWhere('service.id = :id')
@@ -45,13 +53,20 @@ class ServicesEntityRepository extends ServiceEntityRepository
     {
         return $this->createQueryBuilder('service')
               ->select('service.id', 'service.title', 'service.createdBy', 'service.createdAt', 'service.updatedAt', 'service.description', 'service.type',
-              'service.image', 'service.city', 'service.country', 'service.price', 'userProfile.userName', 'userProfile.image as userImage')
+              'service.categoryID', 'category.name as categoryName', 'service.image', 'service.city', 'service.country', 'service.price', 'userProfile.userName', 'userProfile.image as userImage')
 
               ->leftJoin(
                 UserProfileEntity::class,
                 'userProfile',
                 Join::WITH,
                 'userProfile.userID = service.createdBy'
+                )
+
+                ->leftJoin(
+                    CategoryEntity::class,
+                    'category',
+                    Join::WITH,
+                    'category.id = service.categoryID'
                 )
 
               ->getQuery()
@@ -62,7 +77,7 @@ class ServicesEntityRepository extends ServiceEntityRepository
     {
         return $this->createQueryBuilder('service')
             ->select('service.id', 'service.title', 'service.createdBy', 'service.createdAt', 'service.updatedAt', 'service.description', 'service.type',
-            'service.image', 'service.city', 'service.country', 'service.price', 'userProfile.userName', 'userProfile.image as userImage')
+            'service.categoryID', 'category.name as categoryName', 'service.image', 'service.city', 'service.country', 'service.price', 'userProfile.userName', 'userProfile.image as userImage')
 
             ->andWhere('service.createdBy = :createdBy')
             ->setParameter('createdBy', $createdBy)
@@ -74,6 +89,13 @@ class ServicesEntityRepository extends ServiceEntityRepository
                 'userProfile.userID = service.createdBy'
             )
 
+            ->leftJoin(
+                CategoryEntity::class,
+                'category',
+                Join::WITH,
+                'category.id = service.categoryID'
+            )
+
             ->getQuery()
             ->getArrayResult();
     }
@@ -82,7 +104,7 @@ class ServicesEntityRepository extends ServiceEntityRepository
     {
         return $this->createQueryBuilder('service')
             ->select('service.id', 'service.title', 'service.createdBy', 'service.createdAt', 'service.updatedAt', 'service.description', 'service.type',
-            'service.image', 'userProfile.userName', 'userProfile.image as userImage')
+            'service.categoryID', 'category.name as categoryName', 'service.image', 'service.city', 'service.country', 'service.price', 'userProfile.userName', 'userProfile.image as userImage')
 
             ->andWhere('service.title LIKE :query')
             ->setParameter('query', '%'.$query.'%')
@@ -92,6 +114,13 @@ class ServicesEntityRepository extends ServiceEntityRepository
                 'userProfile',
                 Join::WITH,
                 'userProfile.userID = service.createdBy'
+            )
+
+            ->leftJoin(
+                CategoryEntity::class,
+                'category',
+                Join::WITH,
+                'category.id = service.categoryID'
             )
 
             ->orderBy('service.id')
@@ -104,7 +133,7 @@ class ServicesEntityRepository extends ServiceEntityRepository
     {
         return $this->createQueryBuilder('service')
             ->select('service.id', 'service.title', 'service.createdBy', 'service.createdAt', 'service.updatedAt', 'service.description', 'service.type',
-            'service.image', 'userProfile.userName', 'userProfile.image as userImage')
+            'service.categoryID', 'category.name as categoryName', 'service.image', 'service.city', 'service.country', 'service.price', 'userProfile.userName', 'userProfile.image as userImage')
 
             ->andWhere('service.id = :id')
             ->andWhere('service.createdBy = :userID')
@@ -119,15 +148,22 @@ class ServicesEntityRepository extends ServiceEntityRepository
                 'userProfile.userID = service.createdBy'
             )
 
+            ->leftJoin(
+                CategoryEntity::class,
+                'category',
+                Join::WITH,
+                'category.id = service.categoryID'
+            )
+
             ->getQuery()
             ->getResult();
     }
 
-    public function getServicesByType($type)
+    public function getServicesByCategoryID($categoryID)
     {
         return $this->createQueryBuilder('service')
             ->select('service.id', 'service.title', 'service.createdBy', 'service.createdAt', 'service.updatedAt', 'service.description', 'service.type',
-             'service.image', 'service.city', 'service.country', 'service.price', 'userProfile.userName', 'userProfile.image as userImage')
+            'service.image', 'service.city', 'service.country', 'service.price', 'userProfile.userName', 'userProfile.image as userImage')
 
             ->leftJoin(
                 UserProfileEntity::class,
@@ -136,8 +172,8 @@ class ServicesEntityRepository extends ServiceEntityRepository
                 'userProfile.userID = service.createdBy'
             )
 
-            ->andWhere('service.type = :type')
-            ->setParameter('type', $type)
+            ->andWhere('service.categoryID = :categoryID')
+            ->setParameter('categoryID', $categoryID)
 
             ->getQuery()
             ->getResult();
@@ -147,13 +183,20 @@ class ServicesEntityRepository extends ServiceEntityRepository
     {
         return $this->createQueryBuilder('service')
             ->select('service.id', 'service.title', 'service.createdBy', 'service.createdAt', 'service.updatedAt', 'service.description', 'service.type',
-             'service.image', 'service.city', 'service.country', 'service.price', 'userProfile.userName', 'userProfile.image as userImage')
+            'service.categoryID', 'category.name as categoryName', 'service.image', 'service.city', 'service.country', 'service.price', 'userProfile.userName', 'userProfile.image as userImage')
 
             ->leftJoin(
                 UserProfileEntity::class,
                 'userProfile',
                 Join::WITH,
                 'userProfile.userID = service.createdBy'
+            )
+
+            ->leftJoin(
+                CategoryEntity::class,
+                'category',
+                Join::WITH,
+                'category.id = service.categoryID'
             )
 
             ->andWhere('service.city = :city')
@@ -167,13 +210,20 @@ class ServicesEntityRepository extends ServiceEntityRepository
     {
         return $this->createQueryBuilder('service')
             ->select('service.id', 'service.title', 'service.createdBy', 'service.createdAt', 'service.updatedAt', 'service.description', 'service.type',
-             'service.image', 'service.city', 'service.country', 'service.price', 'userProfile.userName', 'userProfile.image as userImage')
+            'service.categoryID', 'category.name as categoryName', 'service.image', 'service.city', 'service.country', 'service.price', 'userProfile.userName', 'userProfile.image as userImage')
 
             ->leftJoin(
                 UserProfileEntity::class,
                 'userProfile',
                 Join::WITH,
                 'userProfile.userID = service.createdBy'
+            )
+
+            ->leftJoin(
+                CategoryEntity::class,
+                'category',
+                Join::WITH,
+                'category.id = service.categoryID'
             )
 
             ->andWhere('service.price = :price')
@@ -187,13 +237,20 @@ class ServicesEntityRepository extends ServiceEntityRepository
     {
         return $this->createQueryBuilder('service')
             ->select('service.id', 'service.title', 'service.createdBy', 'service.createdAt', 'service.updatedAt', 'service.description', 'service.type',
-             'service.image', 'service.city', 'service.country', 'service.price', 'userProfile.userName', 'userProfile.image as userImage')
+            'service.categoryID', 'category.name as categoryName', 'service.image', 'service.city', 'service.country', 'service.price', 'userProfile.userName', 'userProfile.image as userImage')
 
             ->leftJoin(
                 UserProfileEntity::class,
                 'userProfile',
                 Join::WITH,
                 'userProfile.userID = service.createdBy'
+            )
+
+            ->leftJoin(
+                CategoryEntity::class,
+                'category',
+                Join::WITH,
+                'category.id = service.categoryID'
             )
 
             ->andWhere('service.city = :city')
@@ -210,13 +267,20 @@ class ServicesEntityRepository extends ServiceEntityRepository
     {
         return $this->createQueryBuilder('service')
             ->select('service.id', 'service.title', 'service.createdBy', 'service.createdAt', 'service.updatedAt', 'service.description', 'service.type',
-             'service.image', 'service.city', 'service.country', 'service.price', 'userProfile.userName', 'userProfile.image as userImage')
+            'service.categoryID', 'category.name as categoryName', 'service.image', 'service.city', 'service.country', 'service.price', 'userProfile.userName', 'userProfile.image as userImage')
 
             ->leftJoin(
                 UserProfileEntity::class,
                 'userProfile',
                 Join::WITH,
                 'userProfile.userID = service.createdBy'
+            )
+
+            ->leftJoin(
+                CategoryEntity::class,
+                'category',
+                Join::WITH,
+                'category.id = service.categoryID'
             )
 
             ->andWhere('service.price >= :price1')
@@ -233,13 +297,20 @@ class ServicesEntityRepository extends ServiceEntityRepository
     {
         return $this->createQueryBuilder('service')
             ->select('service.id', 'service.title', 'service.createdBy', 'service.createdAt', 'service.updatedAt', 'service.description', 'service.type',
-             'service.image', 'service.city', 'service.country', 'service.price', 'userProfile.userName', 'userProfile.image as userImage')
+            'service.categoryID', 'category.name as categoryName', 'service.image', 'service.city', 'service.country', 'service.price', 'userProfile.userName', 'userProfile.image as userImage')
 
             ->leftJoin(
                 UserProfileEntity::class,
                 'userProfile',
                 Join::WITH,
                 'userProfile.userID = service.createdBy'
+            )
+
+            ->leftJoin(
+                CategoryEntity::class,
+                'category',
+                Join::WITH,
+                'category.id = service.categoryID'
             )
 
             ->andWhere('service.price >= :price1')

@@ -159,11 +159,11 @@ class ServicesService
         return  $this->autoMapping->map(ServicesEntity::class, ServiceGetByIdResponse::class, $serviceResult);
     }
 
-    public function getServicesByType($type)
+    public function getServicesByCategoryID($categoryID)
     {
         $response = [];
 
-        $results = $this->servicesManager->getServicesByType($type);
+        $results = $this->servicesManager->getServicesByCategoryID($categoryID);
 
         foreach ($results as $result)
         {

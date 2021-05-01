@@ -22,6 +22,8 @@ class ServiceCreateRequest
 
     private $price;
 
+    private $categoryID;
+
     public function setCreatedBy($createdBy)
     {
         $this->createdBy = $createdBy;
