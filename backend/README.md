@@ -38,6 +38,7 @@ php bin/console doctrine:migration:migrate
 * [Image](#image)
 * [Report](#report)
 * [Comment](#comment)
+* [Category](#category)
 * [Services](#services)
 
 ### Main
@@ -350,6 +351,33 @@ methods: DELETE
 methods: GET
 ```
 
+### Category
+#### Insert new category
+```
+/category
+methods: POST
+```
+#### Get all categories
+```
+/categories
+methods: GET
+```
+#### Get category by ID
+```
+/category/{id}
+methods: GET
+```
+#### Update existing category
+```
+/category
+methods: PUT
+```
+#### Delete existing category by ID
+```
+/category/{id}
+methods: DELETE
+```
+
 ### Services
 #### Insert new service
 ```
@@ -371,9 +399,9 @@ methods: GET
 /services
 methods: GET
 ```
-#### Get services according to specific type
+#### Get services by category
 ```
-/filterservices/{type}
+/servicesbycategory/{categoryID}
 methods: GET
 ```
 #### Update existing service
