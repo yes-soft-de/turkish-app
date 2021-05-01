@@ -115,9 +115,13 @@ class AddCarScreenState extends State<AddCarScreen> {
     });
     return Scaffold(
       appBar: AppBar(
+        iconTheme: IconThemeData(color: Colors.white),
         elevation: 0,
         backgroundColor: ProjectColors.THEME_COLOR,
-        title: Text(S.of(context).details),
+        title: Text(
+          S.of(context).details,
+          style: TextStyle(color: Colors.white),
+        ),
       ),
       body: SafeArea(
         child: currentState.getUI(context),

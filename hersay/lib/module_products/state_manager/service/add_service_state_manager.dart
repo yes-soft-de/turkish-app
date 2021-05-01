@@ -44,7 +44,7 @@ class AddServiceStateManager {
             image: image))
         .then((newProduct) {
       if (newProduct) {
-        _stateSubject.add(AddServiceSuccessState(screenState));
+        _stateSubject.add(AddServiceSuccessState(screenState,'updated'));
       } else {
         _stateSubject
             .add(AddServiceErrorState('Error updating Order', screenState));

@@ -17,7 +17,6 @@ class RegisterStateInit extends RegisterState {
     return Column(
       children: [
         EmailPasswordRegisterForm(
-//                  loading: loading,
           onRegisterRequest: (email, password, name) {
             screen.registerByEmail(
               email,
@@ -26,36 +25,6 @@ class RegisterStateInit extends RegisterState {
             );
           },
         ),
-//        Expanded(
-//            child: PageView(
-//              controller: registerTypeController,
-//              onPageChanged: (pos) {
-//                userType = UserRole.values[pos];
-//              },
-//              children: [
-//                PhoneLoginWidget(
-//                  codeSent: false,
-//                  loading: loading,
-//                  onLoginRequested: (phone) {
-//                    loading = true;
-//                    screen.registerByPhoneNumber(phone);
-//                  },
-//                  onConfirm: (confirmCode) {
-//                    screen.confirmSMS(confirmCode);
-//                  },
-//                ),
-//                EmailPasswordRegisterForm(
-////                  loading: loading,
-//                  onRegisterRequest: (email, password, name) {
-//                    screen.registerByEmail(
-//                      email,
-//                      email,
-//                      password,
-//                    );
-//                  },
-//                ),
-//              ],
-//            )),
       ],
     );
   }

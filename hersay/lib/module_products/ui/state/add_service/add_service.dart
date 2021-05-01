@@ -254,7 +254,7 @@ class AddServiceStateInit extends AddServiceState {
                                 _titleController.text.trim(),
                                 _typeController.text.trim(),
                                 _descriptionController.text.trim(),
-                                mainImage ?? service.image);
+                                mainImage ?? service.image??'');
                           } else {
                             screenState.addNewService(
                               _titleController.text.trim(),
@@ -296,7 +296,8 @@ class AddServiceStateInit extends AddServiceState {
 }
 
 class AddServiceSuccessState extends AddServiceState {
-  AddServiceSuccessState(AddServiceScreenState screenState)
+  final String message;
+  AddServiceSuccessState(AddServiceScreenState screenState,[this.message])
       : super(screenState);
 
   @override
@@ -313,7 +314,7 @@ class AddServiceSuccessState extends AddServiceState {
               child: Container(
                 width: 250,
                 child: Text(
-                  S.of(context).yourRequestHasBeenAddedAndInHoldForAdmin,
+                  message != null ?S.of(context).updatedSuccessfully :S.of(context).yourRequestHasBeenAddedAndInHoldForAdmin,
                   textAlign: TextAlign.center,
                   style: TextStyle(color: Colors.white),
                 ),

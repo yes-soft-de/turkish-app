@@ -1,3 +1,4 @@
+import 'package:hersay/consts/urls.dart';
 import 'package:hersay/module_products/manager/real_estate/real_estate.manager.dart';
 import 'package:hersay/module_products/model/real_estate/real_estate_model.dart';
 import 'package:hersay/module_products/request/comment/comment_request.dart';
@@ -89,9 +90,12 @@ class RealEstateService {
       RealEstateRequest request, var otherImages) async {
     String uploadedImageUrl = request.image;
     if (!uploadedImageUrl.contains('http')) {
-      uploadedImageUrl = (request.image != null)
+      uploadedImageUrl = (request.image.isNotEmpty)
           ? await _imageUploadService.uploadImage(request.image)
           : '';
+    } else {
+      List image = request.image.split('/${Urls.UPLOAD}/');
+      uploadedImageUrl = image[1];
     }
 
     var realEstateRequest = RealEstateRequest(

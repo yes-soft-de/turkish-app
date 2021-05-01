@@ -54,7 +54,7 @@ class CarRepository {
 
     if (response == null) return null;
 
-    return response['status_code'] == '204' ? response['Data']['id'] : null;
+    return response['status_code'] == '204' ? response['Data']['id']?? 1 : null;
   }
 
   Future placeComment(CommentRequest request) async {

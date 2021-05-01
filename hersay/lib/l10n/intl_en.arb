@@ -254,5 +254,9 @@
   "yourReportWasSentToTheAdmin": "your report was sent to the Admin",
   "date": "Date",
   "commentHint": "place your comment here",
-  "title":"Title"
+  "title":"Title",
+  "updatedSuccessfully":"Item has been updated successfully",
+  "pleaseLogin":"Please Login to do this action",
+  "services":"Services"
+  
 }

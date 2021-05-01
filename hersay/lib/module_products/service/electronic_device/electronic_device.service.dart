@@ -1,3 +1,4 @@
+import 'package:hersay/consts/urls.dart';
 import 'package:hersay/module_products/manager/electronic_device/electronic_device.manager.dart';
 import 'package:hersay/module_products/model/electronic_device/electronic_device_model.dart';
 import 'package:hersay/module_products/request/comment/comment_request.dart';
@@ -90,9 +91,12 @@ class ElectronicDeviceService {
       ElectronicDeviceRequest request, otherImages) async {
     String uploadedImageUrl = request.image;
     if (!uploadedImageUrl.contains('http')) {
-      uploadedImageUrl = (request.image != null)
+      uploadedImageUrl = (request.image.isNotEmpty)
           ? await _imageUploadService.uploadImage(request.image)
           : '';
+    } else {
+      List image = request.image.split('/${Urls.UPLOAD}/');
+      uploadedImageUrl = image[1];
     }
 
     var electronicRequest = ElectronicDeviceRequest(
@@ -110,7 +114,6 @@ class ElectronicDeviceService {
     int result = await _manager.updateElectronicDevice(electronicRequest);
 
     if (result != null) await _uploadOtherImages(otherImages, result);
-    print(result);
     return result != null;
   }
 

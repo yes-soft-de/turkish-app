@@ -454,24 +454,23 @@ class AddRealEstateStateInit extends AddRealEstateState {
                                 _selectedHouseType,
                                 _realEstateTypeController.text.trim(),
                                 'not sold',
-                                mainImage,
+                                mainImage ?? realEstate.image ?? '',
                                 otherImages);
                           } else {
-                              screenState.addNewRealEstate(
-                            _countryController.text.trim(),
-                            _cityController.text.trim(),
-                            _spaceController.text.trim(),
-                            int.parse(_priceController.text.trim()),
-                            _descriptionController.text.trim(),
-                            _floorNumbersController.text.trim(),
-                            _selectedHouseType,
-                            _realEstateTypeController.text.trim(),
-                            'not sold',
-                            mainImage,
-                            otherImages,
-                          );
+                            screenState.addNewRealEstate(
+                              _countryController.text.trim(),
+                              _cityController.text.trim(),
+                              _spaceController.text.trim(),
+                              int.parse(_priceController.text.trim()),
+                              _descriptionController.text.trim(),
+                              _floorNumbersController.text.trim(),
+                              _selectedHouseType,
+                              _realEstateTypeController.text.trim(),
+                              'not sold',
+                              mainImage,
+                              otherImages,
+                            );
                           }
-                        
                         }
                       },
                       //TODO : change this using theme service
@@ -505,7 +504,8 @@ class AddRealEstateStateInit extends AddRealEstateState {
 }
 
 class AddRealEstateSuccessState extends AddRealEstateState {
-  AddRealEstateSuccessState(AddRealEstateScreenState screenState)
+  final String message;
+  AddRealEstateSuccessState(AddRealEstateScreenState screenState,[this.message])
       : super(screenState);
 
   @override
@@ -522,7 +522,7 @@ class AddRealEstateSuccessState extends AddRealEstateState {
               child: Container(
                 width: 250,
                 child: Text(
-                  S.of(context).yourRequestHasBeenAddedAndInHoldForAdmin,
+                  message!=null ? S.of(context).updatedSuccessfully : S.of(context).yourRequestHasBeenAddedAndInHoldForAdmin,
                   textAlign: TextAlign.center,
                   style: TextStyle(color: Colors.white),
                 ),

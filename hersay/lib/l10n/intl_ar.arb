@@ -222,9 +222,9 @@
   "likesYour": "أعجبه",
   "goBack": "رجوع",
   "descriptio": "الوصف",
-  "car": "car",
-  "realestate": "realEstate",
-  "device": "device",
+  "car": "سيارات",
+  "realestate": "عقارات",
+  "device": "أجهزة إلكتروني",
   "advancedSearch": "بحث متقدم",
   "chooseEntity": "اختر غرض",
   "pleaseGiveUsYourName": "الرجاء أعطنا اسمك",
@@ -253,5 +253,8 @@
   "date":"التاريخ",
   "commintHint":"اكتب تعليقك هنا",
   "title":"العنوان",
+  "updatedSuccessfully":"تم تعديل العنصر بنجاح",
+  "pleaseLogin":"من فضلك قم بتسجيل الدخول للقيام بهذا النشاط",
+  "services":"خدمات"
   
 }

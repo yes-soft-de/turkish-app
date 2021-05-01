@@ -91,7 +91,12 @@ class AddElectronicDeviceScreenState extends State<AddElectronicDeviceScreen> {
       appBar: AppBar(
         elevation: 0,
         backgroundColor: ProjectColors.THEME_COLOR,
-        title: Text(S.of(context).details),
+        iconTheme: IconThemeData(
+          color: Colors.white,
+        ),
+        title: Text(S.of(context).details,style: TextStyle(
+          color: Colors.white,
+        ),),
       ),
       body: SafeArea(
         child: currentState.getUI(context),

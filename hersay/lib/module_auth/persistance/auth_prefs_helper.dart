@@ -1,4 +1,3 @@
-
 import 'package:hersay/module_auth/enumes/auth_source.dart';
 import 'package:hersay/module_auth/exceptions/auth_exception.dart';
 import 'package:inject/inject.dart';
@@ -88,6 +87,7 @@ class AuthPrefsHelper {
     SharedPreferences preferencesHelper = await SharedPreferences.getInstance();
     await preferencesHelper.remove('token');
     await preferencesHelper.remove('token_date');
+    await preferencesHelper.clear();
   }
 
   /// @return String Token String
@@ -111,6 +111,4 @@ class AuthPrefsHelper {
     }
     return DateTime.parse(dateStr);
   }
-
-  
 }

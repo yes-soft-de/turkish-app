@@ -84,7 +84,7 @@ class AddRealEstateStateManager {
             otherImages)
         .then((newProduct) {
       if (newProduct) {
-        _stateSubject.add(AddRealEstateSuccessState(screenState));
+        _stateSubject.add(AddRealEstateSuccessState(screenState,'update'));
       } else {
         _stateSubject
             .add(AddRealEstateErrorState('Error updating Order', screenState));

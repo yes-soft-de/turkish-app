@@ -57,11 +57,9 @@ class LoginStateManager {
       switch (event) {
         case AuthStatus.AUTHORIZED:
           _loginScreenState.moveToNext();
-//          _loginStateSubject.add(LoginStateSuccess(_loginScreenState));
           break;
         default:
           _loginStateSubject.add(LoginStateInit(_loginScreenState));
-
           break;
       }
     }).onError((err) {

@@ -1095,10 +1095,10 @@ class S {
     );
   }
 
-  /// `تعديل`
+  /// `Edit`
   String get edit {
     return Intl.message(
-      'تعديل',
+      'Edit',
       name: 'edit',
       desc: '',
       args: [],
@@ -2570,6 +2570,36 @@ class S {
     return Intl.message(
       'Title',
       name: 'title',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Item has been updated successfully`
+  String get updatedSuccessfully {
+    return Intl.message(
+      'Item has been updated successfully',
+      name: 'updatedSuccessfully',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please Login to do this action`
+  String get pleaseLogin {
+    return Intl.message(
+      'Please Login to do this action',
+      name: 'pleaseLogin',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Services`
+  String get services {
+    return Intl.message(
+      'Services',
+      name: 'services',
       desc: '',
       args: [],
     );

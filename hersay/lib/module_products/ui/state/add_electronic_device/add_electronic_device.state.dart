@@ -32,24 +32,12 @@ class AddElectronicDeviceStateInit extends AddElectronicDeviceState {
   final GlobalKey<FormState> _addDeviceFormKey = GlobalKey<FormState>();
 
   final TextEditingController _brandController = TextEditingController();
-  final TextEditingController _useDurationController = TextEditingController();
-  final TextEditingController _guageController = TextEditingController();
   final TextEditingController _locationController = TextEditingController();
   final TextEditingController _priceController = TextEditingController();
-  final TextEditingController _cpuController = TextEditingController();
   final TextEditingController _cityController = TextEditingController();
-  final TextEditingController _ramController = TextEditingController();
-  final TextEditingController _batteryController = TextEditingController();
   final TextEditingController _countryController = TextEditingController();
   final TextEditingController _descriptionController = TextEditingController();
-
-  List<String> _deviceTypes = [
-    S.current.sellPhone,
-    S.current.laptop,
-    S.current.desktop,
-    S.current.headphone
-  ];
-  String _selectedDeviceType;
+  final TextEditingController _typeController = TextEditingController();
 
   TextEditingController _dateController;
 
@@ -77,7 +65,7 @@ class AddElectronicDeviceStateInit extends AddElectronicDeviceState {
       _priceController.text = device.price;
       _locationController.text = device.location;
       _brandController.text = device.brand;
-      _selectedDeviceType = device.type;
+      _typeController.text = device.type;
       flag = false;
     }
     return SingleChildScrollView(
@@ -91,41 +79,37 @@ class AddElectronicDeviceStateInit extends AddElectronicDeviceState {
             children: [
               //device type
               Card(
-                  elevation: 10,
-                  margin: EdgeInsets.only(top: 20),
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(15)),
-                  child: Container(
-                    width: 400,
-                    padding: EdgeInsets.all(10),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(15),
-                      color: Colors.black12,
+                elevation: 10,
+                margin: EdgeInsets.only(top: 20),
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(15)),
+                child: Container(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(15),
+                    color: Colors.black12,
+                  ),
+                  child: TextFormField(
+                    controller: _typeController,
+                    decoration: InputDecoration(
+                      prefixIcon: Icon(Icons.phone_android),
+                      border: OutlineInputBorder(
+                        borderSide: BorderSide.none,
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                      labelText: S.of(context).deviceType,
                     ),
-                    child: DropdownButtonHideUnderline(
-                      child: DropdownButton(
-                          hint: _selectedDeviceType == null
-                              ? Text(
-                                  S.of(context).deviceType,
-                                  style: TextStyle(color: Colors.grey),
-                                )
-                              : Text(
-                                  '$_selectedDeviceType',
-                                  style: TextStyle(color: Colors.grey),
-                                ),
-                          items: _deviceTypes.map((String place) {
-                            return new DropdownMenuItem<String>(
-                              value: place.toString(),
-                              child: new Text(place),
-                            );
-                          }).toList(),
-                          onChanged: (value) {
-                            _selectedDeviceType = _deviceTypes.firstWhere(
-                                (element) => element.toString() == value);
-                            screenState.refresh();
-                          }),
-                    ),
-                  )),
+                    textInputAction: TextInputAction.next,
+                    onEditingComplete: () => node.nextFocus(),
+                    // Move focus to next
+                    validator: (result) {
+                      if (result.isEmpty) {
+                        return S.of(context).thisFieldCannotBeEmpty;
+                      }
+                      return null;
+                    },
+                  ),
+                ),
+              ),
               // Brand
               Card(
                 elevation: 10,
@@ -412,11 +396,11 @@ class AddElectronicDeviceStateInit extends AddElectronicDeviceState {
                                 device.id,
                                 _countryController.text.trim(),
                                 _brandController.text.trim(),
-                                _selectedDeviceType,
+                                _typeController.text.trim(),
                                 int.parse(_priceController.text.trim()),
                                 _descriptionController.text.trim(),
                                 _cityController.text.trim(),
-                                mainImage??device.image,
+                                mainImage ?? device.image ?? '',
                                 'not sold',
                                 'Unaccepted',
                                 otherImages);
@@ -424,7 +408,7 @@ class AddElectronicDeviceStateInit extends AddElectronicDeviceState {
                             screenState.addNewElectronicDevice(
                                 _countryController.text.trim(),
                                 _brandController.text.trim(),
-                                _selectedDeviceType,
+                                _typeController.text.trim(),
                                 int.parse(_priceController.text.trim()),
                                 _descriptionController.text.trim(),
                                 _cityController.text.trim(),
@@ -466,7 +450,9 @@ class AddElectronicDeviceStateInit extends AddElectronicDeviceState {
 }
 
 class AddElectronicDeviceSuccessState extends AddElectronicDeviceState {
-  AddElectronicDeviceSuccessState(AddElectronicDeviceScreenState screenState)
+  final message;
+  AddElectronicDeviceSuccessState(AddElectronicDeviceScreenState screenState,
+      [this.message])
       : super(screenState);
 
   @override
@@ -483,7 +469,9 @@ class AddElectronicDeviceSuccessState extends AddElectronicDeviceState {
               child: Container(
                 width: 250,
                 child: Text(
-                  S.of(context).yourRequestHasBeenAddedAndInHoldForAdmin,
+                  message != null
+                      ? S.of(context).updatedSuccessfully
+                      : S.of(context).yourRequestHasBeenAddedAndInHoldForAdmin,
                   textAlign: TextAlign.center,
                   style: TextStyle(color: Colors.white),
                 ),

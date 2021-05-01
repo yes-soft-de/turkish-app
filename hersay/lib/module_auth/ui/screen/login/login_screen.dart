@@ -20,8 +20,6 @@ class LoginScreen extends StatefulWidget {
 }
 
 class LoginScreenState extends State<LoginScreen> {
-
-
   LoginState _currentState;
 
   StreamSubscription _stateSubscription;
@@ -49,7 +47,7 @@ class LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     RouteHelper route = ModalRoute.of(context).settings.arguments;
-    if(route != null) {
+    if (route != null) {
       redirectTo = route.redirectTo;
       if (route.additionalData != null) itemId = route.additionalData;
     }
@@ -69,18 +67,9 @@ class LoginScreenState extends State<LoginScreen> {
 
   void moveToNext() {
     (itemId == null)
-        ? Navigator.pushNamed(
-        context,
-        redirectTo
-    )
-        : Navigator.pushNamed(
-        context,
-        redirectTo,
-        arguments: itemId
-    )
-    ;
+        ? Navigator.pushNamed(context, redirectTo)
+        : Navigator.pushNamed(context, redirectTo, arguments: itemId);
   }
-
 
   void login(String email, String password) {
     widget._stateManager.login(email, password, this);

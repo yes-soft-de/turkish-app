@@ -1,3 +1,4 @@
+import 'package:hersay/consts/urls.dart';
 import 'package:hersay/module_products/manager/car/car.manager.dart';
 import 'package:hersay/module_products/model/car/car_model.dart';
 import 'package:hersay/module_products/request/car/car_request.dart';
@@ -11,7 +12,6 @@ import 'package:intl/intl.dart';
 class CarService {
   final CarManager _manager;
   final ImageUploadService _imageUploadService;
-
   CarService(
     this._manager,
     this._imageUploadService,
@@ -93,9 +93,12 @@ class CarService {
   Future<bool> updateCar(CarRequest request, List<String> otherImages) async {
     String uploadedImageUrl = request.image;
     if (!uploadedImageUrl.contains('http')) {
-      uploadedImageUrl = (request.image != null)
+      uploadedImageUrl = (request.image.isNotEmpty)
           ? await _imageUploadService.uploadImage(request.image)
           : '';
+    } else {
+      List image = request.image.split('/${Urls.UPLOAD}/');
+      uploadedImageUrl = image[1];
     }
 
     var carRequest = CarRequest(
@@ -114,7 +117,8 @@ class CarService {
     );
     int result = await _manager.updateCar(carRequest);
 
-    if (result != null && otherImages != null ) await _uploadOtherImages(otherImages, result);
+    if (result != null && otherImages != null)
+      await _uploadOtherImages(otherImages, result);
 
     return result != null;
   }

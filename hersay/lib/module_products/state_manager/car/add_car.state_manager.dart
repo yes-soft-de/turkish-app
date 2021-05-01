@@ -58,22 +58,26 @@ class AddCarStateManager {
       List<String> otherImages,
       AddCarScreenState screenState) {
     _stateSubject.add(AddCarStateLoading(screenState));
-    _service.updateCar(CarRequest(
-      id: id,
-      price:price,
-      description: description,
-      distance: distance,
-      carType: carType,
-      gearType: gearType,
-      location: location,
-      yearOfRelease: yearOfRelease,
-      image: image,
-      country: country,
-      city: city,
-      status: status,
-    ), otherImages).then((newProduct) {
+    _service
+        .updateCar(
+            CarRequest(
+              id: id,
+              price: price,
+              description: description,
+              distance: distance,
+              carType: carType,
+              gearType: gearType,
+              location: location,
+              yearOfRelease: yearOfRelease,
+              image: image,
+              country: country,
+              city: city,
+              status: status,
+            ),
+            otherImages)
+        .then((newProduct) {
       if (newProduct) {
-        _stateSubject.add(AddCarSuccessState(screenState));
+        _stateSubject.add(AddCarSuccessState(screenState,'updated'));
       } else {
         _stateSubject
             .add(AddCarErrorState('Error updating Order', screenState));

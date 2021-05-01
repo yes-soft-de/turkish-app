@@ -1,3 +1,4 @@
+import 'package:hersay/consts/urls.dart';
 import 'package:hersay/module_products/manager/service/service_manager.dart';
 import 'package:hersay/module_products/model/service/service.dart';
 import 'package:hersay/module_products/request/comment/comment_request.dart';
@@ -35,11 +36,14 @@ class ServiceService {
   }
 
   Future<bool> updateService(ServiceRequest request) async {
-    String uploadedImageUrl = request.image;
+     String uploadedImageUrl = request.image;
     if (!uploadedImageUrl.contains('http')) {
-       uploadedImageUrl = (request.image != null)
+      uploadedImageUrl = (request.image.isNotEmpty)
           ? await _imageUploadService.uploadImage(request.image)
           : '';
+    } else {
+      List image = request.image.split('/${Urls.UPLOAD}/');
+      uploadedImageUrl = image[1];
     }
 
     var serviceRequest = ServiceRequest(

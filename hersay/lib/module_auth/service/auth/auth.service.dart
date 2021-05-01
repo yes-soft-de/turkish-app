@@ -35,7 +35,6 @@ class AuthService {
 
   Future<String> get userID => _prefsHelper.getUserId();
 
-
   Stream<AuthStatus> get authListener => _authSubject.stream;
 
   Future<void> _loginApiUser(AppUser user) async {
@@ -60,7 +59,7 @@ class AuthService {
     _authSubject.add(AuthStatus.AUTHORIZED);
   }
 
-  Future<void> _registerApiUser(AppUser user,String name) async {
+  Future<void> _registerApiUser(AppUser user, String name) async {
     try {
       await _authManager.register(RegisterRequest(
         userID: user.credential.user.email ?? user.credential.user.uid,
@@ -69,20 +68,22 @@ class AuthService {
 
       await _loginApiUser(user);
       String token = await getToken();
-      await createProfile(name, token);
+      bool created = await createProfile(name, token);
+      if (created) {
+        await _prefsHelper.setUsername(name);
+      }
     } catch (e) {
       // Failed Register Attempt means the process has stopped at some point
       Logger().info('AuthService', 'User Already Exists');
     }
-    await _loginApiUser(user);
   }
 
-  void verifyWithPhone(String phone ) {
+  void verifyWithPhone(String phone) {
     _auth.verifyPhoneNumber(
         phoneNumber: phone,
         verificationCompleted: (authCredentials) {
           _auth.signInWithCredential(authCredentials).then((credential) {
-            _registerApiUser(AppUser(credential, AuthSource.PHONE ),'');
+            _registerApiUser(AppUser(credential, AuthSource.PHONE), '');
           });
         },
         verificationFailed: (err) {
@@ -97,7 +98,7 @@ class AuthService {
         });
   }
 
-  Future<void> verifyWithGoogle( ) async {
+  Future<void> verifyWithGoogle() async {
     // Trigger the authentication flow
     try {
       final GoogleSignInAccount googleUser = await GoogleSignIn(
@@ -109,7 +110,7 @@ class AuthService {
       Logger().info('AuthStateManager', 'Got Google User');
       // Obtain the auth details from the request
       final GoogleSignInAuthentication googleAuth =
-      await googleUser.authentication;
+          await googleUser.authentication;
 
       // Create a new credential
       final GoogleAuthCredential credential = GoogleAuthProvider.credential(
@@ -119,26 +120,25 @@ class AuthService {
 
       // Once signed in, return the UserCredential
       var userCredential =
-      await FirebaseAuth.instance.signInWithCredential(credential);
-      await _registerApiUser(AppUser(userCredential, AuthSource.PHONE ),'');
+          await FirebaseAuth.instance.signInWithCredential(credential);
+      await _registerApiUser(AppUser(userCredential, AuthSource.PHONE), '');
     } catch (e) {
       Logger().error('AuthStateManager', e.toString());
     }
   }
 
-  Future<void> verifyWithApple( ) async {
+  Future<void> verifyWithApple() async {
     var oauthCred = await _createAppleOAuthCred();
     UserCredential userCredential =
-    await FirebaseAuth.instance.signInWithCredential(oauthCred);
-    await _registerApiUser(AppUser(userCredential, AuthSource.APPLE ),'');
+        await FirebaseAuth.instance.signInWithCredential(oauthCred);
+    await _registerApiUser(AppUser(userCredential, AuthSource.APPLE), '');
   }
 
-  Future<void> signInWithEmailAndPassword(
-      String email, String password ) async {
+  Future<void> signInWithEmailAndPassword(String email, String password) async {
     try {
       var userCredential = await _auth.signInWithEmailAndPassword(
           email: email, password: password);
-      await _loginApiUser(AppUser(userCredential, AuthSource.EMAIL ));
+      await _loginApiUser(AppUser(userCredential, AuthSource.EMAIL));
     } catch (e) {
       if (e is FirebaseAuthException) {
         FirebaseAuthException x = e;
@@ -155,36 +155,36 @@ class AuthService {
   /// 1. Create a Firebase User
   /// 2. Create an API User
   void registerWithEmailAndPassword(
-      String email, String password, String name ) {
+      String email, String password, String name) {
     _auth
         .createUserWithEmailAndPassword(email: email, password: password)
-        .then((value)async {
+        .then((value) async {
       var userCredential = await _auth.signInWithEmailAndPassword(
           email: email, password: password);
 
-      _registerApiUser(AppUser(userCredential,AuthSource.EMAIL),name );
-
+      _registerApiUser(AppUser(userCredential, AuthSource.EMAIL), name);
     }).catchError((err) {
       if (err is FirebaseAuthException) {
         FirebaseAuthException x = err;
         Logger().info('AuthService', 'Got Authorization Error: ${x.message}');
         _authSubject.addError(UnauthorizedException(x.message));
       } else {
-        _authSubject.addError(UnauthorizedException('Error: ${err.toString()}'));
+        _authSubject
+            .addError(UnauthorizedException('Error: ${err.toString()}'));
       }
     });
   }
 
   /// This confirms Phone Number
   /// @return void
-  void confirmWithCode(String code ) {
+  void confirmWithCode(String code) {
     AuthCredential authCredential = PhoneAuthProvider.credential(
       verificationId: _verificationCode,
       smsCode: code,
     );
 
     _auth.signInWithCredential(authCredential).then((credential) {
-      _registerApiUser(AppUser(credential, AuthSource.PHONE ),'');
+      _registerApiUser(AppUser(credential, AuthSource.PHONE), '');
     }).catchError((err) {
       if (err is FirebaseAuthException) {
         FirebaseAuthException x = err;
@@ -195,14 +195,12 @@ class AuthService {
     });
   }
 
-
   Future<String> getToken() async {
     try {
       bool isLoggedIn = await this.isLoggedIn;
       var tokenDate = await this._prefsHelper.getTokenDate();
       var diff = DateTime.now().difference(tokenDate).inMinutes;
       if (isLoggedIn) {
-
         if (diff.abs() < 30) {
           return _prefsHelper.getToken();
         }
@@ -214,6 +212,7 @@ class AuthService {
     }
     return null;
   }
+
   /// @return cached token
   /// @throw UnauthorizedException
   /// @throw TokenExpiredException
@@ -252,24 +251,24 @@ class AuthService {
     final nonce = _createNonce(32);
     final nativeAppleCred = Platform.isIOS
         ? await SignInWithApple.getAppleIDCredential(
-      scopes: [
-        AppleIDAuthorizationScopes.email,
-        AppleIDAuthorizationScopes.fullName,
-      ],
-      nonce: sha256.convert(utf8.encode(nonce)).toString(),
-    )
+            scopes: [
+              AppleIDAuthorizationScopes.email,
+              AppleIDAuthorizationScopes.fullName,
+            ],
+            nonce: sha256.convert(utf8.encode(nonce)).toString(),
+          )
         : await SignInWithApple.getAppleIDCredential(
-      scopes: [
-        AppleIDAuthorizationScopes.email,
-        AppleIDAuthorizationScopes.fullName,
-      ],
-      webAuthenticationOptions: WebAuthenticationOptions(
-        redirectUri: Uri.parse(
-            'https://your-project-name.firebaseapp.com/__/auth/handler'),
-        clientId: 'your.app.bundle.name',
-      ),
-      nonce: sha256.convert(utf8.encode(nonce)).toString(),
-    );
+            scopes: [
+              AppleIDAuthorizationScopes.email,
+              AppleIDAuthorizationScopes.fullName,
+            ],
+            webAuthenticationOptions: WebAuthenticationOptions(
+              redirectUri: Uri.parse(
+                  'https://your-project-name.firebaseapp.com/__/auth/handler'),
+              clientId: 'your.app.bundle.name',
+            ),
+            nonce: sha256.convert(utf8.encode(nonce)).toString(),
+          );
 
     return new OAuthCredential(
       providerId: 'apple.com',
@@ -312,7 +311,7 @@ class AuthService {
     await _prefsHelper.deleteToken();
   }
 
-  Future<bool> createProfile(String userName,String token) async{
-    return  await _authManager.createProfile(userName, token);
+  Future<bool> createProfile(String userName, String token) async {
+    return await _authManager.createProfile(userName, token);
   }
 }

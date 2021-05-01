@@ -31,25 +31,15 @@ class AddCarStateInit extends AddCarState {
   final GlobalKey<FormState> _addCarFormKey = GlobalKey<FormState>();
 
   final TextEditingController _carTypeController = TextEditingController();
-  final TextEditingController _brandController = TextEditingController();
   final TextEditingController _mileagesController = TextEditingController();
-  final TextEditingController _ccController = TextEditingController();
   final TextEditingController _locationController = TextEditingController();
   final TextEditingController _priceController = TextEditingController();
   final TextEditingController _cityController = TextEditingController();
-  final TextEditingController _engineController = TextEditingController();
-  final TextEditingController _companyController = TextEditingController();
   final TextEditingController _countryController = TextEditingController();
   final TextEditingController _descriptionController = TextEditingController();
 
   List<String> _gearTypes = [S.current.manual, S.current.automatic];
   String _selectedGearType;
-
-  List<String> _fuelsTypes = [S.current.benzene, S.current.diesel];
-  String _selectedFuelType;
-
-  List<String> _stateTypes = [S.current.accepted, S.current.unAccepted];
-  String _selectedstate;
 
   String mainImage;
   List<String> otherImages = [];
@@ -490,7 +480,7 @@ class AddCarStateInit extends AddCarState {
                                 _selectedGearType,
                                 _locationController.text.trim(),
                                 _dateController.text.trim(),
-                                mainImage,
+                                mainImage??car.image??'',
                                 _countryController.text.trim(),
                                 _cityController.text.trim(),
                                 'not sold',
@@ -543,7 +533,8 @@ class AddCarStateInit extends AddCarState {
 }
 
 class AddCarSuccessState extends AddCarState {
-  AddCarSuccessState(AddCarScreenState screenState) : super(screenState);
+  final message;
+  AddCarSuccessState(AddCarScreenState screenState,[this.message]) : super(screenState);
 
   @override
   Widget getUI(BuildContext context) {
@@ -559,7 +550,7 @@ class AddCarSuccessState extends AddCarState {
               child: Container(
                 width: 250,
                 child: Text(
-                  S.of(context).yourRequestHasBeenAddedAndInHoldForAdmin,
+                  message != null ? S.of(context).updatedSuccessfully:S.of(context).yourRequestHasBeenAddedAndInHoldForAdmin,
                   textAlign: TextAlign.center,
                   style: TextStyle(color: Colors.white),
                 ),

@@ -73,7 +73,7 @@ class AddElectronicDeviceStateManager {
             otherImages)
         .then((newProduct) {
       if (newProduct) {
-        _stateSubject.add(AddElectronicDeviceSuccessState(screenState));
+        _stateSubject.add(AddElectronicDeviceSuccessState(screenState,'update'));
       } else {
         _stateSubject.add(
             AddElectronicDeviceErrorState('Error updating Order', screenState));

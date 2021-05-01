@@ -115,7 +115,12 @@ class AddRealEstateScreenState extends State<AddRealEstateScreen> {
       appBar: AppBar(
         elevation: 0,
         backgroundColor: ProjectColors.THEME_COLOR,
-        title: Text(S.of(context).details),
+        title: Text(S.of(context).details,style: TextStyle(
+          color: Colors.white,
+        ),),
+        iconTheme: IconThemeData(
+          color: Colors.white,
+        ),
       ),
       body: SafeArea(
         child: currentState.getUI(context),

@@ -26,8 +26,14 @@ class AdvancedSearchStateInit extends AdvancedSearchState {
 
   @override
   Widget getUI(BuildContext context) {
-    List<String> _entityTypes = ['car', 'realEstate', 'device'];
+    List<String> _entityTypes = ['car', 'realEstate', 'device', 'service'];
 
+    Map _entityValue = {
+      'car': S.of(context).car,
+      'realEstate': S.of(context).realestate,
+      'device': S.of(context).device,
+      'service': S.of(context).services
+    };
     final GlobalKey<FormState> _searchFormKey = GlobalKey<FormState>();
 
     bool _autoValidate = false;
@@ -72,11 +78,12 @@ class AdvancedSearchStateInit extends AdvancedSearchState {
                           items: _entityTypes.map((String place) {
                             return new DropdownMenuItem<String>(
                               value: place.toString(),
-                              child: new Text(place),
+                              child: new Text(_entityValue[place.toString()]),
                             );
                           }).toList(),
                           onChanged: (value) {
                             _selectedEntityType = value;
+                            print(_selectedEntityType);
                             screenState.refresh();
                           }),
                     ),
@@ -243,7 +250,7 @@ class AdvancedSearchStateInit extends AdvancedSearchState {
 class AdvancedSearchStateDataLoaded extends AdvancedSearchState {
   final List<SearchModel> searchResults;
 
-  List<String> _entityTypes = ['car', 'realEstate', 'device'];
+  List<String> _entityTypes = ['car', 'realEstate', 'device', 'service'];
   String _selectedEntityType;
   final GlobalKey<FormState> _searchFormKey = GlobalKey<FormState>();
 
@@ -259,6 +266,12 @@ class AdvancedSearchStateDataLoaded extends AdvancedSearchState {
   @override
   Widget getUI(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
+    Map _entityValue = {
+      'car': S.of(context).car,
+      'realEstate': S.of(context).realestate,
+      'device': S.of(context).device,
+      'service': S.of(context).services
+    };
 
     return Form(
       key: _searchFormKey,
@@ -298,7 +311,7 @@ class AdvancedSearchStateDataLoaded extends AdvancedSearchState {
                           items: _entityTypes.map((String place) {
                             return new DropdownMenuItem<String>(
                               value: place.toString(),
-                              child: new Text(place),
+                              child: new Text(_entityValue[place.toString()]),
                             );
                           }).toList(),
                           onChanged: (value) {
@@ -489,7 +502,7 @@ class AdvancedSearchStateDataLoaded extends AdvancedSearchState {
                                   ProductsRoutes.REAL_ESTATE_DETAILS_SCREEN,
                                   arguments: searchResults[index].id);
                               break;
-                              case PRODUCT_TYPE.ADVERTISMENT:
+                            case PRODUCT_TYPE.ADVERTISMENT:
                               Navigator.pushNamed(context,
                                   ProductsRoutes.SERVICE_DETAILS_SCREEN,
                                   arguments: searchResults[index].id);

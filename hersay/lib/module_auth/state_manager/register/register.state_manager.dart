@@ -1,4 +1,3 @@
-
 import 'package:hersay/module_auth/enumes/auth_status.dart';
 import 'package:hersay/module_auth/service/auth/auth.service.dart';
 import 'package:hersay/module_auth/ui/screen/register/register_screen.dart';
@@ -15,7 +14,7 @@ import 'package:rxdart/rxdart.dart';
 class RegisterStateManager {
   final AuthService _authService;
   final PublishSubject<RegisterState> _registerStateSubject =
-  PublishSubject<RegisterState>();
+      PublishSubject<RegisterState>();
 
   RegisterStateManager(this._authService);
 
@@ -45,18 +44,16 @@ class RegisterStateManager {
           .add(RegisterStateError(_registerScreenState, err.toString()));
     });
 
-    _authService.verifyWithPhone(phoneNumber );
+    _authService.verifyWithPhone(phoneNumber);
   }
 
   void registerByEmail(String email, String name, String password,
       RegisterScreenState _registerScreenState) {
-
     _registerStateSubject.add(RegisterStateLoading(_registerScreenState));
     _authService.authListener.listen((event) {
       switch (event) {
         case AuthStatus.AUTHORIZED:
           _registerScreenState.moveToNext();
-//          _registerStateSubject.add(RegisterStateSuccess(_registerScreenState));
           break;
         default:
           _registerStateSubject.add(RegisterStateInit(_registerScreenState));
@@ -67,11 +64,10 @@ class RegisterStateManager {
           .add(RegisterStateError(_registerScreenState, err.toString()));
     });
 
-    _authService.registerWithEmailAndPassword(
-        email, password, name );
+    _authService.registerWithEmailAndPassword(email, password, name);
   }
 
   void confirmCode(String smsCode) {
-    _authService.confirmWithCode(smsCode );
+    _authService.confirmWithCode(smsCode);
   }
 }

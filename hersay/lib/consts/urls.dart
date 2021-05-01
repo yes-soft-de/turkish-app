@@ -1,4 +1,5 @@
 class Urls {
+  static const String UPLOAD ='upload';
   static const String DOMAIN = 'http://turkey-app.yes-cloud.de';
   static const String BASE_API = DOMAIN + '/html/public/index.php';
   static const String IMAGES_ROOT = DOMAIN + '/upload/';
