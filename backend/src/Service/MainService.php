@@ -65,6 +65,10 @@ class MainService
         {
             return $this->realEstateService->getFilter($request->getPrice(), $request->getPrice2(), $request->getCity());
         }
+        elseif ($entity == "service")
+        {
+            return $this->servicesService->getFilter($request->getPrice(), $request->getPrice2(), $request->getCity());
+        }
     }
 
     public function getHistory($userID)

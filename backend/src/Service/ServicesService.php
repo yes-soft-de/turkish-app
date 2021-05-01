@@ -184,6 +184,31 @@ class ServicesService
         return $response;
     }
 
+    public function getFilter($price, $price_2, $city)
+    {
+        $response = [];
+
+        $results = $this->servicesManager->getFilter($price, $price_2, $city);
+
+        foreach ($results as $result)
+        {
+            if($result['image'])
+            {
+                $result['image'] = $this->params . $result['image'];
+
+                $result['userImage'] = $this->params . $result['userImage'];
+            }
+            
+            $result['reaction']=$this->reactionService->reactionforItem($result['id'], $result['type']);
+          
+            $result['commentsNumber'] = $this->servicesManager->getServiceCommentsNumber($result['type'], $result['id'])[1];
+
+            $response[] = $this->autoMapping->map('array', ServicesGetResponse::class, $result);
+        }
+
+        return $response;
+    }
+
     public function specialLinkCheck($bool)
     {
         if (!$bool)
