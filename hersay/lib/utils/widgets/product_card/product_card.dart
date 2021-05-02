@@ -94,11 +94,11 @@ class ProductCard extends StatelessWidget {
                     SizedBox(
                       width: 5,
                     ),
-                    Text('$owner'),
+                    Text('$owner',overflow: TextOverflow.ellipsis,),
                   ],
                 ),
                 Container(
-                  width: MediaQuery.of(context).size.width * 0.35,
+                  width: MediaQuery.of(context).size.width * 0.25,
                   child: Text(
                     '$specification',
                     overflow: TextOverflow.fade,

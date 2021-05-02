@@ -21,5 +21,7 @@ class ServiceManager{
   Future<int> addNewService(ServiceRequest serviceRequest) async => _repository.addNewService(serviceRequest);
   Future<int> updateService(ServiceRequest serviceRequest) async => _repository.updateService(serviceRequest);
   Future placeComment(CommentRequest request)async => _repository.placeComment(request);
+  Future getCategories()async => _repository.getCategories();
+
 
 }

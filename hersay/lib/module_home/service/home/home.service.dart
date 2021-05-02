@@ -20,7 +20,8 @@ class HomeService{
         realEstates: HomeModel.toRealEstatesList(response),
         cars : HomeModel.toCarsList(response),
         electronicDevices:HomeModel.toElectronicDevicesList(response),
-        advertisement: HomeModel.toAdvertisementList(response)
+        advertisement: HomeModel.toAdvertisementList(response),
+        categories: HomeModel.toCategoryList(response)
     );
 
     return homeData;

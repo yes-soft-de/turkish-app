@@ -18,6 +18,10 @@ class ServiceModel {
   List<Comment> comments;
   String title;
   bool editable;
+  int categoryId;
+  String categoryName;
+  String country;
+  String city;
   ServiceModel(
       {this.id,
       this.price,
@@ -35,6 +39,10 @@ class ServiceModel {
       this.images,
       this.comments,
       this.title,
-      this.editable
+      this.editable,
+      this.categoryId,
+      this.categoryName,
+      this.country,
+      this.city
       });
 }

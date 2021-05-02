@@ -6,11 +6,13 @@ class HomeModel {
   List<HomeElement> cars;
   List<HomeElement> electronicDevices;
   List<HomeElement> advertisement;
+  List<Categories> categories;
   HomeModel(
       {this.realEstates,
       this.cars,
       this.electronicDevices,
-      this.advertisement});
+      this.advertisement,
+      this.categories});
 
   static List<HomeElement> toRealEstatesList(HomeResponse homeData) {
     List<HomeElement> result = [];
@@ -72,18 +74,29 @@ class HomeModel {
     return result;
   }
 
+  static List<Categories> toCategoryList(HomeResponse homeData) {
+    List<Categories> result = [];
+    homeData.categoryResponse.data.forEach((element) {
+      result.add(Categories(
+          categoryId: element.categoryId, categoryName: element.categoryName));
+    });
+    return result;
+  }
+
   static List<HomeElement> toAdvertisementList(HomeResponse homeData) {
     List<HomeElement> result = [];
     homeData.allAdvertisement.data.forEach((element) {
       result.add(new HomeElement(
           id: element.id,
-          product: element.type ?? '',
+          categoryId: element.categoryId,
+          product: element.categoryName ?? '',
+          categoryName: element.categoryName,
           image: element.image,
           type: PRODUCT_TYPE.ADVERTISMENT,
           likes: (element.reaction != null)
               ? element.reaction[0].reactionCount
               : 0,
-          category:element.title??'',
+          category: element.title ?? '',
           ownerImage: element.imageUser ?? '',
           owner: element.userName ?? '',
           specification: element.description,
@@ -95,6 +108,8 @@ class HomeModel {
 
 class HomeElement {
   int id;
+  int categoryId;
+  String categoryName;
   String product;
   String category;
   String image;
@@ -116,6 +131,14 @@ class HomeElement {
       this.specification,
       this.type,
       this.comments,
-      this.title
+      this.title,
+      this.categoryId,
+      this.categoryName
       });
+}
+
+class Categories {
+  int categoryId;
+  String categoryName;
+  Categories({this.categoryId, this.categoryName});
 }

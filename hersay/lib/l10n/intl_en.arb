@@ -177,7 +177,7 @@
   "roomsDescription": "description",
   "selectMainImage": "Select main image",
   "save": "Save",
-  "yourRequestHasBeenAddedAndInHoldForAdmin": "your request has been added and in hold for admin approval",
+  "yourRequestHasBeenAddedAndInHoldForAdmin": "Item has been created successfully",
   "ok": "Ok",
   "sellPhone": "Sell Phone",
   "laptop": "Laptop",
@@ -257,6 +257,9 @@
   "title":"Title",
   "updatedSuccessfully":"Item has been updated successfully",
   "pleaseLogin":"Please Login to do this action",
-  "services":"Services"
+  "services":"Services",
+  "category":"Category",
+  "chooseCategory":"Choose Category"
+
   
 }

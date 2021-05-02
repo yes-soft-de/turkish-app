@@ -175,7 +175,7 @@
   "roomsDescription": "الوصف",
   "selectMainImage": "اختيار الصورة الرئيسية",
   "save": "حفظ",
-  "yourRequestHasBeenAddedAndInHoldForAdmin": "تم تسجيل طلبك وبانتظار موافقة مدير التطبيق",
+  "yourRequestHasBeenAddedAndInHoldForAdmin": "تم إنشاء العنصر بنجاح",
   "ok": "موافق",
   "sellPhone": "الهاتف الجوال",
   "laptop": "حاسوب شخصي",
@@ -224,7 +224,7 @@
   "descriptio": "الوصف",
   "car": "سيارات",
   "realestate": "عقارات",
-  "device": "أجهزة إلكتروني",
+  "device": "أجهزة إلكترونية",
   "advancedSearch": "بحث متقدم",
   "chooseEntity": "اختر غرض",
   "pleaseGiveUsYourName": "الرجاء أعطنا اسمك",
@@ -255,6 +255,8 @@
   "title":"العنوان",
   "updatedSuccessfully":"تم تعديل العنصر بنجاح",
   "pleaseLogin":"من فضلك قم بتسجيل الدخول للقيام بهذا النشاط",
-  "services":"خدمات"
+  "services":"خدمات",
+  "category":"تصنيف",
+  "chooseCategory":"اختر تصنيف"
   
 }

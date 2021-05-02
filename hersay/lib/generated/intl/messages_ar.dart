@@ -65,11 +65,13 @@ class MessageLookup extends MessageLookupByLibrary {
     "car" : MessageLookupByLibrary.simpleMessage("سيارات"),
     "carType" : MessageLookupByLibrary.simpleMessage("نوع السيارة"),
     "categories" : MessageLookupByLibrary.simpleMessage("التصنيفات"),
+    "category" : MessageLookupByLibrary.simpleMessage("تصنيف"),
     "cc" : MessageLookupByLibrary.simpleMessage("نظام التحكم بالسرعة"),
     "chatRoom" : MessageLookupByLibrary.simpleMessage("المحادثة"),
     "chatWithLawyer" : MessageLookupByLibrary.simpleMessage("محادثة مع محامي"),
     "chatWithOwner" : MessageLookupByLibrary.simpleMessage("محادثة مع المالك"),
     "chats" : MessageLookupByLibrary.simpleMessage("الدردشة"),
+    "chooseCategory" : MessageLookupByLibrary.simpleMessage("اختر تصنيف"),
     "chooseEntity" : MessageLookupByLibrary.simpleMessage("اختر غرض"),
     "city" : MessageLookupByLibrary.simpleMessage("المدينة"),
     "cladding" : MessageLookupByLibrary.simpleMessage("الإكساء"),
@@ -93,7 +95,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "descriptio" : MessageLookupByLibrary.simpleMessage("الوصف"),
     "desktop" : MessageLookupByLibrary.simpleMessage("حاسوب مكتبي"),
     "details" : MessageLookupByLibrary.simpleMessage("التفاصيل"),
-    "device" : MessageLookupByLibrary.simpleMessage("أجهزة إلكتروني"),
+    "device" : MessageLookupByLibrary.simpleMessage("أجهزة إلكترونية"),
     "deviceType" : MessageLookupByLibrary.simpleMessage("نوع الجهاز الإلكتروني"),
     "diesel" : MessageLookupByLibrary.simpleMessage("ديزل"),
     "display" : MessageLookupByLibrary.simpleMessage("الشاشة"),
@@ -274,6 +276,6 @@ class MessageLookup extends MessageLookupByLibrary {
     "youDoNotHaveAnyNotification" : MessageLookupByLibrary.simpleMessage("لا يوجد إشعارات"),
     "yourName" : MessageLookupByLibrary.simpleMessage("اسمي"),
     "yourReportWasSentToTheAdmin" : MessageLookupByLibrary.simpleMessage("بلاغك أرسل للأدمن"),
-    "yourRequestHasBeenAddedAndInHoldForAdmin" : MessageLookupByLibrary.simpleMessage("تم تسجيل طلبك وبانتظار موافقة مدير التطبيق")
+    "yourRequestHasBeenAddedAndInHoldForAdmin" : MessageLookupByLibrary.simpleMessage("تم إنشاء العنصر بنجاح")
   };
 }

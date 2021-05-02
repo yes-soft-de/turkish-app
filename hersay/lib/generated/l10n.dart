@@ -1795,10 +1795,10 @@ class S {
     );
   }
 
-  /// `your request has been added and in hold for admin approval`
+  /// `Item has been created successfully`
   String get yourRequestHasBeenAddedAndInHoldForAdmin {
     return Intl.message(
-      'your request has been added and in hold for admin approval',
+      'Item has been created successfully',
       name: 'yourRequestHasBeenAddedAndInHoldForAdmin',
       desc: '',
       args: [],
@@ -2600,6 +2600,26 @@ class S {
     return Intl.message(
       'Services',
       name: 'services',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Category`
+  String get category {
+    return Intl.message(
+      'Category',
+      name: 'category',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Choose Category`
+  String get chooseCategory {
+    return Intl.message(
+      'Choose Category',
+      name: 'chooseCategory',
       desc: '',
       args: [],
     );

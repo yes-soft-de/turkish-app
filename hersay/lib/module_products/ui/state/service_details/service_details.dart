@@ -247,11 +247,19 @@ class ServiceDetailsStateDataLoaded extends ServicesDetailsState {
                 //service details
                 Padding(
                   padding: const EdgeInsets.all(8.0),
-                  child: Text(S.of(context).type + ' ${service.type}'),
+                  child: Text(S.of(context).category + ' : ${service.type}'),
                 ),
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Text(S.of(context).title + ' : ${service.title}'),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Text(S.of(context).country + ' : ${service.country}'),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Text(S.of(context).city + ' : ${service.city}'),
                 ),
                 Padding(
                   padding: const EdgeInsets.all(8.0),

@@ -100,7 +100,7 @@ class ProfileModel {
       homeData.services.data.forEach((element) {
         result.add(ProfileElement(
           id: element.id,
-          product: element.type,
+          product: element.categoryName,
           image: element.image,
           type: PRODUCT_TYPE.ADVERTISMENT,
           likes: (element.reaction != null)

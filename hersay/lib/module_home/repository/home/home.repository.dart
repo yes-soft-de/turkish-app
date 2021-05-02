@@ -1,9 +1,11 @@
+import 'package:flutter/foundation.dart';
 import 'package:hersay/consts/urls.dart';
 import 'package:hersay/module_auth/service/auth/auth.service.dart';
 import 'package:hersay/module_home/response/all_cars/all_cars_response.dart';
 import 'package:hersay/module_home/response/all_devices/all_devices_response.dart';
 import 'package:hersay/module_home/response/all_real_estates/all_real_estates_response.dart';
 import 'package:hersay/module_home/response/all_services/all_advertisement.dart';
+import 'package:hersay/module_home/response/category/category.dart';
 import 'package:hersay/module_home/response/home/home_response.dart';
 import 'package:hersay/module_network/http_client/http_client.dart';
 import 'package:inject/inject.dart';
@@ -12,6 +14,7 @@ AllCarsResponse cars;
 AllDevicesResponse devices;
 AllRealEstatesResponse realEstates;
 AllAdvertisementResponse advertisement;
+CategoryResponse categoryResponse;
 
 @provide
 class HomeRepository {
@@ -28,15 +31,17 @@ class HomeRepository {
       _getAllCars(),
       _getAllElectronicDevices(),
       _getAllRealEstates(),
-      _getAllAdvertisements()
+      _getAllAdvertisements(),
+      _getCategories()
     ]);
 
     HomeResponse result = new HomeResponse(
-      cars: cars,
-      electronicDevices: devices,
-      realEstates: realEstates,
-      allAdvertisement: advertisement
-    );
+        cars: cars,
+        electronicDevices: devices,
+        realEstates: realEstates,
+        allAdvertisement: advertisement,
+        categoryResponse: categoryResponse
+        );
 
     return result;
   }
@@ -54,6 +59,20 @@ class HomeRepository {
 
     if (response != null)
       realEstates = AllRealEstatesResponse.fromJson(response);
+  }
+  Future<void> _getCategories() async {
+    var token = await _authService.getToken();
+    dynamic response = (token != null)
+        ? await _apiClient.get(
+            Urls.GET_CATEGORIES,
+            headers: {'Authorization': 'Bearer ' + token},
+          )
+        : await _apiClient.get(
+            Urls.GET_CATEGORIES,
+          );
+
+    if (response != null)
+      categoryResponse = CategoryResponse.fromJson(response);
   }
 
   Future<void> _getAllCars() async {
@@ -94,6 +113,7 @@ class HomeRepository {
         : await _apiClient.get(
             Urls.ADVERTISEMENT_API,
           );
-    if (response != null) advertisement = AllAdvertisementResponse.fromJson(response);
+    if (response != null)
+      advertisement = AllAdvertisementResponse.fromJson(response);
   }
 }

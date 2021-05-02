@@ -49,7 +49,7 @@ class TurkishNavigationDrawer extends StatelessWidget {
                         )
                       ]),
                   child: Image.network(
-                        profileModel?.userImage,
+                        profileModel.userImage??'',
                         errorBuilder: (a, b, c) {
                           return Image.asset('assets/images/profilePic.jpg');
                         },

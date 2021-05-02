@@ -60,6 +60,8 @@ class Data {
   String fuel;
   int commentsCount;
   String title;
+  int categoryId;
+  String categoryName;
   Data(
       {this.entity,
       this.id,
@@ -98,12 +100,16 @@ class Data {
       this.cc,
       this.fuel,
       this.commentsCount,
-      this.title
+      this.title,
+      this.categoryName,
+      this.categoryId
       });
 
   Data.fromJson(Map<String, dynamic> json) {
     entity = json['entity'];
     id = json['id'];
+    categoryId = json['categoryID'];
+    categoryName = json['categoryName'];
     type = json['type'];
     title = json['title'];
     brand = json['brand'];

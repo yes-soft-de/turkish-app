@@ -32,13 +32,13 @@ class AddServiceScreenState extends State<AddServiceScreen> {
   @override
   void initState() {
     super.initState();
-    currentState = AddServiceStateInit(this);
     widget._stateManager.stateStream.listen((event) {
       currentState = event;
       if (mounted) {
         setState(() {});
       }
     });
+    widget._stateManager.getCategory(this);
   }
 
   void refresh() {
@@ -46,18 +46,21 @@ class AddServiceScreenState extends State<AddServiceScreen> {
   }
 
   void addNewService(
+    int id,
+    String city,
+    String country,
     String title,
     String type,
     String description,
     String image,
   ) {
-    widget._stateManager.addNewService(type, title, description, image, this);
+    widget._stateManager.addNewService(id,city,country,type, title, description, image, this);
   }
 
   void updateService(
-      int id, String title, String type, String description, String image) {
+      int id,int catId ,String city,String country,String title, String type, String description, String image) {
     widget._stateManager
-        .updateService(id, type, title, description, image, this);
+        .updateService(id, catId, city,country,type, title, description, image, this);
   }
 
   @override
@@ -74,15 +77,18 @@ class AddServiceScreenState extends State<AddServiceScreen> {
       appBar: AppBar(
         elevation: 0,
         backgroundColor: ProjectColors.THEME_COLOR,
-        title: Text(S.of(context).details,style: TextStyle(
-          color:Colors.white,
-        ),),
+        title: Text(
+          S.of(context).details,
+          style: TextStyle(
+            color: Colors.white,
+          ),
+        ),
         iconTheme: IconThemeData(
           color: Colors.white,
         ),
       ),
       body: SafeArea(
-        child: currentState.getUI(context),
+        child: currentState?.getUI(context)??AddServiceStateLoading(this),
       ),
     );
   }

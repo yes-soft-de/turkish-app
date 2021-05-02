@@ -65,11 +65,13 @@ class MessageLookup extends MessageLookupByLibrary {
     "car" : MessageLookupByLibrary.simpleMessage("car"),
     "carType" : MessageLookupByLibrary.simpleMessage("Car Type"),
     "categories" : MessageLookupByLibrary.simpleMessage("التصنيفات"),
+    "category" : MessageLookupByLibrary.simpleMessage("Category"),
     "cc" : MessageLookupByLibrary.simpleMessage("CC"),
     "chatRoom" : MessageLookupByLibrary.simpleMessage("Chat Room"),
     "chatWithLawyer" : MessageLookupByLibrary.simpleMessage("Chat with Lawyer"),
     "chatWithOwner" : MessageLookupByLibrary.simpleMessage("Chat with Owner"),
     "chats" : MessageLookupByLibrary.simpleMessage("Chats"),
+    "chooseCategory" : MessageLookupByLibrary.simpleMessage("Choose Category"),
     "chooseEntity" : MessageLookupByLibrary.simpleMessage("choose entity"),
     "city" : MessageLookupByLibrary.simpleMessage("City"),
     "cladding" : MessageLookupByLibrary.simpleMessage("Cladding"),
@@ -277,6 +279,6 @@ class MessageLookup extends MessageLookupByLibrary {
     "youDoNotHaveAnyNotification" : MessageLookupByLibrary.simpleMessage("You do not have any notification"),
     "yourName" : MessageLookupByLibrary.simpleMessage("Your Name"),
     "yourReportWasSentToTheAdmin" : MessageLookupByLibrary.simpleMessage("your report was sent to the Admin"),
-    "yourRequestHasBeenAddedAndInHoldForAdmin" : MessageLookupByLibrary.simpleMessage("your request has been added and in hold for admin approval")
+    "yourRequestHasBeenAddedAndInHoldForAdmin" : MessageLookupByLibrary.simpleMessage("Item has been created successfully")
   };
 }

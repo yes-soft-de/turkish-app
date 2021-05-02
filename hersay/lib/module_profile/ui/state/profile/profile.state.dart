@@ -360,7 +360,9 @@ class ProfileStateDataLoaded extends ProfileState {
             ),
             displayedProducts.isNotEmpty
                 ?
-            GridView.builder(itemBuilder: (BuildContext context, int index){
+            GridView.builder(
+              
+              itemBuilder: (BuildContext context, int index){
 
              return GestureDetector(
                 onTap: () {
@@ -415,7 +417,7 @@ class ProfileStateDataLoaded extends ProfileState {
                   crossAxisCount: 2,
                   mainAxisSpacing: 5,
                   crossAxisSpacing: 5,
-                  childAspectRatio: (4/5)
+                  childAspectRatio: (3/5)
               ),
               itemCount:displayedProducts.length,
               physics: NeverScrollableScrollPhysics(),

@@ -1,4 +1,5 @@
 import 'package:hersay/consts/urls.dart';
+import 'package:hersay/module_home/model/home/home_model.dart';
 import 'package:hersay/module_products/manager/service/service_manager.dart';
 import 'package:hersay/module_products/model/service/service.dart';
 import 'package:hersay/module_products/request/comment/comment_request.dart';
@@ -24,8 +25,11 @@ class ServiceService {
         : '';
 
     var serviceRequest = ServiceRequest(
+        city: request.city,
+        country: request.country,
+        categoryID:request.categoryID,
         image: uploadedImageUrl,
-        type: request.type,
+        type: 'request.type',
         title: request.title,
         description: request.description);
     int result = await _manager.addNewService(serviceRequest);
@@ -36,7 +40,7 @@ class ServiceService {
   }
 
   Future<bool> updateService(ServiceRequest request) async {
-     String uploadedImageUrl = request.image;
+    String uploadedImageUrl = request.image;
     if (!uploadedImageUrl.contains('http')) {
       uploadedImageUrl = (request.image.isNotEmpty)
           ? await _imageUploadService.uploadImage(request.image)
@@ -47,9 +51,12 @@ class ServiceService {
     }
 
     var serviceRequest = ServiceRequest(
-        id:request.id,
-        image: uploadedImageUrl??'',
-        type: request.type,
+        id: request.id,
+        categoryID: request.categoryID,
+        image: uploadedImageUrl ?? '',
+        type: 'request.type',
+        city:request.city,
+        country:request.country,
         title: request.title,
         description: request.description);
     int result = await _manager.updateService(serviceRequest);
@@ -71,16 +78,20 @@ class ServiceService {
 
     return ServiceModel(
       id: serviceId,
+      categoryId: response.data.categoryID,
+      categoryName: response.data.categoryName,
       price: response.data.price.toString(),
       description: response.data.description,
-      type: response.data.type,
+      type: response.data.categoryName,
       address: '${response.data.country} , ${response.data.city}',
       image: response.data.image,
       userName: response.data.username,
       userImage: response.data.userImage,
       title: response.data.title,
-      editable:response.data.editable??false,
-      isLoved: response.data.reaction.createdBy??false,
+      editable: response.data.editable ?? false,
+      isLoved: response.data.reaction.createdBy ?? false,
+      city: response.data.city,
+      country: response.data.country,
       //images: _getImages(response),
       comments: response.data.comments,
     );
@@ -98,5 +109,15 @@ class ServiceService {
 
   Future<void> placeComment(CommentRequest request) async {
     var response = await _manager.placeComment(request);
+  }
+
+  Future<List<Categories>> getCategories() async {
+    var response = await _manager.getCategories();
+    List<Categories> result = [];
+    response.data.forEach((element) {
+      result.add(Categories(
+          categoryId: element.categoryId, categoryName: element.categoryName));
+    });
+    return result;
   }
 }

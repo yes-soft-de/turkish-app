@@ -47,6 +47,8 @@ class Data {
   String type;
   String title;
   bool editable;
+  int categoryID;
+  String categoryName;
   Data(
       {this.id,
       this.yearOfRelease,
@@ -69,11 +71,15 @@ class Data {
       this.comments,
       this.type,
       this.title,
-      this.editable
+      this.editable,
+      this.categoryID,
+      this.categoryName
       });
 
   Data.fromJson(Map<String, dynamic> json) {
     id = json['id'];
+    categoryID = json['categoryID'];
+    categoryName = json['categoryName'];
     yearOfRelease = json['yearOfProduction'] != null
         ? new YearOfRelease.fromJson(json['yearOfProduction'])
         : null;

@@ -57,11 +57,13 @@ class HomeStateDataLoaded extends HomeState {
   final HomeModel homeData;
   int selectedMode = 1;
   List<HomeElement> displayedProducts = [];
-
+  int selectChoice = 0;
   HomeStateDataLoaded(this.homeData, HomeScreenState screenState)
       : super(screenState) {
-    displayedProducts =
-        homeData.cars + homeData.realEstates + homeData.electronicDevices+homeData.advertisement;
+    displayedProducts = homeData.cars +
+        homeData.realEstates +
+        homeData.electronicDevices +
+        homeData.advertisement;
     displayedProducts.shuffle();
   }
 
@@ -75,7 +77,7 @@ class HomeStateDataLoaded extends HomeState {
         child: Stack(
           children: [
             Container(
-              margin: EdgeInsets.only(top: 80),
+              margin: EdgeInsets.only(top: selectedMode == 5 ? 110 : 80),
               child: ListView.builder(
                   itemCount: displayedProducts.length,
                   itemBuilder: (BuildContext context, int index) {
@@ -97,9 +99,9 @@ class HomeStateDataLoaded extends HomeState {
                                 ProductsRoutes.REAL_ESTATE_DETAILS_SCREEN,
                                 arguments: displayedProducts[index].id);
                             break;
-                            case PRODUCT_TYPE.ADVERTISMENT:
-                            Navigator.pushNamed(context,
-                                ProductsRoutes.SERVICE_DETAILS_SCREEN,
+                          case PRODUCT_TYPE.ADVERTISMENT:
+                            Navigator.pushNamed(
+                                context, ProductsRoutes.SERVICE_DETAILS_SCREEN,
                                 arguments: displayedProducts[index].id);
                             break;
                         }
@@ -127,131 +129,191 @@ class HomeStateDataLoaded extends HomeState {
               right: 0.0,
               top: 0.0,
               child: Container(
-                color: Colors.black12,
-                margin: EdgeInsets.only(top: 0, bottom: 10),
-                padding: EdgeInsets.symmetric(horizontal: 5, vertical: 10),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: <Widget>[
-                    GestureDetector(
-                      onTap: () {
-                        displayedProducts = homeData.cars +
-                            homeData.realEstates +
-                            homeData.electronicDevices +
-                            homeData.advertisement;
-                        displayedProducts.shuffle();
-                        selectedMode = 1;
-                        screenState.refresh();
-                      },
-                      child: Container(
-                        width: 50,
-                        height: 50,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(50),
-                          color: (selectedMode == 1)
-                              ? ProjectColors.SECONDARY_COLOR
-                              : ProjectColors.THEME_COLOR,
-                        ),
-                        child: Center(
-                          child: Text(
-                            S.of(context).all,
-                            style: TextStyle(
-                              color: Colors.white,
+                  color: Colors.black12,
+                  margin: EdgeInsets.only(top: 0, bottom: 10),
+                  padding: EdgeInsets.symmetric(horizontal: 5, vertical: 10),
+                  child: Column(
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: <Widget>[
+                          GestureDetector(
+                            onTap: () {
+                              displayedProducts = homeData.cars +
+                                  homeData.realEstates +
+                                  homeData.electronicDevices +
+                                  homeData.advertisement;
+                              displayedProducts.shuffle();
+                              selectedMode = 1;
+                              screenState.refresh();
+                            },
+                            child: Container(
+                              width: 50,
+                              height: 50,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(50),
+                                color: (selectedMode == 1)
+                                    ? ProjectColors.SECONDARY_COLOR
+                                    : ProjectColors.THEME_COLOR,
+                              ),
+                              child: Center(
+                                child: Text(
+                                  S.of(context).all,
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                  ),
+                                ),
+                              ),
                             ),
                           ),
-                        ),
+                          GestureDetector(
+                            onTap: () {
+                              displayedProducts = homeData.realEstates;
+                              selectedMode = 2;
+                              screenState.refresh();
+                            },
+                            child: Container(
+                              width: 50,
+                              height: 50,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(50),
+                                color: (selectedMode == 2)
+                                    ? ProjectColors.SECONDARY_COLOR
+                                    : ProjectColors.THEME_COLOR,
+                              ),
+                              child: Icon(
+                                Icons.home,
+                                color: Colors.white,
+                              ),
+                            ),
+                          ),
+                          GestureDetector(
+                            onTap: () {
+                              displayedProducts = homeData.cars;
+                              selectedMode = 3;
+                              screenState.refresh();
+                            },
+                            child: Container(
+                              width: 50,
+                              height: 50,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(55),
+                                color: (selectedMode == 3)
+                                    ? ProjectColors.SECONDARY_COLOR
+                                    : ProjectColors.THEME_COLOR,
+                              ),
+                              child: Icon(
+                                Icons.directions_car,
+                                color: Colors.white,
+                              ),
+                            ),
+                          ),
+                          GestureDetector(
+                            onTap: () {
+                              displayedProducts = homeData.electronicDevices;
+                              selectedMode = 4;
+                              screenState.refresh();
+                            },
+                            child: Container(
+                              width: 50,
+                              height: 50,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(50),
+                                color: (selectedMode == 4)
+                                    ? ProjectColors.SECONDARY_COLOR
+                                    : ProjectColors.THEME_COLOR,
+                              ),
+                              child: Icon(
+                                Icons.phone_iphone,
+                                color: Colors.white,
+                              ),
+                            ),
+                          ),
+                          GestureDetector(
+                            onTap: () {
+                              displayedProducts = homeData.advertisement;
+                              selectedMode = 5;
+                              selectChoice = 0;
+                              screenState.refresh();
+                            },
+                            child: Container(
+                              width: 50,
+                              height: 50,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(50),
+                                color: (selectedMode == 5)
+                                    ? ProjectColors.SECONDARY_COLOR
+                                    : ProjectColors.THEME_COLOR,
+                              ),
+                              child: Icon(
+                                Icons.design_services,
+                                color: Colors.white,
+                              ),
+                            ),
+                          ),
+                        ],
                       ),
-                    ),
-                    GestureDetector(
-                      onTap: () {
-                        displayedProducts = homeData.realEstates;
-                        selectedMode = 2;
-                        screenState.refresh();
-                      },
-                      child: Container(
-                        width: 50,
-                        height: 50,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(50),
-                          color: (selectedMode == 2)
-                              ? ProjectColors.SECONDARY_COLOR
-                              : ProjectColors.THEME_COLOR,
-                        ),
-                        child: Icon(
-                          Icons.home,
-                          color: Colors.white,
-                        ),
-                      ),
-                    ),
-                    GestureDetector(
-                      onTap: () {
-                        displayedProducts = homeData.cars;
-                        selectedMode = 3;
-                        screenState.refresh();
-                      },
-                      child: Container(
-                        width: 50,
-                        height: 50,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(55),
-                          color: (selectedMode == 3)
-                              ? ProjectColors.SECONDARY_COLOR
-                              : ProjectColors.THEME_COLOR,
-                        ),
-                        child: Icon(
-                          Icons.directions_car,
-                          color: Colors.white,
-                        ),
-                      ),
-                    ),
-                    GestureDetector(
-                      onTap: () {
-                        displayedProducts = homeData.electronicDevices;
-                        selectedMode = 4;
-                        screenState.refresh();
-                      },
-                      child: Container(
-                        width: 50,
-                        height: 50,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(50),
-                          color: (selectedMode == 4)
-                              ? ProjectColors.SECONDARY_COLOR
-                              : ProjectColors.THEME_COLOR,
-                        ),
-                        child: Icon(
-                          Icons.phone_iphone,
-                          color: Colors.white,
-                        ),
-                      ),
-                    ),
-                    GestureDetector(
-                      onTap: () {
-                        displayedProducts = homeData.advertisement;
-                        selectedMode = 5;
-                        screenState.refresh();
-                      },
-                      child: Container(
-                        width: 50,
-                        height: 50,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(50),
-                          color: (selectedMode == 5)
-                              ? ProjectColors.SECONDARY_COLOR
-                              : ProjectColors.THEME_COLOR,
-                        ),
-                        child: Icon(
-                          Icons.design_services,
-                          color: Colors.white,
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
+                      selectedMode == 5
+                          ? Padding(
+                              padding:
+                                  const EdgeInsets.only(right: 8.0, left: 8.0),
+                              child: SingleChildScrollView(
+                                scrollDirection: Axis.horizontal,
+                                child: Container(
+                                    height: 50,
+                                    child: Row(
+                                        children: getCategories(
+                                            homeData.categories))),
+                              ),
+                            )
+                          : Container()
+                    ],
+                  )),
             ),
           ],
         ));
+  }
+
+  getCategoriesPosts(List<HomeElement> advertisement, int id) {
+    List<HomeElement> filtred = [];
+    advertisement.forEach((element) {
+      if (element.categoryId == id) {
+        filtred.add(element);
+      }
+    });
+    displayedProducts = filtred;
+  }
+
+  List<Widget> getCategories(List<Categories> categories) {
+    List<Widget> cat = [];
+    categories.forEach((element) {
+      cat.add(Padding(
+        padding: const EdgeInsets.all(2.0),
+        child: ChoiceChip(
+          label: Text(
+            element.categoryName,
+            style: TextStyle(
+                color: selectChoice == element.categoryId
+                    ? Colors.white
+                    : Colors.black),
+          ),
+          selected: selectChoice == element.categoryId,
+          selectedColor: ProjectColors.SECONDARY_COLOR,
+          disabledColor: ProjectColors.THEME_COLOR,
+          onSelected: (selected) {
+            if (selected) {
+              selectChoice = element.categoryId;
+              getCategoriesPosts(homeData.advertisement, selectChoice);
+            } else {
+              selectChoice = null;
+              displayedProducts = homeData.advertisement;
+            }
+            screenState.refresh();
+          },
+        ),
+      ));
+    });
+    return cat;
   }
 }
 
