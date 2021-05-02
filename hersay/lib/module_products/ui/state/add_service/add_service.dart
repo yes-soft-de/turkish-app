@@ -254,7 +254,7 @@ class AddServiceStateInit extends AddServiceState {
                                 _titleController.text.trim(),
                                 _typeController.text.trim(),
                                 _descriptionController.text.trim(),
-                                mainImage ?? service.image??'');
+                                mainImage ?? service.image ??'');
                           } else {
                             screenState.addNewService(
                               _titleController.text.trim(),
