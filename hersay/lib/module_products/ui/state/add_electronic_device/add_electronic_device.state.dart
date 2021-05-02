@@ -143,39 +143,6 @@ class AddElectronicDeviceStateInit extends AddElectronicDeviceState {
                   ),
                 ),
               ),
-              // location
-              Card(
-                elevation: 10,
-                margin: EdgeInsets.only(top: 20),
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(15)),
-                child: Container(
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(15),
-                    color: Colors.black12,
-                  ),
-                  child: TextFormField(
-                    controller: _locationController,
-                    decoration: InputDecoration(
-                      prefixIcon: Icon(Icons.location_on),
-                      border: OutlineInputBorder(
-                        borderSide: BorderSide.none,
-                        borderRadius: BorderRadius.circular(20),
-                      ),
-                      labelText: S.of(context).location,
-                    ),
-                    textInputAction: TextInputAction.next,
-                    onEditingComplete: () => node.nextFocus(),
-                    // Move focus to next
-                    validator: (result) {
-                      if (result.isEmpty) {
-                        return S.of(context).thisFieldCannotBeEmpty;
-                      }
-                      return null;
-                    },
-                  ),
-                ),
-              ),
               // price
               Card(
                 elevation: 10,

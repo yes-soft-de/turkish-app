@@ -74,6 +74,22 @@ class SearchModel {
                 likes: element.reaction.length,
                 commentsNumber: element.commentsNumber));
             break;
+            default:
+            result.add(SearchModel(
+                type: element.categoryName,
+                brand: '',
+                id: element.id,
+                productType: PRODUCT_TYPE.ADVERTISMENT,
+                userName: element.userName,
+                userImage: element.imageUser,
+                image: element.image,
+                category: element.title,
+                specification: element.description,
+                likes: element.reaction.length,
+                commentsNumber: element.commentsNumber
+                
+                ));
+            break;
         }
       });
     } else {
@@ -120,6 +136,22 @@ class SearchModel {
                 specification: element.space + ' SM',
                 likes: element.reaction.length,
                 commentsNumber: element.commentsNumber));
+            break;
+            default:
+            result.add(SearchModel(
+                type: element.categoryName,
+                brand: '',
+                id: element.id,
+                productType: PRODUCT_TYPE.ADVERTISMENT,
+                userName: element.userName,
+                userImage: element.imageUser,
+                image: element.image,
+                category: element.title,
+                specification: element.description,
+                likes: element.reaction.length,
+                commentsNumber: element.commentsNumber
+                
+                ));
             break;
         }
       });

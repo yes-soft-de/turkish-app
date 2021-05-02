@@ -44,7 +44,7 @@ class Data {
   String country;
   String city;
   String image;
- List<Reaction> reaction;
+  List<Reaction> reaction;
   String userName;
   String imageUser;
   String state;
@@ -61,6 +61,8 @@ class Data {
   String realEstateType;
   String rooms;
   int commentsNumber;
+  String categoryName;
+  String title;
   Data(
       {this.entity,
       this.id,
@@ -98,12 +100,17 @@ class Data {
       this.homeFurnishing,
       this.realEstateType,
       this.rooms,
-      this.commentsNumber});
+      this.commentsNumber,
+      this.categoryName,
+      this.title
+      });
 
   Data.fromJson(Map<String, dynamic> json) {
     entity = json['entity'];
     id = json['id'];
     brand = json['brand'];
+    title = json['title'];
+    categoryName = json['categoryName'];
     company = json['company'];
     yearOfRelease = json['yearOfRelease'] != null
         ? new YearOfRelease.fromJson(json['yearOfRelease'])
