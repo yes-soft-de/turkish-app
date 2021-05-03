@@ -28,6 +28,20 @@ class CategoryService
         return $this->autoMapping->map(CategoryEntity::class, CategoryCreateResponse::class, $categoryResult);
     }
     
+    public function getCategoriesBySpecificLanguage($lang)
+    {
+        $response = [];
+
+        $result = $this->categoryManager->getCategoriesBySpecificLanguage($lang);
+
+        foreach ($result as $row)
+        {
+            $response[] = $this->autoMapping->map('array', CategoryCreateResponse::class, $row);
+        }
+
+        return $response;
+    }
+    
     public function getAll()
     {
         $response = [];

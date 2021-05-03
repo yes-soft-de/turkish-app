@@ -19,6 +19,18 @@ class CategoryEntityRepository extends ServiceEntityRepository
         parent::__construct($registry, CategoryEntity::class);
     }
 
+    public function getCategoriesBySpecificLanguage($lang)
+    {
+        return $this->createQueryBuilder('category')
+            ->select('category.id', 'category.name', 'category.description', 'category.lang')
+
+            ->andWhere('category.lang = :lang')
+            ->setParameter('lang', $lang)
+
+            ->getQuery()
+            ->getResult();
+    }
+
     public function getAll()
     {
         return $this->createQueryBuilder('category')

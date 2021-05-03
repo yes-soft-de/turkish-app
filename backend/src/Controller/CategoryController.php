@@ -53,6 +53,18 @@ class CategoryController extends BaseController
     }
 
     /**
+     * @Route("categoriesbylanguage", name="getCategoriesByLanguage", methods={"GET"})
+     */
+    public function getCategoriesBySpecificLanguage(Request $request)
+    {
+        $lang = $request->headers->get('local');
+
+        $result = $this->categoryService->getCategoriesBySpecificLanguage($lang);
+
+        return $this->response($result, self::FETCH);
+    }
+
+    /**
      * @Route("categories", name="getAllCategories", methods={"GET"})
      */
     public function getAll()

@@ -32,6 +32,11 @@ class CategoryManager
         return $categoryEntity;
     }
 
+    public function getCategoriesBySpecificLanguage($lang)
+    {
+        return $this->categoryEntityRepository->getCategoriesBySpecificLanguage($lang);
+    }
+
     public function getAll()
     {
         return $this->categoryEntityRepository->getAll();
