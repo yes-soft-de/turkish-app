@@ -23,6 +23,7 @@ class CarModel {
   bool editable;
   String city;
   String country;
+  String title;
   CarModel(
       {this.id,
       this.type,
@@ -45,5 +46,7 @@ class CarModel {
       this.editable,
       this.city,
       this.country,
-      this.comments});
+      this.comments,
+      this.title
+      });
 }

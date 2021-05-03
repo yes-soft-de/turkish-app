@@ -45,6 +45,7 @@ class Data {
   String userImage;
   List<Comment> comments;
   bool editable;
+  String title;
   Data(
       {this.id,
       this.yearOfRelease,
@@ -65,7 +66,8 @@ class Data {
       this.username,
       this.userImage,
       this.comments,
-      this.editable});
+      this.editable,
+      this.title});
 
   Data.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -106,6 +108,7 @@ class Data {
     }
     username = json['username'];
     userImage = json['userImage'];
+    title = json['title'];
   }
 
   Map<String, dynamic> toJson() {

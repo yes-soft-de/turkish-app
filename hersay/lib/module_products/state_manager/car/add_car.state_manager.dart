@@ -15,6 +15,7 @@ class AddCarStateManager {
   AddCarStateManager(this._service);
 
   void addNewCar(
+      String title,
       int price,
       String description,
       String distance,
@@ -30,7 +31,7 @@ class AddCarStateManager {
       AddCarScreenState screenState) {
     _stateSubject.add(AddCarStateLoading(screenState));
     _service
-        .addNewCar(price, description, distance, carType, gearType, location,
+        .addNewCar(title,price, description, distance, carType, gearType, location,
             yearOfRelease, image, country, city, status, otherImages)
         .then((newProduct) {
       if (newProduct) {
@@ -44,6 +45,7 @@ class AddCarStateManager {
 
   void updateCar(
       int id,
+      String title,
       int price,
       String description,
       String distance,
@@ -62,6 +64,7 @@ class AddCarStateManager {
         .updateCar(
             CarRequest(
               id: id,
+              title: title,
               price: price,
               description: description,
               distance: distance,
@@ -77,7 +80,7 @@ class AddCarStateManager {
             otherImages)
         .then((newProduct) {
       if (newProduct) {
-        _stateSubject.add(AddCarSuccessState(screenState,'updated'));
+        _stateSubject.add(AddCarSuccessState(screenState, 'updated'));
       } else {
         _stateSubject
             .add(AddCarErrorState('Error updating Order', screenState));

@@ -44,6 +44,7 @@ class AddElectronicDeviceScreenState extends State<AddElectronicDeviceScreen> {
   }
 
   void addNewElectronicDevice(
+      String title,
       String country,
       String brand,
       String type,
@@ -54,12 +55,13 @@ class AddElectronicDeviceScreenState extends State<AddElectronicDeviceScreen> {
       String state,
       String status,
       List<String> otherImages) {
-    widget._stateManager.addNewElectronicDevice(country, brand, type, price,
+    widget._stateManager.addNewElectronicDevice(title,country, brand, type, price,
         description, city, mainImage, state, status, otherImages, this);
   }
 
   void updateElectronicDevice(
       int id,
+      String title,
       String country,
       String brand,
       String type,
@@ -70,7 +72,7 @@ class AddElectronicDeviceScreenState extends State<AddElectronicDeviceScreen> {
       String state,
       String status,
       List<String> otherImages) {
-    widget._stateManager.updateElectronicDevice(id, country, brand, type, price,
+    widget._stateManager.updateElectronicDevice(id,title,country, brand, type, price,
         description, city, mainImage, state, status, otherImages, this);
   }
 
@@ -94,9 +96,12 @@ class AddElectronicDeviceScreenState extends State<AddElectronicDeviceScreen> {
         iconTheme: IconThemeData(
           color: Colors.white,
         ),
-        title: Text(S.of(context).details,style: TextStyle(
-          color: Colors.white,
-        ),),
+        title: Text(
+          S.of(context).details,
+          style: TextStyle(
+            color: Colors.white,
+          ),
+        ),
       ),
       body: SafeArea(
         child: currentState.getUI(context),

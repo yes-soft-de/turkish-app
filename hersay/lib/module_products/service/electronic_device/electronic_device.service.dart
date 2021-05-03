@@ -19,6 +19,7 @@ class ElectronicDeviceService {
   );
 
   Future<bool> addNewElectronicDevice(
+    String title,
     String country,
     String brand,
     String type,
@@ -35,6 +36,7 @@ class ElectronicDeviceService {
         : '';
 
     var electronicDeviceRequest = ElectronicDeviceRequest(
+      title: title,
       state: state,
       country: country,
       description: description,

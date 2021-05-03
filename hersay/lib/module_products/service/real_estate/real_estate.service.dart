@@ -18,6 +18,7 @@ class RealEstateService {
   );
 
   Future<bool> addNewRealEstate(
+      String title,
       String country,
       String city,
       String space,
@@ -34,6 +35,7 @@ class RealEstateService {
         : '';
 
     var realEstateRequest = RealEstateRequest(
+      title: title,
       image: uploadedImageUrl,
       city: city,
       status: status,
@@ -109,7 +111,8 @@ class RealEstateService {
         realEstateType: request.realEstateType,
         homeFurnishing: request.homeFurnishing,
         numberOfFloors: request.numberOfFloors,
-        space: request.space
+        space: request.space,
+        title: request.title
         );
     int result = await _manager.updateRealEstate(realEstateRequest);
 

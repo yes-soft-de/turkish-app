@@ -1,5 +1,6 @@
 class ElectronicDeviceRequest {
   int id;
+  String title;
   String country;
   String brand;
   String type;
@@ -12,6 +13,7 @@ class ElectronicDeviceRequest {
 
   ElectronicDeviceRequest({
     this.id,
+    this.title,
     this.country,
     this.brand,
     this.type,
@@ -37,6 +39,7 @@ class ElectronicDeviceRequest {
     data['image'] = this.image;
     data['state'] = this.state;
     data['status'] = this.status;
+    data['title'] = this.title;
     return data;
   }
 }

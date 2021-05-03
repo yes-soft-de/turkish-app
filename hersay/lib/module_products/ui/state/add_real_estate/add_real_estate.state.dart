@@ -43,7 +43,8 @@ class AddRealEstateStateInit extends AddRealEstateState {
   final TextEditingController _descriptionController = TextEditingController();
   final TextEditingController _priceController = TextEditingController();
   final TextEditingController _roomsNumberController = TextEditingController();
-
+  final TextEditingController _titleController = TextEditingController();
+  
   List<String> _houseTypes = [
     S.current.furnished,
     S.current.unfurnished,
@@ -86,6 +87,38 @@ class AddRealEstateStateInit extends AddRealEstateState {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
+              Card(
+                elevation: 10,
+                margin: EdgeInsets.only(top: 20),
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(15)),
+                child: Container(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(15),
+                    color: Colors.black12,
+                  ),
+                  child: TextFormField(
+                    controller: _titleController,
+                    decoration: InputDecoration(
+                      prefixIcon: Icon(Icons.title),
+                      border: OutlineInputBorder(
+                        borderSide: BorderSide.none,
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                      labelText: S.of(context).title,
+                    ),
+                    textInputAction: TextInputAction.next,
+                    onEditingComplete: () => node.nextFocus(),
+                    // Move focus to next
+                    validator: (result) {
+                      if (result.isEmpty) {
+                        return S.of(context).thisFieldCannotBeEmpty;
+                      }
+                      return null;
+                    },
+                  ),
+                ),
+              ),
               //real estate type
               Card(
                 elevation: 10,
@@ -445,6 +478,7 @@ class AddRealEstateStateInit extends AddRealEstateState {
                           if (realEstate != null) {
                             screenState.updateRealEstate(
                                 realEstate.id,
+                                _titleController.text.trim(),
                                 _countryController.text.trim(),
                                 _cityController.text.trim(),
                                 _spaceController.text.trim(),
@@ -458,6 +492,7 @@ class AddRealEstateStateInit extends AddRealEstateState {
                                 otherImages);
                           } else {
                             screenState.addNewRealEstate(
+                              _titleController.text.trim(),
                               _countryController.text.trim(),
                               _cityController.text.trim(),
                               _spaceController.text.trim(),

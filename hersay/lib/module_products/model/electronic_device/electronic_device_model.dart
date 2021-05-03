@@ -21,6 +21,7 @@ class ElectronicDeviceModel {
   bool isLoved;
   List<String> images;
   List<Comment> comments;
+  String title;
   ElectronicDeviceModel(
       {this.id,
       this.price,
@@ -41,6 +42,7 @@ class ElectronicDeviceModel {
       this.comments,
       this.city,
       this.country,
-      this.editable
+      this.editable,
+      this.title
       });
 }

@@ -15,6 +15,7 @@ class AddRealEstateStateManager {
   AddRealEstateStateManager(this._service);
 
   void addNewRealEstate(
+      String title,
       String country,
       String city,
       String space,
@@ -30,6 +31,7 @@ class AddRealEstateStateManager {
     _stateSubject.add(AddRealEstateStateLoading(screenState));
     _service
         .addNewRealEstate(
+            title,
             country,
             city,
             space,
@@ -53,6 +55,7 @@ class AddRealEstateStateManager {
 
   void updateRealEstate(
       int id,
+      String title,
       String country,
       String city,
       String space,
@@ -69,22 +72,22 @@ class AddRealEstateStateManager {
     _service
         .updateRealEstate(
             RealEstateRequest(
-              id: id,
-              price: price,
-              description: description,
-              image: mainImage,
-              country: country,
-              city: city,
-              status: status,
-              realEstateType: realEstateType,
-              homeFurnishing: homeFurnishing,
-              numberOfFloors: numberOfFloors,
-              space: space
-            ),
+                id: id,
+                title: title,
+                price: price,
+                description: description,
+                image: mainImage,
+                country: country,
+                city: city,
+                status: status,
+                realEstateType: realEstateType,
+                homeFurnishing: homeFurnishing,
+                numberOfFloors: numberOfFloors,
+                space: space),
             otherImages)
         .then((newProduct) {
       if (newProduct) {
-        _stateSubject.add(AddRealEstateSuccessState(screenState,'update'));
+        _stateSubject.add(AddRealEstateSuccessState(screenState, 'update'));
       } else {
         _stateSubject
             .add(AddRealEstateErrorState('Error updating Order', screenState));

@@ -37,14 +37,14 @@ class AddCarStateInit extends AddCarState {
   final TextEditingController _cityController = TextEditingController();
   final TextEditingController _countryController = TextEditingController();
   final TextEditingController _descriptionController = TextEditingController();
-
+  final TextEditingController _titleController = TextEditingController();
   List<String> _gearTypes = [S.current.manual, S.current.automatic];
   String _selectedGearType;
 
   String mainImage;
   List<String> otherImages = [];
 
-  TextEditingController _dateController;
+  TextEditingController _dateController = TextEditingController();
 
   bool _autoValidate = false;
   bool flag = true;
@@ -69,7 +69,11 @@ class AddCarStateInit extends AddCarState {
       _mileagesController.text = car.distance;
       _dateController.text = car.yearOfProdaction;
       _selectedGearType = car.gearType;
+      _titleController.text = car.title;
       flag = false;
+    }
+    if (_dateController == null) {
+      _dateController.text = DateTime.now().toString();
     }
     return SingleChildScrollView(
       child: Form(
@@ -80,6 +84,39 @@ class AddCarStateInit extends AddCarState {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
+              //title
+              Card(
+                elevation: 10,
+                margin: EdgeInsets.only(top: 20),
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(15)),
+                child: Container(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(15),
+                    color: Colors.black12,
+                  ),
+                  child: TextFormField(
+                    controller: _titleController,
+                    decoration: InputDecoration(
+                      prefixIcon: Icon(Icons.title),
+                      border: OutlineInputBorder(
+                        borderSide: BorderSide.none,
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                      labelText: S.current.title,
+                    ),
+                    textInputAction: TextInputAction.next,
+                    onEditingComplete: () => node.nextFocus(),
+                    // Move focus to next
+                    validator: (result) {
+                      if (result.isEmpty) {
+                        return S.of(context).thisFieldCannotBeEmpty;
+                      }
+                      return null;
+                    },
+                  ),
+                ),
+              ),
               //car type
               Card(
                 elevation: 10,
@@ -126,6 +163,7 @@ class AddCarStateInit extends AddCarState {
                     color: Colors.black12,
                   ),
                   child: DateTimePicker(
+                    //controller: _dateController,
                     locale: Locale.fromSubtags(languageCode: 'en'),
                     type: DateTimePickerType.date,
                     dateMask: 'yyyy',
@@ -143,7 +181,9 @@ class AddCarStateInit extends AddCarState {
 
                       return true;
                     },
-                    onChanged: (val) => print(val),
+                    onChanged: (val) {
+                      _dateController.text = val;
+                    },
                     validator: (val) {
                       print(val);
                       return null;
@@ -441,6 +481,7 @@ class AddCarStateInit extends AddCarState {
                           if (car != null) {
                             screenState.updateCar(
                                 car.id,
+                                _titleController.text.trim(),
                                 int.parse(_priceController.text.trim()),
                                 _descriptionController.text.trim(),
                                 _mileagesController.text.trim(),
@@ -448,13 +489,14 @@ class AddCarStateInit extends AddCarState {
                                 _selectedGearType,
                                 _locationController.text.trim(),
                                 _dateController.text.trim(),
-                                mainImage??car.image??'',
+                                mainImage ?? car.image ?? '',
                                 _countryController.text.trim(),
                                 _cityController.text.trim(),
                                 'not sold',
                                 otherImages);
                           } else {
                             screenState.addNewCar(
+                                _titleController.text.trim(),
                                 int.parse(_priceController.text.trim()),
                                 _descriptionController.text.trim(),
                                 _mileagesController.text.trim(),
@@ -502,7 +544,8 @@ class AddCarStateInit extends AddCarState {
 
 class AddCarSuccessState extends AddCarState {
   final message;
-  AddCarSuccessState(AddCarScreenState screenState,[this.message]) : super(screenState);
+  AddCarSuccessState(AddCarScreenState screenState, [this.message])
+      : super(screenState);
 
   @override
   Widget getUI(BuildContext context) {
@@ -518,7 +561,9 @@ class AddCarSuccessState extends AddCarState {
               child: Container(
                 width: 250,
                 child: Text(
-                  message != null ? S.of(context).updatedSuccessfully:S.of(context).yourRequestHasBeenAddedAndInHoldForAdmin,
+                  message != null
+                      ? S.of(context).updatedSuccessfully
+                      : S.of(context).yourRequestHasBeenAddedAndInHoldForAdmin,
                   textAlign: TextAlign.center,
                   style: TextStyle(color: Colors.white),
                 ),

@@ -38,6 +38,7 @@ class AddElectronicDeviceStateInit extends AddElectronicDeviceState {
   final TextEditingController _countryController = TextEditingController();
   final TextEditingController _descriptionController = TextEditingController();
   final TextEditingController _typeController = TextEditingController();
+  final TextEditingController _titleController = TextEditingController();
 
   TextEditingController _dateController;
 
@@ -66,6 +67,7 @@ class AddElectronicDeviceStateInit extends AddElectronicDeviceState {
       _locationController.text = device.location;
       _brandController.text = device.brand;
       _typeController.text = device.type;
+      _titleController.text = device.title;
       flag = false;
     }
     return SingleChildScrollView(
@@ -77,6 +79,38 @@ class AddElectronicDeviceStateInit extends AddElectronicDeviceState {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
+              Card(
+                elevation: 10,
+                margin: EdgeInsets.only(top: 20),
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(15)),
+                child: Container(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(15),
+                    color: Colors.black12,
+                  ),
+                  child: TextFormField(
+                    controller: _titleController,
+                    decoration: InputDecoration(
+                      prefixIcon: Icon(Icons.title),
+                      border: OutlineInputBorder(
+                        borderSide: BorderSide.none,
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                      labelText: S.of(context).title,
+                    ),
+                    textInputAction: TextInputAction.next,
+                    onEditingComplete: () => node.nextFocus(),
+                    // Move focus to next
+                    validator: (result) {
+                      if (result.isEmpty) {
+                        return S.of(context).thisFieldCannotBeEmpty;
+                      }
+                      return null;
+                    },
+                  ),
+                ),
+              ),
               //device type
               Card(
                 elevation: 10,
@@ -361,6 +395,7 @@ class AddElectronicDeviceStateInit extends AddElectronicDeviceState {
                           if (device != null) {
                             screenState.updateElectronicDevice(
                                 device.id,
+                                _titleController.text.trim(),
                                 _countryController.text.trim(),
                                 _brandController.text.trim(),
                                 _typeController.text.trim(),
@@ -373,6 +408,7 @@ class AddElectronicDeviceStateInit extends AddElectronicDeviceState {
                                 otherImages);
                           } else {
                             screenState.addNewElectronicDevice(
+                                _titleController.text.trim(),
                                 _countryController.text.trim(),
                                 _brandController.text.trim(),
                                 _typeController.text.trim(),

@@ -10,20 +10,20 @@ class RealEstateRequest {
   String homeFurnishing;
   String realEstateType;
   String status;
-
-  RealEstateRequest({
-    this.id,
-    this.country,
-    this.city,
-    this.space,
-    this.price,
-    this.description,
-    this.image,
-    this.numberOfFloors,
-    this.homeFurnishing,
-    this.realEstateType,
-    this.status,
-  });
+  String title;
+  RealEstateRequest(
+      {this.id,
+      this.country,
+      this.city,
+      this.space,
+      this.price,
+      this.description,
+      this.image,
+      this.numberOfFloors,
+      this.homeFurnishing,
+      this.realEstateType,
+      this.status,
+      this.title});
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
@@ -40,6 +40,7 @@ class RealEstateRequest {
     data['homeFurnishing'] = this.homeFurnishing;
     data['realEstateType'] = this.realEstateType;
     data['status'] = this.status;
+    data['title'] = this.title;
     return data;
   }
 }

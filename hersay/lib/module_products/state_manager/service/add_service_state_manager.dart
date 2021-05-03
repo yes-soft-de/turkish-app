@@ -16,14 +16,25 @@ class AddServiceStateManager {
 
   AddServiceStateManager(this._service);
 
-  void addNewService(int id,String city,String country,String type, String title, String description,
-      String image, AddServiceScreenState screenState) {
+  void addNewService(
+      int id,
+      String city,
+      String country,
+      String type,
+      String title,
+      String description,
+      String image,
+      AddServiceScreenState screenState) {
     _stateSubject.add(AddServiceStateLoading(screenState));
     _service
-        .addNewService(ServiceRequest(categoryID: id,
-        city: city,
-        country: country,
-            type: type, title: title, description: description, image: image))
+        .addNewService(ServiceRequest(
+            categoryID: id,
+            city: city,
+            country: country,
+            type: type,
+            title: title,
+            description: description,
+            image: image))
         .then((newProduct) {
       if (newProduct) {
         _stateSubject.add(AddServiceSuccessState(screenState));
@@ -34,8 +45,16 @@ class AddServiceStateManager {
     });
   }
 
-  void updateService(int id,int catId ,String city,String country,String type, String title, String description,
-      String image, AddServiceScreenState screenState) {
+  void updateService(
+      int id,
+      int catId,
+      String city,
+      String country,
+      String type,
+      String title,
+      String description,
+      String image,
+      AddServiceScreenState screenState) {
     _stateSubject.add(AddServiceStateLoading(screenState));
     _service
         .updateService(ServiceRequest(
@@ -61,9 +80,10 @@ class AddServiceStateManager {
     _stateSubject.add(AddServiceStateLoading(screenState));
     _service.getCategories().then((value) {
       if (value != null) {
-        _stateSubject.add(AddServiceStateInit(screenState,value));
+        _stateSubject.add(AddServiceStateInit(screenState, value));
       } else {
-        _stateSubject.add(AddServiceErrorState('Error Fetching categories', screenState));
+        _stateSubject.add(
+            AddServiceErrorState('Error Fetching categories', screenState));
       }
     });
   }

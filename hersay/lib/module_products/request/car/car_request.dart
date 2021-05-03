@@ -11,21 +11,21 @@ class CarRequest {
   String country;
   String city;
   String status;
-
-  CarRequest({
-    this.id,
-    this.price,
-    this.description,
-    this.distance,
-    this.carType,
-    this.gearType,
-    this.location,
-    this.yearOfRelease,
-    this.image,
-    this.country,
-    this.city,
-    this.status,
-  });
+  String title;
+  CarRequest(
+      {this.id,
+      this.price,
+      this.description,
+      this.distance,
+      this.carType,
+      this.gearType,
+      this.location,
+      this.yearOfRelease,
+      this.image,
+      this.country,
+      this.city,
+      this.status,
+      this.title});
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
@@ -43,6 +43,7 @@ class CarRequest {
     data['country'] = this.country;
     data['city'] = this.city;
     data['status'] = this.status;
+    data['title'] = this.title;
     return data;
   }
 }

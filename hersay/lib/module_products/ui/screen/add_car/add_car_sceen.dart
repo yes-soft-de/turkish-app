@@ -44,6 +44,7 @@ class AddCarScreenState extends State<AddCarScreen> {
   }
 
   void addNewCar(
+      String title,
       int price,
       String description,
       String distance,
@@ -57,6 +58,7 @@ class AddCarScreenState extends State<AddCarScreen> {
       String status,
       List<String> otherImages) {
     widget._stateManager.addNewCar(
+        title,
         price,
         description,
         distance,
@@ -74,6 +76,7 @@ class AddCarScreenState extends State<AddCarScreen> {
 
   void updateCar(
       int id,
+      String title,
       int price,
       String description,
       String distance,
@@ -88,6 +91,7 @@ class AddCarScreenState extends State<AddCarScreen> {
       List<String> otherImages) {
     widget._stateManager.updateCar(
         id,
+        title,
         price,
         description,
         distance,

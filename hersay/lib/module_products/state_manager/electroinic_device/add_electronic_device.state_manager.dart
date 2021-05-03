@@ -17,6 +17,7 @@ class AddElectronicDeviceStateManager {
   AddElectronicDeviceStateManager(this._service);
 
   void addNewElectronicDevice(
+      String title,
       String country,
       String brand,
       String type,
@@ -30,7 +31,7 @@ class AddElectronicDeviceStateManager {
       AddElectronicDeviceScreenState screenState) {
     _stateSubject.add(AddElectronicDeviceStateLoading(screenState));
     _service
-        .addNewElectronicDevice(country, brand, type, price, description, city,
+        .addNewElectronicDevice(title,country, brand, type, price, description, city,
             mainImage, state, status, otherImages)
         .then((newProduct) {
       if (newProduct) {
@@ -44,6 +45,7 @@ class AddElectronicDeviceStateManager {
 
   void updateElectronicDevice(
       int id,
+      String title,
       String country,
       String brand,
       String type,
@@ -60,6 +62,7 @@ class AddElectronicDeviceStateManager {
         .updateElectronicDevice(
             ElectronicDeviceRequest(
               id: id,
+              title: title,
               price: price,
               description: description,
               state: state,
@@ -73,7 +76,8 @@ class AddElectronicDeviceStateManager {
             otherImages)
         .then((newProduct) {
       if (newProduct) {
-        _stateSubject.add(AddElectronicDeviceSuccessState(screenState,'update'));
+        _stateSubject
+            .add(AddElectronicDeviceSuccessState(screenState, 'update'));
       } else {
         _stateSubject.add(
             AddElectronicDeviceErrorState('Error updating Order', screenState));

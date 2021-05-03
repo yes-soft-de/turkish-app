@@ -44,6 +44,7 @@ class AddRealEstateScreenState extends State<AddRealEstateScreen> {
   }
 
   void addNewRealEstate(
+      String title,
       String country,
       String city,
       String space,
@@ -56,6 +57,7 @@ class AddRealEstateScreenState extends State<AddRealEstateScreen> {
       String mainImage,
       List<String> otherImages) {
     widget._stateManager.addNewRealEstate(
+        title,
         country,
         city,
         space,
@@ -72,6 +74,7 @@ class AddRealEstateScreenState extends State<AddRealEstateScreen> {
 
   void updateRealEstate(
       int id,
+      String title,
       String country,
       String city,
       String space,
@@ -85,6 +88,7 @@ class AddRealEstateScreenState extends State<AddRealEstateScreen> {
       List<String> otherImages) {
     widget._stateManager.updateRealEstate(
         id,
+        title,
         country,
         city,
         space,
@@ -115,9 +119,12 @@ class AddRealEstateScreenState extends State<AddRealEstateScreen> {
       appBar: AppBar(
         elevation: 0,
         backgroundColor: ProjectColors.THEME_COLOR,
-        title: Text(S.of(context).details,style: TextStyle(
-          color: Colors.white,
-        ),),
+        title: Text(
+          S.of(context).details,
+          style: TextStyle(
+            color: Colors.white,
+          ),
+        ),
         iconTheme: IconThemeData(
           color: Colors.white,
         ),

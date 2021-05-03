@@ -18,6 +18,7 @@ class CarService {
   );
 
   Future<bool> addNewCar(
+    String title,
     int price,
     String description,
     String distance,
@@ -36,6 +37,7 @@ class CarService {
         : '';
 
     var carRequest = CarRequest(
+      title: title,
       yearOfRelease: yearOfRelease,
       image: uploadedImageUrl,
       city: city,
@@ -69,6 +71,7 @@ class CarService {
         response.data.yearOfRelease.timestamp * 1000));
     return new CarModel(
         id: carId,
+        title: response.data.title,
         type: response.data.carType,
         distance: response.data.distance,
         //TODO : change this after been added to the response
@@ -103,6 +106,7 @@ class CarService {
 
     var carRequest = CarRequest(
       id: request.id,
+      title: request.title,
       image: uploadedImageUrl ?? '',
       description: request.description,
       yearOfRelease: request.yearOfRelease,
