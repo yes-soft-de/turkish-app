@@ -26,10 +26,13 @@ import 'module_products/products_module.dart';
 import 'module_report/report_module.dart';
 import 'module_splash/splash_module.dart';
 import 'module_theme/service/theme.service.dart';
-
+import 'package:timeago/timeago.dart' as timeago;
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
+  timeago.setLocaleMessages('ar', timeago.ArMessages());
+  timeago.setLocaleMessages('en', timeago.EnMessages());
+  timeago.setLocaleMessages('tr', timeago.TrMessages());
   //await FirebaseCrashlytics.instance.setCrashlyticsCollectionEnabled(true);
   await SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
@@ -101,7 +104,6 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
-
     return FutureBuilder(
       initialData: ThemeData.light(),
       future: widget._themeDataService.getActiveTheme(),
