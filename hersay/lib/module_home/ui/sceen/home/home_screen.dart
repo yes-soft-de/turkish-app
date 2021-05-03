@@ -65,7 +65,6 @@ class HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       key: _scaffoldKey,
       drawer: TurkishNavigationDrawer(
-        profileModel: profileModel??ProfileModel(),
       ),
       appBar: TurkishAppBar.getTurkishAppBar(
           context, _scaffoldKey, S.of(context).home),

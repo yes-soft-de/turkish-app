@@ -19,14 +19,14 @@ class HomeModel {
     homeData.realEstates.data.forEach((element) {
       result.add(new HomeElement(
           id: element.id,
-          product: element.realEstateType,
+          product: element.title??'',
           image: element.image,
           ownerImage: element.imageUser ?? '',
           type: PRODUCT_TYPE.REAL_ESTATE,
           likes: (element.reaction != null)
               ? element.reaction[0].reactionCount
               : 0,
-          category: element.numberOfFloors + ' floors',
+          category: element.realEstateType,
           owner: element.userName ?? '',
           specification: element.space + ' SM',
           comments: element.commentsCount));
@@ -39,16 +39,16 @@ class HomeModel {
     homeData.cars.data.forEach((element) {
       result.add(new HomeElement(
           id: element.id,
-          product: element.carType,
+          product: element.title??'',
           image: element.image,
           type: PRODUCT_TYPE.CAR,
           likes: (element.reaction != null)
               ? element.reaction[0].reactionCount
               : 0,
-          category: element.gearType ?? '',
+          category: element.carType ?? '',
           owner: element.userName ?? '',
           ownerImage: element.imageUser ?? '',
-          specification: element.distance + ' KM',
+          specification: element.description??'',
           comments: element.commentsCount));
     });
     return result;
@@ -59,13 +59,13 @@ class HomeModel {
     homeData.electronicDevices.data.forEach((element) {
       result.add(new HomeElement(
           id: element.id,
-          product: element.brand,
+          product: element.title??'',
           image: element.image,
           type: PRODUCT_TYPE.ELECTRONIC_DEVICE,
           likes: (element.reaction != null)
               ? element.reaction[0].reactionCount
               : 0,
-          category: element.type,
+          category: element.brand??'',
           ownerImage: element.imageUser ?? '',
           owner: element.userName ?? '',
           specification: element.description,
@@ -89,14 +89,14 @@ class HomeModel {
       result.add(new HomeElement(
           id: element.id,
           categoryId: element.categoryId,
-          product: element.categoryName ?? '',
+          product: element.title ?? '',
           categoryName: element.categoryName,
           image: element.image,
           type: PRODUCT_TYPE.ADVERTISMENT,
           likes: (element.reaction != null)
               ? element.reaction[0].reactionCount
               : 0,
-          category: element.title ?? '',
+          category: element.categoryName ?? '',
           ownerImage: element.imageUser ?? '',
           owner: element.userName ?? '',
           specification: element.description,

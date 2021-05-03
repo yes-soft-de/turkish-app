@@ -46,6 +46,7 @@ class Data {
   String userName;
   String imageUser;
   int commentsCount;
+  String title;
   Data(
       {this.id,
       this.brand,
@@ -70,8 +71,8 @@ class Data {
       this.reaction,
       this.userName,
       this.imageUser,
-      this.commentsCount
-      });
+      this.commentsCount,
+      this.title});
 
   Data.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -109,6 +110,7 @@ class Data {
     userName = json['userName'];
     imageUser = json['userImage'];
     commentsCount = json['commentsNumber'];
+    title = json['title'];
   }
 
   Map<String, dynamic> toJson() {

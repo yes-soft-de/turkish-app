@@ -72,6 +72,7 @@ class HomeStateDataLoaded extends HomeState {
     return RefreshIndicator(
         onRefresh: () {
           screenState.getHomeScreenData();
+          screenState.getProfileData();
           return Future.delayed(Duration(seconds: 3));
         },
         child: Stack(
@@ -130,128 +131,132 @@ class HomeStateDataLoaded extends HomeState {
               top: 0.0,
               child: Container(
                   color: Colors.black12,
-                  margin: EdgeInsets.only(top: 0, bottom: 10),
-                  padding: EdgeInsets.symmetric(horizontal: 5, vertical: 10),
                   child: Column(
                     children: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: <Widget>[
-                          GestureDetector(
-                            onTap: () {
-                              displayedProducts = homeData.cars +
-                                  homeData.realEstates +
-                                  homeData.electronicDevices +
-                                  homeData.advertisement;
-                              displayedProducts.shuffle();
-                              selectedMode = 1;
-                              screenState.refresh();
-                            },
-                            child: Container(
-                              width: 50,
-                              height: 50,
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(50),
-                                color: (selectedMode == 1)
-                                    ? ProjectColors.SECONDARY_COLOR
-                                    : ProjectColors.THEME_COLOR,
+                      Container(
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: <Widget>[
+                              GestureDetector(
+                                onTap: () {
+                                  displayedProducts = homeData.cars +
+                                      homeData.realEstates +
+                                      homeData.electronicDevices +
+                                      homeData.advertisement;
+                                  displayedProducts.shuffle();
+                                  selectedMode = 1;
+                                  screenState.refresh();
+                                },
+                                child: Container(
+                                  width: 50,
+                                  height: 50,
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(50),
+                                    color: (selectedMode == 1)
+                                        ? ProjectColors.SECONDARY_COLOR
+                                        : ProjectColors.THEME_COLOR,
+                                  ),
+                                  child: Center(
+                                    child: Text(
+                                      S.of(context).all,
+                                      style: TextStyle(
+                                        color: Colors.white,
+                                      ),
+                                    ),
+                                  ),
+                                ),
                               ),
-                              child: Center(
-                                child: Text(
-                                  S.of(context).all,
-                                  style: TextStyle(
+                              GestureDetector(
+                                onTap: () {
+                                  displayedProducts = homeData.realEstates;
+                                  selectedMode = 2;
+                                  screenState.refresh();
+                                },
+                                child: Container(
+                                  width: 50,
+                                  height: 50,
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(50),
+                                    color: (selectedMode == 2)
+                                        ? ProjectColors.SECONDARY_COLOR
+                                        : ProjectColors.THEME_COLOR,
+                                  ),
+                                  child: Icon(
+                                    Icons.home,
                                     color: Colors.white,
                                   ),
                                 ),
                               ),
-                            ),
+                              GestureDetector(
+                                onTap: () {
+                                  displayedProducts = homeData.cars;
+                                  selectedMode = 3;
+                                  screenState.refresh();
+                                },
+                                child: Container(
+                                  width: 50,
+                                  height: 50,
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(55),
+                                    color: (selectedMode == 3)
+                                        ? ProjectColors.SECONDARY_COLOR
+                                        : ProjectColors.THEME_COLOR,
+                                  ),
+                                  child: Icon(
+                                    Icons.directions_car,
+                                    color: Colors.white,
+                                  ),
+                                ),
+                              ),
+                              GestureDetector(
+                                onTap: () {
+                                  displayedProducts =
+                                      homeData.electronicDevices;
+                                  selectedMode = 4;
+                                  screenState.refresh();
+                                },
+                                child: Container(
+                                  width: 50,
+                                  height: 50,
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(50),
+                                    color: (selectedMode == 4)
+                                        ? ProjectColors.SECONDARY_COLOR
+                                        : ProjectColors.THEME_COLOR,
+                                  ),
+                                  child: Icon(
+                                    Icons.phone_iphone,
+                                    color: Colors.white,
+                                  ),
+                                ),
+                              ),
+                              GestureDetector(
+                                onTap: () {
+                                  displayedProducts = homeData.advertisement;
+                                  selectedMode = 5;
+                                  selectChoice = 0;
+                                  screenState.refresh();
+                                },
+                                child: Container(
+                                  width: 50,
+                                  height: 50,
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(50),
+                                    color: (selectedMode == 5)
+                                        ? ProjectColors.SECONDARY_COLOR
+                                        : ProjectColors.THEME_COLOR,
+                                  ),
+                                  child: Icon(
+                                    Icons.design_services,
+                                    color: Colors.white,
+                                  ),
+                                ),
+                              ),
+                            ],
                           ),
-                          GestureDetector(
-                            onTap: () {
-                              displayedProducts = homeData.realEstates;
-                              selectedMode = 2;
-                              screenState.refresh();
-                            },
-                            child: Container(
-                              width: 50,
-                              height: 50,
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(50),
-                                color: (selectedMode == 2)
-                                    ? ProjectColors.SECONDARY_COLOR
-                                    : ProjectColors.THEME_COLOR,
-                              ),
-                              child: Icon(
-                                Icons.home,
-                                color: Colors.white,
-                              ),
-                            ),
-                          ),
-                          GestureDetector(
-                            onTap: () {
-                              displayedProducts = homeData.cars;
-                              selectedMode = 3;
-                              screenState.refresh();
-                            },
-                            child: Container(
-                              width: 50,
-                              height: 50,
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(55),
-                                color: (selectedMode == 3)
-                                    ? ProjectColors.SECONDARY_COLOR
-                                    : ProjectColors.THEME_COLOR,
-                              ),
-                              child: Icon(
-                                Icons.directions_car,
-                                color: Colors.white,
-                              ),
-                            ),
-                          ),
-                          GestureDetector(
-                            onTap: () {
-                              displayedProducts = homeData.electronicDevices;
-                              selectedMode = 4;
-                              screenState.refresh();
-                            },
-                            child: Container(
-                              width: 50,
-                              height: 50,
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(50),
-                                color: (selectedMode == 4)
-                                    ? ProjectColors.SECONDARY_COLOR
-                                    : ProjectColors.THEME_COLOR,
-                              ),
-                              child: Icon(
-                                Icons.phone_iphone,
-                                color: Colors.white,
-                              ),
-                            ),
-                          ),
-                          GestureDetector(
-                            onTap: () {
-                              displayedProducts = homeData.advertisement;
-                              selectedMode = 5;
-                              selectChoice = 0;
-                              screenState.refresh();
-                            },
-                            child: Container(
-                              width: 50,
-                              height: 50,
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(50),
-                                color: (selectedMode == 5)
-                                    ? ProjectColors.SECONDARY_COLOR
-                                    : ProjectColors.THEME_COLOR,
-                              ),
-                              child: Icon(
-                                Icons.design_services,
-                                color: Colors.white,
-                              ),
-                            ),
-                          ),
-                        ],
+                        ),
                       ),
                       selectedMode == 5
                           ? Padding(
@@ -315,6 +320,7 @@ class HomeStateDataLoaded extends HomeState {
     });
     return cat;
   }
+
 }
 
 class HomeStateError extends HomeState {

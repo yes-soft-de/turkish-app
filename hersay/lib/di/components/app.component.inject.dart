@@ -391,7 +391,8 @@ class AppComponent$Injector implements _i1.AppComponent {
   _i93.AdvancedSearchScreen _createAdvancedSearchScreen() =>
       _i93.AdvancedSearchScreen(_createAdvancedSearchStateManager());
   _i94.AdvancedSearchStateManager _createAdvancedSearchStateManager() =>
-      _i94.AdvancedSearchStateManager(_createSearchService());
+      _i94.AdvancedSearchStateManager(
+          _createSearchService(), _createServiceService());
   _i95.SettingModule _createSettingModule() =>
       _i95.SettingModule(_createSettingsScreen());
   _i96.SettingsScreen _createSettingsScreen() => _i96.SettingsScreen(
