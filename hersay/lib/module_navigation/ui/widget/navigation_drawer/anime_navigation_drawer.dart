@@ -1,22 +1,17 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hersay/generated/l10n.dart';
-import 'package:hersay/module_auth/persistance/auth_prefs_helper.dart';
-import 'package:hersay/module_profile/model/profile/profile_model.dart';
 import 'package:hersay/module_profile/presistance/profile_shared_preferences.dart';
 import 'package:hersay/module_profile/profile_routes.dart';
 import 'package:hersay/module_search/search_routes.dart';
 import 'package:hersay/module_settings/setting_routes.dart';
 import 'package:hersay/utils/project_colors/project_colors.dart';
-import 'package:inject/inject.dart';
 
 class TurkishNavigationDrawer extends StatelessWidget {
-  final ProfileModel profileModel;
-  TurkishNavigationDrawer({this.profileModel});
-
   @override
   Widget build(BuildContext context) {
-    print(profileModel.userName);
+    ProfileSharedPreferencesHelper profileModel =
+        ProfileSharedPreferencesHelper();
     return Container(
       width: 250,
       child: Drawer(
@@ -48,13 +43,21 @@ class TurkishNavigationDrawer extends StatelessWidget {
                           ),
                         )
                       ]),
-                  child: Image.network(
-                        profileModel.userImage??'',
-                        errorBuilder: (a, b, c) {
-                          return Image.asset('assets/images/profilePic.jpg');
-                        },
-                      ) ??
-                      AssetImage('assets/images/profilePic.jpg'),
+                  child: FutureBuilder(
+                    future: profileModel.getImage(),
+                    builder: (_, image) {
+                      if (image.hasData) {
+                        return Image.network(
+                          image.data ?? '',
+                          errorBuilder: (a, b, c) {
+                            return Image.asset('assets/images/profilePic.jpg');
+                          },
+                        );
+                      } else {
+                        return Image.asset('assets/images/profilePic.jpg');
+                      }
+                    },
+                  ),
                 ),
               ),
             ),
@@ -64,12 +67,21 @@ class TurkishNavigationDrawer extends StatelessWidget {
               child: Center(
                   child: Padding(
                 padding: const EdgeInsets.all(8.0),
-                child: Text(
-                  profileModel?.userName ?? '',
-                  style: TextStyle(
-                      fontSize: 16.5,
-                      fontWeight: FontWeight.w500,
-                      color: Colors.white),
+                child: FutureBuilder(
+                  future: profileModel.getUsername(),
+                  builder: (_, name) {
+                    if (name.hasData) {
+                      return Text(
+                        name.data ?? '',
+                        style: TextStyle(
+                            fontSize: 16.5,
+                            fontWeight: FontWeight.w500,
+                            color: Colors.white),
+                      );
+                    } else {
+                      return Container();
+                    }
+                  },
                 ),
               )),
             ),
