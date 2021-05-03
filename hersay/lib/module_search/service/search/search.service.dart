@@ -20,12 +20,14 @@ class SearchService {
   }
 
   Future<List<SearchModel>> filteredSearch(String entity, String city,
-      String lowestPrice, String highestPrice) async {
+      String lowestPrice, String highestPrice,int id) async {
     FilteredSearchRequest searchRequest = new FilteredSearchRequest(
+        categoryID: id,
         lowestPrice: lowestPrice,
         highestPrice: highestPrice,
         city: city,
-        entity: entity);
+        entity: entity
+        );
 
     SearchResponse response =
         await _searchManager.filteredSearch(searchRequest);

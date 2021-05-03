@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hersay/generated/l10n.dart';
 import 'package:hersay/module_auth/auth_routes.dart';
+import 'package:hersay/module_home/model/home/home_model.dart';
 import 'package:hersay/module_products/products_routes.dart';
 import 'package:hersay/module_search/model/search/search_model.dart';
 import 'package:hersay/module_search/ui/screen/advanced_search_screen/advanced_search_screen.dart';
@@ -17,8 +18,18 @@ abstract class AdvancedSearchState {
 }
 
 class AdvancedSearchStateInit extends AdvancedSearchState {
-  AdvancedSearchStateInit(AdvancedSearchScreenState screenState)
-      : super(screenState);
+  final List<Categories> categories;
+  AdvancedSearchStateInit(
+    AdvancedSearchScreenState screenState,
+    this.categories,
+  ) : super(screenState) {
+    categories.forEach((element) {
+      categoriesList.add(element.categoryName);
+    });
+  }
+  List<String> categoriesList = [];
+  int categoryID;
+  String _selectedCategoryType;
   String _selectedEntityType;
   final TextEditingController _cityController = TextEditingController();
   final TextEditingController _lowestPriceController = TextEditingController();
@@ -88,6 +99,46 @@ class AdvancedSearchStateInit extends AdvancedSearchState {
                           }),
                     ),
                   )),
+              //category
+              _entityTypes[3] == _selectedEntityType
+                  ? Card(
+                      elevation: 10,
+                      margin: EdgeInsets.only(top: 20),
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(15)),
+                      child: Container(
+                        width: 340,
+                        padding: EdgeInsets.all(10),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(15),
+                          color: Colors.black12,
+                        ),
+                        child: DropdownButtonHideUnderline(
+                          child: DropdownButton(
+                              hint: Text(
+                                S.of(context).chooseCategory,
+                                style: TextStyle(color: Colors.grey),
+                              ),
+                              value: _selectedCategoryType,
+                              items: categoriesList.map((String place) {
+                                return new DropdownMenuItem<String>(
+                                  value: place.toString(),
+                                  child: new Text(place),
+                                );
+                              }).toList(),
+                              onChanged: (value) {
+                                _selectedCategoryType = value;
+                                categories.forEach((element) {
+                                  if (element.categoryName == value) {
+                                    categoryID = element.categoryId;
+                                  }
+                                });
+                                screenState.refresh();
+                              }),
+                        ),
+                      ))
+                  : Container(),
+
               // price
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -213,11 +264,12 @@ class AdvancedSearchStateInit extends AdvancedSearchState {
                                 _highestPriceController.text.isNotEmpty ||
                                 _cityController.text.isNotEmpty)) {
                           screenState.advancedSearch(
-                            _selectedEntityType,
-                            _cityController.text.trim(),
-                            _lowestPriceController.text.trim(),
-                            _highestPriceController.text.trim(),
-                          );
+                              _selectedEntityType,
+                              _cityController.text.trim(),
+                              _lowestPriceController.text.trim(),
+                              _highestPriceController.text.trim(),
+                              categories,
+                              categoryID);
                         }
 
                         //  }
@@ -259,10 +311,18 @@ class AdvancedSearchStateDataLoaded extends AdvancedSearchState {
   final TextEditingController _cityController = TextEditingController();
   final TextEditingController _lowestPriceController = TextEditingController();
   final TextEditingController _highestPriceController = TextEditingController();
+  final List<Categories> categories;
 
-  AdvancedSearchStateDataLoaded(
-      this.searchResults, AdvancedSearchScreenState screenState)
-      : super(screenState);
+  AdvancedSearchStateDataLoaded(this.searchResults,
+      AdvancedSearchScreenState screenState, this.categories)
+      : super(screenState) {
+    categories.forEach((element) {
+      categoriesList.add(element.categoryName);
+    });
+  }
+  List<String> categoriesList = [];
+  int categoryID;
+  String _selectedCategoryType;
   @override
   Widget getUI(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
@@ -320,6 +380,46 @@ class AdvancedSearchStateDataLoaded extends AdvancedSearchState {
                           }),
                     ),
                   )),
+              //category
+              _entityTypes[3] == _selectedEntityType
+                  ? Card(
+                      elevation: 10,
+                      margin: EdgeInsets.only(top: 20),
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(15)),
+                      child: Container(
+                        width: 340,
+                        padding: EdgeInsets.all(10),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(15),
+                          color: Colors.black12,
+                        ),
+                        child: DropdownButtonHideUnderline(
+                          child: DropdownButton(
+                              hint: Text(
+                                S.of(context).chooseCategory,
+                                style: TextStyle(color: Colors.grey),
+                              ),
+                              value: _selectedCategoryType,
+                              items: categoriesList.map((String place) {
+                                return new DropdownMenuItem<String>(
+                                  value: place.toString(),
+                                  child: new Text(place),
+                                );
+                              }).toList(),
+                              onChanged: (value) {
+                                _selectedCategoryType = value;
+                                categories.forEach((element) {
+                                  if (element.categoryName == value) {
+                                    categoryID = element.categoryId;
+                                  }
+                                });
+                                screenState.refresh();
+                              }),
+                        ),
+                      ))
+                  : Container(),
+
               // price
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -448,11 +548,10 @@ class AdvancedSearchStateDataLoaded extends AdvancedSearchState {
                                 _highestPriceController.text.isNotEmpty ||
                                 _cityController.text.isNotEmpty)) {
                           screenState.advancedSearch(
-                            _selectedEntityType,
-                            _cityController.text.trim(),
-                            _lowestPriceController.text.trim(),
-                            _highestPriceController.text.trim(),
-                          );
+                              _selectedEntityType,
+                              _cityController.text.trim(),
+                              _lowestPriceController.text.trim(),
+                              _highestPriceController.text.trim(),categories,categoryID);
                         }
 //                        }
                       },

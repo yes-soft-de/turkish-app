@@ -25,6 +25,13 @@
                 "qualifier": null
               },
               "isProvider": false
+            },
+            {
+              "lookupKey": {
+                "root": "asset:hersay/lib/module_products/service/service/service.dart#ServiceService",
+                "qualifier": null
+              },
+              "isProvider": false
             }
           ]
         }

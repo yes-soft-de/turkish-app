@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hersay/generated/l10n.dart';
+import 'package:hersay/module_home/model/home/home_model.dart';
 import 'package:hersay/module_navigation/ui/widget/navigation_drawer/anime_navigation_drawer.dart';
 import 'package:hersay/module_search/state_manager/advanced_search/advanced_search.state_manager.dart';
 import 'package:hersay/module_search/ui/state/advanced_search/advanced_search.state.dart';
@@ -29,7 +30,7 @@ class AdvancedSearchScreenState extends State<AdvancedSearchScreen> {
   @override
   void initState() {
     super.initState();
-    currentSate = AdvancedSearchStateInit(this);
+    currentSate = AdvancedSearchStateLoading(this);
     widget._stateManager.stateStream.listen((event) {
       currentSate = event;
 
@@ -37,10 +38,11 @@ class AdvancedSearchScreenState extends State<AdvancedSearchScreen> {
         setState(() {});
       }
     });
+    widget._stateManager.getCategories(this);
   }
 
-  void advancedSearch(
-      String entity, String city, String lowestPrice, String highestPrice) {
+  void advancedSearch(String entity, String city, String lowestPrice,
+      String highestPrice, List<Categories> categories,int categoryID) {
     if (city.isEmpty) {
       city = null;
     }
@@ -50,8 +52,8 @@ class AdvancedSearchScreenState extends State<AdvancedSearchScreen> {
     if (highestPrice.isEmpty) {
       highestPrice = null;
     }
-    widget._stateManager
-        .advancedSearch(entity, city, lowestPrice, highestPrice, this);
+    widget._stateManager.advancedSearch(
+        entity, city, lowestPrice, highestPrice, this, categories,categoryID);
   }
 
   void refresh() {
