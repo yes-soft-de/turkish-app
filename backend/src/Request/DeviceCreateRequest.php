@@ -7,6 +7,8 @@ namespace App\Request;
 class DeviceCreateRequest
 {
     private $type;
+
+    private $title;
     
     private $brand;
 

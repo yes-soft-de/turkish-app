@@ -7,6 +7,8 @@ class RealEstateCreateResponse
 {
     public $id;
 
+    public $title;
+    
     public $country;
 
     public $city;

@@ -8,6 +8,8 @@ class CarGetByIdResponse
 {
     public $id;
 
+    public $title;
+
     public $yearOfProduction;
 
     public $price;

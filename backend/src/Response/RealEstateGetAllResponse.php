@@ -9,6 +9,8 @@ class RealEstateGetAllResponse
 
     public $id;
 
+    public $title;
+    
     public $country;
     
     public $city;

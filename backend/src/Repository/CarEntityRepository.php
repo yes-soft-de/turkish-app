@@ -24,7 +24,7 @@ class CarEntityRepository extends ServiceEntityRepository
     public function getCarById($id)
     {
         return $this->createQueryBuilder('car')
-            ->select("car.id", "car.yearOfProduction", "car.price", "car.description", "car.status", "car.createdBy", "car.createdAt", "car.updateAt", 
+            ->select("car.id", "car.title", "car.yearOfProduction", "car.price", "car.description", "car.status", "car.createdBy", "car.createdAt", "car.updateAt", 
             "car.distance", "car.carType", "car.gearType", "car.country", "car.city", "car.image", "car.specialLink", 'userProfileEntity.userName as username', 'userProfileEntity.image as userImage')
 
             ->andWhere('car.id = :id')
@@ -67,7 +67,7 @@ class CarEntityRepository extends ServiceEntityRepository
     public function getCarsOfUser($createdBy)
     {
         return $this->createQueryBuilder('car')
-            ->select("car.id", "car.yearOfProduction", "car.price", "car.description", "car.status", "car.createdBy", "car.createdAt", 
+            ->select("car.id", "car.title", "car.yearOfProduction", "car.price", "car.description", "car.status", "car.createdBy", "car.createdAt", 
             "car.updateAt", "car.distance", "car.carType", "car.gearType", "car.country", "car.city", "car.image", "car.specialLink",
              'userProfileEntity.userName', 'userProfileEntity.image as userImage')
 
@@ -89,7 +89,7 @@ class CarEntityRepository extends ServiceEntityRepository
     public function getAllCars()
     {
         return $this->createQueryBuilder('car')
-            ->select("car.id", "car.yearOfProduction", "car.price", "car.description", "car.status", "car.createdBy", 
+            ->select("car.id", "car.title", "car.yearOfProduction", "car.price", "car.description", "car.status", "car.createdBy", 
             "car.createdAt", "car.updateAt", "car.distance", "car.carType", "car.gearType", "car.country", "car.city", "car.image", 
             "car.specialLink", "UserProfileEntity.image as userImage", "UserProfileEntity.userName")
 
@@ -108,7 +108,7 @@ class CarEntityRepository extends ServiceEntityRepository
     public function getFilterCity($value)
     {
         return $this->createQueryBuilder('car')
-            ->select("car.id", "car.yearOfProduction", "car.price", "car.description", "car.status", "car.createdBy", "car.createdAt", 
+            ->select("car.id", "car.title", "car.yearOfProduction", "car.price", "car.description", "car.status", "car.createdBy", "car.createdAt", 
             "car.updateAt", "car.distance", "car.carType", "car.gearType", "car.country", "car.city", "car.image", "car.specialLink", 
             'userProfileEntity.userName', 'userProfileEntity.image as userImage')
 
@@ -129,7 +129,7 @@ class CarEntityRepository extends ServiceEntityRepository
     public function getFilterPrice($value)
     {
         return $this->createQueryBuilder('car')
-            ->select("car.id", "car.yearOfProduction", "car.price", "car.description", "car.status", "car.createdBy", "car.createdAt", "car.updateAt", "car.distance", 
+            ->select("car.id", "car.title", "car.yearOfProduction", "car.price", "car.description", "car.status", "car.createdBy", "car.createdAt", "car.updateAt", "car.distance", 
             "car.carType", "car.gearType", "car.country", "car.city", "car.image", "car.specialLink", 'userProfileEntity.userName', 'userProfileEntity.image as userImage')
 
             ->leftJoin(
@@ -149,7 +149,7 @@ class CarEntityRepository extends ServiceEntityRepository
     public function getCarsByType($carType)
     {
         return $this->createQueryBuilder('car')
-            ->select('car.id', 'car.createdBy', 'car.carType', 'car.createdAt', 'car.description', 'car.distance', 'car.gearType', 
+            ->select('car.id', 'car.title', 'car.createdBy', 'car.carType', 'car.createdAt', 'car.description', 'car.distance', 'car.gearType', 
             'car.image', 'car.price', 'car.yearOfProduction', 'car.status', 'car.updateAt', 'car.description', 'car.city', 'car.country', 
             'car.specialLink', "userProfileEntity.image as userImage", "userProfileEntity.userName")
 
@@ -173,7 +173,7 @@ class CarEntityRepository extends ServiceEntityRepository
     public function getFilterByPriceAndCity($price, $location)
     {
         return $this->createQueryBuilder('car')
-            ->select("car.id", "car.yearOfProduction", "car.price", "car.description", "car.status", "car.createdBy", "car.createdAt", "car.updateAt", "car.distance", 
+            ->select("car.id", "car.title", "car.yearOfProduction", "car.price", "car.description", "car.status", "car.createdBy", "car.createdAt", "car.updateAt", "car.distance", 
             "car.carType", "car.gearType", "car.country", "car.city", "car.image", "car.specialLink", 'userProfileEntity.userName', 'userProfileEntity.image as userImage')
 
             ->leftJoin(
@@ -196,7 +196,7 @@ class CarEntityRepository extends ServiceEntityRepository
     public function getFilterByTwoPrices($price, $price_2)
     {
         return $this->createQueryBuilder('car')
-            ->select("car.id", "car.yearOfProduction", "car.price", "car.description", "car.status", "car.createdBy", "car.createdAt", "car.updateAt", 
+            ->select("car.id", "car.title", "car.yearOfProduction", "car.price", "car.description", "car.status", "car.createdBy", "car.createdAt", "car.updateAt", 
             "car.distance", "car.carType", "car.gearType", "car.country", "car.city", "car.image", "car.specialLink", 'userProfileEntity.userName', 
             'userProfileEntity.image as userImage')
 
@@ -220,7 +220,7 @@ class CarEntityRepository extends ServiceEntityRepository
     public function getFilterByTwoPricesAndCity($price, $price_2, $location)
     {
         return $this->createQueryBuilder('car')
-            ->select("car.id", "car.yearOfProduction", "car.price", "car.description", "car.status", "car.createdBy", "car.createdAt", "car.updateAt", "car.distance", "car.carType", 
+            ->select("car.id", "car.title", "car.yearOfProduction", "car.price", "car.description", "car.status", "car.createdBy", "car.createdAt", "car.updateAt", "car.distance", "car.carType", 
             "car.gearType", "car.country", "car.city", "car.image", "car.specialLink", 'userProfileEntity.userName', 'userProfileEntity.image as userImage')
 
             ->leftJoin(
@@ -259,7 +259,7 @@ class CarEntityRepository extends ServiceEntityRepository
     public function getCarOfUserById($userID, $id)
     {
         return $this->createQueryBuilder('car')
-            ->select("car.id", "car.yearOfProduction", "car.price", "car.description", "car.status", "car.createdBy", "car.createdAt", "car.updateAt", "car.distance", "car.carType", 
+            ->select("car.id", "car.title", "car.yearOfProduction", "car.price", "car.description", "car.status", "car.createdBy", "car.createdAt", "car.updateAt", "car.distance", "car.carType", 
             "car.gearType", "car.country", "car.city", "car.image", "car.specialLink", 'userProfileEntity.userName as username', 'userProfileEntity.image as userImage')
 
             ->andWhere('car.id = :id')

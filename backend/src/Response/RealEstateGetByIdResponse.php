@@ -7,6 +7,8 @@ class RealEstateGetByIdResponse
 {
     public $id;
 
+    public $title;
+    
     public $country;
     
     public $city;

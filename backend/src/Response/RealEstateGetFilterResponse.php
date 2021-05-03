@@ -7,6 +7,8 @@ class RealEstateGetFilterResponse
 {
     public $id;
     
+    public $title;
+    
     public $country;
 
     public $city;

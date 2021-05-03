@@ -6,6 +6,8 @@ namespace App\Response;
 
 class CarUpdateResponse
 {
+    public $title;
+    
     public $yearOfProduction;
 
     public $price;

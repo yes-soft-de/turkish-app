@@ -6,6 +6,8 @@ namespace App\Response;
 
 class DeviceUpdateResponse
 {
+    public $title;
+    
     public $type;
     
     public $brand;

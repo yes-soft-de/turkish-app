@@ -192,22 +192,22 @@ class CarService
         return $response;
     }
 
-    public function getAllProperties($userID)
-    {
-        $response = [];
+    // public function getAllProperties($userID)
+    // {
+    //     $response = [];
 
-        $cars = $this->getAllCars($userID);
+    //     $cars = $this->getAllCars($userID);
 
-        $devices = $this->deviceService->getAllDevices($userID);
+    //     $devices = $this->deviceService->getAllDevices($userID);
 
-        $realEstates = $this->realEstateService->getAllRealEstate($userID);
+    //     $realEstates = $this->realEstateService->getAllRealEstate($userID);
 
-        $response = array_merge_recursive($cars, $devices, $realEstates);
+    //     $response = array_merge_recursive($cars, $devices, $realEstates);
 
-        shuffle($response);
+    //     shuffle($response);
 
-        return $response;
-    }
+    //     return $response;
+    // }
 
     public function getCarsByType($brand)
     {

@@ -6,6 +6,8 @@ namespace App\Response;
 
 class DeviceGetByIdResponse
 {
+    public $title;
+    
     public $type;
     
     public $brand;

@@ -6,6 +6,8 @@ namespace App\Request;
 
 class CarCreateRequest
 {
+    private $title;
+    
     private $yearOfProduction;
 
     private $price;

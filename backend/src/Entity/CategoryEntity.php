@@ -27,6 +27,11 @@ class CategoryEntity
      */
     private $description;
 
+    /**
+     * @ORM\Column(type="string", length=50, nullable=true)
+     */
+    private $lang;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -52,6 +57,18 @@ class CategoryEntity
     public function setDescription(?string $description): self
     {
         $this->description = $description;
+
+        return $this;
+    }
+
+    public function getLang(): ?string
+    {
+        return $this->lang;
+    }
+
+    public function setLang(?string $lang): self
+    {
+        $this->lang = $lang;
 
         return $this;
     }

@@ -22,7 +22,7 @@ class CategoryEntityRepository extends ServiceEntityRepository
     public function getAll()
     {
         return $this->createQueryBuilder('category')
-            ->select('category.id', 'category.name', 'category.description')
+            ->select('category.id', 'category.name', 'category.description', 'category.lang')
 
             ->getQuery()
             ->getResult();
@@ -31,7 +31,7 @@ class CategoryEntityRepository extends ServiceEntityRepository
     public function getCategoryById($id)
     {
         return $this->createQueryBuilder('category')
-            ->select('category.id', 'category.name', 'category.description')
+            ->select('category.id', 'category.name', 'category.description', 'category.lang')
 
             ->andWhere('category.id = :id')
             ->setParameter('id', $id)

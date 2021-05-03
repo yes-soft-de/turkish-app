@@ -8,6 +8,8 @@ class RealEstateUpdateRequest
 {
     private $id;
     
+    private $title;
+    
     private $country;
 
     private $city;

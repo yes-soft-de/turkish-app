@@ -10,6 +10,8 @@ class CarGetResponse
 
     public $id;
 
+    public $title;
+
     public $yearOfProduction;
 
     public $price;

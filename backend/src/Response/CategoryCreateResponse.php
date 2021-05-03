@@ -10,6 +10,8 @@ class CategoryCreateResponse
 
     public $description;
 
+    public $lang;
+
     /**
      * @return mixed
      */

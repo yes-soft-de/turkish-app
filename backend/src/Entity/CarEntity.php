@@ -95,6 +95,11 @@ class CarEntity
      */
     private $completeDate;
 
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $title;
+
 
     public function getId(): ?int
     {
@@ -253,6 +258,18 @@ class CarEntity
     public function setCompleteDate(\DateTimeInterface $completeDate): self
     {
         $this->completeDate = $completeDate;
+
+        return $this;
+    }
+
+    public function getTitle(): ?string
+    {
+        return $this->title;
+    }
+
+    public function setTitle(string $title): self
+    {
+        $this->title = $title;
 
         return $this;
     }

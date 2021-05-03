@@ -5,8 +5,9 @@ namespace App\Response;
 
 class CarGetFilterResponse
 {
-
     public $id;
+
+    public $title;
 
     public $yearOfProduction;
 

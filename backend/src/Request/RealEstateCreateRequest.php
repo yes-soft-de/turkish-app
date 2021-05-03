@@ -6,6 +6,8 @@ use DateTime;
 
 class RealEstateCreateRequest
 {
+    private $title;
+    
     private $country;
 
     private $city;

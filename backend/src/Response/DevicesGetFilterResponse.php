@@ -8,6 +8,8 @@ class DevicesGetFilterResponse
 {
     public $id;
 
+    public $title;
+    
     public $type;
 
     public $brand;

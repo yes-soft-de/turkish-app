@@ -10,6 +10,8 @@ class CategoryUpdateRequest
 
     private $description;
 
+    private $lang;
+
     public function getId()
     {
         return $this->id;

@@ -24,7 +24,7 @@ class RealEstateEntityRepository extends ServiceEntityRepository
     public function getRealEstateById($id)
     {
         return $this->createQueryBuilder('RealEstateEntity')
-            ->select('RealEstateEntity.country','RealEstateEntity.city', 'RealEstateEntity.space', 'RealEstateEntity.price', 'RealEstateEntity.description', 'RealEstateEntity.status',
+            ->select('RealEstateEntity.country', 'RealEstateEntity.title', 'RealEstateEntity.city', 'RealEstateEntity.space', 'RealEstateEntity.price', 'RealEstateEntity.description', 'RealEstateEntity.status',
                 'RealEstateEntity.createdBy', 'RealEstateEntity.createdAt', 'RealEstateEntity.updateAt', 'RealEstateEntity.image', 'RealEstateEntity.specialLink',
                 'RealEstateEntity.numberOfFloors', 'RealEstateEntity.homeFurnishing', 'RealEstateEntity.realEstateType',
                 'userProfileEntity.userName as username', 'userProfileEntity.image as userImage')
@@ -47,7 +47,7 @@ class RealEstateEntityRepository extends ServiceEntityRepository
     public function getAllRealEstate()
     {
         return $this->createQueryBuilder('RealEstateEntity')
-            ->select('RealEstateEntity.id', 'RealEstateEntity.country', 'RealEstateEntity.city', 'RealEstateEntity.space', 'RealEstateEntity.price', 'RealEstateEntity.description', 
+            ->select('RealEstateEntity.id', 'RealEstateEntity.title', 'RealEstateEntity.country', 'RealEstateEntity.city', 'RealEstateEntity.space', 'RealEstateEntity.price', 'RealEstateEntity.description', 
             'RealEstateEntity.status', 'RealEstateEntity.createdBy', 'RealEstateEntity.createdAt', 'RealEstateEntity.updateAt', 'RealEstateEntity.image', 'RealEstateEntity.specialLink', 
             'RealEstateEntity.numberOfFloors', 'RealEstateEntity.homeFurnishing', 'RealEstateEntity.realEstateType', 'UserProfileEntity.userName', 'UserProfileEntity.image as userImage')
 
@@ -65,7 +65,7 @@ class RealEstateEntityRepository extends ServiceEntityRepository
     public function getRealEstateByUser($userID)
     {
         return $this->createQueryBuilder('RealEstateEntity')
-            ->select('RealEstateEntity.id', 'RealEstateEntity.country', 'RealEstateEntity.city', 'RealEstateEntity.space', 'RealEstateEntity.price', 'RealEstateEntity.description', 'RealEstateEntity.status', 
+            ->select('RealEstateEntity.id', 'RealEstateEntity.title', 'RealEstateEntity.country', 'RealEstateEntity.city', 'RealEstateEntity.space', 'RealEstateEntity.price', 'RealEstateEntity.description', 'RealEstateEntity.status', 
             'RealEstateEntity.createdBy', 'RealEstateEntity.createdAt', 'RealEstateEntity.updateAt', 'RealEstateEntity.image', 'RealEstateEntity.specialLink', 'RealEstateEntity.numberOfFloors',
             'RealEstateEntity.homeFurnishing', 'RealEstateEntity.realEstateType', 'userProfileEntity.userName', 'userProfileEntity.image as userImage')
 
@@ -87,7 +87,7 @@ class RealEstateEntityRepository extends ServiceEntityRepository
     public function getFilterCity($value)
     {
         return $this->createQueryBuilder('RealEstateEntity')
-            ->select('RealEstateEntity.id', 'RealEstateEntity.country','RealEstateEntity.city', 'RealEstateEntity.space', 'RealEstateEntity.price', 'RealEstateEntity.description', 
+            ->select('RealEstateEntity.id', 'RealEstateEntity.title', 'RealEstateEntity.country','RealEstateEntity.city', 'RealEstateEntity.space', 'RealEstateEntity.price', 'RealEstateEntity.description', 
                 'RealEstateEntity.status', 'RealEstateEntity.createdBy', 'RealEstateEntity.createdAt', 'RealEstateEntity.updateAt', 'RealEstateEntity.image', 'RealEstateEntity.specialLink',
                 'RealEstateEntity.numberOfFloors', 'RealEstateEntity.homeFurnishing', 'RealEstateEntity.realEstateType',
                 'userProfileEntity.userName', 'userProfileEntity.image as userImage')
@@ -110,7 +110,7 @@ class RealEstateEntityRepository extends ServiceEntityRepository
     public function getFilterPrice($value)
     {
         return $this->createQueryBuilder('RealEstateEntity')
-            ->select('RealEstateEntity.id', 'RealEstateEntity.country','RealEstateEntity.city', 'RealEstateEntity.space', 'RealEstateEntity.price', 'RealEstateEntity.description', 'RealEstateEntity.status',
+            ->select('RealEstateEntity.id', 'RealEstateEntity.title', 'RealEstateEntity.country','RealEstateEntity.city', 'RealEstateEntity.space', 'RealEstateEntity.price', 'RealEstateEntity.description', 'RealEstateEntity.status',
                     'RealEstateEntity.createdBy', 'RealEstateEntity.createdAt', 'RealEstateEntity.updateAt', 'RealEstateEntity.image', 'RealEstateEntity.specialLink',
                     'RealEstateEntity.numberOfFloors', 'RealEstateEntity.homeFurnishing', 'RealEstateEntity.realEstateType',
                     'userProfileEntity.userName', 'userProfileEntity.image as userImage')
@@ -133,7 +133,7 @@ class RealEstateEntityRepository extends ServiceEntityRepository
     public function getRealEstatesByType($realEstateType)
     {
         return $this->createQueryBuilder('RealEstateEntity')
-            ->select('RealEstateEntity.id', 'RealEstateEntity.country','RealEstateEntity.city', 'RealEstateEntity.space', 'RealEstateEntity.price', 
+            ->select('RealEstateEntity.id', 'RealEstateEntity.title', 'RealEstateEntity.country','RealEstateEntity.city', 'RealEstateEntity.space', 'RealEstateEntity.price', 
             'RealEstateEntity.description', 'RealEstateEntity.status', 'RealEstateEntity.createdBy', 'RealEstateEntity.createdAt', 'RealEstateEntity.updateAt', 
             'RealEstateEntity.image', 'RealEstateEntity.specialLink', 'RealEstateEntity.numberOfFloors', 'RealEstateEntity.homeFurnishing', 'RealEstateEntity.realEstateType', 
             'userProfileEntity.userName as userName', 'userProfileEntity.image as userImage')
@@ -159,7 +159,7 @@ class RealEstateEntityRepository extends ServiceEntityRepository
     public function getFilterByPriceAndCity($price, $location)
     {
         return $this->createQueryBuilder('realEstate')
-            ->select('realEstate.id', 'realEstate.country','realEstate.city', 'realEstate.space', 'realEstate.price', 'realEstate.description', 'realEstate.status',
+            ->select('realEstate.id', 'realEstate.title', 'realEstate.country','realEstate.city', 'realEstate.space', 'realEstate.price', 'realEstate.description', 'realEstate.status',
                     'realEstate.createdBy', 'realEstate.createdAt', 'realEstate.updateAt', 'realEstate.image', 'realEstate.specialLink',
                     'realEstate.numberOfFloors', 'realEstate.homeFurnishing', 'realEstate.realEstateType',
                     'userProfileEntity.userName', 'userProfileEntity.image as userImage')
@@ -184,7 +184,7 @@ class RealEstateEntityRepository extends ServiceEntityRepository
     public function getFilterByTwoPrices($price, $price_2)
     {
         return $this->createQueryBuilder('realEstate')
-            ->select('realEstate.id', 'realEstate.country','realEstate.city', 'realEstate.space', 'realEstate.price', 'realEstate.description', 'realEstate.status',
+            ->select('realEstate.id', 'realEstate.title', 'realEstate.country','realEstate.city', 'realEstate.space', 'realEstate.price', 'realEstate.description', 'realEstate.status',
                     'realEstate.createdBy', 'realEstate.createdAt', 'realEstate.updateAt', 'realEstate.image', 'realEstate.specialLink',
                     'realEstate.numberOfFloors', 'realEstate.homeFurnishing', 'realEstate.realEstateType',
                     'userProfileEntity.userName as username', 'userProfileEntity.image as userImage')
@@ -209,7 +209,7 @@ class RealEstateEntityRepository extends ServiceEntityRepository
     public function getFilterByTwoPricesAndCity($price, $price_2, $location)
     {
         return $this->createQueryBuilder('realEstate')
-            ->select('realEstate.id', 'realEstate.country','realEstate.city', 'realEstate.space', 'realEstate.price', 'realEstate.description', 'realEstate.status',
+            ->select('realEstate.id', 'realEstate.title', 'realEstate.country','realEstate.city', 'realEstate.space', 'realEstate.price', 'realEstate.description', 'realEstate.status',
                     'realEstate.createdBy', 'realEstate.createdAt', 'realEstate.updateAt', 'realEstate.image', 'realEstate.specialLink',
                     'realEstate.numberOfFloors', 'realEstate.homeFurnishing', 'realEstate.realEstateType',
                     'userProfileEntity.userName', 'userProfileEntity.image as userImage')
@@ -250,7 +250,7 @@ class RealEstateEntityRepository extends ServiceEntityRepository
     public function getRealEstateOfUserById($userID, $id)
     {
         return $this->createQueryBuilder('RealEstateEntity')
-            ->select('RealEstateEntity.country','RealEstateEntity.city', 'RealEstateEntity.space', 'RealEstateEntity.price', 'RealEstateEntity.description', 'RealEstateEntity.status',
+            ->select('RealEstateEntity.title', 'RealEstateEntity.country', 'RealEstateEntity.city', 'RealEstateEntity.space', 'RealEstateEntity.price', 'RealEstateEntity.description', 'RealEstateEntity.status',
                 'RealEstateEntity.createdBy', 'RealEstateEntity.createdAt', 'RealEstateEntity.updateAt', 'RealEstateEntity.image', 'RealEstateEntity.specialLink',
                 'RealEstateEntity.numberOfFloors', 'RealEstateEntity.homeFurnishing', 'RealEstateEntity.realEstateType',
                 'userProfileEntity.userName as username', 'userProfileEntity.image as userImage')

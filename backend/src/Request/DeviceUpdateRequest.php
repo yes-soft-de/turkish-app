@@ -8,6 +8,8 @@ class DeviceUpdateRequest
 {
     private $id;
 
+    private $title;
+
     private $type;
     
     private $brand;

@@ -7,6 +7,8 @@ namespace App\Response;
 class DeviceCreateResponse
 {
     public $id;
+
+    public $title;
     
     public $type;
 

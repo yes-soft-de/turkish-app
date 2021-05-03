@@ -8,6 +8,8 @@ class CarUpdateRequest
 {
     private $id;
 
+    private $title;
+
     private $yearOfProduction;
 
     private $price;
