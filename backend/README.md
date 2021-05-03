@@ -367,6 +367,11 @@ methods: GET
 /category/{id}
 methods: GET
 ```
+#### Get categories by language
+```
+/categoriesbylanguage
+methods: GET
+```
 #### Update existing category
 ```
 /category
