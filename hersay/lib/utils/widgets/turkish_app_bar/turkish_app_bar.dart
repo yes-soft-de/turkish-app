@@ -8,10 +8,11 @@ class TurkishAppBar {
     BuildContext context,
     GlobalKey<ScaffoldState> drawerKey,
     String title,
+    [double elevation]
   ) {
     return AppBar(
       backgroundColor: ProjectColors.THEME_COLOR,
-      elevation: 1,
+      elevation:elevation??1,
       centerTitle: true,
       automaticallyImplyLeading: true,
       title: Text(

@@ -42,6 +42,9 @@ class ProductCard extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
+                SizedBox(
+                  width: 8,
+                ),
                 _getRightIcon(type),
                 SizedBox(
                   width: 10,
@@ -75,13 +78,12 @@ class ProductCard extends StatelessWidget {
               ),
             ),
             Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 Flex(
                   direction: Axis.horizontal,
                   children: [
                     Padding(
-                      padding: const EdgeInsets.all(5.0),
+                      padding: const EdgeInsets.all(8.0),
                       child: Container(
                         height: 30,
                         width: 30,
@@ -94,26 +96,36 @@ class ProductCard extends StatelessWidget {
                     SizedBox(
                       width: 5,
                     ),
-                    Text('$owner',overflow: TextOverflow.ellipsis,),
+                    Text(
+                      '$owner',
+                      overflow: TextOverflow.ellipsis,
+                    ),
                   ],
                 ),
-                Container(
-                  width: MediaQuery.of(context).size.width * 0.25,
-                  child: Text(
-                    '$specification',
-                    overflow: TextOverflow.fade,
-                    maxLines: 1,
-                    softWrap: false,
-                  ),
-                ),
 //                IconTextWidget(icon: null, text: '$specification'),
+                Spacer(
+                  flex: 1,
+                ),
                 IconTextWidget(icon: Icons.favorite, text: '$likes'),
+                SizedBox(width: 16,),
                 IconTextWidget(icon: Icons.comment, text: '$comments'),
+                SizedBox(width: 8,)
 //                Icon(
 //                  Icons.share,
 //                  color: Colors.grey,
 //                )
               ],
+            ),
+            Container(
+              width: MediaQuery.of(context).size.width - 64,
+              child: Center(
+                child: Text(
+                  '$specification',
+                  overflow: TextOverflow.ellipsis,
+                  maxLines: 1,
+                  softWrap: false,
+                ),
+              ),
             ),
           ],
         ),
@@ -142,7 +154,7 @@ class ProductCard extends StatelessWidget {
           color: Colors.grey,
         );
         break;
-        case PRODUCT_TYPE.ADVERTISMENT:
+      case PRODUCT_TYPE.ADVERTISMENT:
         icon = Icon(
           Icons.design_services,
           color: Colors.grey,
