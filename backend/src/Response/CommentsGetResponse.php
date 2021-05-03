@@ -17,5 +17,7 @@ class CommentsGetResponse
     public $comment;
     
     public $createdAt;
+    
+    public $entityName;
 
 }

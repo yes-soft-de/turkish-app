@@ -102,7 +102,7 @@ class ReactionEntityRepository extends ServiceEntityRepository
         ->getResult();
     }
 
-    public function getNotifications($userID)
+    public function getReactionsOfUser($userID)
     {
         return $this->createQueryBuilder('reaction')
             ->select('reaction.id', 'reaction.createdAt', 'reaction.entity', 'reaction.itemID', 'reaction.type',

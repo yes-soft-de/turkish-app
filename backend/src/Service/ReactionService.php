@@ -8,6 +8,8 @@ use App\AutoMapping;
 use App\Entity\ReactionEntity;
 use App\Manager\ReactionManager;
 use App\Request\ReactionCreateRequest;
+use App\Response\ChatListGetResponse;
+use App\Response\CommentsGetResponse;
 use App\Response\GetNotificationResponse;
 use App\Response\ReactionCreateResponse;
 use App\Response\ReactionGetByUserResponse;
@@ -30,8 +32,8 @@ class ReactionService
     public function reactionCreate(ReactionCreateRequest $request)
     {
         $create = $this->reactionManager->reactionCreate($request);
-        return $this->autoMapping->map(ReactionEntity::class, ReactionCreateResponse::class, $create);
 
+        return $this->autoMapping->map(ReactionEntity::class, ReactionCreateResponse::class, $create);
     }
 
     public function getAll($data, $itemID)
@@ -81,16 +83,60 @@ class ReactionService
     {
         $response = [];
 
-        $reactions = $this->reactionManager->getNotifications($userID);
+        // first we will get the interactions on the items of the user
+        $reactions = $this->reactionManager->getReactionsOfUser($userID);
 
-        foreach ($reactions as $reaction)
+        // second, we will get the comments on the items of the user
+        $comments = $this->reactionManager->getComments($userID);
+
+        // third, we will get the chats of the user
+        $chats = $this->reactionManager->getChatListOfUser($userID);
+
+        // now, mapping each group to its corresponding responses
+        // first mapping reactions to its response
+        if($reactions)
         {
-            $reaction['userImage'] = $this->params . $reaction['userImage'];
+            foreach ($reactions as $reaction)
+            {
+                if($reaction['userImage'])
+                {
+                    $reaction['userImage'] = $this->params . $reaction['userImage'];
+                }
 
-            $response[] = $this->autoMapping->map('array', GetNotificationResponse::class, $reaction);
+                $response['reactions'][] = $this->autoMapping->map('array', GetNotificationResponse::class, $reaction);
+            }
+        }
+
+        // second, mapping comments to its response
+        if($comments)
+        {
+            foreach ($comments as $comment)
+            {
+                if($comment['image'])
+                {
+                    $comment['image'] = $this->params . $comment['image'];
+                }
+                
+                $response['comments'][] = $this->autoMapping->map('array', CommentsGetResponse::class, $comment);
+            }
+        }
+
+        // third, mapping chats to its response
+        if($chats)
+        {
+            foreach ($chats as $chat)
+            {
+                if($chat['image'])
+                {
+                    $chat['image'] = $this->params . $chat['image'];
+                }
+
+                $response['chats'][] = $this->autoMapping->map('array', ChatListGetResponse::class, $chat);
+            }
         }
 
         return $response;
+
     }
 
     public function checkUserLoved($id, $userID, $entity)

@@ -60,4 +60,26 @@ class CommentEntityRepository extends ServiceEntityRepository
             ->getQuery()
             ->getOneOrNullResult();
     }
+
+    public function getCommentsByUser($userID)
+    {
+        return $this->createQueryBuilder('comment')
+            ->select('comment.id', 'comment.createdBy', 'comment.createdAt', 'comment.entity', 'comment.itemID', 'comment.comment',
+             'userProfile.userName', 'userProfile.image')
+
+            ->leftJoin(
+                UserProfileEntity::class,
+                'userProfile',
+                Join::WITH,
+                'userProfile.userID = comment.createdBy'
+            )
+
+            ->andWhere('comment.createdBy = :userID')
+            ->setParameter('userID', $userID)
+
+            ->orderBy('comment.createdAt', 'DESC')
+            
+            ->getQuery()
+            ->getResult();
+    }
 }

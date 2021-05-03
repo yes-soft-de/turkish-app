@@ -59,4 +59,31 @@ class CommentManager
         return $this->commentRepository->getCommentsNumber($entity, $itemID);
     }
 
+    public function getCommentsByUser($userID)
+    {
+        $comments = $this->commentRepository->getCommentsByUser($userID);
+
+        // foreach($comments as $comment)
+        // {
+        //     if($comment['entity'] == "car")
+        //     {
+
+        //     }
+        //     elseif($comment['entity'] == "device")
+        //     {
+                
+        //     }
+        //     elseif($row['entity'] == "realEstate")
+        //     {
+                
+        //     }
+        //     elseif($row['entity'] == "car")
+        //     {
+                
+        //     }
+        // }
+
+        return $comments;
+    }
+
 }

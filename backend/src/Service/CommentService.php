@@ -61,4 +61,41 @@ class CommentService
         return $response;
     }
 
+    public function getCommentsByUser($userID)
+    {
+        $response = [];
+        $result = $this->commentManager->getCommentsByUser($userID);
+
+        foreach ($result as $row) 
+        {
+            // first we need to get the name of the entity
+
+            if($row['entity'] == "car")
+            {
+
+            }
+            elseif($row['entity'] == "device")
+            {
+                
+            }
+            elseif($row['entity'] == "realEstate")
+            {
+                
+            }
+            elseif($row['entity'] == "car")
+            {
+                
+            }
+
+            if($row['image'])
+            {
+                $row['image'] = $this->params.$row['image'];
+            }
+
+            $response[] = $this->autoMapping->map('array', CommentsGetResponse::class, $row);
+        }
+
+        return $response;
+    }
+
 }

@@ -16,9 +16,12 @@ class ReactionManager
     private $deviceManager;
     private $realEstateManager;
     private $servicesManager;
+    private $commentManager;
+    private $messageManager;
 
     public function __construct(EntityManagerInterface $entityManagerInterface, ReactionEntityRepository $repository, AutoMapping $autoMapping,
-                                CarManager $carManager, DeviceManager $deviceManager, RealEstateManager $realEstateManager, ServicesManager $servicesManager) {
+                                CarManager $carManager, DeviceManager $deviceManager, RealEstateManager $realEstateManager, 
+                                ServicesManager $servicesManager, CommentManager $commentManager, MessageManager $messageManager) {
 
         $this->entityManager = $entityManagerInterface;
         $this->repository = $repository;
@@ -27,7 +30,10 @@ class ReactionManager
         $this->deviceManager = $deviceManager;
         $this->realEstateManager = $realEstateManager;
         $this->servicesManager = $servicesManager;
+        $this->commentManager = $commentManager;
+        $this->messageManager = $messageManager;
     }
+
     public function reactionCreate(ReactionCreateRequest $request)
     {
         $entity = $this->autoMapping->map(ReactionCreateRequest::class, ReactionEntity::class, $request);
@@ -64,11 +70,11 @@ class ReactionManager
         return $this->repository->reactionforItem($ID, $entity);
     }
 
-    public function getNotifications($userID)
+    public function getReactionsOfUser($userID)
     {
         $response = [];
 
-        $results = $this->repository->getNotifications($userID);
+        $results = $this->repository->getReactionsOfUser($userID);
         
         foreach ($results as $result)
         {
@@ -78,7 +84,7 @@ class ReactionManager
 
                 if($car)
                 {
-                    $result['entityName'] = $car[0]['carType'];
+                    $result['entityName'] = $car[0]['title'];
                     $response[] = $result;
                 }
             }
@@ -88,7 +94,7 @@ class ReactionManager
                 
                 if($device)
                 {
-                    $result['entityName'] = $device[0]['brand'];
+                    $result['entityName'] = $device[0]['title'];
                     $response[] = $result;
                 }
             }
@@ -98,7 +104,7 @@ class ReactionManager
 
                 if($realEstate)
                 {
-                    $result['entityName'] = $realEstate[0]['realEstateType'];
+                    $result['entityName'] = $realEstate[0]['title'];
                     $response[] = $result;
                 }
             }
@@ -116,6 +122,65 @@ class ReactionManager
         }
 
         return $response;
+    }
+
+    public function getComments($userID)
+    {
+        $response = [];
+
+        $results = $this->commentManager->getCommentsByUser($userID);
+        
+        foreach ($results as $result)
+        {
+            if($result['entity'] == "car")
+            {
+                $car = $this->carManager->getCarOfUserById($userID, $result['itemID']);
+
+                if($car)
+                {
+                    $result['entityName'] = $car[0]['title'];
+                    $response[] = $result;
+                }
+            }
+            elseif ($result['entity'] == "device")
+            {
+                $device = $this->deviceManager->getDeviceOfUserById($userID, $result['itemID']);
+                
+                if($device)
+                {
+                    $result['entityName'] = $device[0]['title'];
+                    $response[] = $result;
+                }
+            }
+            elseif ($result['entity'] == "realEstate")
+            {
+                $realEstate = $this->realEstateManager->getRealEstateOfUserById($userID, $result['itemID']);
+
+                if($realEstate)
+                {
+                    $result['entityName'] = $realEstate[0]['title'];
+                    $response[] = $result;
+                }
+            }
+            elseif ($result['entity'] != null)
+            {
+                $services = $this->servicesManager->getServiceOfUserById($userID, $result['itemID']);
+
+                if($services)
+                {
+                    $result['entityName'] = $services[0]['title'];
+                    $response[] = $result;
+                }
+            }
+            
+        }
+
+        return $response;
+    }
+
+    public function getChatListOfUser($userID)
+    {
+        return $this->messageManager->getChatListOfUser($userID);
     }
 
     public function checkUserLoved($itemID, $userID, $entity)
