@@ -110,39 +110,74 @@ class ServicesManager
         return $this->servicesEntityRepository->getServicesByCategoryID($categoryID);
     }
 
-    public function getFilter($price, $price_2, $city)
+    public function getFilter($price, $price_2, $city, $categoryID)
     {
-        if ($city != null && $price == null && $price_2 == null)
+        if ($city != null && $price == null && $price_2 == null && $categoryID == null)
         {
             return $this->servicesEntityRepository->getServicesByCity($city);
         }
 
-        elseif ($price != null && $city == null && $price_2 == null)
+        elseif ($price != null && $city == null && $price_2 == null && $categoryID == null)
         {
             return $this->servicesEntityRepository->getServicesByPrice($price);
         }
 
-        elseif ($price != null && $city != null && $price_2 == null)
+        elseif ($price != null && $city != null && $price_2 == null && $categoryID == null)
         {
             return $this->servicesEntityRepository->getServicesByCityAndPrice($city, $price);
         }
 
-        elseif ($price != null && $price_2 != null && $city == null)
+        elseif ($price != null && $price_2 != null && $city == null && $categoryID == null)
         {
             return $this->servicesEntityRepository->getServicesByTwoPrices($price, $price_2);
         }
 
-        elseif ($price != null && $price_2 != null && $city != null)
+        elseif ($price != null && $price_2 != null && $city != null && $categoryID == null)
         {
             return $this->servicesEntityRepository->getServicesByTwoPricesAndCity($price, $price_2, $city);
         }
 
-        elseif ($price == null && $city == null && $price_2 != null)
+        elseif ($price == null && $city == null && $price_2 != null && $categoryID == null)
         {
             return $this->servicesEntityRepository->getServicesByPrice($price_2);
         }
 
-        elseif ($price == null && $city != null && $price_2 != null)
+        elseif ($price == null && $city != null && $price_2 != null && $categoryID == null)
+        {
+            return $this->servicesEntityRepository->getServicesByCityAndPrice($city, $price_2);
+        }
+
+        elseif ($city != null && $price == null && $price_2 == null && $categoryID != null)
+        {
+            return $this->servicesEntityRepository->getServicesByCity($city);
+        }
+
+        elseif ($price != null && $city == null && $price_2 == null && $categoryID != null)
+        {
+            return $this->servicesEntityRepository->getServicesByPrice($price);
+        }
+
+        elseif ($price != null && $city != null && $price_2 == null && $categoryID != null)
+        {
+            return $this->servicesEntityRepository->getServicesByCityAndPrice($city, $price);
+        }
+
+        elseif ($price != null && $price_2 != null && $city == null && $categoryID != null)
+        {
+            return $this->servicesEntityRepository->getServicesByTwoPrices($price, $price_2);
+        }
+
+        elseif ($price != null && $price_2 != null && $city != null && $categoryID != null)
+        {
+            return $this->servicesEntityRepository->getServicesByTwoPricesAndCity($price, $price_2, $city);
+        }
+
+        elseif ($price == null && $city == null && $price_2 != null && $categoryID != null)
+        {
+            return $this->servicesEntityRepository->getServicesByPrice($price_2);
+        }
+
+        elseif ($price == null && $city != null && $price_2 != null && $categoryID != null)
         {
             return $this->servicesEntityRepository->getServicesByCityAndPrice($city, $price_2);
         }

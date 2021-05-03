@@ -184,11 +184,11 @@ class ServicesService
         return $response;
     }
 
-    public function getFilter($price, $price_2, $city)
+    public function getFilter($price, $price_2, $city, $categoryID)
     {
         $response = [];
 
-        $results = $this->servicesManager->getFilter($price, $price_2, $city);
+        $results = $this->servicesManager->getFilter($price, $price_2, $city, $categoryID);
 
         foreach ($results as $result)
         {

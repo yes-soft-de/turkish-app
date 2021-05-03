@@ -67,7 +67,7 @@ class MainService
         }
         elseif ($entity == "service")
         {
-            return $this->servicesService->getFilter($request->getPrice(), $request->getPrice2(), $request->getCity());
+            return $this->servicesService->getFilter($request->getPrice(), $request->getPrice2(), $request->getCity(), $request->getCategoryID());
         }
     }
 

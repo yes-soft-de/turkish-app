@@ -326,4 +326,166 @@ class ServicesEntityRepository extends ServiceEntityRepository
             ->getResult();
     }
 
+    public function getServicesByCityAndCategoryID($city, $categoryID)
+    {
+        return $this->createQueryBuilder('service')
+            ->select('service.id', 'service.title', 'service.createdBy', 'service.createdAt', 'service.updatedAt', 'service.description', 'service.type',
+            'service.categoryID', 'category.name as categoryName', 'service.image', 'service.city', 'service.country', 'service.price', 'userProfile.userName', 'userProfile.image as userImage')
+
+            ->leftJoin(
+                UserProfileEntity::class,
+                'userProfile',
+                Join::WITH,
+                'userProfile.userID = service.createdBy'
+            )
+
+            ->leftJoin(
+                CategoryEntity::class,
+                'category',
+                Join::WITH,
+                'category.id = service.categoryID'
+            )
+
+            ->andWhere('service.city = :city')
+            ->setParameter('city', $city)
+
+            ->andWhere('service.categoryID = :categoryID')
+            ->setParameter('categoryID', $categoryID)
+
+            ->getQuery()
+            ->getResult();
+    }
+
+    public function getServicesByPriceAndCategoryID($price, $categoryID)
+    {
+        return $this->createQueryBuilder('service')
+            ->select('service.id', 'service.title', 'service.createdBy', 'service.createdAt', 'service.updatedAt', 'service.description', 'service.type',
+            'service.categoryID', 'category.name as categoryName', 'service.image', 'service.city', 'service.country', 'service.price', 'userProfile.userName', 'userProfile.image as userImage')
+
+            ->leftJoin(
+                UserProfileEntity::class,
+                'userProfile',
+                Join::WITH,
+                'userProfile.userID = service.createdBy'
+            )
+
+            ->leftJoin(
+                CategoryEntity::class,
+                'category',
+                Join::WITH,
+                'category.id = service.categoryID'
+            )
+
+            ->andWhere('service.price = :price')
+            ->setParameter('price', $price)
+
+            ->andWhere('service.categoryID = :categoryID')
+            ->setParameter('categoryID', $categoryID)
+
+            ->getQuery()
+            ->getResult();
+    }
+
+    public function getServicesByCityAndPriceAndCategoryID($city, $price, $categoryID)
+    {
+        return $this->createQueryBuilder('service')
+            ->select('service.id', 'service.title', 'service.createdBy', 'service.createdAt', 'service.updatedAt', 'service.description', 'service.type',
+            'service.categoryID', 'category.name as categoryName', 'service.image', 'service.city', 'service.country', 'service.price', 'userProfile.userName', 'userProfile.image as userImage')
+
+            ->leftJoin(
+                UserProfileEntity::class,
+                'userProfile',
+                Join::WITH,
+                'userProfile.userID = service.createdBy'
+            )
+
+            ->leftJoin(
+                CategoryEntity::class,
+                'category',
+                Join::WITH,
+                'category.id = service.categoryID'
+            )
+
+            ->andWhere('service.city = :city')
+            ->setParameter('city', $city)
+
+            ->andWhere('service.price = :price')
+            ->setParameter('price', $price)
+
+            ->andWhere('service.categoryID = :categoryID')
+            ->setParameter('categoryID', $categoryID)
+
+            ->getQuery()
+            ->getResult();
+    }
+
+    public function getServicesByTwoPricesAndCategoryID($price1, $price2, $categoryID)
+    {
+        return $this->createQueryBuilder('service')
+            ->select('service.id', 'service.title', 'service.createdBy', 'service.createdAt', 'service.updatedAt', 'service.description', 'service.type',
+            'service.categoryID', 'category.name as categoryName', 'service.image', 'service.city', 'service.country', 'service.price', 'userProfile.userName', 'userProfile.image as userImage')
+
+            ->leftJoin(
+                UserProfileEntity::class,
+                'userProfile',
+                Join::WITH,
+                'userProfile.userID = service.createdBy'
+            )
+
+            ->leftJoin(
+                CategoryEntity::class,
+                'category',
+                Join::WITH,
+                'category.id = service.categoryID'
+            )
+
+            ->andWhere('service.price >= :price1')
+            ->setParameter('price1', $price1)
+
+            ->andWhere('service.price <= :price2')
+            ->setParameter('price2', $price2)
+
+            ->andWhere('service.categoryID = :categoryID')
+            ->setParameter('categoryID', $categoryID)
+
+            ->getQuery()
+            ->getResult();
+    }
+
+    public function getServicesByTwoPricesAndCityAndCategoryID($price1, $price2, $city, $categoryID)
+    {
+        return $this->createQueryBuilder('service')
+            ->select('service.id', 'service.title', 'service.createdBy', 'service.createdAt', 'service.updatedAt', 'service.description', 'service.type',
+            'service.categoryID', 'category.name as categoryName', 'service.image', 'service.city', 'service.country', 'service.price', 'userProfile.userName', 'userProfile.image as userImage')
+
+            ->leftJoin(
+                UserProfileEntity::class,
+                'userProfile',
+                Join::WITH,
+                'userProfile.userID = service.createdBy'
+            )
+
+            ->leftJoin(
+                CategoryEntity::class,
+                'category',
+                Join::WITH,
+                'category.id = service.categoryID'
+            )
+
+            ->andWhere('service.price >= :price1')
+            ->setParameter('price1', $price1)
+
+            ->andWhere('service.price <= :price2')
+            ->setParameter('price2', $price2)
+
+            ->andWhere('service.city = :city')
+            ->setParameter('city', $city)
+
+            ->andWhere('service.categoryID = :categoryID')
+            ->setParameter('categoryID', $categoryID)
+
+            ->getQuery()
+            ->getResult();
+    }
+
 }

@@ -14,6 +14,8 @@ class FilterRequest
 
     private $price_2;
 
+    private $categoryID;
+
     /**
      * @return mixed
      */
@@ -44,6 +46,14 @@ class FilterRequest
     public function getPrice2()
     {
         return $this->price_2;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getCategoryID()
+    {
+        return $this->categoryID;
     }
 
 }
