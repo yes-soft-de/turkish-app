@@ -27,6 +27,7 @@ class Data {
   String type;
   String brand;
   String categoryName;
+  int categoryID;
   String cpu;
   String ram;
   String battery;
@@ -100,7 +101,8 @@ class Data {
       this.fuel,
       this.commentsCount,
       this.title,
-      this.categoryName
+      this.categoryName,
+      this.categoryID
       });
 
   Data.fromJson(Map<String, dynamic> json) {
@@ -114,6 +116,7 @@ class Data {
     battery = json['battery'];
     price = json['price'];
     categoryName= json['categoryName'];
+    categoryID= json['categoryID'];
     commentsCount = json['commentsNumber'];
     yearOfRelease = json['yearOfRelease'] != null
         ? new YearOfRelease.fromJson(json['yearOfRelease'])

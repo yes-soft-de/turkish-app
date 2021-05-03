@@ -1,3 +1,4 @@
+import 'package:hersay/module_home/response/category/category.dart';
 import 'package:hersay/module_profile/response/all_cars/all_cars_response.dart';
 import 'package:hersay/module_profile/response/all_devices/all_devices_response.dart';
 import 'package:hersay/module_profile/response/all_real_estates/all_real_estates_response.dart';
@@ -11,15 +12,17 @@ class ProfileResponse {
   AllCarsResponse cars;
   AllRealEstatesResponse realEstates;
   AllAdvertisementResponse services;
-  ProfileResponse({
-    this.statusCode,
-    this.msg,
-    this.data,
-    this.electronicDevices,
-    this.cars,
-    this.realEstates,
-    this.services
-  });
+  CategoryResponse categoryResponse;
+  ProfileResponse(
+      {this.statusCode,
+      this.msg,
+      this.data,
+      this.electronicDevices,
+      this.cars,
+      this.realEstates,
+      this.services,
+      this.categoryResponse
+      });
 
   ProfileResponse.fromJson(Map<String, dynamic> json) {
     statusCode = json['status_code'];

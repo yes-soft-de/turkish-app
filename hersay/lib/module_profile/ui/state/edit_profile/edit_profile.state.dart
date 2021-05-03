@@ -53,55 +53,6 @@ class EditProfileStateInit extends EditProfileState {
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-//            Container(),
-//          MediaQuery.of(context).viewInsets.bottom != 0
-//              ? Container()
-//              : Container(
-//            height: 375,
-//            child: Stack(
-//              children: [
-//                Positioned.fill(
-//                    child: Container(
-//                        color: ProjectColors.THEME_COLOR,
-//                        child:Column(
-//                          mainAxisAlignment: MainAxisAlignment.center,
-//                          children: [
-//
-//
-//                            Center(
-//                              child: GestureDetector(
-//                                onTap: () {
-//                                  ImagePicker ip = ImagePicker();
-//                                  ip
-//                                      .getImage(source: ImageSource.gallery)
-//                                      .then((value) {
-//                                    if (value != null) {
-//                                      userImage = value.path;
-//                                      print('userImage image picked');
-//                                      screenState.refresh(_nameController.text.trim(),userImage);
-//
-//                                    }
-//                                  });
-//                                },
-//                                child: userImage == null ? Text(
-//                                  S.of(context).selectAnImage,
-//                                  style: TextStyle(
-//                                      color: Colors.white, fontSize: 20),
-//                                ):
-//                                Image.file(
-//                                  File(userImage),
-//                                  fit: BoxFit.contain,
-//                                ),
-//                              ),
-//                            ),
-//                          ],
-//                        )
-//                    ))
-//
-//              ],
-//            ),
-//          ),
-
               Center(
                 child: Container(
                   width: 250,
@@ -116,9 +67,6 @@ class EditProfileStateInit extends EditProfileState {
                         ip.getImage(source: ImageSource.gallery).then((value) {
                           if (value != null) {
                             userImage = value.path;
-                            print('userImage image picked , path :$userImage');
-//                        screenState.refresh(_nameController.text.trim(),userImage);
-
                           }
                         });
                       },

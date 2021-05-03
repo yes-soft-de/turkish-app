@@ -1,5 +1,7 @@
 import 'package:hersay/consts/urls.dart';
 import 'package:hersay/module_auth/service/auth/auth.service.dart';
+import 'package:hersay/module_home/repository/home/home.repository.dart';
+import 'package:hersay/module_home/response/category/category.dart';
 import 'package:hersay/module_network/http_client/http_client.dart';
 import 'package:hersay/module_profile/request/profile/profile_request.dart';
 import 'package:hersay/module_profile/response/all_cars/all_cars_response.dart';
@@ -13,6 +15,7 @@ AllCarsResponse cars = new AllCarsResponse();
 AllDevicesResponse devices = new AllDevicesResponse();
 AllRealEstatesResponse realEstates = new AllRealEstatesResponse();
 AllAdvertisementResponse services = AllAdvertisementResponse();
+CategoryResponse categoryResponse;
 
 @provide
 class ProfileRepository {
@@ -34,7 +37,8 @@ class ProfileRepository {
       _getUserCars(),
       _getUserElectronicDevices(),
       _getUserRealEstates(),
-      _getAllAdvertisements()
+      _getAllAdvertisements(),
+      _getCategories()
     ]);
 
     ProfileResponse profile = ProfileResponse.fromJson(response);
@@ -42,6 +46,7 @@ class ProfileRepository {
     profile.realEstates = realEstates;
     profile.electronicDevices = devices;
     profile.services = services;
+    profile.categoryResponse = categoryResponse;
     return profile;
   }
 
@@ -106,5 +111,20 @@ class ProfileRepository {
 
     if (response != null)
       services = AllAdvertisementResponse.fromJson(response);
+  }
+
+  Future<void> _getCategories() async {
+    var token = await _authService.getToken();
+    dynamic response = (token != null)
+        ? await _apiClient.get(
+            Urls.GET_CATEGORIES,
+            headers: {'Authorization': 'Bearer ' + token},
+          )
+        : await _apiClient.get(
+            Urls.GET_CATEGORIES,
+          );
+
+    if (response != null)
+      categoryResponse = CategoryResponse.fromJson(response);
   }
 }
