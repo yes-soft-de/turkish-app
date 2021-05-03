@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hersay/utils/project_colors/project_colors.dart';
-
-import 'package:timeago/timeago.dart' as timeago;
+import 'package:timeago/timeago.dart' as timeago ;
 
 class ChatBubbleWidget extends StatefulWidget {
   final bool showImage;
@@ -29,19 +28,19 @@ class ChatBubbleWidgetState extends State<ChatBubbleWidget> {
     return widget.me ? myMessage() : otherMessage();
   }
 
-  Widget myMessage(){
+  Widget myMessage() {
     return Container(
-      alignment:  Alignment.centerRight,
+      alignment: Alignment.centerRight,
       child: Padding(
         padding: EdgeInsets.all(8.0),
         child: Container(
-
           decoration: BoxDecoration(
             borderRadius: BorderRadius.only(
               topLeft: Radius.circular(25.0),
               topRight: Radius.circular(0.0),
               bottomLeft: Radius.circular(25.0),
-              bottomRight: Radius.circular(25.0),),
+              bottomRight: Radius.circular(25.0),
+            ),
             border: Border.all(color: Colors.grey),
             color: ProjectColors.THEME_COLOR,
           ),
@@ -51,21 +50,23 @@ class ChatBubbleWidgetState extends State<ChatBubbleWidget> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  timeago.format(widget.sentDate ?? DateTime.now()),
-                  style: TextStyle(
-                      color: Colors.grey
-                  ),
+                  timeago.format(widget.sentDate ?? DateTime.now(),
+                      locale: Localizations.localeOf(context).languageCode,),
+                  style: TextStyle(color: Colors.grey),
                 ),
                 widget.message.contains('http')
-                    ? Image.network(widget.message.replaceFirst('uploadimage', 'upload/image'))
+                    ? Image.network(widget.message
+                        .replaceFirst('uploadimage', 'upload/image'))
                     : Text(
-                  '${widget.message}',
-                  style: TextStyle(
-                      color:/* Theme.of(context).brightness == Brightness.dark
-                        ?*/ Colors.white
+                        '${widget.message}',
+                        style: TextStyle(
+                            color:
+                                /* Theme.of(context).brightness == Brightness.dark
+                        ?*/
+                                Colors.white
 //                        : Colors.black,
-                  ),
-                ),
+                            ),
+                      ),
               ],
             ),
           ),
@@ -74,19 +75,19 @@ class ChatBubbleWidgetState extends State<ChatBubbleWidget> {
     );
   }
 
-  Widget otherMessage(){
+  Widget otherMessage() {
     return Container(
-      alignment:Alignment.centerLeft,
+      alignment: Alignment.centerLeft,
       child: Padding(
         padding: EdgeInsets.all(8.0),
         child: Container(
-
           decoration: BoxDecoration(
             borderRadius: BorderRadius.only(
               topLeft: Radius.circular(0.0),
               topRight: Radius.circular(25.0),
               bottomLeft: Radius.circular(25.0),
-              bottomRight: Radius.circular(25.0),),
+              bottomRight: Radius.circular(25.0),
+            ),
             border: Border.all(color: Colors.grey),
             color: ProjectColors.SECONDARY_COLOR,
           ),
@@ -96,21 +97,23 @@ class ChatBubbleWidgetState extends State<ChatBubbleWidget> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  timeago.format(widget.sentDate ?? DateTime.now()),
-                  style: TextStyle(
-                      color: Colors.grey
-                  ),
+                  timeago.format(widget.sentDate ?? DateTime.now(),
+                      locale: Localizations.localeOf(context).languageCode),
+                  style: TextStyle(color: Colors.grey),
                 ),
                 widget.message.contains('http')
-                    ? Image.network(widget.message.replaceFirst('uploadimage', 'upload/image'))
+                    ? Image.network(widget.message
+                        .replaceFirst('uploadimage', 'upload/image'))
                     : Text(
-                  '${widget.message}',
-                  style: TextStyle(
-                      color:/* Theme.of(context).brightness == Brightness.dark
-                        ?*/ Colors.white
+                        '${widget.message}',
+                        style: TextStyle(
+                            color:
+                                /* Theme.of(context).brightness == Brightness.dark
+                        ?*/
+                                Colors.white
 //                        : Colors.black,
-                  ),
-                ),
+                            ),
+                      ),
               ],
             ),
           ),
