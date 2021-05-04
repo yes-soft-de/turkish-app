@@ -77,7 +77,7 @@ class CommentEntityRepository extends ServiceEntityRepository
             ->andWhere('comment.createdBy = :userID')
             ->setParameter('userID', $userID)
 
-            ->orderBy('comment.createdAt', 'DESC')
+            ->orderBy('comment.id', 'DESC')
             
             ->getQuery()
             ->getResult();
