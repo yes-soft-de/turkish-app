@@ -8,7 +8,6 @@ use App\AutoMapping;
 use App\Entity\CarEntity;
 use App\Manager\CarManager;
 use App\Request\CarCreateRequest;
-use App\Request\GetByIdRequest;
 use App\Response\CarCreateResponse;
 use App\Response\CarGetByIdResponse;
 use App\Response\CarGetResponse;
@@ -26,23 +25,18 @@ class CarService
     private $carManager;
     private $reactionService;
     private $imageService;
-    private $documentService;
     private $params;
     private $entity = "car";
-    private $deviceService;
-    private $realEstateService;
     private $commentService;
 
     public function __construct(AutoMapping $autoMapping, CarManager $carManager, ReactionService $reactionService, ImageService $imageService,
-        DocumentService $documentService, ParameterBagInterface $params, DeviceService $deviceService, RealEstateService $realEstateService, CommentService $commentService)
+        DocumentService $documentService, ParameterBagInterface $params, CommentService $commentService)
     {
         $this->autoMapping = $autoMapping;
         $this->carManager = $carManager;
         $this->reactionService = $reactionService;
         $this->imageService = $imageService;
         $this->documentService = $documentService;
-        $this->deviceService = $deviceService;
-        $this->realEstateService = $realEstateService;
         $this->commentService = $commentService;
 
         $this->params = $params->get('upload_base_url').'/';
@@ -191,23 +185,6 @@ class CarService
 
         return $response;
     }
-
-    // public function getAllProperties($userID)
-    // {
-    //     $response = [];
-
-    //     $cars = $this->getAllCars($userID);
-
-    //     $devices = $this->deviceService->getAllDevices($userID);
-
-    //     $realEstates = $this->realEstateService->getAllRealEstate($userID);
-
-    //     $response = array_merge_recursive($cars, $devices, $realEstates);
-
-    //     shuffle($response);
-
-    //     return $response;
-    // }
 
     public function getCarsByType($brand)
     {
