@@ -257,6 +257,7 @@
   "pleaseLogin":"من فضلك قم بتسجيل الدخول للقيام بهذا النشاط",
   "services":"خدمات",
   "category":"تصنيف",
-  "chooseCategory":"اختر تصنيف"
-  
+  "chooseCategory":"اختر تصنيف",
+  "commentOn": "علق على",
+  "openChatWithYou":"فتح محادثة معك"
 }

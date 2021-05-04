@@ -2624,6 +2624,26 @@ class S {
       args: [],
     );
   }
+
+  /// `Comment On`
+  String get commentOn {
+    return Intl.message(
+      'Comment On',
+      name: 'commentOn',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Open chat with you`
+  String get openChatWithYou {
+    return Intl.message(
+      'Open chat with you',
+      name: 'openChatWithYou',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

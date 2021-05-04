@@ -1,52 +1,114 @@
 class NotificationResponse {
-  List<Data> data;
+  Data data;
 
   NotificationResponse({this.data});
 
   NotificationResponse.fromJson(Map<String, dynamic> json) {
     if (json['Data'] != null) {
-      data = new List<Data>();
-      json['Data'].forEach((v) {
-        data.add(new Data.fromJson(v));
-      });
+      data = Data.fromJson(json['Data']);
     }
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    if (this.data != null) {
-      data['Data'] = this.data.map((v) => v.toJson()).toList();
-    }
-    return data;
   }
 }
 
 class Data {
-  String userImage;
-  CreatedAt createdAt;
-  String username;
-  String entityName;
-
-  Data({this.userImage, this.createdAt, this.username, this.entityName});
+  List<Comments> comments;
+  List<Chats> chats;
+  List<Reactions> reactions;
+  Data({this.chats, this.comments, this.reactions});
 
   Data.fromJson(Map<String, dynamic> json) {
+    if (json['comments'] != null) {
+      comments = <Comments>[];
+      json['comments'].forEach((v) {
+        comments.add(new Comments.fromJson(v));
+      });
+    }
+    if (json['chats'] != null) {
+      chats = <Chats>[];
+      json['chats'].forEach((v) {
+        chats.add(Chats.fromJson(v));
+      });
+    }
+    if (json['reactions'] != null) {
+      reactions = <Reactions>[];
+      json['reactions'].forEach((v) {
+        reactions.add(Reactions.fromJson(v));
+      });
+    }
+  }
+}
+
+class Comments {
+  int id;
+  String userName;
+  String image;
+  String entity;
+  int itemID;
+  String comment;
+  CreatedAt createdAt;
+  String entityName;
+  Comments({
+    this.id,
+    this.userName,
+    this.comment,
+    this.createdAt,
+    this.entity,
+    this.entityName,
+    this.image,
+    this.itemID,
+  });
+  Comments.fromJson(Map<String, dynamic> json) {
+    id = json['id'];
+    userName = json['userName'];
+    comment = json['comment'];
+    entity = json['entity'];
+    entityName = json['entityName'];
+    image = json['image'];
+    itemID = json['itemID'];
+    createdAt = json['createdAt'] != null
+        ? new CreatedAt.fromJson(json['createdAt'])
+        : null;
+  }
+}
+
+class Chats {
+  int id;
+  String roomID;
+  String username;
+  String image;
+  CreatedAt startAt;
+
+  Chats.fromJson(Map<String, dynamic> json) {
+    roomID = json['roomID'];
+    username = json['username'];
+    image = json['image'];
+    startAt = json['startAt'] != null
+        ? new CreatedAt.fromJson(json['startAt'])
+        : null;
+    // username = json['username'];
+    // entityName = json['entityName'];
+  }
+}
+
+class Reactions {
+  String username;
+  String image;
+  String entityName;
+  CreatedAt createdAt;
+  String userImage;
+  Reactions(
+      {this.image,
+      this.entityName,
+      this.userImage,
+      this.createdAt,
+      this.username});
+  Reactions.fromJson(Map<String, dynamic> json) {
     userImage = json['userImage'];
     createdAt = json['createdAt'] != null
         ? new CreatedAt.fromJson(json['createdAt'])
         : null;
     username = json['username'];
     entityName = json['entityName'];
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['userImage'] = this.userImage;
-    if (this.createdAt != null) {
-      data['createdAt'] = this.createdAt.toJson();
-    }
-    data['username'] = this.username;
-    data['entityName'] = this.entityName;
-    return data;
   }
 }
 

@@ -259,7 +259,7 @@
   "pleaseLogin":"Please Login to do this action",
   "services":"Services",
   "category":"Category",
-  "chooseCategory":"Choose Category"
-
-  
+  "chooseCategory":"Choose Category",
+  "commentOn": "Comment On",
+  "openChatWithYou":"Open chat with you"
 }
