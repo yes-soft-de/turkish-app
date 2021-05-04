@@ -40,7 +40,7 @@ class CommentEntityRepository extends ServiceEntityRepository
             ->andWhere('comment.itemID = :itemID')
             ->setParameter('itemID', $itemID)
 
-            ->orderBy('comment.createdAt', 'DESC')
+            ->orderBy('comment.id', 'DESC')
             
             ->getQuery()
             ->getResult();
