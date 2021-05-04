@@ -87,8 +87,8 @@ class ElectronicDeviceDetailsScreenState
     });
   }
 
-  void placeComment(String comment,String entity, int itemId) {  
-       widget._authService.isLoggedIn.then((value) {
+  void placeComment(String comment, String entity, int itemId) {
+    widget._authService.isLoggedIn.then((value) {
       if (!value) {
         RouteHelper redirectTo = new RouteHelper(
             redirectTo: ProductsRoutes.ELECTRONIC_DEVICE_DETAILS_SCREEN,
@@ -98,7 +98,7 @@ class ElectronicDeviceDetailsScreenState
           arguments: redirectTo,
         );
       } else {
-        widget._stateManager.placeComment(comment,entity,itemId,this);
+        widget._stateManager.placeComment(comment, entity, itemId, this);
       }
     });
   }
@@ -144,6 +144,10 @@ class ElectronicDeviceDetailsScreenState
     Navigator.pushNamed(context, ChatRoutes.chatRoute, arguments: roomId);
   }
 
+  void refresh() {
+    setState(() {});
+  }
+
   @override
   void initState() {
     super.initState();
@@ -165,8 +169,10 @@ class ElectronicDeviceDetailsScreenState
 
     width = MediaQuery.of(context).size.width;
     return Scaffold(
-      appBar: currentState is ElectronicDeviceDetailsStateDataLoaded ? null : TurkishAppBar.getTurkishOrdinaryAppBar(
-          context, S.of(context).details),
+      appBar: currentState is ElectronicDeviceDetailsStateDataLoaded
+          ? null
+          : TurkishAppBar.getTurkishOrdinaryAppBar(
+              context, S.of(context).details),
       body: currentState.getUI(context),
     );
   }

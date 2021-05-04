@@ -28,7 +28,7 @@ class HomeModel {
               : 0,
           category: element.realEstateType,
           owner: element.userName ?? '',
-          specification: element.space + ' SM',
+          specification: element.description,
           comments: element.commentsCount));
     });
     return result;

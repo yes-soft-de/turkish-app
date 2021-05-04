@@ -51,6 +51,6 @@ class Urls {
   static const ADVERTISEMENT_API = BASE_API + '/allservices';
   static const SERVICE_DETAILS_API = BASE_API + '/services/';
   static const GET_USER_SERVICE = BASE_API + '/services';
-  static const GET_CATEGORIES = BASE_API + '/categories';
+  static const GET_CATEGORIES = BASE_API + '/categoriesbylanguage';
 
 }

@@ -7,6 +7,7 @@ import 'package:hersay/module_home/response/all_real_estates/all_real_estates_re
 import 'package:hersay/module_home/response/all_services/all_advertisement.dart';
 import 'package:hersay/module_home/response/category/category.dart';
 import 'package:hersay/module_home/response/home/home_response.dart';
+import 'package:hersay/module_localization/persistance/localization_prefrences_helper.dart';
 import 'package:hersay/module_network/http_client/http_client.dart';
 import 'package:inject/inject.dart';
 
@@ -15,6 +16,8 @@ AllDevicesResponse devices;
 AllRealEstatesResponse realEstates;
 AllAdvertisementResponse advertisement;
 CategoryResponse categoryResponse;
+LocalizationPreferencesHelper localizationPreferencesHelper =
+    LocalizationPreferencesHelper();
 
 @provide
 class HomeRepository {
@@ -40,8 +43,7 @@ class HomeRepository {
         electronicDevices: devices,
         realEstates: realEstates,
         allAdvertisement: advertisement,
-        categoryResponse: categoryResponse
-        );
+        categoryResponse: categoryResponse);
 
     return result;
   }
@@ -60,16 +62,13 @@ class HomeRepository {
     if (response != null)
       realEstates = AllRealEstatesResponse.fromJson(response);
   }
+
   Future<void> _getCategories() async {
     var token = await _authService.getToken();
-    dynamic response = (token != null)
-        ? await _apiClient.get(
-            Urls.GET_CATEGORIES,
-            headers: {'Authorization': 'Bearer ' + token},
-          )
-        : await _apiClient.get(
-            Urls.GET_CATEGORIES,
-          );
+    String language = await localizationPreferencesHelper.getLanguage();
+    dynamic response = await _apiClient.get(Urls.GET_CATEGORIES, headers: {
+          'Local':language??'en'
+        });
 
     if (response != null)
       categoryResponse = CategoryResponse.fromJson(response);

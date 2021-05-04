@@ -129,7 +129,7 @@ class ServiceDetailsStateDataLoaded extends ServicesDetailsState {
                       ),
                       Center(
                         child: Text(
-                          '${service.type}',
+                          '${service.title}',
                           style: TextStyle(
                             fontWeight: FontWeight.bold,
                             color: Colors.white,
@@ -251,10 +251,6 @@ class ServiceDetailsStateDataLoaded extends ServicesDetailsState {
                 ),
                 Padding(
                   padding: const EdgeInsets.all(8.0),
-                  child: Text(S.of(context).title + ' : ${service.title}'),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
                   child: Text(S.of(context).country + ' : ${service.country}'),
                 ),
                 Padding(
@@ -325,6 +321,9 @@ class ServiceDetailsStateDataLoaded extends ServicesDetailsState {
                                   border: InputBorder.none,
                                   contentPadding: EdgeInsets.all(13),
                                 ),
+                                onChanged: (v) {
+                                  screenState.refresh();
+                                },
                                 onEditingComplete: () =>
                                     FocusScope.of(context).unfocus(),
                                 textInputAction: TextInputAction.done,
@@ -336,12 +335,15 @@ class ServiceDetailsStateDataLoaded extends ServicesDetailsState {
                             splashRadius: 20,
                             icon: Icon(
                               Icons.check,
-                              color: Colors.white,
                             ),
-                            onPressed: () {
-                              screenState.placeComment(
-                                  _comment.text, '${service.type}', service.id);
-                            }),
+                            color: Colors.white,
+                            disabledColor: Colors.grey,
+                            onPressed: _comment.text.isNotEmpty
+                                ? () {
+                                    screenState.placeComment(_comment.text,
+                                        '${service.type}', service.id);
+                                  }
+                                : null),
                       ],
                     ),
                   ),

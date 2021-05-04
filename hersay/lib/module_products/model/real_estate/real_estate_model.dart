@@ -19,6 +19,7 @@ class RealEstateModel {
   bool editable;
   String city;
   String country;
+  String title;
   RealEstateModel(
       {this.id,
       this.price,
@@ -37,6 +38,7 @@ class RealEstateModel {
       this.comments,
       this.editable,
       this.country,
-      this.city
+      this.city,
+      this.title
       });
 }

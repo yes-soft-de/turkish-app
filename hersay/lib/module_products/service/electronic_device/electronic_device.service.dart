@@ -67,6 +67,7 @@ class ElectronicDeviceService {
 
     var df = new DateFormat('yyyy');
     return new ElectronicDeviceModel(
+        title:response.data.title ,
         id: electronicDeviceId,
         type: response.data.type,
         //TODO : change this after been added to the response
@@ -103,6 +104,7 @@ class ElectronicDeviceService {
 
     var electronicRequest = ElectronicDeviceRequest(
       id: request.id,
+      title: request.title,
       image: uploadedImageUrl ?? '',
       state: request.state,
       country: request.country,

@@ -2,6 +2,7 @@ import 'package:hersay/consts/urls.dart';
 import 'package:hersay/module_auth/service/auth/auth.service.dart';
 import 'package:hersay/module_home/model/home/home_model.dart';
 import 'package:hersay/module_home/response/category/category.dart';
+import 'package:hersay/module_localization/persistance/localization_prefrences_helper.dart';
 import 'package:hersay/module_network/http_client/http_client.dart';
 import 'package:hersay/module_products/request/comment/comment_request.dart';
 import 'package:hersay/module_products/request/real_estate/real_estate_request.dart';
@@ -9,6 +10,9 @@ import 'package:hersay/module_products/request/service/service_request.dart';
 import 'package:hersay/module_products/response/real_estate/real_estate_response.dart';
 import 'package:hersay/module_products/response/service/service_response.dart';
 import 'package:inject/inject.dart';
+
+LocalizationPreferencesHelper localizationPreferencesHelper =
+    LocalizationPreferencesHelper();
 
 @provide
 class ServiceRepository {
@@ -72,17 +76,9 @@ class ServiceRepository {
 
   Future<CategoryResponse> getCategories() async {
     var token = await _authService.getToken();
-    var response;
-    if (token != null) {
-      response = await _apiClient.get(
-        Urls.GET_CATEGORIES,
-        headers: {'Authorization': 'Bearer ' + token},
-      );
-    } else {
-      response = await _apiClient.get(
-        Urls.GET_CATEGORIES,
-      );
-    }
+    String language = await localizationPreferencesHelper.getLanguage();
+    var response = await _apiClient
+        .get(Urls.GET_CATEGORIES, headers: {'Local': language?? 'en'});
     return CategoryResponse.fromJson(response);
   }
 }

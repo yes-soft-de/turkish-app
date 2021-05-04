@@ -31,6 +31,9 @@ class ApiClient {
           _logger.info(tag, 'Adding Auth Header');
           client.options.headers['Authorization'] = headers['Authorization'];
         }
+        if (headers['Local'] != null) {
+          client.options.headers['Local'] = headers['Local'];
+        }
       }
       var response = await client.get(
         url,

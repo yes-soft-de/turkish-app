@@ -39,29 +39,33 @@ class Data {
   String userImage;
   List<Comment> comments;
   bool editable;
-  Data(
-      {this.type,
-      this.brand,
-      this.price,
-      this.description,
-      this.status,
-      this.createdBy,
-      this.createdAt,
-      this.country,
-      this.city,
-      this.image,
-      this.images,
-      this.reaction,
-      this.username,
-      this.userImage,
-      this.comments,
-      this.editable});
+  String title;
+  Data({
+    this.type,
+    this.brand,
+    this.price,
+    this.description,
+    this.status,
+    this.createdBy,
+    this.createdAt,
+    this.country,
+    this.city,
+    this.image,
+    this.images,
+    this.reaction,
+    this.username,
+    this.userImage,
+    this.comments,
+    this.editable,
+    this.title,
+  });
 
   Data.fromJson(Map<String, dynamic> json) {
     type = json['type'];
     editable = json['editable'];
     brand = json['brand'];
     price = json['price'];
+    title = json['title'];
     description = json['description'];
     status = json['status'];
     createdBy = json['createdBy'];

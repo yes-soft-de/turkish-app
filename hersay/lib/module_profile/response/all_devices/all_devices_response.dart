@@ -42,32 +42,34 @@ class Data {
   String userName;
   String imageUser;
   int commentsCount;
-  Data({
-    this.id,
-    this.type,
-    this.brand,
-    this.cpu,
-    this.ram,
-    this.battery,
-    this.price,
-    this.yearOfRelease,
-    this.description,
-    this.status,
-    this.createdAt,
-    this.gauge,
-    this.country,
-    this.city,
-    this.durationOfUse,
-    this.image,
-    this.reaction,
-    this.userName,
-    this.imageUser,
-    this.commentsCount
-  });
+  String title;
+  Data(
+      {this.id,
+      this.type,
+      this.brand,
+      this.cpu,
+      this.ram,
+      this.battery,
+      this.price,
+      this.yearOfRelease,
+      this.description,
+      this.status,
+      this.createdAt,
+      this.gauge,
+      this.country,
+      this.city,
+      this.durationOfUse,
+      this.image,
+      this.reaction,
+      this.userName,
+      this.imageUser,
+      this.commentsCount,
+      this.title});
 
   Data.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     type = json['type'];
+    title = json['title'];
     brand = json['brand'];
     cpu = json['cpu'];
     ram = json['ram'];

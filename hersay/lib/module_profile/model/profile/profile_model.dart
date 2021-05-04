@@ -31,15 +31,15 @@ class ProfileModel {
       homeData.realEstates.data.forEach((element) {
         result.add(new ProfileElement(
             id: element.id,
-            product: element.realEstateType,
+            product:element.title??'',
             image: element.image,
             type: PRODUCT_TYPE.REAL_ESTATE,
             likes: (element.reaction != null)
                 ? element.reaction[0].reactionCount
                 : 0,
-            category: element.numberOfFloors + ' floors',
+            category: element.realEstateType,
             owner: element.userName ?? '',
-            specification: element.space + ' SM',
+            specification: element.description,
             comments: element.commentsCount));
       });
     }
@@ -54,15 +54,15 @@ class ProfileModel {
       homeData.cars.data.forEach((element) {
         result.add(new ProfileElement(
             id: element.id,
-            product: element.carType,
+            product: element.title??'',
             image: element.image,
             type: PRODUCT_TYPE.CAR,
             likes: (element.reaction != null)
                 ? element.reaction[0].reactionCount
                 : 0,
-            category: element.gearType,
+            category: element.carType,
             owner: element.userName ?? '',
-            specification: element.distance + ' KM',
+            specification: element.description,
             comments: element.commentsCount));
       });
     }
@@ -78,13 +78,13 @@ class ProfileModel {
       homeData.electronicDevices.data.forEach((element) {
         result.add(new ProfileElement(
             id: element.id,
-            product: element.brand,
+            product:element.title??'',
             image: element.image,
             type: PRODUCT_TYPE.ELECTRONIC_DEVICE,
             likes: (element.reaction != null)
                 ? element.reaction[0].reactionCount
                 : 0,
-            category: element.type,
+            category:  element.brand,
             owner: element.userName ?? '',
             specification: element.description));
       });
@@ -100,14 +100,14 @@ class ProfileModel {
       homeData.services.data.forEach((element) {
         result.add(ProfileElement(
             id: element.id,
-            product: element.categoryName,
+            product:element.title,
             image: element.image,
             type: PRODUCT_TYPE.ADVERTISMENT,
             likes: (element.reaction != null)
                 ? element.reaction[0].reactionCount
                 : 0,
                 categoryId: element.categoryID,
-            category: element.title,
+            category: element.categoryName,
             owner: element.userName ?? '',
             specification: element.cpu,
             comments: element.commentsCount));

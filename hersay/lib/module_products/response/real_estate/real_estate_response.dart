@@ -44,26 +44,29 @@ class Data {
   String userImage;
   List<Comment> comments;
   bool editable;
-  Data(
-      {this.id,
-      this.country,
-      this.city,
-      this.space,
-      this.price,
-      this.description,
-      this.status,
-      this.createdAt,
-      this.image,
-      this.images,
-      this.numberOfFloors,
-      this.homeFurnishing,
-      this.realEstateType,
-      this.reaction,
-      this.editable,
+  String title;
+  Data({
+    this.id,
+    this.country,
+    this.city,
+    this.space,
+    this.price,
+    this.description,
+    this.status,
+    this.createdAt,
+    this.image,
+    this.images,
+    this.numberOfFloors,
+    this.homeFurnishing,
+    this.realEstateType,
+    this.reaction,
+    this.editable,
 //        this.documents,
-      this.username,
-      this.userImage,
-      this.comments});
+    this.username,
+    this.userImage,
+    this.comments,
+    this.title,
+  });
 
   Data.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -99,6 +102,7 @@ class Data {
 //    documents = json['documents'];
     username = json['username'];
     userImage = json['userImage'];
+    title = json['title'];
   }
 
   Map<String, dynamic> toJson() {

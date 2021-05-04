@@ -96,7 +96,6 @@ class RealEstateDetailsStateDataLoaded extends RealEstateDetailsState {
               : Container(),
         ],
       ),
-      
       body: RefreshIndicator(
         onRefresh: () {
           screenState.getRealEstateDetails();
@@ -129,7 +128,7 @@ class RealEstateDetailsStateDataLoaded extends RealEstateDetailsState {
                       ),
                       Center(
                         child: Text(
-                          '${realEstate.type}',
+                          '${realEstate.title}',
                           style: TextStyle(
                             fontWeight: FontWeight.bold,
                             color: Colors.white,
@@ -244,7 +243,7 @@ class RealEstateDetailsStateDataLoaded extends RealEstateDetailsState {
                 //House details
                 Padding(
                   padding: const EdgeInsets.all(8.0),
-                  child: Text(S.of(context).type + ' ${realEstate.type}'),
+                  child: Text(S.of(context).type + ' : ${realEstate.type}'),
                 ),
                 Padding(
                   padding: const EdgeInsets.all(8.0),
@@ -254,7 +253,7 @@ class RealEstateDetailsStateDataLoaded extends RealEstateDetailsState {
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Text(S.of(context).floorsNumber +
-                      ' ${realEstate.floorsNumber}'),
+                      ' : ${realEstate.floorsNumber}'),
                 ),
                 Padding(
                   padding: const EdgeInsets.all(8.0),
@@ -262,16 +261,22 @@ class RealEstateDetailsStateDataLoaded extends RealEstateDetailsState {
                 ),
                 Padding(
                   padding: const EdgeInsets.all(8.0),
-                  child: Text(S.of(context).address + ' ${realEstate.address}'),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
                   child: Text(S.of(context).roomsDescription +
                       ' : ${realEstate.description}'),
                 ),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Text(S.of(context).country +
+                      ' : ${realEstate.country}'),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Text(S.of(context).city +
+                      ' : ${realEstate.city}'),
+                ),
                 Container(
                   decoration: BoxDecoration(
-                    color: Colors.black38,
+                    color: ProjectColors.THEME_COLOR,
                     borderRadius: BorderRadius.circular(10),
                   ),
                   height: 50,
@@ -279,7 +284,11 @@ class RealEstateDetailsStateDataLoaded extends RealEstateDetailsState {
                   margin: const EdgeInsets.all(8.0),
                   child: Center(
                     child:
-                        Text(S.of(context).price + '  ${realEstate.price} \$'),
+                        Text(S.of(context).price + ' : ${realEstate.price} \$',style: TextStyle(
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 16.5,
+                        ),),
                   ),
                 ),
                 Row(
@@ -341,6 +350,9 @@ class RealEstateDetailsStateDataLoaded extends RealEstateDetailsState {
                                   border: InputBorder.none,
                                   contentPadding: EdgeInsets.all(13),
                                 ),
+                                onChanged: (v) {
+                                  screenState.refresh();
+                                },
                                 onEditingComplete: () =>
                                     FocusScope.of(context).unfocus(),
                                 textInputAction: TextInputAction.done,
@@ -352,12 +364,13 @@ class RealEstateDetailsStateDataLoaded extends RealEstateDetailsState {
                             splashRadius: 20,
                             icon: Icon(
                               Icons.check,
-                              color: Colors.white,
                             ),
-                            onPressed: () {
+                            disabledColor: Colors.grey,
+                            color: Colors.white,
+                            onPressed:_comment.text.isNotEmpty ? () {
                               screenState.placeComment(
                                   _comment.text, 'realEstate', realEstate.id);
-                            }),
+                            }:null),
                       ],
                     ),
                   ),

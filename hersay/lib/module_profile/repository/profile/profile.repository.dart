@@ -2,6 +2,7 @@ import 'package:hersay/consts/urls.dart';
 import 'package:hersay/module_auth/service/auth/auth.service.dart';
 import 'package:hersay/module_home/repository/home/home.repository.dart';
 import 'package:hersay/module_home/response/category/category.dart';
+import 'package:hersay/module_localization/persistance/localization_prefrences_helper.dart';
 import 'package:hersay/module_network/http_client/http_client.dart';
 import 'package:hersay/module_profile/request/profile/profile_request.dart';
 import 'package:hersay/module_profile/response/all_cars/all_cars_response.dart';
@@ -16,6 +17,8 @@ AllDevicesResponse devices = new AllDevicesResponse();
 AllRealEstatesResponse realEstates = new AllRealEstatesResponse();
 AllAdvertisementResponse services = AllAdvertisementResponse();
 CategoryResponse categoryResponse;
+LocalizationPreferencesHelper localizationPreferencesHelper =
+    LocalizationPreferencesHelper();
 
 @provide
 class ProfileRepository {
@@ -115,14 +118,8 @@ class ProfileRepository {
 
   Future<void> _getCategories() async {
     var token = await _authService.getToken();
-    dynamic response = (token != null)
-        ? await _apiClient.get(
-            Urls.GET_CATEGORIES,
-            headers: {'Authorization': 'Bearer ' + token},
-          )
-        : await _apiClient.get(
-            Urls.GET_CATEGORIES,
-          );
+    var language = await localizationPreferencesHelper.getLanguage();
+    dynamic response = await _apiClient.get(Urls.GET_CATEGORIES, headers: {'Local':language??'en'});
 
     if (response != null)
       categoryResponse = CategoryResponse.fromJson(response);

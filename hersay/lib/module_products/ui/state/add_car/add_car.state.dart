@@ -49,9 +49,7 @@ class AddCarStateInit extends AddCarState {
   bool _autoValidate = false;
   bool flag = true;
   AddCarStateInit(AddCarScreenState screenState) : super(screenState) {
-    var startDate = new DateTime.utc(1900, 1, 1);
-    _dateController = TextEditingController(text: startDate.toString());
-    _dateController.text = startDate.toString();
+
   }
 
   @override
@@ -71,9 +69,6 @@ class AddCarStateInit extends AddCarState {
       _selectedGearType = car.gearType;
       _titleController.text = car.title;
       flag = false;
-    }
-    if (_dateController == null) {
-      _dateController.text = DateTime.now().toString();
     }
     return SingleChildScrollView(
       child: Form(
@@ -167,22 +162,18 @@ class AddCarStateInit extends AddCarState {
                     locale: Locale.fromSubtags(languageCode: 'en'),
                     type: DateTimePickerType.date,
                     dateMask: 'yyyy',
-                    initialValue: DateTime.now().toString(),
+                    initialDatePickerMode:DatePickerMode.year,
                     firstDate: DateTime.utc(1900, 1, 1),
-                    lastDate: DateTime(2100),
-//                         icon: Icon(Icons.event),
+                    lastDate: DateTime.now(),
+//                         icon: Icon(Icons.event),0
                     dateLabelText: S.current.yearOfRelease,
-
+                    
                     selectableDayPredicate: (date) {
-                      // Disable weekend days to select from the calendar
-//                             if (date.weekday == 6 || date.weekday == 7) {
-//                               return false;
-//                             }
-
                       return true;
                     },
                     onChanged: (val) {
                       _dateController.text = val;
+                      screenState.refresh();
                     },
                     validator: (val) {
                       print(val);

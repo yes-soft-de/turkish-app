@@ -119,7 +119,6 @@ class ElectronicDeviceDetailsStateDataLoaded
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-
                 Container(
                   decoration: BoxDecoration(
                     color: ProjectColors.THEME_COLOR,
@@ -140,7 +139,7 @@ class ElectronicDeviceDetailsStateDataLoaded
                       ),
                       Center(
                         child: Text(
-                          '${electronicDevice.brand}',
+                          '${electronicDevice.title??''}',
                           style: TextStyle(
                             fontWeight: FontWeight.bold,
                             color: Colors.white,
@@ -184,7 +183,6 @@ class ElectronicDeviceDetailsStateDataLoaded
                         ),
                       ],
                     ),
-                    
                     electronicDevice.isLoved
                         ? IconButton(
                             onPressed: () {
@@ -256,7 +254,8 @@ class ElectronicDeviceDetailsStateDataLoaded
                 //ElectronicDevice details
                 Padding(
                   padding: const EdgeInsets.all(8.0),
-                  child: Text(S.of(context).type + ' ${electronicDevice.type}'),
+                  child:
+                      Text(S.of(context).type + ' : ${electronicDevice.type}'),
                 ),
                 Padding(
                   padding: const EdgeInsets.all(8.0),
@@ -268,11 +267,6 @@ class ElectronicDeviceDetailsStateDataLoaded
                   child: Text(S.of(context).descriptio +
                       ' : ${electronicDevice.description}'),
                 ),
-                //TODO : change  this
-//              Padding(
-//                padding: const EdgeInsets.all(8.0),
-//                child: Text(S.of(context).storage + ' 512GB PCIe 3*4 SSD'),
-//              ),
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Text(S.of(context).location +
@@ -280,15 +274,21 @@ class ElectronicDeviceDetailsStateDataLoaded
                 ),
                 Container(
                   decoration: BoxDecoration(
-                    color: Colors.black38,
+                    color: ProjectColors.THEME_COLOR,
                     borderRadius: BorderRadius.circular(10),
                   ),
                   height: 50,
                   padding: const EdgeInsets.all(8.0),
                   margin: const EdgeInsets.all(8.0),
                   child: Center(
-                    child: Text(S.of(context).price +
-                        ' : ${electronicDevice.price} \$'),
+                    child: Text(
+                      S.of(context).price + ' : ${electronicDevice.price} \$',
+                      style: TextStyle(
+                        fontSize: 16.5,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white,
+                      ),
+                    ),
                   ),
                 ),
 
@@ -351,6 +351,9 @@ class ElectronicDeviceDetailsStateDataLoaded
                                   border: InputBorder.none,
                                   contentPadding: EdgeInsets.all(13),
                                 ),
+                                onChanged: (v) {
+                                  screenState.refresh();
+                                },
                                 onEditingComplete: () =>
                                     FocusScope.of(context).unfocus(),
                                 textInputAction: TextInputAction.done,
@@ -362,12 +365,15 @@ class ElectronicDeviceDetailsStateDataLoaded
                             splashRadius: 20,
                             icon: Icon(
                               Icons.check,
-                              color: Colors.white,
                             ),
-                            onPressed: () {
-                              screenState.placeComment(
-                                  _comment.text, 'device', electronicDevice.id);
-                            }),
+                            disabledColor: Colors.grey,
+                            color: Colors.white,
+                            onPressed: _comment.text.isNotEmpty
+                                ? () {
+                                    screenState.placeComment(_comment.text,
+                                        'device', electronicDevice.id);
+                                  }
+                                : null),
                       ],
                     ),
                   ),

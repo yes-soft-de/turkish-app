@@ -18,12 +18,12 @@ import 'package:inject/inject.dart';
 class RealEstateDetailsScreen extends StatefulWidget {
   final RealEstateDetailsStateManager _stateManager;
   final AuthService _authService;
-  
+
   RealEstateDetailsScreen(
-      this._stateManager,
-      this._authService,
-      );
-  
+    this._stateManager,
+    this._authService,
+  );
+
   @override
   RealEstateDetailsScreenState createState() => RealEstateDetailsScreenState();
 }
@@ -31,23 +31,25 @@ class RealEstateDetailsScreen extends StatefulWidget {
 class RealEstateDetailsScreenState extends State<RealEstateDetailsScreen> {
   RealEstateDetailsState currentState;
   int realEstateId = 0;
-  
+
   double width;
- 
+  void refresh() {
+    setState(() {});
+  }
+
   @override
-  void initState() { 
+  void initState() {
     super.initState();
     currentState = RealEstateDetailsStateInit(this);
-    widget._stateManager.stateStream.listen((event) { 
+    widget._stateManager.stateStream.listen((event) {
       currentState = event;
-      if(this.mounted){
-        setState(() {
-          
-        });
+      if (this.mounted) {
+        setState(() {});
       }
     });
   }
-void placeComment(String comment, String entity, int itemId) {
+
+  void placeComment(String comment, String entity, int itemId) {
     widget._authService.isLoggedIn.then((value) {
       if (!value) {
         RouteHelper redirectTo = new RouteHelper(
@@ -62,107 +64,98 @@ void placeComment(String comment, String entity, int itemId) {
       }
     });
   }
-  void loveRealEstate(RealEstateModel realEstate){
-    widget._authService.isLoggedIn.then((value){
-      if(!value) {
+
+  void loveRealEstate(RealEstateModel realEstate) {
+    widget._authService.isLoggedIn.then((value) {
+      if (!value) {
         RouteHelper redirectTo = new RouteHelper(
-            redirectTo:  ProductsRoutes.CAR_DETAILS_SCREEN,
-            additionalData: realEstateId
-        );
+            redirectTo: ProductsRoutes.CAR_DETAILS_SCREEN,
+            additionalData: realEstateId);
         Navigator.of(context).pushNamed(
           AuthorizationRoutes.LOGIN_SCREEN,
           arguments: redirectTo,
         );
-      }else{
+      } else {
         widget._stateManager.loveRealEstate(realEstateId, this, realEstate);
       }
     });
   }
 
-  void unLoveRealEstate(RealEstateModel realEstate){
-    widget._authService.isLoggedIn.then((value){
-      if(!value) {
+  void unLoveRealEstate(RealEstateModel realEstate) {
+    widget._authService.isLoggedIn.then((value) {
+      if (!value) {
         RouteHelper redirectTo = new RouteHelper(
-            redirectTo:  ProductsRoutes.CAR_DETAILS_SCREEN,
-            additionalData: realEstateId
-        );
+            redirectTo: ProductsRoutes.CAR_DETAILS_SCREEN,
+            additionalData: realEstateId);
         Navigator.of(context).pushNamed(
           AuthorizationRoutes.LOGIN_SCREEN,
           arguments: redirectTo,
         );
-      }else{
+      } else {
         widget._stateManager.unLoveRealEstate(realEstateId, this, realEstate);
       }
     });
   }
 
-  void getRealEstateDetails(){
-    widget._stateManager.getRealEstateDetails(this, realEstateId)  ;
+  void getRealEstateDetails() {
+    widget._stateManager.getRealEstateDetails(this, realEstateId);
   }
 
-  void getRoomId(){
-    widget._authService.isLoggedIn.then((value){
-      if(!value) {
+  void getRoomId() {
+    widget._authService.isLoggedIn.then((value) {
+      if (!value) {
         RouteHelper redirectTo = new RouteHelper(
-            redirectTo:  ProductsRoutes.REAL_ESTATE_DETAILS_SCREEN,
-            additionalData: realEstateId
-        );
+            redirectTo: ProductsRoutes.REAL_ESTATE_DETAILS_SCREEN,
+            additionalData: realEstateId);
         Navigator.of(context).pushNamed(
           AuthorizationRoutes.LOGIN_SCREEN,
           arguments: redirectTo,
         );
-      }else{
+      } else {
         widget._stateManager.getRoomId(realEstateId, this);
       }
     });
   }
-  void getRoomIdWithLawyer(){
-    widget._authService.isLoggedIn.then((value){
-      if(!value) {
+
+  void getRoomIdWithLawyer() {
+    widget._authService.isLoggedIn.then((value) {
+      if (!value) {
         RouteHelper redirectTo = new RouteHelper(
-            redirectTo:  ProductsRoutes.REAL_ESTATE_DETAILS_SCREEN,
-            additionalData: realEstateId
-        );
+            redirectTo: ProductsRoutes.REAL_ESTATE_DETAILS_SCREEN,
+            additionalData: realEstateId);
         Navigator.of(context).pushNamed(
           AuthorizationRoutes.LOGIN_SCREEN,
           arguments: redirectTo,
         );
-      }else{
+      } else {
         widget._stateManager.getRoomIdWithLawyer(realEstateId, this);
       }
     });
   }
 
-  void report(){
-    widget._authService.isLoggedIn.then((value){
-      if(!value) {
+  void report() {
+    widget._authService.isLoggedIn.then((value) {
+      if (!value) {
         RouteHelper redirectTo = new RouteHelper(
-            redirectTo:  ProductsRoutes.REAL_ESTATE_DETAILS_SCREEN,
-            additionalData: realEstateId
-        );
+            redirectTo: ProductsRoutes.REAL_ESTATE_DETAILS_SCREEN,
+            additionalData: realEstateId);
         Navigator.of(context).pushNamed(
           AuthorizationRoutes.LOGIN_SCREEN,
           arguments: redirectTo,
         );
-      }else{
+      } else {
         ReportHelper report = new ReportHelper(
           entity: 'realEstate',
           itemId: realEstateId,
         );
-        Navigator.of(context).pushNamed(
-            ReportRoutes.REPORT_SCREEN,
-            arguments: report
-        );
+        Navigator.of(context)
+            .pushNamed(ReportRoutes.REPORT_SCREEN, arguments: report);
       }
     });
   }
 
-  void goToChat(String roomId){
-    Navigator.pushNamed(
-        context,
-        ChatRoutes.chatRoute,
-        arguments:  roomId
-    );
+  void goToChat(String roomId) {
+    Navigator.pushNamed(context, ChatRoutes.chatRoute, arguments: roomId);
   }
 
   @override
@@ -172,11 +165,12 @@ void placeComment(String comment, String entity, int itemId) {
       getRealEstateDetails();
     }
 
-
-    
     width = MediaQuery.of(context).size.width;
     return Scaffold(
-      appBar: currentState is RealEstateDetailsStateDataLoaded ? null : TurkishAppBar.getTurkishOrdinaryAppBar(context,  S.of(context).details),
+      appBar: currentState is RealEstateDetailsStateDataLoaded
+          ? null
+          : TurkishAppBar.getTurkishOrdinaryAppBar(
+              context, S.of(context).details),
       body: currentState.getUI(context),
     );
   }

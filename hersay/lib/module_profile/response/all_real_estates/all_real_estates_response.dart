@@ -41,6 +41,7 @@ class Data {
   String userName;
   String imageUser;
   int commentsCount;
+  String title;
   Data(
       {this.id,
       this.country,
@@ -60,13 +61,15 @@ class Data {
       this.rooms,
       this.userName,
       this.imageUser,
-      this.commentsCount
+      this.commentsCount,
+      this.title
       });
 
   Data.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     country = json['country'];
     city = json['city'];
+    title = json['title'];
     space = json['space'];
     price = json['price'];
     description = json['description'];

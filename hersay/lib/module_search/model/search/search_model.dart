@@ -35,55 +35,55 @@ class SearchModel {
           case 'car':
             result.add(SearchModel(
                 type: '',
-                brand: element.carType,
+                brand: element.title??'',
                 id: element.id,
                 productType: PRODUCT_TYPE.CAR,
                 userName: element.userName,
                 userImage: element.imageUser ?? '',
                 image: element.image,
-                category: element.gearType,
-                specification: element.distance + ' KM',
+                category: element.carType,
+                specification: element.description,
                 likes: element.reaction.length,
                 commentsNumber: element.commentsNumber));
             break;
           case 'device':
             result.add(SearchModel(
                 type: '',
-                brand: element.brand,
+                brand: element.title??'',
                 id: element.id,
                 productType: PRODUCT_TYPE.ELECTRONIC_DEVICE,
                 userName: element.userName,
                 userImage: element.imageUser,
                 image: element.image,
-                category: element.type,
+                category: element.brand,
                 specification: element.description,
                 likes: element.reaction.length,
                 commentsNumber: element.commentsNumber));
             break;
           case 'realEstate':
             result.add(SearchModel(
-                type: element.realEstateType,
+                type: element.title??'',
                 brand: '',
                 id: element.id,
                 productType: PRODUCT_TYPE.REAL_ESTATE,
                 userName: element.userName,
                 userImage: element.imageUser,
                 image: element.image,
-                category: element.numberOfFloors + ' floors',
-                specification: element.space + ' SM',
+                category: element.realEstateType,
+                specification:element.description,
                 likes: element.reaction.length,
                 commentsNumber: element.commentsNumber));
             break;
             default:
             result.add(SearchModel(
-                type: element.categoryName,
+                type: element.title??'',
                 brand: '',
                 id: element.id,
                 productType: PRODUCT_TYPE.ADVERTISMENT,
                 userName: element.userName,
                 userImage: element.imageUser,
                 image: element.image,
-                category: element.title,
+                category: element.categoryName,
                 specification: element.description,
                 likes: element.reaction.length,
                 commentsNumber: element.commentsNumber

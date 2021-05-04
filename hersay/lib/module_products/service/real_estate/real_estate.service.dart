@@ -67,6 +67,7 @@ class RealEstateService {
     if (response == null) return null;
 
     return new RealEstateModel(
+      title: response.data.title,
       id: realEstateId,
       price: response.data.price.toString(),
       description: response.data.description,
