@@ -52,4 +52,10 @@ class ProfileSharedPreferencesHelper {
     var prefsHelper = await SharedPreferences.getInstance();
     return prefsHelper.getString('profile_cover');
   }
+
+  Future<void> deleteProfile() async {
+    var prefsHelper = await SharedPreferences.getInstance();
+    prefsHelper.remove('profile_username');
+    prefsHelper.remove('profile_image');
+  }
 }
