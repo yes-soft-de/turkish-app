@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hersay/generated/l10n.dart';
+import 'package:hersay/main_screen/main_routes.dart';
 import 'package:hersay/module_auth/auth_routes.dart';
 import 'package:hersay/module_auth/service/auth/auth.service.dart';
 import 'package:hersay/module_products/state_manager/car/add_car.state_manager.dart';
@@ -54,13 +55,14 @@ class AddServiceScreenState extends State<AddServiceScreen> {
     String description,
     String image,
   ) {
-    widget._stateManager.addNewService(id,city,country,type, title, description, image, this);
+    widget._stateManager.addNewService(
+        id, city, country, type, title, description, image, this);
   }
 
-  void updateService(
-      int id,int catId ,String city,String country,String title, String type, String description, String image) {
-    widget._stateManager
-        .updateService(id, catId, city,country,type, title, description, image, this);
+  void updateService(int id, int catId, String city, String country,
+      String title, String type, String description, String image) {
+    widget._stateManager.updateService(
+        id, catId, city, country, type, title, description, image, this);
   }
 
   @override
@@ -73,22 +75,18 @@ class AddServiceScreenState extends State<AddServiceScreen> {
             .pushNamed(AuthorizationRoutes.LOGIN_SCREEN, arguments: redirectTo);
       }
     });
-    return Scaffold(
-      appBar: AppBar(
-        elevation: 0,
-        backgroundColor: ProjectColors.THEME_COLOR,
-        title: Text(
-          S.of(context).details,
-          style: TextStyle(
-            color: Colors.white,
-          ),
-        ),
-        iconTheme: IconThemeData(
-          color: Colors.white,
-        ),
-      ),
-      body: SafeArea(
-        child: currentState?.getUI(context)??AddServiceStateLoading(this),
+    return WillPopScope(
+      onWillPop: () async {
+        var additionalData = ModalRoute.of(context).settings.arguments;
+        if (additionalData != null && additionalData is bool) {
+          Navigator.of(context).pushNamedAndRemoveUntil(
+              MainRoutes.MAIN_SCREEN_ROUTE, (route) => false);
+          return false;
+        }
+        return true;
+      },
+      child: Scaffold(
+        body: currentState?.getUI(context) ?? AddServiceStateLoading(this),
       ),
     );
   }

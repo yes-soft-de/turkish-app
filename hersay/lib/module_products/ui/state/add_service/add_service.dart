@@ -60,7 +60,7 @@ class AddServiceStateInit extends AddServiceState {
       categoriesList.add(element.categoryName);
     });
   }
-
+  String title;
   @override
   Widget getUI(context) {
     ServiceModel service = ModalRoute.of(context).settings.arguments;
@@ -72,11 +72,22 @@ class AddServiceStateInit extends AddServiceState {
       _descriptionController.text = service.description;
       _cityController.text = service.city;
       _countryController.text = service.country;
+      title = S.of(context).updateService;
       flag = false;
     }
     final node = FocusScope.of(context);
 
-    return SingleChildScrollView(
+    return Scaffold(
+           appBar: AppBar(
+        iconTheme: IconThemeData(color: Colors.white),
+        elevation: 0,
+        backgroundColor: ProjectColors.THEME_COLOR,
+        title: Text(
+          title??S.of(context).addNewService,
+          style: TextStyle(color: Colors.white),
+        ),
+      ),
+      body: SingleChildScrollView(
       child: Form(
         key: _addServiceFormKey,
         autovalidate: _autoValidate,
@@ -285,7 +296,7 @@ class AddServiceStateInit extends AddServiceState {
                       ),
                       labelText: S.of(context).descriptio,
                     ),
-                    textInputAction: TextInputAction.next,
+                    textInputAction: TextInputAction.newline,
                     onEditingComplete: () => node.nextFocus(),
                     // Move focus to next
                     validator: (result) {
@@ -421,6 +432,8 @@ class AddServiceStateInit extends AddServiceState {
           ),
         ),
       ),
+    )
+  ,
     );
   }
 

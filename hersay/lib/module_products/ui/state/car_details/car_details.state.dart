@@ -125,13 +125,17 @@ class CarDetailsStateDataLoaded extends CarDetailsState {
                       SizedBox(
                         width: 10,
                       ),
-                      Center(
-                        child: Text(
-                          '${car.title}',
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            color: Colors.white,
-                            fontSize: 16,
+                      Container(
+                        width: 250,
+                        child: Center(
+                          child: Text(
+                            '${car.title}',
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              color: Colors.white,
+                              fontSize: 16,
+                            ),
+                            overflow: TextOverflow.ellipsis,
                           ),
                         ),
                       ),

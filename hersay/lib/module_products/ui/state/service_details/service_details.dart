@@ -127,13 +127,17 @@ class ServiceDetailsStateDataLoaded extends ServicesDetailsState {
                       SizedBox(
                         width: 10,
                       ),
-                      Center(
-                        child: Text(
-                          '${service.title}',
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            color: Colors.white,
-                            fontSize: 16,
+                      Container(
+                        width: 250,
+                        child: Center(
+                          child: Text(
+                            '${service.title}',
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              color: Colors.white,
+                              fontSize: 16,
+                            ),
+                            overflow: TextOverflow.ellipsis,
                           ),
                         ),
                       ),

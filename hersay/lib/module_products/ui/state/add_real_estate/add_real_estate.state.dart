@@ -44,7 +44,7 @@ class AddRealEstateStateInit extends AddRealEstateState {
   final TextEditingController _priceController = TextEditingController();
   final TextEditingController _roomsNumberController = TextEditingController();
   final TextEditingController _titleController = TextEditingController();
-  
+
   List<String> _houseTypes = [
     S.current.furnished,
     S.current.unfurnished,
@@ -59,6 +59,7 @@ class AddRealEstateStateInit extends AddRealEstateState {
 
   bool _autoValidate = false;
   bool flag = true;
+  String title;
   AddRealEstateStateInit(AddRealEstateScreenState screenState)
       : super(screenState);
 
@@ -76,408 +77,438 @@ class AddRealEstateStateInit extends AddRealEstateState {
       _spaceController.text = realEstate.space;
       _floorNumbersController.text = realEstate.floorsNumber;
       _selectedHouseType = realEstate.isFurnished;
+      title = S.of(context).updateRealEstate;
       flag = false;
     }
-    return SingleChildScrollView(
-      child: Form(
-        key: _addRealEstateFormKey,
-        autovalidate: _autoValidate,
-        child: Container(
-          padding: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              Card(
-                elevation: 10,
-                margin: EdgeInsets.only(top: 20),
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(15)),
-                child: Container(
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(15),
-                    color: Colors.black12,
-                  ),
-                  child: TextFormField(
-                    controller: _titleController,
-                    decoration: InputDecoration(
-                      prefixIcon: Icon(Icons.title),
-                      border: OutlineInputBorder(
-                        borderSide: BorderSide.none,
-                        borderRadius: BorderRadius.circular(20),
-                      ),
-                      labelText: S.of(context).title,
-                    ),
-                    textInputAction: TextInputAction.next,
-                    onEditingComplete: () => node.nextFocus(),
-                    // Move focus to next
-                    validator: (result) {
-                      if (result.isEmpty) {
-                        return S.of(context).thisFieldCannotBeEmpty;
-                      }
-                      return null;
-                    },
-                  ),
-                ),
-              ),
-              //real estate type
-              Card(
-                elevation: 10,
-                margin: EdgeInsets.only(top: 20),
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(15)),
-                child: Container(
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(15),
-                    color: Colors.black12,
-                  ),
-                  child: TextFormField(
-                    controller: _realEstateTypeController,
-                    decoration: InputDecoration(
-                      prefixIcon: Icon(Icons.home),
-                      border: OutlineInputBorder(
-                        borderSide: BorderSide.none,
-                        borderRadius: BorderRadius.circular(20),
-                      ),
-                      labelText: S.of(context).realEstateType,
-                    ),
-                    textInputAction: TextInputAction.next,
-                    onEditingComplete: () => node.nextFocus(),
-                    // Move focus to next
-                    validator: (result) {
-                      if (result.isEmpty) {
-                        return S.of(context).thisFieldCannotBeEmpty;
-                      }
-                      return null;
-                    },
-                  ),
-                ),
-              ),
-              // Space
-              Card(
-                elevation: 10,
-                margin: EdgeInsets.only(top: 20),
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(15)),
-                child: Container(
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(15),
-                    color: Colors.black12,
-                  ),
-                  child: TextFormField(
-                    keyboardType: TextInputType.number,
-                    controller: _spaceController,
-                    decoration: InputDecoration(
-//                        prefixIcon: Icon(Icons.),
-                      border: OutlineInputBorder(
-                        borderSide: BorderSide.none,
-                        borderRadius: BorderRadius.circular(20),
-                      ),
-                      labelText: S.of(context).space,
-                    ),
-                    textInputAction: TextInputAction.next,
-                    onEditingComplete: () => node.nextFocus(),
-                    // Move focus to next
-                    validator: (result) {
-                      if (result.isEmpty) {
-                        return S.of(context).thisFieldCannotBeEmpty;
-                      }
-                      return null;
-                    },
-                  ),
-                ),
-              ),
-              // floor number
-              Card(
-                elevation: 10,
-                margin: EdgeInsets.only(top: 20),
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(15)),
-                child: Container(
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(15),
-                    color: Colors.black12,
-                  ),
-                  child: TextFormField(
-                    keyboardType: TextInputType.number,
-                    controller: _floorNumbersController,
-                    decoration: InputDecoration(
-//                        prefixIcon: Icon(Icons.hors),
-                      border: OutlineInputBorder(
-                        borderSide: BorderSide.none,
-                        borderRadius: BorderRadius.circular(20),
-                      ),
-                      labelText: S.of(context).appartmentFloorOrNumberOfFloors,
-                    ),
-                    textInputAction: TextInputAction.next,
-                    onEditingComplete: () => node.nextFocus(),
-                    // Move focus to next
-                    validator: (result) {
-                      if (result.isEmpty) {
-                        return S.of(context).thisFieldCannotBeEmpty;
-                      }
-                      return null;
-                    },
-                  ),
-                ),
-              ),
-              //home furnishing
-              Card(
+    return Scaffold(
+      appBar: AppBar(
+        iconTheme: IconThemeData(color: Colors.white),
+        elevation: 0,
+        backgroundColor: ProjectColors.THEME_COLOR,
+        title: Text(
+          title ?? S.of(context).addNewRealEstate,
+          style: TextStyle(color: Colors.white),
+        ),
+      ),
+      body: SingleChildScrollView(
+        child: Form(
+          key: _addRealEstateFormKey,
+          autovalidate: _autoValidate,
+          child: Container(
+            padding: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                Card(
                   elevation: 10,
                   margin: EdgeInsets.only(top: 20),
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(15)),
                   child: Container(
-                    width: 400,
-                    padding: EdgeInsets.all(10),
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(15),
                       color: Colors.black12,
                     ),
-                    child: DropdownButtonHideUnderline(
-                      child: DropdownButton(
-                          hint: _selectedHouseType == null
-                              ? Text(
-                                  S.of(context).homeFurmishing,
-                                  style: TextStyle(color: Colors.grey),
-                                )
-                              : Text(
-                                  '$_selectedHouseType',
-                                  style: TextStyle(color: Colors.grey),
-                                ),
-                          items: _houseTypes.map((String place) {
-                            return new DropdownMenuItem<String>(
-                              value: place.toString(),
-                              child: new Text(place),
-                            );
-                          }).toList(),
-                          onChanged: (value) {
-                            _selectedHouseType = _houseTypes.firstWhere(
-                                (element) => element.toString() == value);
-                            screenState.refresh();
-                          }),
-                    ),
-                  )),
-              // country
-              Card(
-                elevation: 10,
-                margin: EdgeInsets.only(top: 20),
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(15)),
-                child: Container(
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(15),
-                    color: Colors.black12,
-                  ),
-                  child: TextFormField(
-                    controller: _countryController,
-                    decoration: InputDecoration(
-                      prefixIcon: Icon(Icons.flag),
-                      border: OutlineInputBorder(
-                        borderSide: BorderSide.none,
-                        borderRadius: BorderRadius.circular(20),
+                    child: TextFormField(
+                      controller: _titleController,
+                      decoration: InputDecoration(
+                        prefixIcon: Icon(Icons.title),
+                        border: OutlineInputBorder(
+                          borderSide: BorderSide.none,
+                          borderRadius: BorderRadius.circular(20),
+                        ),
+                        labelText: S.of(context).title,
                       ),
-                      labelText: S.of(context).country,
-                    ),
-                    textInputAction: TextInputAction.next,
-                    onEditingComplete: () => node.nextFocus(),
-                    // Move focus to next
-                    validator: (result) {
-                      if (result.isEmpty) {
-                        return S.of(context).thisFieldCannotBeEmpty;
-                      }
-                      return null;
-                    },
-                  ),
-                ),
-              ),
-              // city
-              Card(
-                elevation: 10,
-                margin: EdgeInsets.only(top: 20),
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(15)),
-                child: Container(
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(15),
-                    color: Colors.black12,
-                  ),
-                  child: TextFormField(
-                    controller: _cityController,
-                    decoration: InputDecoration(
-                      prefixIcon: Icon(Icons.location_on),
-                      border: OutlineInputBorder(
-                        borderSide: BorderSide.none,
-                        borderRadius: BorderRadius.circular(20),
-                      ),
-                      labelText: S.of(context).city,
-                    ),
-                    textInputAction: TextInputAction.next,
-                    onEditingComplete: () => node.nextFocus(),
-                    // Move focus to next
-                    validator: (result) {
-                      if (result.isEmpty) {
-                        return S.of(context).thisFieldCannotBeEmpty;
-                      }
-                      return null;
-                    },
-                  ),
-                ),
-              ),
-              // price
-              Card(
-                elevation: 10,
-                margin: EdgeInsets.only(top: 20),
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(15)),
-                child: Container(
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(15),
-                    color: Colors.black12,
-                  ),
-                  child: TextFormField(
-                    keyboardType: TextInputType.number,
-                    controller: _priceController,
-                    decoration: InputDecoration(
-                      prefixIcon: Icon(Icons.attach_money),
-                      border: OutlineInputBorder(
-                        borderSide: BorderSide.none,
-                        borderRadius: BorderRadius.circular(20),
-                      ),
-                      labelText: S.of(context).price,
-                    ),
-                    textInputAction: TextInputAction.next,
-                    onEditingComplete: () => node.nextFocus(),
-                    // Move focus to next
-                    validator: (result) {
-                      if (result.isEmpty) {
-                        return S.of(context).thisFieldCannotBeEmpty;
-                      }
-                      if (!isNumeric(result)) {
-                        return S.of(context).youCanUseOnlyNumbers;
-                      }
-                      return null;
-                    },
-                  ),
-                ),
-              ),
-              // description
-              Card(
-                elevation: 10,
-                margin: EdgeInsets.only(top: 20),
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(15)),
-                child: Container(
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(15),
-                    color: Colors.black12,
-                  ),
-                  child: TextFormField(
-                    controller: _descriptionController,
-                    maxLines: 8,
-                    decoration: InputDecoration(
-                      prefixIcon: Icon(Icons.description),
-                      border: OutlineInputBorder(
-                        borderSide: BorderSide.none,
-                        borderRadius: BorderRadius.circular(20),
-                      ),
-                      labelText: S.of(context).roomsDescription,
-                    ),
-                    textInputAction: TextInputAction.next,
-                    onEditingComplete: () => node.nextFocus(),
-                    // Move focus to next
-                    validator: (result) {
-                      if (result.isEmpty) {
-                        return S.of(context).thisFieldCannotBeEmpty;
-                      }
-                      return null;
-                    },
-                  ),
-                ),
-              ),
-              Center(
-                child: Container(
-                  width: 250,
-                  height: 55,
-                  margin: EdgeInsets.only(top: 30),
-                  child: FlatButton(
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                      onPressed: () {
-                        ImagePicker ip = ImagePicker();
-                        ip.getImage(source: ImageSource.gallery).then((value) {
-                          if (value != null) {
-                            mainImage = value.path;
-                            print('main image picked');
-                          }
-                        });
+                      textInputAction: TextInputAction.next,
+                      onEditingComplete: () => node.nextFocus(),
+                      // Move focus to next
+                      validator: (result) {
+                        if (result.isEmpty) {
+                          return S.of(context).thisFieldCannotBeEmpty;
+                        }
+                        return null;
                       },
-                      //TODO : change this using theme service
-                      color: ProjectColors.SECONDARY_COLOR,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Icon(
-                            Icons.photo_library,
-                            color: Colors.white,
-                          ),
-                          Text(
-                            S.of(context).selectMainImage,
-                            style: TextStyle(color: Colors.white),
-                          )
-                        ],
-                      )),
+                    ),
+                  ),
                 ),
-              ),
-              Center(
-                child: Container(
-                  width: 250,
-                  height: 55,
-                  margin: EdgeInsets.only(top: 30),
-                  child: FlatButton(
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10),
+                //real estate type
+                Card(
+                  elevation: 10,
+                  margin: EdgeInsets.only(top: 20),
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(15)),
+                  child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(15),
+                      color: Colors.black12,
+                    ),
+                    child: TextFormField(
+                      controller: _realEstateTypeController,
+                      decoration: InputDecoration(
+                        prefixIcon: Icon(Icons.home),
+                        border: OutlineInputBorder(
+                          borderSide: BorderSide.none,
+                          borderRadius: BorderRadius.circular(20),
+                        ),
+                        labelText: S.of(context).realEstateType,
                       ),
-                      onPressed: () {
-                        ImagePicker ip = ImagePicker();
-                        ip.getImage(source: ImageSource.gallery).then((value) {
-                          if (value != null) {
-                            otherImages.add(value.path);
-                            print(
-                                'another image picked, images length ${otherImages.length}');
-                          }
-                        });
+                      textInputAction: TextInputAction.next,
+                      onEditingComplete: () => node.nextFocus(),
+                      // Move focus to next
+                      validator: (result) {
+                        if (result.isEmpty) {
+                          return S.of(context).thisFieldCannotBeEmpty;
+                        }
+                        return null;
                       },
-                      color: ProjectColors.SECONDARY_COLOR,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Icon(
-                            Icons.photo_library,
-                            color: Colors.white,
-                          ),
-                          Text(
-                            S.of(context).addMoreImages,
-                            style: TextStyle(color: Colors.white),
-                          ),
-                        ],
-                      )),
+                    ),
+                  ),
                 ),
-              ),
-              Center(
-                child: Container(
-                  width: 200,
-                  height: 55,
-                  margin: EdgeInsets.only(top: 30),
-                  child: FlatButton(
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10),
+                // Space
+                Card(
+                  elevation: 10,
+                  margin: EdgeInsets.only(top: 20),
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(15)),
+                  child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(15),
+                      color: Colors.black12,
+                    ),
+                    child: TextFormField(
+                      keyboardType: TextInputType.number,
+                      controller: _spaceController,
+                      decoration: InputDecoration(
+//                        prefixIcon: Icon(Icons.),
+                        border: OutlineInputBorder(
+                          borderSide: BorderSide.none,
+                          borderRadius: BorderRadius.circular(20),
+                        ),
+                        labelText: S.of(context).space,
                       ),
-                      onPressed: () {
-                        if (_addRealEstateFormKey.currentState.validate()) {
-                          if (realEstate != null) {
-                            screenState.updateRealEstate(
-                                realEstate.id,
+                      textInputAction: TextInputAction.next,
+                      onEditingComplete: () => node.nextFocus(),
+                      // Move focus to next
+                      validator: (result) {
+                        if (result.isEmpty) {
+                          return S.of(context).thisFieldCannotBeEmpty;
+                        }
+                        return null;
+                      },
+                    ),
+                  ),
+                ),
+                // floor number
+                Card(
+                  elevation: 10,
+                  margin: EdgeInsets.only(top: 20),
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(15)),
+                  child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(15),
+                      color: Colors.black12,
+                    ),
+                    child: TextFormField(
+                      keyboardType: TextInputType.number,
+                      controller: _floorNumbersController,
+                      decoration: InputDecoration(
+//                        prefixIcon: Icon(Icons.hors),
+                        border: OutlineInputBorder(
+                          borderSide: BorderSide.none,
+                          borderRadius: BorderRadius.circular(20),
+                        ),
+                        labelText:
+                            S.of(context).appartmentFloorOrNumberOfFloors,
+                      ),
+                      textInputAction: TextInputAction.next,
+                      onEditingComplete: () => node.nextFocus(),
+                      // Move focus to next
+                      validator: (result) {
+                        if (result.isEmpty) {
+                          return S.of(context).thisFieldCannotBeEmpty;
+                        }
+                        return null;
+                      },
+                    ),
+                  ),
+                ),
+                //home furnishing
+                Card(
+                    elevation: 10,
+                    margin: EdgeInsets.only(top: 20),
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(15)),
+                    child: Container(
+                      width: 400,
+                      padding: EdgeInsets.all(10),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(15),
+                        color: Colors.black12,
+                      ),
+                      child: DropdownButtonHideUnderline(
+                        child: DropdownButton(
+                            hint: _selectedHouseType == null
+                                ? Text(
+                                    S.of(context).homeFurmishing,
+                                    style: TextStyle(color: Colors.grey),
+                                  )
+                                : Text(
+                                    '$_selectedHouseType',
+                                    style: TextStyle(color: Colors.grey),
+                                  ),
+                            items: _houseTypes.map((String place) {
+                              return new DropdownMenuItem<String>(
+                                value: place.toString(),
+                                child: new Text(place),
+                              );
+                            }).toList(),
+                            onChanged: (value) {
+                              _selectedHouseType = _houseTypes.firstWhere(
+                                  (element) => element.toString() == value);
+                              screenState.refresh();
+                            }),
+                      ),
+                    )),
+                // country
+                Card(
+                  elevation: 10,
+                  margin: EdgeInsets.only(top: 20),
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(15)),
+                  child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(15),
+                      color: Colors.black12,
+                    ),
+                    child: TextFormField(
+                      controller: _countryController,
+                      decoration: InputDecoration(
+                        prefixIcon: Icon(Icons.flag),
+                        border: OutlineInputBorder(
+                          borderSide: BorderSide.none,
+                          borderRadius: BorderRadius.circular(20),
+                        ),
+                        labelText: S.of(context).country,
+                      ),
+                      textInputAction: TextInputAction.next,
+                      onEditingComplete: () => node.nextFocus(),
+                      // Move focus to next
+                      validator: (result) {
+                        if (result.isEmpty) {
+                          return S.of(context).thisFieldCannotBeEmpty;
+                        }
+                        return null;
+                      },
+                    ),
+                  ),
+                ),
+                // city
+                Card(
+                  elevation: 10,
+                  margin: EdgeInsets.only(top: 20),
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(15)),
+                  child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(15),
+                      color: Colors.black12,
+                    ),
+                    child: TextFormField(
+                      controller: _cityController,
+                      decoration: InputDecoration(
+                        prefixIcon: Icon(Icons.location_on),
+                        border: OutlineInputBorder(
+                          borderSide: BorderSide.none,
+                          borderRadius: BorderRadius.circular(20),
+                        ),
+                        labelText: S.of(context).city,
+                      ),
+                      textInputAction: TextInputAction.next,
+                      onEditingComplete: () => node.nextFocus(),
+                      // Move focus to next
+                      validator: (result) {
+                        if (result.isEmpty) {
+                          return S.of(context).thisFieldCannotBeEmpty;
+                        }
+                        return null;
+                      },
+                    ),
+                  ),
+                ),
+                // price
+                Card(
+                  elevation: 10,
+                  margin: EdgeInsets.only(top: 20),
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(15)),
+                  child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(15),
+                      color: Colors.black12,
+                    ),
+                    child: TextFormField(
+                      keyboardType: TextInputType.number,
+                      controller: _priceController,
+                      decoration: InputDecoration(
+                        prefixIcon: Icon(Icons.attach_money),
+                        border: OutlineInputBorder(
+                          borderSide: BorderSide.none,
+                          borderRadius: BorderRadius.circular(20),
+                        ),
+                        labelText: S.of(context).price,
+                      ),
+                      textInputAction: TextInputAction.next,
+                      onEditingComplete: () => node.nextFocus(),
+                      // Move focus to next
+                      validator: (result) {
+                        if (result.isEmpty) {
+                          return S.of(context).thisFieldCannotBeEmpty;
+                        }
+                        if (!isNumeric(result)) {
+                          return S.of(context).youCanUseOnlyNumbers;
+                        }
+                        return null;
+                      },
+                    ),
+                  ),
+                ),
+                // description
+                Card(
+                  elevation: 10,
+                  margin: EdgeInsets.only(top: 20),
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(15)),
+                  child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(15),
+                      color: Colors.black12,
+                    ),
+                    child: TextFormField(
+                      controller: _descriptionController,
+                      maxLines: 8,
+                      decoration: InputDecoration(
+                        prefixIcon: Icon(Icons.description),
+                        border: OutlineInputBorder(
+                          borderSide: BorderSide.none,
+                          borderRadius: BorderRadius.circular(20),
+                        ),
+                        labelText: S.of(context).roomsDescription,
+                      ),
+                     textInputAction: TextInputAction.newline,
+                      onEditingComplete: () => node.nextFocus(),
+                      // Move focus to next
+                      validator: (result) {
+                        if (result.isEmpty) {
+                          return S.of(context).thisFieldCannotBeEmpty;
+                        }
+                        return null;
+                      },
+                    ),
+                  ),
+                ),
+                Center(
+                  child: Container(
+                    width: 250,
+                    height: 55,
+                    margin: EdgeInsets.only(top: 30),
+                    child: FlatButton(
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        onPressed: () {
+                          ImagePicker ip = ImagePicker();
+                          ip
+                              .getImage(source: ImageSource.gallery)
+                              .then((value) {
+                            if (value != null) {
+                              mainImage = value.path;
+                              print('main image picked');
+                            }
+                          });
+                        },
+                        //TODO : change this using theme service
+                        color: ProjectColors.SECONDARY_COLOR,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Icon(
+                              Icons.photo_library,
+                              color: Colors.white,
+                            ),
+                            Text(
+                              S.of(context).selectMainImage,
+                              style: TextStyle(color: Colors.white),
+                            )
+                          ],
+                        )),
+                  ),
+                ),
+                Center(
+                  child: Container(
+                    width: 250,
+                    height: 55,
+                    margin: EdgeInsets.only(top: 30),
+                    child: FlatButton(
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        onPressed: () {
+                          ImagePicker ip = ImagePicker();
+                          ip
+                              .getImage(source: ImageSource.gallery)
+                              .then((value) {
+                            if (value != null) {
+                              otherImages.add(value.path);
+                              print(
+                                  'another image picked, images length ${otherImages.length}');
+                            }
+                          });
+                        },
+                        color: ProjectColors.SECONDARY_COLOR,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Icon(
+                              Icons.photo_library,
+                              color: Colors.white,
+                            ),
+                            Text(
+                              S.of(context).addMoreImages,
+                              style: TextStyle(color: Colors.white),
+                            ),
+                          ],
+                        )),
+                  ),
+                ),
+                Center(
+                  child: Container(
+                    width: 200,
+                    height: 55,
+                    margin: EdgeInsets.only(top: 30),
+                    child: FlatButton(
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        onPressed: () {
+                          if (_addRealEstateFormKey.currentState.validate()) {
+                            if (realEstate != null) {
+                              screenState.updateRealEstate(
+                                  realEstate.id,
+                                  _titleController.text.trim(),
+                                  _countryController.text.trim(),
+                                  _cityController.text.trim(),
+                                  _spaceController.text.trim(),
+                                  int.parse(_priceController.text.trim()),
+                                  _descriptionController.text.trim(),
+                                  _floorNumbersController.text.trim(),
+                                  _selectedHouseType,
+                                  _realEstateTypeController.text.trim(),
+                                  'not sold',
+                                  mainImage ?? realEstate.image ?? '',
+                                  otherImages);
+                            } else {
+                              screenState.addNewRealEstate(
                                 _titleController.text.trim(),
                                 _countryController.text.trim(),
                                 _cityController.text.trim(),
@@ -488,44 +519,31 @@ class AddRealEstateStateInit extends AddRealEstateState {
                                 _selectedHouseType,
                                 _realEstateTypeController.text.trim(),
                                 'not sold',
-                                mainImage ?? realEstate.image ?? '',
-                                otherImages);
-                          } else {
-                            screenState.addNewRealEstate(
-                              _titleController.text.trim(),
-                              _countryController.text.trim(),
-                              _cityController.text.trim(),
-                              _spaceController.text.trim(),
-                              int.parse(_priceController.text.trim()),
-                              _descriptionController.text.trim(),
-                              _floorNumbersController.text.trim(),
-                              _selectedHouseType,
-                              _realEstateTypeController.text.trim(),
-                              'not sold',
-                              mainImage,
-                              otherImages,
-                            );
+                                mainImage,
+                                otherImages,
+                              );
+                            }
                           }
-                        }
-                      },
-                      //TODO : change this using theme service
-                      color: ProjectColors.SECONDARY_COLOR,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Icon(
-                            Icons.save,
-                            color: Colors.white,
-                          ),
-                          Text(
-                            S.of(context).save,
-                            style: TextStyle(color: Colors.white),
-                          )
-                        ],
-                      )),
+                        },
+                        //TODO : change this using theme service
+                        color: ProjectColors.SECONDARY_COLOR,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Icon(
+                              Icons.save,
+                              color: Colors.white,
+                            ),
+                            Text(
+                              S.of(context).save,
+                              style: TextStyle(color: Colors.white),
+                            )
+                          ],
+                        )),
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),
@@ -540,7 +558,8 @@ class AddRealEstateStateInit extends AddRealEstateState {
 
 class AddRealEstateSuccessState extends AddRealEstateState {
   final String message;
-  AddRealEstateSuccessState(AddRealEstateScreenState screenState,[this.message])
+  AddRealEstateSuccessState(AddRealEstateScreenState screenState,
+      [this.message])
       : super(screenState);
 
   @override
@@ -557,7 +576,9 @@ class AddRealEstateSuccessState extends AddRealEstateState {
               child: Container(
                 width: 250,
                 child: Text(
-                  message!=null ? S.of(context).updatedSuccessfully : S.of(context).yourRequestHasBeenAddedAndInHoldForAdmin,
+                  message != null
+                      ? S.of(context).updatedSuccessfully
+                      : S.of(context).yourRequestHasBeenAddedAndInHoldForAdmin,
                   textAlign: TextAlign.center,
                   style: TextStyle(color: Colors.white),
                 ),
