@@ -19,13 +19,28 @@ class CategoryEntityRepository extends ServiceEntityRepository
         parent::__construct($registry, CategoryEntity::class);
     }
 
-    public function getCategoriesBySpecificLanguage($lang)
+    public function getCategoriesInEnglish()
     {
         return $this->createQueryBuilder('category')
-            ->select('category.id', 'category.name', 'category.description', 'category.lang')
+            ->select('category.id', 'category.name', 'category.description')
 
-            ->andWhere('category.lang = :lang')
-            ->setParameter('lang', $lang)
+            ->getQuery()
+            ->getResult();
+    }
+
+    public function getCategoriesInArabic()
+    {
+        return $this->createQueryBuilder('category')
+            ->select('category.id', 'category.arabicName as name', 'category.arabicDescription as description')
+
+            ->getQuery()
+            ->getResult();
+    }
+
+    public function getCategoriesInTurkish()
+    {
+        return $this->createQueryBuilder('category')
+            ->select('category.id', 'category.turkishName as name', 'category.turkishDescription as description')
 
             ->getQuery()
             ->getResult();
@@ -34,7 +49,8 @@ class CategoryEntityRepository extends ServiceEntityRepository
     public function getAll()
     {
         return $this->createQueryBuilder('category')
-            ->select('category.id', 'category.name', 'category.description', 'category.lang')
+            ->select('category.id', 'category.name', 'category.description', 'category.turkishName', 'category.turkishDescription',
+            'category.arabicName', 'category.arabicDescription', 'category.lang')
 
             ->getQuery()
             ->getResult();
@@ -43,7 +59,8 @@ class CategoryEntityRepository extends ServiceEntityRepository
     public function getCategoryById($id)
     {
         return $this->createQueryBuilder('category')
-            ->select('category.id', 'category.name', 'category.description', 'category.lang')
+            ->select('category.id', 'category.name', 'category.description', 'category.turkishName', 'category.turkishDescription',
+            'category.arabicName', 'category.arabicDescription', 'category.lang')
 
             ->andWhere('category.id = :id')
             ->setParameter('id', $id)

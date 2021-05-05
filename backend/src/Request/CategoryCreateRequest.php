@@ -8,6 +8,14 @@ class CategoryCreateRequest
 
     private $description;
 
+    private $arabicName;
+
+    private $arabicDescription;
+
+    private $turkishName;
+
+    private $turkishDescription;
+
     private $lang;
 
 }

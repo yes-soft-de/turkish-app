@@ -2,21 +2,13 @@
 
 namespace App\Response;
 
-class CategoryCreateResponse
+class CategoryByLanguageGetResponse
 {
     public $id;
     
     public $name;
 
     public $description;
-
-    public $arabicName;
-
-    public $arabicDescription;
-
-    public $turkishName;
-
-    public $turkishDescription;
 
     public $lang;
 

@@ -5,6 +5,7 @@ namespace App\Service;
 use App\AutoMapping;
 use App\Entity\CategoryEntity;
 use App\Manager\CategoryManager;
+use App\Response\CategoryByLanguageGetResponse;
 use App\Response\CategoryCreateResponse;
 use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
 
@@ -32,11 +33,22 @@ class CategoryService
     {
         $response = [];
 
-        $result = $this->categoryManager->getCategoriesBySpecificLanguage($lang);
+        if($lang == "ar")
+        {
+            $result = $this->categoryManager->getCategoriesInArabic();
+        }
+        elseif($lang == "en")
+        {
+            $result = $this->categoryManager->getCategoriesInEnglish();
+        }
+        elseif($lang == "tr")
+        {
+            $result = $this->categoryManager->getCategoriesInTurkish();
+        }
 
         foreach ($result as $row)
         {
-            $response[] = $this->autoMapping->map('array', CategoryCreateResponse::class, $row);
+            $response[] = $this->autoMapping->map('array', CategoryByLanguageGetResponse::class, $row);
         }
 
         return $response;
@@ -89,8 +101,4 @@ class CategoryService
         return $this->autoMapping->map(CategoryEntity::class, CategoryCreateResponse::class, $categoryResult);
     }
 
-    // public function getCategoriesArray($categories)
-    // {
-    //     return $this->categoryManager->getCategoriesArray($categories);
-    // }
 }
