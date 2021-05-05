@@ -147,6 +147,11 @@ class ServicesManager
             return $this->servicesEntityRepository->getServicesByCityAndPrice($city, $price_2);
         }
 
+        elseif ($price == null && $city == null && $price_2 == null && $categoryID == null)
+        {
+            return $this->servicesEntityRepository->getAllServices();
+        }
+
         elseif ($city != null && $price == null && $price_2 == null && $categoryID != null)
         {
             return $this->servicesEntityRepository->getServicesByCity($city);
@@ -180,6 +185,11 @@ class ServicesManager
         elseif ($price == null && $city != null && $price_2 != null && $categoryID != null)
         {
             return $this->servicesEntityRepository->getServicesByCityAndPrice($city, $price_2);
+        }
+
+        elseif ($price == null && $city == null && $price_2 == null && $categoryID != null)
+        {
+            return $this->servicesEntityRepository->getServicesByCategoryID($categoryID);
         }
     }
 

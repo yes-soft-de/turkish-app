@@ -36,4 +36,8 @@ class ServicesGetResponse
     public $categoryID;
 
     public $categoryName;
+
+    public $arabicName;
+
+    public $turkishName;
 }

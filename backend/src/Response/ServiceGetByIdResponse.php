@@ -38,5 +38,9 @@ class ServiceGetByIdResponse
     public $categoryID;
 
     public $categoryName;
+
+    public $arabicName;
+
+    public $turkishName;
    
 }

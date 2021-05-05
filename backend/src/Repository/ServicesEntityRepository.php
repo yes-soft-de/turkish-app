@@ -26,7 +26,8 @@ class ServicesEntityRepository extends ServiceEntityRepository
     {
         return $this->createQueryBuilder('service')
             ->select('service.id', 'service.title', 'service.createdBy', 'service.createdAt', 'service.updatedAt', 'service.description', 'service.type',
-            'service.categoryID', 'category.name as categoryName', 'service.image', 'service.city', 'service.country', 'service.price', 'userProfile.userName', 'userProfile.image as userImage')
+            'service.categoryID', 'category.name as categoryName', 'category.arabicName as arabicName', 'category.turkishName as turkishName', 'service.image', 
+            'service.city', 'service.country', 'service.price', 'userProfile.userName', 'userProfile.image as userImage')
 
             ->leftJoin(
                 UserProfileEntity::class,
@@ -53,7 +54,8 @@ class ServicesEntityRepository extends ServiceEntityRepository
     {
         return $this->createQueryBuilder('service')
               ->select('service.id', 'service.title', 'service.createdBy', 'service.createdAt', 'service.updatedAt', 'service.description', 'service.type',
-              'service.categoryID', 'category.name as categoryName', 'service.image', 'service.city', 'service.country', 'service.price', 'userProfile.userName', 'userProfile.image as userImage')
+              'service.categoryID', 'category.name as categoryName', 'category.arabicName as arabicName', 'category.turkishName as turkishName', 'service.image', 
+              'service.city', 'service.country', 'service.price', 'userProfile.userName', 'userProfile.image as userImage')
 
               ->leftJoin(
                 UserProfileEntity::class,
@@ -77,7 +79,8 @@ class ServicesEntityRepository extends ServiceEntityRepository
     {
         return $this->createQueryBuilder('service')
             ->select('service.id', 'service.title', 'service.createdBy', 'service.createdAt', 'service.updatedAt', 'service.description', 'service.type',
-            'service.categoryID', 'category.name as categoryName', 'service.image', 'service.city', 'service.country', 'service.price', 'userProfile.userName', 'userProfile.image as userImage')
+            'service.categoryID', 'category.name as categoryName', 'category.arabicName as arabicName', 'category.turkishName as turkishName', 'service.image', 
+            'service.city', 'service.country', 'service.price', 'userProfile.userName', 'userProfile.image as userImage')
 
             ->andWhere('service.createdBy = :createdBy')
             ->setParameter('createdBy', $createdBy)
@@ -104,7 +107,8 @@ class ServicesEntityRepository extends ServiceEntityRepository
     {
         return $this->createQueryBuilder('service')
             ->select('service.id', 'service.title', 'service.createdBy', 'service.createdAt', 'service.updatedAt', 'service.description', 'service.type',
-            'service.categoryID', 'category.name as categoryName', 'service.image', 'service.city', 'service.country', 'service.price', 'userProfile.userName', 'userProfile.image as userImage')
+            'service.categoryID', 'category.name as categoryName', 'category.arabicName as arabicName', 'category.turkishName as turkishName', 'service.image', 
+            'service.city', 'service.country', 'service.price', 'userProfile.userName', 'userProfile.image as userImage')
 
             ->andWhere('service.title LIKE :query')
             ->setParameter('query', '%'.$query.'%')
@@ -183,7 +187,8 @@ class ServicesEntityRepository extends ServiceEntityRepository
     {
         return $this->createQueryBuilder('service')
             ->select('service.id', 'service.title', 'service.createdBy', 'service.createdAt', 'service.updatedAt', 'service.description', 'service.type',
-            'service.categoryID', 'category.name as categoryName', 'service.image', 'service.city', 'service.country', 'service.price', 'userProfile.userName', 'userProfile.image as userImage')
+            'service.categoryID', 'category.name as categoryName', 'category.arabicName as arabicName', 'category.turkishName as turkishName', 'service.image', 
+            'service.city', 'service.country', 'service.price', 'userProfile.userName', 'userProfile.image as userImage')
 
             ->leftJoin(
                 UserProfileEntity::class,
@@ -210,7 +215,8 @@ class ServicesEntityRepository extends ServiceEntityRepository
     {
         return $this->createQueryBuilder('service')
             ->select('service.id', 'service.title', 'service.createdBy', 'service.createdAt', 'service.updatedAt', 'service.description', 'service.type',
-            'service.categoryID', 'category.name as categoryName', 'service.image', 'service.city', 'service.country', 'service.price', 'userProfile.userName', 'userProfile.image as userImage')
+            'service.categoryID', 'category.name as categoryName', 'category.arabicName as arabicName', 'category.turkishName as turkishName', 'service.image', 
+            'service.city', 'service.country', 'service.price', 'userProfile.userName', 'userProfile.image as userImage')
 
             ->leftJoin(
                 UserProfileEntity::class,
@@ -237,7 +243,8 @@ class ServicesEntityRepository extends ServiceEntityRepository
     {
         return $this->createQueryBuilder('service')
             ->select('service.id', 'service.title', 'service.createdBy', 'service.createdAt', 'service.updatedAt', 'service.description', 'service.type',
-            'service.categoryID', 'category.name as categoryName', 'service.image', 'service.city', 'service.country', 'service.price', 'userProfile.userName', 'userProfile.image as userImage')
+            'service.categoryID', 'category.name as categoryName', 'category.arabicName as arabicName', 'category.turkishName as turkishName', 'service.image', 
+            'service.city', 'service.country', 'service.price', 'userProfile.userName', 'userProfile.image as userImage')
 
             ->leftJoin(
                 UserProfileEntity::class,
@@ -267,7 +274,8 @@ class ServicesEntityRepository extends ServiceEntityRepository
     {
         return $this->createQueryBuilder('service')
             ->select('service.id', 'service.title', 'service.createdBy', 'service.createdAt', 'service.updatedAt', 'service.description', 'service.type',
-            'service.categoryID', 'category.name as categoryName', 'service.image', 'service.city', 'service.country', 'service.price', 'userProfile.userName', 'userProfile.image as userImage')
+            'service.categoryID', 'category.name as categoryName', 'category.arabicName as arabicName', 'category.turkishName as turkishName', 'service.image', 
+            'service.city', 'service.country', 'service.price', 'userProfile.userName', 'userProfile.image as userImage')
 
             ->leftJoin(
                 UserProfileEntity::class,
@@ -297,7 +305,8 @@ class ServicesEntityRepository extends ServiceEntityRepository
     {
         return $this->createQueryBuilder('service')
             ->select('service.id', 'service.title', 'service.createdBy', 'service.createdAt', 'service.updatedAt', 'service.description', 'service.type',
-            'service.categoryID', 'category.name as categoryName', 'service.image', 'service.city', 'service.country', 'service.price', 'userProfile.userName', 'userProfile.image as userImage')
+            'service.categoryID', 'category.name as categoryName', 'category.arabicName as arabicName', 'category.turkishName as turkishName', 'service.image', 
+            'service.city', 'service.country', 'service.price', 'userProfile.userName', 'userProfile.image as userImage')
 
             ->leftJoin(
                 UserProfileEntity::class,
