@@ -8,13 +8,17 @@ class NotificationModel {
   String date;
   String type;
   String roomID;
+  int itemID;
+  String entity;
   NotificationModel(
       {this.userName,
       this.date,
       this.entityName,
       this.userImage,
       this.type,
-      this.roomID});
+      this.roomID,
+      this.itemID,
+      this.entity});
 
   static List<NotificationModel> getNotificationModelList(
       NotificationResponse response) {
@@ -24,7 +28,7 @@ class NotificationModel {
     List<NotificationModel> notifications = [];
 
     var df = DateFormat('dd-MM-yyyy');
-    response.data.chats.forEach((element) {
+    response.data.chats?.forEach((element) {
       var date = new DateTime.fromMillisecondsSinceEpoch(
           element.startAt.timestamp * 1000);
       notificationsChats.add(NotificationModel(
@@ -34,7 +38,7 @@ class NotificationModel {
           type: 'chat',
           roomID: element.roomID));
     });
-    response.data.comments.forEach((element) {
+    response.data.comments?.forEach((element) {
       var date = new DateTime.fromMillisecondsSinceEpoch(
           element.createdAt.timestamp * 1000);
       notificationsComments.add(NotificationModel(
@@ -42,7 +46,9 @@ class NotificationModel {
         userName: element.userName,
         userImage: element.image,
         type: 'comment',
-        entityName: element.entityName??element.entity??'',
+        entityName: element.entityName ?? element.entity ?? '',
+        entity: element.entity,
+        itemID: element.itemID,
       ));
     });
     response.data.reactions?.forEach((element) {
@@ -51,15 +57,15 @@ class NotificationModel {
       notificationsReactions.add(NotificationModel(
         date: df.format(date),
         userName: element.username,
-        userImage: element.image,
+        userImage: element.image ?? element.userImage ?? '',
         type: 'reaction',
-        entityName: element.entityName??'',
+        entityName: element.entityName ?? '',
       ));
     });
     notifications.addAll(notificationsReactions);
     notifications.addAll(notificationsComments);
     notifications.addAll(notificationsChats);
-    
+
     return notifications;
   }
 }

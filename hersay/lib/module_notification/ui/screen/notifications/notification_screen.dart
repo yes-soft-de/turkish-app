@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:hersay/generated/l10n.dart';
+import 'package:hersay/main_screen/main_routes.dart';
 import 'package:hersay/module_auth/auth_routes.dart';
 import 'package:hersay/module_auth/service/auth/auth.service.dart';
+import 'package:hersay/module_home/home_routes.dart';
 import 'package:hersay/module_navigation/ui/widget/navigation_drawer/anime_navigation_drawer.dart';
 import 'package:hersay/module_notification/notification_routes.dart';
 import 'package:hersay/module_notification/state_manager/notification/notification.state_manger.dart';
@@ -16,15 +18,15 @@ class NotificationScreen extends StatefulWidget {
   final NotificationStateManager _stateManager;
   final AuthService _authService;
   NotificationScreen(
-      this._stateManager,
-      this._authService,
-      );
+    this._stateManager,
+    this._authService,
+  );
 
   @override
-   NotificationScreenState createState() =>  NotificationScreenState();
+  NotificationScreenState createState() => NotificationScreenState();
 }
 
-class  NotificationScreenState extends State<NotificationScreen> {
+class NotificationScreenState extends State<NotificationScreen> {
   final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
   NotificationState currentState;
 
@@ -40,30 +42,36 @@ class  NotificationScreenState extends State<NotificationScreen> {
     });
 
     widget._stateManager.getNotifications(this);
-
   }
-
 
   @override
   Widget build(BuildContext context) {
-    widget._authService.isLoggedIn.then((value){
-      if(!value) {
+    widget._authService.isLoggedIn.then((value) {
+      if (!value) {
         RouteHelper redirectTo = new RouteHelper(
-          redirectTo: NotificationRoutes.NOTIFICATION_ROUTE,
-          additionalData: null
-        );
-        Navigator.of(context).pushNamed(
-            AuthorizationRoutes.LOGIN_SCREEN,
-            arguments: redirectTo
-        );
+            redirectTo: NotificationRoutes.NOTIFICATION_ROUTE,
+            additionalData: null);
+        Navigator.of(context)
+            .pushNamed(AuthorizationRoutes.LOGIN_SCREEN, arguments: redirectTo);
       }
     });
-    return Scaffold(
-      key: _scaffoldKey,
-      appBar: TurkishAppBar.getTurkishAppBar(
-          context, _scaffoldKey,S.of(context).notifications),
-      drawer: TurkishNavigationDrawer(),
-      body:currentState.getUI(context),
+    return WillPopScope(
+      onWillPop: () async {
+        var additionalData = ModalRoute.of(context).settings.arguments;
+        if (additionalData != null && additionalData is bool) {
+          Navigator.of(context).pushNamedAndRemoveUntil(
+              MainRoutes.MAIN_SCREEN_ROUTE, (route) => false);
+          return false;
+        }
+        return true;
+      },
+      child: Scaffold(
+        key: _scaffoldKey,
+        appBar: TurkishAppBar.getTurkishAppBar(
+            context, _scaffoldKey, S.of(context).notifications),
+        drawer: TurkishNavigationDrawer(),
+        body: currentState.getUI(context),
+      ),
     );
   }
 
@@ -72,21 +80,32 @@ class  NotificationScreenState extends State<NotificationScreen> {
   }
 
   Widget _screenUi() {
-    return Scaffold(
-      key: _scaffoldKey,
-      appBar: TurkishAppBar.getTurkishAppBar(
-          context, _scaffoldKey,S.of(context).notifications),
-      drawer: TurkishNavigationDrawer(),
-      body: ListView.builder(
-          itemCount: 10,
-          itemBuilder: (BuildContext context, int index) {
-            return Container(
-              child: NotificationCard(
-                userName: 'zolfekar seleten',
-                notification: 'likes your Maclarn',
-              ),
-            );
-          }),
+    return WillPopScope(
+      onWillPop: () async {
+        var additionalData = ModalRoute.of(context).settings.arguments;
+        if (additionalData != null && additionalData is bool) {
+          Navigator.of(context).pushNamedAndRemoveUntil(
+              MainRoutes.MAIN_SCREEN_ROUTE, (route) => false);
+          return false;
+        }
+        return true;
+      },
+      child: Scaffold(
+        key: _scaffoldKey,
+        appBar: TurkishAppBar.getTurkishAppBar(
+            context, _scaffoldKey, S.of(context).notifications),
+        drawer: TurkishNavigationDrawer(),
+        body: ListView.builder(
+            itemCount: 10,
+            itemBuilder: (BuildContext context, int index) {
+              return Container(
+                child: NotificationCard(
+                  userName: 'zolfekar seleten',
+                  notification: 'likes your Maclarn',
+                ),
+              );
+            }),
+      ),
     );
   }
 }

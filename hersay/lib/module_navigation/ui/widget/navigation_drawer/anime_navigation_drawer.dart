@@ -47,14 +47,30 @@ class TurkishNavigationDrawer extends StatelessWidget {
                     future: profileModel.getImage(),
                     builder: (_, image) {
                       if (image.hasData) {
-                        return Image.network(
-                          image.data ?? '',
-                          errorBuilder: (a, b, c) {
-                            return Image.asset('assets/images/profilePic.jpg');
-                          },
+                        return ClipRRect(
+                          borderRadius: BorderRadius.circular(10),
+                          child: Image.network(
+                            image.data ?? '',
+                            fit: BoxFit.cover,
+                            errorBuilder: (a, b, c) {
+                              return ClipRRect(
+                                borderRadius: BorderRadius.circular(10),
+                                child: Image.asset(
+                                  'assets/images/profilePic.jpg',
+                                  fit: BoxFit.cover,
+                                ),
+                              );
+                            },
+                          ),
                         );
                       } else {
-                        return Image.asset('assets/images/profilePic.jpg');
+                        return ClipRRect(
+                          borderRadius: BorderRadius.circular(10),
+                          child: Image.asset(
+                            'assets/images/profilePic.jpg',
+                            fit: BoxFit.cover,
+                          ),
+                        );
                       }
                     },
                   ),

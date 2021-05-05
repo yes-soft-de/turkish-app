@@ -16,90 +16,90 @@ import '../../module_auth/persistance/auth_prefs_helper.dart' as _i14;
 import '../../module_auth/manager/auth/auth.manager.dart' as _i15;
 import '../../module_auth/repository/auth/auth.repository.dart' as _i16;
 import '../../module_network/http_client/http_client.dart' as _i17;
-import '../../module_auth/ui/screen/register/register_screen.dart' as _i18;
-import '../../module_auth/state_manager/register/register.state_manager.dart'
-    as _i19;
-import '../../module_products/ui/screen/add_real_estate/add_real_estate_screen.dart'
-    as _i20;
-import '../../module_products/state_manager/real_estate/add_real_estate.manager.dart'
-    as _i21;
-import '../../module_products/service/real_estate/real_estate.service.dart'
-    as _i22;
-import '../../module_products/manager/real_estate/real_estate.manager.dart'
-    as _i23;
-import '../../module_products/repository/real_estate/real_estate.repository.dart'
-    as _i24;
-import '../../module_upload/service/image_upload/image_upload_service.dart'
-    as _i25;
-import '../../module_upload/manager/upload_manager/upload_manager.dart' as _i26;
-import '../../module_upload/repository/upload_repository/upload_repository.dart'
-    as _i27;
-import '../../module_products/ui/screen/add_car/add_car_sceen.dart' as _i28;
-import '../../module_products/state_manager/car/add_car.state_manager.dart'
-    as _i29;
-import '../../module_products/service/car/car.service.dart' as _i30;
-import '../../module_products/manager/car/car.manager.dart' as _i31;
-import '../../module_products/repository/car/car.repository.dart' as _i32;
-import '../../module_products/ui/screen/add_electronic_device/add_electronic_device_screen.dart'
-    as _i33;
-import '../../module_products/state_manager/electroinic_device/add_electronic_device.state_manager.dart'
-    as _i34;
-import '../../module_products/service/electronic_device/electronic_device.service.dart'
-    as _i35;
-import '../../module_products/manager/electronic_device/electronic_device.manager.dart'
-    as _i36;
-import '../../module_products/repository/electonic_device/electronic_device.repository.dart'
-    as _i37;
-import '../../module_products/ui/screen/add_service/add_service_screen.dart'
-    as _i38;
-import '../../module_products/state_manager/service/add_service_state_manager.dart'
-    as _i39;
-import '../../module_products/service/service/service.dart' as _i40;
-import '../../module_products/manager/service/service_manager.dart' as _i41;
-import '../../module_products/repository/service/service_repository.dart'
-    as _i42;
-import '../../module_products/ui/screen/electronic_device_details/electronic_device_details_screen.dart'
-    as _i43;
-import '../../module_products/state_manager/electroinic_device/electronic_device_details.state_manager.dart'
-    as _i44;
-import '../../module_chat/service/chat/char_service.dart' as _i45;
-import '../../module_chat/manager/chat/chat_manager.dart' as _i46;
-import '../../module_chat/repository/chat/chat_repository.dart' as _i47;
-import '../../module_reaction/service/reaction.service.dart' as _i48;
-import '../../module_reaction/manager/reaction.manager.dart' as _i49;
-import '../../module_reaction/repository/reaction.repository.dart' as _i50;
-import '../../module_products/ui/screen/real_estate_details/real_estate_details_screen.dart'
-    as _i51;
-import '../../module_products/state_manager/real_estate/real_estate_details.state_manager.dart'
-    as _i52;
-import '../../module_products/ui/screen/car_details/car_details_screen.dart'
-    as _i53;
-import '../../module_products/state_manager/car/car_details.state_manager.dart'
-    as _i54;
-import '../../module_report/service/report_service.dart' as _i55;
-import '../../module_report/manager/report_manager.dart' as _i56;
-import '../../module_report/repository/report_repository.dart' as _i57;
-import '../../module_products/ui/screen/product_images/product_images_screen.dart'
-    as _i58;
-import '../../module_products/ui/screen/service_details/service_details.dart'
-    as _i59;
-import '../../module_products/state_manager/service/service_details.state_manager.dart'
-    as _i60;
-import '../../module_splash/splash_module.dart' as _i61;
-import '../../module_splash/ui/screen/splash_screen/splash_screen.dart' as _i62;
-import '../../main_screen/main_module.dart' as _i63;
-import '../../main_screen/ui/main_screen.dart' as _i64;
-import '../../module_home/ui/sceen/home/home_screen.dart' as _i65;
-import '../../module_home/state_manager/home/home.state_manager.dart' as _i66;
-import '../../module_home/service/home/home.service.dart' as _i67;
-import '../../module_home/manager/home/home.manager.dart' as _i68;
-import '../../module_home/repository/home/home.repository.dart' as _i69;
-import '../../module_profile/service/profile/profile.service.dart' as _i70;
-import '../../module_profile/manager/profile/profile.manager.dart' as _i71;
+import '../../module_profile/service/profile/profile.service.dart' as _i18;
+import '../../module_profile/manager/profile/profile.manager.dart' as _i19;
 import '../../module_profile/repository/profile/profile.repository.dart'
-    as _i72;
+    as _i20;
+import '../../module_upload/service/image_upload/image_upload_service.dart'
+    as _i21;
+import '../../module_upload/manager/upload_manager/upload_manager.dart' as _i22;
+import '../../module_upload/repository/upload_repository/upload_repository.dart'
+    as _i23;
 import '../../module_profile/presistance/profile_shared_preferences.dart'
-    as _i73;
+    as _i24;
+import '../../module_auth/ui/screen/register/register_screen.dart' as _i25;
+import '../../module_auth/state_manager/register/register.state_manager.dart'
+    as _i26;
+import '../../module_products/ui/screen/add_real_estate/add_real_estate_screen.dart'
+    as _i27;
+import '../../module_products/state_manager/real_estate/add_real_estate.manager.dart'
+    as _i28;
+import '../../module_products/service/real_estate/real_estate.service.dart'
+    as _i29;
+import '../../module_products/manager/real_estate/real_estate.manager.dart'
+    as _i30;
+import '../../module_products/repository/real_estate/real_estate.repository.dart'
+    as _i31;
+import '../../module_products/ui/screen/add_car/add_car_sceen.dart' as _i32;
+import '../../module_products/state_manager/car/add_car.state_manager.dart'
+    as _i33;
+import '../../module_products/service/car/car.service.dart' as _i34;
+import '../../module_products/manager/car/car.manager.dart' as _i35;
+import '../../module_products/repository/car/car.repository.dart' as _i36;
+import '../../module_products/ui/screen/add_electronic_device/add_electronic_device_screen.dart'
+    as _i37;
+import '../../module_products/state_manager/electroinic_device/add_electronic_device.state_manager.dart'
+    as _i38;
+import '../../module_products/service/electronic_device/electronic_device.service.dart'
+    as _i39;
+import '../../module_products/manager/electronic_device/electronic_device.manager.dart'
+    as _i40;
+import '../../module_products/repository/electonic_device/electronic_device.repository.dart'
+    as _i41;
+import '../../module_products/ui/screen/add_service/add_service_screen.dart'
+    as _i42;
+import '../../module_products/state_manager/service/add_service_state_manager.dart'
+    as _i43;
+import '../../module_products/service/service/service.dart' as _i44;
+import '../../module_products/manager/service/service_manager.dart' as _i45;
+import '../../module_products/repository/service/service_repository.dart'
+    as _i46;
+import '../../module_products/ui/screen/electronic_device_details/electronic_device_details_screen.dart'
+    as _i47;
+import '../../module_products/state_manager/electroinic_device/electronic_device_details.state_manager.dart'
+    as _i48;
+import '../../module_chat/service/chat/char_service.dart' as _i49;
+import '../../module_chat/manager/chat/chat_manager.dart' as _i50;
+import '../../module_chat/repository/chat/chat_repository.dart' as _i51;
+import '../../module_reaction/service/reaction.service.dart' as _i52;
+import '../../module_reaction/manager/reaction.manager.dart' as _i53;
+import '../../module_reaction/repository/reaction.repository.dart' as _i54;
+import '../../module_products/ui/screen/real_estate_details/real_estate_details_screen.dart'
+    as _i55;
+import '../../module_products/state_manager/real_estate/real_estate_details.state_manager.dart'
+    as _i56;
+import '../../module_products/ui/screen/car_details/car_details_screen.dart'
+    as _i57;
+import '../../module_products/state_manager/car/car_details.state_manager.dart'
+    as _i58;
+import '../../module_report/service/report_service.dart' as _i59;
+import '../../module_report/manager/report_manager.dart' as _i60;
+import '../../module_report/repository/report_repository.dart' as _i61;
+import '../../module_products/ui/screen/product_images/product_images_screen.dart'
+    as _i62;
+import '../../module_products/ui/screen/service_details/service_details.dart'
+    as _i63;
+import '../../module_products/state_manager/service/service_details.state_manager.dart'
+    as _i64;
+import '../../module_splash/splash_module.dart' as _i65;
+import '../../module_splash/ui/screen/splash_screen/splash_screen.dart' as _i66;
+import '../../main_screen/main_module.dart' as _i67;
+import '../../main_screen/ui/main_screen.dart' as _i68;
+import '../../module_home/ui/sceen/home/home_screen.dart' as _i69;
+import '../../module_home/state_manager/home/home.state_manager.dart' as _i70;
+import '../../module_home/service/home/home.service.dart' as _i71;
+import '../../module_home/manager/home/home.manager.dart' as _i72;
+import '../../module_home/repository/home/home.repository.dart' as _i73;
 import '../../module_chat/ui/screen/chats_list/chats_list_screen.dart' as _i74;
 import '../../module_chat/state_manager/chats_list/chat_list.state_manger.dart'
     as _i75;
@@ -195,7 +195,7 @@ class AppComponent$Injector implements _i1.AppComponent {
   _i11.LoginScreen _createLoginScreen() =>
       _i11.LoginScreen(_createLoginStateManager());
   _i12.LoginStateManager _createLoginStateManager() =>
-      _i12.LoginStateManager(_createAuthService());
+      _i12.LoginStateManager(_createAuthService(), _createProfileService());
   _i13.AuthService _createAuthService() =>
       _i13.AuthService(_createAuthPrefsHelper(), _createAuthManager());
   _i14.AuthPrefsHelper _createAuthPrefsHelper() => _i14.AuthPrefsHelper();
@@ -205,10 +205,26 @@ class AppComponent$Injector implements _i1.AppComponent {
       _i16.AuthRepository(_createApiClient());
   _i17.ApiClient _createApiClient() => _i17.ApiClient(_createLogger());
   _i3.Logger _createLogger() => _singletonLogger ??= _i3.Logger();
-  _i18.RegisterScreen _createRegisterScreen() =>
-      _i18.RegisterScreen(_createRegisterStateManager());
-  _i19.RegisterStateManager _createRegisterStateManager() =>
-      _i19.RegisterStateManager(_createAuthService());
+  _i18.ProfileService _createProfileService() => _i18.ProfileService(
+      _createProfileManager(),
+      _createImageUploadService(),
+      _createProfileSharedPreferencesHelper());
+  _i19.ProfileManager _createProfileManager() =>
+      _i19.ProfileManager(_createProfileRepository());
+  _i20.ProfileRepository _createProfileRepository() =>
+      _i20.ProfileRepository(_createApiClient(), _createAuthService());
+  _i21.ImageUploadService _createImageUploadService() =>
+      _i21.ImageUploadService(_createUploadManager());
+  _i22.UploadManager _createUploadManager() =>
+      _i22.UploadManager(_createUploadRepository());
+  _i23.UploadRepository _createUploadRepository() =>
+      _i23.UploadRepository(_createApiClient(), _createAuthService());
+  _i24.ProfileSharedPreferencesHelper _createProfileSharedPreferencesHelper() =>
+      _i24.ProfileSharedPreferencesHelper();
+  _i25.RegisterScreen _createRegisterScreen() =>
+      _i25.RegisterScreen(_createRegisterStateManager());
+  _i26.RegisterStateManager _createRegisterStateManager() =>
+      _i26.RegisterStateManager(_createAuthService(), _createProfileService());
   _i4.ProductsModule _createProductsModule() =>
       _singletonProductsModule ??= _i4.ProductsModule(
           _createAddRealEstateScreen(),
@@ -220,136 +236,120 @@ class AppComponent$Injector implements _i1.AppComponent {
           _createCarDetailsScreen(),
           _createProductImagesScreen(),
           _createServiceDetailsScreen());
-  _i20.AddRealEstateScreen _createAddRealEstateScreen() =>
-      _i20.AddRealEstateScreen(
+  _i27.AddRealEstateScreen _createAddRealEstateScreen() =>
+      _i27.AddRealEstateScreen(
           _createAddRealEstateStateManager(), _createAuthService());
-  _i21.AddRealEstateStateManager _createAddRealEstateStateManager() =>
-      _i21.AddRealEstateStateManager(_createRealEstateService());
-  _i22.RealEstateService _createRealEstateService() => _i22.RealEstateService(
+  _i28.AddRealEstateStateManager _createAddRealEstateStateManager() =>
+      _i28.AddRealEstateStateManager(_createRealEstateService());
+  _i29.RealEstateService _createRealEstateService() => _i29.RealEstateService(
       _createRealEstateManager(), _createImageUploadService());
-  _i23.RealEstateManager _createRealEstateManager() =>
-      _i23.RealEstateManager(_createRealEstateRepository());
-  _i24.RealEstateRepository _createRealEstateRepository() =>
-      _i24.RealEstateRepository(_createApiClient(), _createAuthService());
-  _i25.ImageUploadService _createImageUploadService() =>
-      _i25.ImageUploadService(_createUploadManager());
-  _i26.UploadManager _createUploadManager() =>
-      _i26.UploadManager(_createUploadRepository());
-  _i27.UploadRepository _createUploadRepository() =>
-      _i27.UploadRepository(_createApiClient(), _createAuthService());
-  _i28.AddCarScreen _createAddCarScreen() =>
-      _i28.AddCarScreen(_createAddCarStateManager(), _createAuthService());
-  _i29.AddCarStateManager _createAddCarStateManager() =>
-      _i29.AddCarStateManager(_createCarService());
-  _i30.CarService _createCarService() =>
-      _i30.CarService(_createCarManager(), _createImageUploadService());
-  _i31.CarManager _createCarManager() =>
-      _i31.CarManager(_createCarRepository());
-  _i32.CarRepository _createCarRepository() =>
-      _i32.CarRepository(_createApiClient(), _createAuthService());
-  _i33.AddElectronicDeviceScreen _createAddElectronicDeviceScreen() =>
-      _i33.AddElectronicDeviceScreen(
+  _i30.RealEstateManager _createRealEstateManager() =>
+      _i30.RealEstateManager(_createRealEstateRepository());
+  _i31.RealEstateRepository _createRealEstateRepository() =>
+      _i31.RealEstateRepository(_createApiClient(), _createAuthService());
+  _i32.AddCarScreen _createAddCarScreen() =>
+      _i32.AddCarScreen(_createAddCarStateManager(), _createAuthService());
+  _i33.AddCarStateManager _createAddCarStateManager() =>
+      _i33.AddCarStateManager(_createCarService());
+  _i34.CarService _createCarService() =>
+      _i34.CarService(_createCarManager(), _createImageUploadService());
+  _i35.CarManager _createCarManager() =>
+      _i35.CarManager(_createCarRepository());
+  _i36.CarRepository _createCarRepository() =>
+      _i36.CarRepository(_createApiClient(), _createAuthService());
+  _i37.AddElectronicDeviceScreen _createAddElectronicDeviceScreen() =>
+      _i37.AddElectronicDeviceScreen(
           _createAddElectronicDeviceStateManager(), _createAuthService());
-  _i34.AddElectronicDeviceStateManager
+  _i38.AddElectronicDeviceStateManager
       _createAddElectronicDeviceStateManager() =>
-          _i34.AddElectronicDeviceStateManager(
+          _i38.AddElectronicDeviceStateManager(
               _createElectronicDeviceService());
-  _i35.ElectronicDeviceService _createElectronicDeviceService() =>
-      _i35.ElectronicDeviceService(
+  _i39.ElectronicDeviceService _createElectronicDeviceService() =>
+      _i39.ElectronicDeviceService(
           _createElectronicDeviceManager(), _createImageUploadService());
-  _i36.ElectronicDeviceManager _createElectronicDeviceManager() =>
-      _i36.ElectronicDeviceManager(_createElectronicDeviceRepository());
-  _i37.ElectronicDeviceRepository _createElectronicDeviceRepository() =>
-      _i37.ElectronicDeviceRepository(_createApiClient(), _createAuthService());
-  _i38.AddServiceScreen _createAddServiceScreen() => _i38.AddServiceScreen(
+  _i40.ElectronicDeviceManager _createElectronicDeviceManager() =>
+      _i40.ElectronicDeviceManager(_createElectronicDeviceRepository());
+  _i41.ElectronicDeviceRepository _createElectronicDeviceRepository() =>
+      _i41.ElectronicDeviceRepository(_createApiClient(), _createAuthService());
+  _i42.AddServiceScreen _createAddServiceScreen() => _i42.AddServiceScreen(
       _createAddServiceStateManager(), _createAuthService());
-  _i39.AddServiceStateManager _createAddServiceStateManager() =>
-      _i39.AddServiceStateManager(_createServiceService());
-  _i40.ServiceService _createServiceService() =>
-      _i40.ServiceService(_createServiceManager(), _createImageUploadService());
-  _i41.ServiceManager _createServiceManager() =>
-      _i41.ServiceManager(_createServiceRepository());
-  _i42.ServiceRepository _createServiceRepository() =>
-      _i42.ServiceRepository(_createApiClient(), _createAuthService());
-  _i43.ElectronicDeviceDetailsScreen _createElectronicDeviceDetailsScreen() =>
-      _i43.ElectronicDeviceDetailsScreen(
+  _i43.AddServiceStateManager _createAddServiceStateManager() =>
+      _i43.AddServiceStateManager(_createServiceService());
+  _i44.ServiceService _createServiceService() =>
+      _i44.ServiceService(_createServiceManager(), _createImageUploadService());
+  _i45.ServiceManager _createServiceManager() =>
+      _i45.ServiceManager(_createServiceRepository());
+  _i46.ServiceRepository _createServiceRepository() =>
+      _i46.ServiceRepository(_createApiClient(), _createAuthService());
+  _i47.ElectronicDeviceDetailsScreen _createElectronicDeviceDetailsScreen() =>
+      _i47.ElectronicDeviceDetailsScreen(
           _createElectronicDeviceDetailsStateManager(), _createAuthService());
-  _i44.ElectronicDeviceDetailsStateManager
+  _i48.ElectronicDeviceDetailsStateManager
       _createElectronicDeviceDetailsStateManager() =>
-          _i44.ElectronicDeviceDetailsStateManager(
+          _i48.ElectronicDeviceDetailsStateManager(
               _createElectronicDeviceService(),
               _createChatService(),
               _createReactionService());
-  _i45.ChatService _createChatService() =>
-      _i45.ChatService(_createChatManager());
-  _i46.ChatManager _createChatManager() =>
-      _i46.ChatManager(_createChatRepository());
-  _i47.ChatRepository _createChatRepository() =>
-      _i47.ChatRepository(_createApiClient(), _createAuthService());
-  _i48.ReactionService _createReactionService() =>
-      _i48.ReactionService(_createReactionManager());
-  _i49.ReactionManager _createReactionManager() =>
-      _i49.ReactionManager(_createReactionRepository());
-  _i50.ReactionRepository _createReactionRepository() =>
-      _i50.ReactionRepository(_createApiClient(), _createAuthService());
-  _i51.RealEstateDetailsScreen _createRealEstateDetailsScreen() =>
-      _i51.RealEstateDetailsScreen(
+  _i49.ChatService _createChatService() =>
+      _i49.ChatService(_createChatManager());
+  _i50.ChatManager _createChatManager() =>
+      _i50.ChatManager(_createChatRepository());
+  _i51.ChatRepository _createChatRepository() =>
+      _i51.ChatRepository(_createApiClient(), _createAuthService());
+  _i52.ReactionService _createReactionService() =>
+      _i52.ReactionService(_createReactionManager());
+  _i53.ReactionManager _createReactionManager() =>
+      _i53.ReactionManager(_createReactionRepository());
+  _i54.ReactionRepository _createReactionRepository() =>
+      _i54.ReactionRepository(_createApiClient(), _createAuthService());
+  _i55.RealEstateDetailsScreen _createRealEstateDetailsScreen() =>
+      _i55.RealEstateDetailsScreen(
           _createRealEstateDetailsStateManager(), _createAuthService());
-  _i52.RealEstateDetailsStateManager _createRealEstateDetailsStateManager() =>
-      _i52.RealEstateDetailsStateManager(_createRealEstateService(),
+  _i56.RealEstateDetailsStateManager _createRealEstateDetailsStateManager() =>
+      _i56.RealEstateDetailsStateManager(_createRealEstateService(),
           _createChatService(), _createReactionService());
-  _i53.CarDetailsScreen _createCarDetailsScreen() => _i53.CarDetailsScreen(
+  _i57.CarDetailsScreen _createCarDetailsScreen() => _i57.CarDetailsScreen(
       _createCarDetailsStateManager(), _createAuthService());
-  _i54.CarDetailsStateManager _createCarDetailsStateManager() =>
-      _i54.CarDetailsStateManager(_createCarService(), _createChatService(),
+  _i58.CarDetailsStateManager _createCarDetailsStateManager() =>
+      _i58.CarDetailsStateManager(_createCarService(), _createChatService(),
           _createReactionService(), _createReportService());
-  _i55.ReportService _createReportService() =>
-      _i55.ReportService(_createReportManager());
-  _i56.ReportManager _createReportManager() =>
-      _i56.ReportManager(_createReportRepository());
-  _i57.ReportRepository _createReportRepository() =>
-      _i57.ReportRepository(_createApiClient(), _createAuthService());
-  _i58.ProductImagesScreen _createProductImagesScreen() =>
-      _i58.ProductImagesScreen();
-  _i59.ServiceDetailsScreen _createServiceDetailsScreen() =>
-      _i59.ServiceDetailsScreen(
+  _i59.ReportService _createReportService() =>
+      _i59.ReportService(_createReportManager());
+  _i60.ReportManager _createReportManager() =>
+      _i60.ReportManager(_createReportRepository());
+  _i61.ReportRepository _createReportRepository() =>
+      _i61.ReportRepository(_createApiClient(), _createAuthService());
+  _i62.ProductImagesScreen _createProductImagesScreen() =>
+      _i62.ProductImagesScreen();
+  _i63.ServiceDetailsScreen _createServiceDetailsScreen() =>
+      _i63.ServiceDetailsScreen(
           _createServicesDetailsStateManager(), _createAuthService());
-  _i60.ServicesDetailsStateManager _createServicesDetailsStateManager() =>
-      _i60.ServicesDetailsStateManager(
+  _i64.ServicesDetailsStateManager _createServicesDetailsStateManager() =>
+      _i64.ServicesDetailsStateManager(
           _createServiceService(),
           _createChatService(),
           _createReactionService(),
           _createReportService());
-  _i61.SplashModule _createSplashModule() =>
-      _i61.SplashModule(_createSplashScreen());
-  _i62.SplashScreen _createSplashScreen() =>
-      _i62.SplashScreen(_createAuthService());
-  _i63.MainModule _createMainModule() => _i63.MainModule(_createMainScreen());
-  _i64.MainScreen _createMainScreen() => _i64.MainScreen(
+  _i65.SplashModule _createSplashModule() =>
+      _i65.SplashModule(_createSplashScreen());
+  _i66.SplashScreen _createSplashScreen() =>
+      _i66.SplashScreen(_createAuthService());
+  _i67.MainModule _createMainModule() => _i67.MainModule(_createMainScreen());
+  _i68.MainScreen _createMainScreen() => _i68.MainScreen(
       _createHomeScreen(),
       _createChatsListScreen(),
       _createHistoryScreen(),
       _createNotificationScreen());
-  _i65.HomeScreen _createHomeScreen() =>
-      _i65.HomeScreen(_createHomeStateManager());
-  _i66.HomeStateManager _createHomeStateManager() => _i66.HomeStateManager(
+  _i69.HomeScreen _createHomeScreen() =>
+      _i69.HomeScreen(_createHomeStateManager());
+  _i70.HomeStateManager _createHomeStateManager() => _i70.HomeStateManager(
       _createHomeService(), _createAuthService(), _createProfileService());
-  _i67.HomeService _createHomeService() =>
-      _i67.HomeService(_createHomeManager());
-  _i68.HomeManager _createHomeManager() =>
-      _i68.HomeManager(_createHomeRepository());
-  _i69.HomeRepository _createHomeRepository() =>
-      _i69.HomeRepository(_createApiClient(), _createAuthService());
-  _i70.ProfileService _createProfileService() => _i70.ProfileService(
-      _createProfileManager(),
-      _createImageUploadService(),
-      _createProfileSharedPreferencesHelper());
-  _i71.ProfileManager _createProfileManager() =>
-      _i71.ProfileManager(_createProfileRepository());
-  _i72.ProfileRepository _createProfileRepository() =>
-      _i72.ProfileRepository(_createApiClient(), _createAuthService());
-  _i73.ProfileSharedPreferencesHelper _createProfileSharedPreferencesHelper() =>
-      _i73.ProfileSharedPreferencesHelper();
+  _i71.HomeService _createHomeService() =>
+      _i71.HomeService(_createHomeManager());
+  _i72.HomeManager _createHomeManager() =>
+      _i72.HomeManager(_createHomeRepository());
+  _i73.HomeRepository _createHomeRepository() =>
+      _i73.HomeRepository(_createApiClient(), _createAuthService());
   _i74.ChatsListScreen _createChatsListScreen() => _i74.ChatsListScreen(
       _createChatsListStateManager(), _createAuthService());
   _i75.ChatsListStateManager _createChatsListStateManager() =>

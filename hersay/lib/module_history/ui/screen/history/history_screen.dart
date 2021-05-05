@@ -1,12 +1,12 @@
-
-
 import 'package:flutter/material.dart';
 import 'package:hersay/generated/l10n.dart';
+import 'package:hersay/main_screen/main_routes.dart';
 import 'package:hersay/module_auth/auth_routes.dart';
 import 'package:hersay/module_auth/service/auth/auth.service.dart';
 import 'package:hersay/module_history/history_routes.dart';
 import 'package:hersay/module_history/state_manager/history/history.state_manger.dart';
 import 'package:hersay/module_history/ui/state/history/history.state.dart';
+import 'package:hersay/module_home/home_routes.dart';
 import 'package:hersay/module_navigation/ui/widget/navigation_drawer/anime_navigation_drawer.dart';
 import 'package:hersay/utils/route_helper/route_helper.dart';
 import 'package:hersay/utils/widgets/turkish_app_bar/turkish_app_bar.dart';
@@ -18,15 +18,15 @@ class HistoryScreen extends StatefulWidget {
   final AuthService _authService;
 
   HistoryScreen(
-      this._stateManager,
-      this._authService,
-      );
+    this._stateManager,
+    this._authService,
+  );
 
   @override
-   HistoryScreenState createState() =>  HistoryScreenState();
+  HistoryScreenState createState() => HistoryScreenState();
 }
 
-class  HistoryScreenState extends State<HistoryScreen> {
+class HistoryScreenState extends State<HistoryScreen> {
   final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
 
   HistoryState currentState;
@@ -43,34 +43,42 @@ class  HistoryScreenState extends State<HistoryScreen> {
     });
 
     widget._stateManager.getHistory(this);
-
   }
 
-  void getHistory(){
+  void getHistory() {
     widget._stateManager.getHistory(this);
   }
 
   @override
   Widget build(BuildContext context) {
-    widget._authService.isLoggedIn.then((value){
-      if(!value) {
+    widget._authService.isLoggedIn.then((value) {
+      if (!value) {
         RouteHelper redirectTo = new RouteHelper(
-            redirectTo:  HistoryRoutes.HISTORY_ROUTE,
-            additionalData: null
-        );
+            redirectTo: HistoryRoutes.HISTORY_ROUTE, additionalData: null);
         Navigator.of(context).pushNamed(
           AuthorizationRoutes.LOGIN_SCREEN,
           arguments: redirectTo,
         );
       }
     });
-    return    Scaffold(
-      key: _scaffoldKey,
-      appBar: TurkishAppBar.getTurkishAppBar(context, _scaffoldKey, S.of(context).history),
-      drawer: TurkishNavigationDrawer(),
-      body: currentState.getUI(context),
+    return WillPopScope(
+      onWillPop: () async {
+        var additionalData = ModalRoute.of(context).settings.arguments;
+        if (additionalData != null && additionalData is bool) {
+          Navigator.of(context).pushNamedAndRemoveUntil(
+              MainRoutes.MAIN_SCREEN_ROUTE, (route) => false);
+          return false;
+        }
+        return true;
+      },
+      child: Scaffold(
+        key: _scaffoldKey,
+        appBar: TurkishAppBar.getTurkishAppBar(
+            context, _scaffoldKey, S.of(context).history),
+        drawer: TurkishNavigationDrawer(),
+        body: currentState.getUI(context),
+      ),
     );
-
   }
 
 //  Widget _screenUi() {

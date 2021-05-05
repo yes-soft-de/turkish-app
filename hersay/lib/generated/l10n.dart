@@ -2644,6 +2644,86 @@ class S {
       args: [],
     );
   }
+
+  /// `Add new car`
+  String get addNewCar {
+    return Intl.message(
+      'Add new car',
+      name: 'addNewCar',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Add new real estate`
+  String get addNewRealEstate {
+    return Intl.message(
+      'Add new real estate',
+      name: 'addNewRealEstate',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Add new device`
+  String get addNewDevice {
+    return Intl.message(
+      'Add new device',
+      name: 'addNewDevice',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Add new Service`
+  String get addNewService {
+    return Intl.message(
+      'Add new Service',
+      name: 'addNewService',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Update car`
+  String get updateCar {
+    return Intl.message(
+      'Update car',
+      name: 'updateCar',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Update real estate`
+  String get updateRealEstate {
+    return Intl.message(
+      'Update real estate',
+      name: 'updateRealEstate',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `update device`
+  String get updateDevice {
+    return Intl.message(
+      'update device',
+      name: 'updateDevice',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `update service`
+  String get updateService {
+    return Intl.message(
+      'update service',
+      name: 'updateService',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

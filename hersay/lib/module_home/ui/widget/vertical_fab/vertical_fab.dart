@@ -145,18 +145,20 @@ class _VerticalFabState extends State<VerticalFab>
   Widget toggle() {
     return Container(
       child: FloatingActionButton(
+        clipBehavior: Clip.hardEdge,
         onPressed: null,
         backgroundColor: _buttonColor.value,
         tooltip: 'Toggle',
         child: AnimateIcons(
           startIcon: Icons.add,
+          color: Colors.white,
           endIcon: Icons.close,
           size: 30.0,
           controller: controller,
           // add this tooltip for the start icon
-          startTooltip: 'Icons.add_circle',
+          startTooltip: 'Choose item to add',
           // add this tooltip for the end icon
-          endTooltip: 'Icons.add_circle_outline',
+          endTooltip: 'Cancle',
           onStartIconPress: () {
             animate();
             return true;

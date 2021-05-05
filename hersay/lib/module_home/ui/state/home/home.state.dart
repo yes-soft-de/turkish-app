@@ -54,6 +54,8 @@ class HomeStateUnauthorized extends HomeState {
 }
 
 class HomeStateDataLoaded extends HomeState {
+  ScrollController scrollController = ScrollController();
+
   final HomeModel homeData;
   int selectedMode = 1;
   List<HomeElement> displayedProducts = [];
@@ -66,7 +68,10 @@ class HomeStateDataLoaded extends HomeState {
         homeData.advertisement;
     displayedProducts.shuffle();
   }
-
+  resetOffset() {
+    scrollController.jumpTo(1);
+    screenState.refresh();
+  }
   @override
   Widget getUI(BuildContext context) {
     return RefreshIndicator(
@@ -80,6 +85,7 @@ class HomeStateDataLoaded extends HomeState {
             Container(
               margin: EdgeInsets.only(top: selectedMode == 5 ? 110 : 80),
               child: ListView.builder(
+                  controller: scrollController,
                   itemCount: displayedProducts.length,
                   itemBuilder: (BuildContext context, int index) {
                     return GestureDetector(
@@ -147,6 +153,7 @@ class HomeStateDataLoaded extends HomeState {
                                       homeData.advertisement;
                                   displayedProducts.shuffle();
                                   selectedMode = 1;
+                                  resetOffset();
                                   screenState.refresh();
                                 },
                                 child: Container(
@@ -193,6 +200,7 @@ class HomeStateDataLoaded extends HomeState {
                                 onTap: () {
                                   displayedProducts = homeData.cars;
                                   selectedMode = 3;
+                                  resetOffset();
                                   screenState.refresh();
                                 },
                                 child: Container(
@@ -215,6 +223,7 @@ class HomeStateDataLoaded extends HomeState {
                                   displayedProducts =
                                       homeData.electronicDevices;
                                   selectedMode = 4;
+                                  resetOffset();
                                   screenState.refresh();
                                 },
                                 child: Container(
@@ -237,6 +246,7 @@ class HomeStateDataLoaded extends HomeState {
                                   displayedProducts = homeData.advertisement;
                                   selectedMode = 5;
                                   selectChoice = 0;
+                                  resetOffset();
                                   screenState.refresh();
                                 },
                                 child: Container(
@@ -309,6 +319,7 @@ class HomeStateDataLoaded extends HomeState {
             if (selected) {
               selectChoice = element.categoryId;
               getCategoriesPosts(homeData.advertisement, selectChoice);
+              resetOffset();
             } else {
               selectChoice = null;
               displayedProducts = homeData.advertisement;
@@ -320,7 +331,6 @@ class HomeStateDataLoaded extends HomeState {
     });
     return cat;
   }
-
 }
 
 class HomeStateError extends HomeState {

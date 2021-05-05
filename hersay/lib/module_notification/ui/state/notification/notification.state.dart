@@ -88,6 +88,8 @@ class NotificationStateDataLoaded extends NotificationState {
                       ' ${notifications[index].entityName}',
                   time: notifications[index].date,
                   userImage: notifications[index].userImage??'',
+                  entity:notifications[index].entity ,
+                  itemID:notifications[index].itemID ,
                 ),
               );
             } else {

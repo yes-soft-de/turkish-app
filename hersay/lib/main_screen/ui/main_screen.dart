@@ -9,37 +9,34 @@ import 'package:hersay/module_settings/ui/screen/settings/settings_screen.dart';
 import 'package:hersay/utils/project_colors/project_colors.dart';
 import 'package:inject/inject.dart';
 
-
 @provide
 class MainScreen extends StatefulWidget {
   final HomeScreen _homeScreen;
 //  final SettingsScreen _settingsScreen ;
-  final ChatsListScreen _chatsListScreen ;
+  final ChatsListScreen _chatsListScreen;
 //  final ProfileScreen _profileScreen ;
-  final HistoryScreen _historyScreen ;
+  final HistoryScreen _historyScreen;
   final NotificationScreen _notificationScreen;
 
   MainScreen(
-      this._homeScreen,
-      this._chatsListScreen,
-      this._historyScreen,
-      this._notificationScreen,
+    this._homeScreen,
+    this._chatsListScreen,
+    this._historyScreen,
+    this._notificationScreen,
 //      this._profileScreen,
 //      this._settingsScreen,
-      );
+  );
 
   @override
   _MainScreenState createState() => _MainScreenState();
 }
 
 class _MainScreenState extends State<MainScreen> {
-
   int _pageIndex = 0;
 
   @override
   void initState() {
     super.initState();
-
   }
 
 //  @override
