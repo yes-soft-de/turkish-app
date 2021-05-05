@@ -7,16 +7,18 @@ import 'package:hersay/module_auth/ui/states/register/register_state_error.dart'
 import 'package:hersay/module_auth/ui/states/register/register_state_init.dart';
 import 'package:hersay/module_auth/ui/states/register/register_state_loading.dart';
 import 'package:hersay/module_auth/ui/states/register/register_state_success.dart';
+import 'package:hersay/module_profile/service/profile/profile.service.dart';
 import 'package:inject/inject.dart';
 import 'package:rxdart/rxdart.dart';
 
 @provide
 class RegisterStateManager {
   final AuthService _authService;
+  final ProfileService _profileService;
   final PublishSubject<RegisterState> _registerStateSubject =
       PublishSubject<RegisterState>();
 
-  RegisterStateManager(this._authService);
+  RegisterStateManager(this._authService, this._profileService);
 
   Stream<RegisterState> get stateStream => _registerStateSubject.stream;
 
@@ -53,6 +55,7 @@ class RegisterStateManager {
     _authService.authListener.listen((event) {
       switch (event) {
         case AuthStatus.AUTHORIZED:
+          _profileService.getProfileScreenData();
           _registerScreenState.moveToNext();
           break;
         default:

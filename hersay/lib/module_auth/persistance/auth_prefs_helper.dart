@@ -87,7 +87,6 @@ class AuthPrefsHelper {
     SharedPreferences preferencesHelper = await SharedPreferences.getInstance();
     await preferencesHelper.remove('token');
     await preferencesHelper.remove('token_date');
-    await preferencesHelper.clear();
   }
 
   /// @return String Token String

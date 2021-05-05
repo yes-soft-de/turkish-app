@@ -14,6 +14,7 @@ import 'package:hersay/module_auth/persistance/auth_prefs_helper.dart';
 import 'package:hersay/module_auth/request/login/login_register.dart';
 import 'package:hersay/module_auth/request/register/register_request.dart';
 import 'package:hersay/module_auth/response/login/login_response.dart';
+import 'package:hersay/module_profile/presistance/profile_shared_preferences.dart';
 import 'package:hersay/utils/logger/logger.dart';
 import 'package:inject/inject.dart';
 import 'package:rxdart/subjects.dart';
@@ -25,7 +26,8 @@ class AuthService {
   final AuthManager _authManager;
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final PublishSubject<AuthStatus> _authSubject = PublishSubject<AuthStatus>();
-
+  ProfileSharedPreferencesHelper profileSharedPreferencesHelper =
+      ProfileSharedPreferencesHelper();
   String _verificationCode;
 
   AuthService(this._prefsHelper, this._authManager);
@@ -309,6 +311,7 @@ class AuthService {
   Future<void> logout() async {
     await _auth.signOut();
     await _prefsHelper.deleteToken();
+    await profileSharedPreferencesHelper.deleteProfile();
   }
 
   Future<bool> createProfile(String userName, String token) async {

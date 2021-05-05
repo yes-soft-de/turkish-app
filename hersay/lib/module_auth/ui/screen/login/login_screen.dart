@@ -67,7 +67,7 @@ class LoginScreenState extends State<LoginScreen> {
 
   void moveToNext() {
     (itemId == null)
-        ? Navigator.pushNamed(context, redirectTo)
+        ? Navigator.pushNamed(context, redirectTo, arguments: true)
         : Navigator.pushNamed(context, redirectTo, arguments: itemId);
   }
 
