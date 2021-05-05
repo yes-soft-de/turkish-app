@@ -120,36 +120,37 @@ import '../../module_notification/manager/notification/notification.manager.dart
     as _i84;
 import '../../module_notification/repository/notification/notification.reppsitory.dart'
     as _i85;
-import '../../module_home/home_module.dart' as _i86;
-import '../../module_search/search_module.dart' as _i87;
-import '../../module_search/ui/screen/search_screen/seach_screen.dart' as _i88;
+import '../../about_screen/about_screen.dart' as _i86;
+import '../../module_home/home_module.dart' as _i87;
+import '../../module_search/search_module.dart' as _i88;
+import '../../module_search/ui/screen/search_screen/seach_screen.dart' as _i89;
 import '../../module_search/state_manager/search/search.state_manager.dart'
-    as _i89;
-import '../../module_search/service/search/search.service.dart' as _i90;
-import '../../module_search/manager/search/search.manager.dart' as _i91;
-import '../../module_search/repository/search.repository.dart' as _i92;
+    as _i90;
+import '../../module_search/service/search/search.service.dart' as _i91;
+import '../../module_search/manager/search/search.manager.dart' as _i92;
+import '../../module_search/repository/search.repository.dart' as _i93;
 import '../../module_search/ui/screen/advanced_search_screen/advanced_search_screen.dart'
-    as _i93;
-import '../../module_search/state_manager/advanced_search/advanced_search.state_manager.dart'
     as _i94;
-import '../../module_settings/settings_module.dart' as _i95;
-import '../../module_settings/ui/screen/settings/settings_screen.dart' as _i96;
-import '../../module_notification/notification_module.dart' as _i97;
-import '../../module_profile/Profile_module.dart' as _i98;
-import '../../module_profile/ui/screen/profile/profile_screen.dart' as _i99;
+import '../../module_search/state_manager/advanced_search/advanced_search.state_manager.dart'
+    as _i95;
+import '../../module_settings/settings_module.dart' as _i96;
+import '../../module_settings/ui/screen/settings/settings_screen.dart' as _i97;
+import '../../module_notification/notification_module.dart' as _i98;
+import '../../module_profile/Profile_module.dart' as _i99;
+import '../../module_profile/ui/screen/profile/profile_screen.dart' as _i100;
 import '../../module_profile/state_manager/profile/profile.state_manager.dart'
-    as _i100;
-import '../../module_profile/ui/screen/edit_profile/edit_profile_screen.dart'
     as _i101;
-import '../../module_profile/state_manager/edit_profile/edit_profile.state_manager.dart'
+import '../../module_profile/ui/screen/edit_profile/edit_profile_screen.dart'
     as _i102;
-import '../../module_history/history_module.dart' as _i103;
-import '../../module_chat/chat_module.dart' as _i104;
-import '../../module_chat/ui/screen/chat_page/chat_page_screen.dart' as _i105;
-import '../../module_chat/bloc/chat_page/chat_page.bloc.dart' as _i106;
-import '../../module_report/report_module.dart' as _i107;
-import '../../module_report/ui/screen/report/report_screen.dart' as _i108;
-import '../../module_report/state_manager/report.state_manager.dart' as _i109;
+import '../../module_profile/state_manager/edit_profile/edit_profile.state_manager.dart'
+    as _i103;
+import '../../module_history/history_module.dart' as _i104;
+import '../../module_chat/chat_module.dart' as _i105;
+import '../../module_chat/ui/screen/chat_page/chat_page_screen.dart' as _i106;
+import '../../module_chat/bloc/chat_page/chat_page.bloc.dart' as _i107;
+import '../../module_report/report_module.dart' as _i108;
+import '../../module_report/ui/screen/report/report_screen.dart' as _i109;
+import '../../module_report/state_manager/report.state_manager.dart' as _i110;
 
 class AppComponent$Injector implements _i1.AppComponent {
   AppComponent$Injector._();
@@ -334,7 +335,8 @@ class AppComponent$Injector implements _i1.AppComponent {
       _i65.SplashModule(_createSplashScreen());
   _i66.SplashScreen _createSplashScreen() =>
       _i66.SplashScreen(_createAuthService());
-  _i67.MainModule _createMainModule() => _i67.MainModule(_createMainScreen());
+  _i67.MainModule _createMainModule() =>
+      _i67.MainModule(_createMainScreen(), _createAboutScreen());
   _i68.MainScreen _createMainScreen() => _i68.MainScreen(
       _createHomeScreen(),
       _createChatsListScreen(),
@@ -375,57 +377,58 @@ class AppComponent$Injector implements _i1.AppComponent {
       _i84.NotificationManager(_createNotificationRepository());
   _i85.NotificationRepository _createNotificationRepository() =>
       _i85.NotificationRepository(_createAuthService(), _createApiClient());
-  _i86.HomeModule _createHomeModule() => _i86.HomeModule(_createHomeScreen());
-  _i87.SearchModule _createSearchModule() =>
-      _i87.SearchModule(_createSearchScreen(), _createAdvancedSearchScreen());
-  _i88.SearchScreen _createSearchScreen() =>
-      _i88.SearchScreen(_createSearchStateManager());
-  _i89.SearchStateManager _createSearchStateManager() =>
-      _i89.SearchStateManager(_createSearchService());
-  _i90.SearchService _createSearchService() =>
-      _i90.SearchService(_createSearchManager());
-  _i91.SearchManager _createSearchManager() =>
-      _i91.SearchManager(_createSearchRepository());
-  _i92.SearchRepository _createSearchRepository() =>
-      _i92.SearchRepository(_createApiClient(), _createAuthService());
-  _i93.AdvancedSearchScreen _createAdvancedSearchScreen() =>
-      _i93.AdvancedSearchScreen(_createAdvancedSearchStateManager());
-  _i94.AdvancedSearchStateManager _createAdvancedSearchStateManager() =>
-      _i94.AdvancedSearchStateManager(
+  _i86.AboutScreen _createAboutScreen() => _i86.AboutScreen();
+  _i87.HomeModule _createHomeModule() => _i87.HomeModule(_createHomeScreen());
+  _i88.SearchModule _createSearchModule() =>
+      _i88.SearchModule(_createSearchScreen(), _createAdvancedSearchScreen());
+  _i89.SearchScreen _createSearchScreen() =>
+      _i89.SearchScreen(_createSearchStateManager());
+  _i90.SearchStateManager _createSearchStateManager() =>
+      _i90.SearchStateManager(_createSearchService());
+  _i91.SearchService _createSearchService() =>
+      _i91.SearchService(_createSearchManager());
+  _i92.SearchManager _createSearchManager() =>
+      _i92.SearchManager(_createSearchRepository());
+  _i93.SearchRepository _createSearchRepository() =>
+      _i93.SearchRepository(_createApiClient(), _createAuthService());
+  _i94.AdvancedSearchScreen _createAdvancedSearchScreen() =>
+      _i94.AdvancedSearchScreen(_createAdvancedSearchStateManager());
+  _i95.AdvancedSearchStateManager _createAdvancedSearchStateManager() =>
+      _i95.AdvancedSearchStateManager(
           _createSearchService(), _createServiceService());
-  _i95.SettingModule _createSettingModule() =>
-      _i95.SettingModule(_createSettingsScreen());
-  _i96.SettingsScreen _createSettingsScreen() => _i96.SettingsScreen(
+  _i96.SettingModule _createSettingModule() =>
+      _i96.SettingModule(_createSettingsScreen());
+  _i97.SettingsScreen _createSettingsScreen() => _i97.SettingsScreen(
       _createAuthService(),
       _createAppThemeDataService(),
       _createLocalizationService());
-  _i97.NotificationModule _createNotificationModule() =>
-      _i97.NotificationModule(_createNotificationScreen());
-  _i98.ProfileModule _createProfileModule() =>
-      _i98.ProfileModule(_createProfileScreen(), _createEditProfileScreen());
-  _i99.ProfileScreen _createProfileScreen() =>
-      _i99.ProfileScreen(_createProfileStateManager(), _createAuthService());
-  _i100.ProfileStateManager _createProfileStateManager() =>
-      _i100.ProfileStateManager(_createProfileService(), _createAuthService());
-  _i101.EditProfileScreen _createEditProfileScreen() =>
-      _i101.EditProfileScreen(_createEditProfileStateManager());
-  _i102.EditProfileStateManager _createEditProfileStateManager() =>
-      _i102.EditProfileStateManager(
+  _i98.NotificationModule _createNotificationModule() =>
+      _i98.NotificationModule(_createNotificationScreen());
+  _i99.ProfileModule _createProfileModule() =>
+      _i99.ProfileModule(_createProfileScreen(), _createEditProfileScreen());
+  _i100.ProfileScreen _createProfileScreen() =>
+      _i100.ProfileScreen(_createProfileStateManager(), _createAuthService());
+  _i101.ProfileStateManager _createProfileStateManager() =>
+      _i101.ProfileStateManager(_createProfileService(), _createAuthService());
+  _i102.EditProfileScreen _createEditProfileScreen() =>
+      _i102.EditProfileScreen(_createEditProfileStateManager());
+  _i103.EditProfileStateManager _createEditProfileStateManager() =>
+      _i103.EditProfileStateManager(
           _createProfileService(), _createAuthService());
-  _i103.HistoryModule _createHistoryModule() =>
-      _i103.HistoryModule(_createHistoryScreen());
-  _i104.ChatModule _createChatModule() => _i104.ChatModule(
+  _i104.HistoryModule _createHistoryModule() =>
+      _i104.HistoryModule(_createHistoryScreen());
+  _i105.ChatModule _createChatModule() => _i105.ChatModule(
       _createChatsListScreen(), _createAuthService(), _createChatScreen());
-  _i105.ChatScreen _createChatScreen() =>
-      _i105.ChatScreen(_createChatPageBloc(), _createImageUploadService());
-  _i106.ChatPageBloc _createChatPageBloc() =>
-      _i106.ChatPageBloc(_createChatService());
-  _i107.ReportModule _createReportModule() =>
-      _i107.ReportModule(_createReportScreen());
-  _i108.ReportScreen _createReportScreen() =>
-      _i108.ReportScreen(_createReportStateManager());
-  _i109.ReportStateManager _createReportStateManager() =>
-      _i109.ReportStateManager(_createReportService());
+  _i106.ChatScreen _createChatScreen() =>
+      _i106.ChatScreen(_createChatPageBloc(), _createImageUploadService());
+  _i107.ChatPageBloc _createChatPageBloc() =>
+      _i107.ChatPageBloc(_createChatService());
+  _i108.ReportModule _createReportModule() =>
+      _i108.ReportModule(_createReportScreen());
+  _i109.ReportScreen _createReportScreen() =>
+      _i109.ReportScreen(_createReportStateManager());
+  _i110.ReportStateManager _createReportStateManager() =>
+      _i110.ReportStateManager(_createReportService());
   @override
   _i6.MyApp get app => _createMyApp();
 }

@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:hersay/about_screen/about_screen.dart';
 import 'package:hersay/generated/l10n.dart';
+import 'package:hersay/main_screen/main_routes.dart';
 import 'package:hersay/module_profile/presistance/profile_shared_preferences.dart';
 import 'package:hersay/module_profile/profile_routes.dart';
 import 'package:hersay/module_search/search_routes.dart';
@@ -243,9 +245,7 @@ class TurkishNavigationDrawer extends StatelessWidget {
 //                ),
                 GestureDetector(
                   onTap: () {
-//                  Navigator.of(context).pushNamed(
-//                      SettingRoutes.SETTING_SCREEN_ROUTE,
-//                      arguments: 1);
+                    Navigator.pushNamed(context, MainRoutes.ABOUT_SCREEN_ROUTE);
                   },
                   child: Container(
                     padding: const EdgeInsets.fromLTRB(32, 15, 10, 15),

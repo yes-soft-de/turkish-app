@@ -28,6 +28,7 @@ dependencies:
   # Pair and Other Types
   analyzer_plugin: ^0.3.0
   timeago: ^2.0.29
+  
 
   # Dependency injection
   inject:
@@ -119,6 +120,7 @@ flutter:
   uses-material-design: true
   assets:
     - assets/images/
+    - assets/text/
 
   fonts:
     - family: Roboto
