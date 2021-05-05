@@ -71,7 +71,9 @@ class ChatsListStateDataLoaded extends ChatsListState {
       child:ListView.builder(
           itemCount: chatsList.length,
           itemBuilder: (BuildContext context, int index) {
-            return GestureDetector(
+            return InkWell(
+              splashColor: Colors.transparent.withOpacity(0),
+              highlightColor: Colors.transparent.withOpacity(0),
               onTap: (){
                 Navigator.of(context).pushNamed(
                   ChatRoutes.chatRoute,
