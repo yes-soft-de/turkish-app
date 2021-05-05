@@ -109,6 +109,7 @@ class ReactionEntityRepository extends ServiceEntityRepository
              'reaction.createdBy', 'userProfileEntity.userName as username', 'userProfileEntity.image as userImage')
 
             ->andWhere('reaction.type = 1')
+            ->orWhere('reaction.type = 3')
 
             ->andWhere('reaction.createdBy != :userID')
             ->setParameter('userID', $userID)
