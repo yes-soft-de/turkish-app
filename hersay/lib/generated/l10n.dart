@@ -655,10 +655,10 @@ class S {
     );
   }
 
-  /// `About`
+  /// `Terms of Service`
   String get about {
     return Intl.message(
-      'About',
+      'Terms of Service',
       name: 'about',
       desc: '',
       args: [],
@@ -2025,40 +2025,40 @@ class S {
     );
   }
 
-  /// `Type :`
+  /// `Type`
   String get type {
     return Intl.message(
-      'Type :',
+      'Type',
       name: 'type',
       desc: '',
       args: [],
     );
   }
 
-  /// `Traveled Distance :`
+  /// `Traveled Distance`
   String get traveledDistance {
     return Intl.message(
-      'Traveled Distance :',
+      'Traveled Distance',
       name: 'traveledDistance',
       desc: '',
       args: [],
     );
   }
 
-  /// `Dureation of use :`
+  /// `Dureation of use`
   String get dureationOfUse {
     return Intl.message(
-      'Dureation of use :',
+      'Dureation of use',
       name: 'dureationOfUse',
       desc: '',
       args: [],
     );
   }
 
-  /// `Cylynder :`
+  /// `Cylynder`
   String get cylynder {
     return Intl.message(
-      'Cylynder :',
+      'Cylynder',
       name: 'cylynder',
       desc: '',
       args: [],
@@ -2095,20 +2095,20 @@ class S {
     );
   }
 
-  /// `Duration of use :`
+  /// `Duration of use`
   String get durationOfUse {
     return Intl.message(
-      'Duration of use :',
+      'Duration of use',
       name: 'durationOfUse',
       desc: '',
       args: [],
     );
   }
 
-  /// `Display :`
+  /// `Display`
   String get display {
     return Intl.message(
-      'Display :',
+      'Display',
       name: 'display',
       desc: '',
       args: [],
@@ -2145,30 +2145,30 @@ class S {
     );
   }
 
-  /// `Floors number :`
+  /// `Floors number`
   String get floorsNumber {
     return Intl.message(
-      'Floors number :',
+      'Floors number',
       name: 'floorsNumber',
       desc: '',
       args: [],
     );
   }
 
-  /// `Address :`
+  /// `Address`
   String get address {
     return Intl.message(
-      'Address :',
+      'Address',
       name: 'address',
       desc: '',
       args: [],
     );
   }
 
-  /// `Rooms :`
+  /// `Rooms`
   String get rooms {
     return Intl.message(
-      'Rooms :',
+      'Rooms',
       name: 'rooms',
       desc: '',
       args: [],

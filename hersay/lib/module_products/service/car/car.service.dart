@@ -71,6 +71,7 @@ class CarService {
         response.data.yearOfRelease.timestamp * 1000));
     return new CarModel(
         id: carId,
+        dateTime: DateTime.fromMillisecondsSinceEpoch(response.data.yearOfRelease.timestamp * 1000),
         title: response.data.title,
         type: response.data.carType,
         distance: response.data.distance,

@@ -67,7 +67,7 @@ class ServiceDetailsStateDataLoaded extends ServicesDetailsState {
   @override
   Widget getUI(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
-
+    service.type = 'service';
     return Scaffold(
       appBar: AppBar(
         title: Text(
@@ -344,8 +344,8 @@ class ServiceDetailsStateDataLoaded extends ServicesDetailsState {
                             disabledColor: Colors.grey,
                             onPressed: _comment.text.isNotEmpty
                                 ? () {
-                                    screenState.placeComment(_comment.text,
-                                        '${service.type}', service.id);
+                                    screenState.placeComment(
+                                        _comment.text, 'service', service.id);
                                   }
                                 : null),
                       ],

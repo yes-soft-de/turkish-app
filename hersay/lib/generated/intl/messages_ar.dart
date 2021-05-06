@@ -39,7 +39,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "ThanksYourExcitement" : MessageLookupByLibrary.simpleMessage("شكرا لحماسك"),
     "YouHaveRatedThisAnime" : MessageLookupByLibrary.simpleMessage("لقد قمت بتقييم هذا الأنمي مسبقا"),
     "YouHaveRatedThisEpisode" : MessageLookupByLibrary.simpleMessage("لقد قمت بتقييم هذه الحلقة مسبقا"),
-    "about" : MessageLookupByLibrary.simpleMessage("حول"),
+    "about" : MessageLookupByLibrary.simpleMessage("شروط الخدمة"),
     "aboutMe" : MessageLookupByLibrary.simpleMessage("عني"),
     "accepted" : MessageLookupByLibrary.simpleMessage("مرخص"),
     "account" : MessageLookupByLibrary.simpleMessage("الحساب"),

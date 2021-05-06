@@ -29,7 +29,7 @@ class ReactionRepository{
   Future<bool> deleteReact(ReactionRequest request)async{
     var token = await _authService.getToken();
     dynamic response = await _apiClient.delete(
-        Urls.REACT + request.entity+'/'+request.itemID.toString(),
+        Urls.DELETE_REACT + request.entity+'/'+request.itemID.toString(),
         headers: {'Authorization':'Bearer '+token}
     );
     if(response == null) return false;

@@ -24,6 +24,7 @@ class CarModel {
   String city;
   String country;
   String title;
+  DateTime dateTime;
   CarModel(
       {this.id,
       this.type,
@@ -47,6 +48,7 @@ class CarModel {
       this.city,
       this.country,
       this.comments,
-      this.title
+      this.title,
+      this.dateTime
       });
 }

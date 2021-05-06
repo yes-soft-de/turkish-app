@@ -167,6 +167,7 @@ class AddCarStateInit extends AddCarState {
                     ),
                     child: DateTimePicker(
                       //controller: _dateController,
+                      initialValue: car.dateTime?.toIso8601String()??DateTime.now(),
                       locale: Locale.fromSubtags(languageCode: 'en'),
                       type: DateTimePickerType.date,
                       dateMask: 'yyyy',
