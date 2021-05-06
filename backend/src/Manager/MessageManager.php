@@ -13,20 +13,20 @@ class MessageManager
     private $autoMapping;
     private $messageEntityRepository;
     private $entityManager;
-    private $statusManager;
+    private $serviceManager;
     private $carManager;
     private $deviceManager;
     private $realEstateManager;
     private $userManager;
 
-    public function __construct(AutoMapping $autoMapping, EntityManagerInterface $entityManager, StatusManager $statusManager,
+    public function __construct(AutoMapping $autoMapping, EntityManagerInterface $entityManager, ServicesManager $servicesManager,
     CarManager $carManager, DeviceManager $deviceManager, RealEstateManager $realEstateManager, MessageEntityRepository $messageEntityRepository,
      UserManager $userManager)
     {
         $this->autoMapping = $autoMapping;
         $this->entityManager = $entityManager;
         $this->messageEntityRepository = $messageEntityRepository;
-        $this->statusManager = $statusManager;
+        $this->serviceManager = $servicesManager;
         $this->carManager = $carManager;
         $this->deviceManager = $deviceManager;
         $this->realEstateManager = $realEstateManager;
@@ -79,6 +79,20 @@ class MessageManager
             }
             
         }
+        elseif ($entity == "service")
+        {
+            $serviceOwner = $this->serviceManager->getServicesById($request->getItemID())[0]['createdBy'];
+
+            if($serviceOwner != $request->getUserOne())
+            {
+                $request->setUserTwo($serviceOwner);
+            }
+            elseif($serviceOwner == $request->getUserOne())
+            {
+                // return "Can't chat with yourself";
+            }
+            
+        }
 
         //Check if there is a previous chat for the both users
 
@@ -91,7 +105,6 @@ class MessageManager
 
         if($messageEntity)
         {
-            //dd($messageEntity);
             return $messageEntity;
         }
 
@@ -150,8 +163,6 @@ class MessageManager
         $response = [];
 
         $lawyerUserID = $this->userManager->getLawyer()[0]['userID'];
-
-        //dd($lawyerUserID);
 
         $response['total'] = count($this->messageEntityRepository->findAll());
 
