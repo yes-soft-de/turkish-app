@@ -271,6 +271,10 @@ class CarDetailsStateDataLoaded extends CarDetailsState {
                   padding: const EdgeInsets.all(8.0),
                   child: Text(S.of(context).city + ' : ${car.city}'),
                 ),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Text(S.of(context).descriptio + ' : ${car.discription}'),
+                ),
                 Container(
                   decoration: BoxDecoration(
                     color: ProjectColors.THEME_COLOR,

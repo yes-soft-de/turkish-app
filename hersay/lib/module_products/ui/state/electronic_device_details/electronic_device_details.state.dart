@@ -141,7 +141,7 @@ class ElectronicDeviceDetailsStateDataLoaded
                         width: 250,
                         child: Center(
                           child: Text(
-                            '${electronicDevice.title??''}',
+                            '${electronicDevice.title ?? ''}',
                             style: TextStyle(
                               fontWeight: FontWeight.bold,
                               color: Colors.white,
@@ -268,13 +268,18 @@ class ElectronicDeviceDetailsStateDataLoaded
                 ),
                 Padding(
                   padding: const EdgeInsets.all(8.0),
-                  child: Text(S.of(context).descriptio +
-                      ' : ${electronicDevice.description}'),
+                  child: Text(S.of(context).country +
+                      ' : ${electronicDevice.country}'),
+                ),
+                                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Text(S.of(context).city +
+                      ' : ${electronicDevice.city}'),
                 ),
                 Padding(
                   padding: const EdgeInsets.all(8.0),
-                  child: Text(S.of(context).location +
-                      ' : ${electronicDevice.location}'),
+                  child: Text(S.of(context).descriptio +
+                      ' : ${electronicDevice.description}'),
                 ),
                 Container(
                   decoration: BoxDecoration(

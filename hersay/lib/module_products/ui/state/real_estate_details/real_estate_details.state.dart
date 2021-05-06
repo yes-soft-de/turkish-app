@@ -265,18 +265,17 @@ class RealEstateDetailsStateDataLoaded extends RealEstateDetailsState {
                 ),
                 Padding(
                   padding: const EdgeInsets.all(8.0),
+                  child:
+                      Text(S.of(context).country + ' : ${realEstate.country}'),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Text(S.of(context).city + ' : ${realEstate.city}'),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
                   child: Text(S.of(context).roomsDescription +
                       ' : ${realEstate.description}'),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Text(S.of(context).country +
-                      ' : ${realEstate.country}'),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Text(S.of(context).city +
-                      ' : ${realEstate.city}'),
                 ),
                 Container(
                   decoration: BoxDecoration(
@@ -287,12 +286,14 @@ class RealEstateDetailsStateDataLoaded extends RealEstateDetailsState {
                   padding: const EdgeInsets.all(8.0),
                   margin: const EdgeInsets.all(8.0),
                   child: Center(
-                    child:
-                        Text(S.of(context).price + ' : ${realEstate.price} \$',style: TextStyle(
-                          color: Colors.white,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 16.5,
-                        ),),
+                    child: Text(
+                      S.of(context).price + ' : ${realEstate.price} \$',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 16.5,
+                      ),
+                    ),
                   ),
                 ),
                 Row(
@@ -371,10 +372,12 @@ class RealEstateDetailsStateDataLoaded extends RealEstateDetailsState {
                             ),
                             disabledColor: Colors.grey,
                             color: Colors.white,
-                            onPressed:_comment.text.isNotEmpty ? () {
-                              screenState.placeComment(
-                                  _comment.text, 'realEstate', realEstate.id);
-                            }:null),
+                            onPressed: _comment.text.isNotEmpty
+                                ? () {
+                                    screenState.placeComment(_comment.text,
+                                        'realEstate', realEstate.id);
+                                  }
+                                : null),
                       ],
                     ),
                   ),
