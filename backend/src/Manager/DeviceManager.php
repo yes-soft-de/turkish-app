@@ -132,6 +132,11 @@ class DeviceManager
         {
             return $this->deviceEntityRepository->getFilterByPriceAndCity($price_2, $city);
         }
+
+        elseif ($price == null && $city == null && $price_2 == null)
+        {
+            return $this->deviceEntityRepository->getAllDevices();
+        }
     }
 
     public function getDevicesByBrand($brand)

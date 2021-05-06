@@ -132,6 +132,11 @@ class CarManager
         {
             return $this->carEntityRepository->getFilterByPriceAndCity($price_2, $location);
         }
+
+        elseif ($price == null && $location == null && $price_2 == null)
+        {
+            return $this->carEntityRepository->getAllCars();
+        }
     }
 
     public function getCarsByType($brand)

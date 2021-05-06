@@ -129,6 +129,11 @@ class RealEstateManager
         {
             return $this->repository->getFilterByPriceAndCity($price_2, $city);
         }
+
+        elseif ($price == null && $city == null && $price_2 == null)
+        {
+            return $this->repository->getAllRealEstate();
+        }
         
     }
 
