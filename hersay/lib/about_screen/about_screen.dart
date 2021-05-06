@@ -6,12 +6,13 @@ import 'package:inject/inject.dart';
 
 @provide
 class AboutScreen extends StatelessWidget {
-  Future<String> getText() async {
-    return await rootBundle.loadString('assets/text/about.txt');
+  Future<String> getText(String lang) async {
+    return await rootBundle.loadString('assets/text/about_$lang.txt');
   }
 
   @override
   Widget build(BuildContext context) {
+    String local = Localizations.localeOf(context).languageCode; 
     return Scaffold(
       appBar: AppBar(
         iconTheme: IconThemeData(color: Colors.white),
@@ -25,7 +26,7 @@ class AboutScreen extends StatelessWidget {
         padding: const EdgeInsets.all(8.0),
         child: SingleChildScrollView(
           child: FutureBuilder(
-              future: getText(),
+              future: getText(local),
               builder: (_, snapshot) {
                 if (snapshot.hasData) {
                   return Text(
@@ -34,7 +35,7 @@ class AboutScreen extends StatelessWidget {
                       fontWeight: FontWeight.w500,
                       fontSize: 15,
                     ),
-                    textAlign: TextAlign.end,
+                    textAlign: TextAlign.start,
                   );
                 } else {
                   return Container();
