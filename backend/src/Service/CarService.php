@@ -28,9 +28,11 @@ class CarService
     private $params;
     private $entity = "car";
     private $commentService;
+    private $deviceService;
+    private $realEstateService;
 
     public function __construct(AutoMapping $autoMapping, CarManager $carManager, ReactionService $reactionService, ImageService $imageService,
-        DocumentService $documentService, ParameterBagInterface $params, CommentService $commentService)
+        DocumentService $documentService, ParameterBagInterface $params, CommentService $commentService, DeviceService $deviceService, RealEstateService $realEstateService)
     {
         $this->autoMapping = $autoMapping;
         $this->carManager = $carManager;
@@ -38,6 +40,8 @@ class CarService
         $this->imageService = $imageService;
         $this->documentService = $documentService;
         $this->commentService = $commentService;
+        $this->deviceService = $deviceService;
+        $this->realEstateService = $realEstateService;
 
         $this->params = $params->get('upload_base_url').'/';
     }
@@ -220,6 +224,23 @@ class CarService
 
             $response[] = $this->autoMapping->map('array', CarGetResponse::class, $car);
         }
+
+        return $response;
+    }
+    
+    public function getAllProperties($userID)
+    {
+        $response = [];
+
+        $cars = $this->getAllCars($userID);
+
+        $devices = $this->deviceService->getAllDevices($userID);
+
+        $realEstates = $this->realEstateService->getAllRealEstate($userID);
+
+        $response = array_merge_recursive($cars, $devices, $realEstates);
+
+        shuffle($response);
 
         return $response;
     }

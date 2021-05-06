@@ -135,5 +135,16 @@ class CarController extends BaseController
 
         return $this->response("deleted ", self::DELETE);
     }
+    
+    /**
+     * @Route("/allproperties", name="getAllProprties", methods={"GET"})
+     * @return JsonResponse
+     */
+    public function getAllProperties()
+    {
+        $result = $this->carService->getAllProperties($this->getUserId());
+
+        return $this->response($result, self::FETCH);
+    }
 
 }
