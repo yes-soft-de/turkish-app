@@ -42,13 +42,16 @@ class ProductCard extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
-                      '$product',
-                      overflow: TextOverflow.fade,
-                      maxLines: 1,
-                      softWrap: false,
-                      style:
-                          TextStyle(fontWeight: FontWeight.bold, fontSize: 14),
+                    Container(
+                      width: 100,
+                      child: Text(
+                        '$product',
+                        overflow: TextOverflow.ellipsis,
+                        maxLines: 1,
+                        softWrap: false,
+                        style:
+                            TextStyle(fontWeight: FontWeight.bold, fontSize: 14),
+                      ),
                     ),
                     Text(
                       '$category',
