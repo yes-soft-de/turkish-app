@@ -19,7 +19,6 @@ class AdvancedSearchStateManager {
   void advancedSearch(String entity, String city, String lowestPrice,
       String highestPrice, AdvancedSearchScreenState screenState,List<Categories> categories,int id) {
     _stateSubject.add(AdvancedSearchStateLoading(screenState));
-
     _service
         .filteredSearch(entity, city, lowestPrice, highestPrice,id)
         .then((value) {

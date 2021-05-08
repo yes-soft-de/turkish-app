@@ -291,7 +291,7 @@ class HomeStateDataLoaded extends HomeState {
 
   getCategoriesPosts(List<HomeElement> advertisement, int id) {
     List<HomeElement> filtred = [];
-    advertisement.forEach((element) {
+    advertisement?.forEach((element) {
       if (element.categoryId == id) {
         filtred.add(element);
       }
@@ -301,7 +301,7 @@ class HomeStateDataLoaded extends HomeState {
 
   List<Widget> getCategories(List<Categories> categories) {
     List<Widget> cat = [];
-    categories.forEach((element) {
+    categories?.forEach((element) {
       cat.add(Padding(
         padding: const EdgeInsets.all(2.0),
         child: ChoiceChip(

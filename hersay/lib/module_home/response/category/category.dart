@@ -7,7 +7,9 @@ class CategoryResponse {
     if (json['Data'] != null) {
       data = new List<Data>();
       json['Data'].forEach((v) {
-        data.add(new Data.fromJson(v));
+        if (v['name'] != null && v['id'] != null) {
+          data.add(new Data.fromJson(v));
+        }
       });
     }
   }

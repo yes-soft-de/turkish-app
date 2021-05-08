@@ -142,7 +142,7 @@ class _MyAppState extends State<MyApp> {
       ],
       theme: theme,
       supportedLocales: S.delegate.supportedLocales,
-      title: 'Hersay',
+      title: 'Hersey',
       routes: fullRoutesList,
       initialRoute: MainRoutes.MAIN_SCREEN_ROUTE,
     );

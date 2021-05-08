@@ -258,11 +258,11 @@ class AdvancedSearchStateInit extends AdvancedSearchState {
                       ),
                       onPressed: () {
 //                        if (_searchFormKey.currentState.validate()) {
-                        if (_selectedEntityType != null &&
-                            (_cityController.text.isNotEmpty ||
-                                _lowestPriceController.text.isNotEmpty ||
-                                _highestPriceController.text.isNotEmpty ||
-                                _cityController.text.isNotEmpty)) {
+                        if (_selectedEntityType != null ||
+                            _cityController.text.isNotEmpty ||
+                            _lowestPriceController.text.isNotEmpty ||
+                            _highestPriceController.text.isNotEmpty ||
+                            _cityController.text.isNotEmpty) {
                           screenState.advancedSearch(
                               _selectedEntityType,
                               _cityController.text.trim(),
@@ -551,7 +551,9 @@ class AdvancedSearchStateDataLoaded extends AdvancedSearchState {
                               _selectedEntityType,
                               _cityController.text.trim(),
                               _lowestPriceController.text.trim(),
-                              _highestPriceController.text.trim(),categories,categoryID);
+                              _highestPriceController.text.trim(),
+                              categories,
+                              categoryID);
                         }
 //                        }
                       },
