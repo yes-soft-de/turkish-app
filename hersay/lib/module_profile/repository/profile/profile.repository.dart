@@ -32,6 +32,7 @@ class ProfileRepository {
 
   Future<ProfileResponse> getProfile() async {
     var token = await _authService.getToken();
+    if (token == null) return null;
     var response = await _apiClient
         .get(Urls.PROFILE, headers: {'Authorization': 'Bearer ' + token});
     if (response == null) return null;
@@ -119,7 +120,8 @@ class ProfileRepository {
   Future<void> _getCategories() async {
     var token = await _authService.getToken();
     var language = await localizationPreferencesHelper.getLanguage();
-    dynamic response = await _apiClient.get(Urls.GET_CATEGORIES, headers: {'Local':language??'en'});
+    dynamic response = await _apiClient
+        .get(Urls.GET_CATEGORIES, headers: {'Local': language ?? 'en'});
 
     if (response != null)
       categoryResponse = CategoryResponse.fromJson(response);

@@ -109,7 +109,7 @@ class _MyAppState extends State<MyApp> {
       future: widget._themeDataService.getActiveTheme(),
       builder: (BuildContext context, AsyncSnapshot<ThemeData> themeSnapshot) {
         return FutureBuilder(
-            initialData: 'en',
+            initialData: 'tr',
             future: widget._localizationService.getLanguage(),
             builder:
                 (BuildContext context, AsyncSnapshot<String> langSnapshot) {

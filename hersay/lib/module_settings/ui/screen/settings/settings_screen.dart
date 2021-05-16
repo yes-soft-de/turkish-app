@@ -174,6 +174,10 @@ class _SettingsScreenState extends State<SettingsScreen> {
                                   child: Text('English'),
                                   value: 'en',
                                 ),
+                                DropdownMenuItem(
+                                  child: Text('Turkey'),
+                                  value: 'tr',
+                                ),
                               ],
                               onChanged: (String newLang) {
                                 widget._localizationService.setLanguage(newLang);
