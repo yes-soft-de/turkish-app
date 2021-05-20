@@ -7,6 +7,7 @@ import 'package:hersay/module_products/model/car/car_model.dart';
 import 'package:hersay/module_products/ui/screen/add_car/add_car_sceen.dart';
 import 'package:hersay/utils/project_colors/project_colors.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:flutter/material.dart' as mat;
 
 abstract class AddCarState {
   AddCarScreenState screenState;
@@ -44,12 +45,13 @@ class AddCarStateInit extends AddCarState {
   String mainImage;
   List<String> otherImages = [];
 
-  TextEditingController _dateController = TextEditingController();
+  TextEditingController _dateController =
+      TextEditingController(text: DateFormat('yyyy').format(DateTime.now()));
   String appBarTitle;
   bool _autoValidate = false;
   bool flag = true;
   AddCarStateInit(AddCarScreenState screenState) : super(screenState) {}
-
+  DateTime _dateTime;
   @override
   Widget getUI(context) {
     final node = FocusScope.of(context);
@@ -66,6 +68,7 @@ class AddCarStateInit extends AddCarState {
       _selectedGearType = car.gearType;
       _titleController.text = car.title;
       appBarTitle = S.of(context).updateCar;
+      _dateTime = car.dateTime;
       flag = false;
     }
     return Scaffold(
@@ -74,7 +77,7 @@ class AddCarStateInit extends AddCarState {
         elevation: 0,
         backgroundColor: ProjectColors.THEME_COLOR,
         title: Text(
-          appBarTitle??S.of(context).addNewCar,
+          appBarTitle ?? S.of(context).addNewCar,
           style: TextStyle(color: Colors.white),
         ),
       ),
@@ -153,45 +156,53 @@ class AddCarStateInit extends AddCarState {
                     ),
                   ),
                 ),
-                //build year
                 Card(
                   elevation: 10,
                   margin: EdgeInsets.only(top: 20),
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(15)),
                   child: Container(
-                    padding: EdgeInsets.all(10),
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(15),
                       color: Colors.black12,
                     ),
-                    child: DateTimePicker(
-                      //controller: _dateController,
-                      initialValue: car.dateTime?.toIso8601String()??DateTime.now(),
-                      locale: Locale.fromSubtags(languageCode: 'en'),
-                      type: DateTimePickerType.date,
-                      dateMask: 'yyyy',
-                      initialDatePickerMode: DatePickerMode.year,
-                      firstDate: DateTime.utc(1900, 1, 1),
-                      lastDate: DateTime.now(),
-//                         icon: Icon(Icons.event),0
-                      dateLabelText: S.current.yearOfRelease,
-
-                      selectableDayPredicate: (date) {
-                        return true;
+                    child: TextFormField(
+                      readOnly: true,
+                      controller: _dateController,
+                      decoration: InputDecoration(
+                        border: OutlineInputBorder(
+                          borderSide: BorderSide.none,
+                          borderRadius: BorderRadius.circular(20),
+                        ),
+                        labelText: S.current.yearOfRelease,
+                      ),
+                      onTap: () {
+                        showDatePicker(
+                                context: context,
+                                initialDate:
+                                    car != null ? car.dateTime : DateTime.now(),
+                                firstDate: DateTime.utc(1900, 1, 1),
+                                lastDate: DateTime.now())
+                            .then((value) {
+                          _dateTime = value.toUtc();
+                          _dateController.text =
+                              DateFormat('yyyy').format(value.toUtc());
+                          screenState.refresh();
+                        });
                       },
-                      onChanged: (val) {
-                        _dateController.text = val;
-                        screenState.refresh();
-                      },
-                      validator: (val) {
-                        print(val);
+                      textInputAction: TextInputAction.next,
+                      onEditingComplete: () => node.nextFocus(),
+                      // Move focus to next
+                      validator: (result) {
+                        if (result.isEmpty) {
+                          return S.of(context).thisFieldCannotBeEmpty;
+                        }
                         return null;
                       },
-                      onSaved: (val) => print(val),
                     ),
                   ),
                 ),
+
                 //Gear Type
                 Card(
                     elevation: 10,
@@ -492,7 +503,8 @@ class AddCarStateInit extends AddCarState {
                                   _carTypeController.text.trim(),
                                   _selectedGearType,
                                   _locationController.text.trim(),
-                                  _dateController.text.trim(),
+                                  _dateTime.toIso8601String() ??
+                                      _dateController.text.trim(),
                                   mainImage ?? car.image ?? '',
                                   _countryController.text.trim(),
                                   _cityController.text.trim(),
@@ -507,7 +519,8 @@ class AddCarStateInit extends AddCarState {
                                   _carTypeController.text.trim(),
                                   _selectedGearType,
                                   _locationController.text.trim(),
-                                  _dateController.text.trim(),
+                                  _dateTime.toIso8601String() ??
+                                      _dateController.text.trim(),
                                   mainImage,
                                   _countryController.text.trim(),
                                   _cityController.text.trim(),
