@@ -1,5 +1,5 @@
 git_url("git@github.com:yes-soft-de/flutter_keys.git")
-git_branch("her_say")
+git_branch("her_sey")
 storage_mode("git")
-app_identifier(["de.yes-soft.hersay"])
+app_identifier(["de.yes-soft.hersey"])
 username(ENV['FASTLANE_USER'])
