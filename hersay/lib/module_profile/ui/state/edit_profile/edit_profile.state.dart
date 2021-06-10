@@ -1,6 +1,5 @@
 
 import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:hersay/generated/l10n.dart';
@@ -8,7 +7,6 @@ import 'package:hersay/module_auth/auth_routes.dart';
 import 'package:hersay/module_profile/ui/screen/edit_profile/edit_profile_screen.dart';
 import 'package:hersay/utils/project_colors/project_colors.dart';
 import 'package:image_picker/image_picker.dart';
-
 
 
 abstract class EditProfileState {

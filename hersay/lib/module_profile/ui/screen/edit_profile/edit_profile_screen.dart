@@ -1,8 +1,6 @@
 import 'dart:io';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:hersay/generated/l10n.dart';
 import 'package:hersay/module_profile/model/profile/profile_model.dart';
 import 'package:hersay/module_profile/profile_routes.dart';

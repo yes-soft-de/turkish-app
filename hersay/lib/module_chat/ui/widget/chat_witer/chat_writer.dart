@@ -50,7 +50,6 @@ class _ChatWriterWidget extends State<ChatWriterWidget> {
                   color: Colors.black38,
                 ),
                 child: IconButton(
-
                   icon: Icon(
                     Icons.send,
                     color: Colors.white,
@@ -81,18 +80,26 @@ class _ChatWriterWidget extends State<ChatWriterWidget> {
           child: DropdownButton(
             items: [
               DropdownMenuItem(
-                child: Icon(Icons.image,color: ProjectColors.THEME_COLOR,),
+                child: Icon(
+                  Icons.image,
+                  color: ProjectColors.THEME_COLOR,
+                ),
                 onTap: () {
                   _imagePicker
                       .getImage(source: ImageSource.gallery, imageQuality: 70)
                       .then((value) {
-                    imageFile = File(value.path);
+                    if (value != null) {
+                      imageFile = File(value.path);
+                    }
                     setState(() {});
                   });
                 },
               ),
               DropdownMenuItem(
-                child: Icon(Icons.camera,color: ProjectColors.THEME_COLOR,),
+                child: Icon(
+                  Icons.camera,
+                  color: ProjectColors.THEME_COLOR,
+                ),
                 onTap: () {
                   _imagePicker
                       .getImage(source: ImageSource.camera, imageQuality: 70)
@@ -131,7 +138,10 @@ class _ChatWriterWidget extends State<ChatWriterWidget> {
             onPressed: () {
               sendMessage(_msgController.text.trim());
             },
-            icon: Icon(Icons.send,color: ProjectColors.THEME_COLOR,),
+            icon: Icon(
+              Icons.send,
+              color: ProjectColors.THEME_COLOR,
+            ),
           ),
         )
       ],
