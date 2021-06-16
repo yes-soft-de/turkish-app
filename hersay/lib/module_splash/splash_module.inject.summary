@@ -25,6 +25,13 @@
                 "qualifier": null
               },
               "isProvider": false
+            },
+            {
+              "lookupKey": {
+                "root": "asset:hersay/lib/module_splash/ui/screen/block_screen/block_screen.dart#BlockScreen",
+                "qualifier": null
+              },
+              "isProvider": false
             }
           ]
         }
