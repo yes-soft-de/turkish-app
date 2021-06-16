@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:hersay/generated/l10n.dart';
 import 'package:hersay/utils/enums/products/products.dart';
+import 'package:hersay/utils/project_colors/project_colors.dart';
 import 'package:hersay/utils/widgets/icon_text/icon_text_widget.dart';
 
 class ProductCard extends StatelessWidget {
@@ -12,6 +14,7 @@ class ProductCard extends StatelessWidget {
   final String specification;
   final int likes;
   final int comments;
+  final VoidCallback onBlock;
   ProductCard(
       {this.image,
       this.likes,
@@ -21,7 +24,8 @@ class ProductCard extends StatelessWidget {
       this.product,
       this.specification,
       this.type,
-      this.comments});
+      this.comments,
+      this.onBlock});
 
   @override
   Widget build(BuildContext context) {
@@ -63,7 +67,45 @@ class ProductCard extends StatelessWidget {
                       style: TextStyle(fontSize: 10),
                     )
                   ],
-                )
+                ),
+                Spacer(
+                  flex: 1,
+                ),
+                IconButton(
+                    icon: Container(
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          color: ProjectColors.THEME_COLOR,
+                        ),
+                        child: Center(
+                            child: Icon(
+                          Icons.block,
+                          color: Colors.white,
+                        ))),
+                    onPressed: () {
+                      showDialog(
+                          context: context,
+                          builder: (context) {
+                            return AlertDialog(
+                              title: Text(S.of(context).warning),
+                              content: Container(
+                                child: Text(S.of(context).blockUser),
+                              ),
+                              actions: [
+                                FlatButton(
+                                    onPressed: () {
+                                      onBlock();
+                                    },
+                                    child: Text(S.of(context).ok)),
+                                FlatButton(
+                                    onPressed: () {
+                                      Navigator.of(context).pop();
+                                    },
+                                    child: Text(S.of(context).cancel)),
+                              ],
+                            );
+                          });
+                    }),
               ],
             ),
             Container(
@@ -107,9 +149,13 @@ class ProductCard extends StatelessWidget {
                   flex: 1,
                 ),
                 IconTextWidget(icon: Icons.favorite, text: '$likes'),
-                SizedBox(width: 16,),
+                SizedBox(
+                  width: 16,
+                ),
                 IconTextWidget(icon: Icons.comment, text: '$comments'),
-                SizedBox(width: 8,)
+                SizedBox(
+                  width: 8,
+                )
 //                Icon(
 //                  Icons.share,
 //                  color: Colors.grey,

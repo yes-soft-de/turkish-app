@@ -249,7 +249,7 @@
   "cancel": "إلغاء",
   "pleaseCompleteTheForm": "الرجاء أكمل الفورم",
   "report": "إبلاغ",
-  "yourReportWasSentToTheAdmin": "بلاغك أرسل للأدمن",
+  "yourReportWasSentToTheAdmin": "بلاغك أرسل للأدمن سيتم مراجعة المنشور خلال 24 وسنتخذ الإجراء المناسب إن وجب",
   "date":"التاريخ",
   "commentHint":"اكتب تعليقك هنا",
   "title":"العنوان",
@@ -267,5 +267,9 @@
   "updateCar":"تعديل عربة",
   "updateRealEstate":"تعديل عقار",
   "updateDevice":"تعديل جهاز",
-  "updateService":"تعديل خدمة"
+  "updateService":"تعديل خدمة",
+  "warning":"تحذير",
+  "blockUser":"هل أنت متأكد من متابعتك لهذا الإجراء الذي سيؤدي لحظر هذا الحساب علما من أنك لن تستطيع متابعة منشوراته بعد الآن",
+  "accept":"موافق",
+  "unaccept":"غير موافق"
 }

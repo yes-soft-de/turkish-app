@@ -269,5 +269,9 @@
   "updateCar":"Arabayı güncelle",
   "updateRealEstate":"Emlak güncelle",
   "updateDevice":"Cihazı güncelle",
-  "updateService":"Hizmeti güncelle"
+  "updateService":"Hizmeti güncelle",
+  "warnning":"Uyarı",
+  "blockUser":"bu işleme devam ederseniz bu kullanıcıyı engellersiniz ve bir daha onun gönderilerini görmezsiniz , 24 saat içinde bunun için gerekliyse harekete geçeceğiz",
+  "accept":"kabul etmek",
+  "unaccept":"reddetmek"
 }

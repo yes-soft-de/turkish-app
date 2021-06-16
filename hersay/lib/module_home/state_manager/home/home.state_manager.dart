@@ -30,7 +30,9 @@ class HomeStateManager {
       if (value == null) {
         _stateSubject.add(HomeStateError('Error Finding Data', screenState));
       } else {
-        _stateSubject.add(HomeStateDataLoaded(value, screenState));
+        _profileService.getEulaState().then((seen) {
+          _stateSubject.add(HomeStateDataLoaded(value,seen??false,screenState));
+        });
       }
     });
   }
@@ -43,4 +45,13 @@ class HomeStateManager {
       _profileData.add(value);
     });
   }
+
+  Future onBlock(String owner) async {
+    _profileService.blockUser(owner);
+  }
+
+  void setEulaState() {
+    _profileService.setEulaState(true);
+  }
+  
 }

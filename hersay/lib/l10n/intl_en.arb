@@ -251,7 +251,7 @@
   "cancel": "Cancel",
   "pleaseCompleteTheForm": "Please complete the form",
   "report": "Report",
-  "yourReportWasSentToTheAdmin": "your report was sent to the Admin",
+  "yourReportWasSentToTheAdmin": "your report was sent to the Admin , during 24 hours we will take an action if there is necessary for that",
   "date": "Date",
   "commentHint": "place your comment here",
   "title":"Title",
@@ -269,5 +269,9 @@
   "updateCar":"Update car",
   "updateRealEstate":"Update real estate",
   "updateDevice":"update device",
-  "updateService":"update service"
+  "updateService":"update service",
+  "warning":"Warning",
+  "blockUser":"if you continue this action you will block this user and you will not see his posts any more",
+  "accept":"Accept",
+  "unaccept":"Reject"
 }

@@ -2535,10 +2535,10 @@ class S {
     );
   }
 
-  /// `your report was sent to the Admin`
+  /// `your report was sent to the Admin , during 24 hours we will take an action if there is necessary for that`
   String get yourReportWasSentToTheAdmin {
     return Intl.message(
-      'your report was sent to the Admin',
+      'your report was sent to the Admin , during 24 hours we will take an action if there is necessary for that',
       name: 'yourReportWasSentToTheAdmin',
       desc: '',
       args: [],
@@ -2720,6 +2720,46 @@ class S {
     return Intl.message(
       'update service',
       name: 'updateService',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Warning`
+  String get warning {
+    return Intl.message(
+      'Warning',
+      name: 'warning',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `if you continue this action you will block this user and you will not see his posts any more`
+  String get blockUser {
+    return Intl.message(
+      'if you continue this action you will block this user and you will not see his posts any more',
+      name: 'blockUser',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Accept`
+  String get accept {
+    return Intl.message(
+      'Accept',
+      name: 'accept',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Reject`
+  String get unaccept {
+    return Intl.message(
+      'Reject',
+      name: 'unaccept',
       desc: '',
       args: [],
     );

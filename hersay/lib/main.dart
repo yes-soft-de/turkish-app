@@ -122,7 +122,6 @@ class _MyAppState extends State<MyApp> {
       },
     );
   }
-
   Widget getConfiguratedApp(
       Map<String, WidgetBuilder> fullRoutesList,
       ThemeData theme,

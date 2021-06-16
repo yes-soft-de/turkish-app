@@ -41,6 +41,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "YouHaveRatedThisEpisode" : MessageLookupByLibrary.simpleMessage("لقد قمت بتقييم هذه الحلقة مسبقا"),
     "about" : MessageLookupByLibrary.simpleMessage("Terms of Service"),
     "aboutMe" : MessageLookupByLibrary.simpleMessage("عني"),
+    "accept" : MessageLookupByLibrary.simpleMessage("Accept"),
     "accepted" : MessageLookupByLibrary.simpleMessage("Accepted"),
     "account" : MessageLookupByLibrary.simpleMessage("الحساب"),
     "activeMembers" : MessageLookupByLibrary.simpleMessage("أعضاء نشيطين"),
@@ -62,6 +63,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "battery" : MessageLookupByLibrary.simpleMessage("Battery"),
     "beTheFirstToComment" : MessageLookupByLibrary.simpleMessage("Be the First to Comment"),
     "benzene" : MessageLookupByLibrary.simpleMessage("Benzene"),
+    "blockUser" : MessageLookupByLibrary.simpleMessage("if you continue this action you will block this user and you will not see his posts any more"),
     "brand" : MessageLookupByLibrary.simpleMessage("Brand"),
     "buildYear" : MessageLookupByLibrary.simpleMessage("Build Year"),
     "caNotSignIn" : MessageLookupByLibrary.simpleMessage("Ca not Sign in!"),
@@ -267,6 +269,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "type" : MessageLookupByLibrary.simpleMessage("Type"),
     "unAccepted" : MessageLookupByLibrary.simpleMessage("Un accepted"),
     "unFollow" : MessageLookupByLibrary.simpleMessage("الغاء المتابعة"),
+    "unaccept" : MessageLookupByLibrary.simpleMessage("Reject"),
     "unfurnished" : MessageLookupByLibrary.simpleMessage("unfurnished"),
     "updateCar" : MessageLookupByLibrary.simpleMessage("Update car"),
     "updateDevice" : MessageLookupByLibrary.simpleMessage("update device"),
@@ -279,6 +282,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "usa" : MessageLookupByLibrary.simpleMessage("USA"),
     "useDuration" : MessageLookupByLibrary.simpleMessage("Use Duration"),
     "username" : MessageLookupByLibrary.simpleMessage("Username:"),
+    "warning" : MessageLookupByLibrary.simpleMessage("Warning"),
     "watchedSeries" : MessageLookupByLibrary.simpleMessage("مسلسلات متابعة"),
     "whatYouWantToSeachAbout" : MessageLookupByLibrary.simpleMessage("what you want to seach about"),
     "worldWideSeries" : MessageLookupByLibrary.simpleMessage("المسلسلات الموصى بها عالميا"),
@@ -288,7 +292,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "youDidNotSellOrBuyAnyThingYet" : MessageLookupByLibrary.simpleMessage("You did not sell or buy any thing yet"),
     "youDoNotHaveAnyNotification" : MessageLookupByLibrary.simpleMessage("You do not have any notification"),
     "yourName" : MessageLookupByLibrary.simpleMessage("Your Name"),
-    "yourReportWasSentToTheAdmin" : MessageLookupByLibrary.simpleMessage("your report was sent to the Admin"),
+    "yourReportWasSentToTheAdmin" : MessageLookupByLibrary.simpleMessage("your report was sent to the Admin , during 24 hours we will take an action if there is necessary for that"),
     "yourRequestHasBeenAddedAndInHoldForAdmin" : MessageLookupByLibrary.simpleMessage("Item has been created successfully")
   };
 }

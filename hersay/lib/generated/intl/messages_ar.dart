@@ -41,6 +41,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "YouHaveRatedThisEpisode" : MessageLookupByLibrary.simpleMessage("لقد قمت بتقييم هذه الحلقة مسبقا"),
     "about" : MessageLookupByLibrary.simpleMessage("شروط الخدمة"),
     "aboutMe" : MessageLookupByLibrary.simpleMessage("عني"),
+    "accept" : MessageLookupByLibrary.simpleMessage("موافق"),
     "accepted" : MessageLookupByLibrary.simpleMessage("مرخص"),
     "account" : MessageLookupByLibrary.simpleMessage("الحساب"),
     "activeMembers" : MessageLookupByLibrary.simpleMessage("أعضاء نشيطين"),
@@ -62,6 +63,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "battery" : MessageLookupByLibrary.simpleMessage("البطارية"),
     "beTheFirstToComment" : MessageLookupByLibrary.simpleMessage("كن أول المعلقين"),
     "benzene" : MessageLookupByLibrary.simpleMessage("بنزين"),
+    "blockUser" : MessageLookupByLibrary.simpleMessage("هل أنت متأكد من متابعتك لهذا الإجراء الذي سيؤدي لحظر هذا الحساب علما من أنك لن تستطيع متابعة منشوراته بعد الآن"),
     "brand" : MessageLookupByLibrary.simpleMessage("الموديل"),
     "buildYear" : MessageLookupByLibrary.simpleMessage("تاريخ التصنيع"),
     "caNotSignIn" : MessageLookupByLibrary.simpleMessage("حدث خطأ اثناء تسجيل الدخول!"),
@@ -265,6 +267,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "type" : MessageLookupByLibrary.simpleMessage("النوع"),
     "unAccepted" : MessageLookupByLibrary.simpleMessage("غير مرخص"),
     "unFollow" : MessageLookupByLibrary.simpleMessage("الغاء المتابعة"),
+    "unaccept" : MessageLookupByLibrary.simpleMessage("غير موافق"),
     "unfurnished" : MessageLookupByLibrary.simpleMessage("غير مزود بأثاث"),
     "updateCar" : MessageLookupByLibrary.simpleMessage("تعديل عربة"),
     "updateDevice" : MessageLookupByLibrary.simpleMessage("تعديل جهاز"),
@@ -277,6 +280,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "usa" : MessageLookupByLibrary.simpleMessage("الولايات المتحدة"),
     "useDuration" : MessageLookupByLibrary.simpleMessage("مدة الاستخدام"),
     "username" : MessageLookupByLibrary.simpleMessage("اسم المستخدم:"),
+    "warning" : MessageLookupByLibrary.simpleMessage("تحذير"),
     "watchedSeries" : MessageLookupByLibrary.simpleMessage("مسلسلات متابعة"),
     "whatYouWantToSeachAbout" : MessageLookupByLibrary.simpleMessage("ما الذي تريد البحث عنه؟"),
     "worldWideSeries" : MessageLookupByLibrary.simpleMessage("المسلسلات الموصى بها عالميا"),
@@ -286,7 +290,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "youDidNotSellOrBuyAnyThingYet" : MessageLookupByLibrary.simpleMessage("لم تقم ببيع أو شراء أي شيء بعد"),
     "youDoNotHaveAnyNotification" : MessageLookupByLibrary.simpleMessage("لا يوجد إشعارات"),
     "yourName" : MessageLookupByLibrary.simpleMessage("اسمي"),
-    "yourReportWasSentToTheAdmin" : MessageLookupByLibrary.simpleMessage("بلاغك أرسل للأدمن"),
+    "yourReportWasSentToTheAdmin" : MessageLookupByLibrary.simpleMessage("بلاغك أرسل للأدمن سيتم مراجعة المنشور خلال 24 وسنتخذ الإجراء المناسب إن وجب"),
     "yourRequestHasBeenAddedAndInHoldForAdmin" : MessageLookupByLibrary.simpleMessage("تم إنشاء العنصر بنجاح")
   };
 }

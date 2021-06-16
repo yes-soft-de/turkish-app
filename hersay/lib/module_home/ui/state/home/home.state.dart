@@ -55,23 +55,28 @@ class HomeStateUnauthorized extends HomeState {
 
 class HomeStateDataLoaded extends HomeState {
   ScrollController scrollController = ScrollController();
+  final bool eula;
 
   final HomeModel homeData;
   int selectedMode = 1;
   List<HomeElement> displayedProducts = [];
   int selectChoice = 0;
-  HomeStateDataLoaded(this.homeData, HomeScreenState screenState)
+  HomeStateDataLoaded(this.homeData, this.eula, HomeScreenState screenState)
       : super(screenState) {
     displayedProducts = homeData.cars +
         homeData.realEstates +
         homeData.electronicDevices +
         homeData.advertisement;
     displayedProducts.shuffle();
+    if (!this.eula) {
+      screenState.showEulaDialog();
+    }
   }
   resetOffset() {
     scrollController.jumpTo(1);
     screenState.refresh();
   }
+
   @override
   Widget getUI(BuildContext context) {
     return RefreshIndicator(
@@ -126,6 +131,9 @@ class HomeStateDataLoaded extends HomeState {
                           specification: displayedProducts[index].specification,
                           type: displayedProducts[index].type,
                           comments: displayedProducts[index].comments,
+                          onBlock: () {
+                            screenState.onBlock(displayedProducts[index].owner);
+                          },
                         ),
                       ),
                     );
