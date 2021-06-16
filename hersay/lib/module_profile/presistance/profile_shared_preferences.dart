@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:inject/inject.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -26,6 +28,16 @@ class ProfileSharedPreferencesHelper {
   Future<void> setUserStory(String story) async {
     var prefsHelper = await SharedPreferences.getInstance();
     return prefsHelper.setString('profile_story', story);
+  }
+
+  Future<void> setEndUserTerms(bool seen) async {
+    var prefsHelper = await SharedPreferences.getInstance();
+    return prefsHelper.setBool('EULA', seen);
+  }
+
+  Future<bool> getEndUserTermsState() async {
+    var prefsHelper = await SharedPreferences.getInstance();
+    return prefsHelper.getBool('EULA');
   }
 
   Future<String> getUsername() async {
@@ -57,5 +69,34 @@ class ProfileSharedPreferencesHelper {
     var prefsHelper = await SharedPreferences.getInstance();
     prefsHelper.remove('profile_username');
     prefsHelper.remove('profile_image');
+  }
+
+  Future<void> cacheBlackList(List<String> blackList) async {
+    if (blackList == null) {
+      return null;
+    }
+    if (blackList.isEmpty) {
+      return null;
+    }
+    SharedPreferences _prefs = await SharedPreferences.getInstance();
+    await _prefs.setString('Black List', jsonEncode(blackList));
+  }
+
+  Future<List<String>> getBlackList() async {
+    SharedPreferences _prefs = await SharedPreferences.getInstance();
+    var blackListJson = _prefs.getString('Black List');
+    if (blackListJson == null) return null;
+    if (blackListJson.length < 5) return null;
+
+    var blackList = <String>[];
+
+    var cached = jsonDecode(blackListJson);
+    if (cached is List) {
+      cached.forEach((element) {
+        blackList.add(element);
+      });
+    }
+
+    return blackList;
   }
 }

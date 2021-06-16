@@ -70,4 +70,27 @@ class ProfileService {
     );
     return await _manager.updateMyProfile(request);
   }
+
+  Future blockUser(String user) async {
+    var blackList = <String>[];
+    blackList =
+        await _profileSharedPreferencesHelper.getBlackList() ?? <String>[];
+    blackList.add(user);
+    await _profileSharedPreferencesHelper.cacheBlackList(blackList);
+  }
+
+  Future<List<String>> getBlackList() async {
+    var blackList = <String>[];
+    blackList =
+        await _profileSharedPreferencesHelper.getBlackList() ?? <String>[];
+    return blackList;
+  }
+
+  Future setEulaState(bool seen) async {
+    await _profileSharedPreferencesHelper.setEndUserTerms(seen);
+  }
+
+  Future<bool> getEulaState() async {
+    return await _profileSharedPreferencesHelper.getEndUserTermsState();
+  }
 }
