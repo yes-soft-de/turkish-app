@@ -35,7 +35,7 @@ jobs:
           echo "keyAlias=$KEYSTORE_KEY_ALIAS" >> key.properties
           echo "storePassword=$KEYSTORE_STORE_PASSWORD" >> key.properties
           echo "keyPassword=$KEYSTORE_KEY_PASSWORD" >> key.properties
-          echo "flutter.versionName=1.0.2$GITHUB_RUN_NUMBER" > local.properties
+          echo "flutter.versionCode=$GITHUB_RUN_NUMBER" >> local.properties
           ls
         env:
           ANDROID_KEYSTORE_FILE: ${{ secrets.ANDROID_KEYSTORE_FILE }}
