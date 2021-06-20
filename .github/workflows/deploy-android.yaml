@@ -35,6 +35,7 @@ jobs:
           echo "keyAlias=$KEYSTORE_KEY_ALIAS" >> key.properties
           echo "storePassword=$KEYSTORE_STORE_PASSWORD" >> key.properties
           echo "keyPassword=$KEYSTORE_KEY_PASSWORD" >> key.properties
+          echo "flutter.versionName=1.0.2$GITHUB_RUN_NUMBER" > local.properties
           ls
         env:
           ANDROID_KEYSTORE_FILE: ${{ secrets.ANDROID_KEYSTORE_FILE }}
@@ -98,6 +99,16 @@ jobs:
           asset_path: hersay/build/app/outputs/flutter-apk/app-release.apk
           asset_name: release.apk
           asset_content_type: application/zip
+
+      - name: Create release and upload app bundle
+        uses: underwindfall/create-release-with-debugapk@v2.0.0
+        env:
+            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: Bundle-${{ github.run_number }}
+          asset_path: hersay/build/app/outputs/bundle/release/app-release.aab
+          asset_name: app-release.aab
+          asset_content_type: application/zip
       
       - name: Upload APK as artifacts
         uses: actions/upload-artifact@v1
@@ -105,3 +116,8 @@ jobs:
           name: release-apk
           path: hersay/build/app/outputs/flutter-apk/app-release.apk
 
+      - name: Upload APP Bundle as artifacts
+        uses: actions/upload-artifact@v1
+        with:
+          name: release-apk
+          path: hersay/build/app/outputs/bundle/release/app-release.aab
