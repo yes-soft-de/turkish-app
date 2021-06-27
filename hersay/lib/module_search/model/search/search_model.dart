@@ -112,7 +112,7 @@ class SearchModel {
           case 'device':
             result.add(SearchModel(
                 type: '',
-                brand:element.title,
+                brand:element.title??'',
                 id: element.id,
                 productType: PRODUCT_TYPE.ELECTRONIC_DEVICE,
                 userName: element.userName,
@@ -139,8 +139,8 @@ class SearchModel {
             break;
             default:
             result.add(SearchModel(
-                type:element.title ,
-                brand: '',
+                type:element.title??'',
+                brand:element.title??'',
                 id: element.id,
                 productType: PRODUCT_TYPE.ADVERTISMENT,
                 userName: element.userName,
