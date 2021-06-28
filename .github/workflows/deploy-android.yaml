@@ -29,7 +29,7 @@ jobs:
       - name: Upgrade flutter
         run: |
           flutter upgrade
-          flutter downgrade 1.22.5
+          flutter downgrade 1.22.6
 
       - name: Configure Keystore
         run: |
