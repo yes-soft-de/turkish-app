@@ -151,7 +151,8 @@ class _VerticalFabState extends State<VerticalFab>
         tooltip: 'Toggle',
         child: AnimateIcons(
           startIcon: Icons.add,
-          color: Colors.white,
+          startIconColor:Colors.white,
+          endIconColor: Colors.white,
           endIcon: Icons.close,
           size: 30.0,
           controller: controller,
