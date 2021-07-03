@@ -167,13 +167,21 @@ class ServicesEntityRepository extends ServiceEntityRepository
     {
         return $this->createQueryBuilder('service')
             ->select('service.id', 'service.title', 'service.createdBy', 'service.createdAt', 'service.updatedAt', 'service.description', 'service.type',
-            'service.image', 'service.city', 'service.country', 'service.price', 'userProfile.userName', 'userProfile.image as userImage')
+            'service.image', 'service.city', 'service.country', 'service.price', 'userProfile.userName', 'userProfile.image as userImage', 'service.categoryID',
+            'category.name as categoryName', 'category.arabicName as arabicName', 'category.turkishName as turkishName')
 
             ->leftJoin(
                 UserProfileEntity::class,
                 'userProfile',
                 Join::WITH,
                 'userProfile.userID = service.createdBy'
+            )
+
+            ->leftJoin(
+                CategoryEntity::class,
+                'category',
+                Join::WITH,
+                'category.id = service.categoryID'
             )
 
             ->andWhere('service.categoryID = :categoryID')
