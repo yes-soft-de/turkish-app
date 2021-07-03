@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hersay/generated/l10n.dart';
 import 'package:hersay/module_chat/service/chat/char_service.dart';
 import 'package:hersay/module_products/model/real_estate/real_estate_model.dart';
 import 'package:hersay/module_products/request/comment/comment_request.dart';
@@ -32,9 +33,10 @@ class RealEstateDetailsStateManager {
     _realEstateService.getRealEstateDetails(realEstateId).then((value) {
       if (value == null) {
         _stateSubject.add(
-            RealEstateDetailsStateError('Error Finding Data', screenState));
+            RealEstateDetailsStateError(S.current.dataNotFound, screenState));
       } else {
-        _stateSubject.add(RealEstateDetailsStateDataLoaded(value,getComments(value) ,screenState));
+        _stateSubject.add(RealEstateDetailsStateDataLoaded(
+            value, getComments(value), screenState));
       }
     });
   }
@@ -47,8 +49,8 @@ class RealEstateDetailsStateManager {
         .whenComplete(() {
       _realEstateService.getRealEstateDetails(itemId).then((value) {
         if (value == null) {
-          _stateSubject
-              .add(RealEstateDetailsStateError('Error Finding Data', screenState));
+          _stateSubject.add(
+              RealEstateDetailsStateError(S.current.dataNotFound, screenState));
         } else {
           _stateSubject.add(RealEstateDetailsStateDataLoaded(
               value, getComments(value), screenState));
@@ -96,8 +98,8 @@ class RealEstateDetailsStateManager {
     _reactionService.react('realEstate', deviceId).then((value) {
       if (value) {
         realEstate.isLoved = true;
-        _stateSubject
-            .add(RealEstateDetailsStateDataLoaded(realEstate,getComments(realEstate),screenState));
+        _stateSubject.add(RealEstateDetailsStateDataLoaded(
+            realEstate, getComments(realEstate), screenState));
       }
     });
   }
@@ -107,8 +109,8 @@ class RealEstateDetailsStateManager {
     _reactionService.deleteReact('realEstate', deviceId).then((value) {
       if (value) {
         realEstate.isLoved = false;
-        _stateSubject
-            .add(RealEstateDetailsStateDataLoaded(realEstate,getComments(realEstate),screenState));
+        _stateSubject.add(RealEstateDetailsStateDataLoaded(
+            realEstate, getComments(realEstate), screenState));
       }
     });
   }

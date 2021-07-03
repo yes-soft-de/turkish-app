@@ -43,7 +43,7 @@ class SearchModel {
                 image: element.image,
                 category: element.carType,
                 specification: element.description,
-                likes: element.reaction.length,
+                likes: element.reaction[0].reactionCount,
                 commentsNumber: element.commentsNumber));
             break;
           case 'device':
@@ -57,7 +57,7 @@ class SearchModel {
                 image: element.image,
                 category: element.brand,
                 specification: element.description,
-                likes: element.reaction.length,
+                likes: element.reaction[0].reactionCount,
                 commentsNumber: element.commentsNumber));
             break;
           case 'realEstate':
@@ -71,7 +71,7 @@ class SearchModel {
                 image: element.image,
                 category: element.realEstateType,
                 specification:element.description,
-                likes: element.reaction.length,
+                likes: element.reaction[0].reactionCount,
                 commentsNumber: element.commentsNumber));
             break;
             default:
@@ -85,7 +85,7 @@ class SearchModel {
                 image: element.image,
                 category: element.categoryName,
                 specification: element.description,
-                likes: element.reaction.length,
+                likes: element.reaction[0].reactionCount,
                 commentsNumber: element.commentsNumber
                 
                 ));
@@ -106,7 +106,7 @@ class SearchModel {
                 image: element.image,
                 category: element.carType,
                 specification: element.description,
-                likes: element.reaction.length,
+                likes: element.reaction[0].reactionCount,
                 commentsNumber: element.commentsNumber));
             break;
           case 'device':
@@ -120,7 +120,7 @@ class SearchModel {
                 image: element.image,
                 category:  element.brand,
                 specification: element.description,
-                likes: element.reaction.length,
+                likes: element.reaction[0].reactionCount,
                 commentsNumber: element.commentsNumber));
             break;
           case 'realEstate':
@@ -134,7 +134,7 @@ class SearchModel {
                 image: element.image,
                 category: element.realEstateType,
                 specification: element.description ,
-                likes: element.reaction.length,
+                likes: element.reaction[0].reactionCount,
                 commentsNumber: element.commentsNumber));
             break;
             default:
@@ -148,7 +148,7 @@ class SearchModel {
                 image: element.image,
                 category: element.categoryName,
                 specification: element.description,
-                likes: element.reaction.length,
+                likes: element.reaction[0].reactionCount,
                 commentsNumber: element.commentsNumber
                 
                 ));

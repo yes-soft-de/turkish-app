@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hersay/generated/l10n.dart';
 import 'package:hersay/module_chat/service/chat/char_service.dart';
 import 'package:hersay/module_products/model/car/car_model.dart';
 import 'package:hersay/module_products/model/service/service.dart';
@@ -20,7 +21,8 @@ class ServicesDetailsStateManager {
   final ChatService _chatService;
   final ReactionService _reactionService;
   final ReportService _reportService;
-  final PublishSubject<ServicesDetailsState> _stateSubject = new PublishSubject();
+  final PublishSubject<ServicesDetailsState> _stateSubject =
+      new PublishSubject();
   Stream<ServicesDetailsState> get stateStream => _stateSubject.stream;
 
   ServicesDetailsStateManager(
@@ -30,19 +32,22 @@ class ServicesDetailsStateManager {
     this._reportService,
   );
 
-  void getServicesDetails(ServiceDetailsScreenState screenState, int serviceId) {
+  void getServicesDetails(
+      ServiceDetailsScreenState screenState, int serviceId) {
     _stateSubject.add(ServiceDetailsStateLoading(screenState));
     _serviceService.getServiceDetails(serviceId).then((value) {
       if (value == null) {
         _stateSubject
-            .add(ServiceDetailsStateError('Error Finding Data', screenState));
+            .add(ServiceDetailsStateError(S.current.dataNotFound, screenState));
       } else {
-        _stateSubject.add(ServiceDetailsStateDataLoaded(value,getComments(value) ,screenState));
+        _stateSubject.add(ServiceDetailsStateDataLoaded(
+            value, getComments(value), screenState));
       }
     });
   }
 
-  void getRoomId(int itemId,String type,ServiceDetailsScreenState screenState) {
+  void getRoomId(
+      int itemId, String type, ServiceDetailsScreenState screenState) {
     _chatService.getRoomId(type, itemId).then((value) {
       if (value != null) {
         screenState.goToChat(value);
@@ -50,7 +55,8 @@ class ServicesDetailsStateManager {
     });
   }
 
-  void getRoomIdWithLawyer(int itemId, String type,ServiceDetailsScreenState screenState) {
+  void getRoomIdWithLawyer(
+      int itemId, String type, ServiceDetailsScreenState screenState) {
     _chatService.getRoomIdWithLawyer(type, itemId).then((value) {
       if (value != null) {
         screenState.goToChat(value);
@@ -58,20 +64,24 @@ class ServicesDetailsStateManager {
     });
   }
 
-  void loveService(int serviceId, ServiceDetailsScreenState screenState, ServiceModel service) {
+  void loveService(int serviceId, ServiceDetailsScreenState screenState,
+      ServiceModel service) {
     _reactionService.react(service.type, serviceId).then((value) {
       if (value) {
         service.isLoved = true;
-        _stateSubject.add(ServiceDetailsStateDataLoaded(service,getComments(service),screenState));
+        _stateSubject.add(ServiceDetailsStateDataLoaded(
+            service, getComments(service), screenState));
       }
     });
   }
 
-  void unLoveService(int serviceId, ServiceDetailsScreenState screenState, ServiceModel service) {
+  void unLoveService(int serviceId, ServiceDetailsScreenState screenState,
+      ServiceModel service) {
     _reactionService.deleteReact(service.type, serviceId).then((value) {
       if (value) {
         service.isLoved = false;
-        _stateSubject.add(ServiceDetailsStateDataLoaded(service,getComments(service),screenState));
+        _stateSubject.add(ServiceDetailsStateDataLoaded(
+            service, getComments(service), screenState));
       }
     });
   }
@@ -84,8 +94,8 @@ class ServicesDetailsStateManager {
         .whenComplete(() {
       _serviceService.getServiceDetails(itemId).then((value) {
         if (value == null) {
-          _stateSubject.add(ServiceDetailsStateError(
-              'Error Finding Data', screenState));
+          _stateSubject.add(
+              ServiceDetailsStateError(S.current.dataNotFound, screenState));
         } else {
           _stateSubject.add(ServiceDetailsStateDataLoaded(
               value, getComments(value), screenState));

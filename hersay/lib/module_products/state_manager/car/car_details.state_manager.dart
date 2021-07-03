@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hersay/generated/l10n.dart';
 import 'package:hersay/module_chat/service/chat/char_service.dart';
 import 'package:hersay/module_products/model/car/car_model.dart';
 import 'package:hersay/module_products/request/comment/comment_request.dart';
@@ -33,9 +34,10 @@ class CarDetailsStateManager {
     _carService.getCarDetails(carId).then((value) {
       if (value == null) {
         _stateSubject
-            .add(CarDetailsStateError('Error Finding Data', screenState));
+            .add(CarDetailsStateError(S.current.dataNotFound, screenState));
       } else {
-        _stateSubject.add(CarDetailsStateDataLoaded(value,getComments(value) ,screenState));
+        _stateSubject.add(
+            CarDetailsStateDataLoaded(value, getComments(value), screenState));
       }
     });
   }
@@ -60,7 +62,8 @@ class CarDetailsStateManager {
     _reactionService.react('car', carId).then((value) {
       if (value) {
         car.isLoved = true;
-        _stateSubject.add(CarDetailsStateDataLoaded(car,getComments(car),screenState));
+        _stateSubject
+            .add(CarDetailsStateDataLoaded(car, getComments(car), screenState));
       }
     });
   }
@@ -69,7 +72,8 @@ class CarDetailsStateManager {
     _reactionService.deleteReact('car', carId).then((value) {
       if (value) {
         car.isLoved = false;
-        _stateSubject.add(CarDetailsStateDataLoaded(car,getComments(car),screenState));
+        _stateSubject
+            .add(CarDetailsStateDataLoaded(car, getComments(car), screenState));
       }
     });
   }
@@ -82,8 +86,8 @@ class CarDetailsStateManager {
         .whenComplete(() {
       _carService.getCarDetails(itemId).then((value) {
         if (value == null) {
-          _stateSubject.add(CarDetailsStateError(
-              'Error Finding Data', screenState));
+          _stateSubject
+              .add(CarDetailsStateError(S.current.dataNotFound, screenState));
         } else {
           _stateSubject.add(CarDetailsStateDataLoaded(
               value, getComments(value), screenState));

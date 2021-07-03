@@ -99,6 +99,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "createReport" : MessageLookupByLibrary.simpleMessage("Create report"),
     "cylynder" : MessageLookupByLibrary.simpleMessage("Cylynder"),
     "darkMode" : MessageLookupByLibrary.simpleMessage("Dark Mode"),
+    "dataNotFound" : MessageLookupByLibrary.simpleMessage("data not found"),
     "date" : MessageLookupByLibrary.simpleMessage("Date"),
     "descriptio" : MessageLookupByLibrary.simpleMessage("description"),
     "desktop" : MessageLookupByLibrary.simpleMessage("Desktop"),

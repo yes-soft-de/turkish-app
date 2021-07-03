@@ -98,6 +98,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "createReport" : MessageLookupByLibrary.simpleMessage("Rapor yaratmak"),
     "cylynder" : MessageLookupByLibrary.simpleMessage("Silindir"),
     "darkMode" : MessageLookupByLibrary.simpleMessage("Karanlık Mod"),
+    "dataNotFound" : MessageLookupByLibrary.simpleMessage("veri bulunamadı"),
     "date" : MessageLookupByLibrary.simpleMessage("Tarih"),
     "descriptio" : MessageLookupByLibrary.simpleMessage("açıklama"),
     "desktop" : MessageLookupByLibrary.simpleMessage("Masaüstü Bilgisayar"),

@@ -1,4 +1,4 @@
-
+import 'package:hersay/generated/l10n.dart';
 import 'package:hersay/module_auth/service/auth/auth.service.dart';
 import 'package:hersay/module_profile/service/profile/profile.service.dart';
 import 'package:hersay/module_profile/ui/screen/profile/profile_screen.dart';
@@ -15,10 +15,9 @@ class ProfileStateManager {
   Stream<ProfileState> get stateStream => _stateSubject.stream;
 
   ProfileStateManager(
-      this._profileService,
-      this._authService,
-      );
-
+    this._profileService,
+    this._authService,
+  );
 
   void getProfileScreenData(ProfileScreenState screenState) {
     _authService.isLoggedIn.then((value) {
@@ -27,7 +26,7 @@ class ProfileStateManager {
         _profileService.getProfileScreenData().then((value) {
           if (value == null) {
             _stateSubject
-                .add(ProfileStateError('Error Finding Data', screenState));
+                .add(ProfileStateError(S.current.dataNotFound, screenState));
           } else {
             _stateSubject.add(ProfileStateDataLoaded(value, screenState));
           }

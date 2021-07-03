@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hersay/generated/l10n.dart';
 import 'package:hersay/module_chat/service/chat/char_service.dart';
 import 'package:hersay/module_products/model/electronic_device/electronic_device_model.dart';
 import 'package:hersay/module_products/request/comment/comment_request.dart';
@@ -34,7 +35,7 @@ class ElectronicDeviceDetailsStateManager {
         .then((value) {
       if (value == null) {
         _stateSubject.add(ElectronicDeviceDetailsStateError(
-            'Error Finding Data', screenState));
+            S.current.dataNotFound, screenState));
       } else {
         _stateSubject.add(ElectronicDeviceDetailsStateDataLoaded(
             value, getComments(value), screenState));
@@ -51,7 +52,7 @@ class ElectronicDeviceDetailsStateManager {
       _electronicDeviceService.getElectronicDeviceDetails(itemId).then((value) {
         if (value == null) {
           _stateSubject.add(ElectronicDeviceDetailsStateError(
-              'Error Finding Data', screenState));
+              S.current.dataNotFound, screenState));
         } else {
           _stateSubject.add(ElectronicDeviceDetailsStateDataLoaded(
               value, getComments(value), screenState));

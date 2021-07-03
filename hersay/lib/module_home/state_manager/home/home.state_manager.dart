@@ -1,3 +1,4 @@
+import 'package:hersay/generated/l10n.dart';
 import 'package:hersay/module_auth/service/auth/auth.service.dart';
 import 'package:hersay/module_home/service/home/home.service.dart';
 import 'package:hersay/module_home/ui/sceen/home/home_screen.dart';
@@ -28,10 +29,11 @@ class HomeStateManager {
     _stateSubject.add(HomeStateLoading(screenState));
     _homeService.getHomeScreenData().then((value) {
       if (value == null) {
-        _stateSubject.add(HomeStateError('Error Finding Data', screenState));
+        _stateSubject.add(HomeStateError(S.current.dataNotFound, screenState));
       } else {
         _profileService.getEulaState().then((seen) {
-          _stateSubject.add(HomeStateDataLoaded(value,seen??false,screenState));
+          _stateSubject
+              .add(HomeStateDataLoaded(value, seen ?? false, screenState));
         });
       }
     });
@@ -53,5 +55,4 @@ class HomeStateManager {
   void setEulaState() {
     _profileService.setEulaState(true);
   }
-  
 }

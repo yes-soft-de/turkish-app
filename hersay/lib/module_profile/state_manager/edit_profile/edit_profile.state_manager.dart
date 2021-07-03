@@ -1,4 +1,4 @@
-
+import 'package:hersay/generated/l10n.dart';
 import 'package:hersay/module_auth/service/auth/auth.service.dart';
 import 'package:hersay/module_profile/service/profile/profile.service.dart';
 import 'package:hersay/module_profile/ui/screen/edit_profile/edit_profile_screen.dart';
@@ -17,22 +17,23 @@ class EditProfileStateManager {
   Stream<EditProfileState> get stateStream => _stateSubject.stream;
 
   EditProfileStateManager(
-      this._profileService,
-      this._authService,
-      );
+    this._profileService,
+    this._authService,
+  );
 
-
-  void updateProfile(String userName,String country,String city ,String imagePath, EditProfileScreenState screenState) {
+  void updateProfile(String userName, String country, String city,
+      String imagePath, EditProfileScreenState screenState) {
     _authService.isLoggedIn.then((value) {
       if (value) {
-
         _stateSubject.add(EditProfileStateLoading(screenState));
-        _profileService.updateMyProfile(userName, country, city, imagePath).then((value) {
+        _profileService
+            .updateMyProfile(userName, country, city, imagePath)
+            .then((value) {
           if (value == null) {
-            _stateSubject
-                .add(EditProfileStateError('Error Finding Data', screenState));
+            _stateSubject.add(
+                EditProfileStateError(S.current.dataNotFound, screenState));
           } else {
-            _stateSubject.add(EditProfileStateSuccess( screenState));
+            _stateSubject.add(EditProfileStateSuccess(screenState));
             screenState.goBackToProfile();
           }
         });
@@ -42,9 +43,8 @@ class EditProfileStateManager {
     });
   }
 
-  void imageSelected(String name, String image,EditProfileScreenState screenState){
-
-
-    _stateSubject.add(EditProfileStateInit(screenState,name,image: image));
+  void imageSelected(
+      String name, String image, EditProfileScreenState screenState) {
+    _stateSubject.add(EditProfileStateInit(screenState, name, image: image));
   }
 }

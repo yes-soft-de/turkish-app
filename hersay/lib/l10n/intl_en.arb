@@ -273,5 +273,6 @@
   "warning":"Warning",
   "blockUser":"if you continue this action you will block this user and you will not see his posts any more",
   "accept":"Accept",
-  "unaccept":"Reject"
+  "unaccept":"Reject",
+  "dataNotFound":"data not found"
 }
