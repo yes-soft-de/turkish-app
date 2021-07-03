@@ -1,7 +1,7 @@
 class Urls {
   static const String UPLOAD ='upload';
-  static const String DOMAIN = 'http://turkey-app.yes-cloud.de';
-  static const String BASE_API = DOMAIN + '/html/public/index.php';
+  static const String DOMAIN = 'http://164.90.166.209';
+  static const String BASE_API = DOMAIN + '';
   static const String IMAGES_ROOT = DOMAIN + '/upload/';
   //USER APIS
   static const API_SIGN_UP = BASE_API + '/user';
