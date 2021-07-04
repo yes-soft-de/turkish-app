@@ -77,13 +77,13 @@ class SearchModel {
             default:
             result.add(SearchModel(
                 type: element.title??'',
-                brand: '',
+                brand:element.title??'',
                 id: element.id,
                 productType: PRODUCT_TYPE.ADVERTISMENT,
                 userName: element.userName,
                 userImage: element.imageUser,
                 image: element.image,
-                category: element.categoryName,
+                category:element.categoryName??element.type??'',
                 specification: element.description,
                 likes: element.reaction[0].reactionCount,
                 commentsNumber: element.commentsNumber
@@ -146,7 +146,7 @@ class SearchModel {
                 userName: element.userName,
                 userImage: element.imageUser,
                 image: element.image,
-                category: element.categoryName,
+                category: element.categoryName??element.type??'',
                 specification: element.description,
                 likes: element.reaction[0].reactionCount,
                 commentsNumber: element.commentsNumber
