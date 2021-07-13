@@ -1,6 +1,6 @@
 class Urls {
-  static const String UPLOAD ='upload';
-  static const String DOMAIN = 'http://164.90.166.209';
+  static const String UPLOAD = 'upload';
+  static const String DOMAIN = 'http://138.68.82.112';
   static const String BASE_API = DOMAIN + '';
   static const String IMAGES_ROOT = DOMAIN + '/upload/';
   //USER APIS
@@ -52,5 +52,4 @@ class Urls {
   static const SERVICE_DETAILS_API = BASE_API + '/services/';
   static const GET_USER_SERVICE = BASE_API + '/services';
   static const GET_CATEGORIES = BASE_API + '/categoriesbylanguage';
-
 }
