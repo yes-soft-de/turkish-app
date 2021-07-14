@@ -16,7 +16,7 @@ class HomeModel {
 
   static List<HomeElement> toRealEstatesList(HomeResponse homeData) {
     List<HomeElement> result = [];
-    homeData.realEstates.data.forEach((element) {
+    homeData.realEstates?.data?.forEach((element) {
       result.add(new HomeElement(
           id: element.id,
           product: element.title??'',
@@ -36,7 +36,7 @@ class HomeModel {
 
   static List<HomeElement> toCarsList(HomeResponse homeData) {
     List<HomeElement> result = [];
-    homeData.cars.data.forEach((element) {
+    homeData.cars?.data?.forEach((element) {
       result.add(new HomeElement(
           id: element.id,
           product: element.title??'',
@@ -56,7 +56,7 @@ class HomeModel {
 
   static List<HomeElement> toElectronicDevicesList(HomeResponse homeData) {
     List<HomeElement> result = [];
-    homeData.electronicDevices.data.forEach((element) {
+    homeData.electronicDevices?.data?.forEach((element) {
       result.add(new HomeElement(
           id: element.id,
           product: element.title??'',
@@ -76,7 +76,7 @@ class HomeModel {
 
   static List<Categories> toCategoryList(HomeResponse homeData) {
     List<Categories> result = [];
-    homeData.categoryResponse.data.forEach((element) {
+    homeData.categoryResponse?.data?.forEach((element) {
       result.add(Categories(
           categoryId: element.categoryId, categoryName: element.categoryName));
     });
@@ -85,7 +85,7 @@ class HomeModel {
 
   static List<HomeElement> toAdvertisementList(HomeResponse homeData) {
     List<HomeElement> result = [];
-    homeData.allAdvertisement.data.forEach((element) {
+    homeData.allAdvertisement?.data?.forEach((element) {
       result.add(new HomeElement(
           id: element.id,
           categoryId: element.categoryId,
