@@ -503,8 +503,8 @@ class AddCarStateInit extends AddCarState {
                                   _carTypeController.text.trim(),
                                   _selectedGearType,
                                   _locationController.text.trim(),
-                                  _dateTime.toIso8601String() ??
-                                      _dateController.text.trim(),
+                                  _dateTime?.toIso8601String() ??
+                                      _dateController.text.trim() ??DateTime.now().toIso8601String(),
                                   mainImage ?? car.image ?? '',
                                   _countryController.text.trim(),
                                   _cityController.text.trim(),
@@ -519,8 +519,8 @@ class AddCarStateInit extends AddCarState {
                                   _carTypeController.text.trim(),
                                   _selectedGearType,
                                   _locationController.text.trim(),
-                                  _dateTime.toIso8601String() ??
-                                      _dateController.text.trim(),
+                                  _dateTime?.toIso8601String() ??
+                                      _dateController.text.trim() ?? DateTime.now().toIso8601String(),
                                   mainImage,
                                   _countryController.text.trim(),
                                   _cityController.text.trim(),
