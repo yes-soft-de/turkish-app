@@ -48,7 +48,7 @@ android {
 
     defaultConfig {
         // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
-        applicationId "de.yessoft.hersay"
+        applicationId "de.yessoft.hersey"
         minSdkVersion 21
         targetSdkVersion 29
         versionCode flutterVersionCode.toInteger()
