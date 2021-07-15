@@ -1,0 +1,26 @@
+{
+  "asset": "asset:hersay/lib/module_localization/persistance/localization_prefrences_helper.dart",
+  "summary": {
+    "injector": [],
+    "module": [],
+    "injectable": [
+      {
+        "name": "LocalizationPreferencesHelper",
+        "constructor": {
+          "name": "",
+          "kind": "constructor",
+          "injectedType": {
+            "lookupKey": {
+              "root": "asset:hersay/lib/module_localization/persistance/localization_prefrences_helper.dart#LocalizationPreferencesHelper",
+              "qualifier": null
+            },
+            "isProvider": false
+          },
+          "singleton": false,
+          "asynchronous": false,
+          "dependencies": []
+        }
+      }
+    ]
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "asset": "asset:hersay/lib/module_report/report_routes.dart",
+  "summary": {
+    "injector": [],
+    "module": [],
+    "injectable": []
+  }
+}

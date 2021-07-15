@@ -1,0 +1,8 @@
+{
+  "asset": "asset:hersay/lib/module_profile/response/all_cars/all_cars_response.dart",
+  "summary": {
+    "injector": [],
+    "module": [],
+    "injectable": []
+  }
+}

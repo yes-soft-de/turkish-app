@@ -1,0 +1,26 @@
+{
+  "asset": "asset:hersay/lib/module_auth/persistance/auth_prefs_helper.dart",
+  "summary": {
+    "injector": [],
+    "module": [],
+    "injectable": [
+      {
+        "name": "AuthPrefsHelper",
+        "constructor": {
+          "name": "",
+          "kind": "constructor",
+          "injectedType": {
+            "lookupKey": {
+              "root": "asset:hersay/lib/module_auth/persistance/auth_prefs_helper.dart#AuthPrefsHelper",
+              "qualifier": null
+            },
+            "isProvider": false
+          },
+          "singleton": false,
+          "asynchronous": false,
+          "dependencies": []
+        }
+      }
+    ]
+  }
+}

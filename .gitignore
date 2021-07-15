@@ -80,3 +80,7 @@ fabric.properties
 !.gitignore
 !.gitkeep
 config/jwt
+
+# Android and Configs
+key.jks
+google-services.json

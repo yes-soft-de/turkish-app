@@ -3,7 +3,7 @@ name: Android Deploy
 on:
   push:
     branches: 
-      - 'work'
+      - release-v*
 
 jobs:
   deploy-android:
@@ -28,13 +28,14 @@ jobs:
 
       - name: Configure Keystore
         run: |
-          cd ./flutter/android
+          cd ./hersay/android
           echo "$ANDROID_KEYSTORE_FILE" > app/key.jks.b64
           base64 -d -i app/key.jks.b64 > app/key.jks
           echo "storeFile=key.jks" > key.properties
           echo "keyAlias=$KEYSTORE_KEY_ALIAS" >> key.properties
           echo "storePassword=$KEYSTORE_STORE_PASSWORD" >> key.properties
           echo "keyPassword=$KEYSTORE_KEY_PASSWORD" >> key.properties
+          echo "flutter.versionCode=$GITHUB_RUN_NUMBER" >> local.properties
           ls
         env:
           ANDROID_KEYSTORE_FILE: ${{ secrets.ANDROID_KEYSTORE_FILE }}
@@ -44,7 +45,7 @@ jobs:
 
       - name: Firebase Key
         run: |
-          cd ./flutter/android
+          cd ./hersay/android
           echo "$FIREBASE_CONFIG" > firebase.json.b64
           base64 -d -i firebase.json.b64 > app/google-services.json
         env:
@@ -52,30 +53,71 @@ jobs:
 
       - name: Play Key
         run: |
-          cd ./flutter/android
-          echo "$PLAY_CONFIG" > play_config.json.b64
+          cd ./hersay/android
+          echo "$FASTLANE_YES_CLOUD_JSON" > play_config.json.b64
           base64 -d -i play_config.json.b64 > play_config.json
           ls -l
         env:
-          PLAY_CONFIG: ${{secrets.PLAY_CONFIG}}
+          PLAY_CONFIG: ${{secrets.FASTLANE_YES_CLOUD_JSON}}
 
       - name: Get Flutter Packages tools
         run: |
-          flutter pub get
+          cd hersay && flutter pub get
 
       - name: Install NDK
         run: echo "y" | sudo /usr/local/lib/android/sdk/tools/bin/sdkmanager --install "ndk;21.0.6113669" --sdk_root=${ANDROID_SDK_ROOT}
 
       - name: Install bundle
         run: |
-          cd ./android
+          cd ./hersay/android
           gem install bundler
           bundle update --bundler
           bundle config path vendor/bundle
           bundle install --jobs 4 --retry 3
 
+      - uses: eskatos/gradle-command-action@v1
+        with:
+          gradle-version: 6.7.1
+
+      - name: Generate Gradle Wrapper
+        run: |
+          cd hersay/android
+          gradle flutterWrapper
+          chmod +x gradlew
+
       - name: Distribute app to Alpha track 🚀
         run: |
-          cd android
+          cd ./hersay/android
           bundle exec fastlane alpha
 
+      - name: Create release and upload apk
+        uses: underwindfall/create-release-with-debugapk@v2.0.0
+        env:
+            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: Apk-${{ github.run_number }}
+          asset_path: hersay/build/app/outputs/flutter-apk/app-release.apk
+          asset_name: release.apk
+          asset_content_type: application/zip
+
+      - name: Create release and upload app bundle
+        uses: underwindfall/create-release-with-debugapk@v2.0.0
+        env:
+            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: Bundle-${{ github.run_number }}
+          asset_path: hersay/build/app/outputs/bundle/release/app-release.aab
+          asset_name: app-release.aab
+          asset_content_type: application/zip
+      
+      - name: Upload APK as artifacts
+        uses: actions/upload-artifact@v1
+        with:
+          name: release-apk
+          path: hersay/build/app/outputs/flutter-apk/app-release.apk
+
+      - name: Upload APP Bundle as artifacts
+        uses: actions/upload-artifact@v1
+        with:
+          name: release-aab
+          path: hersay/build/app/outputs/bundle/release/app-release.aab
