@@ -46,7 +46,7 @@ class AuthService {
         password: user.credential.user.uid));
 
     if (loginResult == null) {
-      throw UnauthorizedException('Error Creating API Token');
+      throw UnauthorizedException('Login Process Has been faild');
     }
 
     await Future.wait([
