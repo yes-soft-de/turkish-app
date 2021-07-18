@@ -2,6 +2,7 @@ import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hersay/generated/l10n.dart';
+import 'package:hersay/main_screen/main_routes.dart';
 import 'package:hersay/module_profile/model/profile/profile_model.dart';
 import 'package:hersay/module_profile/profile_routes.dart';
 import 'package:hersay/module_profile/state_manager/edit_profile/edit_profile.state_manager.dart';
@@ -62,7 +63,7 @@ class EditProfileScreenState extends State<EditProfileScreen> {
 
   void goBackToProfile() {
     // Navigator.pushReplacementNamed(context, ProfileRoutes.PROFILE_SCREEN);
-    Navigator.of(context).pop();
+    Navigator.of(context).pushNamedAndRemoveUntil(MainRoutes.MAIN_SCREEN_ROUTE, (route) => false);
   }
 
   void updateProfile(
