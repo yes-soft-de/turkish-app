@@ -1,0 +1,8 @@
+{
+  "asset": "asset:hersay/lib/module_auth/request/login/login_register.dart",
+  "summary": {
+    "injector": [],
+    "module": [],
+    "injectable": []
+  }
+}
